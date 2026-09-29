@@ -23,7 +23,7 @@ Re-check each row before release and record the date.
 | Qwen3-TTS `Qwen/Qwen3-TTS-12Hz-1.7B-Base` | `qwen_engine.py`, `config.py` `model_path` | README states no licence (gh) | **Unknown** | https://github.com/QwenLM/Qwen3-TTS | Apache-2.0 is likely (recollection) but unverified. Hindi unsupported (gh) |
 | Whisper `openai/whisper-large-v3-turbo` | `training/asr.py`, `bench/quality.py` (evaluation/dataset validation only) | MIT (recollection) | **Yes (unverified)** | https://huggingface.co/openai/whisper-large-v3-turbo | Not shipped in the serving path |
 | UTMOS22 via `tarepan/SpeechMOS` v1.2.0 | `bench/quality.py` (torch.hub) | Code MIT (recollection); weights/training data (VCC/BVCC) terms unverified | **Unknown** (eval-only, not shipped) | https://github.com/tarepan/SpeechMOS | Predicted MOS is a proxy, English-trained |
-| Speaker encoder `resemblyzer` (GE2E) | `app/services/speaker_encoder.py` optional backend | Code MIT (per module comment; recollection); model trained on VoxCeleb/LibriSpeech | **Unknown** (VoxCeleb data terms are research-oriented) | https://github.com/resemble-ai/Resemblyzer | Optional, off by default |
+| Speaker encoder `resemblyzer` (GE2E) | `app/services/speaker_encoder.py` optional backend | Code **Apache-2.0** (gh: LICENSE file read 2026-09-29; pip 0.1.4 classifier "Apache Software License", `License: UNKNOWN` field). `pretrained.pt` ships inside the pip package with no separate weight licence. Training data is not stated in the Resemblyzer README (Real-Time-Voice-Cloning lineage; VoxCeleb/LibriSpeech is recollection only) | **Unknown** (weights: data provenance unstated; VoxCeleb terms are research-oriented) | https://github.com/resemble-ai/Resemblyzer (gh) | Optional, off by default |
 | Speaker encoder `speechbrain` (ECAPA-TDNN) | same, optional backend | Code Apache-2.0 (recollection); `spkrec-ecapa-voxceleb` weights trained on VoxCeleb | **Unknown** | https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb | Optional; verify weight terms |
 | Built-in speaker-encoder fallback (spectral) | `speaker_encoder.py` | Own code | Yes | this repo | Not identity-grade |
 
@@ -91,7 +91,7 @@ No other standalone vocoder is used.
 | Backend | Code licence | Weights / data | Notes |
 |---|---|---|---|
 | `mfcc` (default) | this repo + librosa (ISC) | none | deterministic baseline, NOT a neural speaker verifier |
-| `resemblyzer` | MIT | GE2E encoder shipped in the pip package, trained on VoxCeleb1/2 + LibriSpeech | verify VoxCeleb terms (research use) before commercial deployment |
+| `resemblyzer` | Apache-2.0 (verified: repo LICENSE + pip classifier, 2026-09-29) | GE2E `pretrained.pt` shipped in the pip package; training data not stated in its README (VoxCeleb/LibriSpeech is recollection) | establish weight/data provenance before commercial deployment |
 | `speechbrain` (ECAPA-TDNN `spkrec-ecapa-voxceleb`) | Apache-2.0 | Apache-2.0 model card, trained on VoxCeleb | downloads weights on first use; same VoxCeleb data caveat |
 
 Embeddings are used only for reference QA and evaluation, never to condition synthesis.

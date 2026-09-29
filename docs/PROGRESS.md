@@ -101,3 +101,12 @@ verification limited (reason given); `[ ]` = not done (blocked, reason given).
 - [~] Docker build with `REQUIREMENTS=requirements-engines.txt`: not built
 - [ ] Blind native-listener A/B (the only real test of "sounds human"): needs listeners
 - [ ] GPU tier (Chatterbox Hindi pack / Magpie) bake-off and custom-voice fine-tune: need an NVIDIA GPU and consented recordings
+
+## Update 2026-09-29 — verification pass
+
+- Phase 0: Kokoro hf_alpha / Supertonic F3 measured on 4 vCPU (benchmarks §9b): 1 stream RTF 0.30 / 0.28, TTFA p50 1.07 s / 0.74 s; at 5 burst streams both past capacity (RTF ≈1.3, 27/65 requests underran). Single runs on a shared CPU — indicative only. Piper remains ~7× faster.
+- Phase 3: neural encoder measured (resemblyzer 0.1.4, Apache-2.0 code; weight/data provenance unknown): 31 ms/embed; same-voice cosine mean 0.935 vs different-voice 0.643 (mfcc: 0.99 vs 0.96). Thin min/max margin — not a calibrated identity threshold. Still informational only.
+- Phase 7: `piper.train` flags verified against live `--help` (piper-tts 1.8.0). `accumulate_grad_batches` fails at runtime (manual optimization) and is now rejected by `train.py`. CPU 2-step train + `--init` resume smoke passed on synthetic data (plumbing only). HF checkpoints and 16-mixed AMP unexercised.
+- Phase 9: CER runs locally via `bench/quality_fw.py` (faster-whisper small): mean CER Piper 0.309 / Kokoro 0.270 / Supertonic 0.295 — small-model ASR noise dominates; not comparable to §7. UTMOS blocked (torch.hub 403).
+- Security review: 13 fixes with regression tests (`tests/test_review_fixes.py`) — decode bombs, consent race, cross-owner legacy voice overwrite, DSP blocking the event loop, annotate CSRF/DNS-rebinding, Devanagari split key, rights validation, cloning consent for bound voices, retention purge of engine copies, upload body cap.
+- Phase 10: Docker not built — CLI present, no daemon in this environment.

@@ -85,7 +85,7 @@ class _MfccBackend:
 
 
 class _ResemblyzerBackend:
-    name = "resemblyzer"  # MIT code; GE2E model trained on VoxCeleb/LibriSpeech (see docs/licenses.md)
+    name = "resemblyzer"  # Apache-2.0 code + bundled GE2E weights (pretrained.pt, VoxCeleb/LibriSpeech-trained); see docs/licenses.md
     neural = True
 
     def load(self) -> None:
@@ -96,6 +96,7 @@ class _ResemblyzerBackend:
         self._enc = VoiceEncoder("cpu")
 
     def embed(self, wav16: np.ndarray) -> np.ndarray:
+        # raw 16 kHz audio, no resemblyzer.preprocess_wav: measured the same separation, 3x faster (docs/benchmarks.md)
         return np.asarray(self._enc.embed_utterance(wav16), np.float32)
 
 

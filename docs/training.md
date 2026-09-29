@@ -79,9 +79,25 @@ dropped). The test set is written separately (`test.jsonl` / `test.csv` + `.held
 Training flags (`training.train`): `--seed` (-> `--seed_everything`), `--precision 16-mixed` (AMP), resume is automatic,
 `--dry-run` prints the `piper.train` command. Multi-speaker: `file|speaker|text` rows set `--model.num_speakers`;
 `speaker_map.json` is written to the dataset dir (Piper's own map is in `config.json`). **Gradient accumulation is not
-wired**: Piper's trainer uses manual optimization, where Lightning rejects `accumulate_grad_batches` (unverified against your
-installed version; use a larger `--batch-size`). Flag names were not checked against a live `piper.train --help`
-(piper's train extra was not installed here).
+available**: Piper's trainer uses manual optimization and Lightning raises `MisconfigurationException: Automatic gradient
+accumulation is not supported for manual optimization` (reproduced 2026-09-29, piper-tts 1.8.0 / lightning 2.x); `training.train`
+rejects `--trainer.accumulate_grad_batches` up front, so use a larger `--batch-size`.
+
+**Flags verified against a live `python -m piper.train fit --help`** (piper-tts 1.8.0, 2026-09-29): every flag `training.train` emits exists
+(`--seed_everything`, `--ckpt_path`, `--data.{voice_name,csv_path,audio_dir,espeak_voice,cache_dir,config_path,batch_size}`,
+`--model.{sample_rate,num_speakers,vocoder_warmstart_ckpt}`, `--trainer.{default_root_dir,accelerator,devices,precision,max_epochs}`).
+`--trainer.precision` accepts `16-mixed`/`bf16-mixed` (not exercised: no GPU). Also available and unused here: `--model.warmstart_ckpt`
+(weights-only warm start), `--data.num_workers` (default 1), `--data.trim_silence` (Silero VAD).
+
+**CPU smoke (plumbing only, NOT evidence of quality):** 6 clips of Piper rohan output (synthetic; 22.05 kHz) with the Hindi text,
+`piper.train fit` from scratch, batch 2, `--trainer.max_steps 2` on 4 vCPU: exit 0 in 27 s, `last.ckpt` written. Then `python -m training.train
+--data <dir> --run <dir> --init <that last.ckpt> --epochs 1 --batch-size 2 --accelerator cpu --trainer.max_steps 4` (exercises `--init` with a
+local checkpoint, epoch-offset `max_epochs`, pass-through flags): exit 0, checkpoint written. Caveats: 6 clips leave the validation
+set empty (Lightning warns), so `val_mel`/`val_mos` were never logged and no best-checkpoint was saved; UTMOS (torch.hub, GitHub) was
+not loaded; `--init rohan|base` and `--warmstart-vocoder` (Hugging Face checkpoints) were not exercised. Setup notes: `piper-tts` from
+PyPI ships `piper.train` but not the compiled `monotonic_align` extension: build it with `cythonize -i core.pyx` from piper1-gpl and place
+`core*.so` in `piper/train/vits/monotonic_align/monotonic_align/` (`training/setup_env.sh` does this). Cython 3 prints `noexcept` warnings at build; the
+result imports and runs.
 
 Plumbing test (synthetic sine/noise audio, NOT evidence of quality): `pytest tests/test_training_pipeline.py`.
 

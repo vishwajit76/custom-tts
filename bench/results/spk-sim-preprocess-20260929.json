@@ -1,0 +1,50 @@
+{
+ "label": "spk-sim-pre-20260929",
+ "voices": [
+  "hi_IN-rohan-medium",
+  "hi_IN-pratham-medium",
+  "hi_IN-priyamvada-medium",
+  "kokoro:hf_alpha",
+  "kokoro:hm_psi",
+  "supertonic:F3",
+  "supertonic:M4"
+ ],
+ "n_sentences": 4,
+ "backends": {
+  "resemblyzer": {
+   "neural": true,
+   "embed_ms_median": 99.7,
+   "embed_ms_max": 176.0,
+   "audio_s_median": 5.96,
+   "same_mean": 0.927,
+   "same_min": 0.835,
+   "n_same": 42,
+   "diff_mean": 0.633,
+   "diff_max": 0.834,
+   "n_diff": 84,
+   "pairs": {
+    "hi_IN-rohan-medium|hi_IN-pratham-medium": 0.704,
+    "hi_IN-rohan-medium|hi_IN-priyamvada-medium": 0.621,
+    "hi_IN-rohan-medium|kokoro:hf_alpha": 0.557,
+    "hi_IN-rohan-medium|kokoro:hm_psi": 0.661,
+    "hi_IN-rohan-medium|supertonic:F3": 0.617,
+    "hi_IN-rohan-medium|supertonic:M4": 0.727,
+    "hi_IN-pratham-medium|hi_IN-priyamvada-medium": 0.636,
+    "hi_IN-pratham-medium|kokoro:hf_alpha": 0.561,
+    "hi_IN-pratham-medium|kokoro:hm_psi": 0.626,
+    "hi_IN-pratham-medium|supertonic:F3": 0.589,
+    "hi_IN-pratham-medium|supertonic:M4": 0.681,
+    "hi_IN-priyamvada-medium|kokoro:hf_alpha": 0.794,
+    "hi_IN-priyamvada-medium|kokoro:hm_psi": 0.632,
+    "hi_IN-priyamvada-medium|supertonic:F3": 0.701,
+    "hi_IN-priyamvada-medium|supertonic:M4": 0.538,
+    "kokoro:hf_alpha|kokoro:hm_psi": 0.558,
+    "kokoro:hf_alpha|supertonic:F3": 0.666,
+    "kokoro:hf_alpha|supertonic:M4": 0.517,
+    "kokoro:hm_psi|supertonic:F3": 0.583,
+    "kokoro:hm_psi|supertonic:M4": 0.633,
+    "supertonic:F3|supertonic:M4": 0.691
+   }
+  }
+ }
+}

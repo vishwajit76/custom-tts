@@ -236,6 +236,77 @@ same voice's neutral output is 0.97-1.0 for speed/pitch/energy variants (neutral
 a neural speaker verifier**. CER was **skipped** (`--cer`: Whisper weights not reachable offline here; recorded as skipped in the JSON).
 These are signal statistics. **Predicted MOS is not human MOS**, and none of it says whether the voice sounds natural or expressive.
 
+### 9b. Kokoro and Supertonic on the same 4 vCPU box (2026-09-29)
+
+Same box, commands and settings as section 9 (burst, 13 requests per client, 16 kHz, `CACHE_SIZE=0`, warm-up first), concurrency 1 and 5 only. One voice per engine
+(`kokoro:hf_alpha`, `supertonic:F3`, Supertonic at the default 8 steps), served with `ENGINES=piper,<engine> API_KEYS=` (auth off; the shell had an `API_KEYS` set and the bench sent no key).
+Weights: `scripts/download_voices.py kokoro supertonic` succeeded (Kokoro from the GitHub release, Supertonic from the HF hub, which was reachable for that repo). Raw data:
+`bench/results/bl-kokoro-hf_alpha-20260929-4vcpu.json`, `bl-supertonic-F3-20260929-4vcpu.json`. **Caveat:** another worker was editing/testing in the same container, so background CPU load was not controlled; treat these as indicative (single run each, no repeats).
+
+| engine / voice | concurrency | errors | TTFA p50 / p95 / p99 (ms) | RTF p50 / p95 | underrun reqs (max ms) | RSS MB |
+|---|---|---|---|---|---|---|
+| Piper rohan (section 9) | 1 | 0 | 119 / 195 / 195 | 0.042 / 0.055 | 0 | 403 |
+| Piper rohan (section 9) | 5 | 0 | 274 / 608 / 750 | 0.129 / 0.382 | 0 | 423 |
+| Kokoro hf_alpha | 1 | 0 | 1074 / 1360 / 1360 | 0.299 / 0.356 | 0 | 797 |
+| Kokoro hf_alpha | 5 | 0 | 4986 / 8291 / 10167 | 1.308 / 2.449 | 27 of 65 (6279) | 833 |
+| Supertonic F3 | 1 | 0 | 738 / 1068 / 1068 | 0.278 / 0.460 | 0 | 716 |
+| Supertonic F3 | 5 | 0 | 4584 / 6271 / 6734 | 1.304 / 2.560 | 27 of 65 (1995) | 730 |
+
+- Both are real-time for one stream on this box (RTF 0.28-0.30) but not for 5 burst streams (median RTF 1.3, 27 of 65 requests underran). Piper is about 7x lower RTF and 9x lower TTFA at one stream.
+  Consistent with the `balanced` latency tier in `engine_latency_tiers` (about 2 streams per 4 cores; 5 is past that).
+- Cancel ack: Kokoro p50 5.5 ms / max 8.0 ms, Supertonic p50 10.9 ms / max 17.0 ms, 0 ms buffered ahead.
+
+### 9c. bench/eval.py across three engines (6 sentences, neutral, 2026-09-29)
+
+`ENGINES=piper,kokoro,supertonic python -m bench.eval --voices hi_IN-rohan-medium,kokoro:hf_alpha,supertonic:F3 --limit 6 --label eval-engines-20260929 --cer`
+(`bench/results/eval-engines-20260929.json`). Median over 6 sentences: 
+
+| voice | duration s | chars/s | F0 median Hz | RMS dBFS | worst peak dBFS | max clipping | lead / trail silence ms |
+|---|---|---|---|---|---|---|---|
+| Piper rohan | 4.40 | 11.4 | 151 | -18.9 | -1.4 | 0 | 10 / 230 |
+| Kokoro hf_alpha | 5.03 | 9.7 | 223 | -18.8 | 0.0 | 0.0002 | 10 / 475 |
+| Supertonic F3 | 4.19 | 11.1 | 171 | -27.0 | -7.1 | 0 | 10 / 670 |
+
+Supertonic output is about 8 dB quieter than the others (level-normalise before comparing in a listening test); Kokoro touches full scale on some samples (0.02 % of samples); none was silent. `eval.py --cer` still records **skipped**
+(its transformers Whisper needs `openai/whisper-large-v3-turbo` from the HF hub: `OSError: We couldn't connect to 'https://huggingface.co'`). The speaker-similarity column in that JSON is the mfcc backend (not neural).
+
+### 9d. CER/PER with faster-whisper (new `bench/quality_fw.py`)
+
+`faster-whisper` 1.2.1 installed from PyPI and `WhisperModel("small", compute_type="int8")` **did download and run** (Systran weights via the HF hub, which was reachable for those repos; `openai/whisper-large-v3-turbo` for
+`training/asr.py` was not). Command: `ENGINES=piper,kokoro,supertonic WHISPER_MODEL=small python -m bench.quality_fw --voices hi_IN-rohan-medium,kokoro:hf_alpha,supertonic:F3 --label quality-fw-small-20260929`
+on the 27-sentence `bench/quality_set.tsv` (raw output: `bench/results/quality-fw-small-20260929/`, `.json`). PER/CER vs the normalised input text; UTMOS **blocked**
+(`torch.hub` load of `tarepan/SpeechMOS:v1.2.0` from GitHub: `HTTP Error 403: Forbidden`; reported as NaN).
+
+| voice | PER hindi | PER hinglish | PER names | PER numbers | PER romanized | mean PER | mean CER |
+|---|---|---|---|---|---|---|---|
+| Piper rohan | 0.129 | 0.147 | 0.178 | 0.223 | 0.121 | 0.161 | 0.309 |
+| Kokoro hf_alpha | 0.131 | 0.226 | 0.175 | 0.161 | 0.182 | 0.169 | 0.270 |
+| Supertonic F3 | 0.113 | 0.184 | 0.125 | 0.224 | 0.122 | 0.158 | 0.295 |
+
+**Not comparable with the section 7 table**: that used a larger local Whisper and reports PER 0.04-0.06 for the same voices; Whisper `small` mis-transcribes Hindi more, so these absolute values are inflated by the ASR.
+Differences of about 0.01 between voices are within ASR noise; use these only for relative sanity checks with the same ASR.
+
+### 9e. Neural speaker encoder (resemblyzer 0.1.4) vs the mfcc baseline (2026-09-29)
+
+`pip install resemblyzer` (pulls webrtcvad; `pretrained.pt` ships in the package; licence Apache-2.0, see `docs/licenses.md`). `tests/test_speaker_encoder.py`: 5 passed (its only neural-backend test is a skip-if-missing check, so it does not exercise
+the neural path; the measurement below does). The backend worked without a fix; only its licence comment was wrong (said MIT).
+Command: `ENGINES=piper,kokoro,supertonic python -m bench.spk_sim --voices hi_IN-rohan-medium,hi_IN-pratham-medium,hi_IN-priyamvada-medium,kokoro:hf_alpha,kokoro:hm_psi,supertonic:F3,supertonic:M4 --label spk-sim-20260929`.
+7 voices x 4 different sentences (about 6 s each, median). "same" = one voice, two different sentences (42 pairs); "diff" = two voices, same sentence (84 pairs). All synthetic voices; **no real speakers, no human-recorded audio.**
+
+| backend | embed latency median / max (ms, about 6 s audio, 4 vCPU) | same-voice cosine mean (min) | different-voice cosine mean (max) |
+|---|---|---|---|
+| mfcc | 5.2 / 6.1 | 0.992 (0.968) | 0.962 (0.989) |
+| resemblyzer (raw 16 kHz audio, as shipped) | 30.9 / 159.6 (first calls) | 0.935 (0.879) | 0.643 (0.830) |
+| resemblyzer with `preprocess_wav` (rejected variant) | 99.7 / 176.0 | 0.927 (0.835) | 0.633 (0.834) |
+
+- On these voices resemblyzer separates same from different clearly (the lowest same-voice score, 0.879, is above the highest different-voice score, 0.830, so a threshold exists on this set), while mfcc does not (0.962 for different voices). Its closest different pairs were
+  `priyamvada|kokoro:hf_alpha` 0.783 and `rohan|supertonic:M4` 0.738. A margin of 0.05 on 7 TTS voices is thin: do not pick an identity threshold from this; it is not calibrated on real speech.
+- `preprocess_wav` (volume normalisation + webrtcvad trim) did not improve separation and was 3x slower, so the backend keeps raw audio. Raw JSON: `bench/results/spk-sim-20260929.json`, `spk-sim-preprocess-20260929.json`.
+
+### 9f. Docker
+
+`docker` CLI 29.3.1 is present but `docker info` fails: `failed to connect to the docker API at unix:///var/run/docker.sock ... no such file or directory` (no daemon in this sandbox). `docker build` and the `/health` smoke were **not run**.
+
 ## Scaling to 200 calls
 
 Pending final numbers.

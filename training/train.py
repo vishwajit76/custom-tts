@@ -10,8 +10,9 @@
 
 Also: --seed N (default 1234, -> Lightning --seed_everything), --precision 16-mixed (AMP), --dry-run.
 Refuses to run on a held-out test set (training.split.assert_not_heldout).
-Gradient accumulation: NOT wired. Piper's VITS trainer uses manual optimization (GAN, two optimizers), where Lightning
-rejects --trainer.accumulate_grad_batches; UNVERIFIED against the piper.train version you install. Raise --batch-size instead.
+Gradient accumulation: NOT available. Piper's VITS trainer uses manual optimization (GAN, two optimizers), and Lightning
+raises MisconfigurationException for --trainer.accumulate_grad_batches (verified with piper-tts 1.8.0 + lightning 2.x,
+2026-09-29); this script rejects it up front. Raise --batch-size instead.
 Multi-speaker: rows file|speaker|text set --model.num_speakers; Piper writes speaker_id_map into config.json.
 """
 import argparse
@@ -62,6 +63,8 @@ def main() -> None:
     p.add_argument("--dry-run", action="store_true", help="print the piper.train command and exit (no downloads, no training)")
     a, extra = p.parse_known_args()  # anything else goes straight to `piper.train fit`
 
+    if any(x.split("=")[0] == "--trainer.accumulate_grad_batches" for x in extra):
+        p.error("--trainer.accumulate_grad_batches is rejected by Piper's manual-optimization VITS trainer; raise --batch-size")
     assert_not_heldout(a.data)  # never train on a held-out test set
     assert_not_heldout(a.data / "metadata.csv")
     rows = [r for r in (a.data / "metadata.csv").read_text("utf-8").splitlines() if r.strip()]
