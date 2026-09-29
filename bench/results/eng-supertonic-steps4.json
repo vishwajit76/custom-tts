@@ -1,0 +1,41 @@
+{
+  "label": "eng-supertonic-steps4",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1292.1,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 298.43279200213146,
+      "ttfa_ms_p95": 472.3158329979924,
+      "ttfa_ms_p99": 472.3158329979924,
+      "rtf_p50": 0.12193568473546897,
+      "rtf_p95": 0.1794528594233955,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 65.680125,
+      "wall_s": 7.7046968750000815,
+      "rss_mb": 1305.2
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 751.6044170006353,
+      "ttfa_ms_p95": 1255.081582999992,
+      "ttfa_ms_p99": 1258.2727090011758,
+      "rtf_p50": 0.3183192039071114,
+      "rtf_p95": 0.6426654510689322,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 262.518375,
+      "wall_s": 23.26860266699805,
+      "rss_mb": 1333.4
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 1.6186249995371327,
+    "cancel_ack_ms_max": 1.9965000028605573,
+    "buffered_ahead_ms_max": 3760.0
+  }
+}

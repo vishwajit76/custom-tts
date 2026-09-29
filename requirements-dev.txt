@@ -1,0 +1,8 @@
+-r requirements.txt
+pytest
+httpx
+websockets
+onnx
+# quality eval (bench/quality.py) and dataset ASR: local Whisper
+torch
+transformers

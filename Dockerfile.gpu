@@ -1,0 +1,17 @@
+# NVIDIA GPU image (CUDA execution provider). UNTESTED here: no NVIDIA hardware was available when this was written.
+FROM nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python3-venv && rm -rf /var/lib/apt/lists/*
+RUN python3 -m venv /venv
+ENV PATH=/venv/bin:$PATH
+WORKDIR /srv
+COPY requirements.txt .
+# piper-tts depends on the CPU onnxruntime wheel; swap it for the CUDA build (same module name)
+RUN pip install --no-cache-dir -r requirements.txt && pip uninstall -y onnxruntime && pip install --no-cache-dir onnxruntime-gpu
+COPY app app
+COPY scripts scripts
+ARG VOICES="hi_IN-rohan-medium"
+RUN python scripts/download_voices.py $VOICES && rm -rf /root/.cache/huggingface
+ENV PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 USE_CUDA=1 WORKERS=4 THREADS_PER_WORKER=1
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=3s --start-period=30s CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--ws-ping-interval", "20", "--ws-ping-timeout", "20"]

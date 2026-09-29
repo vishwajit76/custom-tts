@@ -1,0 +1,41 @@
+{
+  "label": "eng-piper",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1324.3,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 67.93608299994958,
+      "ttfa_ms_p95": 126.72933300200384,
+      "ttfa_ms_p99": 126.72933300200384,
+      "rtf_p50": 0.024840982727788976,
+      "rtf_p95": 0.03250680808427758,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 69.9804375,
+      "wall_s": 1.7420600000004924,
+      "rss_mb": 1383.5
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 174.12374999912572,
+      "ttfa_ms_p95": 254.8647500007064,
+      "ttfa_ms_p99": 343.31058299721917,
+      "rtf_p50": 0.0618280436065853,
+      "rtf_p95": 0.14747257742225486,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 281.5778125,
+      "wall_s": 5.105919790999906,
+      "rss_mb": 1690.1
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 3.054958000575425,
+    "cancel_ack_ms_max": 3.775082997890422,
+    "buffered_ahead_ms_max": 4680.0
+  }
+}

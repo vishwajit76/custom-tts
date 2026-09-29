@@ -1,0 +1,41 @@
+{
+  "label": "docker4-WORKERS-2_THREADS_PER_WORKER-2-callsim",
+  "sample_rate": 16000,
+  "call_sim": 2.0,
+  "rss_mb_start": 411.1,
+  "levels": {
+    "10": {
+      "requests": 80,
+      "errors": 0,
+      "ttfa_ms_p50": 179.80870800238336,
+      "ttfa_ms_p95": 579.156542000419,
+      "ttfa_ms_p99": 851.629208002123,
+      "rtf_p50": 0.05344598595412187,
+      "rtf_p95": 0.2609292529860225,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 445.4605,
+      "wall_s": 70.83750233400497,
+      "rss_mb": 459.7
+    },
+    "20": {
+      "requests": 160,
+      "errors": 0,
+      "ttfa_ms_p50": 202.10545900044963,
+      "ttfa_ms_p95": 1024.96158300346,
+      "ttfa_ms_p99": 1319.3794999970123,
+      "rtf_p50": 0.07080095102556665,
+      "rtf_p95": 0.4677057862575448,
+      "underrun_requests": 1,
+      "underrun_ms_max": 38.47237499576295,
+      "audio_s_total": 875.654875,
+      "wall_s": 72.77643229199748,
+      "rss_mb": 457.7
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 2.6487089999136515,
+    "cancel_ack_ms_max": 2.7428330067778006,
+    "buffered_ahead_ms_max": 4680.0
+  }
+}

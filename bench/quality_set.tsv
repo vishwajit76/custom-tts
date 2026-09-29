@@ -1,0 +1,28 @@
+# category<TAB>text   (pronunciation / intelligibility eval; scored by Whisper CER against the normalized text)
+hindi	नमस्ते, मैं आपकी बैंक से बात कर रही हूँ।
+hindi	क्या आप अभी दो मिनट बात कर सकते हैं?
+hindi	मैं समझ सकती हूँ, कोई बात नहीं, मैं आपको शाम को दोबारा फ़ोन करूँगी।
+hindi	हमारी टीम कल सुबह आपके घर पर डिलीवरी के लिए आएगी।
+hindi	कृपया अपनी पहचान की पुष्टि करने के लिए अपनी जन्मतिथि बताइए।
+hindi	धन्यवाद, आपका दिन शुभ हो।
+hindi	आपकी शिकायत दर्ज कर ली गई है और अड़तालीस घंटों में उसका समाधान किया जाएगा।
+hindi	प्रसिद्ध कबीर अध्येता पुरुषोत्तम अग्रवाल का यह शोध आलेख रामानंद की खोज करता है।
+numbers	आपकी EMI ₹12,500 की है, जो 05/10/2026 को देय है।
+numbers	आपके खाते में ₹2,45,000 जमा हुए थे।
+numbers	कल 10:30 बजे मीटिंग है।
+numbers	आपको 5% cashback मिलेगा।
+numbers	हमारा नंबर 1800 123 4567 है।
+numbers	यह 3rd floor पर है, कमरा नंबर 204।
+numbers	कीमत 1.5 लाख रुपये है।
+hinglish	आपका loan approve हो गया है, बस KYC documents upload करने बाकी हैं।
+hinglish	Please confirm करें कि आप अभी available हैं।
+hinglish	आपका order dispatch हो गया है और कल तक deliver हो जाएगा।
+hinglish	मैं आपको WhatsApp पर payment link भेज रही हूँ।
+hinglish	आपकी policy renew करने की last date कल है।
+names	मेरा नाम Priya Sharma है और मैं Mumbai office से बोल रही हूँ।
+names	क्या मैं Rahul Verma जी से बात कर रही हूँ?
+names	आपका parcel Lucknow से Jaipur भेजा गया है।
+romanized	kya aap abhi baat kar sakte hain?
+romanized	aapka payment kal tak ho jayega, theek hai?
+romanized	main aapko shaam ko dobara call karungi.
+romanized	dhanyavaad, aapka din shubh ho.

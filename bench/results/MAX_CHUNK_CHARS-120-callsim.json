@@ -1,0 +1,55 @@
+{
+  "label": "MAX_CHUNK_CHARS-120-callsim",
+  "sample_rate": 16000,
+  "call_sim": 2.0,
+  "rss_mb_start": 452.2,
+  "levels": {
+    "10": {
+      "requests": 80,
+      "errors": 0,
+      "ttfa_ms_p50": 100.18208299879916,
+      "ttfa_ms_p95": 184.03391699393978,
+      "ttfa_ms_p99": 224.24924999359064,
+      "rtf_p50": 0.030014015401635803,
+      "rtf_p95": 0.08460085294988703,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 446.379,
+      "wall_s": 69.90978237499803,
+      "rss_mb": 743.7
+    },
+    "20": {
+      "requests": 160,
+      "errors": 0,
+      "ttfa_ms_p50": 99.4395000016084,
+      "ttfa_ms_p95": 215.14612500322983,
+      "ttfa_ms_p99": 258.66262500494486,
+      "rtf_p50": 0.030957770611171883,
+      "rtf_p95": 0.12406018096978481,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 874.9864375,
+      "wall_s": 70.92861970899685,
+      "rss_mb": 789.8
+    },
+    "40": {
+      "requests": 320,
+      "errors": 0,
+      "ttfa_ms_p50": 134.2573750007432,
+      "ttfa_ms_p95": 277.11579199967673,
+      "ttfa_ms_p99": 310.0852919960744,
+      "rtf_p50": 0.047482503314434606,
+      "rtf_p95": 0.28457786871393875,
+      "underrun_requests": 1,
+      "underrun_ms_max": 245.7564159994945,
+      "audio_s_total": 1696.9466875,
+      "wall_s": 71.63158345799457,
+      "rss_mb": 941.5
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 2.5867500007734634,
+    "cancel_ack_ms_max": 2.853792000678368,
+    "buffered_ahead_ms_max": 4600.0
+  }
+}

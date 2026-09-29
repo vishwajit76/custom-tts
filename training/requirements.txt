@@ -1,0 +1,9 @@
+piper-tts[train]==1.8.0
+cython>=3
+setuptools
+soundfile
+soxr
+huggingface_hub
+# torch>=2.9 defaults torch.onnx.export to the dynamo exporter, which fails on VITS (data-dependent spline ops)
+torch>=2.4,<2.9
+torchaudio>=2.4,<2.9

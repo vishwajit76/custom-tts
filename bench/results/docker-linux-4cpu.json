@@ -1,0 +1,55 @@
+{
+  "label": "docker-linux-4cpu",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 257.8,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 110.63145800289931,
+      "ttfa_ms_p95": 202.01087500026915,
+      "ttfa_ms_p99": 202.01087500026915,
+      "rtf_p50": 0.04177510096533032,
+      "rtf_p95": 0.05947421936493071,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 68.985125,
+      "wall_s": 2.9302836249989923,
+      "rss_mb": 328.3
+    },
+    "5": {
+      "requests": 65,
+      "errors": 0,
+      "ttfa_ms_p50": 267.4442500065197,
+      "ttfa_ms_p95": 519.8672500046086,
+      "ttfa_ms_p99": 623.402042001544,
+      "rtf_p50": 0.11109349004278422,
+      "rtf_p95": 0.4324938045671921,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 345.05675,
+      "wall_s": 14.626161666004919,
+      "rss_mb": 395.3
+    },
+    "10": {
+      "requests": 130,
+      "errors": 0,
+      "ttfa_ms_p50": 293.2771670020884,
+      "ttfa_ms_p95": 894.8064999931375,
+      "ttfa_ms_p99": 1287.3180829992634,
+      "rtf_p50": 0.36922057318955087,
+      "rtf_p95": 0.7684970888278595,
+      "underrun_requests": 19,
+      "underrun_ms_max": 3125.9463720416534,
+      "audio_s_total": 692.2438125,
+      "wall_s": 31.506248541001696,
+      "rss_mb": 411.4
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 3.4919169993372634,
+    "cancel_ack_ms_max": 4.458041999896523,
+    "buffered_ahead_ms_max": 4640.0
+  }
+}

@@ -1,0 +1,12 @@
+.venv
+.venv-train
+.git
+models
+out
+voices
+training/runs
+bench/results
+*.log
+.env
+**/__pycache__
+.pytest_cache

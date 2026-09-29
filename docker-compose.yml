@@ -1,0 +1,31 @@
+services:
+  tts:
+    build: .
+    ports: ["8000:8000"]
+    env_file: [.env]
+    environment:
+      MODELS_DIR: /srv/models/piper
+    # custom / fine-tuned voices: mount a directory of *.onnx + *.onnx.json (replaces the baked-in voices)
+    # volumes: ["./models/piper:/srv/models/piper:ro"]
+    deploy:
+      resources:
+        limits: { cpus: "4", memory: 2g }
+    restart: unless-stopped
+    stop_grace_period: 15s
+    logging:
+      driver: json-file
+      options: { max-size: "20m", max-file: "5" }
+
+  tts-gpu:
+    profiles: ["gpu"]
+    build: { context: ., dockerfile: Dockerfile.gpu }
+    ports: ["8001:8000"]
+    env_file: [.env]
+    environment:
+      MODELS_DIR: /srv/models/piper
+    deploy:
+      resources:
+        limits: { memory: 4g }
+        reservations:
+          devices: [{ driver: nvidia, count: 1, capabilities: [gpu] }]
+    restart: unless-stopped

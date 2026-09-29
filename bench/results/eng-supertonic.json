@@ -1,0 +1,41 @@
+{
+  "label": "eng-supertonic",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1734.8,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 639.6138339987374,
+      "ttfa_ms_p95": 975.9164579991193,
+      "ttfa_ms_p99": 975.9164579991193,
+      "rtf_p50": 0.25242744841472964,
+      "rtf_p95": 0.3741404485221928,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 65.742875,
+      "wall_s": 16.40106895899953,
+      "rss_mb": 1742.1
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 1498.9731249988836,
+      "ttfa_ms_p95": 2297.1810409981117,
+      "ttfa_ms_p99": 2654.6738750002987,
+      "rtf_p50": 0.6643991687969052,
+      "rtf_p95": 0.9542748196322574,
+      "underrun_requests": 11,
+      "underrun_ms_max": 13413.018250965251,
+      "audio_s_total": 263.4600625,
+      "wall_s": 44.895318916998804,
+      "rss_mb": 1766.7
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 1.1277919984422624,
+    "cancel_ack_ms_max": 1.5703329991083592,
+    "buffered_ahead_ms_max": 3800.0
+  }
+}

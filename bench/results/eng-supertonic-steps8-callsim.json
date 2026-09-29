@@ -1,0 +1,41 @@
+{
+  "label": "eng-supertonic-steps8-callsim",
+  "sample_rate": 16000,
+  "call_sim": 2.0,
+  "rss_mb_start": 1324.8,
+  "levels": {
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 743.3148749987595,
+      "ttfa_ms_p95": 1208.434333999321,
+      "ttfa_ms_p99": 1713.1767499995476,
+      "rtf_p50": 0.2650072137493558,
+      "rtf_p95": 0.43806982793443006,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 264.0748125,
+      "wall_s": 102.55537820799873,
+      "rss_mb": 1326.1
+    },
+    "8": {
+      "requests": 104,
+      "errors": 0,
+      "ttfa_ms_p50": 1143.825792001735,
+      "ttfa_ms_p95": 2190.6117079997784,
+      "ttfa_ms_p99": 2816.6977500004577,
+      "rtf_p50": 0.44043623499810275,
+      "rtf_p95": 0.891485947272899,
+      "underrun_requests": 8,
+      "underrun_ms_max": 4524.400036982115,
+      "audio_s_total": 527.93425,
+      "wall_s": 110.21181462499953,
+      "rss_mb": 1327.1
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 1.0550410006544553,
+    "cancel_ack_ms_max": 1.6065829986473545,
+    "buffered_ahead_ms_max": 3800.0
+  }
+}

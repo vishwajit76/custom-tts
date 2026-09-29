@@ -1,0 +1,41 @@
+{
+  "label": "eng-kokoro-w4t2",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1431.9,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 1166.0703329980606,
+      "ttfa_ms_p95": 1858.1435829983093,
+      "ttfa_ms_p99": 1858.1435829983093,
+      "rtf_p50": 0.3628702198021589,
+      "rtf_p95": 0.43518684041057737,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 78.621875,
+      "wall_s": 28.51185237500249,
+      "rss_mb": 1572.7
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 3201.6922919974604,
+      "ttfa_ms_p95": 4882.713499999227,
+      "ttfa_ms_p99": 5104.127792001236,
+      "rtf_p50": 1.018133532273865,
+      "rtf_p95": 1.3474931710858866,
+      "underrun_requests": 23,
+      "underrun_ms_max": 36698.31563599291,
+      "audio_s_total": 314.4875,
+      "wall_s": 80.40980920800212,
+      "rss_mb": 2114.9
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 3.143500001897337,
+    "cancel_ack_ms_max": 3.3637920023465995,
+    "buffered_ahead_ms_max": 4720.0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "label": "eng-kokoro",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1822.7,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 789.2559579995577,
+      "ttfa_ms_p95": 1314.0802500020072,
+      "ttfa_ms_p99": 1314.0802500020072,
+      "rtf_p50": 0.2462411759769622,
+      "rtf_p95": 0.30124051647184835,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 78.621875,
+      "wall_s": 19.319514041999355,
+      "rss_mb": 1936.7
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 2587.5950830013608,
+      "ttfa_ms_p95": 4128.132333000394,
+      "ttfa_ms_p99": 4234.792749997723,
+      "rtf_p50": 0.8362271463718441,
+      "rtf_p95": 1.2281101251552191,
+      "underrun_requests": 18,
+      "underrun_ms_max": 15557.911991025321,
+      "audio_s_total": 314.4875,
+      "wall_s": 66.02297966699916,
+      "rss_mb": 2206.1
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 4.097041997738415,
+    "cancel_ack_ms_max": 4.426416999194771,
+    "buffered_ahead_ms_max": 4720.0
+  }
+}

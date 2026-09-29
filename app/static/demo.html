@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Voice agent test</title>
+<style>
+:root {
+  --bg: #f4f5f7; --card: #ffffff; --inset: #f0f2f5; --ink: #1b2028; --muted: #5d6675; --line: #dfe3ea;
+  --accent: #0f766e; --accent-ink: #ffffff; --accent-soft: #d8f0ec;
+  --think: #b45309; --bot: #4338ca; --bot-soft: #e6e8fb;
+  --danger: #b42318; --danger-soft: #fdeceb; --ok: #16a34a;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1116; --card: #161b22; --inset: #10141a; --ink: #e7eaf0; --muted: #9aa4b2; --line: #272e39;
+    --accent: #2dd4bf; --accent-ink: #04211e; --accent-soft: #12312e;
+    --think: #fbbf24; --bot: #a5b4fc; --bot-soft: #1e2340;
+    --danger: #fca5a5; --danger-soft: #3a1c1c; --ok: #4ade80;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .3);
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
+}
+h1 { font-size: 18px; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: 15px; margin: 0 0 12px; }
+p { margin: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top, .banners, main { max-width: 1100px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; flex-wrap: wrap; }
+.sub { color: var(--muted); font-size: 13px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.pill[data-k=ok] .dot { background: var(--ok); }
+.pill[data-k=wait] .dot { background: var(--think); }
+.pill[data-k=bad] .dot { background: var(--danger); }
+
+.banner { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--danger-soft); color: var(--danger); border: 1px solid currentColor; border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+.banner[hidden] { display: none; }
+
+main { display: grid; gap: 16px; padding-top: 16px; padding-bottom: 32px; grid-template-areas: "talk" "chat" "settings" "tts"; }
+.talk { grid-area: talk; } .chat { grid-area: chat; } .settings { grid-area: settings; } .tts { grid-area: tts; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); min-width: 0; }
+@media (min-width: 900px) {
+  main { grid-template-columns: 400px minmax(0, 1fr); grid-template-areas: "talk chat" "settings chat" "tts chat"; align-items: start; }
+  .chat { position: sticky; top: 16px; height: calc(100vh - 100px); min-height: 420px; }
+  .chat .log { flex: 1; max-height: none; }
+}
+
+.btn { font: inherit; font-size: 14px; color: var(--ink); background: var(--inset); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn:disabled { opacity: .5; cursor: default; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* talk card */
+.talk { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 99px; padding: 3px; background: var(--inset); }
+.seg label { position: relative; }
+.seg input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.seg span { display: block; padding: 6px 14px; border-radius: 99px; font-size: 14px; color: var(--muted); }
+.seg input:checked + span { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .2); }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.mic {
+  --ring: transparent; position: relative; width: 132px; height: 132px; margin: 10px 0 4px; border-radius: 50%;
+  border: 2px solid var(--line); background: var(--card); color: var(--muted); display: grid; place-items: center;
+  cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.mic::after {
+  content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid var(--ring); pointer-events: none;
+  opacity: calc(.2 + var(--lvl, 0) * .8); transform: scale(calc(1 + var(--lvl, 0) * .22));
+  transition: transform .06s linear, opacity .06s linear;
+}
+.mic:focus-visible { outline: 3px solid var(--accent); outline-offset: 8px; }
+.mic[data-state=listening] { color: var(--accent); border-color: var(--accent); --ring: var(--accent); }
+.mic[data-state=speaking] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); --ring: var(--accent); }
+.mic[data-state=thinking] { color: var(--think); border-color: var(--think); }
+.mic[data-state=thinking]::before { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 3px solid transparent; border-top-color: var(--think); animation: spin 1s linear infinite; }
+.mic[data-state=bot] { color: var(--bot); border-color: var(--bot); background: var(--bot-soft); --ring: var(--bot); }
+.ic-bars { display: none; }
+.mic[data-state=bot] .ic-mic { display: none; }
+.mic[data-state=bot] .ic-bars { display: block; }
+.ic-bars path { transform-box: fill-box; transform-origin: center; animation: bar .9s ease-in-out infinite; animation-delay: calc(var(--i) * -.17s); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes bar { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .mic::before, .ic-bars path { animation: none !important; } }
+
+.state { font-weight: 600; min-height: 1.5em; }
+.meter { height: 6px; width: min(260px, 80%); border-radius: 99px; background: var(--line); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+.hint { color: var(--muted); font-size: 13px; max-width: 34ch; }
+
+/* chat */
+.chat { display: flex; flex-direction: column; gap: 12px; }
+.chat h2 { margin: 0; }
+.log { display: flex; flex-direction: column; gap: 14px; overflow: auto; min-height: 220px; max-height: 55vh; padding: 2px; overscroll-behavior: contain; }
+.log:empty::before { content: attr(data-empty); color: var(--muted); font-size: 14px; margin: auto; text-align: center; }
+.turn { display: flex; flex-direction: column; gap: 6px; }
+.msg { max-width: 90%; padding: 8px 12px; border-radius: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.user { align-self: flex-end; background: var(--accent-soft); border-bottom-right-radius: 4px; }
+.msg.bot { align-self: flex-start; background: var(--inset); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.msg.pending { opacity: .6; }
+.msg.cut { opacity: .75; }
+.msg.err { align-self: stretch; max-width: none; background: var(--danger-soft); color: var(--danger); font-size: 13px; }
+.sys { align-self: center; color: var(--muted); font-size: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding: 5px 9px; border-radius: 99px; background: var(--inset); border: 1px solid var(--line); color: var(--muted); }
+.chip b { color: var(--ink); font-weight: 600; }
+.chip.hl { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+.chip.hl b { color: inherit; }
+.textform { display: flex; gap: 8px; }
+.textform input { flex: 1; min-width: 0; }
+
+/* form controls */
+select, input[type=text], input[type=password], textarea {
+  width: 100%; font: inherit; color: var(--ink); background: var(--inset); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px;
+}
+textarea { resize: vertical; min-height: 72px; }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.field.wide { grid-column: 1 / -1; }
+summary { cursor: pointer; font-weight: 600; }
+.settings > summary { margin-bottom: 12px; }
+.settings.attn { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-soft); }
+details details { margin-top: 12px; }
+details details summary { font-weight: 500; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.tts .row { margin-top: 10px; }
+.ttsstatus { margin-top: 10px; font-size: 13px; color: var(--muted); min-height: 1.5em; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Voice agent test</h1>
+    <p class="sub">Microphone, speech-to-text, LLM, then our TTS. API keys stay on the server.</p>
+  </div>
+  <div class="pill" id="conn" data-k="wait" role="status"><span class="dot"></span><span id="connText">Connecting…</span></div>
+</header>
+
+<div class="banners">
+  <div class="banner" id="bConn" role="alert" hidden><span></span><button class="btn" type="button" hidden></button></div>
+  <div class="banner" id="bMic" role="alert" hidden><span></span><button class="btn" type="button" hidden></button></div>
+</div>
+
+<main>
+  <section class="card talk" aria-labelledby="hTalk">
+    <h2 class="sr" id="hTalk">Talk</h2>
+    <div class="seg" role="radiogroup" aria-label="Input mode">
+      <label><input type="radio" name="mode" value="hands" checked><span>Hands-free</span></label>
+      <label><input type="radio" name="mode" value="ptt"><span>Push-to-talk</span></label>
+    </div>
+    <button class="mic" id="mic" type="button" data-state="idle">
+      <svg class="ic-mic" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      <svg class="ic-bars" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path style="--i:0" d="M4 10v4"/><path style="--i:1" d="M8 6v12"/><path style="--i:2" d="M12 3v18"/><path style="--i:3" d="M16 6v12"/><path style="--i:4" d="M20 10v4"/></svg>
+    </button>
+    <p class="state" id="state" role="status"></p>
+    <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+    <p class="hint" id="hint"></p>
+    <div class="row">
+      <button class="btn" id="micOff" type="button" hidden>Turn mic off</button>
+      <button class="btn" id="reset" type="button">Reset conversation</button>
+    </div>
+  </section>
+
+  <section class="card chat" aria-labelledby="hChat">
+    <h2 id="hChat">Conversation</h2>
+    <div class="log" id="log" role="log" aria-live="polite" aria-relevant="additions" data-empty="Say something, or type below."></div>
+    <form class="textform" id="textForm">
+      <input type="text" id="textIn" aria-label="Type a message" placeholder="Type a message" autocomplete="off">
+      <button class="btn primary" type="submit">Send</button>
+    </form>
+  </section>
+
+  <details class="card settings" id="settings" open>
+    <summary>Settings</summary>
+    <div class="grid">
+      <label class="field">Speech-to-text<select id="stt"></select></label>
+      <label class="field">LLM<select id="llm"></select></label>
+      <label class="field">Voice<select id="voice"></select></label>
+      <label class="field">Sample rate
+        <select id="rate"><option value="16000">16000 Hz</option><option value="24000" selected>24000 Hz</option><option value="48000">48000 Hz</option></select>
+      </label>
+      <label class="field wide"><span>Speed <output id="speedOut">1.00x</output></span>
+        <input type="range" id="speed" min="0.7" max="1.3" step="0.05" value="1">
+      </label>
+      <label class="field wide">API key
+        <input type="password" id="key" autocomplete="off" spellcheck="false" placeholder="Only needed if the server has API_KEYS set">
+      </label>
+    </div>
+    <details>
+      <summary>System prompt</summary>
+      <textarea id="prompt" rows="6" aria-label="System prompt"></textarea>
+    </details>
+  </details>
+
+  <section class="card tts" aria-labelledby="hTts">
+    <h2 id="hTts">TTS only</h2>
+    <label class="field">Text to speak (uses the voice, speed and sample rate from Settings)
+      <textarea id="ttsText" lang="hi" rows="3">नमस्ते, आपका लोन पेमेंट कल ड्यू है। कृपया अपना OTP किसी के साथ शेयर न करें।</textarea>
+    </label>
+    <div class="row">
+      <button class="btn primary" id="ttsGo" type="button">Speak</button>
+      <button class="btn" id="ttsStop" type="button">Stop</button>
+    </div>
+    <p class="ttsstatus" id="ttsStatus" role="status"></p>
+  </section>
+</main>
+
+<script>
+'use strict';
+const $ = (id) => document.getElementById(id);
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } },
+};
+
+// <pure> audio helpers: no DOM, checked separately under node
+function rmsOf(f) {
+  let s = 0;
+  for (let i = 0; i < f.length; i++) s += f[i] * f[i];
+  return f.length ? Math.sqrt(s / f.length) : 0;
+}
+
+function concatF32(chunks) {
+  const out = new Float32Array(chunks.reduce((n, c) => n + c.length, 0));
+  let o = 0;
+  for (const c of chunks) { out.set(c, o); o += c.length; }
+  return out;
+}
+
+// Streaming windowed-sinc resampler. The low-pass sits just under the output Nyquist so 44.1/48 kHz
+// input is filtered before decimation instead of aliasing.
+function makeResampler(inRate, outRate) {
+  const step = inRate / outRate;
+  const fc = 0.45 / Math.max(step, 1); // cutoff, cycles per input sample
+  const half = Math.ceil(8 / (2 * fc)); // 8 zero-crossings each side
+  let buf = new Float32Array(0), pos = 0;
+  return (x) => {
+    const b = new Float32Array(buf.length + x.length);
+    b.set(buf); b.set(x, buf.length); buf = b;
+    const out = [];
+    for (; pos + half < buf.length; pos += step) {
+      let acc = 0;
+      for (let k = Math.max(0, Math.ceil(pos - half)), end = Math.floor(pos + half); k <= end; k++) {
+        const t = k - pos, a = 2 * Math.PI * fc * t;
+        acc += buf[k] * (t === 0 ? 1 : Math.sin(a) / a) * (0.5 + 0.5 * Math.cos(Math.PI * t / half));
+      }
+      out.push(acc * 2 * fc);
+    }
+    const drop = Math.max(0, Math.ceil(pos - half));
+    buf = buf.subarray(drop); pos -= drop;
+    return Float32Array.from(out);
+  };
+}
+
+// RIFF/WAVE, PCM16 mono, 44-byte header, little-endian
+function encodeWav(f32, rate) {
+  const n = f32.length, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+  const str = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE');
+  str(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+  str(36, 'data'); v.setUint32(40, n * 2, true);
+  for (let i = 0; i < n; i++) {
+    const s = Math.max(-1, Math.min(1, f32[i]));
+    v.setInt16(44 + i * 2, s < 0 ? s * 32768 : s * 32767, true);
+  }
+  return buf;
+}
+// </pure>
+
+const TARGET_RATE = 16000;
+const PRE_ROLL_MS = 300, RING_MS = 1500, START_MS = 150, END_MS = 700, MIN_UTT_MS = 350, MAX_UTT_MS = 20000;
+const TAIL_KEEP_MS = 250; // trailing silence kept in the WAV after VAD end
+const PTT_TAIL_MS = 200, PTT_MIN_MS = 250;
+const DRAIN_TIMEOUT_MS = 4000;
+const BARGE_IN_MS = 300; // sustained speech needed to cut the bot off (a cough, echo or a short "haan" must not)
+
+const S = {
+  key: store.get('demo_key') || '',
+  mode: store.get('demo_mode') === 'ptt' ? 'ptt' : 'hands', // 'hands' | 'ptt'
+  ws: null, opened: false, hadConn: false, attempts: 0, retryTimer: 0,
+};
+const btn = $('mic'), logEl = $('log');
+let held = false; // push-to-talk pressed
+
+// ---------- banners / status ----------
+function banner(el, text, actionLabel, onAction) {
+  if (!text) { el.hidden = true; return; }
+  el.firstElementChild.textContent = text;
+  const b = el.lastElementChild;
+  b.hidden = !actionLabel; b.textContent = actionLabel || ''; b.onclick = onAction || null;
+  el.hidden = false;
+}
+const bConn = $('bConn'), bMic = $('bMic');
+function setConn(kind, text) { $('conn').dataset.k = kind; $('connText').textContent = text; }
+
+// ---------- chat log ----------
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+function stick(fn) { // keep the log pinned to the bottom only if the reader is already there
+  const atEnd = logEl.scrollHeight - logEl.scrollTop - logEl.clientHeight < 60;
+  fn();
+  if (atEnd) logEl.scrollTop = logEl.scrollHeight;
+}
+function addMsg(parent, cls, text) {
+  const m = el('div', 'msg ' + cls, text);
+  stick(() => parent.append(m));
+  return m;
+}
+const sysNote = (t) => stick(() => logEl.append(el('div', 'sys', t)));
+const addErr = (t) => stick(() => logEl.append(el('div', 'msg err', t)));
+
+// ---------- turn state ----------
+const idleTurn = () => ({ active: false, kind: null, t0: 0, box: null, user: null, bot: null, audioAt: null, rate: 24000 });
+let turn = idleTurn();
+// Turns we interrupted whose terminal event (turn_end / interrupted / error) is still in flight.
+// Their remaining events are stale and dropped; the server processes messages in order, so anything
+// after that terminal event belongs to the next turn.
+let draining = 0, drainTimer = 0;
+function drainOne() {
+  if (!draining) return false;
+  if (--draining === 0) clearTimeout(drainTimer);
+  return true;
+}
+
+function startTurn(kind, text, t0) {
+  bargeIn();
+  Player.log = []; // heard-audio timeline of this reply only
+  const box = el('div', 'turn');
+  stick(() => logEl.append(box));
+  turn = { ...idleTurn(), active: true, kind, t0: t0 ?? performance.now(), box };
+  turn.user = addMsg(box, 'user', text ?? '…');
+  if (text == null) turn.user.classList.add('pending');
+  render();
+}
+
+function markCut(t) {
+  if (t.bot) { t.bot.textContent += '…'; t.bot.classList.add('cut'); }
+  if (t.user && t.user.classList.contains('pending')) { t.user.classList.remove('pending'); t.user.textContent = '(interrupted before transcript)'; }
+}
+
+// Stop everything the bot is doing: scheduled audio right now, then the server turn.
+function bargeIn() {
+  if (!turn.active && !Player.busy()) return;
+  Player.stop();
+  ttsCancel(); // the TTS-only panel shares the speakers
+  if (turn.active) {
+    draining++;
+    clearTimeout(drainTimer);
+    drainTimer = setTimeout(() => { draining = 0; }, DRAIN_TIMEOUT_MS); // never stay stuck if an ack is lost
+    markCut(turn);
+    turn.active = false;
+  }
+  send({ type: 'interrupt', heard_ms: Player.heardMs() }); // the server keeps only what was actually played in the history
+  render();
+}
+
+const ms = (v) => (v == null ? '—' : Math.round(v) + ' ms');
+function addChips(mt) {
+  const box = el('div', 'chips');
+  const chip = (label, val, cls, title) => {
+    const c = el('span', 'chip' + (cls ? ' ' + cls : ''));
+    c.append(el('b', null, label + ' '), val);
+    if (title) c.title = title;
+    box.append(c);
+  };
+  if (mt.stt_ms != null) chip('STT', ms(mt.stt_ms));
+  chip('LLM 1st token', ms(mt.llm_ttft_ms));
+  chip('TTS 1st audio', ms(mt.tts_ttfa_ms));
+  chip('Server e2e', ms(mt.e2e_ms));
+  if (turn.audioAt != null) {
+    chip(turn.kind === 'voice' ? 'Voice-to-ear' : 'Text-to-ear', ms(turn.audioAt - turn.t0), 'hl',
+      'Client side: end of speech (VAD decision or button release; the VAD hangover is not counted) to the first audio frame arriving here');
+  }
+  if (mt.audio_ms) chip('Audio', (mt.audio_ms / 1000).toFixed(1) + ' s');
+  stick(() => turn.box.append(box));
+}
+
+function onMessage(m) {
+  switch (m.type) {
+    case 'ready': syncConfig(m.config || {}); break;
+    case 'transcript':
+      if (draining || !turn.user) break;
+      turn.user.classList.remove('pending');
+      turn.user.textContent = m.text || '(no speech recognized)';
+      break;
+    case 'llm_delta':
+      if (draining || !turn.box) break;
+      if (!turn.bot) turn.bot = addMsg(turn.box, 'bot', '');
+      stick(() => { turn.bot.textContent += m.text; });
+      break;
+    case 'audio_start':
+      if (!draining) turn.rate = m.sample_rate;
+      break;
+    case 'turn_end':
+      if (drainOne() || !turn.box) break;
+      turn.active = false;
+      if (turn.user && turn.user.classList.contains('pending')) { // silence/noise: the server ends the turn with no transcript
+        turn.user.classList.remove('pending'); turn.user.textContent = '(no speech recognized)';
+        render();
+        break;
+      }
+      if (m.reply) {
+        if (!turn.bot) turn.bot = addMsg(turn.box, 'bot', '');
+        turn.bot.textContent = m.reply;
+      }
+      addChips(m.metrics || {});
+      render();
+      break;
+    case 'interrupted': if (m.cancelled !== false) drainOne(); break; // cancelled:false = history cut only, no turn ended
+    case 'error':
+      addErr(m.message || 'Server error');
+      if (m.scope === 'request') break; // a rejected message; the running turn (and its audio) carries on
+      if (!drainOne() && turn.active) {
+        turn.active = false;
+        if (turn.user && turn.user.classList.contains('pending')) { turn.user.classList.remove('pending'); turn.user.textContent = '(no transcript)'; }
+        render();
+      }
+      break;
+  }
+}
+
+function onFrame(buf) {
+  if (draining || !turn.box) return;
+  if (turn.audioAt == null) turn.audioAt = performance.now();
+  Player.push(buf, turn.rate);
+}
+
+// ---------- playback ----------
+let playCtx = null;
+function audioCtx() {
+  playCtx = playCtx || new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' });
+  if (playCtx.state === 'suspended') playCtx.resume().catch(() => {}); // must be first reached from a user gesture
+  return playCtx;
+}
+
+const Player = {
+  next: 0, srcs: new Set(), log: [], // log: {at, dur} of every buffer scheduled for the current reply
+  push(buf, rate) {
+    const n = buf.byteLength >> 1;
+    if (!n) return;
+    const ctx = audioCtx(), i16 = new Int16Array(buf, 0, n);
+    const ab = ctx.createBuffer(1, n, rate), ch = ab.getChannelData(0);
+    for (let i = 0; i < n; i++) ch[i] = i16[i] / 32768;
+    const src = ctx.createBufferSource();
+    src.buffer = ab; src.connect(ctx.destination);
+    const at = Math.max(ctx.currentTime + 0.03, this.next);
+    src.start(at); this.next = at + ab.duration;
+    this.srcs.add(src); this.log.push({ at, dur: ab.duration });
+    src.onended = () => { this.srcs.delete(src); render(); };
+    render();
+  },
+  stop() {
+    for (const s of this.srcs) { s.onended = null; try { s.stop(); } catch { /* not started */ } s.disconnect(); }
+    this.srcs.clear(); this.next = 0; this.log = [];
+    render();
+  },
+  busy() { return this.srcs.size > 0; },
+  heardMs() { // ms of this reply's audio already played (gaps between buffers do not count)
+    const now = playCtx ? playCtx.currentTime : 0;
+    return Math.round(this.log.reduce((a, b) => a + Math.min(Math.max(now - b.at, 0), b.dur), 0) * 1000);
+  },
+};
+
+// ---------- capture: mic -> 16 kHz -> utterances ----------
+const WORKLET_SRC = `
+class Capture extends AudioWorkletProcessor {
+  constructor() { super(); this.buf = new Float32Array(1024); this.n = 0; }
+  process(inputs) {
+    const ch = inputs[0][0];
+    if (ch) for (let i = 0; i < ch.length; i++) {
+      this.buf[this.n++] = ch[i];
+      if (this.n === this.buf.length) { this.port.postMessage(this.buf, [this.buf.buffer]); this.buf = new Float32Array(1024); this.n = 0; }
+    }
+    return true;
+  }
+}
+registerProcessor('demo-capture', Capture);`;
+
+const mic = { on: false, ctx: null, stream: null, starting: null };
+let resample = (x) => x;
+let level = 0;
+
+async function makeWorkletNode(ac) {
+  if (!ac.audioWorklet) throw new Error('no AudioWorklet');
+  const url = URL.createObjectURL(new Blob([WORKLET_SRC], { type: 'text/javascript' }));
+  try { await ac.audioWorklet.addModule(url); } finally { URL.revokeObjectURL(url); }
+  return new AudioWorkletNode(ac, 'demo-capture', { channelCount: 1, channelCountMode: 'explicit' });
+}
+
+function micError(e) {
+  switch (e && e.name) {
+    case 'NotAllowedError': case 'SecurityError': return 'Microphone permission denied. Allow it in the browser site settings, then try again.';
+    case 'NotFoundError': case 'OverconstrainedError': return 'No microphone found.';
+    case 'NotReadableError': return 'The microphone is in use by another application.';
+    default: return 'Could not start the microphone: ' + ((e && e.message) || e);
+  }
+}
+
+const startMic = () => (mic.starting = mic.starting || doStartMic().finally(() => { mic.starting = null; }));
+
+async function doStartMic() {
+  if (mic.on) return true;
+  audioCtx();
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    banner(bMic, 'Microphone access needs a secure connection (HTTPS) or localhost.');
+    return false;
+  }
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
+  } catch (e) {
+    banner(bMic, micError(e), 'Try again', () => { startMic(); });
+    return false;
+  }
+  const track = stream.getAudioTracks()[0], AC = window.AudioContext || window.webkitAudioContext;
+  const rate = track.getSettings().sampleRate; // Firefox needs the context to match the stream's rate
+  let ctx;
+  try { ctx = new AC(rate ? { sampleRate: rate } : undefined); } catch { ctx = new AC(); }
+  await ctx.resume().catch(() => {});
+  const source = ctx.createMediaStreamSource(stream);
+  const sink = ctx.createGain(); // silent sink: keeps the capture node pulled without echoing the mic
+  sink.gain.value = 0; sink.connect(ctx.destination);
+  let node;
+  try {
+    node = await makeWorkletNode(ctx);
+    node.port.onmessage = (ev) => onMicChunk(ev.data);
+  } catch {
+    node = ctx.createScriptProcessor(2048, 1, 1); // fallback: worklet blocked or unsupported
+    node.onaudioprocess = (ev) => onMicChunk(new Float32Array(ev.inputBuffer.getChannelData(0)));
+  }
+  source.connect(node); node.connect(sink);
+  track.onended = () => { stopMic(); banner(bMic, 'Microphone disconnected.', 'Try again', () => { startMic(); }); };
+  resample = makeResampler(ctx.sampleRate, TARGET_RATE);
+  resetVad(); abortUtterance();
+  Object.assign(mic, { on: true, ctx, stream });
+  banner(bMic);
+  render();
+  return true;
+}
+
+function stopMic() {
+  if (!mic.on) return;
+  mic.on = false; held = false;
+  abortUtterance();
+  mic.stream.getTracks().forEach((t) => { t.onended = null; t.stop(); });
+  mic.ctx.close().catch(() => {});
+  mic.ctx = mic.stream = null;
+  level = 0; showLevel(0);
+  render();
+}
+
+function showLevel(rms) {
+  const target = rms > 0 ? Math.min(1, Math.max(0, (20 * Math.log10(rms) + 60) / 50)) : 0;
+  level = target > level ? target : level * 0.85; // fast attack, slow release
+  const v = level.toFixed(3);
+  $('meterFill').style.transform = 'scaleX(' + v + ')';
+  btn.style.setProperty('--lvl', v);
+}
+
+// Utterance recorder. While idle it keeps a rolling ring of recent audio; an utterance starts with
+// the tail of that ring (preMs), so word onsets are not clipped by the VAD's detection delay.
+const REC = { on: false, chunks: [], len: 0, pre: [], preLen: 0, startedAt: 0 };
+function feed(f) {
+  if (REC.on) { REC.chunks.push(f); REC.len += f.length; return; }
+  REC.pre.push(f); REC.preLen += f.length;
+  while (REC.pre.length > 1 && REC.preLen - REC.pre[0].length >= RING_MS * 16) REC.preLen -= REC.pre.shift().length;
+}
+function beginUtterance(preMs) {
+  const ring = concatF32(REC.pre);
+  REC.chunks = preMs ? [ring.subarray(Math.max(0, ring.length - preMs * 16))] : [];
+  REC.len = preMs ? REC.chunks[0].length : 0;
+  REC.pre = []; REC.preLen = 0; REC.on = true; REC.startedAt = performance.now();
+}
+function abortUtterance() { REC.on = false; REC.chunks = []; REC.len = 0; }
+function finishUtterance({ endedAt = performance.now(), trimMs = 0 } = {}) {
+  if (!REC.on) return false;
+  REC.on = false;
+  let pcm = concatF32(REC.chunks);
+  REC.chunks = []; REC.len = 0;
+  if (trimMs > 0) pcm = pcm.subarray(0, Math.max(0, pcm.length - trimMs * 16));
+  render();
+  sendUtterance(encodeWav(pcm, TARGET_RATE), endedAt);
+  return true;
+}
+function sendUtterance(wav, endedAt) {
+  if (!S.ws || S.ws.readyState !== 1) { addErr('Not connected. The utterance was dropped.'); return; }
+  startTurn('voice', null, endedAt); // interrupts first if something is still running
+  S.ws.send(wav);
+}
+
+// Adaptive-noise-floor VAD on 16 kHz RMS: floor falls fast and rises slowly, threshold = floor*3 + margin.
+let vad;
+function resetVad() { vad = { noise: 0.004, calib: 400, above: 0, quiet: 0, t: 0, onsetT: 0, lastLoudT: 0 }; }
+resetVad();
+function vadStep(rms, dt) {
+  const V = vad;
+  V.t += dt;
+  if (V.calib > 0) { V.calib -= dt; V.noise += (rms - V.noise) * 0.3; return; } // learn the room first
+  // the bot's own echo leaks past echo cancellation, so demand more while it is talking
+  const thr = (V.noise * 3 + 0.01) * (Player.busy() ? 1.6 : 1);
+  if (!REC.on) {
+    if (rms < thr) V.noise += (rms - V.noise) * (rms < V.noise ? 0.2 : 0.02);
+    if (rms > thr) { if (!V.above) V.onsetT = V.t - dt; V.above += dt; } else V.above = Math.max(0, V.above - dt); // dips between syllables only slow the count
+    if (V.above >= (turn.active || Player.busy() ? BARGE_IN_MS : START_MS)) { // over the bot: demand sustained speech; a shorter onset just fades and the bot keeps talking
+      V.above = 0; V.quiet = 0; V.lastLoudT = V.t;
+      bargeIn(); beginUtterance(PRE_ROLL_MS + (V.t - V.onsetT)); render(); // pre-roll counts from the onset, not from the detection
+    }
+    return;
+  }
+  if (rms > thr * 0.7) { V.quiet = 0; V.lastLoudT = V.t; } else V.quiet += dt;
+  if (V.quiet >= END_MS) {
+    const endedAt = performance.now(), span = V.lastLoudT - V.onsetT;
+    if (span >= MIN_UTT_MS) finishUtterance({ endedAt, trimMs: V.quiet - TAIL_KEEP_MS }); else abortUtterance();
+    V.quiet = 0;
+    render();
+  }
+}
+
+function onMicChunk(raw) {
+  const f = resample(raw);
+  if (!f.length) return;
+  const rms = rmsOf(f), dt = (f.length / TARGET_RATE) * 1000;
+  showLevel(rms);
+  feed(f); // before the VAD step, so the chunk that trips it is already in the pre-roll / utterance
+  if (S.mode === 'hands') vadStep(rms, dt);
+  if (REC.on && REC.len >= MAX_UTT_MS * 16) { held = false; finishUtterance(); }
+}
+
+// ---------- push-to-talk ----------
+async function pttStart() {
+  if (held || REC.on || S.mode !== 'ptt') return;
+  held = true;
+  audioCtx();
+  bargeIn();
+  render();
+  if (!mic.on && !(await startMic())) { held = false; render(); return; }
+  if (!held) return; // released while the permission prompt was open
+  beginUtterance(0);
+  render();
+}
+function pttEnd() {
+  if (!held) return;
+  held = false;
+  if (!REC.on) { render(); return; }
+  const endedAt = performance.now();
+  if (endedAt - REC.startedAt < PTT_MIN_MS) { abortUtterance(); render(); sysNote('Too short. Hold the button while you speak.'); return; }
+  setTimeout(() => finishUtterance({ endedAt }), PTT_TAIL_MS); // keep capturing a moment so the last word is not clipped
+}
+
+// ---------- mic button, keyboard ----------
+btn.addEventListener('pointerdown', (e) => {
+  if (S.mode !== 'ptt' || e.button > 0) return;
+  e.preventDefault();
+  try { btn.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+  pttStart();
+});
+btn.addEventListener('pointerup', pttEnd);
+btn.addEventListener('pointercancel', pttEnd);
+btn.addEventListener('contextmenu', (e) => e.preventDefault());
+btn.addEventListener('click', () => {
+  if (S.mode === 'ptt') return;
+  audioCtx();
+  if (turn.active || Player.busy()) bargeIn(); // tap while the bot talks = interrupt
+  else if (mic.on) stopMic();
+  else startMic();
+});
+$('micOff').addEventListener('click', stopMic);
+
+const spaceTarget = (t) => t === document.body || t === btn || (t.tagName === 'INPUT' && t.type === 'radio');
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { bargeIn(); return; }
+  if (e.code !== 'Space' || S.mode !== 'ptt' || !spaceTarget(e.target)) return;
+  e.preventDefault();
+  if (!e.repeat) pttStart();
+});
+document.addEventListener('keyup', (e) => {
+  if (e.code !== 'Space' || S.mode !== 'ptt' || !spaceTarget(e.target)) return;
+  e.preventDefault();
+  pttEnd();
+});
+window.addEventListener('blur', pttEnd);
+
+document.querySelectorAll('input[name=mode]').forEach((r) => r.addEventListener('change', () => {
+  if (!r.checked) return;
+  S.mode = r.value; store.set('demo_mode', r.value);
+  held = false; abortUtterance(); resetVad();
+  shown = ''; render();
+}));
+
+// ---------- rendering the mic state ----------
+const LABEL = {
+  idle: () => (S.mode === 'ptt' ? 'Hold to talk (or hold Space)' : 'Tap to start listening'),
+  listening: () => 'Listening. Just speak',
+  speaking: () => (S.mode === 'ptt' ? 'Recording. Release to send' : 'Hearing you…'),
+  thinking: () => 'Thinking…',
+  bot: () => 'Speaking. Talk, tap or press Esc to interrupt',
+};
+const HINT = {
+  hands: 'Speak naturally; a short pause sends your turn. Use headphones so the bot does not hear itself.',
+  ptt: 'Hold the big button or the Space bar while you talk, release to send.',
+};
+function uiState() {
+  if (held || REC.on) return 'speaking';
+  if (Player.busy()) return 'bot';
+  if (turn.active) return 'thinking';
+  return mic.on && S.mode === 'hands' ? 'listening' : 'idle';
+}
+let shown = '';
+function render() {
+  const st = uiState(), key = [st, S.mode, mic.on, held].join();
+  if (key === shown) return;
+  shown = key;
+  const text = LABEL[st]();
+  btn.dataset.state = st;
+  btn.setAttribute('aria-label', text);
+  if (S.mode === 'hands') btn.setAttribute('aria-pressed', String(mic.on)); else btn.removeAttribute('aria-pressed');
+  $('state').textContent = text;
+  $('hint').textContent = HINT[S.mode];
+  $('micOff').hidden = !mic.on;
+}
+
+// ---------- config, websocket ----------
+const PROVIDER = { openai: 'OpenAI', gemini: 'Gemini', sarvam: 'Sarvam', elevenlabs: 'ElevenLabs' };
+const CFG_FIELD = { stt: 'stt', llm: 'llm', voice: 'voice', rate: 'sample_rate', speed: 'speed', prompt: 'system_prompt' };
+
+function fill(sel, items, def) {
+  sel.replaceChildren(...items.map(([v, l]) => new Option(l, v)));
+  sel.disabled = !items.length;
+  if (def != null && items.some(([v]) => v === def)) sel.value = def;
+}
+function showSpeed() { $('speedOut').textContent = (+$('speed').value).toFixed(2) + 'x'; }
+
+function applyConfig(cfg) {
+  const d = cfg.defaults || {};
+  const providers = (list) => (list || []).map((p) => [p, PROVIDER[p] || p]);
+  fill($('stt'), providers(cfg.stt), d.stt);
+  fill($('llm'), providers(cfg.llm), d.llm);
+  const voices = (cfg.voices || []).map((v) => [v.voice_id, (v.name || v.voice_id) + (v.gender ? ' (' + ({ F: 'female', M: 'male' }[v.gender] || v.gender) + ')' : '')]);
+  if (d.voice && !voices.some(([v]) => v === d.voice)) voices.unshift([d.voice, d.voice]);
+  fill($('voice'), voices, d.voice);
+  $('prompt').value = d.system_prompt || '';
+  if (!(cfg.stt || []).length) sysNote('No speech-to-text key is set on the server; typed messages still work.');
+  if (!(cfg.llm || []).length) addErr('No LLM key is set on the server, so the agent cannot answer.');
+}
+
+function syncConfig(c) { // reflect what the server actually applied, without echoing a change back
+  const set = (id, v) => {
+    const e = $(id);
+    if (v != null && document.activeElement !== e && [...e.options].some((o) => o.value === String(v))) e.value = String(v);
+  };
+  set('stt', c.stt); set('llm', c.llm); set('voice', c.voice); set('rate', c.sample_rate);
+  if (c.speed != null && document.activeElement !== $('speed')) { $('speed').value = c.speed; showSpeed(); }
+}
+
+const wsUrl = (path) => (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + path + (S.key ? '?api_key=' + encodeURIComponent(S.key) : '');
+
+function send(obj) {
+  if (!S.ws || S.ws.readyState !== 1) return false;
+  S.ws.send(JSON.stringify(obj));
+  return true;
+}
+function currentConfig() {
+  const c = { stt: $('stt').value, llm: $('llm').value, voice: $('voice').value, speed: +$('speed').value, sample_rate: +$('rate').value, system_prompt: $('prompt').value };
+  for (const k of ['stt', 'llm', 'voice', 'system_prompt']) if (!c[k]) delete c[k]; // nothing configured = keep the server default
+  return c;
+}
+
+async function loadConfig() {
+  try {
+    const res = await fetch('/demo/config', { headers: S.key ? { Authorization: 'Bearer ' + S.key } : {} });
+    return res.ok ? { status: 200, cfg: await res.json() } : { status: res.status };
+  } catch { return { status: 0 }; }
+}
+
+function needKey() {
+  clearTimeout(S.retryTimer);
+  setConn('bad', 'API key needed');
+  banner(bConn, 'The server rejected the API key. Enter a valid key in Settings.');
+  $('settings').open = true;
+  $('settings').classList.add('attn');
+  $('key').focus();
+}
+
+async function boot() {
+  clearTimeout(S.retryTimer);
+  setConn('wait', 'Connecting…');
+  const r = await loadConfig();
+  if (r.status === 401) return needKey();
+  if (r.status !== 200) {
+    scheduleRetry(r.status ? 'Server error ' + r.status + ' loading /demo/config.' : 'Cannot reach the server.', boot);
+    return;
+  }
+  $('settings').classList.remove('attn');
+  try { applyConfig(r.cfg); } catch (e) { banner(bConn, 'Unexpected /demo/config response: ' + e.message); return; }
+  connect();
+}
+
+function scheduleRetry(why, fn) {
+  const delay = Math.min(8000, 500 * 2 ** S.attempts++);
+  setConn('bad', 'Disconnected');
+  banner(bConn, why + ' Reconnecting in ' + Math.ceil(delay / 1000) + ' s…', 'Retry now', () => { clearTimeout(S.retryTimer); fn(); });
+  clearTimeout(S.retryTimer);
+  S.retryTimer = setTimeout(fn, delay);
+}
+
+function connect() {
+  clearTimeout(S.retryTimer);
+  const ws = new WebSocket(wsUrl('/demo/ws'));
+  ws.binaryType = 'arraybuffer';
+  S.ws = ws; S.opened = false;
+  setConn('wait', 'Connecting…');
+  ws.onopen = () => {
+    if (S.ws !== ws) return;
+    S.opened = true; S.attempts = 0;
+    banner(bConn); setConn('ok', 'Connected');
+    send({ type: 'config', ...currentConfig() });
+    if (S.hadConn) sysNote('Reconnected. The conversation memory on the server was reset.');
+    S.hadConn = true;
+  };
+  ws.onmessage = (ev) => {
+    if (S.ws !== ws) return;
+    if (typeof ev.data !== 'string') { onFrame(ev.data); return; }
+    let m;
+    try { m = JSON.parse(ev.data); } catch { return; }
+    onMessage(m);
+  };
+  ws.onclose = async () => {
+    if (S.ws !== ws) return;
+    S.ws = null;
+    const wasOpen = S.opened;
+    Player.stop();
+    if (turn.active) { markCut(turn); turn.active = false; }
+    draining = 0; clearTimeout(drainTimer);
+    render();
+    // A refused handshake looks the same as a dead server; ask /demo/config which one it is.
+    if (!wasOpen && (await loadConfig()).status === 401) { needKey(); return; }
+    scheduleRetry('Connection lost.', connect);
+  };
+}
+
+function reconnectNow() {
+  const old = S.ws;
+  S.ws = null;
+  if (old) old.close();
+  Player.stop(); turn = idleTurn(); draining = 0;
+  render();
+  S.attempts = 0;
+  boot();
+}
+
+// ---------- controls ----------
+for (const id in CFG_FIELD) {
+  $(id).addEventListener('change', () => {
+    const v = $(id).value;
+    send({ type: 'config', [CFG_FIELD[id]]: id === 'rate' || id === 'speed' ? +v : v });
+  });
+}
+$('speed').addEventListener('input', showSpeed);
+
+$('key').value = S.key;
+$('key').addEventListener('change', () => {
+  S.key = $('key').value.trim();
+  store.set('demo_key', S.key);
+  reconnectNow();
+});
+
+$('reset').addEventListener('click', () => {
+  bargeIn();
+  send({ type: 'reset' });
+  logEl.replaceChildren();
+  turn = idleTurn();
+  sysNote('Conversation reset.');
+});
+
+$('textForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const text = $('textIn').value.trim();
+  if (!text) return;
+  audioCtx();
+  if (!S.ws || S.ws.readyState !== 1) { addErr('Not connected.'); return; }
+  startTurn('text', text);
+  send({ type: 'text', text });
+  $('textIn').value = '';
+});
+
+// ---------- TTS-only panel (the plain /v1/audio/ws protocol) ----------
+const T = { ws: null, opening: null, cur: null, accept: false, rate: 24000, t0: 0, firstAt: null, seq: 0 };
+const ttsStatus = (text, bad) => { $('ttsStatus').textContent = text; $('ttsStatus').style.color = bad ? 'var(--danger)' : ''; };
+
+function ttsSocket() {
+  if (T.ws && T.ws.readyState === 1) return Promise.resolve(T.ws);
+  T.opening = T.opening || new Promise((resolve, reject) => {
+    const ws = new WebSocket(wsUrl('/v1/audio/ws'));
+    ws.binaryType = 'arraybuffer';
+    ws.onopen = () => { T.ws = ws; resolve(ws); };
+    ws.onerror = () => reject(new Error('connect failed'));
+    ws.onclose = () => { if (T.ws === ws) { T.ws = null; T.cur = null; T.accept = false; } };
+    ws.onmessage = onTtsMessage;
+  }).finally(() => { T.opening = null; });
+  return T.opening;
+}
+
+function onTtsMessage(ev) {
+  if (typeof ev.data !== 'string') {
+    if (!T.accept) return;
+    if (T.firstAt == null) T.firstAt = performance.now();
+    Player.push(ev.data, T.rate);
+    return;
+  }
+  let m;
+  try { m = JSON.parse(ev.data); } catch { return; }
+  if (m.type === 'error') { ttsStatus(m.message || 'TTS error', true); T.cur = null; T.accept = false; return; }
+  if (m.id !== T.cur) return; // leftovers of a request we cancelled
+  if (m.type === 'start') { T.rate = m.sample_rate; T.accept = true; }
+  else if (m.type === 'end') {
+    const heard = T.firstAt == null ? '—' : Math.round(T.firstAt - T.t0) + ' ms';
+    ttsStatus('TTFA ' + m.ttfa_ms + ' ms (server) · ' + heard + ' (heard in browser) · ' + ((m.audio_ms || 0) / 1000).toFixed(1) + ' s of audio');
+    T.cur = null;
+  } else if (m.type === 'cancelled') { ttsStatus('Stopped.'); T.cur = null; T.accept = false; }
+}
+
+function ttsCancel() {
+  T.accept = false;
+  if (T.ws && T.cur) T.ws.send(JSON.stringify({ type: 'cancel', id: T.cur }));
+}
+
+$('ttsGo').addEventListener('click', async () => {
+  const text = $('ttsText').value.trim();
+  if (!text) return;
+  audioCtx();
+  bargeIn(); ttsCancel(); Player.stop(); // one voice at a time
+  let ws;
+  try { ws = await ttsSocket(); } catch { ttsStatus('Could not connect to /v1/audio/ws. Check the API key in Settings.', true); return; }
+  T.cur = 'panel-' + ++T.seq; T.accept = false; T.firstAt = null; T.t0 = performance.now();
+  ttsStatus('Synthesizing…');
+  ws.send(JSON.stringify({ type: 'speak', id: T.cur, text, voice: $('voice').value, speed: +$('speed').value, sample_rate: +$('rate').value, frame_ms: 40 }));
+});
+$('ttsStop').addEventListener('click', () => { ttsCancel(); Player.stop(); });
+
+// ---------- go ----------
+document.querySelector('input[name=mode][value=' + S.mode + ']').checked = true;
+showSpeed();
+render();
+boot();
+</script>
+</body>
+</html>

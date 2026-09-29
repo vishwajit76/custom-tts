@@ -1,0 +1,4 @@
+-r requirements.txt
+# optional engines, load with ENGINES=piper,supertonic,kokoro; weights: scripts/download_voices.py supertonic kokoro
+supertonic==1.3.1
+kokoro-onnx==0.6.1

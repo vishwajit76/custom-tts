@@ -1,0 +1,14 @@
+.env
+__pycache__/
+out_*.wav
+voices/*
+!voices/.gitkeep
+.venv/
+out/
+models/
+*.log
+.pytest_cache/
+.venv-train/
+training/runs/
+bench/results/**/*.wav
+logs/
