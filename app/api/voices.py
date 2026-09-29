@@ -5,7 +5,9 @@ from app.core.security import require_api_key
 from app.models.schemas import VOICE_ID, SampleRate
 from app.services import audio_utils, tts
 from app.services import speaker_registry as sreg
-from app.services.conditioning import DEFAULT_CAPABILITIES, Emotion, Role, Style
+from app.core.config import settings
+from app.services.conditioning import DEFAULT_CAPABILITIES, Emotion, Role, Style, control_kinds
+from app.services.routing import POLICIES, parse_tiers
 
 router = APIRouter(prefix="/v1/voices", dependencies=[Depends(require_api_key)])
 capabilities_router = APIRouter(prefix="/v1/capabilities", dependencies=[Depends(require_api_key)])
@@ -58,11 +60,15 @@ def capabilities():
     out = {}
     for e in engines:
         name = type(e).__name__.removesuffix("Engine").lower()
-        out[name] = {**getattr(e, "capabilities", DEFAULT_CAPABILITIES).as_dict(), "voices": [v["voice_id"] for v in e.voices()]}
+        caps = getattr(e, "capabilities", DEFAULT_CAPABILITIES)
+        out[name] = {**caps.as_dict(), "control_kinds": control_kinds(caps, settings.dsp_prosody),
+                     "latency_tier": parse_tiers(settings.engine_latency_tiers).get(name, "slow"), "voices": [v["voice_id"] for v in e.voices()]}
     return {
         "engines": out,
         "controls": {"emotion": [x.value for x in Emotion], "style": [x.value for x in Style], "role": [x.value for x in Role],
-                     "fallback": ["reject", "ignore"]},
+                     "fallback": ["reject", "ignore"], "routing_policy": list(POLICIES)},
+        "dsp": {"enabled": settings.dsp_prosody, "controls": ["pitch", "energy", "prosody_strength"] if settings.dsp_prosody else [],
+                "note": "signal processing on the output, labelled pitch:dsp / energy:dsp; never emotion"},
         "output_sample_rates": list(TypeAdapter(SampleRate).json_schema()["enum"]),
     }
 

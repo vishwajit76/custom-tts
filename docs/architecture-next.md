@@ -89,18 +89,22 @@ Piper fast path (TTFA ~70 ms, RTF 0.022); 4 intra-op threads default and cgroup-
 7. Human/objective eval: native-listener A/B, speaker similarity, emotion recognition; pronunciation corpus of 200+ reviewed cases.
 8. Training: gradient accumulation, emotion/style labels, expressive multi-speaker architecture.
 
-## 10. Implemented vs planned
+## 10. Implemented vs planned (final state, 2026-09-29)
 
 | Item | Status |
 |---|---|
-| Piper/Supertonic/Kokoro serving, HTTP+WS streaming, EDF, cancel, metrics, Docker CPU | implemented, tested (fake-engine tests; benchmarks on M4) |
-| Hindi/Hinglish normalizer, Indian-English phonemes | implemented (regression corpus < 200 cases: planned) |
-| Qwen3 reference cloning | implemented, needs GPU; not exercised in tests beyond capabilities |
+| Piper/Supertonic/Kokoro serving, HTTP+WS streaming, EDF, cancel, metrics, Docker CPU | implemented, tested (fake-engine tests; benchmarks on M4 and on a 4 vCPU Xeon container, `benchmarks.md` sections 1-9) |
+| Hindi/Hinglish normalizer, Indian-English phonemes | implemented; 326-row regression corpus |
+| Qwen3 reference cloning | implemented, needs GPU; not exercised beyond capability/contract tests |
 | Piper training/export pipeline | implemented, smoke-tested with synthetic data only; production fine-tune blocked |
-| `VoiceCondition`, `EngineCapabilities`, validation, `/v1/capabilities`, headers | implemented this phase, unit/API tested with mock engines |
-| Emotion/style/role/pitch/energy synthesis | **not implemented** (rejected or ignored honestly) |
-| Speaker registry + consent | planned (Phase 2) |
-| Speaker encoder / embeddings | planned (Phase 3) |
-| Expressive engine selection, bake-off | planned (Phase 4; docs/model-selection.md by another worker) |
-| Policy routing | planned (Phase 10) |
+| `VoiceCondition`, `EngineCapabilities`, validation, `/v1/capabilities`, headers | implemented, tested |
+| Speaker registry + consent + secure deletion | implemented, tested (`tests/test_speakers.py`) |
+| Speaker encoder | implemented (mfcc baseline; resemblyzer/speechbrain optional); informational only, never conditions synthesis |
+| Model-native emotion/style/role synthesis | **blocked**: no engine supports it. Only the `ExpressiveEngine` boundary exists (`app/services/expressive_engine.py`), tested with a fake engine, disabled unless `EXPRESSIVE_ENGINE` is set |
+| Expressive engine selection / bake-off | research done (`model-selection.md`); bake-off **not run** (needs GPU + weights) |
+| DSP pitch/energy | implemented, opt-in (`DSP_PROSODY`), labelled `:dsp`, needs librosa (`requirements-dsp.txt`) |
+| Policy routing (`routing_policy`) | implemented (`app/services/routing.py`), tested; tiers from config, not load-aware |
+| 8/16 kHz telephony PCM + barge-in docs | implemented, tested |
+| Eval + previews tooling | implemented (`bench/eval.py`, `bench/previews.py`); no human listening test |
+| Baseline benchmark on this container | done for Piper rohan, concurrency 1/5/10/20 (`benchmarks.md` section 9) |
 | GPU deployment validation, 50-200 call benchmarks | planned, blocked on hardware |

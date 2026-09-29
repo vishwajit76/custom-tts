@@ -60,6 +60,7 @@ class VoiceCondition(BaseModel):
     energy: float | None = Field(None, ge=0, le=2)  # 1.0 = the voice's own
     prosody_strength: float | None = Field(None, ge=0, le=1)
     fallback: Literal["reject", "ignore"] = "reject"
+    routing_policy: Literal["fast", "balanced", "expressive", "clone"] | None = None  # engine selection, see app/services/routing.py
 
     @model_validator(mode="after")
     def _dependents(self):
@@ -105,11 +106,49 @@ class UnsupportedControl(ValueError):
                          "use fallback=\"ignore\" to synthesize without them")
 
 
-def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: str = "", speaker_ok: bool = False) -> tuple[VoiceCondition, list[str], list[str]]:
+def control_kinds(caps: EngineCapabilities, dsp: bool = False) -> dict[str, str]:
+    """How each control would be realised on this engine: native | steered (prompt) | dsp (post-processing) | none.
+    "embedding" (learned speaker/style embedding) is reported for speaker_embedding / style_reference / cloning."""
+    def k(native: bool, steered: bool = False, dsp_ok: bool = False) -> str:
+        return "native" if native else "steered" if steered else "dsp" if dsp_ok else "none"
+    return {
+        "emotion": k(caps.native_emotion, caps.prompt_emotion), "style": k(caps.native_style, caps.prompt_emotion),
+        "role": k(caps.role), "pitch": k(caps.pitch, dsp_ok=dsp), "energy": k(caps.energy, dsp_ok=dsp),
+        "speaker_embedding": "embedding" if caps.speaker_embedding else "none",
+        "style_reference": "embedding" if caps.style_reference else "none",
+        "cloning": "embedding" if caps.cloning else "none",
+    }
+
+
+def split_controls(eff: VoiceCondition, caps: EngineCapabilities, dsp: bool = False) -> tuple[dict, dict]:
+    """(native controls to pass to the engine, DSP post-processing controls) from an effective (validated) condition."""
+    native: dict = {}
+    if caps.native_emotion or caps.prompt_emotion:
+        native |= {k: getattr(eff, k) for k in ("emotion", "emotion_strength") if getattr(eff, k) is not None}
+    if caps.native_style or caps.prompt_emotion:
+        native |= {k: getattr(eff, k) for k in ("style", "style_strength") if getattr(eff, k) is not None}
+    if caps.role and eff.role is not None:
+        native["role"] = eff.role
+    for k, ok in (("pitch", caps.pitch), ("energy", caps.energy)):
+        if ok and getattr(eff, k) is not None:
+            native[k] = getattr(eff, k)
+    native = {k: (v.value if isinstance(v, Enum) else v) for k, v in native.items()}
+    post: dict = {}
+    if dsp:
+        post = {k: getattr(eff, k) for k in ("pitch", "energy") if getattr(eff, k) is not None and not getattr(caps, k)}
+        if post and eff.prosody_strength is not None:
+            post["strength"] = eff.prosody_strength
+    return native, post
+
+
+def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: str = "", speaker_ok: bool = False, dsp: bool = False) -> tuple[VoiceCondition, list[str], list[str]]:
     """Return (effective condition, applied, ignored). Raises UnsupportedControl if anything is unsupported and fallback="reject".
 
     `speaker_ok` is set by the caller (speech.prepare_ex) when condition.speaker_id was resolved against the registry to a
     binding or reference this engine can serve, after the consent check; otherwise speaker_id is unsupported.
+
+    `dsp` = DSP prosody post-processing is enabled (settings.dsp_prosody): pitch/energy/prosody_strength are then honoured
+    by the pipeline for engines that lack them natively and are labelled "pitch:dsp" etc. DSP is never used for emotion/style/role.
 
     Ignored controls are reset to their defaults in the effective condition. Applied names for prompt-steered
     controls carry a ":steered" suffix (best effort, unvalidated).
@@ -134,9 +173,9 @@ def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: s
     gate(["emotion", "emotion_strength"], caps.native_emotion or caps.prompt_emotion, "" if caps.native_emotion else ":steered")
     gate(["style", "style_strength"], caps.native_style or caps.prompt_emotion, "" if caps.native_style else ":steered")
     gate(["role"], caps.role)
-    gate(["pitch"], caps.pitch)
-    gate(["energy"], caps.energy)
-    gate(["prosody_strength"], caps.pitch or caps.energy)
+    gate(["pitch"], caps.pitch or dsp, "" if caps.pitch else ":dsp")
+    gate(["energy"], caps.energy or dsp, "" if caps.energy else ":dsp")
+    gate(["prosody_strength"], caps.pitch or caps.energy or dsp, "" if caps.pitch or caps.energy else ":dsp")
     speed = cond.speed
     if speed != 1.0:
         if caps.speed:

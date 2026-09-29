@@ -54,17 +54,23 @@ async def ws_tts(ws: WebSocket):
     async def run(m: WsSpeak) -> None:
         t0 = time.monotonic()
         try:
-            kwargs, applied, ignored = prepare_ex(m, owner_id(key))
+            info: dict = {}
+            kwargs, applied, ignored = prepare_ex(m, owner_id(key), info)
             sr = kwargs["sample_rate"]
             ttfa, nbytes = None, 0
             start = {"type": "start", "id": m.id, "sample_rate": sr, "encoding": "pcm_s16le"}
             if m.condition:  # only when conditioning was requested, so old clients see the old message
                 start |= {"applied_controls": applied, "ignored_controls": ignored}
+            if info.get("policy"):  # only when a routing_policy was sent
+                start |= {"routing": info["routing"], **({"routed_engine": info["engine"], "routed_voice": info["voice"]} if info["routing"] == "policy" else {})}
             await send(start)
             async for frame in tts.stream(**kwargs, frame_ms=m.frame_ms, request_id=m.id):
                 ttfa = ttfa or time.monotonic() - t0
                 nbytes += len(frame)
-                await asyncio.wait_for(ws.send_bytes(frame), SEND_TIMEOUT_S)
+                # asyncio.timeout, not wait_for: on Python 3.11 wait_for swallows a cancel that lands right as the send
+                # completes, so barge-in right after a frame was ignored (found by bench cancel test, 2026-09-29)
+                async with asyncio.timeout(SEND_TIMEOUT_S):
+                    await ws.send_bytes(frame)
             await send({"type": "end", "id": m.id, "audio_ms": round(nbytes / 2 / sr * 1000), "ttfa_ms": round((ttfa or 0) * 1000)})
         except asyncio.CancelledError:
             await send({"type": "cancelled", "id": m.id})

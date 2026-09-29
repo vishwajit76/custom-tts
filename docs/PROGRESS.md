@@ -1,4 +1,32 @@
-# Progress checklist
+# Progress
+
+## Upgrade status by phase (next-upgrade plan, final state 2026-09-29)
+
+Status: **done** = implemented and covered by tests, **partial** = implemented with a stated limit, **blocked** = cannot be
+done without something we do not have. "Evidence" names the test file / doc; no GPU and no listeners were available.
+
+| Phase | Status | Evidence | What is missing |
+|---|---|---|---|
+| 0 Audit + baseline | done | `architecture-next.md`; baseline run in `benchmarks.md` section 9 (this 4 vCPU box, Piper only) | no GPU, no 50-200 call runs, no Qwen/Kokoro/Supertonic numbers on this box |
+| 1 Conditioning API + capabilities | done | `tests/test_conditioning.py`, `/v1/capabilities` | none |
+| 2 Speaker registry + consent | done | `tests/test_speakers.py` | consent evidence is not verified by the service (operator's job) |
+| 3 Speaker encoder + cloning | partial | `tests/test_speaker_encoder.py`; qwen3 cloning path | default `mfcc` encoder is not neural; no engine consumes an embedding; cloning needs a GPU (never run here) |
+| 4 Expressive model research | done (research only) | `model-selection.md`, `licenses.md` | bake-off not run: needs GPU and HF weights; licences from HF cards not re-read |
+| 5 Emotion / style / role / prosody | **blocked** for native emotion/style/role; partial for prosody | `tests/test_expressive_dsp.py` (fake native engine proves the plumbing and the capability gate); DSP pitch/energy | no engine supports emotion/style/role, so they are rejected/ignored on all real engines. DSP pitch/energy is opt-in (`DSP_PROSODY`), labelled `:dsp`, never emotion; its perceptual quality was not listened to |
+| 6 Hindi/Hinglish quality | done | `tests/test_pronunciation_corpus.py` (326 rows), normalizer tests | no native-listener review |
+| 7 Training/data pipeline | done (plumbing) | `tests/test_training_pipeline.py`, `test_prepare_dataset.py` | no production fine-tune (no authorised data, no GPU) |
+| 8 Serving / telephony | done | `tests/test_telephony.py` (8k/16k PCM s16le, alias rejection, seam-free streaming resampler); barge-in docs | streaming is sentence-level, not model-internal; no G.711 encoding; GPU/ONNX-FP16 export unverified |
+| 9 Previews + evaluation | done (tooling) | `bench/eval.py`, `bench/previews.py`, `tests/test_bench_eval.py`; sample run in `benchmarks.md` | predicted MOS != human MOS; CER only if a local Whisper is cached; no listening test |
+| 10 Routing, API tests, deployment | done / partial | `tests/test_routing.py`, `tests/test_robustness.py`; CPU Dockerfile unchanged | routing tiers are config, not load-aware; GPU Dockerfile unverified; Docker not built in this environment |
+
+Bug found and fixed while measuring (Phase 0 baseline): on Python 3.11, `asyncio.wait_for(ws.send_bytes(...))` in `app/api/ws.py`
+swallowed a barge-in cancel that arrived right after a frame was sent, so the request ran to completion (measured: cancel ack
+about 850 ms and 23 s of audio sent after the cancel). Replaced by `asyncio.timeout`; re-measured in `benchmarks.md` section 9.
+The Docker image uses Python 3.12, where `wait_for` no longer has this race.
+
+---
+
+# Earlier progress checklist (original ten-step plan)
 
 Mirrors the ten execution steps in [plan.md](plan.md). `[x]` = done and verified this session; `[~]` = implemented,
 verification limited (reason given); `[ ]` = not done (blocked, reason given).

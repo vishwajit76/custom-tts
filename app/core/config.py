@@ -64,6 +64,15 @@ class Settings(BaseSettings):
     max_references_per_speaker: int = 10
     speaker_encoder: str = "mfcc"  # mfcc (baseline, NOT neural) | resemblyzer | speechbrain (optional installs)
 
+    # --- expressive engine / DSP / routing (docs/voice-system.md) ---
+    expressive_engine: str = ""  # package.module:ClassName of an ExpressiveEngine subclass; used with ENGINES=...,expressive. Off by default.
+    # Opt-in DSP post-processing for condition.pitch (semitones) / condition.energy (gain). Signal processing, not emotion:
+    # reported as "pitch:dsp" / "energy:dsp". Off = pitch/energy are rejected/ignored like any unsupported control.
+    dsp_prosody: bool = False
+    # engine -> latency tier for routing_policy, from docs/benchmarks.md (fast = real-time at several streams on CPU,
+    # balanced = ~2 real-time streams per 4 cores, slow = GPU / not real-time). Unlisted engines count as slow.
+    engine_latency_tiers: str = "piper:fast,supertonic:balanced,kokoro:balanced,expressive:slow,qwen:slow"
+
     # --- streaming ---
     # output rate when a request doesn't set sample_rate. 24 kHz = OpenAI's pcm contract, which OpenAI-shaped
     # clients (e.g. the calling platform's custom adapter) assume. Resampling via soxr costs ~nothing.

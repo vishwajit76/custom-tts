@@ -1,6 +1,6 @@
 # Voice system
 
-Sections below are owned by different upgrade phases. "Routing" is still a placeholder.
+Sections: conditioning API, control taxonomy (native / learned embedding / prompt-steered / DSP), speaker registry, cloning, routing, telephony output and barge-in, evaluation.
 
 ## Conditioning API & capabilities
 
@@ -67,6 +67,48 @@ Output at 8/16/22.05/24/44.1/48 kHz is soxr resampling for every engine, indepen
 
 - `GET /v1/voices`: unchanged fields plus a `capabilities` object per voice.
 - `GET /v1/capabilities`: `{engines: {name: {..capabilities.., voices: [...]}}, controls: {emotion, style, role, fallback}, output_sample_rates}`.
+
+### Control taxonomy: how a control can really be realised
+
+Every control is realised by exactly one mechanism, and the API reports which one (`control_kinds` per engine in
+`GET /v1/capabilities`; suffixes in `X-TTS-Applied-Controls`). Nothing is ever relabelled to look like something stronger.
+
+| Kind | What it is | Label | Who has it today |
+|---|---|---|---|
+| native | the model was trained with this control and takes it as input (emotion, style, role, pitch, energy tokens/embeddings) | `emotion`, `style`, `role` | **nobody**. `ExpressiveEngine` (below) is the boundary for a future engine |
+| learned embedding | identity or delivery comes from an embedding/prompt encoded from audio (cloning, speaker embedding, style reference) | `reference_audio`, `speaker_embedding`, `style_reference` | qwen3 cloning only (reference clip). No engine consumes an external `speaker_embedding` or `style_reference` |
+| prompt-steered | a text instruction asks the model for an emotion or style; best effort, not validated | `emotion:steered`, `style:steered` | nobody (`prompt_emotion` is False everywhere) |
+| DSP | signal processing on the output waveform | `pitch:dsp`, `energy:dsp`, `prosody_strength:dsp` | any engine, **only when `DSP_PROSODY=true`** |
+| engine speed | `length_scale` or time-stretch inside the engine | `speed`, `speed:clamped_to_X` | all |
+
+Emotion, style and role are never satisfiable by DSP: on today's engines they stay rejected (422) or listed as ignored.
+
+### Native emotion/style/role: integration boundary only (Phase 5 is blocked on a model)
+
+No selected engine supports native emotion or style, and the bake-off in [model-selection.md](model-selection.md) has not run,
+so no expressive synthesis is implemented. What exists is the contract, in `app/services/expressive_engine.py`:
+
+- `ExpressiveEngine` base class: an implementation declares `capabilities` (`native_emotion`, `native_style`, `role`, `pitch`,
+  `energy`) and implements `synth` (neutral) and `synth_native(text, voice, speed, controls, ...)`.
+- Flow: `condition` -> `validate_condition` (gates on declared capabilities) -> `split_controls` -> `tts.stream(controls=...)` ->
+  `engine.synth_native`. An engine only ever receives controls it declared. The phrase cache key includes the controls.
+- Disabled unless configured: `ENGINES=piper,expressive` plus `EXPRESSIVE_ENGINE=package.module:ClassName`. Empty -> startup error,
+  nothing imported. `synth_native` defaults to `NotImplementedError` so a half-implemented engine fails loudly.
+- Verified only with a fake engine (`tests/test_expressive_dsp.py`): conditioning reaches the engine, an engine without the
+  capability never sees it, `fallback:"ignore"` reports the control as ignored. This proves the plumbing, not any audio quality.
+
+### DSP prosody (opt-in): pitch and energy
+
+`DSP_PROSODY=true` (needs `librosa`: `pip install -r requirements-dsp.txt`, or build the image with `--build-arg REQUIREMENTS=requirements-dsp.txt`; startup fails clearly without it) lets `condition.pitch` (semitones, -12..12), `condition.energy` (gain, 0..2, 1.0 = unchanged) and
+`prosody_strength` (0..1, scales both toward neutral) work on every engine, applied per chunk after the phrase cache and before
+resampling (`app/services/dsp.py`). Off by default, because it changes the sound and can degrade it.
+
+- Pitch: `librosa.effects.pitch_shift` (phase vocoder + soxr HQ). Duration is preserved. Formants shift with pitch, so the voice
+  sounds smaller/larger: acceptable to about +/-3 semitones, audibly artificial beyond about +/-6. Cost measured here: ~8 ms per
+  second of audio (4 vCPU), plus a one-off multi-second warm-up done at startup.
+- Energy: linear gain with a tanh soft limiter above 0.8 full scale, so a boost never hard-clips.
+- Reported as `pitch:dsp`, `energy:dsp` (never as emotion, never as "expressive"). Listening previews label it `[dsp]`.
+- It does not make a voice "happy" or "sad". Do not sell it as emotion.
 
 ## Speaker registry
 
@@ -180,4 +222,64 @@ deleted (`keep_raw_reference=false`).
 
 ## Routing
 
-_Placeholder: filled by the routing phase._
+Code: `app/services/routing.py`, `app/api/speech.py::prepare_ex`. Optional. No `routing_policy` = exactly the old behaviour.
+
+`routing_policy` (`fast` | `balanced` | `expressive` | `clone`) may be sent top-level on `/v1/audio/speech*` and WS `speak`, or
+inside `condition`. It selects an **engine** (and its default voice) when, and only when, the caller did not choose one:
+`voice` is `"default"` and there is no `reference_audio` and no resolved `speaker_id`. **An explicit voice, speaker or reference
+always wins**; the response then says `X-TTS-Routing: explicit` (WS `start`: `"routing":"explicit"`).
+
+| Policy | Picks |
+|---|---|
+| `fast` | the lowest latency tier among engines that can honour every requested control |
+| `balanced` | prefers tier `balanced`, then `fast`, then `slow`, among capable engines |
+| `expressive` | only an engine with native/steered emotion, style or role (DSP never qualifies) |
+| `clone` | only an engine with `cloning` |
+
+Capability is decided by the same `validate_condition` used for validation, so routing cannot disagree with it. Tiers are
+configuration, not guesses: `ENGINE_LATENCY_TIERS` (default `piper:fast,supertonic:balanced,kokoro:balanced,expressive:slow,qwen:slow`,
+key = lowercase class name without `Engine`), from the measurements in [benchmarks.md](benchmarks.md) (Piper meets 200 ms TTFA at
+4 streams; Kokoro/Supertonic ~0.25-0.55 RTF; Qwen needs a GPU). Unlisted engines count as `slow`. Re-measure on your hardware.
+
+**No silent downgrade.** If no loaded engine can honour the policy and the requested controls (e.g. `expressive` with only
+Piper, `clone` in a `piper,kokoro` server, or emotion with `fast`), the request fails with **422**
+`{"unsupported": [...]}`. With `condition.fallback:"ignore"` it is routed as `balanced`, and the response lists
+`routing_policy` (plus whatever the engine then drops, e.g. `emotion`) in `X-TTS-Ignored-Controls`.
+Response: `X-TTS-Routing: policy;engine=<name>;voice=<id>` (WS `start`: `routing`, `routed_engine`, `routed_voice`).
+`GET /v1/capabilities` lists the policies, each engine's `latency_tier` and `control_kinds`.
+
+Limits: qwen3 (cloning) cannot be loaded together with other engines, so `clone` needs a cloning-only server; `MultiEngine`
+still routes by voice id underneath. There is no load-aware routing (queue depth is not consulted) and no automatic
+mid-request failover.
+
+## Telephony output and barge-in
+
+Code: `app/services/tts.py::stream`, `app/services/audio_utils.py`, `app/api/ws.py`. Tests: `tests/test_telephony.py`, `tests/test_robustness.py`.
+
+- `sample_rate` 8000 and 16000 (also 22050/24000/44100/48000) give **PCM signed 16-bit little-endian, mono**. WS: `start.encoding =
+  "pcm_s16le"`; HTTP stream: `audio/L16` with `X-Sample-Rate`. Any native rate is converted by a `soxr` **HQ** streaming
+  resampler (one instance per request, so chunk borders have no seams); float -> int16 uses rounding and clipping.
+- Measured in tests: a 5 kHz tone (above the 8 kHz stream's Nyquist) is more than 130 dB below the 1 kHz tone after 24 kHz -> 8 kHz
+  conversion (no aliasing into the band), in-band tones are preserved, chunked streaming output matches one-shot resampling
+  to < 1e-3, and WS frames (`frame_ms`) are exact multiples of whole samples.
+- Sending 8 kHz means the band above 4 kHz is gone; there is no G.711 mu-law/A-law encoding here (the telephony gateway must
+  encode). `bench/eval.py` reports the 8 kHz round-trip loss per voice.
+- **Barge-in: the client must flush its own playback buffer.** `{"type":"cancel"}` stops synthesis and drops queued requests, and the
+  server acks with `cancelled` in milliseconds, but the server sends faster than real time, so seconds of audio may already
+  be in the client/gateway/network buffers. Stop and clear those the moment the caller speaks; the server cannot recall them.
+  Chunks already running on a worker finish (cannot be interrupted) but their audio is discarded.
+- Streaming here is **pipeline-level**: text is split into sentences/clauses and each is synthesized as a whole. No engine streams inside
+  a model call, so time to first audio is one short chunk of synthesis, not per-frame model streaming.
+
+## Evaluation
+
+- `python -m bench.eval` runs identical sentences over voices x conditions and writes JSON (`bench/results/<label>.json`): duration,
+  F0 median/spread, RMS level, pause count/length, clipping, silence, speaker similarity, 8 kHz round-trip loss, optional
+  CER (`--cer`, only if a local Whisper is already cached; otherwise recorded as skipped). Unsupported conditions are recorded as
+  `unsupported` rows, not synthesized.
+- `python -m bench.previews` writes listening previews only for (voice or speaker) x control combinations the engine supports, named
+  and labelled by mechanism (`[native]`, `[dsp]`, ...), plus `manifest.json` listing what was skipped.
+- **Predicted MOS is not human MOS.** UTMOS (`bench/quality.py`) is an English-trained model's guess and only ranks similar
+  systems; speaker similarity with the default `mfcc` backend is not a neural speaker verifier. None of this measures whether
+  a voice sounds natural or expressive to native listeners: only a blind listening test does, and none has been run.
+

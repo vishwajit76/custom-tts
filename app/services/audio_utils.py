@@ -30,7 +30,7 @@ def change_speed(wav: np.ndarray, speed: float) -> np.ndarray:
 
 
 def to_pcm16(wav: np.ndarray) -> bytes:
-    return (np.clip(wav, -1, 1) * 32767).astype("<i2").tobytes()
+    return np.rint(np.clip(wav, -1, 1) * 32767).astype("<i2").tobytes()  # round, not truncate: no DC bias
 
 
 def encode(wav: np.ndarray, sr: int, fmt: str) -> bytes:

@@ -152,6 +152,9 @@ class EmotiveEngine(FakeEngine):
     supports_cloning = True
     capabilities = EngineCapabilities(cloning=True, speed=True, prompt_emotion=True, streaming="sentence")
 
+    def synth_native(self, text, voice, speed, controls, ref=None, ref_text=None):
+        return self.synth(text, voice, speed, ref, ref_text)
+
 
 @pytest.fixture()
 def eng(monkeypatch):

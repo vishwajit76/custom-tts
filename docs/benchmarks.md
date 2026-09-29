@@ -2,7 +2,7 @@
 
 Hardware: Apple M4 (4 performance + 6 efficiency cores, 16 GB), macOS 26, Python 3.12, ONNX Runtime 1.30,
 piper-tts 1.8, voice `hi_IN-rohan-medium` (22.05 kHz), unless stated. Linux numbers come from Docker Desktop
-(linux/arm64 VM on the same Mac). **No NVIDIA GPU and no x86 server were available**, so GPU and x86 figures
+(linux/arm64 VM on the same Mac). **No NVIDIA GPU and no x86 server were available for sections 1-8** (section 9 is a 4 vCPU x86 container), so GPU figures
 are not measured. Raw JSON is in `bench/results/`. Every table can be reproduced with the command above it.
 Servers ran with `CACHE_SIZE=0` so repeated sentences are not served from cache.
 
@@ -186,6 +186,55 @@ streams. Supertonic with 4 steps is the middle ground. Serving the natural voice
 GPU host (docs/research.md, Tier B) or many more CPU cores.
 
 ## 8. Final configuration and soak: pending
+
+## 9. Baseline on the 4 vCPU x86 container (2026-09-29, Phase 0 measurement)
+
+Measured this session, Piper `hi_IN-rohan-medium` only (`scripts/download_voices.py` succeeded here; Kokoro/Supertonic/Qwen were
+not downloaded or run, so there are no numbers for them on this box).
+
+**Hardware / software:** Intel Xeon @ 2.10 GHz, 4 vCPU (1 thread per core), 15 GiB RAM, Linux 6.18 VM, Python 3.11.15,
+onnxruntime 1.30.0, piper-tts 1.8.0. Server defaults on 4 CPUs: `WORKERS=1`, `THREADS_PER_WORKER=4`. The load generator ran on the
+same machine (its own CPU use is small: about 1 s of user time for a 105 s run), so a separate client host would look slightly better.
+
+**Commands (exact):**
+```
+python scripts/download_voices.py                       # hi_IN-rohan-medium -> models/piper
+CACHE_SIZE=0 python -m uvicorn app.main:app --port 8000
+python -m bench.bench --url ws://localhost:8000/v1/audio/ws --concurrency 1,5,10,20 --sample-rate 16000 --label baseline-20260929-4vcpu
+```
+13 requests per client (burst: each client speaks back-to-back, harsher than real calls), 16 kHz, phrase cache off, warm-up first.
+Raw data: `bench/results/baseline-20260929-4vcpu.json`. CPU: `vmstat 1` alongside; RAM: `/metrics` and `ps` RSS.
+
+| concurrency | requests | errors | TTFA p50 / p95 / p99 (ms) | RTF p50 / p95 | underrun requests | server RSS MB (at end of level) |
+|---|---|---|---|---|---|---|
+| 1 | 13 | 0 | 119 / 195 / 195 | 0.042 / 0.055 | 0 | 403 |
+| 5 | 65 | 0 | 274 / 608 / 750 | 0.129 / 0.382 | 0 | 423 |
+| 10 | 130 | 0 | 266 / 817 / 1081 | 0.271 / 0.728 | 3 (max 242 ms) | 430 |
+| 20 | 260 | 0 | 1699 / 2282 / 2620 | 0.714 / 1.808 | 95 (max 1417 ms) | 440 |
+
+- CPU: whole-machine busy (user+system) averaged 85 % over the 121 s run (idle gaps included), with peaks at 100 % (vmstat, 1 s samples). Peak server RSS 440 MB.
+- Reading: one Piper worker with 4 threads is real-time up to about 5 burst streams here (0 underruns) and about 10 with occasional
+  underruns; at 20 burst streams it is past capacity (median RTF 0.71, p95 above 1.0, 95 of 260 requests underran). This
+  burst load is heavier than real calls (`--call-sim`, section 4), so it under-states call capacity; it was not re-run with `--call-sim` here.
+- TTFA at 1 stream (119 ms p50) is slower than the M4 records in section 3 (68 ms), as expected for a 2.1 GHz virtualised Xeon.
+  These are different machines: do not compare the rows as a regression.
+- **Cancellation (5 trials, barge-in right after first audio):** ack p50 5.7 ms, max 7.6 ms, 0 ms of audio sent after the cancel.
+  An earlier run with the same commands **before a fix** measured ack about 850 ms and 23 s of audio sent after the cancel: on Python 3.11
+  `asyncio.wait_for(ws.send_bytes(...))` swallowed a cancel that arrived as the frame send completed, so the request ran to its end.
+  `app/api/ws.py` now uses `asyncio.timeout`. Clients must still flush their own buffered audio (voice-system.md, telephony section).
+- Not measured: 50/100/200 concurrent calls, Kokoro/Supertonic/Qwen on this box, GPU, a soak run, `--call-sim` on this box.
+
+### Objective eval sample (`bench/eval.py`, Piper rohan, `DSP_PROSODY=true`, 6 sentences)
+
+```
+DSP_PROSODY=true python -m bench.eval --voices hi_IN-rohan-medium --limit 6 --label eval-piper-dsp-20260929 [--cer]
+```
+Output `bench/results/eval-piper-dsp-20260929.json`. Median over the 6 sentences: F0 148 Hz neutral, 143-145 Hz at speed 0.85/1.15, about 170 Hz with
+`pitch:dsp` +2 (expected about 166 Hz; pyin F0 on synthetic speech is noisy, single clips vary by several semitones); RMS -19.0 dBFS neutral, -17.1 with
+`energy:dsp` 1.3; no clipping in neutral rows. 8 kHz round trip: about 0.4 % of energy lies above 4 kHz and is lost. Speaker similarity to the
+same voice's neutral output is 0.97-1.0 for speed/pitch/energy variants (neutral is 1.0 by construction) and 0.92-0.98 after the 8 kHz round trip (5 of 6 sentences; the shortest is under the encoder's 1 s minimum), with the **mfcc backend, which is not
+a neural speaker verifier**. CER was **skipped** (`--cer`: Whisper weights not reachable offline here; recorded as skipped in the JSON).
+These are signal statistics. **Predicted MOS is not human MOS**, and none of it says whether the voice sounds natural or expressive.
 
 ## Scaling to 200 calls
 

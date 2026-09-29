@@ -22,6 +22,7 @@ class SpeechRequest(BaseModel):
     reference_audio: str | None = None  # base64; qwen3 cloning
     reference_text: str | None = None
     condition: VoiceCondition | None = None  # optional conditioning: emotion, style, role, ... (docs/voice-system.md)
+    routing_policy: Literal["fast", "balanced", "expressive", "clone"] | None = None  # engine choice when voice is "default"
 
 
 class WsSpeak(BaseModel):
@@ -33,3 +34,4 @@ class WsSpeak(BaseModel):
     sample_rate: SampleRate | None = None
     frame_ms: int = Field(0, ge=0, le=1000)
     condition: VoiceCondition | None = None
+    routing_policy: Literal["fast", "balanced", "expressive", "clone"] | None = None
