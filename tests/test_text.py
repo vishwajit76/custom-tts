@@ -17,7 +17,8 @@ def test_normalize():
     assert normalize("05/10/2026") == "पाँच अक्टूबर दो हज़ार छब्बीस"
     assert normalize("18% ब्याज") == "अठारह प्रतिशत ब्याज"
     assert normalize("नंबर 9876543210") == "नंबर नौ आठ सात छह पाँच चार तीन दो एक शून्य"
-    assert normalize("आपका OTP १२३ है") == "आपका ओ टी पी एक सौ तेईस है"
+    # OTP/PIN codes are read digit by digit (Phase 6); the old quantity reading "एक सौ तेईस" was wrong for a code
+    assert normalize("आपका OTP १२३ है") == "आपका ओ टी पी एक दो तीन है"
     assert normalize("Please call करें") == "Please call करें"
 
 

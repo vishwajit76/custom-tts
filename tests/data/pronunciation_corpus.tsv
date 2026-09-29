@@ -1,0 +1,327 @@
+id	category	input	expected_normalized	review_status	notes
+pc001	devanagari	नमस्ते, आप कैसे हैं?	नमस्ते, आप कैसे हैं?	machine-drafted, needs native review	
+pc002	devanagari	मेरा नाम राहुल है।	मेरा नाम राहुल है।	machine-drafted, needs native review	
+pc003	devanagari	आपका स्वागत है।	आपका स्वागत है।	machine-drafted, needs native review	
+pc004	devanagari	क्या आप मेरी बात सुन सकते हैं?	क्या आप मेरी बात सुन सकते हैं?	machine-drafted, needs native review	
+pc005	devanagari	धन्यवाद, आपका दिन शुभ हो।	धन्यवाद, आपका दिन शुभ हो।	machine-drafted, needs native review	
+pc006	devanagari	कृपया थोड़ी देर प्रतीक्षा करें।	कृपया थोड़ी देर प्रतीक्षा करें।	machine-drafted, needs native review	
+pc007	devanagari	मुझे खेद है, असुविधा के लिए क्षमा करें।	मुझे खेद है, असुविधा के लिए क्षमा करें।	machine-drafted, needs native review	
+pc008	devanagari	आपकी शिकायत दर्ज कर ली गई है।	आपकी शिकायत दर्ज कर ली गई है।	machine-drafted, needs native review	
+pc009	devanagari	कल सुबह हमारी टीम आपसे संपर्क करेगी।	कल सुबह हमारी टीम आपसे संपर्क करेगी।	machine-drafted, needs native review	
+pc010	devanagari	ज़रूर, मैं अभी जाँच करती हूँ।	ज़रूर, मैं अभी जाँच करती हूँ।	machine-drafted, needs native review	
+pc011	devanagari	फ़ोन पर क़ीमत बताई गई थी।	फ़ोन पर क़ीमत बताई गई थी।	machine-drafted, needs native review	nukta letters must be preserved
+pc012	devanagari	पाँच और छह में अंतर है।	पाँच और छह में अंतर है।	machine-drafted, needs native review	chandrabindu/anusvara preserved
+pc013	devanagari	अगर आप चाहें तो मैं दोबारा कॉल कर सकती हूँ।	अगर आप चाहें तो मैं दोबारा कॉल कर सकती हूँ।	machine-drafted, needs native review	
+pc014	devanagari	यह सेवा अभी उपलब्ध नहीं है।	यह सेवा अभी उपलब्ध नहीं है।	machine-drafted, needs native review	
+pc015	devanagari	आपका खाता सुरक्षित है, चिंता न करें।	आपका खाता सुरक्षित है, चिंता न करें।	machine-drafted, needs native review	
+pc016	roman_hindi	kya aap baat kar sakte hain?	क्या आप बात कर सकते हैं?	machine-drafted, needs native review	
+pc017	roman_hindi	aap kaise hain?	आप कैसे हैं?	machine-drafted, needs native review	
+pc018	roman_hindi	main theek hoon	मैं ठीक हूँ	machine-drafted, needs native review	
+pc019	roman_hindi	mujhe aapki madad chahiye	मुझे आपकी मदद चाहिए	machine-drafted, needs native review	
+pc020	roman_hindi	aapka naam kya hai	आपका नाम क्या है	machine-drafted, needs native review	
+pc021	roman_hindi	kal subah main aapko phone karungi	कल सुबह मैं आपको phone करूँगी	machine-drafted, needs native review	phone is an English loanword and stays Latin (policy); Indian-English phoneme mapping reads it
+pc022	roman_hindi	dhanyavaad	धन्यवाद	machine-drafted, needs native review	
+pc023	roman_hindi	shukriya	शुक्रिया	machine-drafted, needs native review	
+pc024	roman_hindi	namaste	नमस्ते	machine-drafted, needs native review	
+pc025	roman_hindi	koi baat nahin	कोई बात नहीं	machine-drafted, needs native review	
+pc026	roman_hindi	abhi thoda busy hoon	अभी थोड़ा busy हूँ	machine-drafted, needs native review	
+pc027	roman_hindi	aap kahan se bol rahe hain?	आप कहाँ से बोल रहे हैं?	machine-drafted, needs native review	
+pc028	roman_hindi	main samajh sakta hoon	मैं समझ सकता हूँ	machine-drafted, needs native review	
+pc029	roman_hindi	theek hai, main dekh leta hoon	ठीक है, मैं देख लेता हूँ	machine-drafted, needs native review	
+pc030	roman_hindi	hum aapki puri madad karenge	हम आपकी पूरी मदद करेंगे	machine-drafted, needs native review	
+pc031	roman_hindi	aapko kal aana hoga	आपको कल आना होगा	machine-drafted, needs native review	
+pc032	roman_hindi	yeh kaam bahut zaroori hai	ये काम बहुत ज़रूरी है	machine-drafted, needs native review	yeh is spoken /ye/; ये is the spoken spelling
+pc033	roman_hindi	ji haan, bilkul	जी हाँ, बिल्कुल	machine-drafted, needs native review	
+pc034	roman_hindi	bataiye, main kya kar sakti hoon?	बताइए, मैं क्या कर सकती हूँ?	machine-drafted, needs native review	
+pc035	roman_hindi	kripya thoda intezaar kijiye	कृपया थोड़ा इंतज़ार कीजिए	machine-drafted, needs native review	
+pc036	code_switch	आपका loan approve हो गया है	आपका loan approve हो गया है	machine-drafted, needs native review	English loan words stay Latin
+pc037	code_switch	aapka loan approve ho gaya hai	आपका loan approve हो गया है	machine-drafted, needs native review	
+pc038	code_switch	मैं आपको call back करूँगी	मैं आपको call back करूँगी	machine-drafted, needs native review	
+pc039	code_switch	main aapko call back karungi	मैं आपको call back करूँगी	machine-drafted, needs native review	
+pc040	code_switch	please apna account number bataiye	please अपना account number बताइए	machine-drafted, needs native review	
+pc041	code_switch	aapka payment failed ho gaya hai	आपका payment failed हो गया है	machine-drafted, needs native review	
+pc042	code_switch	WhatsApp par link bhej diya hai	WhatsApp पर link भेज दिया है	machine-drafted, needs native review	
+pc043	code_switch	kal ki meeting cancel ho gayi	कल की meeting cancel हो गई	machine-drafted, needs native review	
+pc044	code_switch	aapki EMI kal due hai	आपकी ई एम आई कल due है	machine-drafted, needs native review	
+pc045	code_switch	Hello sir, main Priya bol rahi hoon	Hello sir, मैं प्रिया बोल रही हूँ	machine-drafted, needs native review	
+pc046	code_switch	आपका order deliver हो चुका है	आपका order deliver हो चुका है	machine-drafted, needs native review	
+pc047	code_switch	app download karke login kijiye	app download करके login कीजिए	machine-drafted, needs native review	
+pc048	code_switch	Thank you, aapka din shubh ho	Thank you, आपका दिन शुभ हो	machine-drafted, needs native review	
+pc049	code_switch	aapka feedback humare liye important hai	आपका feedback हमारे लिए important है	machine-drafted, needs native review	
+pc050	code_switch	मेरा email बदल दीजिए	मेरा email बदल दीजिए	machine-drafted, needs native review	
+pc051	code_switch	aapka appointment confirm ho gaya	आपका appointment confirm हो गया	machine-drafted, needs native review	
+pc052	code_switch	kya main aapko reminder bhej doon?	क्या मैं आपको reminder भेज दूँ?	machine-drafted, needs native review	
+pc053	code_switch	ok, theek hai	ok, ठीक है	machine-drafted, needs native review	
+pc054	code_switch	sorry, network problem tha	sorry, network problem था	machine-drafted, needs native review	
+pc055	code_switch	net banking se payment kar dijiye	net banking से payment कर दीजिए	machine-drafted, needs native review	
+pc056	code_switch	Please hold kijiye, main check karti hoon	Please hold कीजिए, मैं check करती हूँ	machine-drafted, needs native review	
+pc057	code_switch	यह offer sirf aaj ke liye hai	यह offer सिर्फ़ आज के लिए है	machine-drafted, needs native review	सिर्फ़ vs सिर्फ: nukta form expected
+pc058	names_places	Rahul	राहुल	machine-drafted, needs native review	
+pc059	names_places	Priya	प्रिया	machine-drafted, needs native review	
+pc060	names_places	Amitabh Bachchan	अमिताभ बच्चन	machine-drafted, needs native review	
+pc061	names_places	Delhi	दिल्ली	machine-drafted, needs native review	
+pc062	names_places	Mumbai	मुंबई	machine-drafted, needs native review	
+pc063	names_places	Kolkata	कोलकाता	machine-drafted, needs native review	
+pc064	names_places	Bengaluru	बेंगलुरु	machine-drafted, needs native review	
+pc065	names_places	Hyderabad	हैदराबाद	machine-drafted, needs native review	
+pc066	names_places	Lucknow	लखनऊ	machine-drafted, needs native review	
+pc067	names_places	Jaipur	जयपुर	machine-drafted, needs native review	
+pc068	names_places	Chennai	चेन्नई	machine-drafted, needs native review	
+pc069	names_places	Pune	पुणे	machine-drafted, needs native review	
+pc070	names_places	Sharma ji	शर्मा जी	machine-drafted, needs native review	
+pc071	names_places	Mr. Gupta	मिस्टर गुप्ता	machine-drafted, needs native review	
+pc072	names_places	Mrs. Verma	मिसेज़ वर्मा	machine-drafted, needs native review	
+pc073	names_places	Dr. Sharma	डॉक्टर शर्मा	machine-drafted, needs native review	
+pc074	names_places	डॉ. मेहता	डॉक्टर मेहता	machine-drafted, needs native review	
+pc075	names_places	Narendra Modi	नरेंद्र मोदी	machine-drafted, needs native review	
+pc076	names_places	Sachin Tendulkar	सचिन तेंदुलकर	machine-drafted, needs native review	
+pc077	names_places	mera naam Priya hai	मेरा नाम प्रिया है	machine-drafted, needs native review	
+pc078	names_places	main Mumbai se bol rahi hoon	मैं मुंबई से बोल रही हूँ	machine-drafted, needs native review	
+pc079	names_places	Uttar Pradesh	उत्तर प्रदेश	machine-drafted, needs native review	
+pc080	names_places	Madhya Pradesh	मध्य प्रदेश	machine-drafted, needs native review	
+pc081	names_places	Rahul ji, aapka swagat hai	राहुल जी, आपका स्वागत है	machine-drafted, needs native review	
+pc082	names_places	Sunita Devi	सुनीता देवी	machine-drafted, needs native review	
+pc083	names_places	Chandigarh se Amit	चंडीगढ़ से अमित	machine-drafted, needs native review	
+pc084	names_places	Ahmedabad	अहमदाबाद	machine-drafted, needs native review	
+pc085	names_places	Bhopal	भोपाल	machine-drafted, needs native review	
+pc086	names_places	Patna	पटना	machine-drafted, needs native review	
+pc087	names_places	Indore	इंदौर	machine-drafted, needs native review	
+pc088	loanwords	Please call करें	Please call करें	machine-drafted, needs native review	English stays English
+pc089	loanwords	Thank you	Thank you	machine-drafted, needs native review	
+pc090	loanwords	meeting	meeting	machine-drafted, needs native review	must not become मीतिन्ग
+pc091	loanwords	kal subah meeting hai	कल सुबह meeting है	machine-drafted, needs native review	
+pc092	loanwords	feedback dijiye	feedback दीजिए	machine-drafted, needs native review	
+pc093	loanwords	मैं screen देख रही हूँ	मैं screen देख रही हूँ	machine-drafted, needs native review	
+pc094	loanwords	speed bahut kam hai	speed बहुत कम है	machine-drafted, needs native review	
+pc095	loanwords	aapka policy document ready hai	आपका policy document ready है	machine-drafted, needs native review	
+pc096	loanwords	mobile recharge kar dijiye	mobile recharge कर दीजिए	machine-drafted, needs native review	
+pc097	loanwords	bank se message aaya hoga	bank से message आया होगा	machine-drafted, needs native review	
+pc098	loanwords	hospital jaana padega	hospital जाना पड़ेगा	machine-drafted, needs native review	
+pc099	loanwords	train late hai	train late है	machine-drafted, needs native review	
+pc100	loanwords	ticket book kar di hai	ticket book कर दी है	machine-drafted, needs native review	
+pc101	loanwords	password reset kijiye	password reset कीजिए	machine-drafted, needs native review	
+pc102	loanwords	aapka insurance renew ho gaya	आपका insurance renew हो गया	machine-drafted, needs native review	
+pc103	loanwords	customer care se baat kijiye	customer care से बात कीजिए	machine-drafted, needs native review	
+pc104	loanwords	office ka address bhejiye	office का address भेजिए	machine-drafted, needs native review	
+pc105	loanwords	delivery tomorrow tak ho jayegi	delivery tomorrow तक हो जाएगी	machine-drafted, needs native review	
+pc106	loanwords	free shipping milegi	free shipping मिलेगी	machine-drafted, needs native review	
+pc107	loanwords	online payment karein	online payment करें	machine-drafted, needs native review	
+pc108	numbers	0	शून्य	machine-drafted, needs native review	
+pc109	numbers	7	सात	machine-drafted, needs native review	
+pc110	numbers	21	इक्कीस	machine-drafted, needs native review	
+pc111	numbers	45	पैंतालीस	machine-drafted, needs native review	
+pc112	numbers	99	निन्यानवे	machine-drafted, needs native review	
+pc113	numbers	101	एक सौ एक	machine-drafted, needs native review	
+pc114	numbers	250	दो सौ पचास	machine-drafted, needs native review	
+pc115	numbers	999	नौ सौ निन्यानवे	machine-drafted, needs native review	
+pc116	numbers	1001	एक हज़ार एक	machine-drafted, needs native review	
+pc117	numbers	1234	एक हज़ार दो सौ चौंतीस	machine-drafted, needs native review	
+pc118	numbers	10000	दस हज़ार	machine-drafted, needs native review	
+pc119	numbers	99999	निन्यानवे हज़ार नौ सौ निन्यानवे	machine-drafted, needs native review	
+pc120	numbers	५०	पचास	machine-drafted, needs native review	Devanagari digits
+pc121	numbers	२०२६	दो हज़ार छब्बीस	machine-drafted, needs native review	Devanagari digits
+pc122	numbers	मुझे 3 चीज़ें चाहिए	मुझे तीन चीज़ें चाहिए	machine-drafted, needs native review	
+pc123	numbers	कुल 12 लोग	कुल बारह लोग	machine-drafted, needs native review	
+pc124	numbers	75 साल	पचहत्तर साल	machine-drafted, needs native review	
+pc125	numbers	88 नंबर	अट्ठासी नंबर	machine-drafted, needs native review	
+pc126	numbers	1,234	एक हज़ार दो सौ चौंतीस	machine-drafted, needs native review	
+pc127	numbers	2026 में	दो हज़ार छब्बीस में	machine-drafted, needs native review	
+pc128	numbers	in 1990	in उन्नीस सौ नब्बे	machine-drafted, needs native review	year in hundreds when context cue present
+pc129	numbers	सन् 1947	सन् उन्नीस सौ सैंतालीस	machine-drafted, needs native review	
+pc130	numbers	1990 में	उन्नीस सौ नब्बे में	machine-drafted, needs native review	XFAIL-AMBIG: bare 4-digit year is ambiguous with an amount (1990 में = 'for 1990' too)
+pc131	numbers	-5	माइनस पाँच	machine-drafted, needs native review	
+pc132	numbers	10-15	दस से पंद्रह	machine-drafted, needs native review	
+pc133	numbers	1/2	आधा	machine-drafted, needs native review	
+pc134	numbers	3/4	तीन चौथाई	machine-drafted, needs native review	
+pc135	numbers	1/3	एक बटा तीन	machine-drafted, needs native review	
+pc136	numbers	1st	पहला	machine-drafted, needs native review	
+pc137	numbers	2nd	दूसरा	machine-drafted, needs native review	
+pc138	numbers	3rd	तीसरा	machine-drafted, needs native review	
+pc139	numbers	4th	चौथा	machine-drafted, needs native review	
+pc140	numbers	11th	ग्यारहवाँ	machine-drafted, needs native review	
+pc141	numbers	21st	इक्कीसवाँ	machine-drafted, needs native review	
+pc142	numbers	5th floor	पाँचवाँ floor	machine-drafted, needs native review	
+pc143	lakh_crore	1,00,000	एक लाख	machine-drafted, needs native review	
+pc144	lakh_crore	10,00,000	दस लाख	machine-drafted, needs native review	
+pc145	lakh_crore	1,00,00,000	एक करोड़	machine-drafted, needs native review	
+pc146	lakh_crore	12,34,567	बारह लाख चौंतीस हज़ार पाँच सौ सड़सठ	machine-drafted, needs native review	
+pc147	lakh_crore	12,34,56,789	बारह करोड़ चौंतीस लाख छप्पन हज़ार सात सौ नवासी	machine-drafted, needs native review	
+pc148	lakh_crore	5 lakh	पाँच लाख	machine-drafted, needs native review	
+pc149	lakh_crore	5 lac	पाँच लाख	machine-drafted, needs native review	
+pc150	lakh_crore	2 crore	दो करोड़	machine-drafted, needs native review	
+pc151	lakh_crore	5 Cr	पाँच करोड़	machine-drafted, needs native review	
+pc152	lakh_crore	2.5 lakh	ढाई लाख	machine-drafted, needs native review	
+pc153	lakh_crore	1.5 lakh	डेढ़ लाख	machine-drafted, needs native review	
+pc154	lakh_crore	3.5 lakh	साढ़े तीन लाख	machine-drafted, needs native review	
+pc155	lakh_crore	2.5 crore	ढाई करोड़	machine-drafted, needs native review	
+pc156	lakh_crore	10k	दस हज़ार	machine-drafted, needs native review	
+pc157	lakh_crore	50 हज़ार	पचास हज़ार	machine-drafted, needs native review	
+pc158	lakh_crore	2 लाख	दो लाख	machine-drafted, needs native review	
+pc159	lakh_crore	7 करोड़	सात करोड़	machine-drafted, needs native review	
+pc160	lakh_crore	1.5 हज़ार	डेढ़ हज़ार	machine-drafted, needs native review	
+pc161	lakh_crore	2 lakh 50 hazar	दो लाख पचास हज़ार	machine-drafted, needs native review	
+pc162	lakh_crore	सवा लाख	सवा लाख	machine-drafted, needs native review	already spoken form
+pc163	lakh_crore	12.75 lakh	बारह लाख पचहत्तर हज़ार	machine-drafted, needs native review	
+pc164	lakh_crore	1.25 crore	एक करोड़ पच्चीस लाख	machine-drafted, needs native review	
+pc165	lakh_crore	₹4.2 lakh	चार लाख बीस हज़ार रुपये	machine-drafted, needs native review	
+pc166	rupees	₹500	पाँच सौ रुपये	machine-drafted, needs native review	
+pc167	rupees	₹99	निन्यानवे रुपये	machine-drafted, needs native review	
+pc168	rupees	₹1,50,000	एक लाख पचास हज़ार रुपये	machine-drafted, needs native review	
+pc169	rupees	₹12,500.50	बारह हज़ार पाँच सौ रुपये पचास पैसे	machine-drafted, needs native review	
+pc170	rupees	₹0.50	पचास पैसे	machine-drafted, needs native review	
+pc171	rupees	₹1	एक रुपया	machine-drafted, needs native review	
+pc172	rupees	1 रुपये	एक रुपया	machine-drafted, needs native review	
+pc173	rupees	Rs 500	पाँच सौ रुपये	machine-drafted, needs native review	
+pc174	rupees	Rs. 500	पाँच सौ रुपये	machine-drafted, needs native review	
+pc175	rupees	Rs.500/-	पाँच सौ रुपये	machine-drafted, needs native review	
+pc176	rupees	₹500/-	पाँच सौ रुपये	machine-drafted, needs native review	
+pc177	rupees	INR 2500	दो हज़ार पाँच सौ रुपये	machine-drafted, needs native review	
+pc178	rupees	2500 INR	दो हज़ार पाँच सौ रुपये	machine-drafted, needs native review	
+pc179	rupees	500 रुपये	पाँच सौ रुपये	machine-drafted, needs native review	
+pc180	rupees	10 रु	दस रुपये	machine-drafted, needs native review	
+pc181	rupees	5 रुपए 50 पैसे	पाँच रुपये पचास पैसे	machine-drafted, needs native review	
+pc182	rupees	₹5 lakh	पाँच लाख रुपये	machine-drafted, needs native review	
+pc183	rupees	Rs 5 lakh	पाँच लाख रुपये	machine-drafted, needs native review	
+pc184	rupees	Rs. 1.5 crore	डेढ़ करोड़ रुपये	machine-drafted, needs native review	
+pc185	rupees	₹50 हज़ार	पचास हज़ार रुपये	machine-drafted, needs native review	
+pc186	rupees	₹2.5 crore	ढाई करोड़ रुपये	machine-drafted, needs native review	
+pc187	rupees	INR 5 lakh	पाँच लाख रुपये	machine-drafted, needs native review	
+pc188	rupees	$50	पचास डॉलर	machine-drafted, needs native review	
+pc189	rupees	50 USD	पचास डॉलर	machine-drafted, needs native review	
+pc190	rupees	aapka balance Rs 2500 hai	आपका balance दो हज़ार पाँच सौ रुपये है	machine-drafted, needs native review	
+pc191	rupees	₹ 10	दस रुपये	machine-drafted, needs native review	
+pc192	rupees	आपकी EMI ₹4,999 है	आपकी ई एम आई चार हज़ार नौ सौ निन्यानवे रुपये है	machine-drafted, needs native review	
+pc193	rupees	₹5k	पाँच हज़ार रुपये	machine-drafted, needs native review	
+pc194	dates	05/10/2026	पाँच अक्टूबर दो हज़ार छब्बीस	machine-drafted, needs native review	
+pc195	dates	14-02-2025	चौदह फ़रवरी दो हज़ार पच्चीस	machine-drafted, needs native review	
+pc196	dates	26/01/1950	छब्बीस जनवरी उन्नीस सौ पचास	machine-drafted, needs native review	
+pc197	dates	15/08/1947	पंद्रह अगस्त उन्नीस सौ सैंतालीस	machine-drafted, needs native review	
+pc198	dates	01/01/2000	एक जनवरी दो हज़ार	machine-drafted, needs native review	
+pc199	dates	31.12.2025	इकतीस दिसंबर दो हज़ार पच्चीस	machine-drafted, needs native review	
+pc200	dates	1 जनवरी 2026	एक जनवरी दो हज़ार छब्बीस	machine-drafted, needs native review	
+pc201	dates	15 अगस्त 2025	पंद्रह अगस्त दो हज़ार पच्चीस	machine-drafted, needs native review	
+pc202	dates	15 August 2025	पंद्रह अगस्त दो हज़ार पच्चीस	machine-drafted, needs native review	
+pc203	dates	2nd October	दो अक्टूबर	machine-drafted, needs native review	
+pc204	dates	25 December	पच्चीस दिसंबर	machine-drafted, needs native review	
+pc205	dates	आपकी due date 05/11/2026 है	आपकी due date पाँच नवंबर दो हज़ार छब्बीस है	machine-drafted, needs native review	
+pc206	dates	15/08/25	पंद्रह अगस्त दो हज़ार पच्चीस	machine-drafted, needs native review	2-digit year assumed 20xx
+pc207	times	10:30	साढ़े दस बजे	machine-drafted, needs native review	
+pc208	times	1:30	डेढ़ बजे	machine-drafted, needs native review	
+pc209	times	2:30	ढाई बजे	machine-drafted, needs native review	
+pc210	times	14:30	ढाई बजे	machine-drafted, needs native review	
+pc211	times	13:30	डेढ़ बजे	machine-drafted, needs native review	
+pc212	times	9:15	सवा नौ बजे	machine-drafted, needs native review	
+pc213	times	9:45	पौने दस बजे	machine-drafted, needs native review	
+pc214	times	12:45	पौने एक बजे	machine-drafted, needs native review	
+pc215	times	11:45	पौने बारह बजे	machine-drafted, needs native review	
+pc216	times	9:00	नौ बजे	machine-drafted, needs native review	
+pc217	times	12:00	बारह बजे	machine-drafted, needs native review	
+pc218	times	9:20	नौ बजकर बीस मिनट	machine-drafted, needs native review	
+pc219	times	8:05	आठ बजकर पाँच मिनट	machine-drafted, needs native review	
+pc220	times	10:30 बजे	साढ़े दस बजे	machine-drafted, needs native review	
+pc221	times	10:30pm	साढ़े दस बजे	machine-drafted, needs native review	
+pc222	times	6.30 बजे	साढ़े छह बजे	machine-drafted, needs native review	
+pc223	times	शाम 5:15 बजे	शाम सवा पाँच बजे	machine-drafted, needs native review	
+pc224	times	kal subah 10 baje meeting hai	कल सुबह दस बजे meeting है	machine-drafted, needs native review	
+pc225	times	रात 11:59	रात ग्यारह बजकर उनसठ मिनट	machine-drafted, needs native review	
+pc226	times	3:45 PM	पौने चार बजे	machine-drafted, needs native review	
+pc227	times	7:30 AM	साढ़े सात बजे	machine-drafted, needs native review	
+pc228	times	आपका slot 4:30 बजे है	आपका slot साढ़े चार बजे है	machine-drafted, needs native review	
+pc229	decimals	0.5	शून्य दशमलव पाँच	machine-drafted, needs native review	
+pc230	decimals	2.75	दो दशमलव सात पाँच	machine-drafted, needs native review	
+pc231	decimals	3.14	तीन दशमलव एक चार	machine-drafted, needs native review	
+pc232	decimals	10.05	दस दशमलव शून्य पाँच	machine-drafted, needs native review	
+pc233	decimals	100.1	एक सौ दशमलव एक	machine-drafted, needs native review	
+pc234	decimals	1.5 kg	डेढ़ किलो	machine-drafted, needs native review	
+pc235	decimals	2.5 hrs	ढाई घंटे	machine-drafted, needs native review	
+pc236	decimals	3.5 km	साढ़े तीन किलोमीटर	machine-drafted, needs native review	
+pc237	decimals	0.5 l	आधा लीटर	machine-drafted, needs native review	
+pc238	decimals	2.25 l	दो दशमलव दो पाँच लीटर	machine-drafted, needs native review	
+pc239	decimals	1.2.3	एक डॉट दो डॉट तीन	machine-drafted, needs native review	version string is not a decimal
+pc240	percent	18%	अठारह प्रतिशत	machine-drafted, needs native review	
+pc241	percent	50%	पचास प्रतिशत	machine-drafted, needs native review	
+pc242	percent	0.5%	आधा प्रतिशत	machine-drafted, needs native review	
+pc243	percent	7.5%	साढ़े सात प्रतिशत	machine-drafted, needs native review	
+pc244	percent	12.25%	बारह दशमलव दो पाँच प्रतिशत	machine-drafted, needs native review	
+pc245	percent	100%	एक सौ प्रतिशत	machine-drafted, needs native review	
+pc246	percent	18% ब्याज	अठारह प्रतिशत ब्याज	machine-drafted, needs native review	
+pc247	percent	10 percent	दस प्रतिशत	machine-drafted, needs native review	
+pc248	percent	5 per cent	पाँच प्रतिशत	machine-drafted, needs native review	
+pc249	percent	GST 18%	जी एस टी अठारह प्रतिशत	machine-drafted, needs native review	
+pc250	percent	99.9%	निन्यानवे दशमलव नौ प्रतिशत	machine-drafted, needs native review	
+pc251	percent	ब्याज दर 8.5% सालाना है	ब्याज दर साढ़े आठ प्रतिशत सालाना है	machine-drafted, needs native review	
+pc252	otp	OTP 482915	ओ टी पी चार आठ दो नौ एक पाँच	machine-drafted, needs native review	
+pc253	otp	आपका OTP 4829 है	आपका ओ टी पी चार आठ दो नौ है	machine-drafted, needs native review	
+pc254	otp	आपका OTP १२३ है	आपका ओ टी पी एक दो तीन है	machine-drafted, needs native review	
+pc255	otp	OTP: 1234	ओ टी पी: एक दो तीन चार	machine-drafted, needs native review	
+pc256	otp	OTP is 0472	ओ टी पी is शून्य चार सात दो	machine-drafted, needs native review	
+pc257	otp	अपना PIN 1234 डालें	अपना पिन एक दो तीन चार डालें	machine-drafted, needs native review	
+pc258	otp	CVV 456	सी वी वी चार पाँच छह	machine-drafted, needs native review	
+pc259	otp	ओटीपी 7788	ओटीपी सात सात आठ आठ	machine-drafted, needs native review	
+pc260	otp	आपका OTP 000000 है	आपका ओ टी पी शून्य शून्य शून्य शून्य शून्य शून्य है	machine-drafted, needs native review	
+pc261	otp	verification code 993311	verification code नौ नौ तीन तीन एक एक	machine-drafted, needs native review	
+pc262	otp	aapka OTP 5521 hai, kisi se share na karein	आपका ओ टी पी पाँच पाँच दो एक है, किसी से share न करें	machine-drafted, needs native review	XFAIL-AMBIG: 'na' is न (not) vs ना (yes/isn't it): the lexicon picks ना; needs context
+pc263	otp	4829 आपका OTP है	चार आठ दो नौ आपका ओ टी पी है	machine-drafted, needs native review	
+pc264	phone	+91 98765 43210	प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
+pc265	phone	+91-9876543210	प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
+pc266	phone	9876543210	नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
+pc267	phone	098765-43210	शून्य नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
+pc268	phone	1800 123 4567	एक आठ शून्य शून्य एक दो तीन चार पाँच छह सात	machine-drafted, needs native review	
+pc269	phone	नंबर 9876543210	नंबर नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
+pc270	phone	मुझे 9876543210 पर call करें	मुझे नौ आठ सात छह पाँच चार तीन दो एक शून्य पर call करें	machine-drafted, needs native review	
+pc271	phone	Aadhaar 1234 5678 9012	Aadhaar एक दो तीन चार पाँच छह सात आठ नौ शून्य एक दो	machine-drafted, needs native review	
+pc272	phone	मोबाइल +91 98765 43210 पर कॉल करें	मोबाइल प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य पर कॉल करें	machine-drafted, needs native review	
+pc273	phone	+1 415 555 0132	प्लस एक चार एक पाँच पाँच पाँच पाँच शून्य एक तीन दो	machine-drafted, needs native review	
+pc274	phone	1800-267-6788	एक आठ शून्य शून्य दो छह सात छह सात आठ आठ	machine-drafted, needs native review	
+pc275	phone	12,500	बारह हज़ार पाँच सौ	machine-drafted, needs native review	comma-grouped number must not become a phone number
+pc276	abbreviations	Dr. Sharma	डॉक्टर शर्मा	machine-drafted, needs native review	
+pc277	abbreviations	Ltd.	लिमिटेड	machine-drafted, needs native review	
+pc278	abbreviations	Pvt. Ltd.	प्राइवेट लिमिटेड	machine-drafted, needs native review	
+pc279	abbreviations	No. 5	नंबर पाँच	machine-drafted, needs native review	
+pc280	abbreviations	Prof. Rao	प्रोफ़ेसर राव	machine-drafted, needs native review	
+pc281	abbreviations	Smt. Devi	श्रीमती देवी	machine-drafted, needs native review	
+pc282	abbreviations	Sr. Manager	सीनियर Manager	machine-drafted, needs native review	
+pc283	abbreviations	EMI	ई एम आई	machine-drafted, needs native review	
+pc284	abbreviations	KYC	के वाई सी	machine-drafted, needs native review	
+pc285	abbreviations	OTP	ओ टी पी	machine-drafted, needs native review	
+pc286	abbreviations	UPI	यू पी आई	machine-drafted, needs native review	
+pc287	abbreviations	SMS	एस एम एस	machine-drafted, needs native review	
+pc288	abbreviations	ATM	ए टी एम	machine-drafted, needs native review	
+pc289	abbreviations	GST	जी एस टी	machine-drafted, needs native review	
+pc290	abbreviations	FAQ	एफ ए क्यू	machine-drafted, needs native review	
+pc291	abbreviations	SIM card	सिम card	machine-drafted, needs native review	
+pc292	abbreviations	AI	ए आई	machine-drafted, needs native review	
+pc293	abbreviations	a/c no	अकाउंट no	machine-drafted, needs native review	
+pc294	abbreviations	24/7	चौबीसों घंटे	machine-drafted, needs native review	
+pc295	abbreviations	24x7 support	चौबीसों घंटे support	machine-drafted, needs native review	
+pc296	abbreviations	SBI ATM	एस बी आई ए टी एम	machine-drafted, needs native review	
+pc297	abbreviations	HDFC bank	एच डी एफ सी bank	machine-drafted, needs native review	
+pc298	abbreviations	PAN card	पैन card	machine-drafted, needs native review	
+pc299	abbreviations	UPI se payment kijiye	यू पी आई से payment कीजिए	machine-drafted, needs native review	
+pc300	abbreviations	NASA	NASA	machine-drafted, needs native review	unknown all-caps word is left for the English G2P (may be a word, not an initialism)
+pc301	technical	5G	फ़ाइव जी	machine-drafted, needs native review	
+pc302	technical	4G LTE	फ़ोर जी LTE	machine-drafted, needs native review	
+pc303	technical	Wi-Fi	वाई फ़ाई	machine-drafted, needs native review	
+pc304	technical	COVID-19	COVID उन्नीस	machine-drafted, needs native review	
+pc305	technical	5 GB	पाँच जीबी	machine-drafted, needs native review	
+pc306	technical	500 MB	पाँच सौ एमबी	machine-drafted, needs native review	
+pc307	technical	10 km	दस किलोमीटर	machine-drafted, needs native review	
+pc308	technical	5 kg	पाँच किलो	machine-drafted, needs native review	
+pc309	technical	500 gm	पाँच सौ ग्राम	machine-drafted, needs native review	
+pc310	technical	3 km/h	तीन किलोमीटर प्रति घंटा	machine-drafted, needs native review	
+pc311	technical	25°C	पच्चीस डिग्री सेल्सियस	machine-drafted, needs native review	
+pc312	technical	-5°C	माइनस पाँच डिग्री सेल्सियस	machine-drafted, needs native review	
+pc313	technical	98°F	अट्ठानवे डिग्री फ़ारेनहाइट	machine-drafted, needs native review	
+pc314	technical	IFSC SBIN0001234	आई एफ एस सी एस बी आई एन शून्य शून्य शून्य एक दो तीन चार	machine-drafted, needs native review	
+pc315	technical	PAN ABCDE1234F	पैन ए बी सी डी ई एक दो तीन चार एफ	machine-drafted, needs native review	
+pc316	technical	A & B	A और B	machine-drafted, needs native review	
+pc317	technical	x = y	x बराबर y	machine-drafted, needs native review	
+pc318	technical	कल+आज	कल प्लस आज	machine-drafted, needs native review	
+pc319	technical	हाँ/नहीं	हाँ या नहीं	machine-drafted, needs native review	
+pc320	technical	user@example.com	user एट example.com	machine-drafted, needs native review	
+pc321	technical	https://example.com/pay	example डॉट कॉम स्लैश pay	machine-drafted, needs native review	XFAIL: URL dot/slash reading not implemented
+pc322	technical	v2.0	वी टू पॉइंट ज़ीरो	machine-drafted, needs native review	XFAIL: version strings not implemented
+pc323	technical	ISO 9001	आई एस ओ नौ शून्य शून्य एक	machine-drafted, needs native review	XFAIL: acronym+id reading not implemented
+pc324	technical	API key	ए पी आई key	machine-drafted, needs native review	
+pc325	technical	5 mins	पाँच मिनट	machine-drafted, needs native review	
+pc326	technical	2 hrs	दो घंटे	machine-drafted, needs native review	

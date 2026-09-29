@@ -24,24 +24,58 @@ _ABBR = {
     "Dr.": "डॉक्टर", "Mr.": "मिस्टर", "Mrs.": "मिसेज़", "Rs.": "रुपये", "Rs": "रुपये",
     "km": "किलोमीटर", "kg": "किलो", "EMI": "ई एम आई", "24/7": "चौबीसों घंटे", "24x7": "चौबीसों घंटे", "OTP": "ओ टी पी", "KYC": "के वाई सी",
     "Ltd.": "लिमिटेड", "Pvt.": "प्राइवेट", "No.": "नंबर",
+    "UPI": "यू पी आई", "SMS": "एस एम एस", "PIN": "पिन", "AI": "ए आई", "FAQ": "एफ ए क्यू", "GST": "जी एस टी",
+    "PAN": "पैन", "SIM": "सिम", "ATM": "ए टी एम", "IFSC": "आई एफ एस सी", "CVV": "सी वी वी", "IVR": "आई वी आर",
+    "API": "ए पी आई", "URL": "यू आर एल", "PDF": "पी डी एफ", "HR": "एच आर", "CEO": "सी ई ओ", "SBI": "एस बी आई",
+    "HDFC": "एच डी एफ सी", "ICICI": "आई सी आई सी आई", "LIC": "एल आई सी", "RBI": "आर बी आई", "TDS": "टी डी एस",
+    "ITR": "आई टी आर", "NEFT": "नेफ़्ट", "RTGS": "आर टी जी एस", "IMPS": "आई एम पी एस", "CIBIL": "सिबिल",
+    "OTT": "ओ टी टी", "GPS": "जी पी एस", "USB": "यू एस बी", "FD": "एफ डी", "SIP": "एस आई पी",
+    "Wi-Fi": "वाई फ़ाई", "WiFi": "वाई फ़ाई", "A/C": "अकाउंट", "a/c": "अकाउंट", "A/c": "अकाउंट", "रु.": "रुपये", "रु": "रुपये",
     "Sr.": "सीनियर", "Jr.": "जूनियर", "Smt.": "श्रीमती", "Prof.": "प्रोफ़ेसर",
 }
+_DEV = "ऀ-ॿ"
 _DEVANAGARI_DIGITS = str.maketrans("०१२३४५६७८९", "0123456789")
 
 _NUM = r"\d[\d,]*(?:\.\d+)?"
 
-_SCALE_WORDS = {"lakh": "लाख", "lac": "लाख", "crore": "करोड़", "लाख": "लाख", "करोड़": "करोड़", "हज़ार": "हज़ार", "हजार": "हज़ार"}
+_SCALE_WORDS = {"lakh": "लाख", "lac": "लाख", "crore": "करोड़", "cr": "करोड़", "k": "हज़ार", "लाख": "लाख", "करोड़": "करोड़", "हज़ार": "हज़ार", "हजार": "हज़ार"}
 _ORDINAL_WORDS = {1: "पहला", 2: "दूसरा", 3: "तीसरा", 4: "चौथा", 5: "पाँचवाँ", 6: "छठा"}
 
 # Currency / amount expressions run before ABBR so "Rs 500" reads the amount first.
-_RUPEE_RE = re.compile(rf"₹\s*({_NUM})(?:\s*(lakh|lac|crore|लाख|करोड़))?", re.IGNORECASE)
-_RS_RE = re.compile(rf"(?<!\w)Rs\.?\s*({_NUM})")
-_INR_HEAD_RE = re.compile(rf"(?<!\w)INR\s*({_NUM})", re.IGNORECASE)
+_RUPEE_RE = re.compile(rf"₹\s*({_NUM})(?:\s*(lakh|lac|crore|cr|k|लाख|करोड़|हज़ार|हजार)(?![a-z]))?", re.IGNORECASE)
+_RS_RE = re.compile(rf"(?<!\w)Rs\.?\s*({_NUM})(?:\s*(lakh|lac|crore|cr|लाख|करोड़|हज़ार|हजार)(?![a-z]))?", re.IGNORECASE)
+_INR_HEAD_RE = re.compile(rf"(?<!\w)INR\s*({_NUM})(?:\s*(lakh|lac|crore|cr|लाख|करोड़|हज़ार|हजार)(?![a-z]))?", re.IGNORECASE)
 _INR_TAIL_RE = re.compile(rf"({_NUM})\s*INR(?!\w)", re.IGNORECASE)
 _DOLLAR_HEAD_RE = re.compile(rf"\$\s*({_NUM})")
 _DOLLAR_TAIL_RE = re.compile(rf"({_NUM})\s*USD(?!\w)", re.IGNORECASE)
-_SCALE_RE = re.compile(rf"({_NUM})\s*(lakh|lac|crore|लाख|करोड़|हज़ार|हजार)(?![a-z])", re.IGNORECASE)
-_RUPEE_TAIL_RE = re.compile(rf"({_NUM})\s*(?:रुपये|रुपए)")
+_SCALE_RE = re.compile(rf"({_NUM})\s*(lakh|lac|crore|cr|k|लाख|करोड़|हज़ार|हजार)(?![a-z])", re.IGNORECASE)
+_RUPEE_TAIL_RE = re.compile(rf"({_NUM})\s*(?:रुपये|रुपए|रुपया|रु\.?(?![ऀ-ॿ\w]))")
+_RUPEE_SLASH_RE = re.compile(r"(?<=\d)\s*/-")  # "₹500/-" is written for "500 rupees only"
+_ALNUM_ID_RE = re.compile(r"(?<![\w])(?=[A-Z0-9]*[A-Z])(?=[A-Z0-9]*\d)[A-Z0-9]{6,}(?![\w])")  # IFSC, PAN, vehicle no.
+_GEN_RE = re.compile(r"(?<![\w.])([2-6])G(?![A-Za-z\d])")  # 5G is a network generation, not grams
+_GEN_WORDS = {"2": "टू", "3": "थ्री", "4": "फ़ोर", "5": "फ़ाइव", "6": "सिक्स"}
+_LETTERS = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    "ए बी सी डी ई एफ जी एच आई जे के एल एम एन ओ पी क्यू आर एस टी यू वी डब्ल्यू एक्स वाई ज़ेड".split()))
+# Verification codes are read digit by digit: "OTP 4829" -> चार आठ दो नौ, never "चार हज़ार ..."
+_CODE_RE = re.compile(
+    r"(?<![\w])(OTP|PIN|CVV|CVC|code|passcode|कोड|ओटीपी|पिन|पासकोड)((?:\s*(?:is|hai|है|:|-|=|#)\s*|\s+)+)(\d{3,8})(?!\d)",
+    re.IGNORECASE,
+)
+_CODE_AFTER_RE = re.compile(
+    r"(?<![\w.])(\d{4,8})(?=\s+(?:आपका|आपकी|आपके|your)\s+(?:OTP|ओटीपी|PIN|पिन|code|कोड)(?!\w))", re.IGNORECASE
+)
+_VERSION_RE = re.compile(r"(?<![\w.])\d+(?:\.\d+){2,}(?![\w.])")  # 1.2.3 is a version, not a decimal
+_PERCENT_WORD_RE = re.compile(rf"({_NUM})\s*(?:percent|per\s?cent)(?![a-z])", re.IGNORECASE)
+_DEG_RE = re.compile(r"°\s*([CF])(?![A-Za-z])")
+_NEG_RE = re.compile(r"(?<![\w\d)])-(?=\d)")
+_FRACTION_RE = re.compile(r"(?<![\d/.])(\d{1,2})/(\d{1,2})(?![\d/])")
+_FRACTIONS = {(1, 2): "आधा", (1, 4): "एक चौथाई", (3, 4): "तीन चौथाई"}
+_YEAR_RE = re.compile(r"(?i)((?:सन्|सन|साल|year|since|till|until|in|from)\s+)(1[1-9]\d\d)(?!\d)")
+_EN_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
+              "november", "december"]
+_EN_DATE_RE = re.compile(
+    r"(?<!\w)(\d{1,2})(?:st|nd|rd|th)?\s+(" + "|".join(_EN_MONTHS) + r")(?:,?\s+(\d{4}))?(?!\w)", re.IGNORECASE
+)
 
 # Units directly after a number (before ABBR so "5 kg" -> "किलो", not "किलोमीटर").
 _UNITS_MAP = {
@@ -49,6 +83,7 @@ _UNITS_MAP = {
     "ml": "मिलीलीटर", "l": "लीटर", "ltr": "लीटर",
     "gb": "जीबी", "mb": "एमबी", "min": "मिनट", "mins": "मिनट",
     "hr": "घंटे", "hrs": "घंटे", "sec": "सेकंड",
+    "km/h": "किलोमीटर प्रति घंटा", "kmph": "किलोमीटर प्रति घंटा",
 }
 _UNIT_RE = re.compile(
     r"(?<!\w)(" + _NUM + r")\s*("
@@ -100,35 +135,60 @@ def _number(s: str) -> str:
     return num_to_words(int(s))
 
 
+def _year_words(y: int) -> str:
+    """1100-1999 are spoken in hundreds ("उन्नीस सौ सैंतालीस"), 2000+ in thousands ("दो हज़ार छब्बीस")."""
+    if 1100 <= y <= 1999:
+        head, rest = divmod(y, 100)
+        return num_to_words(head) + " सौ" + (f" {num_to_words(rest)}" if rest else "")
+    return num_to_words(y)
+
+
 def _date(m: re.Match) -> str:
     d, mo, y = int(m[1]), int(m[2]), m[3]
     if not (1 <= d <= 31 and 1 <= mo <= 12):
         return m[0]
     y = int(y) + 2000 if len(y) == 2 else int(y)
-    return f"{num_to_words(d)} {_MONTHS[mo - 1]} {num_to_words(y)}"
+    return f"{num_to_words(d)} {_MONTHS[mo - 1]} {_year_words(y)}"
 
 
 def _currency(m: re.Match) -> str:
     amount = m[1].replace(",", "")
     whole, _, paise = amount.partition(".")
-    out = f"{num_to_words(int(whole))} रुपये"
-    if paise and int(paise):
-        out += f" {num_to_words(int(paise[:2].ljust(2, '0')))} पैसे"
+    p = int(paise[:2].ljust(2, "0")) if paise else 0
+    if int(whole) == 0 and p:
+        return f"{num_to_words(p)} पैसे"  # ₹0.50 is "पचास पैसे", not "शून्य रुपये पचास पैसे"
+    out = "एक रुपया" if int(whole) == 1 and not p else f"{num_to_words(int(whole))} रुपये"
+    if p:
+        out += f" {num_to_words(p)} पैसे"
     return out
 
 
 def _amount(s: str) -> str:
     """Like _number, but x.5 reads the spoken way: 1.5 -> डेढ़, 2.5 -> ढाई, 3.5 -> साढ़े तीन."""
     whole, _, frac = s.replace(",", "").partition(".")
+    if frac == "5" and whole == "0":
+        return "आधा"
     if frac == "5" and whole:
         return {"1": "डेढ़", "2": "ढाई"}.get(whole) or f"साढ़े {num_to_words(int(whole))}"
     return _number(s)
 
 
+def _scaled(amount: str, scale: str) -> str:
+    """"2.5 lakh" -> ढाई लाख, but "12.75 lakh" -> बारह लाख पचहत्तर हज़ार (the way amounts are said)."""
+    word = _SCALE_WORDS[scale.lower()]
+    whole, _, frac = amount.replace(",", "").partition(".")
+    if frac and frac != "5" and word in ("लाख", "करोड़"):
+        unit = 10**5 if word == "लाख" else 10**7
+        value = int(whole or 0) * unit + int(frac) * unit // 10 ** len(frac)
+        if int(frac) * unit % 10 ** len(frac) == 0 and 0 < len(frac) <= 4:
+            return num_to_words(value)
+    return f"{_amount(amount)} {word}"
+
+
 def _rupee(m: re.Match) -> str:
     amount, scale = m[1], m[2]
     if scale:
-        return f"{_amount(amount)} {_SCALE_WORDS[scale.lower()]} रुपये"
+        return f"{_scaled(amount, scale)} रुपये"
     return _currency(m)
 
 
@@ -137,7 +197,7 @@ def _dollar(m: re.Match) -> str:
 
 
 def _scale(m: re.Match) -> str:
-    return f"{_amount(m[1])} {_SCALE_WORDS[m[2].lower()]}"
+    return _scaled(m[1], m[2])
 
 
 def _time(m: re.Match) -> str:
@@ -149,9 +209,9 @@ def _time(m: re.Match) -> str:
     if mi == 15:
         return f"सवा {hour} बजे"
     if mi == 30:
-        if h == 1:
+        if h % 12 == 1:
             return "डेढ़ बजे"
-        if h == 2:
+        if h % 12 == 2:
             return "ढाई बजे"
         return f"साढ़े {hour} बजे"
     if mi == 45:
@@ -178,12 +238,43 @@ def _phone(m: re.Match) -> str:
     return _digits(digits)
 
 
+def _version(m: re.Match) -> str:
+    parts = m[0].split(".")
+    if len(parts) == 3 and len(parts[2]) in (2, 4) and 1 <= int(parts[0]) <= 31 and 1 <= int(parts[1]) <= 12:
+        return m[0]  # d.m.yyyy: left for the date rule
+    return " डॉट ".join(_number(p) for p in parts)
+
+
+def _spell_alnum(m: re.Match) -> str:
+    return " ".join(_LETTERS.get(c) or _UNITS[int(c)] for c in m[0])
+
+
+def _code(m: re.Match) -> str:
+    return f"{m[1]}{m[2]}{_digits(m[3])}"
+
+
+def _fraction(m: re.Match) -> str:
+    n, d = int(m[1]), int(m[2])
+    if d == 0:
+        return m[0]
+    return _FRACTIONS.get((n, d)) or f"{num_to_words(n)} बटा {num_to_words(d)}"
+
+
+def _en_date(m: re.Match) -> str:
+    out = f"{num_to_words(int(m[1]))} {_MONTHS[_EN_MONTHS.index(m[2].lower())]}"
+    return f"{out} {_year_words(int(m[3]))}" if m[3] else out
+
+
+def _year(m: re.Match) -> str:
+    return m[1] + _year_words(int(m[2]))
+
+
 def _range(m: re.Match) -> str:
     return f"{_number(m[1])} से {_number(m[2])}"
 
 
 def _unit(m: re.Match) -> str:
-    return f"{m[1]} {_UNITS_MAP[m[2].lower()]}"
+    return f"{_amount(m[1])} {_UNITS_MAP[m[2].lower()]}"
 
 
 def _ordinal(m: re.Match) -> str:
@@ -196,10 +287,21 @@ def normalize(text: str) -> str:
     # first, while sentences are still all-Latin: Romanized Hindi + Indian names -> Devanagari
     text = hinglish.convert(text)
 
+    # Codes and identifiers first: an OTP is digits, never a quantity.
+    text = _CODE_RE.sub(_code, text)
+    text = _CODE_AFTER_RE.sub(lambda m: _digits(m[1]), text)
+    text = _VERSION_RE.sub(_version, text)
+    text = _ALNUM_ID_RE.sub(_spell_alnum, text)
+    text = _RUPEE_SLASH_RE.sub("", text)
+    text = _GEN_RE.sub(lambda m: f"{_GEN_WORDS[m[1]]} जी", text)
+    text = re.sub(r"(?<=[A-Za-z])-(?=\d)", " ", text)  # COVID-19 -> COVID 19
+    text = _EN_DATE_RE.sub(_en_date, text)
+    text = _YEAR_RE.sub(_year, text)
+
     # Currency / amount expressions (before ABBR so "Rs 500" reads the amount first).
     text = _RUPEE_RE.sub(_rupee, text)
-    text = _RS_RE.sub(_currency, text)
-    text = _INR_HEAD_RE.sub(_currency, text)
+    text = _RS_RE.sub(_rupee, text)
+    text = _INR_HEAD_RE.sub(_rupee, text)
     text = _INR_TAIL_RE.sub(_currency, text)
     text = _DOLLAR_HEAD_RE.sub(_dollar, text)
     text = _DOLLAR_TAIL_RE.sub(_dollar, text)
@@ -211,14 +313,19 @@ def normalize(text: str) -> str:
 
     # Abbreviations.
     for k, v in _ABBR.items():
-        text = re.sub(rf"(?<!\w){re.escape(k)}(?!\w)", v, text)
+        # \w does not match Devanagari matras (ु ि ं), so name them: "बेंगलुरु" must not contain the abbreviation "रु".
+        text = re.sub(rf"(?<![\w{_DEV}]){re.escape(k)}(?![\w{_DEV}])", v, text)
 
     # Dates, times, phone numbers, ranges (specific patterns before the generic number pass).
     text = _DATE_RE.sub(_date, text)
     text = _TIME_RE.sub(_time, text)
     text = _PHONE_RE.sub(_phone, text)
     text = _RANGE_RE.sub(_range, text)
-    text = _PCT_RE.sub(lambda m: f"{_number(m[1])} प्रतिशत", text)
+    text = _PCT_RE.sub(lambda m: f"{_amount(m[1])} प्रतिशत", text)
+    text = _PERCENT_WORD_RE.sub(lambda m: f"{_amount(m[1])} प्रतिशत", text)
+    text = _DEG_RE.sub(lambda m: " डिग्री " + ("सेल्सियस" if m[1] == "C" else "फ़ारेनहाइट"), text)
+    text = _NEG_RE.sub("माइनस ", text)
+    text = _FRACTION_RE.sub(_fraction, text)
 
     # Ordinals and symbol operators.
     text = _ORDINAL_RE.sub(_ordinal, text)
