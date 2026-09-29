@@ -3,7 +3,7 @@
 # Env: NAME (run name, default hi_f) DATA (default data/hi_f) INIT (init ckpt for a fresh run) BS (default 12)
 set -euo pipefail
 cd "$(dirname "$0")/.."
-NAME=${NAME:-hi_f}; DATA=${DATA:-data/hi_f}; BS=${BS:-12}
+NAME=${NAME:-hi_f}; DATA=${DATA:-data/hi_f}; BS=${BS:-4}
 INIT=${INIT:-data/init/hi/hi_IN/rohan/medium/epoch=3190-step=309852.ckpt}
 RUN=training/runs/$NAME; mkdir -p "$RUN"
 PID=$RUN/train.pid
