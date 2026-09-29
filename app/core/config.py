@@ -61,6 +61,7 @@ class Settings(BaseSettings):
     ref_min_seconds: float = 3.0
     ref_max_seconds: float = 30.0
     ref_min_sample_rate: int = 16000
+    upload_max_bytes: int = 11_000_000  # request body cap for upload routes (multipart overhead above ref_max_bytes)
     max_references_per_speaker: int = 10
     speaker_encoder: str = "mfcc"  # mfcc (baseline, NOT neural) | resemblyzer | speechbrain (optional installs)
 

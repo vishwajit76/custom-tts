@@ -64,10 +64,20 @@ def violation(entry: dict | None) -> str | None:
 def check_rows(rows: list[dict], entries: list[dict]) -> list[tuple[dict, str]]:
     """-> [(row, reason)] for every row that may NOT be trained on. Empty list means all rows are cleared."""
     by_id = {e["rights_id"]: e for e in entries}
-    by_speaker = {s: e for e in entries for s in e["speaker_ids"]}
+    by_speaker: dict[str, list[dict]] = {}
+    for e in entries:
+        for s in e["speaker_ids"]:
+            by_speaker.setdefault(s, []).append(e)
     bad = []
     for r in rows:
-        entry = by_id.get(r.get("rights_id")) if r.get("rights_id") else by_speaker.get(r["speaker_id"])
+        if r.get("rights_id"):
+            entry = by_id.get(r["rights_id"])
+        else:
+            cands = by_speaker.get(r["speaker_id"], [])
+            if len({violation(c) for c in cands}) > 1:
+                raise RightsError(f"speaker {r['speaker_id']!r} is covered by conflicting rights entries "
+                                  f"{[c['rights_id'] for c in cands]}; set row.rights_id or fix the manifest")
+            entry = cands[0] if cands else None
         why = violation(entry)
         if why is None and r["speaker_id"] not in entry["speaker_ids"]:
             why = "speaker not covered by rights entry"

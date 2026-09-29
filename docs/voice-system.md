@@ -148,7 +148,8 @@ level >= -45 dBFS, >= 30% speech frames, non-finite audio, duplicate sha256, <= 
 `consent = {status: granted|revoked|pending, consent_record_id, granted_by, date, permitted_uses[]}`; uses are
 `tts`, `cloning`, `training`, `evaluation`. `granted` requires `consent_record_id`, `granted_by` and at least one use.
 New speakers are `pending`. Synthesis with `condition.speaker_id` requires `granted` + `tts` (403 otherwise), and `cloning`
-too when it clones from a stored reference. **Revoking** consent immediately purges all references, embeddings and the
+too when it clones from a stored reference or uses an engine binding to a cloning engine (that voice was produced from the
+speaker's reference audio). **Revoking** consent immediately purges all references, embeddings and the
 engine-side clip copies (the record and its audit fields remain). The consent record id is a pointer to your own
 consent evidence; this service does not verify it.
 
@@ -168,7 +169,8 @@ consent evidence; this service does not verify it.
 `REFERENCE_DELETE_AFTER_DAYS`)}`. With `keep_raw_reference=false` the upload is validated, hashed and embedded, and the
 audio is never written (`raw_retained:false`); such a speaker can only be used through an engine binding. With
 `delete_after_days`, raw reference files are removed after that age (checked on startup and on reads); sha256, metrics and
-embeddings stay as provenance. Deletion overwrites each file with random bytes, fsyncs and unlinks it, then removes the
+embeddings stay as provenance. When the last raw reference expires, the cloning engine's own copy (e.g. the qwen3 voices_dir
+clip) is deleted too and the speaker is marked `clone_capable:false` (bindings to cloning engines are then ignored). Deletion overwrites each file with random bytes, fsyncs and unlinks it, then removes the
 directory. Caveat: on SSDs/journaling or copy-on-write filesystems, snapshots and backups overwrite is best-effort only;
 use full-disk encryption and keep backups out of the registry dir if deletion guarantees matter.
 

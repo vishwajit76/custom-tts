@@ -114,7 +114,7 @@ def assert_not_heldout(path: Path) -> None:
         if (path / "HELDOUT_ONLY").exists():
             raise HeldOutError(f"{path} is marked HELDOUT_ONLY")
         return
-    if re.match(r"test", path.stem, re.I) or Path(str(path) + ".heldout").exists():
+    if path.name.lower() in ("test.jsonl", "test.csv") or Path(str(path) + ".heldout").exists():
         raise HeldOutError(f"{path} is a held-out test set; refusing to load it for training")
     if path.suffix == ".jsonl" and any(r.get("heldout") for r in read_rows(path)):
         raise HeldOutError(f"{path} contains held-out rows; refusing to load it for training")

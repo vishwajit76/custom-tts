@@ -55,6 +55,10 @@ def _run(fn, *a, **kw):
         raise _err(e) from e
 
 
+def _on_expiry(sp: sr.Speaker) -> None:
+    purge_bound_voices(sp)
+
+
 def purge_bound_voices(sp: sr.Speaker) -> None:
     """Cloning engines keep their own copy of a clip (qwen3 voices_dir): remove it with the speaker/consent."""
     for name, voice in sp.engine_bindings.items():
@@ -157,3 +161,6 @@ def reg_limit() -> int:
 def delete_reference(speaker_id: str, ref_id: str, key: str = Depends(require_api_key)):
     _run(sr.get_registry().delete_reference, speaker_id, sr.owner_id(key), ref_id)
     return {"deleted": ref_id}
+
+
+sr.expiry_hooks.append(_on_expiry)

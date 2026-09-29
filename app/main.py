@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 
 from app.api import demo, health, speakers, speech, voices, ws
 from app.core.config import settings
+from app.core.limits import BodyLimitMiddleware
 from app.core.logging import setup_logging
 from app.services import tts
 
@@ -31,6 +32,9 @@ async def lifespan(_: FastAPI):
 app = FastAPI(title="Hindi TTS", version="2.0.0", lifespan=lifespan)
 for r in (health.router, speech.router, voices.router, voices.capabilities_router, speakers.router, ws.router, demo.router):
     app.include_router(r)
+
+
+app.add_middleware(BodyLimitMiddleware)
 
 
 @app.exception_handler(Exception)

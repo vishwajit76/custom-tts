@@ -34,6 +34,13 @@ def resolve_speaker(cond, owner: str | None) -> dict:
     for name, e in _engine_items():
         bound = sp.engine_bindings.get(name)
         if bound and e.has_voice(bound):
+            if getattr(e, "supports_cloning", False):  # that voice was produced from the speaker's reference audio
+                if not sp.clone_capable:
+                    continue
+                try:
+                    reg.check_use(sp, "cloning")
+                except sreg.SpeakerForbidden as ex:
+                    raise HTTPException(403, str(ex)) from ex
             return {"voice": bound}
     best = reg.best_reference(sp) if getattr(tts.engine, "supports_cloning", False) else None
     if best is not None:

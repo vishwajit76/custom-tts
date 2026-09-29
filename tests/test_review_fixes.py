@@ -120,3 +120,84 @@ def test_annotate_rejects_cross_site_and_rebinding(tmp_path):
         assert c.getresponse().status == 403
     finally:
         srv.shutdown()
+
+
+# ---------- round 2 ----------
+def _bound(reg, client, eng, monkeypatch, uses):
+    monkeypatch.setattr(eng, "supports_cloning", True, raising=False)
+    eng.has_voice = lambda v: v == "fake"
+    name = type(eng).__name__.removesuffix("Engine").lower()
+    reg.create(sr.owner_id("ka"), "bob", "Bob", engine_bindings={name: "fake"})
+    reg.set_consent("bob", sr.owner_id("ka"), sr.Consent(status="granted", consent_record_id="c", granted_by="g", permitted_uses=uses))
+
+
+def test_bound_cloned_voice_needs_cloning_use(client, reg, eng, monkeypatch):
+    _bound(reg, client, eng, monkeypatch, ["tts"])
+    body = {"input": "नमस्ते", "condition": {"speaker_id": "bob"}}
+    assert client.post("/v1/audio/speech", json=body, headers=A).status_code == 403
+    reg.set_consent("bob", sr.owner_id("ka"), sr.Consent(status="granted", consent_record_id="c", granted_by="g", permitted_uses=["tts", "cloning"]))
+    assert client.post("/v1/audio/speech", json=body, headers=A).status_code == 200
+
+
+def test_retention_expiry_purges_engine_copy_and_marks_not_clone_capable(client, reg, eng, monkeypatch):
+    from datetime import datetime, timedelta, timezone
+    deleted = []
+    eng.delete_voice = lambda v: deleted.append(v) or True
+    _bound(reg, client, eng, monkeypatch, ["tts", "cloning"])
+    o = sr.owner_id("ka")
+    reg.update("bob", o, retention=sr.Retention(delete_after_days=1))
+    wav, rate, m = sr.analyze_reference(wav_bytes(dur=4.0))
+    reg.add_reference("bob", o, wav, rate, m)
+    sp = reg._load("bob")
+    sp.references[0].created_at = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+    reg._save(sp)
+    sp = reg.get("bob", o)
+    assert deleted == ["fake"] and sp.clone_capable is False
+    r = client.post("/v1/audio/speech", json={"input": "नमस्ते", "condition": {"speaker_id": "bob"}}, headers=A)
+    assert r.status_code == 422  # binding ignored, no reference left
+
+
+def test_upload_body_cap_413(client, monkeypatch):
+    monkeypatch.setattr(settings, "upload_max_bytes", 5000)
+    reg_ = sr.get_registry()
+    reg_.create(sr.owner_id("ka"), "big", "Big")
+    r = client.post("/v1/speakers/big/references", files={"audio": ("a.wav", b"x" * 20000, "audio/wav")}, headers=A)
+    assert r.status_code == 413
+
+    def chunks():  # no Content-Length: counted while streaming
+        for _ in range(10):
+            yield b"x" * 2000
+    r = client.post("/v1/speakers/big/references", content=chunks(), headers={**A, "Content-Type": "multipart/form-data; boundary=zz"})
+    assert r.status_code == 413
+    assert client.get("/v1/speakers", headers=A).status_code == 200
+
+
+def test_legacy_decode_audio_header_check(monkeypatch):
+    from app.services import audio_utils
+    b = io.BytesIO()
+    sf.write(b, np.zeros(16000 * 600, np.float32), 16000, format="FLAC")
+    monkeypatch.setattr(sf, "read", lambda *a, **k: pytest.fail("decoded"))
+    with pytest.raises(ValueError):
+        audio_utils.decode_audio(b.getvalue())
+
+
+def test_heldout_only_actual_artifacts(tmp_path):
+    (tmp_path / "testimonials.jsonl").write_text('{"id":"1"}\n')
+    split.assert_not_heldout(tmp_path / "testimonials.jsonl")
+    (tmp_path / "test.jsonl").write_text('{"id":"1"}\n')
+    with pytest.raises(split.HeldOutError):
+        split.assert_not_heldout(tmp_path / "test.jsonl")
+    (tmp_path / "x.jsonl").write_text('{"id":"1","heldout":true}\n')
+    with pytest.raises(split.HeldOutError):
+        split.assert_not_heldout(tmp_path / "x.jsonl")
+
+
+def test_conflicting_rights_entries_raise():
+    def e(rid, ok):
+        return {"rights_id": rid, "source": "s", "licence": "l", "consent_record_id": "c", "speaker_authorization": ok,
+                "speaker_ids": ["a"], "permitted_uses": ["tts_training"], "vendor_generated": False}
+    row = {"id": "1", "speaker_id": "a"}
+    with pytest.raises(data_rights.RightsError):
+        data_rights.check_rows([row], [e("r1", True), e("r2", False)])
+    assert data_rights.check_rows([row], [e("r1", True), e("r2", True)]) == []
+    assert data_rights.check_rows([{**row, "rights_id": "r1"}], [e("r1", True), e("r2", False)]) == []

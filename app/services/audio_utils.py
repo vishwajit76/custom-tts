@@ -12,6 +12,10 @@ def decode_audio_b64(data: str) -> tuple[np.ndarray, int]:
 
 
 def decode_audio(raw: bytes) -> tuple[np.ndarray, int]:
+    info = sf.info(io.BytesIO(raw))  # header first: a small FLAC/OGG can decode to gigabytes
+    if info.samplerate < 8000 or info.channels > 8 or info.frames > 30.0 * info.samplerate:
+        raise ValueError(f"reference audio must be 1-30s, 8 kHz+ and <=8 channels (header: {info.frames} frames, "
+                         f"{info.samplerate} Hz, {info.channels} ch)")
     wav, sr = sf.read(io.BytesIO(raw), dtype="float32")
     if wav.ndim > 1:
         wav = wav.mean(axis=1)

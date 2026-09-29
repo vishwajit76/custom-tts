@@ -14,6 +14,7 @@ import contextlib
 import hashlib
 import io
 import json
+import logging
 import os
 import re
 import shutil
@@ -34,6 +35,7 @@ try:
 except ImportError:  # pragma: no cover (non-POSIX)
     fcntl = None
 
+log = logging.getLogger(__name__)
 SPEAKER_ID = r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}"
 PERMITTED_USES = ("tts", "cloning", "training", "evaluation")
 ACCEPTED_CONTENT_TYPES = {"audio/wav", "audio/x-wav", "audio/wave", "audio/vnd.wave", "audio/flac", "audio/x-flac", "application/octet-stream"}
@@ -111,6 +113,7 @@ class Speaker(BaseModel):
     consent: Consent = Consent()
     retention: Retention = Retention()
     previews: list[str] = []
+    clone_capable: bool = True  # False once retention removed every raw reference (and the engine-side clip copies)
     created_at: str = Field(default_factory=now_iso)
     updated_at: str = Field(default_factory=now_iso)
 
@@ -427,6 +430,13 @@ class SpeakerRegistry:
             secure_unlink(self.resolve_path(sp.id, r.path))
             r.path = None  # raw audio gone; hash, metrics and embedding stay as provenance
         if old:
+            if not any(r.path for r in sp.references):  # nothing left to clone from: drop engine-side copies too
+                sp.clone_capable = False
+                for hook in expiry_hooks:
+                    try:
+                        hook(sp)
+                    except Exception:
+                        log.exception("expiry hook failed")
             self._save(sp)
         return sp
 
@@ -442,6 +452,7 @@ class SpeakerRegistry:
         return n
 
 
+expiry_hooks: list = []  # callables(speaker) run when retention removed a speaker's last raw reference (see api/speakers.py)
 _registries: dict[str, SpeakerRegistry] = {}
 
 
