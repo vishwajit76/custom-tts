@@ -48,6 +48,47 @@ also rejects clips whose Whisper transcript CER exceeds 0.35.
 Outputs: `wavs/`, `metadata.csv` (train; Piper holds out its own validation split), `test.csv` (5%, never
 trained on, deterministic by clip hash), `report.json` (hours per speaker, every rejection with its reason).
 
+## 2b. Manifest, rights, splits, reports, annotation (multi-speaker / expressive data)
+
+The directory layouts above still work. For multi-speaker or labelled data use a manifest, and **every run needs a
+data-rights file**: `prepare_dataset` aborts if any clip has no rights entry, no speaker authorization, no
+`tts_training` permission, or is `vendor_generated` without `vendor_generation_permission` (schema:
+`training/data_rights.py`). `--allow-unverified-rights` exists only for throwaway smoke runs and is recorded in `report.json`.
+
+Manifest (CSV with header, or JSONL): `audio,text,speaker_id,language[,emotion,style,role,label_source,rights_id]`.
+`emotion/style/role` are kept **only** when `label_source=human_verified`; otherwise they are dropped with a warning
+(never inferred). Rights entry (one JSON per line): `rights_id, source, licence, consent_record_id,
+speaker_authorization, speaker_ids, permitted_uses, vendor_generated[, vendor_generation_permission]`.
+
+```bash
+python -m training.manifest --in data/manifest.csv --out data/manifest.jsonl      # validate, add ids + audio hashes
+python -m training.annotate --manifest data/manifest.jsonl --annotator NAME        # http://127.0.0.1:8765 (listen, fix text,
+                                                                                   #  verify speaker, label, reject; saves human_verified)
+python -m training.audio_report --manifest data/manifest.jsonl --out reports/audio # per-file + per-speaker/emotion/style JSON + md
+python -m training.split --manifest data/manifest.jsonl --out data/splits --seed 1234 [--speaker-disjoint-test]
+python -m training.prepare_dataset --manifest data/manifest.jsonl --rights data/rights.jsonl --output data/myvoice \
+    [--seed 1234] [--speaker-disjoint-test] [--denoise]
+```
+
+Splits are seeded and deterministic; clips sharing a normalized transcript or audio hash always land in the same split
+(with `--speaker-disjoint-test`, whole speakers are held out and any train/val clip duplicating a test transcript/hash is
+dropped). The test set is written separately (`test.jsonl` / `test.csv` + `.heldout` flag); `training.train` calls
+`assert_not_heldout` and refuses to load it. Audio-report SNR is a rough percentile estimate, and its reject thresholds
+(`LIMITS` in `audio_report.py`) are untuned defaults.
+
+Training flags (`training.train`): `--seed` (-> `--seed_everything`), `--precision 16-mixed` (AMP), resume is automatic,
+`--dry-run` prints the `piper.train` command. Multi-speaker: `file|speaker|text` rows set `--model.num_speakers`;
+`speaker_map.json` is written to the dataset dir (Piper's own map is in `config.json`). **Gradient accumulation is not
+wired**: Piper's trainer uses manual optimization, where Lightning rejects `accumulate_grad_batches` (unverified against your
+installed version; use a larger `--batch-size`). Flag names were not checked against a live `piper.train --help`
+(piper's train extra was not installed here).
+
+Plumbing test (synthetic sine/noise audio, NOT evidence of quality): `pytest tests/test_training_pipeline.py`.
+
+**Honest status:** the manifest/rights/split/report/annotation tooling is implemented and unit/plumbing tested on
+synthetic data only. The annotation UI was not exercised in a browser. No production fine-tuning has been performed, no
+real data was processed, and no expressive/multi-speaker model exists yet.
+
 ## 3. Train
 
 ```bash
