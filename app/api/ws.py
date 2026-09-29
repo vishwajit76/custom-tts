@@ -1,11 +1,12 @@
 """WebSocket streaming TTS for calling.
 
 Client -> server (JSON text):
-  {"type":"speak","id":"r1","text":"...","voice":"default","speed":1.0,"sample_rate":8000,"frame_ms":40}
+  {"type":"speak","id":"r1","text":"...","voice":"default","speed":1.0,"sample_rate":8000,"frame_ms":40,
+   "condition":{"emotion":"calm","fallback":"ignore"}}     (condition optional; see docs/voice-system.md)
   {"type":"cancel","id":"r1"}   cancel one request (playing or queued)
   {"type":"cancel"}             cancel everything (barge-in)
 Server -> client:
-  {"type":"start","id","sample_rate","encoding":"pcm_s16le"}, binary PCM frames..., {"type":"end","id","audio_ms","ttfa_ms"}
+  {"type":"start","id","sample_rate","encoding":"pcm_s16le"[,"applied_controls":[..],"ignored_controls":[..]]}, binary PCM frames..., {"type":"end","id","audio_ms","ttfa_ms"}
   {"type":"cancelled","id"} | {"type":"error","id","code","message"}
 Speak requests on one connection play in order, so a client can send LLM output sentence by sentence.
 """
@@ -17,16 +18,16 @@ import time
 from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import ValidationError
 
-from app.api.speech import prepare
+from app.api.speech import prepare_ex
 from app.core.security import authorize
-from app.models.schemas import SpeechRequest, WsSpeak
+from app.models.schemas import WsSpeak
 from app.services import tts
 
 log = logging.getLogger(__name__)
 router = APIRouter()
 MAX_PENDING = 32
 SEND_TIMEOUT_S = 10  # ponytail: a client that stops reading for this long is dropped, freeing its slot
-_CODES = {400: "bad_request", 404: "not_found", 503: "unavailable", 422: "bad_request"}
+_CODES = {400: "bad_request", 404: "not_found", 503: "unavailable", 422: "unsupported_control"}
 
 
 @router.websocket("/v1/audio/ws")
@@ -52,10 +53,13 @@ async def ws_tts(ws: WebSocket):
     async def run(m: WsSpeak) -> None:
         t0 = time.monotonic()
         try:
-            kwargs = prepare(SpeechRequest(input=m.text, voice=m.voice, speed=m.speed, sample_rate=m.sample_rate))
+            kwargs, applied, ignored = prepare_ex(m)
             sr = kwargs["sample_rate"]
             ttfa, nbytes = None, 0
-            await send({"type": "start", "id": m.id, "sample_rate": sr, "encoding": "pcm_s16le"})
+            start = {"type": "start", "id": m.id, "sample_rate": sr, "encoding": "pcm_s16le"}
+            if m.condition:  # only when conditioning was requested, so old clients see the old message
+                start |= {"applied_controls": applied, "ignored_controls": ignored}
+            await send(start)
             async for frame in tts.stream(**kwargs, frame_ms=m.frame_ms, request_id=m.id):
                 ttfa = ttfa or time.monotonic() - t0
                 nbytes += len(frame)
@@ -64,7 +68,9 @@ async def ws_tts(ws: WebSocket):
         except asyncio.CancelledError:
             await send({"type": "cancelled", "id": m.id})
         except HTTPException as e:
-            await send({"type": "error", "id": m.id, "code": _CODES.get(e.status_code, "error"), "message": e.detail})
+            detail = e.detail["message"] if isinstance(e.detail, dict) else e.detail
+            await send({"type": "error", "id": m.id, "code": _CODES.get(e.status_code, "error"), "message": detail,
+                        **({"unsupported": e.detail["unsupported"]} if isinstance(e.detail, dict) else {})})
         except tts.Overloaded as e:
             await send({"type": "error", "id": m.id, "code": "overloaded", "message": str(e)})
         except TimeoutError:

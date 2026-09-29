@@ -11,6 +11,7 @@ from piper.config import PiperConfig, SynthesisConfig
 
 from app.core.config import settings
 from app.services import indian_english
+from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
 # speaker in hi_IN-<speaker>-medium -> gender. rohan: MODEL_CARD dataset "Hindi Mono Male"; the pratham and
@@ -36,6 +37,8 @@ def _speaker(voice_id: str) -> str:
 
 class PiperEngine:
     supports_cloning = False
+    # speed = VITS length_scale; no emotion/style/pitch/energy conditioning exists in the model or this code
+    capabilities = EngineCapabilities(speed=True, streaming="sentence", languages=("hi", "hinglish"))
 
     def __init__(self) -> None:
         self._voices: dict[str, tuple[PiperVoice, int | None]] = {}  # voice_id -> (voice, speaker_id)

@@ -13,12 +13,16 @@ import soundfile as sf
 from app.core.config import settings
 from app.models.schemas import VOICE_ID
 from app.services import audio_utils
+from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
 
 
 class QwenEngine:
     supports_cloning = True
+    # cloning via reference audio (x-vector only without a transcript); speed is librosa time-stretch (DSP), not native.
+    # No emotion/style instruction is passed to generate_voice_clone, so none is claimed.
+    capabilities = EngineCapabilities(cloning=True, speed=True, streaming="sentence", sample_rates=(24000,), languages=("auto",))
     max_workers = 1  # one model instance; generation is not thread-safe
 
     def __init__(self) -> None:

@@ -5,7 +5,7 @@ voices/*
 !voices/.gitkeep
 .venv/
 out/
-models/
+/models/
 *.log
 .pytest_cache/
 .venv-train/

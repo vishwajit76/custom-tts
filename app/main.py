@@ -22,7 +22,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="Hindi TTS", version="2.0.0", lifespan=lifespan)
-for r in (health.router, speech.router, voices.router, ws.router, demo.router):
+for r in (health.router, speech.router, voices.router, voices.capabilities_router, ws.router, demo.router):
     app.include_router(r)
 
 
