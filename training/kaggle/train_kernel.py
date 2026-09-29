@@ -67,15 +67,22 @@ print(f"resuming global_step={START_STEP} epoch={START_EPOCH}", flush=True)
 # ---- trainer wrapper: ckpt every 500 steps, milestone copies, deadline stop ----
 (W / "ms").mkdir(exist_ok=True)
 (W / "wrap.py").write_text(f'''
-import os, time, torch
+import os, time, json, torch
 from lightning.pytorch.callbacks import ModelCheckpoint, Callback
 from piper.train import __main__ as m
 DEADLINE = float(os.environ["DEADLINE"]); MS = {MS_EVERY}
 class Ctl(Callback):
     def __init__(s): s.last_ms = None; s.t = time.time()
-    def on_train_start(s, tr, pl): s.last_ms = tr.global_step // MS
+    def on_train_start(s, tr, pl):
+        s.last_ms = tr.global_step // MS; s.g0 = tr.global_step; s.t0 = time.time()
+        open("/tmp/w/prog.json", "w").write(json.dumps(dict(step=tr.global_step, sps=None, t=time.time(), started=True)))
     def on_train_batch_end(s, tr, pl, *a, **k):
         g = tr.global_step
+        if (g - s.g0) % 20 == 0 and g > s.g0:
+            d = dict(step=g, sps=(time.time() - s.t0) / (g - s.g0), t=time.time(), epoch=tr.current_epoch)
+            try: d.update({{k2: float(v) for k2, v in tr.callback_metrics.items()}})
+            except Exception: pass
+            open("/tmp/w/prog.json.tmp", "w").write(json.dumps(d)); os.replace("/tmp/w/prog.json.tmp", "/tmp/w/prog.json")
         if g // MS > s.last_ms:
             s.last_ms = g // MS
             tr.save_checkpoint("/tmp/w/ms/tmp.ckpt"); os.replace("/tmp/w/ms/tmp.ckpt", f"/tmp/w/ms/step_{{g}}.ckpt")
@@ -96,14 +103,16 @@ cmd = [sys.executable, "/tmp/w/wrap.py", "fit", "--seed_everything", "1234",
 env = dict(os.environ, DEADLINE=str(T0 + MAX_H * 3600), PYTHONUNBUFFERED="1")
 
 
+LAST_UP = "never"
 def upload_last(tag="ckpt"):
+    global LAST_UP
     try:
         tmp = W / "upload_last.ckpt"; shutil.copy(LAST, tmp)
         api.upload_file(path_or_fileobj=str(tmp), path_in_repo=f"runs/{NAME}/last.ckpt", repo_id=REPO, commit_message=f"{tag} kaggle")
         api.upload_file(path_or_fileobj=str(RUN / "config.json"), path_in_repo=f"runs/{NAME}/config.json", repo_id=REPO)
-        print("HF upload ok", tag, time.strftime("%T"), flush=True)
+        LAST_UP = "ok " + time.strftime("%T"); print("HF upload ok", tag, LAST_UP, flush=True)
     except Exception as e:
-        print("HF upload failed", repr(e), flush=True)
+        LAST_UP = "FAILED " + repr(e)[:150]; print("HF upload failed", repr(e), flush=True)
 
 
 def milestone(ckpt):
@@ -130,7 +139,7 @@ def bg():
     while not stop.wait(15):
         for c in sorted(glob.glob(str(W / "ms" / "step_*.ckpt"))):
             milestone(c)
-        if time.time() - last > 20 * 60:
+        if LAST.exists() and time.time() - last > 20 * 60:
             upload_last(); last = time.time()
 th = threading.Thread(target=bg, daemon=True); th.start()
 
@@ -138,7 +147,14 @@ tail = []
 def hb():  # heartbeat: small progress file on HF (Kaggle shows no live logs for script kernels)
     while not stop.wait(180):
         try:
-            txt = f"{time.strftime('%FT%TZ', time.gmtime())} elapsed_h={(time.time()-T0)/3600:.2f} start_step={START_STEP} bs={BS}\n" + "\n".join(tail[-12:])
+            try: pr = json.loads((W / "prog.json").read_text()); pr["age_s"] = round(time.time() - pr.pop("t"))
+            except Exception as e: pr = f"no trainer step yet ({e!r})"
+            try: gpu = torch.cuda.get_device_name(0)
+            except Exception: gpu = "?"
+            lk = LAST.stat() if LAST.exists() else None
+            txt = (f"{time.strftime('%FT%TZ', time.gmtime())} elapsed_h={(time.time()-T0)/3600:.2f} start_step={START_STEP} bs={BS} gpu={gpu}\n"
+                   f"trainer_progress={pr}\nlast_ckpt_local={'%d B, %ds ago' % (lk.st_size, time.time()-lk.st_mtime) if lk else None} last_upload={LAST_UP}\n"
+                   + "\n".join(tail[-20:]))
             api.upload_file(path_or_fileobj=txt.encode(), path_in_repo=f"runs/{NAME}/kaggle_progress.txt", repo_id=REPO)
         except Exception as e:
             print("hb fail", repr(e), flush=True)
