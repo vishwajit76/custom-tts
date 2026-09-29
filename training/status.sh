@@ -25,5 +25,6 @@ for t in tags:
 P
 fi
 echo "--- newest ckpt"; c=$(ls -t "$RUN"/lightning_logs/version_*/checkpoints/*.ckpt 2>/dev/null | head -1)
+[ -n "$c" ] && echo "TRUE global_step (from ckpt; the TB 'step' above is a stale/offset counter): $(python -c "import torch,sys;print(torch.load(sys.argv[1],map_location='cpu',weights_only=False)['global_step'])" "$c" 2>/dev/null)"
 [ -n "$c" ] && echo "$c  age $(( $(date +%s) - $(stat -c %Y "$c") ))s  size $(du -h "$c" | cut -f1)" || echo none
 echo "--- disk"; du -sh "$RUN" data 2>/dev/null; df -h . | tail -1
