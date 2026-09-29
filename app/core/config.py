@@ -53,6 +53,17 @@ class Settings(BaseSettings):
     language: str = "Auto"
     voices_dir: Path = Path("voices")  # qwen3 reference clips
 
+    # --- speaker registry / cloning (docs/voice-system.md) ---
+    speakers_dir: Path = Path("speakers")  # persistent registry: one dir per speaker (record + references + embeddings)
+    keep_raw_reference: bool = True  # default retention for new speakers: keep uploaded reference audio on disk
+    reference_delete_after_days: int | None = None  # default: purge raw references this many days after upload
+    ref_max_bytes: int = 10_000_000
+    ref_min_seconds: float = 3.0
+    ref_max_seconds: float = 30.0
+    ref_min_sample_rate: int = 16000
+    max_references_per_speaker: int = 10
+    speaker_encoder: str = "mfcc"  # mfcc (baseline, NOT neural) | resemblyzer | speechbrain (optional installs)
+
     # --- streaming ---
     # output rate when a request doesn't set sample_rate. 24 kHz = OpenAI's pcm contract, which OpenAI-shaped
     # clients (e.g. the calling platform's custom adapter) assume. Resampling via soxr costs ~nothing.

@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.api import demo, health, speech, voices, ws
+from app.api import demo, health, speakers, speech, voices, ws
 from app.core.config import settings
 from app.core.logging import setup_logging
 from app.services import tts
@@ -18,11 +18,18 @@ async def lifespan(_: FastAPI):
     if not settings.keys:
         log.warning("API_KEYS empty: authentication DISABLED")
     tts.load()
+    try:
+        from app.services.speaker_registry import get_registry
+
+        if settings.speakers_dir.is_dir():
+            get_registry().purge_expired()  # honour per-speaker reference retention
+    except Exception:
+        log.exception("speaker retention purge failed")
     yield
 
 
 app = FastAPI(title="Hindi TTS", version="2.0.0", lifespan=lifespan)
-for r in (health.router, speech.router, voices.router, voices.capabilities_router, ws.router, demo.router):
+for r in (health.router, speech.router, voices.router, voices.capabilities_router, speakers.router, ws.router, demo.router):
     app.include_router(r)
 
 

@@ -12,3 +12,4 @@ out/
 training/runs/
 bench/results/**/*.wav
 logs/
+speakers/

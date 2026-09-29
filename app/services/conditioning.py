@@ -105,8 +105,11 @@ class UnsupportedControl(ValueError):
                          "use fallback=\"ignore\" to synthesize without them")
 
 
-def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: str = "") -> tuple[VoiceCondition, list[str], list[str]]:
+def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: str = "", speaker_ok: bool = False) -> tuple[VoiceCondition, list[str], list[str]]:
     """Return (effective condition, applied, ignored). Raises UnsupportedControl if anything is unsupported and fallback="reject".
+
+    `speaker_ok` is set by the caller (speech.prepare_ex) when condition.speaker_id was resolved against the registry to a
+    binding or reference this engine can serve, after the consent check; otherwise speaker_id is unsupported.
 
     Ignored controls are reset to their defaults in the effective condition. Applied names for prompt-steered
     controls carry a ":steered" suffix (best effort, unvalidated).
@@ -124,7 +127,7 @@ def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: s
             if not ok:
                 drop[n] = None
 
-    gate(["speaker_id"], False)  # no engine binds speaker ids yet; voices are selected with `voice`
+    gate(["speaker_id"], speaker_ok)
     gate(["speaker_embedding"], caps.speaker_embedding)
     gate(["reference_audio", "reference_text"], caps.cloning)
     gate(["style_reference"], caps.style_reference)

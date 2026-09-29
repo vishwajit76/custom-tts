@@ -85,3 +85,13 @@ No other standalone vocoder is used.
 4. Confirm Qwen3-TTS, speaker-encoder weights, and UTMOS terms, or keep them out of the shipped product.
 5. Kokoro: assess the risk of vendor-synthesised training audio. Supertonic: implement the machine-generated disclosure.
 6. Re-read every HF card/LICENSE and stamp the date here (blocked this session).
+
+## Speaker encoder backends (optional, not installed by default)
+
+| Backend | Code licence | Weights / data | Notes |
+|---|---|---|---|
+| `mfcc` (default) | this repo + librosa (ISC) | none | deterministic baseline, NOT a neural speaker verifier |
+| `resemblyzer` | MIT | GE2E encoder shipped in the pip package, trained on VoxCeleb1/2 + LibriSpeech | verify VoxCeleb terms (research use) before commercial deployment |
+| `speechbrain` (ECAPA-TDNN `spkrec-ecapa-voxceleb`) | Apache-2.0 | Apache-2.0 model card, trained on VoxCeleb | downloads weights on first use; same VoxCeleb data caveat |
+
+Embeddings are used only for reference QA and evaluation, never to condition synthesis.

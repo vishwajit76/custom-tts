@@ -14,6 +14,7 @@ from app.core.config import settings
 from app.models.schemas import VOICE_ID
 from app.services import audio_utils
 from app.services.conditioning import EngineCapabilities
+from app.services.speaker_registry import secure_unlink
 
 log = logging.getLogger(__name__)
 
@@ -86,8 +87,8 @@ class QwenEngine:
         wav = self._wav_path(voice_id)
         if not wav.exists():
             return False
-        wav.unlink()
-        wav.with_suffix(".txt").unlink(missing_ok=True)
+        secure_unlink(wav)  # overwrite then unlink: the clip is someone's voice
+        secure_unlink(wav.with_suffix(".txt"))
         self._prompts.pop(voice_id, None)
         return True
 
@@ -103,6 +104,8 @@ class QwenEngine:
 
     # ---------- synthesis ----------
     def synth(self, text: str, voice: str, speed: float, ref=None, ref_text=None) -> np.ndarray:
+        # `ref` is (wav, sr) from a request or a registry reference. Qwen3-TTS builds one prompt from ONE clip
+        # (create_voice_clone_prompt takes a single ref_audio per voice), so multi-reference speakers use their best clip.
         prompt = self._make_prompt(ref, ref_text) if ref is not None else self._voice_prompt(voice)
         # ponytail: 12 codec frames/sec, ~10+ chars/sec of Hindi -> cap stops runaway generation (seen on MPS)
         cap = int(len(text) * 1.5) + 36

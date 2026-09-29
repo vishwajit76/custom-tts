@@ -20,6 +20,7 @@ from pydantic import ValidationError
 
 from app.api.speech import prepare_ex
 from app.core.security import authorize
+from app.services.speaker_registry import owner_id
 from app.models.schemas import WsSpeak
 from app.services import tts
 
@@ -27,7 +28,7 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 MAX_PENDING = 32
 SEND_TIMEOUT_S = 10  # ponytail: a client that stops reading for this long is dropped, freeing its slot
-_CODES = {400: "bad_request", 404: "not_found", 503: "unavailable", 422: "unsupported_control"}
+_CODES = {400: "bad_request", 404: "not_found", 503: "unavailable", 422: "unsupported_control", 403: "forbidden"}
 
 
 @router.websocket("/v1/audio/ws")
@@ -53,7 +54,7 @@ async def ws_tts(ws: WebSocket):
     async def run(m: WsSpeak) -> None:
         t0 = time.monotonic()
         try:
-            kwargs, applied, ignored = prepare_ex(m)
+            kwargs, applied, ignored = prepare_ex(m, owner_id(key))
             sr = kwargs["sample_rate"]
             ttfa, nbytes = None, 0
             start = {"type": "start", "id": m.id, "sample_rate": sr, "encoding": "pcm_s16le"}

@@ -8,13 +8,48 @@ from app.core.config import settings
 from app.core.security import require_api_key
 from app.models.schemas import SpeechRequest, WsSpeak
 from app.services import audio_utils, tts
+from app.services import speaker_registry as sreg
 from app.services.conditioning import UnsupportedControl, validate_condition
 
 router = APIRouter(prefix="/v1/audio", dependencies=[Depends(require_api_key)])
 MEDIA = {"wav": "audio/wav", "mp3": "audio/mpeg", "pcm": "audio/L16"}
 
 
-def prepare_ex(req: SpeechRequest | WsSpeak) -> tuple[dict, list[str], list[str]]:
+def _engine_items() -> list[tuple[str, object]]:
+    return [(type(e).__name__.removesuffix("Engine").lower(), e) for e in getattr(tts.engine, "engines", [tts.engine])]
+
+
+def resolve_speaker(cond, owner: str | None) -> dict:
+    """condition.speaker_id -> {voice} (engine binding) or {ref, ref_text} (registry reference, cloning engines), or {}
+    when unresolvable and fallback=ignore. 404 unknown/foreign speaker, 403 consent missing/not permitted, 422 no binding."""
+    reg = sreg.get_registry()
+    try:
+        sp = reg.get(cond.speaker_id, owner if owner is not None else sreg.owner_id(""))
+    except (sreg.SpeakerNotFound, sreg.SpeakerForbidden, sreg.SpeakerError) as e:
+        raise HTTPException(404, "speaker not found") from e
+    try:
+        reg.check_use(sp, "tts")
+    except sreg.SpeakerForbidden as e:
+        raise HTTPException(403, str(e)) from e
+    for name, e in _engine_items():
+        bound = sp.engine_bindings.get(name)
+        if bound and e.has_voice(bound):
+            return {"voice": bound}
+    best = reg.best_reference(sp) if getattr(tts.engine, "supports_cloning", False) else None
+    if best is not None:
+        try:
+            reg.check_use(sp, "cloning")
+        except sreg.SpeakerForbidden as e:
+            raise HTTPException(403, str(e)) from e
+        return {"ref": reg.read_reference(sp, best), "ref_text": best.transcript}
+    if cond.fallback == "ignore":
+        return {}
+    engines = [n for n, _ in _engine_items()]
+    raise HTTPException(422, {"message": f"speaker {sp.id!r} has no binding or usable reference for engine(s) {engines}; "
+                                         "use fallback=\"ignore\" to synthesize with the default voice", "unsupported": ["speaker_id"]})
+
+
+def prepare_ex(req: SpeechRequest | WsSpeak, owner: str | None = None) -> tuple[dict, list[str], list[str]]:
     """Validate a request against the loaded engine: (kwargs for tts.stream(), applied controls, ignored controls).
 
     Applied/ignored are empty unless the request carries a `condition`. Raises HTTPException (422 for controls
@@ -28,7 +63,19 @@ def prepare_ex(req: SpeechRequest | WsSpeak) -> tuple[dict, list[str], list[str]
     cond = req.condition
     ref_b64 = getattr(req, "reference_audio", None) or (cond.reference_audio if cond else None)
     ref_text = getattr(req, "reference_text", None) or (cond.reference_text if cond else None)
+    req_ref_text = ref_text
     ref = None
+    voice = req.voice
+    speaker_ok = False
+    if cond and cond.speaker_id:
+        if ref_b64:
+            raise HTTPException(400, "speaker_id and reference_audio are mutually exclusive")
+        res = resolve_speaker(cond, owner)
+        speaker_ok = bool(res)
+        if "voice" in res:
+            voice = res["voice"]
+        elif "ref" in res:
+            ref, ref_text = res["ref"], res["ref_text"]
     if ref_b64:
         if not tts.engine.supports_cloning:
             raise HTTPException(400, f"reference_audio needs ENGINES=qwen3 (running {settings.engines})")
@@ -36,10 +83,9 @@ def prepare_ex(req: SpeechRequest | WsSpeak) -> tuple[dict, list[str], list[str]
             ref = audio_utils.decode_audio_b64(ref_b64)
         except (ValueError, binascii.Error, RuntimeError) as e:
             raise HTTPException(400, f"Bad reference_audio: {e}") from e
-    voice = req.voice
     if ref is None:
         try:
-            voice = tts.resolve_voice(req.voice)
+            voice = tts.resolve_voice(voice)
         except KeyError:
             raise HTTPException(404, f"Voice '{req.voice}' not found") from None
     speed = cond.speed if cond and "speed" in cond.model_fields_set else req.speed
@@ -47,8 +93,8 @@ def prepare_ex(req: SpeechRequest | WsSpeak) -> tuple[dict, list[str], list[str]
     if cond:
         try:
             eff, applied, ignored = validate_condition(
-                cond.model_copy(update={"speed": speed, "reference_audio": ref_b64, "reference_text": ref_text}),
-                tts.capabilities_for(None if ref is not None else voice), tts.engine_name(None if ref is not None else voice))
+                cond.model_copy(update={"speed": speed, "reference_audio": ref_b64, "reference_text": req_ref_text}),
+                tts.capabilities_for(None if ref is not None else voice), tts.engine_name(None if ref is not None else voice), speaker_ok)
         except UnsupportedControl as e:
             raise HTTPException(422, {"message": str(e), "unsupported": e.controls}) from e
         speed = eff.speed
@@ -71,9 +117,9 @@ def _rid(request: Request) -> str:
 
 
 @router.post("/speech")
-async def speech(req: SpeechRequest, request: Request):
+async def speech(req: SpeechRequest, request: Request, key: str = Depends(require_api_key)):
     rid = _rid(request)
-    kwargs, applied, ignored = prepare_ex(req)
+    kwargs, applied, ignored = prepare_ex(req, sreg.owner_id(key))
     try:
         wav = await tts.synthesize(**kwargs, request_id=rid)
     except tts.Overloaded as e:
@@ -84,10 +130,10 @@ async def speech(req: SpeechRequest, request: Request):
 
 
 @router.post("/speech/stream")
-async def speech_stream(req: SpeechRequest, request: Request):
+async def speech_stream(req: SpeechRequest, request: Request, key: str = Depends(require_api_key)):
     """Raw PCM s16le mono, streamed as each chunk is synthesized; rate in X-Sample-Rate. Format is always pcm."""
     rid = _rid(request)
-    kwargs, applied, ignored = prepare_ex(req)
+    kwargs, applied, ignored = prepare_ex(req, sreg.owner_id(key))
     gen = tts.stream(**kwargs, request_id=rid)
     try:
         first = await anext(gen)  # admission + first chunk before headers, so overload is a clean 503
