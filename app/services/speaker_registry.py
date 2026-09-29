@@ -154,6 +154,12 @@ def analyze_reference(raw: bytes, content_type: str | None = None) -> tuple[np.n
         raise ReferenceRejected("empty file")
     if content_type and content_type.split(";")[0].strip().lower() not in ACCEPTED_CONTENT_TYPES:
         raise ReferenceRejected(f"unsupported content-type {content_type!r}; send WAV")
+    try:  # header first: a small FLAC/OGG can decode to gigabytes, so bound the duration before decoding
+        info = sf.info(io.BytesIO(raw))
+    except Exception as e:
+        raise ReferenceRejected(f"cannot decode audio: {e}") from e
+    if info.samplerate <= 0 or info.channels > 8 or info.frames > settings.ref_max_seconds * info.samplerate:
+        raise ReferenceRejected(f"too long or malformed header ({info.frames} frames at {info.samplerate} Hz, {info.channels} ch)")
     try:
         wav, sr = sf.read(io.BytesIO(raw), dtype="float32")
     except Exception as e:
@@ -330,6 +336,8 @@ class SpeakerRegistry:
                       embedding: np.ndarray | None = None, embedding_backend: str | None = None) -> Reference:
         with self._locked():
             sp = self._authorized(speaker_id, owner)
+            if sp.consent.status == "revoked":  # checked under the lock: a concurrent revoke must not be followed by an upload
+                raise SpeakerForbidden("consent revoked; cannot add references")
             if len(sp.references) >= settings.max_references_per_speaker:
                 raise SpeakerError(f"speaker already has {settings.max_references_per_speaker} references")
             if any(r.sha256 == metrics["sha256"] for r in sp.references):

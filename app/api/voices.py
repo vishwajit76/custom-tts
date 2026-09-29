@@ -37,6 +37,16 @@ def _mirror_upload(owner: str, voice_id: str, consent_record_id: str | None, gra
         pass  # id not registry-safe (e.g. contains '.'/':') or owned by another key: the legacy voice still works
 
 
+def _guard_foreign_speaker(owner: str, voice_id: str) -> None:
+    """A voice id that is a registry speaker of another owner must not be overwritten or deleted through the legacy API."""
+    try:
+        sreg.get_registry().get(voice_id, owner)
+    except sreg.SpeakerForbidden as e:
+        raise HTTPException(409, "voice id belongs to another owner's speaker") from e
+    except sreg.SpeakerError:
+        pass  # not registered (or not registry-safe): legacy voice, unchanged behaviour
+
+
 def _mirror_delete(owner: str, voice_id: str) -> None:
     reg = sreg.get_registry()
     try:
@@ -78,6 +88,7 @@ async def upload_voice(voice_id: VoiceId = Form(), audio: UploadFile = ..., tran
                        consent_record_id: str | None = Form(None), granted_by: str | None = Form(None), key: str = Depends(require_api_key)):
     """Register a reference voice (3-10s clean WAV) for zero-shot cloning. A transcript improves quality."""
     engine = _cloning_engine()
+    _guard_foreign_speaker(sreg.owner_id(key), voice_id)
     try:
         wav, sr = audio_utils.decode_audio(await audio.read())
     except (ValueError, RuntimeError) as e:
@@ -90,6 +101,7 @@ async def upload_voice(voice_id: VoiceId = Form(), audio: UploadFile = ..., tran
 
 @router.delete("/{voice_id}")
 def delete_voice(voice_id: VoiceId, key: str = Depends(require_api_key)):
+    _guard_foreign_speaker(sreg.owner_id(key), voice_id)
     if not _cloning_engine().delete_voice(voice_id):
         raise HTTPException(404, "Voice not found")
     tts.clear_cache(voice_id)

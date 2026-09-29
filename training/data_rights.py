@@ -36,6 +36,16 @@ def load_rights(path: Path) -> list[dict]:
         missing = [k for k in REQUIRED if e.get(k) in (None, "", [])  and not isinstance(e.get(k), bool)]
         if missing:
             raise RightsError(f"rights entry {e.get('rights_id', '?')}: missing {missing}")
+        # a string here would make `in` a substring test ("tts_training_no" contains "tts_training")
+        for k in ("speaker_ids", "permitted_uses"):
+            if not isinstance(e[k], list) or not all(isinstance(x, str) for x in e[k]):
+                raise RightsError(f"rights entry {e['rights_id']}: {k} must be a list of strings")
+        for k in ("speaker_authorization", "vendor_generated"):
+            if not isinstance(e[k], bool):
+                raise RightsError(f"rights entry {e['rights_id']}: {k} must be true or false")
+    ids = [e["rights_id"] for e in entries]
+    if dup := sorted({i for i in ids if ids.count(i) > 1}):
+        raise RightsError(f"duplicate rights_id: {dup}")
     return entries
 
 

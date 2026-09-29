@@ -38,7 +38,7 @@ function go(d){i=Math.min(items.length-1,Math.max(0,i+d));show()}
 async function save(rej){const x=items[i];const b={id:x.id,rejected:!!rej};
 for(const k of ['text','speaker_id','emotion','style','role'])b[k]=$(k).value;
 if(rej)b.reject_reason=prompt('Reason (noisy / misaligned / other)')||'rejected';
-const r=await fetch('/api/update',{method:'POST',body:JSON.stringify(b)});items[i]=await r.json();show()}
+const r=await fetch('/api/update',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});items[i]=await r.json();show()}
 load()
 </script>"""
 
@@ -64,8 +64,16 @@ def apply_update(rows: list[dict], upd: dict, annotator: str) -> dict:
     return row
 
 
-def make_handler(manifest: Path, annotator: str):
+def make_handler(manifest: Path, annotator: str, port: int | None = None):
     base = manifest.parent
+    hosts = {f"{h}:{port}" for h in ("127.0.0.1", "localhost", "[::1]")} if port else None
+
+    def local_request(headers) -> bool:
+        """DNS-rebinding / CSRF guard: a web page must not be able to read or write labels through the user's browser."""
+        if hosts is not None and headers.get("Host", "") not in hosts:
+            return False
+        origin = headers.get("Origin")
+        return origin is None or origin in {f"http://{h}" for h in hosts or ()}
 
     def audio_path(row):
         p = Path(row["audio"])
@@ -83,6 +91,8 @@ def make_handler(manifest: Path, annotator: str):
             self.wfile.write(body)
 
         def do_GET(self):
+            if not local_request(self.headers):
+                return self._send(403, b"{}")
             with _LOCK:
                 rows = read_rows(manifest)
             if self.path == "/":
@@ -98,7 +108,15 @@ def make_handler(manifest: Path, annotator: str):
         def do_POST(self):
             if self.path != "/api/update":
                 return self._send(404, b"{}")
-            upd = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))))
+            # JSON content-type cannot be sent cross-site without a CORS preflight (which this server never grants)
+            if not local_request(self.headers) or self.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
+                return self._send(403, b"{}")
+            try:
+                upd = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))))
+                if not isinstance(upd, dict):
+                    raise ValueError
+            except ValueError:
+                return self._send(400, b"{}")
             with _LOCK:
                 rows = read_rows(manifest)
                 try:
@@ -119,7 +137,7 @@ def main() -> None:
     a = p.parse_args()
     if a.manifest.suffix != ".jsonl":
         raise SystemExit("annotation tool edits a .jsonl manifest")
-    srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(a.manifest, a.annotator))
+    srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(a.manifest, a.annotator, a.port))
     print(f"open http://127.0.0.1:{a.port}/  (Ctrl-C to stop)")
     srv.serve_forever()
 

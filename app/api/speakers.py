@@ -126,7 +126,7 @@ async def add_reference(speaker_id: str, audio: UploadFile = File(...), transcri
     reg, owner = sr.get_registry(), sr.owner_id(key)
     sp = _run(reg.get, speaker_id, owner)
     if sp.consent.status == "revoked":
-        raise HTTPException(403, "consent revoked; cannot add references")
+        raise HTTPException(403, "consent revoked; cannot add references")  # registry re-checks under its lock
     raw = await audio.read(reg_limit() + 1)
     wav, rate, metrics = _run(sr.analyze_reference, raw, audio.content_type)
     enc = get_encoder()

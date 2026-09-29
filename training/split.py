@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 from training.manifest import read_rows, write_jsonl
@@ -21,7 +22,8 @@ class HeldOutError(Exception):
 
 
 def _key(text: str) -> str:
-    return re.sub(r"\W+", " ", text.lower()).strip()
+    # keep letters, digits AND combining marks: \w drops Devanagari matras/virama, collapsing distinct Hindi texts together
+    return re.sub(r"\s+", " ", "".join(c if unicodedata.category(c)[0] in "LNM" else " " for c in text.lower())).strip()
 
 
 def _h(seed: int, s: str) -> int:

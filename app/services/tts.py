@@ -225,7 +225,7 @@ async def stream(
             # deadline = when the audio already produced finishes playing (client plays in real time)
             wav = await _synth_chunk(c, voice, speed, t0 + sent_s, ref, ref_text, controls)
             if dsp_controls:
-                wav = dsp.apply_prosody(wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
+                wav = await asyncio.to_thread(dsp.apply_prosody, wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
             sent_s += len(wav) / sr_in
             stats["chunks_total"] += 1
             if rs is not None:
