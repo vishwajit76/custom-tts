@@ -16,6 +16,7 @@ raises MisconfigurationException for --trainer.accumulate_grad_batches (verified
 Multi-speaker: rows file|speaker|text set --model.num_speakers; Piper writes speaker_id_map into config.json.
 """
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -79,7 +80,7 @@ def main() -> None:
         ckpt = str(resume) if resume else None if a.warmstart_vocoder else resolve(a.init)
         start = epoch_of(ckpt) if ckpt else 0
     cmd = [
-        sys.executable, "-m", "piper.train", "fit", "--seed_everything", str(a.seed),
+        sys.executable, "-m", os.environ.get("PIPER_TRAIN_MODULE", "piper.train"), "fit", "--seed_everything", str(a.seed),
         "--data.voice_name", a.name, "--data.csv_path", str(a.data / "metadata.csv"), "--data.audio_dir", str(a.data / "wavs"),
         "--data.espeak_voice", "hi", "--data.cache_dir", str(a.run / "cache"), "--data.config_path", str(a.run / "config.json"),
         "--data.batch_size", str(a.batch_size), "--model.sample_rate", "22050", "--model.num_speakers", str(speakers),

@@ -13,3 +13,7 @@ training/runs/
 bench/results/**/*.wav
 logs/
 speakers/
+data/
+training/runs/
+*.ckpt
+voices/*.onnx*
