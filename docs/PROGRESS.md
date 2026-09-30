@@ -116,7 +116,7 @@ verification limited (reason given); `[ ]` = not done (blocked, reason given).
 Status: **in progress, not finished, not validated by listeners.**
 
 - What runs: personal, non-commercial Piper fine-tune on IndicTTS Hindi female (7.9 h), init from Piper `hi_IN-rohan-medium`
-  (step 309852), on a Kaggle Tesla T4 (batch 24, fp16-mixed, about 0.83 steps/s, 11 h runs, checkpoint to a private HF repo every 20 min,
+  (step 309852), on a Kaggle Tesla T4 (batch 24, fp16-mixed, about 1.2 global steps/s (0.83 s per step), 11 h runs, checkpoint to a private HF repo every 20 min,
   milestone ONNX every 5000 steps). Operating guide: [custom-voice-runbook.md](custom-voice-runbook.md); results:
   [training-progress.md](training-progress.md).
 - Progress: milestones exported from step 310300 (CPU) through 345000 (Kaggle); the earlier "blocked on GPU/data" status in the training
@@ -127,3 +127,21 @@ Status: **in progress, not finished, not validated by listeners.**
   are not on one timeline. Fix is procedural: one session at a time.
 - Tokens used during setup were pasted in chat and should be rotated (runbook section 3).
 - The CPU long-train scripts remain as a fallback only (the container pauses when idle).
+
+## Review & hardening pass — 2026-09-30 (08:30 UTC / 14:00 IST)
+
+**Training / evaluation (P0–P2)**
+- Critical: piper-tts 1.8.0 never steps its LR scheduler → v4/v5 ran at constant LR 1.5258e-4 for ~47k steps (verified in source + checkpoint). Kernel now anneals 1e-4 → 5e-6 over 150 epochs (~45k steps); `tests/test_lr_anneal.py`.
+- Critical: stale-seed checkpoint uploads (version_0/version_1 path bug) and v4/v5 milestone name collisions (v5 overwrote v4's 350000/355000 ONNX). Fixed: experiment-scoped artifacts `experiments/<id>/`, create-once upload guard, explicit verified resume (`RESUME_FROM`), sha256 read-back.
+- Critical: CER ignored Devanagari vowel signs (`\w`), so all earlier CERs were consonant-only; fixed, PER unaffected.
+- Reproducibility: manifest/environment/metrics/val_split per experiment; records in `training/experiments/`; seed 1234 fixed (also drives the val split).
+- `bench/compare_checkpoints.py` (repeats, bootstrap CIs, paired deltas). 340k/350k/355k (all v5): CER/PER indistinguishable; 355k UTMOS +0.12 and speaker cosine +0.007 (CIs exclude 0). Blind A/B kit in `docs/listening-test/` — no listening results yet.
+- v6 launched 07:31 UTC / 13:01 IST from v4 final (357212) with anneal; verified resumed, LR decaying, val_mel 0.419 → 0.415, checkpoint uploads OK. Kernel CPU smoke 19/19; `lr_dryrun` scenarios B–D not completed.
+
+**Server (P3–P7)** — tests 575 → 777 passed
+- Hinglish normalizer: AI/ai ambiguity, lakh/crore, URLs/emails, am/pm, phone grouping, glued tokens, brand respelling (Devanagari route better CER on both voices; WhatsApp exception). Corpus 326 → 384 rows (not native-reviewed).
+- Speaker registry: orphan-file rollback, retryable delete, durable revocation, atomic engine bind, no mixed-backend embeddings, librosa-missing 500 fixed, ingest off the event loop; similarity labelled `mfcc_statistics_cosine` / `neural_embedding_cosine` (no verification).
+- Production: JSON speech body cap (413), voice_id validation, WS stale-cancel fix, periodic retention sweep, `MODELS_EXTRA=voices` exposes `hi_IN-custom-medium`.
+- Telephony CER (custom voice, whisper-small, n=20): 22.05k 0.300 / 16k 0.311 / 8k 0.329 / 8k+μ-law 0.340 (quantisation only, not a network codec). 10-min soak: 0 errors, flat RSS; cancel ack ≤3.4 ms. Latencies measured under contention (upper bounds).
+
+**Unverified / blocked:** anneal's audible effect; listening tests; native corpus review; Qwen3 cloning (no GPU); real codec/network; uncontended latency for the custom voice.
