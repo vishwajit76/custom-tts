@@ -109,13 +109,15 @@ def make_synth(onnx: Path, params: dict):
 
 # ---------------------------------------------------------------- metrics
 _ASR = {}
+ASR_DEVICE = os.environ.get("ASR_DEVICE", "cpu")  # the Kaggle kernel sets cuda/float16 (bench/kernel_eval.py)
+ASR_COMPUTE = os.environ.get("ASR_COMPUTE_TYPE", "int8")
 
 
 def transcribe(model_size: str, wav: np.ndarray, sr: int) -> str:
     if model_size not in _ASR:
         from faster_whisper import WhisperModel
 
-        _ASR[model_size] = WhisperModel(model_size, device="cpu", compute_type="int8")
+        _ASR[model_size] = WhisperModel(model_size, device=ASR_DEVICE, compute_type=ASR_COMPUTE)
     w = soxr.resample(wav, sr, 16000) if sr != 16000 else wav
     segs, _ = _ASR[model_size].transcribe(w, language="hi", beam_size=5, condition_on_previous_text=False)
     return " ".join(s.text.strip() for s in segs)

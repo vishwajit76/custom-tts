@@ -186,8 +186,12 @@ def eval_set_info(path) -> dict:
 
 
 # ---------------------------------------------------------------- evaluation of one checkpoint
-def evaluate_checkpoint(onnx: Path, sents, params, repeats, asr, utmos, refs, telephony=True, log=print) -> dict:
-    """Returns raw matrices (n_sentences x repeats) for every metric plus transcripts of repeat 0."""
+class EvalTimeout(RuntimeError):
+    """The wall-clock budget (`deadline`, epoch seconds) ran out between two sentences."""
+
+
+def evaluate_checkpoint(onnx: Path, sents, params, repeats, asr, utmos, refs, telephony=True, log=print, deadline=None) -> dict:
+    """Returns raw matrices (n_sentences x repeats) for every metric plus transcripts of repeat 0. `deadline` (time.time() value) raises EvalTimeout."""
     from app.services.text_normalizer import normalize
     from training.asr import cer, per
 
@@ -198,6 +202,8 @@ def evaluate_checkpoint(onnx: Path, sents, params, repeats, asr, utmos, refs, te
     enc = _neural_encoder()
     cent_n, cent_m, loo = _centroids(refs, enc)
     for i, text in enumerate(sents):
+        if deadline is not None and time.time() > deadline:
+            raise EvalTimeout(f"budget exhausted after {i}/{n} sentences")
         ref = normalize(text)
         refs_txt.append(ref)
         for r in range(repeats):
@@ -207,7 +213,7 @@ def evaluate_checkpoint(onnx: Path, sents, params, repeats, asr, utmos, refs, te
             M["cer"][i, r], M["per"][i, r], M["cer_legacy"][i, r] = cer(ref, nh), per(ref, nh), cer(ref, nh, keep_marks=False)
             if utmos is not None and utmos.fn:
                 M["utmos"][i, r] = utmos(wav, sr)
-            if enc is not None:
+            if enc is not None and cent_n is not None:
                 M["spk_neural"][i, r] = float(np.dot(enc(wav, sr), cent_n))
             M["spk_mfcc"][i, r] = _mfcc_sim(wav, sr, cent_m)
             if telephony:
@@ -290,6 +296,25 @@ def build_entry(meta: dict, raw: dict, params, repeats, asr, asr_name, utmos_not
     return e
 
 
+PAIRED_METRICS = (("cer", "cer"), ("per", "per"), ("utmos", "utmos"), ("spk_neural", "speaker_similarity_neural"), ("cer_8k", "telephony_8k_cer"), ("cer_16k", "telephony_16k_cer"))
+
+
+def paired_block(base_M, cand_M, b=2000, seed=0) -> dict:
+    """Paired bootstrap deltas (candidate minus baseline) for every metric present in both matrix dicts (lists or arrays, n_sentences x repeats)."""
+    d = {}
+    for k, name in PAIRED_METRICS:
+        if k in base_M and k in cand_M and np.any(base_M[k]) and np.any(cand_M[k]):
+            d[name] = paired_delta(base_M[k], cand_M[k], b, seed)
+    return d
+
+
+def score_checkpoint(meta: dict, sents, params, repeats, asr, utmos, refs, telephony=True, b=2000, seed=0, deadline=None, log=print):
+    """One checkpoint end to end (synthesis x repeats, ASR, UTMOS, speaker similarity, telephony, bootstrap summaries): (entry, raw). Used by main() and by
+    the Kaggle kernel (bench/kernel_eval.py), so both produce the same JSON entry."""
+    raw = evaluate_checkpoint(meta["onnx"], sents, params, repeats, asr, utmos, refs, telephony=telephony, log=log, deadline=deadline)
+    return build_entry(meta, raw, params, repeats, asr, asr, getattr(utmos, "note", None), len(refs), b, seed), raw
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--milestone", action="append", default=[], help="HF folder, e.g. milestones/step_340000 or experiments/<id>/milestones/step_N (repeatable)")
@@ -330,10 +355,8 @@ def main():
         mats.append(raw["M"])
         out["results"].append(build_entry(m, raw, params, a.repeats, a.asr, a.asr, getattr(utmos, "note", None), len(refs), a.bootstrap, a.seed))
     for i in range(1, len(mats)):
-        d = {"baseline": out["results"][0]["checkpoint"]["hf_path"] or "onnx0", "candidate": out["results"][i]["checkpoint"]["hf_path"] or f"onnx{i}"}
-        for k, name in (("cer", "cer"), ("per", "per"), ("utmos", "utmos"), ("spk_neural", "speaker_similarity_neural"), ("cer_8k", "telephony_8k_cer")):
-            if np.any(mats[i][k]) and np.any(mats[0][k]):
-                d[name] = paired_delta(mats[0][k], mats[i][k], a.bootstrap, a.seed)
+        d = {"baseline": out["results"][0]["checkpoint"]["hf_path"] or "onnx0", "candidate": out["results"][i]["checkpoint"]["hf_path"] or f"onnx{i}",
+             **paired_block(mats[0], mats[i], a.bootstrap, a.seed)}
         out["paired_vs_first"].append(d)
     out["eval_seconds"] = round(time.time() - t0)
     path = Path(a.out or HERE / "results" / f"compare_{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}.json")

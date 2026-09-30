@@ -10,6 +10,7 @@ Layout written on HF (repo vishwajit76/custom-tts-hindi-train), never anything o
   experiments/<id>/{session.json,manifest.json,environment.json,metrics.jsonl,heartbeat.txt,result.json,crash.txt}
   experiments/<id>/checkpoints/{last.ckpt,last.meta.json,final_step<N>.ckpt,final_step<N>.meta.json}
   experiments/<id>/milestones/step_<N>/{*.onnx,*.onnx.json,session.json}   experiments/<id>/samples/step_<N>/sample_*.wav
+  experiments/<id>/evaluations/step_<N>.json (compare_checkpoints/v1 entry + paired_vs_previous; create-once; step_<N>.skipped.json marks a timed-out/failed eval)
 """
 import glob, hashlib, json, os, pathlib, re, shutil, subprocess, sys, threading, time
 
@@ -258,6 +259,127 @@ def remote_sha256(api, repo, path):
         return info[0].lfs.sha256 if info and info[0].lfs else None
     except Exception:  # noqa: BLE001
         return None
+
+EVAL_RE = re.compile(r"experiments/([^/]+)/evaluations/step_(\d+)\.json$")
+
+
+def pick_prev_eval(files, step, exp_id=None):
+    """Stored evaluation of the closest EARLIER milestone (highest step < `step`, any experiment; ties prefer this experiment). Returns the repo path or None."""
+    best = None
+    for f in files:
+        m = EVAL_RE.match(f)
+        if m and int(m.group(2)) < step:
+            key = (int(m.group(2)), m.group(1) == exp_id, f)
+            best = key if best is None or key > best else best
+    return best[2] if best else None
+
+
+def cuda_lib_dirs():
+    """nvidia/*/lib directories of the pip wheels that ship with torch: ctranslate2 (faster-whisper) needs cuDNN 9 / cuBLAS 12 and they are not on the loader path by default."""
+    import site
+    out = []
+    for sp in set(site.getsitepackages() + [site.getusersitepackages()]):
+        out += sorted(glob.glob(os.path.join(sp, "nvidia", "*", "lib")))
+    return out
+
+
+def gpu_free_mb():
+    """Free VRAM of GPU 0 in MB via nvidia-smi (no CUDA context is created in the calling process); None when unknown."""
+    try:
+        r = subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"], capture_output=True, text=True, timeout=15)
+        return int(r.stdout.strip().splitlines()[0])
+    except Exception:  # noqa: BLE001
+        return None
+
+
+class EvalManager:
+    """Runs milestone evaluations one at a time on a background thread so training is never blocked, and NEVER raises into the caller.
+      run_fn(item, prev_path, budget_s) -> ("ok", json_bytes) | ("timeout", msg) | ("error", msg)     item = {"step", "dir"}
+      free_mb_fn() -> free VRAM in MB or None;  prev_fn(step) -> local path of the previous stored evaluation or None
+      put_fn(rel, bytes) -> upload under experiments/<id>/ (create-once: returns None when the file already exists)
+    If less than `min_free_mb` VRAM is free while training runs the item is DEFERRED and runs in finish(), after training has released the GPU.
+    A timeout or error stores evaluations/step_<N>.skipped.json (a marker; the real step_<N>.json stays free) and is logged, nothing else happens."""
+
+    def __init__(self, run_fn, put_fn, prev_fn=lambda s: None, free_mb_fn=lambda: None, min_free_mb=3000, budget_s=900, log=print, cleanup=shutil.rmtree):
+        import queue
+        self.run_fn, self.put_fn, self.prev_fn, self.free_mb_fn = run_fn, put_fn, prev_fn, free_mb_fn
+        self.min_free_mb, self.budget_s, self.log, self.cleanup = min_free_mb, budget_s, log, cleanup
+        self.q, self.deferred, self.status = queue.Queue(), [], []
+        self.th = threading.Thread(target=self._loop, daemon=True)
+        self.th.start()
+
+    def enqueue(self, step, folder):
+        self.q.put({"step": int(step), "dir": str(folder)})
+
+    def _loop(self):
+        while True:
+            item = self.q.get()
+            if item is None:
+                return
+            try:
+                self._process(item, defer_ok=True)
+            except Exception as e:  # noqa: BLE001
+                self.log(f"eval manager error step {item['step']}: {e!r}")
+
+    def _process(self, item, defer_ok, budget_s=None):
+        n, st = item["step"], {"step": item["step"]}
+        free = None
+        try:
+            free = self.free_mb_fn()
+        except Exception:  # noqa: BLE001
+            pass
+        if defer_ok and free is not None and free < self.min_free_mb:
+            self.deferred.append(item)
+            st.update(status="deferred", reason=f"only {free} MB VRAM free (< {self.min_free_mb}): will run after training")
+            self.status.append(st); self.log(f"eval step {n}: {st['reason']}")
+            return
+        t = time.time()
+        try:
+            prev = self.prev_fn(n)
+        except Exception as e:  # noqa: BLE001
+            prev = None
+            self.log(f"eval step {n}: previous evaluation unavailable ({e!r}); continuing without paired deltas")
+        try:
+            kind, payload = self.run_fn(item, prev, budget_s or self.budget_s)
+        except Exception as e:  # noqa: BLE001
+            kind, payload = "error", repr(e)[:300]
+        try:
+            if kind == "ok":
+                p = self.put_fn(f"evaluations/step_{n}.json", payload)
+                st.update(status="ok" if p else "exists", path=p)
+            else:
+                body = json.dumps({"step": n, "status": kind, "detail": str(payload)[:500], "budget_s": budget_s or self.budget_s, "free_vram_mb": free,
+                                   "t_utc": time.strftime("%FT%TZ", time.gmtime())}).encode()
+                self.put_fn(f"evaluations/step_{n}.skipped.json", body)
+                st.update(status=kind, detail=str(payload)[:200])
+        except Exception as e:  # noqa: BLE001
+            st.update(status="upload_failed", detail=repr(e)[:200])
+        st["seconds"] = round(time.time() - t)
+        self.status.append(st)
+        self.log(f"eval step {n}: {st}")
+        try:
+            self.cleanup(item["dir"], ignore_errors=True)
+        except Exception:  # noqa: BLE001
+            pass
+
+    def finish(self, total_budget_s=1500):
+        """After training: drain the queue, then run the deferred items (the GPU is free now), all within `total_budget_s`. Returns the status list."""
+        end = time.time() + total_budget_s
+        self.q.put(None)
+        self.th.join(max(1, end - time.time()))
+        if self.th.is_alive():
+            self.log("eval worker still busy at the end budget: abandoned (daemon)")
+            return self.status
+        for item in self.deferred:
+            left = end - time.time()
+            if left < 60:
+                self.status.append({"step": item["step"], "status": "skipped", "detail": "no time left after training"}); continue
+            try:
+                self._process(item, defer_ok=False, budget_s=min(self.budget_s, left))
+            except Exception as e:  # noqa: BLE001
+                self.log(f"deferred eval error step {item['step']}: {e!r}")
+        self.deferred = []
+        return self.status
 # ---- END HELPERS ----
 
 MAX_H = float(os.environ.get("MAX_HOURS", "11"))
@@ -291,6 +413,14 @@ if LR_ENV.get("LR_MODE", "").lower() != "anneal":
 SENTS = ["नमस्ते, आप कैसे हैं? आज मौसम बहुत सुहावना है।",
          "भारत एक विशाल देश है, जहाँ अनेक भाषाएँ और संस्कृतियाँ एक साथ मिलकर रहती हैं।",
          "क्या आपने कल रात का खाना खा लिया? मुझे तो बहुत भूख लगी है!"]
+EVAL_ON = os.environ.get("EVAL_ENABLE", "1") != "0"
+EVAL_BUDGET_S = float(os.environ.get("EVAL_BUDGET_S", str(15 * 60)))  # per milestone; over budget = skipped + logged
+EVAL_REPEATS = int(os.environ.get("EVAL_REPEATS", "3"))
+EVAL_LIMIT = int(os.environ["EVAL_LIMIT"]) if os.environ.get("EVAL_LIMIT") else None
+EVAL_MIN_FREE_MB = int(os.environ.get("EVAL_MIN_FREE_MB", "3000"))  # whisper-small fp16 + CUDA context + beam-5 activations need about 1.5-2 GB; 3 GB margin
+EVAL_END_BUDGET_S = float(os.environ.get("EVAL_END_BUDGET_S", str(25 * 60)))  # after the final checkpoint upload: drain + deferred evals
+# Files of the repo the evaluation needs, zipped+base64 by training/kaggle/make_bundle.py and written here by push.sh (script kernels upload one file only).
+EVAL_BUNDLE_B64 = ""
 GUARD = None
 
 
@@ -548,10 +678,75 @@ def milestone(ckpt):
         else:
             GUARD.put_folder(smp, f"samples/step_{n}", f"samples {n} {SID}")
             print("milestone uploaded", n, SID, flush=True)
+            if EVAL_MGR is not None:  # never blocks or raises: copy the ONNX aside (the export dir is removed below) and queue the eval
+                try:
+                    q_ = W / f"evalq_{n}_{SID}"; q_.mkdir(exist_ok=True)
+                    for f_ in ("hi_IN-custom-medium.onnx", "hi_IN-custom-medium.onnx.json"): shutil.copy(out / f_, q_ / f_)
+                    EVAL_MGR.enqueue(int(n), q_)
+                except Exception as ex2: print("eval enqueue failed", n, repr(ex2), flush=True)
     except Exception as ex:
         print("milestone failed", n, repr(ex), flush=True)
     finally:
         shutil.rmtree(out, ignore_errors=True); shutil.rmtree(W / f"samples_{n}_{SID}", ignore_errors=True); os.remove(ckpt)
+
+
+# ---- in-kernel milestone evaluation (bench/kernel_eval.py in a subprocess; results -> experiments/<id>/evaluations/step_<N>.json, create-once) ----
+# Why GPU + subprocess: on 4 CPUs the CER/PER/UTMOS/telephony protocol (50 sentences x 3 repeats, 3 ASR passes each) takes ~2.5 h per milestone; faster-whisper
+# small fp16 on the T4 needs a few minutes. A subprocess isolates CUDA/ctranslate2 crashes and can be killed at the budget; it runs niced with 2 threads so the
+# 3 dataloader workers keep their CPUs; Piper synthesis stays on CPU (onnxruntime). VRAM: whisper-small fp16 ~1.5-2 GB, only while an eval runs (~5-15 min per
+# 5000 steps); if nvidia-smi shows < EVAL_MIN_FREE_MB free the eval is deferred until training ended instead of risking a trainer OOM (which would shrink the batch).
+EVAL_SRC = W / "evalsrc"
+EVAL_MGR = None
+def _eval_setup():
+    """Unpack the vendored repo files (or use the checkout in the smoke test). Returns the directory that goes on PYTHONPATH."""
+    if SMOKE:
+        return str(pathlib.Path(__file__).resolve().parents[2])
+    import base64, io, zipfile
+    assert EVAL_BUNDLE_B64, "EVAL_BUNDLE_B64 is empty: the kernel was not pushed with training/kaggle/push.sh"
+    zipfile.ZipFile(io.BytesIO(base64.b64decode(EVAL_BUNDLE_B64))).extractall(EVAL_SRC)
+    cons = W / "constraints.txt"
+    # after training started (this runs on the first milestone): never let pip move torch/numpy; resemblyzer needs webrtcvad (wheels package) + librosa
+    sh(f"pip install -q -c {cons} faster-whisper soxr onnxruntime librosa webrtcvad-wheels 2>&1 | tail -3")
+    sh(f"pip install -q -c {cons} --no-deps resemblyzer 2>&1 | tail -2")
+    return str(EVAL_SRC)
+
+_EVAL_PP = []
+def _eval_run(item, prev, budget_s):
+    if not _EVAL_PP:
+        _EVAL_PP.append(_eval_setup())
+    out = pathlib.Path(item["dir"]) / "evaluation.json"
+    meta = {"path": f"experiments/{EXPERIMENT_ID}/milestones/step_{item['step']}", "experiment_id": EXPERIMENT_ID, "git_sha": GIT_SHA, "session": SID}
+    cmd_ = [sys.executable, "-m", "bench.kernel_eval", "--onnx", str(pathlib.Path(item["dir"]) / "hi_IN-custom-medium.onnx"), "--step", str(item["step"]),
+            "--data-dir", str(DATA), "--out", str(out), "--budget-s", str(budget_s), "--repeats", str(EVAL_REPEATS), "--asr", "small", "--meta-json", json.dumps(meta)]
+    if EVAL_LIMIT: cmd_ += ["--limit", str(EVAL_LIMIT)]
+    if prev: cmd_ += ["--prev", str(prev)]
+    if SMOKE: cmd_ += ["--fake", "--n-refs", "3"]
+    else: cmd_ += ["--device", "cuda", "--compute", "float16"]
+    libs = [] if SMOKE else cuda_lib_dirs()
+    e_ = dict(os.environ, PYTHONPATH=_EVAL_PP[0] + os.pathsep + os.environ.get("PYTHONPATH", ""), OMP_NUM_THREADS="2", HF_HUB_DISABLE_PROGRESS_BARS="1", PYTHONUNBUFFERED="1",
+              LD_LIBRARY_PATH=os.pathsep.join(libs + [os.environ.get("LD_LIBRARY_PATH", "")]))
+    if SMOKE: e_["CUDA_VISIBLE_DEVICES"] = ""
+    log_ = pathlib.Path(item["dir"]) / "eval.log"
+    try:
+        with open(log_, "w") as lf:
+            r = subprocess.run(cmd_, env=e_, stdout=lf, stderr=subprocess.STDOUT, cwd=_EVAL_PP[0], timeout=budget_s + 120, preexec_fn=lambda: os.nice(10))
+    except subprocess.TimeoutExpired:
+        return "timeout", f"subprocess killed after {budget_s + 120:.0f}s"
+    tail_ = log_.read_text(errors="replace")[-600:]
+    print("eval log tail:", tail_.replace("\n", " | ")[-400:], flush=True)
+    if r.returncode == 3: return "timeout", f"budget {budget_s:.0f}s exhausted"
+    if r.returncode or not out.exists(): return "error", f"rc={r.returncode}: {tail_[-300:]}"
+    return "ok", out.read_bytes()
+
+def _eval_prev(step):
+    p = pick_prev_eval(api.list_repo_files(REPO), step, EXPERIMENT_ID)
+    return _dl(p) if p else None
+
+def _eval_put(rel, body):
+    return GUARD.put(body, rel, "evaluation")
+
+if EVAL_ON:
+    EVAL_MGR = EvalManager(_eval_run, _eval_put, _eval_prev, (lambda: None) if SMOKE else gpu_free_mb, EVAL_MIN_FREE_MB, EVAL_BUDGET_S)
 
 
 SPLIT_UP = False
@@ -640,8 +835,12 @@ FINAL = None
 if LAST.exists():
     upload_ckpt(LAST)  # checkpoints/last.ckpt == the final weights (skipped when that step is already uploaded)
     FINAL = upload_ckpt(LAST, final=True)  # create-once checkpoints/final_step<N>.ckpt
+EVAL_STATUS = []
+if EVAL_MGR is not None:  # AFTER the final checkpoint is safe on HF: drain queued evals and run the deferred ones on the now-free GPU (capped, never raises)
+    try: EVAL_STATUS = EVAL_MGR.finish(EVAL_END_BUDGET_S)
+    except Exception as e: print("eval finish failed", repr(e), flush=True)
 try:
     GUARD.put(json.dumps({"experiment_id": EXPERIMENT_ID, "session": SID, "exit_code": rc, "batch_size_used": BS, "oom_retries": OOM_RETRIES,
-                          "start_step": START_STEP, "final": FINAL, "last_upload": LAST_UP, "elapsed_h": round((time.time() - T0) / 3600, 3),
+                          "start_step": START_STEP, "final": FINAL, "last_upload": LAST_UP, "evaluations": EVAL_STATUS, "elapsed_h": round((time.time() - T0) / 3600, 3),
                           "ended_utc": time.strftime("%FT%TZ", time.gmtime())}, indent=1, default=str).encode(), "result.json", "result")
 except Exception as e: print("result upload failed", repr(e), flush=True)

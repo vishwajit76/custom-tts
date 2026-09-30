@@ -108,8 +108,11 @@ P
 ## 5. Hourly check-in routine
 
 A scheduled routine wakes the session hourly to: read the heartbeat (alive? step advancing? last upload ok? `runs/hi_f/kaggle_progress.txt`, or `experiments/<id>/heartbeat.txt`), list new
-milestones (`python -m bench.compare_checkpoints --list`: legacy `milestones/step_N` **and** `experiments/<id>/milestones/step_N`), run the 50-sentence eval (section 6.1, `bench.milestone_eval`, small ASR) on new ones and append its numbers to training-progress.md, copy the samples into `docs/samples/step_N/`, append a row
-to [training-progress.md](training-progress.md), commit and push to the PR branch. If the heartbeat is stale for more
+milestones (`python -m bench.compare_checkpoints --list`: legacy `milestones/step_N` **and** `experiments/<id>/milestones/step_N`), then **download the kernel's own evaluations** (section 6.0):
+`experiments/<id>/evaluations/step_<N>.json` for each new milestone (and read any `step_<N>.skipped.json`: timeout/error marker, log it). The check-in does **no local synthesis or ASR** (on the 4-vCPU container
+the 4-milestone protocol took about 10 h and the container pauses when idle). It writes the doc rows from those JSONs (CER/PER/UTMOS/speaker similarity/8k+16k telephony with 95% CIs and the
+`paired_vs_previous` deltas) into training-progress.md, copies the samples into `docs/samples/step_N/`, commits and pushes to the PR branch. A milestone with neither `step_<N>.json` nor a
+`.skipped.json` yet is normally still being evaluated (5-15 min after the milestone upload; deferred ones run after training ends): check again next hour, do not run it locally. If the heartbeat is stale for more
 than about 30 min or `kaggle_crash.txt` is new, relaunch (section 4) after making sure no other session is running
 (section 9). Relaunch = `training/kaggle/push.sh --kernel-version vN` (resume point `auto` = highest verified step; it never resumes implicitly from `runs/hi_f/last.ckpt`).
 After a launch write the immutable record: `python -m training.experiments new <id> --from-hf` and commit it. When a run ends, add `training/experiments/<id>.result.json` (final step, final checkpoint sha256 from
@@ -117,7 +120,25 @@ After a launch write the immutable record: `python -m training.experiments new <
 
 ## 6. Evaluating a milestone
 
-### 6.1 Protocol (50 sentences, `bench/milestone_eval.py`)
+### 6.0 Automatic evaluation inside the Kaggle kernel (default since the kernel pushed after 2026-09-30 ~18:30 UTC)
+
+Right after each milestone export + upload the kernel queues the protocol of `bench.compare_checkpoints` on a background thread (`bench/kernel_eval.py`, run as a niced subprocess so training is never
+blocked): `bench/hi_eval_50.txt`, 3 repeats, faster-whisper **small on the T4 (CUDA, float16)**, UTMOS22 (onnxruntime CPU), Resemblyzer, 8k/16k telephony CER, bootstrap CIs. It is the same code path
+(`compare_checkpoints.score_checkpoint` -> `build_entry`), so the JSON is a `compare_checkpoints/v1` file with `results[0]` (incl. `matrices`) plus `paired_vs_previous` (paired bootstrap deltas,
+candidate minus baseline, against the stored evaluation of the closest earlier step found under any `experiments/*/evaluations/`). Uploaded create-once to
+`experiments/<id>/evaluations/step_<N>.json` through the ExperimentGuard; a failure or a run over the budget (15 min, `EVAL_BUDGET_S`) uploads `step_<N>.skipped.json` and the kernel carries on;
+an eval can never crash training (subprocess + try/except; `result.json` lists every eval status under `evaluations`).
+Code delivery: Kaggle script kernels upload only `train_kernel.py`, so `push.sh` embeds the needed repo files (`training/kaggle/make_bundle.py`) as a base64 zip on the `EVAL_BUNDLE_B64` line; a kernel
+not pushed through `push.sh` has no bundle and records `error` markers instead of evaluating.
+GPU vs CPU decision: ASR on the 4 Kaggle CPUs (int8) would take hours per milestone and steal the 3 dataloader CPUs from training, so ASR runs on the GPU. Whisper-small fp16 needs about 1.5-2 GB
+VRAM only while an eval runs. Before each eval `nvidia-smi` free memory is checked: below `EVAL_MIN_FREE_MB` (3000) the eval is **deferred** and runs after the final checkpoint is uploaded (cap
+`EVAL_END_BUDGET_S` 25 min), because a trainer OOM would shrink the batch size. **Verified (CPU smoke, `python -m training.kernel_smoke`, 24 checks):** the whole path with real Piper synthesis and
+FAKE ASR/UTMOS, upload, create-once, paired deltas between consecutive milestones, result.json; unit tests for the manager (defer/timeout/error/upload failure) and that the bundle imports on its own.
+**Not verified (first GPU launch will tell):** ctranslate2 finding cuDNN/cuBLAS (the kernel adds the pip `nvidia/*/lib` dirs to `LD_LIBRARY_PATH`), `pip install faster-whisper/resemblyzer/webrtcvad-wheels`
+on the Kaggle image, real VRAM headroom next to bs 24 fp16 training, and the real wall time (estimate 5-15 min on a T4; Piper synthesis on 2 niced CPU threads is the likely bottleneck).
+If the first `.skipped.json` says error, read its `detail` and fall back to 6.1 locally for that milestone.
+
+### 6.1 Protocol (50 sentences, `bench/milestone_eval.py`; local fallback, the kernel does this for you, see 6.0)
 
 Fixed test text: `bench/hi_eval_50.txt` (50 Devanagari sentences: 13 conversational, 13 narrative/long, 9 numbers/dates/amounts in words, 9 English
 loanwords, 6 questions/exclamations). Never edit it once results exist. It is disjoint from the training text: `python -m bench.check_eval_overlap`

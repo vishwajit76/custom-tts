@@ -46,7 +46,8 @@ def main() -> None:
     os.symlink(a.ckpt.resolve(), hub / f"experiments/seed/checkpoints/final_step{step}.ckpt")
     env = dict(os.environ, SMOKE_LOCAL_DIR=str(hub), W_ROOT=str(a.work / "w"), BS="2", CKPT_EVERY="4", MS_EVERY="8", UPLOAD_EVERY_S="20", HB_EVERY_S="5",
                METRICS_EVERY_S="20", MAX_HOURS=str(a.seconds / 3600), KERNEL_VERSION="smoke", GIT_SHA="smoketest", ANNEAL_EPOCHS="3",
-               SMOKE_EPOCHS="6", METRICS_EVERY_STEPS="4", CUDA_VISIBLE_DEVICES="")
+               SMOKE_EPOCHS="6", METRICS_EVERY_STEPS="4", CUDA_VISIBLE_DEVICES="",
+               EVAL_LIMIT="2", EVAL_REPEATS="2", EVAL_BUDGET_S="300")  # in-kernel milestone eval: real Piper synthesis on the tiny ONNX, FAKE ASR/UTMOS (--fake), 2 sentences x 2 repeats
     env.pop("HF_TOKEN", None)
     log = a.work / "kernel.log"
     with open(log, "w") as f:
@@ -84,6 +85,17 @@ def main() -> None:
     check("LR lowered below the restored value", any(r["lr"] and r["lr"][0] < 1.5e-4 for r in lines) or "now [0.0001, 0.0001]" in out)
     ms = sorted((e / "milestones").glob("step_*/hi_IN-custom-medium.onnx"))
     check("milestone ONNX exported and uploaded under experiments/<id>/milestones", bool(ms), str([str(p.relative_to(e)) for p in ms]))
+    evs = sorted((e / "evaluations").glob("step_*.json")) if (e / "evaluations").exists() else []
+    skipped = sorted((e / "evaluations").glob("*.skipped.json")) if (e / "evaluations").exists() else []
+    ev = [json.loads(p.read_text("utf-8")) for p in evs]
+    check("in-kernel eval: evaluations/step_<N>.json uploaded for every milestone (none skipped)", len(evs) == len(ms) and bool(evs) and not skipped, f"{[p.name for p in evs]} skipped={[p.name for p in skipped]}")
+    en = ev[0]["results"][0] if ev else {}
+    check("eval entry is the compare_checkpoints entry (cer/per/utmos/telephony summaries + raw matrices 2x2)", bool(ev) and ev[0]["schema"] == "compare_checkpoints/v1" and en["cer"]["n_sentences"] == 2 and en["cer"]["n_repeats"] == 2
+          and {"cer", "per", "utmos", "cer_8k", "cer_16k"} <= set(en["matrices"]) and len(en["matrices"]["cer"]) == 2 and len(en["matrices"]["cer"][0]) == 2 and "8k" in en["telephony"], str(list(en)[:6]))
+    check("eval entry carries provenance (experiment, step, onnx sha256)", bool(ev) and en["experiment_id"] == e.name and en["checkpoint"]["global_step"] == int(evs[0].stem.split("_")[1]) and len(en["checkpoint"]["onnx_sha256"]) == 64)
+    check("first eval has no previous milestone to compare; later evals carry paired deltas vs the previous", bool(ev) and ev[0]["paired_vs_previous"] is None
+          and all(isinstance(x["paired_vs_previous"], dict) and "cer" in x["paired_vs_previous"] and x["paired_vs_previous"]["baseline"]["step"] < x["results"][0]["checkpoint"]["global_step"] for x in ev[1:]) and len(ev) >= 2, f"{len(ev)} evals")
+    check("eval statuses recorded in result.json", bool(res.get("evaluations")) and all(x["status"] == "ok" for x in res["evaluations"]), str(res.get("evaluations"))[:200])
     sp = json.loads((e / "val_split.json").read_text()) if (e / "val_split.json").exists() else {}
     check("val_split.json: piper train/val/test split fingerprint recorded", sp.get("val_n", 0) > 0 and len(sp.get("val_sha256", "")) == 64, str({k: v for k, v in sp.items() if k.endswith("_n")}))
     check("heartbeat under the experiment", (e / "heartbeat.txt").exists())

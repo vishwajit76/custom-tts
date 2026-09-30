@@ -30,7 +30,17 @@ assert n == 1, "STAMP line not found"
 compile(s2, p, "exec"); open(p, "w", encoding="utf8").write(s2)
 print("stamped:", st)
 P
+# vendor the files the in-kernel milestone evaluation needs (script kernels only upload train_kernel.py) as one base64 zip on the EVAL_BUNDLE_B64 line
+python - "$TMP/train_kernel.py" <<'Q'
+import re, sys
+sys.path.insert(0, "training/kaggle")
+import make_bundle
+p = sys.argv[1]; s = open(p, encoding="utf8").read(); b = make_bundle.build()
+s2, n = re.subn(r"^EVAL_BUNDLE_B64 = .*$", lambda m: 'EVAL_BUNDLE_B64 = "' + b + '"  # stamped by push.sh', s, count=1, flags=re.M)
+assert n == 1, "EVAL_BUNDLE_B64 line not found"
+compile(s2, p, "exec"); open(p, "w", encoding="utf8").write(s2); print("eval bundle:", len(b), "chars base64")
+Q
 echo "kernel dir: $TMP"
-if [ "$DRY" = 1 ]; then grep -n '^STAMP' "$TMP/train_kernel.py"; exit 0; fi
+if [ "$DRY" = 1 ]; then grep -n '^STAMP' "$TMP/train_kernel.py" | cut -c1-200; exit 0; fi
 export KAGGLE_API_TOKEN=${KAGGLE_API_TOKEN:-$(cat ~/.kaggle/access_token)}
 kaggle kernels push -p "$TMP"
