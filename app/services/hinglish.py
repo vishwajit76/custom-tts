@@ -71,11 +71,19 @@ def roman_to_devanagari(word: str) -> str:
     return re.sub(r"([ाीूैोे])न$", lambda m: m[1] + ("ँ" if m[1] in "ाू" else "ं"), s)
 
 
+# "use" is उसे in Romanized Hindi ("use bulao") but the English verb before a light verb ("Paytm use karein").
+_LIGHT_VERB = re.compile(r"\s+(?:kar|kij|kare|karo|karn|karke|karein|karen)", re.IGNORECASE)
+
+
 def _sentence(m: re.Match) -> str:
     s = m[0]
     words = [w.lower() for w in _LATIN.findall(s)]
+    # A sentence counts as Romanized Hindi only with at least one word that is never English; "The AI is ready" has only
+    # the ambiguous "the"/"is" and must stay English. Names/brands are converted anyway, so they don't dilute the ratio.
+    sure = sum(w in _ALWAYS and w not in _LEX["name"] for w in words)
     hits = sum(w in _HINDI for w in words)
-    romanized = not _DEVANAGARI.search(s) and hits >= 2 and 2 * hits >= len(words)
+    total = sum(w not in _LEX["name"] for w in words)
+    romanized = not _DEVANAGARI.search(s) and sure >= 1 and hits >= 2 and 2 * hits >= total
 
     def word(wm: re.Match) -> str:
         w = wm[0]
@@ -84,6 +92,12 @@ def _sentence(m: re.Match) -> str:
             return _ALWAYS[k]
         if not romanized:
             return w
+        if k == "hi" and w == "Hi":
+            return w  # the greeting ("Hi, main Priya bol rahi hoon"); the Hindi particle is written lowercase
+        if k == "use" and _LIGHT_VERB.match(s, wm.end()):
+            return w  # English verb: "use karein"
+        if k == "ai" and w == "ai":
+            return "ए आई"  # lazily typed "AI" (Hindi has no common Romanized "ai"); uppercase AI is an acronym rule
         if k in _LEX["amb"]:
             return _LEX["amb"][k]
         if (w.isupper() and len(w) > 1) or not _HINDI_SHAPE.search(k):
@@ -93,6 +107,11 @@ def _sentence(m: re.Match) -> str:
         return roman_to_devanagari(k)
 
     return _LATIN.sub(word, s)
+
+
+def brand(word: str) -> str:
+    """Devanagari spelling of a known Indian name or brand (lexicon kind "name"); any other word unchanged."""
+    return _LEX["name"].get(word.lower(), word)
 
 
 def convert(text: str) -> str:

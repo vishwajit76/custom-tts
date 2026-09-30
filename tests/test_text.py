@@ -16,7 +16,7 @@ def test_normalize():
     assert normalize("500 रुपये") == "पाँच सौ रुपये"
     assert normalize("05/10/2026") == "पाँच अक्टूबर दो हज़ार छब्बीस"
     assert normalize("18% ब्याज") == "अठारह प्रतिशत ब्याज"
-    assert normalize("नंबर 9876543210") == "नंबर नौ आठ सात छह पाँच चार तीन दो एक शून्य"
+    assert normalize("नंबर 9876543210") == "नंबर नौ आठ सात छह पाँच, चार तीन दो एक शून्य"
     # OTP/PIN codes are read digit by digit (Phase 6); the old quantity reading "एक सौ तेईस" was wrong for a code
     assert normalize("आपका OTP १२३ है") == "आपका ओ टी पी एक दो तीन है"
     assert normalize("Please call करें") == "Please call करें"
@@ -33,18 +33,18 @@ def test_times():
     assert normalize("9:20") == "नौ बजकर बीस मिनट"
     assert normalize("9:05") == "नौ बजकर पाँच मिनट"
     assert normalize("10:30 बजे") == "साढ़े दस बजे"
-    assert normalize("10:30pm") == "साढ़े दस बजे"
-    assert normalize("10:30 PM") == "साढ़े दस बजे"
+    assert normalize("10:30pm") == "रात साढ़े दस बजे"  # explicit am/pm keeps its day period
+    assert normalize("10:30 PM") == "रात साढ़े दस बजे"
 
 
 def test_phones():
-    expected = "प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य"
+    expected = "प्लस नौ एक, नौ आठ सात छह पाँच, चार तीन दो एक शून्य"  # groups: a comma is a short pause
     assert normalize("+91 98765 43210") == expected
     assert normalize("+91-9876543210") == expected
-    assert normalize("098765-43210") == "शून्य नौ आठ सात छह पाँच चार तीन दो एक शून्य"
-    assert normalize("1800 123 4567") == "एक आठ शून्य शून्य एक दो तीन चार पाँच छह सात"
+    assert normalize("098765-43210") == "शून्य नौ आठ सात छह पाँच, चार तीन दो एक शून्य"
+    assert normalize("1800 123 4567") == "एक आठ शून्य शून्य, एक दो तीन, चार पाँच छह सात"
     assert normalize("मोबाइल +91 98765 43210 पर कॉल करें") == (
-        "मोबाइल प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य पर कॉल करें"
+        "मोबाइल प्लस नौ एक, नौ आठ सात छह पाँच, चार तीन दो एक शून्य पर कॉल करें"
     )
     # must not be treated as a phone number
     assert normalize("12,500") == "बारह हज़ार पाँच सौ"
@@ -102,7 +102,7 @@ def test_ranges():
 
 def test_symbols():
     assert normalize("A & B") == "A और B"
-    assert normalize("user@example.com") == "user एट example.com"
+    assert normalize("user@example.com") == "user एट example डॉट कॉम"
     assert normalize("कल+आज") == "कल प्लस आज"
     assert normalize("x = y") == "x बराबर y"
     assert normalize("हाँ/नहीं") == "हाँ या नहीं"

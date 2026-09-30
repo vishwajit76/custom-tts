@@ -31,6 +31,10 @@ _ABBR = {
     "ITR": "आई टी आर", "NEFT": "नेफ़्ट", "RTGS": "आर टी जी एस", "IMPS": "आई एम पी एस", "CIBIL": "सिबिल",
     "OTT": "ओ टी टी", "GPS": "जी पी एस", "USB": "यू एस बी", "FD": "एफ डी", "SIP": "एस आई पी",
     "Wi-Fi": "वाई फ़ाई", "WiFi": "वाई फ़ाई", "A/C": "अकाउंट", "a/c": "अकाउंट", "A/c": "अकाउंट", "रु.": "रुपये", "रु": "रुपये",
+    "CRM": "सी आर एम", "ID": "आई डी", "QR": "क्यू आर", "EPF": "ई पी एफ", "PPF": "पी पी एफ", "NRI": "एन आर आई",
+    "DOB": "डी ओ बी", "NOC": "एन ओ सी", "TV": "टी वी", "LPG": "एल पी जी", "CNG": "सी एन जी", "ML": "एम एल",
+    "VoIP": "वी ओ आई पी", "VOIP": "वी ओ आई पी", "SaaS": "सास", "VPN": "वी पी एन", "LLM": "एल एल एम", "TTS": "टी टी एस",
+    "STT": "एस टी टी", "IoT": "आई ओ टी", "SDK": "एस डी के", "FASTag": "फ़ास्टैग",
     "Sr.": "सीनियर", "Jr.": "जूनियर", "Smt.": "श्रीमती", "Prof.": "प्रोफ़ेसर",
 }
 _DEV = "ऀ-ॿ"
@@ -73,8 +77,12 @@ _FRACTIONS = {(1, 2): "आधा", (1, 4): "एक चौथाई", (3, 4): "�
 _YEAR_RE = re.compile(r"(?i)((?:सन्|सन|साल|year|since|till|until|in|from)\s+)(1[1-9]\d\d)(?!\d)")
 _EN_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
               "november", "december"]
-_EN_DATE_RE = re.compile(
-    r"(?<!\w)(\d{1,2})(?:st|nd|rd|th)?\s+(" + "|".join(_EN_MONTHS) + r")(?:,?\s+(\d{4}))?(?!\w)", re.IGNORECASE
+_MONTH_ALT = "|".join(_EN_MONTHS) + "|" + "|".join(m[:3] for m in _EN_MONTHS if m != "may") + "|sept"
+_EN_DATE_RE = re.compile(  # 15 August 2026, 15th Aug
+    r"(?<!\w)(\d{1,2})(?:st|nd|rd|th)?\s+(" + _MONTH_ALT + r")(?:,?\s+(\d{4}))?(?!\w)", re.IGNORECASE
+)
+_EN_DATE_US_RE = re.compile(  # Aug 15, August 15th 2026 (a bare month name needs the day: "May I" is not a date)
+    r"(?<!\w)(" + _MONTH_ALT + r")\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s+(\d{4}))?(?![\w:.])", re.IGNORECASE
 )
 
 # Units directly after a number (before ABBR so "5 kg" -> "किलो", not "किलोमीटर").
@@ -95,10 +103,25 @@ _UNIT_RE = re.compile(
 _DATE_RE = re.compile(r"\b(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{2,4})\b")
 # Optional trailing am/pm/PM/बजे is consumed so "10:30 बजे" does not double "बजे".
 # 10:30 [pm|बजे], or Indian-style 5.30 only when followed by pm/बजे (else it is a decimal)
-_TIME_RE = re.compile(r"\b(\d{1,2})(?::(\d{2})(?:\s*(?:[ap]\.?m\.?|बजे))?|\.(\d{2})\s*(?:[ap]\.?m\.?|बजे))(?!\d)", re.IGNORECASE)
+_TIME_RE = re.compile(
+    r"\b(\d{1,2})(?::(\d{2})(?:\s*(?:([ap])\.?m\.?(?![A-Za-z])|बजे))?|\.(\d{2})\s*(?:([ap])\.?m\.?(?![A-Za-z])|बजे))(?!\d)(?:\s*बजे)?",
+    re.IGNORECASE)
+_HOUR_AMPM_RE = re.compile(r"(?<![\w:.])(\d{1,2})\s*([ap])\.?m\.?(?![A-Za-z\d])(?:\s*बजे)?", re.IGNORECASE)  # "5 PM"
+_DAY_PERIODS = ("सुबह", "सवेरे", "दोपहर", "शाम", "रात")
 # +91 style prefixes, or 10+ digit sequences separated by spaces/dashes.
 _PHONE_RE = re.compile(r"\+(\d+)(?:[\s\-]+(\d[\d\s\-]*\d))?|\d[\d\s\-]*\d")
 _RANGE_RE = re.compile(rf"({_NUM})\s*[-–]\s*({_NUM})")
+_RUPEE_RANGE_RE = re.compile(rf"₹\s*({_NUM})\s*[-–]\s*₹?\s*({_NUM})(?:\s*(lakh|lac|crore|cr|लाख|करोड़|हज़ार|हजार)(?![a-z]))?", re.IGNORECASE)
+_EMAIL_RE = re.compile(r"(?<![\w.+-])[A-Za-z0-9][A-Za-z0-9._%+-]*@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
+_TLD = r"(?:com|org|net|io|app|info|edu|(?:co|gov|nic|ac|org|net)\.in)"
+_URL_RE = re.compile(
+    r"(?<![\w@.-])(?:(?:https?://)(?:www\.)?|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*(?:/[^\s]*)?"  # scheme or www: any TLD
+    r"|(?<![\w@.-])[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _TLD + r"(?![\w-])(?:/[^\s]*)?"  # bare domain: common TLDs only
+)
+_GLUED_RE = re.compile(  # not ordinals (1ST) or clock times (5PM), which have their own rules
+    r"(?<![\w])(?!\d+(?:ST|ND|RD|TH|[AP]M)(?![\w]))(?=[A-Z0-9]*[A-Z])(?=[A-Z0-9]*\d)[A-Z0-9]{2,5}(?![\w])")  # Q3, MP3, B2B, 2BHK, H264
+_HASH_NUM_RE = re.compile(r"#(?=\d)")
+_NO_DOT_RE = re.compile(r"(?<![\w])[Nn]o\.\s*(?=\d)")  # "order no. 12345"
 _PCT_RE = re.compile(rf"({_NUM})\s*%")
 _ORDINAL_RE = re.compile(r"\b(\d+)(st|nd|rd|th)\b", re.IGNORECASE)
 _AMP_RE = re.compile(r"&")
@@ -152,7 +175,11 @@ def _date(m: re.Match) -> str:
 
 
 def _currency(m: re.Match) -> str:
-    amount = m[1].replace(",", "")
+    return _rupees(m[1])
+
+
+def _rupees(amount: str) -> str:
+    amount = amount.replace(",", "")
     whole, _, paise = amount.partition(".")
     p = int(paise[:2].ljust(2, "0")) if paise else 0
     if int(whole) == 0 and p:
@@ -192,6 +219,13 @@ def _rupee(m: re.Match) -> str:
     return _currency(m)
 
 
+def _rupee_range(m: re.Match) -> str:
+    """₹500-₹1000 -> पाँच सौ से एक हज़ार रुपये; ₹5-10 lakh -> पाँच से दस लाख रुपये."""
+    if m[3]:
+        return f"{_amount(m[1])} से {_scaled(m[2], m[3])} रुपये"
+    return f"{_amount(m[1])} से {_rupees(m[2])}"
+
+
 def _dollar(m: re.Match) -> str:
     return f"{_number(m[1])} डॉलर"
 
@@ -200,9 +234,24 @@ def _scale(m: re.Match) -> str:
     return _scaled(m[1], m[2])
 
 
-def _time(m: re.Match) -> str:
-    h = int(m[1])
-    mi = int(m[2] or m[3])
+def _period(h12: int, pm: bool) -> str:
+    """Hindi day-period word for an explicit am/pm time: 9 am -> सुबह, 2 pm -> दोपहर, 5 pm -> शाम, 9 pm -> रात."""
+    h = h12 % 12
+    if not pm:
+        return "रात" if h < 4 else "सुबह"
+    return "दोपहर" if h < 4 else "शाम" if h < 7 else "रात"
+
+
+def _with_period(m: re.Match, h: int, marker: str | None, words: str) -> str:
+    """Prefix the period word when the source said am/pm, unless it already says सुबह/शाम/... just before."""
+    if not marker:
+        return words
+    if m.string[:m.start()].rstrip().endswith(_DAY_PERIODS):
+        return words
+    return f"{_period(h, marker.lower() == 'p')} {words}"
+
+
+def _clock(h: int, mi: int) -> str:
     hour = num_to_words(h % 12 or 12)
     if mi == 0:
         return f"{hour} बजे"
@@ -219,6 +268,30 @@ def _time(m: re.Match) -> str:
     return f"{hour} बजकर {num_to_words(mi)} मिनट"
 
 
+def _time(m: re.Match) -> str:
+    h = int(m[1])
+    return _with_period(m, h, m[3] or m[5], _clock(h, int(m[2] or m[4])))
+
+
+def _hour_ampm(m: re.Match) -> str:
+    h = int(m[1])
+    if not 1 <= h <= 12:
+        return m[0]
+    return _with_period(m, h, m[2], _clock(h, 0))
+
+
+def _groups(raw: str) -> list[str]:
+    """Digit groups of a phone-like string, for a short pause between groups when read aloud. The writer's own grouping is
+    kept ("1800 123 4567"); an ungrouped 10-digit mobile is read 5+5 ("98765 43210", the Indian habit); other long runs by 4."""
+    parts = [re.sub(r"\D", "", g) for g in re.split(r"[\s\-]+", raw.strip()) if re.search(r"\d", g)]
+    if len(parts) > 1:
+        return parts
+    d = parts[0] if parts else ""
+    if len(d) == 10:
+        return [d[:5], d[5:]]
+    return [d[i:i + 4] for i in range(0, len(d), 4)] if len(d) > 10 else [d]
+
+
 def _phone(m: re.Match) -> str:
     s = m[0]
     if s[0] == "+":
@@ -227,15 +300,14 @@ def _phone(m: re.Match) -> str:
         while i < len(s) and s[i].isdigit():
             cc += s[i]
             i += 1
-        rest = re.sub(r"\D", "", s[i:])
         out = "प्लस " + _digits(cc)
-        if rest:
-            out += " " + _digits(rest)
+        if re.search(r"\d", s[i:]):
+            out += ", " + ", ".join(_digits(g) for g in _groups(s[i:]))
         return out
     digits = re.sub(r"\D", "", s)
     if len(digits) < 10:
         return s
-    return _digits(digits)
+    return ", ".join(_digits(g) for g in _groups(s))
 
 
 def _version(m: re.Match) -> str:
@@ -260,8 +332,17 @@ def _fraction(m: re.Match) -> str:
     return _FRACTIONS.get((n, d)) or f"{num_to_words(n)} बटा {num_to_words(d)}"
 
 
+def _month(name: str) -> str:
+    return _MONTHS[[x[:3] for x in _EN_MONTHS].index(name.lower()[:3])]
+
+
 def _en_date(m: re.Match) -> str:
-    out = f"{num_to_words(int(m[1]))} {_MONTHS[_EN_MONTHS.index(m[2].lower())]}"
+    out = f"{num_to_words(int(m[1]))} {_month(m[2])}"
+    return f"{out} {_year_words(int(m[3]))}" if m[3] else out
+
+
+def _en_date_us(m: re.Match) -> str:
+    out = f"{num_to_words(int(m[2]))} {_month(m[1])}"
     return f"{out} {_year_words(int(m[3]))}" if m[3] else out
 
 
@@ -282,8 +363,69 @@ def _ordinal(m: re.Match) -> str:
     return _ORDINAL_WORDS.get(n, num_to_words(n) + "वाँ")
 
 
+_SYMBOL_WORDS = {"@": "एट", ".": "डॉट", "_": "अंडरस्कोर", "-": "डैश", "+": "प्लस", "/": "स्लैश", "?": "क्वेश्चन मार्क", "=": "बराबर",
+                 "&": "एंड", "#": "हैश", "%": "परसेंट", ":": "कोलन", "~": "टिल्ड"}
+_TLD_WORDS = {"com": "कॉम", "org": "ऑर्ग", "net": "नेट", "in": "इन", "co": "को", "io": "आई ओ", "gov": "गव", "edu": "एडू",
+              "info": "इन्फ़ो", "app": "ऐप", "nic": "एन आई सी", "ac": "ए सी"}
+_EN_DIGITS = {"0": "ज़ीरो", "1": "वन", "2": "टू", "3": "थ्री", "4": "फ़ोर", "5": "फ़ाइव", "6": "सिक्स", "7": "सेवन", "8": "एट", "9": "नाइन"}
+_PUA_OPEN, _PUA_CLOSE, _PUA_BASE = "\ue000", "\ue001", 0xE100
+
+
+def _spoken_web(s: str) -> str:
+    """Email / URL -> words: rahul.sharma92@gmail.com -> राहुल डॉट शर्मा नौ दो एट जीमेल डॉट कॉम. The scheme is dropped, 'www' is
+    spelled, digits are read one by one, known names/brands use their Devanagari spelling, other words stay Latin."""
+    s = re.sub(r"^https?://", "", s)
+    head, sep, rest = re.match(r"([^/?#]*)(.?)(.*)", s, re.S).groups()
+    labels = head.split("@")[-1].split(".")
+    tld = set(labels[-2:] if len(labels) > 2 and labels[-2].lower() in ("co", "gov", "nic", "ac", "org", "net") else labels[-1:])
+    out: list[str] = []
+    for part, is_host in ((head, True), (sep + rest, False)):
+        for tok in re.findall(r"[A-Za-z]+|\d|[^A-Za-z\d]", part):
+            if tok.isdigit():
+                out.append(_UNITS[int(tok)])
+            elif tok.isalpha():
+                low = tok.lower()
+                if low == "www":
+                    out.append("डब्ल्यू डब्ल्यू डब्ल्यू")
+                elif is_host and tok in tld and low in _TLD_WORDS and out:
+                    out.append(_TLD_WORDS[low])
+                else:
+                    out.append(hinglish.brand(tok))
+            else:
+                out.append(_SYMBOL_WORDS.get(tok, ""))
+    return " ".join(w for w in out if w)
+
+
+def _glued(m: re.Match) -> str:
+    """Q3 -> क्यू थ्री, MP3 -> एम पी थ्री, B2B -> बी टू बी, F16 -> एफ सोलह, H264 -> एच टू सिक्स फ़ोर: never a token that mixes
+    scripts. Single digits are said in English as in speech; two digits as a Hindi number; longer runs digit by digit."""
+    out = []
+    for run in re.findall(r"[A-Z]+|\d+", m[0]):
+        if run.isalpha():
+            out += [_LETTERS[c] for c in run]
+        elif len(run) == 2 and run[0] != "0":
+            out.append(num_to_words(int(run)))
+        else:
+            out += [_EN_DIGITS[c] for c in run]
+    return " ".join(out)
+
+
+def _stash_web(text: str, stash: list[str]) -> str:
+    """Emails and URLs are replaced by opaque placeholders while the other rules run (they would mangle dots, digits and
+    Latin words inside), then restored as spoken words at the end."""
+    def put(m: re.Match) -> str:
+        raw = m[0].rstrip(".,;:!?)]}\"'")  # sentence punctuation after a URL is not part of it
+        stash.append(_spoken_web(raw))
+        return _PUA_OPEN + chr(_PUA_BASE + len(stash) - 1) + _PUA_CLOSE + m[0][len(raw):]
+
+    return _URL_RE.sub(put, _EMAIL_RE.sub(put, text))
+
+
 def normalize(text: str) -> str:
     text = text.translate(_DEVANAGARI_DIGITS)
+    text = re.sub(r"[\ue000-\uf8ff]", "", text)  # private-use characters are our placeholder alphabet
+    web: list[str] = []
+    text = _stash_web(text, web)
     # first, while sentences are still all-Latin: Romanized Hindi + Indian names -> Devanagari
     text = hinglish.convert(text)
 
@@ -296,7 +438,9 @@ def normalize(text: str) -> str:
     text = _GEN_RE.sub(lambda m: f"{_GEN_WORDS[m[1]]} जी", text)
     text = re.sub(r"(?<=[A-Za-z])-(?=\d)", " ", text)  # COVID-19 -> COVID 19
     text = _EN_DATE_RE.sub(_en_date, text)
+    text = _EN_DATE_US_RE.sub(_en_date_us, text)
     text = _YEAR_RE.sub(_year, text)
+    text = _RUPEE_RANGE_RE.sub(_rupee_range, text)
 
     # Currency / amount expressions (before ABBR so "Rs 500" reads the amount first).
     text = _RUPEE_RE.sub(_rupee, text)
@@ -311,6 +455,12 @@ def normalize(text: str) -> str:
     # Units directly after a number (before ABBR so "5 kg" -> "किलो", not "किलोमीटर").
     text = _UNIT_RE.sub(_unit, text)
 
+    text = _GLUED_RE.sub(_glued, text)
+    text = _NO_DOT_RE.sub("नंबर ", text)
+    text = _HASH_NUM_RE.sub("नंबर ", text)
+    text = re.sub(r"(?<!\S)#(?!\S)", "हैश", text)
+    text = re.sub(r"(?<!\S)\*(?!\S)", "स्टार", text)
+
     # Abbreviations.
     for k, v in _ABBR.items():
         # \w does not match Devanagari matras (ु ि ं), so name them: "बेंगलुरु" must not contain the abbreviation "रु".
@@ -319,6 +469,7 @@ def normalize(text: str) -> str:
     # Dates, times, phone numbers, ranges (specific patterns before the generic number pass).
     text = _DATE_RE.sub(_date, text)
     text = _TIME_RE.sub(_time, text)
+    text = _HOUR_AMPM_RE.sub(_hour_ampm, text)
     text = _PHONE_RE.sub(_phone, text)
     text = _RANGE_RE.sub(_range, text)
     text = _PCT_RE.sub(lambda m: f"{_amount(m[1])} प्रतिशत", text)
@@ -335,8 +486,11 @@ def normalize(text: str) -> str:
     text = _EQ_RE.sub(" बराबर ", text)
     text = _SLASH_RE.sub(r"\1 या \2", text)
 
-    # Generic numbers last.
+    # Generic numbers last (a Latin word glued to digits, "iPhone15", is split first: no token mixes scripts).
+    text = re.sub(r"(?<=[A-Za-z])(?=\d)", " ", text)
     text = _NUM_RE.sub(lambda m: _number(m[0]), text)
+    text = re.sub(_PUA_OPEN + "(.)" + _PUA_CLOSE, lambda m: web[ord(m[1]) - _PUA_BASE], text)
+    text = re.sub(r"\s+([,.?!।])", r"\1", text)  # no space before punctuation created by the rules above
     return re.sub(r"\s+", " ", text).strip()
 
 

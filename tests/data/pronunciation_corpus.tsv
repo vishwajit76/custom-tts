@@ -40,7 +40,7 @@ pc038	code_switch	मैं आपको call back करूँगी	मैं 
 pc039	code_switch	main aapko call back karungi	मैं आपको call back करूँगी	machine-drafted, needs native review	
 pc040	code_switch	please apna account number bataiye	please अपना account number बताइए	machine-drafted, needs native review	
 pc041	code_switch	aapka payment failed ho gaya hai	आपका payment failed हो गया है	machine-drafted, needs native review	
-pc042	code_switch	WhatsApp par link bhej diya hai	WhatsApp पर link भेज दिया है	machine-drafted, needs native review	
+pc042	code_switch	WhatsApp par link bhej diya hai	व्हाट्सऐप पर link भेज दिया है	machine-drafted, needs native review	brand respelled in Devanagari (docs/voice-system.md, brand names)
 pc043	code_switch	kal ki meeting cancel ho gayi	कल की meeting cancel हो गई	machine-drafted, needs native review	
 pc044	code_switch	aapki EMI kal due hai	आपकी ई एम आई कल due है	machine-drafted, needs native review	
 pc045	code_switch	Hello sir, main Priya bol rahi hoon	Hello sir, मैं प्रिया बोल रही हूँ	machine-drafted, needs native review	
@@ -219,13 +219,13 @@ pc217	times	12:00	बारह बजे	machine-drafted, needs native review
 pc218	times	9:20	नौ बजकर बीस मिनट	machine-drafted, needs native review	
 pc219	times	8:05	आठ बजकर पाँच मिनट	machine-drafted, needs native review	
 pc220	times	10:30 बजे	साढ़े दस बजे	machine-drafted, needs native review	
-pc221	times	10:30pm	साढ़े दस बजे	machine-drafted, needs native review	
+pc221	times	10:30pm	रात साढ़े दस बजे	machine-drafted, needs native review	explicit am/pm keeps its Hindi day period (सुबह/दोपहर/शाम/रात)
 pc222	times	6.30 बजे	साढ़े छह बजे	machine-drafted, needs native review	
 pc223	times	शाम 5:15 बजे	शाम सवा पाँच बजे	machine-drafted, needs native review	
 pc224	times	kal subah 10 baje meeting hai	कल सुबह दस बजे meeting है	machine-drafted, needs native review	
 pc225	times	रात 11:59	रात ग्यारह बजकर उनसठ मिनट	machine-drafted, needs native review	
-pc226	times	3:45 PM	पौने चार बजे	machine-drafted, needs native review	
-pc227	times	7:30 AM	साढ़े सात बजे	machine-drafted, needs native review	
+pc226	times	3:45 PM	दोपहर पौने चार बजे	machine-drafted, needs native review	explicit am/pm keeps its Hindi day period (सुबह/दोपहर/शाम/रात)
+pc227	times	7:30 AM	सुबह साढ़े सात बजे	machine-drafted, needs native review	explicit am/pm keeps its Hindi day period (सुबह/दोपहर/शाम/रात)
 pc228	times	आपका slot 4:30 बजे है	आपका slot साढ़े चार बजे है	machine-drafted, needs native review	
 pc229	decimals	0.5	शून्य दशमलव पाँच	machine-drafted, needs native review	
 pc230	decimals	2.75	दो दशमलव सात पाँच	machine-drafted, needs native review	
@@ -262,17 +262,17 @@ pc260	otp	आपका OTP 000000 है	आपका ओ टी पी शू�
 pc261	otp	verification code 993311	verification code नौ नौ तीन तीन एक एक	machine-drafted, needs native review	
 pc262	otp	aapka OTP 5521 hai, kisi se share na karein	आपका ओ टी पी पाँच पाँच दो एक है, किसी से share न करें	machine-drafted, needs native review	XFAIL-AMBIG: 'na' is न (not) vs ना (yes/isn't it): the lexicon picks ना; needs context
 pc263	otp	4829 आपका OTP है	चार आठ दो नौ आपका ओ टी पी है	machine-drafted, needs native review	
-pc264	phone	+91 98765 43210	प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
-pc265	phone	+91-9876543210	प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
-pc266	phone	9876543210	नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
-pc267	phone	098765-43210	शून्य नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
-pc268	phone	1800 123 4567	एक आठ शून्य शून्य एक दो तीन चार पाँच छह सात	machine-drafted, needs native review	
-pc269	phone	नंबर 9876543210	नंबर नौ आठ सात छह पाँच चार तीन दो एक शून्य	machine-drafted, needs native review	
-pc270	phone	मुझे 9876543210 पर call करें	मुझे नौ आठ सात छह पाँच चार तीन दो एक शून्य पर call करें	machine-drafted, needs native review	
-pc271	phone	Aadhaar 1234 5678 9012	Aadhaar एक दो तीन चार पाँच छह सात आठ नौ शून्य एक दो	machine-drafted, needs native review	
-pc272	phone	मोबाइल +91 98765 43210 पर कॉल करें	मोबाइल प्लस नौ एक नौ आठ सात छह पाँच चार तीन दो एक शून्य पर कॉल करें	machine-drafted, needs native review	
-pc273	phone	+1 415 555 0132	प्लस एक चार एक पाँच पाँच पाँच पाँच शून्य एक तीन दो	machine-drafted, needs native review	
-pc274	phone	1800-267-6788	एक आठ शून्य शून्य दो छह सात छह सात आठ आठ	machine-drafted, needs native review	
+pc264	phone	+91 98765 43210	प्लस नौ एक, नौ आठ सात छह पाँच, चार तीन दो एक शून्य	machine-drafted, needs native review	comma = short pause between digit groups
+pc265	phone	+91-9876543210	प्लस नौ एक, नौ आठ सात छह पाँच, चार तीन दो एक शून्य	machine-drafted, needs native review	comma = short pause between digit groups
+pc266	phone	9876543210	नौ आठ सात छह पाँच, चार तीन दो एक शून्य	machine-drafted, needs native review	comma = short pause between digit groups
+pc267	phone	098765-43210	शून्य नौ आठ सात छह पाँच, चार तीन दो एक शून्य	machine-drafted, needs native review	comma = short pause between digit groups
+pc268	phone	1800 123 4567	एक आठ शून्य शून्य, एक दो तीन, चार पाँच छह सात	machine-drafted, needs native review	comma = short pause between digit groups
+pc269	phone	नंबर 9876543210	नंबर नौ आठ सात छह पाँच, चार तीन दो एक शून्य	machine-drafted, needs native review	comma = short pause between digit groups
+pc270	phone	मुझे 9876543210 पर call करें	मुझे नौ आठ सात छह पाँच, चार तीन दो एक शून्य पर call करें	machine-drafted, needs native review	comma = short pause between digit groups
+pc271	phone	Aadhaar 1234 5678 9012	Aadhaar एक दो तीन चार, पाँच छह सात आठ, नौ शून्य एक दो	machine-drafted, needs native review	comma = short pause between digit groups
+pc272	phone	मोबाइल +91 98765 43210 पर कॉल करें	मोबाइल प्लस नौ एक, नौ आठ सात छह पाँच, चार तीन दो एक शून्य पर कॉल करें	machine-drafted, needs native review	comma = short pause between digit groups
+pc273	phone	+1 415 555 0132	प्लस एक, चार एक पाँच, पाँच पाँच पाँच, शून्य एक तीन दो	machine-drafted, needs native review	comma = short pause between digit groups
+pc274	phone	1800-267-6788	एक आठ शून्य शून्य, दो छह सात, छह सात आठ आठ	machine-drafted, needs native review	comma = short pause between digit groups
 pc275	phone	12,500	बारह हज़ार पाँच सौ	machine-drafted, needs native review	comma-grouped number must not become a phone number
 pc276	abbreviations	Dr. Sharma	डॉक्टर शर्मा	machine-drafted, needs native review	
 pc277	abbreviations	Ltd.	लिमिटेड	machine-drafted, needs native review	
@@ -318,10 +318,68 @@ pc316	technical	A & B	A और B	machine-drafted, needs native review
 pc317	technical	x = y	x बराबर y	machine-drafted, needs native review	
 pc318	technical	कल+आज	कल प्लस आज	machine-drafted, needs native review	
 pc319	technical	हाँ/नहीं	हाँ या नहीं	machine-drafted, needs native review	
-pc320	technical	user@example.com	user एट example.com	machine-drafted, needs native review	
-pc321	technical	https://example.com/pay	example डॉट कॉम स्लैश pay	machine-drafted, needs native review	XFAIL: URL dot/slash reading not implemented
+pc320	technical	user@example.com	user एट example डॉट कॉम	machine-drafted, needs native review	
+pc321	technical	https://example.com/pay	example डॉट कॉम स्लैश pay	machine-drafted, needs native review	URL: scheme dropped, dot/slash spoken (was XFAIL)
 pc322	technical	v2.0	वी टू पॉइंट ज़ीरो	machine-drafted, needs native review	XFAIL: version strings not implemented
 pc323	technical	ISO 9001	आई एस ओ नौ शून्य शून्य एक	machine-drafted, needs native review	XFAIL: acronym+id reading not implemented
 pc324	technical	API key	ए पी आई key	machine-drafted, needs native review	
 pc325	technical	5 mins	पाँच मिनट	machine-drafted, needs native review	
 pc326	technical	2 hrs	दो घंटे	machine-drafted, needs native review	
+pc327	brands	aapka WhatsApp number 9876543210 hai	आपका व्हाट्सऐप number नौ आठ सात छह पाँच, चार तीन दो एक शून्य है	machine-drafted, needs native review	Devanagari respelling; brand read like the name, not letter by letter
+pc328	brands	Google Pay se payment kar dijiye	गूगल Pay से payment कर दीजिए	machine-drafted, needs native review	Pay/payment are ordinary English and stay Latin
+pc329	brands	Amazon aur Flipkart par order kijiye	अमेज़न और फ्लिपकार्ट पर order कीजिए	machine-drafted, needs native review	
+pc330	brands	YouTube par video dekhiye	यूट्यूब पर video देखिए	machine-drafted, needs native review	
+pc331	brands	Paytm ya PhonePe use karein	पेटीएम या फ़ोनपे use करें	machine-drafted, needs native review	use before a light verb is the English verb, not उसे
+pc332	brands	Zomato aur Swiggy se khana mangwaya	ज़ोमैटो और स्विगी से खाना मँगवाया	machine-drafted, needs native review	mangwaya was left in Latin (lexicon gap)
+pc333	brands	Instagram par follow kijiye	इंस्टाग्राम पर follow कीजिए	machine-drafted, needs native review	
+pc334	brands	Airtel ya Jio ka recharge kijiye	एयरटेल या जियो का recharge कीजिए	machine-drafted, needs native review	
+pc335	brands	Tata, Infosys aur Reliance ke shares	टाटा, इंफ़ोसिस और रिलायंस के shares	machine-drafted, needs native review	
+pc336	brands	Xiaomi ya Samsung ka phone chahiye	शाओमी या सैमसंग का phone चाहिए	machine-drafted, needs native review	brands do not dilute the Romanized-Hindi detection (ya/ka/chahiye still convert)
+pc337	brands	PhonePe ya GPay se pay kijiye	फ़ोनपे या जीपे से pay कीजिए	machine-drafted, needs native review	
+pc338	brands	Gmail id bhejiye	जीमेल id भेजिए	machine-drafted, needs native review	
+pc339	brands	IRCTC se ticket book kijiye	आई आर सी टी सी से ticket book कीजिए	machine-drafted, needs native review	spelled as letters
+pc340	acronyms	AI se baat kijiye	ए आई से बात कीजिए	machine-drafted, needs native review	uppercase AI is the acronym
+pc341	acronyms	mera ai hai	मेरा ए आई है	machine-drafted, needs native review	lowercase ai in a Romanized-Hindi sentence is a lazily typed AI, not a Hindi word
+pc342	acronyms	The AI is ready	The ए आई is ready	machine-drafted, needs native review	English sentence: ambiguous the/is must not become थे/इस (regression)
+pc343	acronyms	AI ka matlab artificial intelligence	ए आई का मतलब artificial intelligence	machine-drafted, needs native review	
+pc344	acronyms	CRM mein entry ho gayi	सी आर एम में entry हो गई	machine-drafted, needs native review	
+pc345	acronyms	SIP aur VoIP call kijiye	एस आई पी और वी ओ आई पी call कीजिए	machine-drafted, needs native review	VoIP is spelled letter by letter
+pc346	acronyms	API key bhejiye	ए पी आई key भेजिए	machine-drafted, needs native review	
+pc347	acronyms	UPI ID rahul@okaxis par bhejiye	यू पी आई आई डी राहुल एट okaxis par भेजिए	machine-drafted, needs native review	UPI handle without a dot keeps the plain @ reading
+pc348	acronyms	OTP 482913 kisi ko mat batana	ओ टी पी चार आठ दो नौ एक तीन किसी को मत बताना	machine-drafted, needs native review	batana was left in Latin (lexicon gap)
+pc349	acronyms	Hi, main Amit bol raha hoon	Hi, मैं अमित बोल रहा हूँ	machine-drafted, needs native review	capital Hi is the greeting, not the Hindi particle ही
+pc350	acronyms	EPF aur PPF ka form	ई पी एफ और पी पी एफ का form	machine-drafted, needs native review	
+pc351	glued_alnum	TCS ka Q3 result	TCS का क्यू थ्री result	machine-drafted, needs native review	was क्यूतीन-style glue: Qतीन (mixed-script token)
+pc352	glued_alnum	MP3 file bhejiye	एम पी थ्री file भेजिए	machine-drafted, needs native review	was MPतीन
+pc353	glued_alnum	B2B sales team	बी टू बी sales team	machine-drafted, needs native review	was BदोB
+pc354	glued_alnum	2BHK flat chahiye	टू बी एच के flat चाहिए	machine-drafted, needs native review	was दोBHK
+pc355	glued_alnum	iPhone15 Pro	iPhone पंद्रह Pro	machine-drafted, needs native review	Latin word glued to digits is split
+pc356	glued_alnum	COVID-19 ke baad	COVID उन्नीस के बाद	machine-drafted, needs native review	
+pc357	urls_emails	mail karein support@paytm.com par	mail करें support एट पेटीएम डॉट कॉम पर	machine-drafted, needs native review	scheme-less email: local part, @, domain spoken; brand domain respelled
+pc358	urls_emails	mera email rahul.sharma92@gmail.com hai	मेरा email राहुल डॉट शर्मा नौ दो एट जीमेल डॉट कॉम है	machine-drafted, needs native review	digits read one by one; name and brand respelled
+pc359	urls_emails	visit www.flipkart.com/offers	visit डब्ल्यू डब्ल्यू डब्ल्यू डॉट फ्लिपकार्ट डॉट कॉम स्लैश offers	machine-drafted, needs native review	www spelled, dots and slash spoken
+pc360	urls_emails	https://www.google.com/search?q=hindi	डब्ल्यू डब्ल्यू डब्ल्यू डॉट गूगल डॉट कॉम स्लैश search क्वेश्चन मार्क q बराबर hindi	machine-drafted, needs native review	scheme dropped
+pc361	urls_emails	example.com/pay ka link	example डॉट कॉम स्लैश pay का link	machine-drafted, needs native review	bare domain with a common TLD
+pc362	urls_emails	a.b@c.co.in	a डॉट b एट c डॉट को डॉट इन	machine-drafted, needs native review	two-label TLD
+pc363	urls_emails	Ok.In the morning	Ok.In the morning	machine-drafted, needs native review	bare domain with the .in TLD is NOT treated as a URL (sentence typo)
+pc364	times	kal 5 PM baje meeting hai	कल शाम पाँच बजे meeting है	machine-drafted, needs native review	PM keeps its period; the duplicate बजे is consumed
+pc365	times	9 AM to 5 PM	सुबह नौ बजे to शाम पाँच बजे	machine-drafted, needs native review	'to' stays English
+pc366	times	shaam 5.45 pm	शाम पौने छह बजे	machine-drafted, needs native review	already has a day-period word: not doubled
+pc367	times	12 AM ko	रात बारह बजे को	machine-drafted, needs native review	midnight is रात
+pc368	dates	15 Aug 2026 ko	पंद्रह अगस्त दो हज़ार छब्बीस को	machine-drafted, needs native review	abbreviated month (was left in Latin)
+pc369	dates	Aug 15 ko aana	पंद्रह अगस्त को आना	machine-drafted, needs native review	month-first
+pc370	dates	1st Jan se	एक जनवरी से	machine-drafted, needs native review	
+pc371	dates	May I help you?	May I help you?	machine-drafted, needs native review	May without a day number is the English word
+pc372	rupees	₹500-₹1000 ke beech	पाँच सौ से एक हज़ार रुपये के beech	machine-drafted, needs native review	was पाँच सौ रुपये-एक हज़ार रुपये (hyphen unread)
+pc373	rupees	₹5-10 lakh ka budget	पाँच से दस लाख रुपये का budget	machine-drafted, needs native review	
+pc374	lakh_crore	loan 5 lakh 50 hazaar ka	loan पाँच लाख पचास हज़ार का	machine-drafted, needs native review	was 'लख' (shape heuristic transliterated lakh)
+pc375	lakh_crore	10 lakh 25 hazar	दस लाख पच्चीस हज़ार	machine-drafted, needs native review	
+pc376	roman_hindi	saadhe teen baje	साढ़े तीन बजे	machine-drafted, needs native review	was साधे
+pc377	roman_hindi	aap kya bolna chahte hain	आप क्या बोलना चाहते हैं	machine-drafted, needs native review	bolna lexicon gap
+pc378	roman_hindi	abhi vapas call karunga	अभी वापस call करूँगा	machine-drafted, needs native review	
+pc379	symbols	ticket #4521	ticket नंबर चार हज़ार पाँच सौ इक्कीस	machine-drafted, needs native review	# before digits = नंबर
+pc380	symbols	order no. 12345 ka status	order नंबर बारह हज़ार तीन सौ पैंतालीस का status	machine-drafted, needs native review	lowercase 'no.' before digits = नंबर
+pc381	symbols	press * for menu	press स्टार for menu	machine-drafted, needs native review	isolated * = स्टार
+pc382	phone	call 98765-43210 par	call नौ आठ सात छह पाँच, चार तीन दो एक शून्य par	machine-drafted, needs native review	ungrouped/grouped mobile: 5+5 with a pause
+pc383	phone	Ph: 022-2345 6789	Ph: शून्य दो दो, दो तीन चार पाँच, छह सात आठ नौ	machine-drafted, needs native review	landline keeps the writer's groups
+pc384	phone	PNR 2345678901	PNR दो तीन चार पाँच छह, सात आठ नौ शून्य एक	machine-drafted, needs native review	10 digits: 5+5
