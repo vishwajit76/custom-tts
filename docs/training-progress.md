@@ -36,7 +36,11 @@ Voice files for every milestone (private): https://huggingface.co/vishwajit76/cu
 | 2026-09-30 02:21 / 07:51 | 345000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.132 / 0.077 | 0.070 | - | Samples: docs/samples/step_345000. |
 | 2026-09-30 03:31 / 09:01 | 340000 | Kaggle v5 (re-trained) | 0.000 / 0.105 / 0.077 | 0.061 | train_mel 0.430; loss_g 33.69 (v5 heartbeat 04:19Z at trainer step 343440) | Re-uploaded, overwrote the 01:13Z v4 copy. Samples in docs/samples/step_340000 are this one. |
 | 2026-09-30 03:30 / 09:00 | 350000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.079 / 0.192 | 0.090 | - | Latest recorded milestone. s3 worse than earlier rows (0.192), within the noise caveat. Samples: docs/samples/step_350000. |
+| 2026-09-30 04:39 / 10:09 | 355000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.158 / 0.077 | 0.078 | - | v4's last milestone. Samples: docs/samples/step_355000. |
+| 2026-09-30 04:41 / 10:11 | 345000 | Kaggle v5 (re-trained) | 0.091 / 0.079 / 0.115 | 0.095 | - | Re-uploaded, overwrote the 02:21Z v4 copy. Samples in docs/samples/step_345000 are this one. |
 
+
+Note: v4 finished at 05:10 UTC / 10:40 IST; its final checkpoint (global_step 357212) is preserved as `runs/hi_f/v4_final_step357212.ckpt` on HF.
 Open items: no listening test; per-sentence CER for the first three rows and losses for most rows were not recorded; run one
 Kaggle session at a time from now on (runbook section 9).
 
