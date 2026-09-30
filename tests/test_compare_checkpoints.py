@@ -85,3 +85,14 @@ def test_milestone_dirs_lists_legacy_and_experiment_prefixes():
              f"experiments/hi_f-v6-0930T0731Z/samples/step_360000/{onnx}",  # not a milestone folder
              "experiments/hi_f-v6-0930T0731Z/checkpoints/last.ckpt", "README.md"]
     assert milestone_dirs(files) == ["experiments/hi_f-v6-0930T0731Z/milestones/step_360000", "milestones/step_355000"]
+
+
+def test_build_entry_stores_per_sentence_matrices_for_later_pairing():
+    rng = np.random.default_rng(6)
+    M = {k: rng.uniform(0.05, 0.2, (6, 3)) for k in ("cer", "cer_legacy", "per", "utmos", "spk_neural", "spk_mfcc", "cer_8k", "cer_16k")}
+    raw = {"M": M, "hyps": ["h"] * 6, "refs": ["r"] * 6, "durs": [1.0] * 6, "loo": 0.9}
+    e = cc.build_entry({"path": "p", "global_step": 1, "onnx_sha256": "ab" * 32}, raw, {}, 3, "small", "small", "n", 12, 200, 0)
+    e = json.loads(json.dumps(e))
+    assert set(e["matrices"]) == set(M) and np.asarray(e["matrices"]["cer"]).shape == (6, 3)
+    assert np.allclose(e["matrices"]["cer"], M["cer"], atol=1e-5)
+    assert cc.paired_delta(e["matrices"]["cer"], e["matrices"]["per"])["ci95"]

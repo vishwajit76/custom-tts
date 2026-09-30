@@ -283,6 +283,7 @@ def build_entry(meta: dict, raw: dict, params, repeats, asr, asr_name, utmos_not
                                                       **(summarize(M["spk_mfcc"], b, seed) if np.any(M["spk_mfcc"]) else {"skipped": "no mfcc"})}}
     e["telephony"] = {"8k": {"label": "8 kHz G.711 mu-law round trip (synthetic channel)", **summarize(M["cer_8k"], b, seed)} if np.any(M["cer_8k"]) else "skipped",
                       "16k": {"label": "16 kHz 8-bit mu-law companding round trip (synthetic channel)", **summarize(M["cer_16k"], b, seed)} if np.any(M["cer_16k"]) else "skipped"}
+    e["matrices"] = {k: np.round(M[k], 5).tolist() for k in M}  # (n_sentences x repeats) per metric; enables pairwise CIs between stored runs
     e["ci"] = {"method": "two-level percentile bootstrap (sentences, then repeats), 95%", "resamples": b, "seed": seed}
     e["per_sentence_worst_cer"] = [{"i": int(i) + 1, "cer": round(float(M["cer"][i].mean()), 3), "per": round(float(M["per"][i].mean()), 3), "ref": raw["refs"][i], "hyp_repeat0": raw["hyps"][i]}
                                    for i in np.argsort(-M["cer"].mean(axis=1))[:5]]
