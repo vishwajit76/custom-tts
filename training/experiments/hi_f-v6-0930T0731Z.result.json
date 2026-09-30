@@ -1,0 +1,18 @@
+{
+  "experiment_id": "hi_f-v6-0930T0731Z",
+  "status": "COMPLETE",
+  "exit_code": 0,
+  "start_step": 357212,
+  "final_step": 402504,
+  "final_epoch": 3498,
+  "final_lr": 5e-06,
+  "final_checkpoint": "experiments/hi_f-v6-0930T0731Z/checkpoints/final_step402504.ckpt",
+  "final_sha256": "6c779a23d8058adf54794a8819e014f0e3450a8aed89512cccb8b05dde136bb5",
+  "readback_sha256_ok": true,
+  "finished_utc": "2026-09-30T18:32:52Z",
+  "finished_ist": "2026-10-01T00:02:52+05:30",
+  "batch_size": 24,
+  "oom_retries": 0,
+  "val_mel_best": 0.403,
+  "note": "LR anneal 1e-4 -> 5e-6 completed. Kaggle weekly GPU quota exhausted after this run; no relaunch without user approval."
+}
