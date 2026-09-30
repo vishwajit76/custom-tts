@@ -105,16 +105,22 @@ def _api():
     return HfApi()
 
 
+def milestone_dirs(files) -> list[str]:
+    """Every milestone folder (legacy milestones/step_N and experiments/<id>/milestones/step_N) in a repo file list."""
+    return sorted({f.rsplit("/", 1)[0] for f in files if f.endswith("/hi_IN-custom-medium.onnx") and (f.startswith("milestones/") or "/milestones/" in f)})
+
+
 def list_milestones() -> list[dict]:
     api = _api()
-    files = api.list_repo_files(REPO)
-    dirs = sorted({f.rsplit("/", 1)[0] for f in files if f.endswith("/hi_IN-custom-medium.onnx") and (f.startswith("milestones/") or "/milestones/" in f)})
+    dirs = milestone_dirs(api.list_repo_files(REPO))
     out = []
     for d in dirs:
         i = api.get_paths_info(REPO, [f"{d}/hi_IN-custom-medium.onnx"], expand=True)[0]
         m = re.search(r"step_(\d+)", d)
         out.append({"path": d, "step": int(m.group(1)) if m else None, "experiment_id": d.split("/")[1] if d.startswith("experiments/") else "unknown (legacy path, shared by v4/v5)",
                     "uploaded_utc": i.last_commit.date.strftime("%Y-%m-%dT%H:%M:%SZ"), "commit_title": i.last_commit.title, "onnx_sha256": i.lfs.sha256})
+    # chronological, newest LAST: path order put experiments/* above legacy milestones/*, so the newest row was easy to miss (first line, above the legacy block)
+    out.sort(key=lambda m: (m["uploaded_utc"], m["path"]))
     return out
 
 

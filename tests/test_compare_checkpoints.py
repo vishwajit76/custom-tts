@@ -74,3 +74,14 @@ def test_eval_set_info_reports_overlap_check():
     assert info["n"] == 50 and len(info["sha256"]) == 64
     ov = info["overlap_with_training_and_test_text"]
     assert isinstance(ov, str) or ov["n_overlapping"] == 0
+
+
+def test_milestone_dirs_lists_legacy_and_experiment_prefixes():
+    from bench.compare_checkpoints import milestone_dirs
+    onnx = "hi_IN-custom-medium.onnx"
+    files = [f"milestones/step_355000/{onnx}", f"milestones/step_355000/{onnx}.json",
+             f"experiments/hi_f-v6-0930T0731Z/milestones/step_360000/{onnx}",
+             "experiments/hi_f-v6-0930T0731Z/milestones/step_360000/session.json",
+             f"experiments/hi_f-v6-0930T0731Z/samples/step_360000/{onnx}",  # not a milestone folder
+             "experiments/hi_f-v6-0930T0731Z/checkpoints/last.ckpt", "README.md"]
+    assert milestone_dirs(files) == ["experiments/hi_f-v6-0930T0731Z/milestones/step_360000", "milestones/step_355000"]
