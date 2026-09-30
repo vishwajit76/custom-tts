@@ -34,7 +34,7 @@ UTMOS/CER, `bench/quality.py`, `bench/eval.py`). A human listening test has not 
 | `samples/step_N/` | 3 test wavs per custom-voice milestone | you want to listen |
 
 Other project docs: [../README.md](../README.md), [../training/kaggle/README.md](../training/kaggle/README.md), `.env.example`.
-Another document on voice-quality research is being written separately and will be added to this index when it lands.
+| [voice-quality-research.md](voice-quality-research.md) | Naturalness levers, evaluation protocol, stopping rule, alternative models | before changing training or deciding when to stop |
 
 ## Maintenance rules
 
