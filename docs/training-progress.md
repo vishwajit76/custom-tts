@@ -65,6 +65,13 @@ int8 (`small` comparable across rows; `large-v3` is the stronger one). Raw rows:
 | 2026-09-30 04:25 / 09:55 | 340000 | v5 (corrected, same folder state as above) | large-v3 | 0.050 / 0.020 / 0.076 | 0.056 | 3.84 (2.49) | 0.906 |
 | 2026-09-30 04:35 / 10:05 | 345000 | v4 (older concurrent session) | large-v3 | 0.047 / 0.024 / 0.080 | 0.062 | 3.89 (2.97) | 0.911 |
 
+**CER metric fix (2026-09-30).** All CER values in this file, the 3-sentence table and every row of `bench/results/milestones.jsonl` up to now are **consonant-only** CERs: `training.asr._clean`
+removed punctuation with the regex `[^\w]`, and Python's `\w` does not match Devanagari vowel signs or virama, so they were deleted from reference and hypothesis alike (`cer('की', 'कु')` was 0.0).
+`cer` now keeps them (`tests/test_cer_marks.py`); the old definition survives as `cer(..., keep_marks=False)` / the `cer_legacy_skeleton` field. Re-scoring the stored first-repeat transcripts of the
+four 50-sentence rows: large-v3 0.0497 -> 0.0507 (340000) and 0.0470 -> 0.0492 (345000), small 0.1237 -> 0.1571 and 0.1429 -> 0.1703. Comparisons inside the old rows remain valid (same definition), new rows
+(`bench.compare_checkpoints`, new `milestone_eval` rows) are not comparable to them without the legacy column. PER (espeak phonemes) always included vowels and is unaffected. The dataset-prep
+`--asr-validate` threshold (0.35) now sees slightly higher CERs and is therefore slightly stricter; the 0.35 was not re-tuned.
+
 Reading the numbers:
 - Small ASR sits at CER about 0.13 on this set, much of it Whisper's own errors; large-v3 gives about 0.05. The old 3-sentence CER (0.07) is not comparable.
 - CER max about 0.70 is one sentence (#38): large-v3 writes "online order / delivery / upgrade" in Latin script. PER for it is 0.11. Sentence #30 (year "उन्नीस सौ अठासी") is
@@ -72,6 +79,9 @@ Reading the numbers:
 - UTMOS min 2.4-3.0 identifies the weakest sentences per checkpoint (details JSON), useful for listening. UTMOS is English-trained: relative use only.
 - Speaker similarity 0.91 vs 0.92 real-vs-real ceiling: the voice is close to the dataset speaker; it will not show naturalness.
 - No listening test yet: none of these numbers say the voice sounds natural.
+
+**Repeat/CI comparison (2026-09-30, `bench.compare_checkpoints`, 3 repeats, small ASR, vowel-aware CER):** 340000 / 350000 / 355000 (all v5 uploads): CER 0.166 / 0.170 / 0.159, PER 0.178 / 0.177 / 0.173 (all CIs about +-0.02, paired deltas include 0),
+UTMOS predicted MOS 3.75 / 3.80 / 3.87 (355000 vs 340000: +0.12, CI [0.04, 0.20]), speaker embedding cosine 0.915 / 0.914 / 0.922. Details and caveats: benchmarks.md section 10.
 
 ### Inference-parameter grid (milestone 350000, small ASR, 15 sentences x 2 repeats)
 

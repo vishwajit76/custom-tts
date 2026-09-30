@@ -1,0 +1,765 @@
+{
+ "schema": "compare_checkpoints/v1",
+ "created_utc": "2026-09-30T07:05:33Z",
+ "eval_set": {
+  "file": "hi_eval_50.txt",
+  "sha256": "661fd8e5c925dfcd9dd95519cb7cb40fb9d9b7518d71264f84c440f80c08c6e1",
+  "n": 50,
+  "overlap_with_training_and_test_text": {
+   "criterion": "exact sentence or any shared 5-word run",
+   "n_overlapping": 0
+  }
+ },
+ "asr": "small",
+ "inference_params": {
+  "noise_scale": 0.667,
+  "noise_w": 0.8,
+  "length_scale": 1.0
+ },
+ "repeats": 3,
+ "n_reference_clips": 12,
+ "results": [
+  {
+   "checkpoint": {
+    "hf_path": "milestones/step_340000",
+    "global_step": 340000,
+    "onnx_sha256": "dcccfb138e109ac2f40c82c364989d449bd0b29c62cc83c597a63a0834726769",
+    "hf_commit": {
+     "date_utc": "2026-09-30T03:31:33Z",
+     "title": "milestone 340000",
+     "id": "c98dbc0855690cdda06a1e79ab626d810b2dd9be"
+    }
+   },
+   "experiment_id": "unknown (legacy milestones/step_N: v4 and v5 wrote the same names; see hf_commit.date_utc)",
+   "git_sha": "unknown",
+   "session": "unknown",
+   "dataset": {
+    "name": "IndicTTS Hindi female (data/hi_f), private HF repo vishwajit76/custom-tts-hindi-train",
+    "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3"
+   },
+   "inference_params": {
+    "noise_scale": 0.667,
+    "noise_w": 0.8,
+    "length_scale": 1.0
+   },
+   "repeats": 3,
+   "asr": "small",
+   "cer": {
+    "mean": 0.1664,
+    "ci95": [
+     0.1481,
+     0.1871
+    ],
+    "repeat_means": [
+     0.1737,
+     0.1649,
+     0.1605
+    ],
+    "repeat_std": 0.0067,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1571,
+    "p90_sentence": 0.2346
+   },
+   "per": {
+    "mean": 0.1778,
+    "ci95": [
+     0.157,
+     0.2011
+    ],
+    "repeat_means": [
+     0.1799,
+     0.1768,
+     0.1765
+    ],
+    "repeat_std": 0.0019,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1786,
+    "p90_sentence": 0.2593
+   },
+   "cer_legacy_skeleton": {
+    "label": "CER on consonants only (vowel signs dropped): the metric of every row before 2026-09-30, kept only to compare with them",
+    "mean": 0.1446,
+    "ci95": [
+     0.125,
+     0.1647
+    ],
+    "repeat_means": [
+     0.1503,
+     0.1371,
+     0.1464
+    ],
+    "repeat_std": 0.0068,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1502,
+    "p90_sentence": 0.2276
+   },
+   "utmos": {
+    "mean": 3.7518,
+    "ci95": [
+     3.648,
+     3.8527
+    ],
+    "repeat_means": [
+     3.7031,
+     3.7638,
+     3.7887
+    ],
+    "repeat_std": 0.044,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 3.8035,
+    "p90_sentence": 4.0528,
+    "label": "UTMOS22-strong PREDICTED MOS (English-trained); relative ranking only",
+    "backend": "utmos22_strong via TigreGotico/utmos-onnx (onnxruntime)"
+   },
+   "speaker_similarity": {
+    "neural": {
+     "label": "Resemblyzer GE2E d-vector cosine to centroid of real held-out clips; embedding similarity, NOT speaker verification, NOT naturalness",
+     "n_refs": 12,
+     "real_vs_real_loo": 0.9176,
+     "mean": 0.915,
+     "ci95": [
+      0.9089,
+      0.9212
+     ],
+     "repeat_means": [
+      0.9173,
+      0.9133,
+      0.9144
+     ],
+     "repeat_std": 0.0021,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.9187,
+     "p90_sentence": 0.9379
+    },
+    "mfcc": {
+     "label": "handcrafted MFCC-statistics cosine (app.services.speaker_encoder mfcc backend); saturates near 0.99 for any same-language speech, weak drift check only",
+     "mean": 0.9916,
+     "ci95": [
+      0.9902,
+      0.9929
+     ],
+     "repeat_means": [
+      0.9915,
+      0.9918,
+      0.9916
+     ],
+     "repeat_std": 0.0001,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.9924,
+     "p90_sentence": 0.9962
+    }
+   },
+   "telephony": {
+    "8k": {
+     "label": "8 kHz G.711 mu-law round trip (synthetic channel)",
+     "mean": 0.1673,
+     "ci95": [
+      0.1458,
+      0.1907
+     ],
+     "repeat_means": [
+      0.1734,
+      0.1727,
+      0.1557
+     ],
+     "repeat_std": 0.0101,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1552,
+     "p90_sentence": 0.2887
+    },
+    "16k": {
+     "label": "16 kHz 8-bit mu-law companding round trip (synthetic channel)",
+     "mean": 0.1674,
+     "ci95": [
+      0.1473,
+      0.1893
+     ],
+     "repeat_means": [
+      0.1661,
+      0.1696,
+      0.1665
+     ],
+     "repeat_std": 0.0019,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1523,
+     "p90_sentence": 0.278
+    }
+   },
+   "ci": {
+    "method": "two-level percentile bootstrap (sentences, then repeats), 95%",
+    "resamples": 2000,
+    "seed": 0
+   },
+   "per_sentence_worst_cer": [
+    {
+     "i": 37,
+     "cer": 0.308,
+     "per": 0.267,
+     "ref": "कृपया अपना पासवर्ड किसी के साथ शेयर मत कीजिए, वरना आपका अकाउंट ख़तरे में पड़ सकता है।",
+     "hyp_repeat0": "त्रिप्द्या अपना पास्वर्द किसी किसाच शेल मत कीजी, वरना अपका अकाून्त खत्रे में पर सकता है।"
+    },
+    {
+     "i": 43,
+     "cer": 0.287,
+     "per": 0.242,
+     "ref": "बैंक की वेबसाइट पर लॉग इन करने के बाद आप अपना बैलेंस और ट्रांज़ैक्शन हिस्ट्री देख सकते हैं।",
+     "hyp_repeat0": "बैंग की विर्साइत पर लोगिन करने किबाद, आप आप अपना बेलन्स और ट्रान्जाएक्षन लिए देख सकते है."
+    },
+    {
+     "i": 44,
+     "cer": 0.285,
+     "per": 0.243,
+     "ref": "मेरा लैपटॉप बहुत धीरे चल रहा है, शायद उसमें नया सॉफ़्टवेयर इंस्टॉल करना पड़ेगा।",
+     "hyp_repeat0": "मेरा laptop बहुत दीरी चल रहा है शाएद उस में नया softwear इंस्टोर करना पडिगा"
+    },
+    {
+     "i": 34,
+     "cer": 0.275,
+     "per": 0.282,
+     "ref": "आपका अपॉइंटमेंट सोमवार, बाईस सितंबर को दोपहर दो बजे का तय हुआ है।",
+     "hyp_repeat0": "अपका अपाइट्मिद सोमवार बाय सितमवर को दो पहर दो बजे काते हूँआ है"
+    },
+    {
+     "i": 46,
+     "cer": 0.261,
+     "per": 0.271,
+     "ref": "आप इतनी देर से कहाँ थे, और फ़ोन क्यों बंद कर रखा था?",
+     "hyp_repeat0": "आप इत्नी देर से कहाते और फोन की उबंद कर रखा था"
+    }
+   ]
+  },
+  {
+   "checkpoint": {
+    "hf_path": "milestones/step_350000",
+    "global_step": 350000,
+    "onnx_sha256": "0fe658476641adbcc5d33a5b2d49ca0e2a9dc955713116650da1216426be739a",
+    "hf_commit": {
+     "date_utc": "2026-09-30T05:50:41Z",
+     "title": "milestone 350000",
+     "id": "8703d0f07451bce2f3a35c974b4a973ee219c075"
+    }
+   },
+   "experiment_id": "unknown (legacy milestones/step_N: v4 and v5 wrote the same names; see hf_commit.date_utc)",
+   "git_sha": "unknown",
+   "session": "unknown",
+   "dataset": {
+    "name": "IndicTTS Hindi female (data/hi_f), private HF repo vishwajit76/custom-tts-hindi-train",
+    "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3"
+   },
+   "inference_params": {
+    "noise_scale": 0.667,
+    "noise_w": 0.8,
+    "length_scale": 1.0
+   },
+   "repeats": 3,
+   "asr": "small",
+   "cer": {
+    "mean": 0.1701,
+    "ci95": [
+     0.1484,
+     0.194
+    ],
+    "repeat_means": [
+     0.1642,
+     0.1663,
+     0.1799
+    ],
+    "repeat_std": 0.0085,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.153,
+    "p90_sentence": 0.27
+   },
+   "per": {
+    "mean": 0.177,
+    "ci95": [
+     0.1552,
+     0.2022
+    ],
+    "repeat_means": [
+     0.1691,
+     0.1831,
+     0.1788
+    ],
+    "repeat_std": 0.0072,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1675,
+    "p90_sentence": 0.2824
+   },
+   "cer_legacy_skeleton": {
+    "label": "CER on consonants only (vowel signs dropped): the metric of every row before 2026-09-30, kept only to compare with them",
+    "mean": 0.1482,
+    "ci95": [
+     0.1262,
+     0.1738
+    ],
+    "repeat_means": [
+     0.1447,
+     0.1428,
+     0.1572
+    ],
+    "repeat_std": 0.0078,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1384,
+    "p90_sentence": 0.2364
+   },
+   "utmos": {
+    "mean": 3.7963,
+    "ci95": [
+     3.7054,
+     3.8821
+    ],
+    "repeat_means": [
+     3.8057,
+     3.794,
+     3.7891
+    ],
+    "repeat_std": 0.0085,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 3.7737,
+    "p90_sentence": 4.0692,
+    "label": "UTMOS22-strong PREDICTED MOS (English-trained); relative ranking only",
+    "backend": "utmos22_strong via TigreGotico/utmos-onnx (onnxruntime)"
+   },
+   "speaker_similarity": {
+    "neural": {
+     "label": "Resemblyzer GE2E d-vector cosine to centroid of real held-out clips; embedding similarity, NOT speaker verification, NOT naturalness",
+     "n_refs": 12,
+     "real_vs_real_loo": 0.9176,
+     "mean": 0.9142,
+     "ci95": [
+      0.9073,
+      0.9208
+     ],
+     "repeat_means": [
+      0.9154,
+      0.9134,
+      0.9138
+     ],
+     "repeat_std": 0.0011,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.9112,
+     "p90_sentence": 0.9412
+    },
+    "mfcc": {
+     "label": "handcrafted MFCC-statistics cosine (app.services.speaker_encoder mfcc backend); saturates near 0.99 for any same-language speech, weak drift check only",
+     "mean": 0.9897,
+     "ci95": [
+      0.9882,
+      0.9909
+     ],
+     "repeat_means": [
+      0.9898,
+      0.9897,
+      0.9896
+     ],
+     "repeat_std": 0.0001,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.9909,
+     "p90_sentence": 0.9937
+    }
+   },
+   "telephony": {
+    "8k": {
+     "label": "8 kHz G.711 mu-law round trip (synthetic channel)",
+     "mean": 0.1699,
+     "ci95": [
+      0.1481,
+      0.1934
+     ],
+     "repeat_means": [
+      0.1706,
+      0.17,
+      0.169
+     ],
+     "repeat_std": 0.0008,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1551,
+     "p90_sentence": 0.2478
+    },
+    "16k": {
+     "label": "16 kHz 8-bit mu-law companding round trip (synthetic channel)",
+     "mean": 0.1646,
+     "ci95": [
+      0.1437,
+      0.1857
+     ],
+     "repeat_means": [
+      0.1558,
+      0.166,
+      0.1719
+     ],
+     "repeat_std": 0.0082,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1528,
+     "p90_sentence": 0.2293
+    }
+   },
+   "ci": {
+    "method": "two-level percentile bootstrap (sentences, then repeats), 95%",
+    "resamples": 2000,
+    "seed": 0
+   },
+   "per_sentence_worst_cer": [
+    {
+     "i": 44,
+     "cer": 0.339,
+     "per": 0.314,
+     "ref": "मेरा लैपटॉप बहुत धीरे चल रहा है, शायद उसमें नया सॉफ़्टवेयर इंस्टॉल करना पड़ेगा।",
+     "hyp_repeat0": "मेरा laptop बहुत दीरी चल रहा है शाएद वस में नया soft wear इंस्टोग करना पडिगा"
+    },
+    {
+     "i": 5,
+     "cer": 0.322,
+     "per": 0.324,
+     "ref": "ठीक है, मैं कल शाम तक आपको जवाब दे दूँगी।",
+     "hyp_repeat0": "तीक है, मैं कल शानतक आप को जराव दे दूंगी"
+    },
+    {
+     "i": 37,
+     "cer": 0.318,
+     "per": 0.298,
+     "ref": "कृपया अपना पासवर्ड किसी के साथ शेयर मत कीजिए, वरना आपका अकाउंट ख़तरे में पड़ सकता है।",
+     "hyp_repeat0": "क्रिप्या अपना पास्वर्ट किसी किसाच शेएर मत कीजी वरना अपका अका अकाूंट खत्रे में पर सकता है"
+    },
+    {
+     "i": 43,
+     "cer": 0.301,
+     "per": 0.26,
+     "ref": "बैंक की वेबसाइट पर लॉग इन करने के बाद आप अपना बैलेंस और ट्रांज़ैक्शन हिस्ट्री देख सकते हैं।",
+     "hyp_repeat0": "बेंग की वेज्साइत पर लोगिन करने के बाद आप आप आप अपना बलन्स और ट्रान्साक्शन फिस्ट्री देख सकते है."
+    },
+    {
+     "i": 34,
+     "cer": 0.294,
+     "per": 0.282,
+     "ref": "आपका अपॉइंटमेंट सोमवार, बाईस सितंबर को दोपहर दो बजे का तय हुआ है।",
+     "hyp_repeat0": "अपका अपाईट मिन्सोंवार बाई सितमबर को दो पहर दो बजे का तैए हूँआ है"
+    }
+   ]
+  },
+  {
+   "checkpoint": {
+    "hf_path": "milestones/step_355000",
+    "global_step": 355000,
+    "onnx_sha256": "673ba46cffc694b94b1bac08983c1630bc6490f22d409260c6dfb8233922b869",
+    "hf_commit": {
+     "date_utc": "2026-09-30T07:00:00Z",
+     "title": "milestone 355000",
+     "id": "295392ffd43764bbbfcc07d86e3bcb90689506bd"
+    }
+   },
+   "experiment_id": "unknown (legacy milestones/step_N: v4 and v5 wrote the same names; see hf_commit.date_utc)",
+   "git_sha": "unknown",
+   "session": "unknown",
+   "dataset": {
+    "name": "IndicTTS Hindi female (data/hi_f), private HF repo vishwajit76/custom-tts-hindi-train",
+    "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3"
+   },
+   "inference_params": {
+    "noise_scale": 0.667,
+    "noise_w": 0.8,
+    "length_scale": 1.0
+   },
+   "repeats": 3,
+   "asr": "small",
+   "cer": {
+    "mean": 0.1592,
+    "ci95": [
+     0.1403,
+     0.1802
+    ],
+    "repeat_means": [
+     0.1612,
+     0.1568,
+     0.1596
+    ],
+    "repeat_std": 0.0023,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1463,
+    "p90_sentence": 0.2186
+   },
+   "per": {
+    "mean": 0.1732,
+    "ci95": [
+     0.1511,
+     0.1976
+    ],
+    "repeat_means": [
+     0.1795,
+     0.1715,
+     0.1685
+    ],
+    "repeat_std": 0.0056,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1674,
+    "p90_sentence": 0.255
+   },
+   "cer_legacy_skeleton": {
+    "label": "CER on consonants only (vowel signs dropped): the metric of every row before 2026-09-30, kept only to compare with them",
+    "mean": 0.1364,
+    "ci95": [
+     0.1189,
+     0.1543
+    ],
+    "repeat_means": [
+     0.139,
+     0.1321,
+     0.1381
+    ],
+    "repeat_std": 0.0037,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 0.1247,
+    "p90_sentence": 0.2148
+   },
+   "utmos": {
+    "mean": 3.8727,
+    "ci95": [
+     3.7843,
+     3.9592
+    ],
+    "repeat_means": [
+     3.8468,
+     3.8687,
+     3.9025
+    ],
+    "repeat_std": 0.028,
+    "n_sentences": 50,
+    "n_repeats": 3,
+    "median_sentence": 3.8749,
+    "p90_sentence": 4.2088,
+    "label": "UTMOS22-strong PREDICTED MOS (English-trained); relative ranking only",
+    "backend": "utmos22_strong via TigreGotico/utmos-onnx (onnxruntime)"
+   },
+   "speaker_similarity": {
+    "neural": {
+     "label": "Resemblyzer GE2E d-vector cosine to centroid of real held-out clips; embedding similarity, NOT speaker verification, NOT naturalness",
+     "n_refs": 12,
+     "real_vs_real_loo": 0.9176,
+     "mean": 0.922,
+     "ci95": [
+      0.9156,
+      0.928
+     ],
+     "repeat_means": [
+      0.9228,
+      0.9214,
+      0.9219
+     ],
+     "repeat_std": 0.0007,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.925,
+     "p90_sentence": 0.9423
+    },
+    "mfcc": {
+     "label": "handcrafted MFCC-statistics cosine (app.services.speaker_encoder mfcc backend); saturates near 0.99 for any same-language speech, weak drift check only",
+     "mean": 0.9902,
+     "ci95": [
+      0.9888,
+      0.9914
+     ],
+     "repeat_means": [
+      0.9901,
+      0.9903,
+      0.9902
+     ],
+     "repeat_std": 0.0001,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.9913,
+     "p90_sentence": 0.9944
+    }
+   },
+   "telephony": {
+    "8k": {
+     "label": "8 kHz G.711 mu-law round trip (synthetic channel)",
+     "mean": 0.1731,
+     "ci95": [
+      0.1499,
+      0.2025
+     ],
+     "repeat_means": [
+      0.1807,
+      0.164,
+      0.1747
+     ],
+     "repeat_std": 0.0085,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1558,
+     "p90_sentence": 0.2543
+    },
+    "16k": {
+     "label": "16 kHz 8-bit mu-law companding round trip (synthetic channel)",
+     "mean": 0.1559,
+     "ci95": [
+      0.1359,
+      0.1782
+     ],
+     "repeat_means": [
+      0.1594,
+      0.1542,
+      0.154
+     ],
+     "repeat_std": 0.0031,
+     "n_sentences": 50,
+     "n_repeats": 3,
+     "median_sentence": 0.1429,
+     "p90_sentence": 0.2378
+    }
+   },
+   "ci": {
+    "method": "two-level percentile bootstrap (sentences, then repeats), 95%",
+    "resamples": 2000,
+    "seed": 0
+   },
+   "per_sentence_worst_cer": [
+    {
+     "i": 11,
+     "cer": 0.405,
+     "per": 0.485,
+     "ref": "अभी थोड़ी देर पहले ही मेरी उनसे फ़ोन पर बात हुई थी।",
+     "hyp_repeat0": "अभी तोडी देः, पहले ही मेरी उन्से, फोभ़ बाद हूँँ ती."
+    },
+    {
+     "i": 34,
+     "cer": 0.34,
+     "per": 0.322,
+     "ref": "आपका अपॉइंटमेंट सोमवार, बाईस सितंबर को दोपहर दो बजे का तय हुआ है।",
+     "hyp_repeat0": "अपका अपाईत्मिन सुमार बाई सितमपर को दूपहर दो बजी काते हूँआ है"
+    },
+    {
+     "i": 37,
+     "cer": 0.267,
+     "per": 0.253,
+     "ref": "कृपया अपना पासवर्ड किसी के साथ शेयर मत कीजिए, वरना आपका अकाउंट ख़तरे में पड़ सकता है।",
+     "hyp_repeat0": "के प्या अपना पास्वर्ट किसी किसाथ चेर मत कीजी, वरना अपका अकाून खत्रे में पर सकता है."
+    },
+    {
+     "i": 43,
+     "cer": 0.231,
+     "per": 0.201,
+     "ref": "बैंक की वेबसाइट पर लॉग इन करने के बाद आप अपना बैलेंस और ट्रांज़ैक्शन हिस्ट्री देख सकते हैं।",
+     "hyp_repeat0": "बेंद की वेबसाइत पर लोगिन करने किबाद आप आप अपना बलन्स और ट्रान्साक्शन फिस्ट्री लेई सक्पे हैं"
+    },
+    {
+     "i": 39,
+     "cer": 0.231,
+     "per": 0.221,
+     "ref": "हमारी टीम कल दफ़्तर में मीटिंग करेगी, इसलिए सारी रिपोर्ट आज रात तक ईमेल कर देना।",
+     "hyp_repeat0": "हमारी तीन कल दफ्टर में मीटिन करीगी, इस्टी एसारी रिपोट हाज राग तक इमेल कर देना."
+    }
+   ]
+  }
+ ],
+ "paired_vs_first": [
+  {
+   "baseline": "milestones/step_340000",
+   "candidate": "milestones/step_350000",
+   "cer": {
+    "delta_mean": 0.0038,
+    "ci95": [
+     -0.0074,
+     0.0164
+    ],
+    "excludes_zero": false
+   },
+   "per": {
+    "delta_mean": -0.0008,
+    "ci95": [
+     -0.0151,
+     0.0147
+    ],
+    "excludes_zero": false
+   },
+   "utmos": {
+    "delta_mean": 0.0444,
+    "ci95": [
+     -0.0212,
+     0.1152
+    ],
+    "excludes_zero": false
+   },
+   "speaker_similarity_neural": {
+    "delta_mean": -0.0008,
+    "ci95": [
+     -0.0043,
+     0.0027
+    ],
+    "excludes_zero": false
+   },
+   "telephony_8k_cer": {
+    "delta_mean": 0.0026,
+    "ci95": [
+     -0.0075,
+     0.0126
+    ],
+    "excludes_zero": false
+   }
+  },
+  {
+   "baseline": "milestones/step_340000",
+   "candidate": "milestones/step_355000",
+   "cer": {
+    "delta_mean": -0.0072,
+    "ci95": [
+     -0.0192,
+     0.0056
+    ],
+    "excludes_zero": false
+   },
+   "per": {
+    "delta_mean": -0.0046,
+    "ci95": [
+     -0.0161,
+     0.0087
+    ],
+    "excludes_zero": false
+   },
+   "utmos": {
+    "delta_mean": 0.1208,
+    "ci95": [
+     0.042,
+     0.2009
+    ],
+    "excludes_zero": true
+   },
+   "speaker_similarity_neural": {
+    "delta_mean": 0.007,
+    "ci95": [
+     0.0038,
+     0.0103
+    ],
+    "excludes_zero": true
+   },
+   "telephony_8k_cer": {
+    "delta_mean": 0.0058,
+    "ci95": [
+     -0.0054,
+     0.0174
+    ],
+    "excludes_zero": false
+   }
+  }
+ ],
+ "eval_seconds": 5962
+}

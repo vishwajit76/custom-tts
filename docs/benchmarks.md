@@ -307,6 +307,36 @@ Command: `ENGINES=piper,kokoro,supertonic python -m bench.spk_sim --voices hi_IN
 
 `docker` CLI 29.3.1 is present but `docker info` fails: `failed to connect to the docker API at unix:///var/run/docker.sock ... no such file or directory` (no daemon in this sandbox). `docker build` and the `/health` smoke were **not run**.
 
+## 10. Custom Hindi voice: checkpoint comparison protocol and first run (2026-09-30)
+
+Tool: `python -m bench.compare_checkpoints` (protocol and metric labels in its docstring and in [custom-voice-runbook.md](custom-voice-runbook.md) 6.1). Fixed 50-sentence set `bench/hi_eval_50.txt`
+(sha256 661fd8e5...; 0 exact or 5-word overlaps with `data/hi_f/metadata.csv` + `test.csv`, `python -m bench.check_eval_overlap`; 4-word overlap: 1 sentence, 3-word: 32, i.e. only common short phrases;
+overlap with the unknown pretraining text of the rohan base voice cannot be checked). 3 synthesis repeats per sentence (Piper's ONNX noise is unseeded), faster-whisper `small` int8, noise_scale 0.667 / noise_w 0.8 /
+length_scale 1.0, 12 real held-out clips as speaker reference, 95% two-level bootstrap CIs (2000 resamples). Raw: `bench/results/compare_340k_350k_355k_small.json`.
+
+The three models are the current HF folders `milestones/step_340000` (uploaded 03:31 UTC), `step_350000` (05:50) and `step_355000` (07:00), sha256 dcccfb13... / 0fe65847... / 673ba46c...: **all three are v5 uploads**
+(v5 overwrote v4's 350000 and 355000 after v4 ended / while this run was being prepared; v4's 355000 ONNX no longer exists on HF), so this is one training timeline at constant LR 1.5258e-4.
+
+| Metric (mean, 95% CI) | 340000 | 350000 | 355000 |
+|---|---|---|---|
+| CER (vowel signs counted), small ASR | 0.166 [0.148, 0.187] | 0.170 [0.148, 0.194] | 0.159 [0.140, 0.180] |
+| CER legacy consonant-only (comparable to old rows) | 0.145 | 0.148 | 0.136 |
+| PER (espeak phonemes) | 0.178 [0.157, 0.201] | 0.177 [0.155, 0.202] | 0.173 [0.151, 0.198] |
+| UTMOS22 **predicted MOS** | 3.75 [3.65, 3.85] | 3.80 [3.71, 3.88] | 3.87 [3.78, 3.96] |
+| Speaker similarity, Resemblyzer cosine (real-vs-real ceiling 0.918) | 0.915 [0.909, 0.921] | 0.914 [0.907, 0.921] | 0.922 [0.916, 0.928] |
+| Speaker similarity, MFCC cosine (saturated, weak) | 0.992 | 0.990 | 0.990 |
+| Telephony CER, 8 kHz mu-law channel (synthetic) | 0.167 | 0.170 | 0.173 |
+| Telephony CER, 16 kHz 8-bit mu-law (synthetic) | 0.167 | 0.165 | 0.156 |
+| Repeat std of mean CER (3 repeats) | 0.0067 | 0.0085 | 0.0023 |
+
+Paired deltas vs 340000 (same sentences): 350000: CER +0.004 [-0.007, 0.016], PER -0.001, UTMOS +0.044 [-0.021, 0.115], speaker sim -0.001: nothing distinguishable. 355000: CER -0.007 [-0.019, 0.006], PER -0.005 [-0.016, 0.009]
+(not distinguishable), UTMOS +0.121 [0.042, 0.201] and speaker sim +0.007 [0.004, 0.010] (intervals exclude 0, but both are small and UTMOS is an English-trained predictor; the speaker gain is 0.007 on a
+scale whose ceiling is 0.918). Reading: 15k steps at constant LR bought at most a small predicted-MOS gain; intelligibility did not move measurably. **This says nothing about how natural the voice sounds: no listening test has been run.**
+The simulated telephony channels changed CER by under 0.01 (the ASR resamples to 16 kHz, and mu-law at 8 bit is mild): they are a sanity check, not a carrier-quality result. Small ASR floor is high (about 0.16 CER on this set), so use `--asr large-v3` when a decision hangs on CER.
+
+Validity notes: (1) CER before 2026-09-30 ignored vowel signs (see training-progress.md), PER never did. (2) A single-pass `milestone_eval` row is one random draw; differences under about 0.01 to 0.02 CER are noise (repeat std above is 0.002 to 0.009 and sentence sampling adds more: CIs are about +-0.02).
+(3) Speaker similarity is an embedding cosine, not speaker verification; UTMOS is predicted MOS. (4) Ranking by these metrics is not a substitute for `docs/listening-test/README.md`.
+
 ## Scaling to 200 calls
 
 Pending final numbers.
