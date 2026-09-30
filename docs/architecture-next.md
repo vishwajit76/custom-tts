@@ -108,3 +108,33 @@ Piper fast path (TTFA ~70 ms, RTF 0.022); 4 intra-op threads default and cgroup-
 | Eval + previews tooling | implemented (`bench/eval.py`, `bench/previews.py`); no human listening test |
 | Baseline benchmark on this container | done for Piper rohan, concurrency 1/5/10/20 (`benchmarks.md` section 9) |
 | GPU deployment validation, 50-200 call benchmarks | planned, blocked on hardware |
+
+## 11. Docs vs code audit for P3-P7 (2026-09-30)
+
+Every claim in `README.md`, this file, `voice-system.md` and `model-selection.md` about the serving path, text pipeline, speakers, telephony and real time was read against the code
+and tests. Classes: **IMPLEMENTED** (code + a test that would fail without it), **PARTIAL** (works, but narrower than the doc wording), **UNVERIFIED** (code exists; nothing here
+proves the quality/latency claim), **BLOCKED** (needs hardware/a model/people we do not have), **REGRESSION RISK** (a hot-path property that a careless change breaks).
+
+| Claim | Class | Basis / what the doc should say |
+|---|---|---|
+| HTTP + WS streaming, EDF scheduling, admission 503 / WS `overloaded`, ordered WS queue, cancel + barge-in | IMPLEMENTED | `tests/test_robustness.py`, `test_streaming.py`. A stale `cancel{id}` used to poison a later request with the same id (fixed, `test_p6_production.py`) |
+| "Streaming" | PARTIAL | sentence/clause chunking in the pipeline only; no engine streams inside a model call (precise wording: voice-system.md "Real-time behaviour") |
+| Latency numbers in README (74/140 ms, RTF 0.027) | UNVERIFIED here | recorded on an Apple M4 on 2026-09-29; the custom voice was re-measured on this 4 vCPU box: benchmarks.md section 10 |
+| Hindi/Hinglish normalizer, 326-row corpus | PARTIAL | IMPLEMENTED and tested, but every expected string is **machine-drafted, not native-reviewed**. Audit added 58 rows + `tests/test_normalizer_p3.py`; README's "English words stay English" is now "except a curated brand table respelled in Devanagari" |
+| Brand/company pronunciation | IMPLEMENTED, listening UNVERIFIED | lexicon kind `name`; phoneme evidence + ASR proxy only (voice-system.md "Text normalization") |
+| Speaker registry, consent, retention, secure delete | IMPLEMENTED | `test_speakers.py`, `test_p4_hardening.py`. Audit fixed: orphan files on failed upload/delete, lost concurrent bindings, revocation not durable, expiry only lazy |
+| Speaker encoder | IMPLEMENTED (informational) | the default `mfcc` backend needed librosa, which `requirements.txt` lacked (was HTTP 500). Verification (accept/reject decision) is **not implemented**; neural similarity is uncalibrated |
+| "Embedding conditions synthesis" (nowhere claimed, easy to assume) | not implemented | no engine declares `speaker_embedding`; Piper cannot consume one |
+| Qwen3 cloning | PARTIAL / BLOCKED | code + contract tests only; never run (no GPU). Hindi is not in its documented language list (model-selection.md) while the engine passes `language="Auto"`: UNVERIFIED |
+| Emotion / style / role synthesis | BLOCKED | no model; only the `ExpressiveEngine` boundary exists |
+| DSP pitch/energy | IMPLEMENTED (opt-in), quality UNVERIFIED | labelled `:dsp`; no listening test |
+| `routing_policy` | IMPLEMENTED | static tiers, not load-aware, no failover |
+| 8/16 kHz PCM output | IMPLEMENTED | aliasing/seam tests, pause and mu-law tests added; intelligibility measured (benchmarks.md section 10) |
+| G.711 / codec quality | not implemented | the gateway must encode; only a mu-law *quantisation* round trip is tested, labelled as such |
+| API keys, per-key rate limit | PARTIAL | constant-time key compare; limit is per key, per process, in memory; counts HTTP requests and WS *connections*, not WS `speak` messages (concurrency is bounded by `MAX_STREAMS` and the 32-deep queue instead); failed auth is not throttled (use a gateway) |
+| Body/upload limits | PARTIAL -> IMPLEMENTED | uploads were capped, the JSON speech routes were not (fixed: 413) |
+| Path traversal | IMPLEMENTED | speaker ids strict; qwen voice ids `fullmatch`; `POST /v1/voices` did not validate its Form id (fixed, 422 not 500) |
+| Custom voice selectable | was PARTIAL | only by pointing `MODELS_DIR` at it (or copying into `models/piper`); now `MODELS_EXTRA=voices` |
+| Graceful shutdown | PARTIAL | `--timeout-graceful-shutdown 10` + compose `stop_grace_period 15s`; no drain mode (new streams are accepted until uvicorn stops), in-flight WS tasks are cancelled at exit |
+| Memory over a 10-minute soak | see benchmarks.md section 10 | bounded structures: phrase cache (LRU), TTFA ring (2000), encoder cache (LRU 512), rate-limit deques (<= limit per key) |
+| Piper fast path, 4 intra-op threads, 30 ms lead trim, 60/120 char chunking, EDF, cache bypass for cloning | REGRESSION RISK | unchanged by this audit; `trim_lead` measured not to cut speech onsets (benchmarks.md section 10) |

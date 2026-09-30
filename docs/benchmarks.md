@@ -310,3 +310,59 @@ Command: `ENGINES=piper,kokoro,supertonic python -m bench.spk_sim --voices hi_IN
 ## Scaling to 200 calls
 
 Pending final numbers.
+
+## 10. P3-P7 audit measurements, custom voice (2026-09-30)
+
+Separate section on purpose (another worker edits this file too). Everything here was measured on this session's box with **`bench/bench.py` used read-only** (same code, result JSON redirected
+to the scratchpad so nothing was written under `bench/`; `python -c` wrapper that sets `bench.bench.RESULTS`) and scratch scripts for the ASR runs. Voice: `hi_IN-custom-medium`
+(personal fine-tune, intermediate checkpoint, selected with `MODELS_EXTRA=voices`), Piper, 22.05 kHz native.
+
+**Read this first: these latency numbers are contended.** The VM is the same 4 vCPU Xeon @ 2.1 GHz as section 9, but another worker's jobs (`bench.compare_checkpoints`, training/export
+tests, ~200 % CPU for the whole session) were running on it: load average 4-8 on 4 cores during every run here. The same `hi_IN-rohan-medium` that measured 119 ms TTFA p50 / RTF 0.042 at 1 stream in
+section 9 measured **330 ms / 0.113 under this contention** (2.5-2.8x slower), so treat section 10 latencies as an upper bound on an idle box, not as capacity. The custom voice costs the same as rohan
+(same VITS architecture and size): 291 ms / 0.118 vs 330 ms / 0.113 at 1 stream, 725 vs 723 ms p50 at 5 streams, in the same conditions. No quiet window appeared; nothing below was re-run uncontended.
+
+```
+ENGINES=piper MODELS_EXTRA=voices CACHE_SIZE=0 API_KEYS= LOG_LEVEL=WARNING python -m uvicorn app.main:app --port 8765 --ws-ping-interval 20 --ws-ping-timeout 20 --timeout-graceful-shutdown 10
+python -m bench.bench --url ws://localhost:8765/v1/audio/ws --voice hi_IN-custom-medium --concurrency 1,5 --sample-rate 8000 --label custom-8k-c1-5   # defaults: WORKERS=1 x THREADS_PER_WORKER=4
+python -m bench.bench ... --voice hi_IN-rohan-medium --concurrency 1,5 --sample-rate 8000                                                          # same conditions, for the contention factor
+python -m bench.bench ... --voice hi_IN-custom-medium --concurrency 3 --sample-rate 8000 --soak 600 --call-sim 1 --label custom-soak600-c3-callsim1
+```
+
+### TTFA / RTF (WebSocket, 8 kHz PCM, 13 requests per client, burst = back-to-back, phrase cache off)
+
+| voice | concurrency | requests | errors | TTFA p50 / p95 / p99 (ms) | RTF p50 / p95 | underrun requests | server RSS MB |
+|---|---|---|---|---|---|---|---|
+| custom | 1 | 13 | 0 | 291 / 503 / 503 | 0.118 / 0.135 | 0 | 591 |
+| custom | 5 | 65 | 0 | 725 / 1544 / 1671 | 0.521 / 0.864 | 15 (max 787 ms) | 669 |
+| rohan (same conditions) | 1 | 13 | 0 | 330 / 582 / 582 | 0.113 / 0.177 | 0 | 784 |
+| rohan (same conditions) | 5 | 65 | 0 | 723 / 1612 / 1869 | 0.500 / 0.788 | 12 (max 1225 ms) | 863 |
+
+Section 9's uncontended rohan rows on this box (119 / 274 ms p50 at 1 / 5 streams, 0 underruns at 5) are the better guide to an idle machine. With 13 requests per client the p95/p99 at 1 stream are the
+2nd-largest/largest of 13 samples: indicative only. RSS is higher than section 9's because 4 voices are loaded (3 bundled + custom).
+
+### Barge-in and the 10-minute soak
+
+- Cancel ack (bench `cancel_test`, 5 trials, cancel right after first audio): p50 0.5 ms, max 3.4 ms, **0 ms of audio** after the cancel (client-side buffers still need flushing: voice-system.md).
+- Soak, **600 s, 3 concurrent calls with `--call-sim 1`** (each waits for its reply to "play" plus 1 s): 313 requests, **0 errors, 0 underruns**, TTFA p50/p95/p99 213 / 588 / 814 ms, RTF p50/p95 0.089 / 0.215,
+  1409 s of audio. **RSS 864 MB at start -> 890 MB at the end, 890.6 MB in a fresh run afterwards**: about +26 MB in the first minutes (allocator warm-up), then flat: no growth trend over 10 minutes.
+  p95 TTFA in the first vs last minute was 347 vs 750 ms; that is the contending job's load, not drift: a fresh 3-call run right after the soak gave the same 239 / 603 / 719 ms.
+- **Churn** (`python` script against the live server, about 4.5 minutes in total over three runs, one of which hung on a client bug and was killed): per run concurrent (a) WS `speak` then `cancel` after 1-3 frames, (b) WS dropped
+  with no close frame after 0-2 frames (`transport.abort()`), (c) HTTP `/v1/audio/speech/stream` read for 1-2 chunks then the connection closed mid-body. Roughly 120 cancels, 320 abrupt WS drops and 290 HTTP aborts completed.
+  Server counters afterwards: `streams_total` 1478, `streams_cancelled` 898, `streams_failed` **0**, `streams_rejected` 0, **`streams_active` 0** (no slot leaked), RSS 906 -> 908 MB, no exception in the server log. The per-key rate
+  limit (600 requests/connections per minute) throttled the client during the run (observed: WS handshakes refused with HTTP 403, which is what Starlette turns a close-before-accept into; some HTTP streams got an empty body, status not captured), so the load was lower than the generator intended.
+- SIGTERM with a long WebSocket stream in flight: the socket was closed with code 1012 after 0.1 s and the process exited after 1.7 s (`Application shutdown complete`), well inside `--timeout-graceful-shutdown 10`.
+
+### Output-rate intelligibility, brand A/B, onset trim (details in voice-system.md)
+
+- CER by output rate, same cached waveform through `tts.stream`, 20 utterances, Whisper-small int8: 22.05 kHz 0.300, 16 kHz 0.311, 8 kHz 0.329, 8 kHz + mu-law round trip (`audioop`, quantisation only) 0.340. Deltas vs 22.05 kHz:
+  +0.011 +/- 0.005, +0.029 +/- 0.020, +0.040 +/- 0.045 (mean +/- s.e.). Peak -2.4 dBFS, RMS -20.9 dBFS, 0 full-scale samples at every rate; 120 ms+ pauses identical in length at 8 kHz and 22.05 kHz.
+  (An earlier run that re-synthesized per rate gave 0.330 / 0.318 / 0.362 / 0.377 but is confounded by VITS sampling noise and was discarded.)
+- Brand respelling A/B, 15 brands x 2 carrier sentences, Whisper-small CER: custom voice 0.331 (English route) vs 0.303 (Devanagari route); rohan 0.297 vs 0.253. WhatsApp is worse with every Devanagari spelling tried
+  (0.156 vs 0.21-0.33) and stays on the English route; Flipkart measured 0.325 vs 0.239 (custom) and 0.251 vs 0.185 (rohan) with the nukta spelling. Noisy proxy; the espeak phoneme outputs in voice-system.md are the stronger evidence.
+- Lead-silence trim (`trim_lead`, threshold 0.01, keep 30 ms): custom voice pads about 110-140 ms of leading silence (rohan about 230-320 ms); over 10 fricative-heavy starts x 2 voices it cut at most 12 ms of audio above 0.002 (one rohan start), 0 ms otherwise.
+- Normalizer cost on the event loop: 0.4 ms for a 49-character sentence, 0.8 ms for 136 characters, 15 ms for 4000 characters.
+
+### Not measured here
+
+Any uncontended run of the above; concurrency above 5 for the custom voice; Kokoro/Supertonic/Qwen; GPU; real G.711/network codec; listening tests (brand spellings, infer-grid settings, 8 kHz naturalness); `--call-sim` at 10+ calls.

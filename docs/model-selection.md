@@ -133,3 +133,20 @@ same-speaker vs different-speaker distributions; emotion classes distinguishable
 - Chatterbox V3 emotion control in Hindi; Indic Parler Hindi speaker count.
 - All GPU latency/VRAM figures: vendor, English/Chinese, datacentre hardware. None were measured here.
 - Supertonic: upstream is archived, so no fixes or fine-tuning path.
+
+## Audit addendum (P3-P7, 2026-09-30): what this document does and does not establish
+
+Nothing in this file changed the serving path; the audit re-read the claims above against `app/` and added the boundaries that the comparison table cannot show.
+
+- **Identity is delivered differently per model, and only one route exists today.** Piper: fine-tune a new `.onnx` (no speaker input at inference). Supertonic, Kokoro: fixed
+  preset voices. Qwen3-TTS: reference clip used directly as an in-context prompt. No model here accepts an externally computed speaker embedding, so the encoder in
+  `speaker_encoder.py` is reference QA and evaluation only (voice-system.md, "Boundary: reference audio -> encoder -> embedding -> compatible model"). Any candidate above that
+  lists "cloning" is still **reference conditioning** in the four-mechanism vocabulary, and "emotion" from a prompt is **prompt conditioning, unvalidated**.
+- **Qwen3-TTS and Hindi.** The table records (V-gh) that Hindi is not among its documented languages, while `QwenEngine` passes `language="Auto"` and advertises `languages=("auto",)`.
+  That is an open contradiction: UNVERIFIED on a GPU, and the README's "zero-shot cloning for Hindi" should be read as "an experimental path", not a supported one.
+- **Speaker similarity is not verification.** `mfcc` cosine (0.992 same-voice vs 0.962 different-voice on 7 synthetic voices) cannot separate speakers; resemblyzer can on that set
+  (0.935 vs 0.643) but was not calibrated on real speakers. Acceptance criteria that mention "speaker similarity above a threshold" therefore still need a threshold fitted on
+  same-speaker / different-speaker trials of the consented data, which does not exist yet.
+- **Brand and code-switch pronunciation is a text-side decision, independent of the model choice** (curated Devanagari respelling, voice-system.md "Text normalization"), measured
+  with Whisper-small CER on two Piper voices only. A different model family (e.g. a multilingual LLM-TTS) may read Latin brand names correctly without it.
+- **Still blocked (unchanged):** any GPU bake-off number, Hindi emotion/style control of any candidate, licence re-reads marked P or U, native-listener tests.
