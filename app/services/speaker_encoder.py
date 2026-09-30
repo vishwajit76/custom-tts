@@ -8,6 +8,7 @@ identity decisions. Use the optional neural backends (`resemblyzer`, `speechbrai
 import hashlib
 import logging
 import threading
+from collections import OrderedDict
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +18,7 @@ TARGET_SR = 16000
 MIN_SECONDS = 1.0
 MAX_CLIP_FRACTION = 0.01
 MIN_RMS_DBFS = -50.0
+CACHE_MAX = 512
 
 
 class EncoderAudioError(ValueError):
@@ -73,8 +75,13 @@ class _MfccBackend:
     neural = False
     dim = 2 * 19 + 2 * 19
 
+    kind = "mfcc_statistics_cosine"
+
     def load(self) -> None:
-        import librosa  # noqa: F401
+        try:
+            import librosa  # noqa: F401  (not in requirements.txt: only requirements-dsp.txt / requirements-qwen.txt have it)
+        except ImportError as e:
+            raise BackendUnavailable("the mfcc baseline needs librosa: pip install -r requirements-dsp.txt") from e
 
     def embed(self, wav16: np.ndarray) -> np.ndarray:
         import librosa
@@ -85,6 +92,7 @@ class _MfccBackend:
 
 
 class _ResemblyzerBackend:
+    kind = "neural_embedding_cosine"
     name = "resemblyzer"  # Apache-2.0 code + bundled GE2E weights (pretrained.pt, VoxCeleb/LibriSpeech-trained); see docs/licenses.md
     neural = True
 
@@ -101,6 +109,7 @@ class _ResemblyzerBackend:
 
 
 class _SpeechbrainBackend:
+    kind = "neural_embedding_cosine"
     name = "speechbrain"  # ECAPA-TDNN spkrec-ecapa-voxceleb (Apache-2.0); weights download on first use
     neural = True
 
@@ -136,7 +145,7 @@ class SpeakerEncoder:
         self._backend = BACKENDS[backend]()
         self.min_seconds = min_seconds
         self.cache_dir = Path(cache_dir) if cache_dir else None
-        self._cache: dict[str, np.ndarray] = {}
+        self._cache: OrderedDict[str, np.ndarray] = OrderedDict()  # LRU: embeddings of uploaded voices must not pile up
         self._loaded = False
         self._lock = threading.Lock()
 
@@ -147,6 +156,12 @@ class SpeakerEncoder:
     @property
     def neural(self) -> bool:
         return self._backend.neural
+
+    @property
+    def similarity_kind(self) -> str:
+        """What a similarity score from this encoder IS. Never "speaker_verification": nothing here is calibrated on
+        same/different-speaker trials for this service's audio, so a score is a QA signal, not an identity decision."""
+        return self._backend.kind
 
     def _ensure(self) -> None:
         with self._lock:
@@ -162,6 +177,7 @@ class SpeakerEncoder:
     def embed(self, wav: np.ndarray, sr: int) -> np.ndarray:
         key = f"{self.name}:{self.audio_sha256(wav, sr)}"
         if key in self._cache:
+            self._cache.move_to_end(key)
             return self._cache[key]
         disk = self.cache_dir / self.name / f"{key.split(':')[1]}.npy" if self.cache_dir else None
         if disk is not None and disk.exists():
@@ -177,6 +193,8 @@ class SpeakerEncoder:
                 np.save(tmp, emb)
                 tmp.replace(disk)
         self._cache[key] = emb
+        while len(self._cache) > CACHE_MAX:
+            self._cache.popitem(last=False)
         return emb
 
     def check(self, wav: np.ndarray, sr: int) -> dict:
@@ -189,13 +207,14 @@ class SpeakerEncoder:
     def consistency(self, embeddings: list[np.ndarray]) -> dict:
         """Similarity of each embedding to the mean of the others (reference QA). Needs >= 2."""
         if len(embeddings) < 2:
-            return {"scores": [], "min": None, "calibrated": self.neural}
+            return {"scores": [], "min": None, "calibrated": False, "kind": self.similarity_kind}
         E = np.stack(embeddings)
         scores = []
         for i in range(len(E)):
             others = np.delete(E, i, axis=0).mean(0)
             scores.append(round(cosine(E[i], others), 4))
-        return {"scores": scores, "min": min(scores), "calibrated": self.neural}
+        # "calibrated": False for every backend. A neural backend is meaningful, not calibrated for this service's audio
+        return {"scores": scores, "min": min(scores), "calibrated": False, "kind": self.similarity_kind}
 
 
 _default: dict[str, SpeakerEncoder] = {}

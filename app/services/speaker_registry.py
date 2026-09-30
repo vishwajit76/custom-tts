@@ -302,6 +302,15 @@ class SpeakerRegistry:
             self._save(sp)
             return sp
 
+    def bind_engine(self, speaker_id: str, owner: str, engine: str, voice: str) -> Speaker:
+        """Add/replace ONE engine binding, read-modify-write under the registry lock (two concurrent callers binding
+        different engines must not lose each other's binding, which a read-then-update() by the caller would)."""
+        with self._locked():
+            sp = self._authorized(speaker_id, owner)
+            sp.engine_bindings = {**sp.engine_bindings, engine: voice}
+            self._save(sp)
+            return sp
+
     def set_consent(self, speaker_id: str, owner: str, consent: Consent) -> Speaker:
         """granted needs consent_record_id, granted_by and permitted_uses. revoked purges references and embeddings."""
         with self._locked():
@@ -310,11 +319,11 @@ class SpeakerRegistry:
                 if not (consent.consent_record_id and consent.granted_by and consent.permitted_uses):
                     raise SpeakerError("granted consent needs consent_record_id, granted_by and permitted_uses")
                 consent = consent.model_copy(update={"date": consent.date or now_iso()})
-            elif consent.status == "revoked":
-                consent = consent.model_copy(update={"date": now_iso(), "permitted_uses": []})
-                self._purge_assets(sp)
-            sp.consent = consent
-            self._save(sp)
+            sp.consent = consent.model_copy(update={"date": now_iso(), "permitted_uses": []}) if consent.status == "revoked" else consent
+            self._save(sp)  # the revocation is durable (and blocks use) before any file is touched
+            if consent.status == "revoked":
+                self._purge_assets(sp)  # if this fails midway the record stays revoked; purge_expired() finishes it on restart
+                self._save(sp)
             return sp
 
     def delete(self, speaker_id: str, owner: str) -> None:
@@ -322,9 +331,13 @@ class SpeakerRegistry:
         with self._locked():
             self._authorized(speaker_id, owner)
             d = self._dir(speaker_id)
+            record = d / "speaker.json"
+            # speaker.json goes LAST: if an unlink fails midway the record still exists, so the delete can be retried
+            # instead of leaving unreachable orphan audio behind a speaker that "no longer exists"
             for f in sorted(d.rglob("*"), reverse=True):
-                if f.is_file() or f.is_symlink():
+                if (f.is_file() or f.is_symlink()) and f != record:
                     secure_unlink(f)
+            secure_unlink(record)
             shutil.rmtree(d, ignore_errors=True)
 
     # -- consent gate --
@@ -345,26 +358,36 @@ class SpeakerRegistry:
                 raise SpeakerError(f"speaker already has {settings.max_references_per_speaker} references")
             if any(r.sha256 == metrics["sha256"] for r in sp.references):
                 raise SpeakerExists("this reference audio is already registered")
+            if embedding is not None and sp.embedding_backend not in (None, embedding_backend):
+                embedding = None  # other backend = other dimensionality/space: never mixed into one centroid
             rid = uuid.uuid4().hex[:12]
             d = self._dir(speaker_id)
             (d / "refs").mkdir(parents=True, exist_ok=True)
             path = emb = None
-            if sp.retention.keep_raw_reference:
-                path = f"refs/{rid}.wav"
-                buf = io.BytesIO()
-                sf.write(buf, wav, sr, format="WAV", subtype="PCM_16")
-                _atomic_write(d / path, buf.getvalue())
-            if embedding is not None:
-                emb = f"refs/{rid}.npy"
-                b = io.BytesIO()
-                np.save(b, embedding)
-                _atomic_write(d / emb, b.getvalue())
-            ref = Reference(ref_id=rid, path=path, transcript=transcript or None, embedding_path=emb,
-                            **{k: metrics[k] for k in ("sha256", "duration_s", "sample_rate", "rms_dbfs", "clip_fraction", "speech_fraction", "quality")})
-            sp.references.append(ref)
-            if embedding is not None:
-                self._update_centroid(sp, embedding_backend)
-            self._save(sp)
+            written: list[Path] = []
+            try:
+                if sp.retention.keep_raw_reference:
+                    path = f"refs/{rid}.wav"
+                    buf = io.BytesIO()
+                    sf.write(buf, wav, sr, format="WAV", subtype="PCM_16")
+                    written.append(d / path)
+                    _atomic_write(d / path, buf.getvalue())
+                if embedding is not None:
+                    emb = f"refs/{rid}.npy"
+                    b = io.BytesIO()
+                    np.save(b, embedding)
+                    written.append(d / emb)
+                    _atomic_write(d / emb, b.getvalue())
+                ref = Reference(ref_id=rid, path=path, transcript=transcript or None, embedding_path=emb,
+                                **{k: metrics[k] for k in ("sha256", "duration_s", "sample_rate", "rms_dbfs", "clip_fraction", "speech_fraction", "quality")})
+                sp.references.append(ref)
+                if embedding is not None:
+                    self._update_centroid(sp, embedding_backend)
+                self._save(sp)
+            except BaseException:
+                for f in written:  # no record will point at these: do not leave a raw voice clip behind
+                    secure_unlink(f)
+                raise
             return ref
 
     def _update_centroid(self, sp: Speaker, backend: str | None) -> None:
@@ -447,7 +470,11 @@ class SpeakerRegistry:
                 if d.is_dir() and re.fullmatch(SPEAKER_ID, d.name) and (d / "speaker.json").is_file():
                     sp = self._load(d.name)
                     before = sum(1 for r in sp.references if r.path)
-                    self._purge_if_expired(sp)
+                    if sp.consent.status == "revoked" and (sp.references or sp.embedding_path):
+                        self._purge_assets(sp)  # a revocation interrupted after the record was saved
+                        self._save(sp)
+                    else:
+                        self._purge_if_expired(sp)
                     n += before - sum(1 for r in sp.references if r.path)
         return n
 

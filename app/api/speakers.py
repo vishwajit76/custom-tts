@@ -1,5 +1,6 @@
 """Speaker registry REST API (docs/voice-system.md). All routes are owner-scoped: a speaker is visible only to the
 API key that created it (other owners get 404, so existence does not leak)."""
+import asyncio
 import logging
 
 import numpy as np
@@ -13,7 +14,10 @@ from app.services.speaker_encoder import BackendUnavailable, EncoderAudioError, 
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/v1/speakers", dependencies=[Depends(require_api_key)])
-NEURAL_MIN_SIMILARITY = 0.75  # only applied for neural backends; the mfcc baseline is uncalibrated
+# Warning threshold for neural backends only (the mfcc baseline gets no threshold). An uncalibrated default: it was NOT fitted on
+# same/different-speaker trials for resemblyzer or speechbrain (their cosine scales differ), so it only triggers a warning,
+# never a rejection, and is not speaker verification.
+NEURAL_MIN_SIMILARITY = 0.75
 
 
 class SpeakerCreate(BaseModel):
@@ -127,12 +131,17 @@ async def add_reference(speaker_id: str, audio: UploadFile = File(...), transcri
                         key: str = Depends(require_api_key)):
     """Upload one reference clip (WAV, 3-30 s, >=16 kHz, not clipped/silent). Returns quality metrics and, with 2+
     references, the embedding consistency check (informational; see docs/voice-system.md)."""
-    reg, owner = sr.get_registry(), sr.owner_id(key)
+    raw = await audio.read(reg_limit() + 1)
+    # decode + encoder + fsync'd file writes + flock are blocking: on the event loop they would stall every live WebSocket stream
+    return await asyncio.to_thread(_ingest_reference, speaker_id, sr.owner_id(key), raw, audio.content_type, transcript)
+
+
+def _ingest_reference(speaker_id: str, owner: str, raw: bytes, content_type: str | None, transcript: str | None) -> dict:
+    reg = sr.get_registry()
     sp = _run(reg.get, speaker_id, owner)
     if sp.consent.status == "revoked":
         raise HTTPException(403, "consent revoked; cannot add references")  # registry re-checks under its lock
-    raw = await audio.read(reg_limit() + 1)
-    wav, rate, metrics = _run(sr.analyze_reference, raw, audio.content_type)
+    wav, rate, metrics = _run(sr.analyze_reference, raw, content_type)
     enc = get_encoder()
     emb, warnings, sim = None, [], None
     try:
@@ -144,11 +153,13 @@ async def add_reference(speaker_id: str, audio: UploadFile = File(...), transcri
                 warnings.append(f"low similarity to existing references ({sim}); check this is the same speaker")
             elif not enc.neural:
                 warnings.append("similarity from the mfcc baseline is uncalibrated and not a speaker verification")
+        elif sp.embedding_backend not in (None, enc.name):
+            warnings.append(f"embedding not stored: this speaker's embeddings come from the {sp.embedding_backend!r} encoder, not {enc.name!r}")
     except (BackendUnavailable, EncoderAudioError) as e:
         warnings.append(f"embedding skipped: {e}")
     ref = _run(reg.add_reference, speaker_id, owner, wav, rate, metrics, transcript, emb, enc.name if emb is not None else None)
     return {**ref.model_dump(exclude={"path", "embedding_path"}), "raw_retained": ref.path is not None, "similarity_to_existing": sim,
-            "encoder": {"name": enc.name, "neural": enc.neural}, "warnings": warnings}
+            "encoder": {"name": enc.name, "neural": enc.neural, "similarity_kind": enc.similarity_kind}, "warnings": warnings}
 
 
 def reg_limit() -> int:

@@ -97,6 +97,7 @@ def _make_engine(names: str):
 engine = _make_engine(settings.engines)
 scheduler: Scheduler | None = None
 _cache: OrderedDict[tuple, np.ndarray] = OrderedDict()
+_cache_epoch = 0  # bumped by clear_cache(): a chunk synthesized before a voice was replaced/deleted must not be cached after it
 stats = {
     "streams_active": 0, "streams_total": 0, "streams_rejected": 0, "streams_cancelled": 0, "streams_failed": 0,
     "chunks_total": 0, "cache_hits": 0, "audio_seconds_total": 0.0, "synth_seconds_total": 0.0,
@@ -186,13 +187,14 @@ async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref
         stats["cache_hits"] += 1
         return _cache[key]
     t = time.perf_counter()
+    epoch = _cache_epoch
     if controls:  # native controls only reach an engine that declared them (prepare_ex/validate_condition guarantee it)
         wav = await scheduler.run(deadline, engine.synth_native, text, voice, speed, controls, ref, ref_text)
     else:
         wav = await scheduler.run(deadline, engine.synth, text, voice, speed, ref, ref_text)
     wav = trim_lead(wav, engine.sample_rate(voice), settings.lead_silence_ms)
     stats["synth_seconds_total"] += time.perf_counter() - t
-    if ref is None and settings.cache_size:
+    if ref is None and settings.cache_size and epoch == _cache_epoch:
         _cache[key] = wav
         if len(_cache) > settings.cache_size:
             _cache.popitem(last=False)
@@ -259,5 +261,7 @@ async def synthesize(text: str, voice: str, speed: float = 1.0, sample_rate: int
 
 
 def clear_cache(voice: str) -> None:
+    global _cache_epoch
+    _cache_epoch += 1  # also drops the result of any synthesis still in flight for this voice (store is skipped)
     for k in [k for k in _cache if k[0] == voice]:
         del _cache[k]

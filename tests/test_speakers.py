@@ -186,7 +186,7 @@ def test_rest_lifecycle_and_ownership(client):
     assert upload(client, headers=B).status_code == 404
     r = upload(client)
     body = r.json()
-    assert r.status_code == 201 and body["raw_retained"] and body["encoder"] == {"name": "mfcc", "neural": False} and "path" not in body
+    assert r.status_code == 201 and body["raw_retained"] and body["encoder"] == {"name": "mfcc", "neural": False, "similarity_kind": "mfcc_statistics_cosine"} and "path" not in body
     r2 = upload(client, raw=wav_bytes(125, 5.0, seed=3)).json()
     assert r2["similarity_to_existing"] is not None and any("uncalibrated" in w for w in r2["warnings"])
     sp = client.get("/v1/speakers/asha", headers=A).json()

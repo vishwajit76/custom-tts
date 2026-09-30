@@ -3,8 +3,11 @@
 Not real-time on CPU (measured RTF ~2 on Apple M4); needs an NVIDIA GPU. Install requirements-qwen.txt.
 """
 import logging
+import os
 import re
+import threading
 import time
+import uuid
 from pathlib import Path
 
 import numpy as np
@@ -30,6 +33,8 @@ class QwenEngine:
         self.model = None
         self.sr = 24000
         self._prompts: dict[str, object] = {}  # voice_id -> cached voice_clone_prompt
+        self._lock = threading.Lock()  # guards _prompts and _epoch (save/delete run on request threads, synth on a worker)
+        self._epoch = 0  # bumped by save/delete: a prompt built from the old clip must not be cached after it changed
 
     @property
     def ready(self) -> bool:
@@ -73,34 +78,60 @@ class QwenEngine:
             raise ValueError(f"invalid voice_id {voice_id!r}")
         return settings.voices_dir / f"{voice_id}.wav"
 
+    @staticmethod
+    def _atomic_write(path: Path, write) -> None:
+        """Write via a temp file + rename: synthesis reading the clip never sees a half-written WAV/transcript."""
+        tmp = path.with_name(f".{path.name}.{uuid.uuid4().hex[:8]}.tmp")
+        try:
+            write(tmp)
+            os.replace(tmp, path)
+        finally:
+            tmp.unlink(missing_ok=True)
+
     def save_voice(self, voice_id: str, wav: np.ndarray, sr: int, transcript: str | None) -> None:
         path = self._wav_path(voice_id)
-        sf.write(path, wav, sr)
         txt = path.with_suffix(".txt")
+        with self._lock:
+            self._epoch += 1
+            self._prompts.pop(voice_id, None)
+        self._atomic_write(path, lambda t: sf.write(t, wav, sr, format="WAV"))
         if transcript:
-            txt.write_text(transcript, encoding="utf-8")
+            self._atomic_write(txt, lambda t: t.write_text(transcript, encoding="utf-8"))
         else:
             txt.unlink(missing_ok=True)
-        self._prompts.pop(voice_id, None)
+        with self._lock:  # again after the files changed: a synth that loaded the old clip meanwhile must not keep its prompt
+            self._epoch += 1
+            self._prompts.pop(voice_id, None)
 
     def delete_voice(self, voice_id: str) -> bool:
         wav = self._wav_path(voice_id)
+        with self._lock:
+            self._epoch += 1
+            self._prompts.pop(voice_id, None)
         if not wav.exists():
             return False
         secure_unlink(wav)  # overwrite then unlink: the clip is someone's voice
         secure_unlink(wav.with_suffix(".txt"))
-        self._prompts.pop(voice_id, None)
+        with self._lock:
+            self._epoch += 1
+            self._prompts.pop(voice_id, None)
         return True
 
     def _make_prompt(self, audio, transcript: str | None):
         return self.model.create_voice_clone_prompt(ref_audio=audio, ref_text=transcript or None, x_vector_only_mode=not transcript)
 
     def _voice_prompt(self, voice_id: str):
-        if voice_id not in self._prompts:
-            wav = self._wav_path(voice_id)
-            txt = wav.with_suffix(".txt")
-            self._prompts[voice_id] = self._make_prompt(str(wav), txt.read_text("utf-8").strip() if txt.exists() else None)
-        return self._prompts[voice_id]
+        with self._lock:
+            if voice_id in self._prompts:
+                return self._prompts[voice_id]
+            epoch = self._epoch
+        wav = self._wav_path(voice_id)
+        txt = wav.with_suffix(".txt")
+        prompt = self._make_prompt(str(wav), txt.read_text("utf-8").strip() if txt.exists() else None)
+        with self._lock:
+            if epoch == self._epoch:  # the clip did not change while the prompt was being built
+                self._prompts[voice_id] = prompt
+        return prompt
 
     # ---------- synthesis ----------
     def synth(self, text: str, voice: str, speed: float, ref=None, ref_text=None) -> np.ndarray:
