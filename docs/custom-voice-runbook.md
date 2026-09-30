@@ -13,10 +13,10 @@ Time convention: UTC first, IST (UTC+5:30) second, e.g. 02:22 UTC / 07:52 IST.
 
 ```
 IndicTTS Hindi female (7.9 h) --prepare_dataset--> data/hi_f --hf_sync backup-data--> HF private repo data/hi_f
-Piper hi_IN rohan medium ckpt (step 309852) ---------------------------------------> HF runs/hi_f/last.ckpt (seed)
+Piper hi_IN rohan medium ckpt (step 309852) ----(448 CPU steps)----------------------> HF runs/hi_f/last.ckpt (seed, step 310300)
                                    Kaggle T4 kernel (resume, fp16-mixed, bs 24)
-        last.ckpt every 20 min -> HF runs/hi_f/     heartbeat every 3 min -> HF runs/hi_f/kaggle_progress.txt
-        every 5000 steps: ONNX + 3 test wavs -> HF milestones/step_N_<session>/
+   checkpoint every 20 min -> HF experiments/<id>/checkpoints/   heartbeat every 3 min -> experiments/<id>/heartbeat.txt (+ legacy runs/hi_f/kaggle_progress.txt)
+        every 5000 steps: ONNX + 3 test wavs -> HF experiments/<id>/milestones/step_N/ and samples/step_N/
                                    evaluate (CER) -> copy to models/piper/ -> server
 ```
 
@@ -28,9 +28,10 @@ Status: training is in progress. No human listening test has been done. CER is a
 |---|---|---|
 | Dataset `hi_f` | private HF repo `vishwajit76/custom-tts-hindi-train`, path `data/hi_f/` (`wavs/`, `metadata.csv`) | also local `data/hi_f` (gitignored) |
 | Init checkpoint | `rhasspy/piper-checkpoints` (HF dataset) `hi/hi_IN/rohan/medium/epoch=3190-step=309852.ckpt` | training started here, global_step 309852 |
-| Live training checkpoint | HF `runs/hi_f/last.ckpt` + `runs/hi_f/config.json` | single source of truth for resuming |
-| Heartbeat / crash | HF `runs/hi_f/kaggle_progress_<session>.txt` (per session), `runs/hi_f/kaggle_progress.txt` (legacy, last writer wins), `runs/hi_f/kaggle_crash.txt` | see section 4 |
-| Milestone voices | HF `milestones/step_N_<session>/` for sessions from the next kernel push on (older ones: `milestones/step_N/`); files `hi_IN-custom-medium.onnx`, `.onnx.json`, `sample_1..3.wav`, `session.json` | private; mirrored samples in `docs/samples/step_N/` |
+| Resume checkpoints | `RESUME_FROM=auto` picks the highest `global_step` among HF `experiments/*/checkpoints/*.ckpt` and `runs/hi_f/*.ckpt`; today `runs/hi_f/v4_final_step357212.ckpt` (verified step 357212). `runs/hi_f/last.ckpt` is **frozen legacy** (stale seed 310300 until v5's final lands ~07:25 UTC) | never resume "implicitly from last.ckpt" any more |
+| Run artifacts | HF `experiments/<id>/` (manifest, environment, metrics.jsonl, heartbeat, checkpoints, milestones, samples, result) and git `training/experiments/<id>.json` | one folder per run, guarded against overwrite (docs/training.md section 6) |
+| Heartbeat / crash | HF `experiments/<id>/heartbeat.txt` + `crash.txt`; legacy `runs/hi_f/kaggle_progress.txt` (last writer wins) and `runs/hi_f/kaggle_crash.txt` | see section 4 |
+| Milestone voices | HF `experiments/<id>/milestones/step_N/` from the next kernel push on (older ones: legacy `milestones/step_N/`, ambiguous between v4/v5, see training-progress.md); files `hi_IN-custom-medium.onnx`, `.onnx.json`, `sample_1..3.wav`, `session.json` | private; mirrored samples in `docs/samples/step_N/` |
 | Kaggle notebook | https://www.kaggle.com/code/vishwajit76/custom-tts-hindi-train (private, GPU, internet on) | source: `training/kaggle/train_kernel.py` |
 | Kaggle secrets dataset | `vishwajit76/cttsh-secrets` (private), file `hf_token` | read by the kernel |
 | Ckpts are not in git | `*.ckpt`, `training/runs/`, `data/`, `voices/*.onnx*` are gitignored | only docs/samples and the code are committed |
@@ -63,30 +64,32 @@ Prerequisites: `pip install -U kaggle` (>= 1.7 for KGAT tokens), Kaggle token as
 
 ```bash
 export KAGGLE_API_TOKEN=$(cat ~/.kaggle/access_token)
-kaggle kernels push -p training/kaggle      # starts a new run; resumes from HF runs/hi_f/last.ckpt
-kaggle kernels status vishwajit76/custom-tts-hindi-train
+kaggle kernels status vishwajit76/custom-tts-hindi-train            # must say complete/error: never push while a session runs
+training/kaggle/push.sh --kernel-version v6                         # stamps git sha, resume point, experiment id into a temp copy, then pushes
+training/kaggle/push.sh --dry-run                                   # show the stamped line only
+kaggle kernels push -p training/kaggle                              # still works: git_sha is recorded as "unknown", RESUME_FROM=auto
 ```
+Before a push, on CPU: `python -m training.kernel_smoke --ckpt <real ckpt>` (whole script against a local directory) and `python -m pytest -q tests/test_kaggle_kernel.py tests/test_lr_anneal.py`.
 
 What a run does (`training/kaggle/train_kernel.py`; details in [../training/kaggle/README.md](../training/kaggle/README.md)):
 
-- Installs `piper-tts[train]==1.8.0`, builds `monotonic_align`, downloads `data/hi_f` and `runs/hi_f/{last.ckpt,config.json}`.
+- Installs `piper-tts[train]==1.8.0`, builds `monotonic_align`, downloads `data/hi_f` and `runs/hi_f/config.json`, then resolves and verifies the resume checkpoint (`RESUME_FROM`, default `auto` = highest step; sha256 + load + finite + step-matches-name) and writes `manifest.json`/`environment.json`.
 - Trains on a T4 (16 GB) with `--trainer.precision 16-mixed`, batch 24 (falls back 16/12/8 on CUDA OOM; 32 OOMs).
-  Speed about 0.83 steps/s (about 1.2 s per global step, Lightning counts both GAN optimizers so one batch = 2 steps),
-  so 5000 steps take about 100 min.
-- Local checkpoint every 500 steps; a thread uploads `last.ckpt` to HF every 20 min.
-- Every 5000 steps: legacy ONNX export on CPU, 3 test sentences synthesized, folder uploaded to HF `milestones/step_N_<session>/`.
-- Session id `<session>` = `$KERNEL_VERSION` (optional env, default `k`) + UTC start time, e.g. `k-0930T0725Z` (override with `SESSION_ID`). It is in the
-  milestone folder name, in `session.json` inside it, in the first line of every heartbeat and in `runs/hi_f/kaggle_progress_<session>.txt`,
-  so two concurrent sessions no longer overwrite each other's milestones or heartbeat. `last.ckpt` is still a single shared path.
-  Tools that list `milestones/step_N` must accept the `_<session>` suffix (`bench.milestone_eval --hf-step N` does).
+  Speed about 1.2 global steps/s (0.83 s per global step; Lightning counts both GAN optimizers so one batch = 2 steps; the heartbeat `sps` is seconds per step),
+  so 5000 steps take about 70 min and an 11 h session about 46k steps.
+- Local checkpoint every 500 steps; a thread validates (loads, finite, step advanced) and uploads it to `experiments/<id>/checkpoints/last.ckpt` every 20 min, with a sha256 read-back and `last.meta.json`.
+- Every 5000 steps: legacy ONNX export on CPU, 3 test sentences synthesized, folder uploaded to HF `experiments/<id>/milestones/step_N/` (create-once) and the wavs to `samples/step_N/`.
+- Ids: session `<session>` = `$KERNEL_VERSION` + UTC start, e.g. `v6-0930T0725Z`; experiment id `<id>` = `hi_f-<session>` (override `EXPERIMENT_ID`). Every upload is under `experiments/<id>/` through the upload
+  guard: a second session with the same id is refused, final checkpoints/milestones are create-once, and nothing is written to `runs/` or `milestones/` (except the legacy heartbeat/crash files).
+  Tools that list milestones must look in both places: `python -m bench.compare_checkpoints --list`; `bench.milestone_eval --hf-step N` searches both.
 - Learning rate: piper-tts 1.8.0 never steps its LR scheduler, so LR stays at the checkpoint value (1.5258e-4 in the seed, section 6.4). Env `LR_MODE=anneal`
-  (with `LR_START` 1e-4, `LR_D_START` = `LR_START`, `LR_FINAL_RATIO` 0.05, `ANNEAL_EPOCHS` 160) makes the wrapper set the LR every epoch to
+  (with `LR_START` 1e-4, `LR_D_START` = `LR_START`, `LR_FINAL_RATIO` 0.05, `ANNEAL_EPOCHS` 150) makes the wrapper set the LR every epoch to
   `LR_START * ratio^(min(epoch-e0, N)/N)` and hold the final value afterwards; e0 is saved in the checkpoint, so the next session with the same env
-  continues the anneal. Unset = unchanged behaviour. About 336 global steps per epoch (4012 clips / 24, two optimizers), so 160 epochs is about 54k steps.
+  continues the anneal. Unset = unchanged behaviour. About 302 global steps per epoch (3607 train clips after piper's 10% validation split and 5 test clips, 151 batches x 2 optimizers; measured 300.7 from v4's epoch counter), so 150 epochs is about 45k steps, one session.
   The kernel prints `LR at train start`, `LR anneal STARTS/CONTINUES` and `epoch N step S lr [g, d]`, and `prog.json`/heartbeat carry `lr`.
-- Self-stops at 11 h (`MAX_HOURS`), saves `last.ckpt`, uploads it (`final`). Kaggle's hard cap is 12 h per session and
+- Self-stops at 11 h (`MAX_HOURS`), saves the checkpoint, uploads `checkpoints/last.ckpt` and the create-once `checkpoints/final_step<N>.ckpt`, then `result.json`. Kaggle's hard cap is 12 h per session and
   about 30 GPU h per week per account, so relaunch after each run ends.
-- Resume is lossy by up to 20 min: at most the steps since the last HF upload are redone.
+- Resume is lossy by up to 20 min: at most the steps since the last HF upload are redone. After a crash, `RESUME_FROM=auto` finds that run's `last.ckpt` through its `last.meta.json`/file step.
 
 ### Heartbeat and crash files
 
@@ -104,11 +107,13 @@ P
 
 ## 5. Hourly check-in routine
 
-A scheduled routine wakes the session hourly to: read the heartbeat (alive? step advancing? last upload ok?), list new
-`milestones/step_N`, run the 50-sentence eval (section 6.1, `bench.milestone_eval`, small ASR) on new ones and append its numbers to training-progress.md, copy the samples into `docs/samples/step_N/`, append a row
+A scheduled routine wakes the session hourly to: read the heartbeat (alive? step advancing? last upload ok? `runs/hi_f/kaggle_progress.txt`, or `experiments/<id>/heartbeat.txt`), list new
+milestones (`python -m bench.compare_checkpoints --list`: legacy `milestones/step_N` **and** `experiments/<id>/milestones/step_N`), run the 50-sentence eval (section 6.1, `bench.milestone_eval`, small ASR) on new ones and append its numbers to training-progress.md, copy the samples into `docs/samples/step_N/`, append a row
 to [training-progress.md](training-progress.md), commit and push to the PR branch. If the heartbeat is stale for more
 than about 30 min or `kaggle_crash.txt` is new, relaunch (section 4) after making sure no other session is running
-(section 9). Pull with `git pull --rebase origin <branch>` before committing, because check-ins also push.
+(section 9). Relaunch = `training/kaggle/push.sh --kernel-version vN` (resume point `auto` = highest verified step; it never resumes implicitly from `runs/hi_f/last.ckpt`).
+After a launch write the immutable record: `python -m training.experiments new <id> --from-hf` and commit it. When a run ends, add `training/experiments/<id>.result.json` (final step, final checkpoint sha256 from
+`experiments/<id>/result.json`) instead of editing the launch record. Pull with `git pull --rebase origin <branch>` before committing, because check-ins also push.
 
 ## 6. Evaluating a milestone
 
@@ -125,8 +130,7 @@ python -m bench.milestone_eval --hf-step 350000 --session v5 --asr large-v3  # s
 python -m bench.milestone_eval --onnx voices/hi_IN-custom-medium.onnx --step 350000 --session v5   # a local file
 ```
 
-For a session-suffixed folder (`milestones/step_N_<session>/`) pass `--hf-folder milestones/step_N_<session>`; with a single candidate it is
-found automatically. The HF token comes from `~/.cache/huggingface/token`; nothing is uploaded. Each run appends ONE JSON row to
+For an experiment folder pass `--hf-folder experiments/<id>/milestones/step_N` (found automatically when it is the only candidate; a legacy `milestones/step_N` wins ties with a note). The HF token comes from `~/.cache/huggingface/token`; nothing is uploaded. Each run appends ONE JSON row to
 `bench/results/milestones.jsonl` (step, session, source, asr, params, cer mean/median/p90/max, per mean/median/p90, utmos mean/min/p10, spk_sim,
 timestamps UTC and IST) and per-sentence details (reference, ASR text, CER, PER, UTMOS) to `bench/results/milestone_details/<step>_<session>_<asr>.json`.
 
@@ -144,6 +148,17 @@ What is measured, and what is not:
   `real_vs_real_mean` (leave-one-out over the same clips, 0.92) is the ceiling. It guards against drift; it does not measure naturalness.
 - Not measured: naturalness/prosody by humans. No blind listening test has been done. Small ASR has a high floor (about 0.13 CER on this set), so use `large-v3`
   when a decision hangs on CER.
+
+**Comparing checkpoints (use this for decisions):** `bench/compare_checkpoints.py` adds what a single `milestone_eval` row cannot give: every sentence synthesized `--repeats 3` times
+(Piper's noise is unseeded), CER and PER separately, UTMOS/speaker similarity/telephony CER on every repeat, two-level bootstrap 95% CIs (sentences then repeats), paired deltas against the first
+checkpoint, the ONNX sha256 and HF commit time of each model, and the eval-set overlap check in the JSON. Labels: CER/PER = ASR intelligibility proxy; UTMOS = **predicted MOS**
+(English-trained, ranking aid); speaker similarity = Resemblyzer **embedding cosine** to real held-out clips (not verification; MFCC variant reported separately, weak); telephony 8k/16k = CER after a
+**synthetic** G.711-style mu-law channel. A difference counts only if the paired CI excludes 0 (`excludes_zero`).
+```bash
+python -m bench.compare_checkpoints --milestone milestones/step_340000 --milestone milestones/step_355000 --repeats 3      # -> bench/results/compare_<utc>.json
+python -m bench.compare_checkpoints --list                                                                                 # all milestones with upload time and sha256
+```
+Human evidence: `docs/listening-test/README.md` (blind A/B protocol, `bench/listening_pack.py make|merge`). No listening test has been run yet.
 
 ### 6.2 Stopping rule (from [voice-quality-research.md](voice-quality-research.md) section 3, made concrete)
 
@@ -258,13 +273,16 @@ your notes; the file name does not carry it.
 | Heartbeat stale, no crash file | Kaggle killed the session (12 h cap, quota, preemption) | check `kaggle kernels status`, relaunch, resume is from the last HF upload |
 | `hf_token not found under /kaggle/input` | secrets dataset not attached or renamed | keep `dataset_sources` in `training/kaggle/kernel-metadata.json` |
 | HF upload FAILED in heartbeat | token expired/rotated, network, rate limit | fix the token in `cttsh-secrets`, relaunch; local ckpt is lost when the session ends |
-| Milestone CER looks worse than the previous one | ASR noise (section 6.1) or another session overwrote it | re-listen; compare sample wavs, not one number |
+| Milestone CER looks worse than the previous one | ASR noise (section 6.1) or another session overwrote it (legacy `milestones/step_N` only) | compare the ONNX sha256 / HF commit time (`--list`), re-listen, use `compare_checkpoints` with repeats |
+| Kernel aborts with `CollisionError` | `experiments/<id>/session.json` belongs to another session (same `EXPERIMENT_ID` reused) | pick a new id (default ids contain the UTC start minute); never delete the other run's folder |
+| Kernel aborts at start: `sha256 mismatch` / `name says step X, file says Y` / `non-finite weights` | corrupt or mislabelled resume checkpoint | `RESUME_FROM=<other path>`; inspect it with `torch.load(path, weights_only=False)` (`global_step`, finite weights) |
 
 ## 10. Lessons learned
 
 - Kaggle GPU is roughly 100x the throughput of the 4 vCPU container (about 1.2 s/step at bs 24 versus about 7 s per bs-8 step on CPU); the CPU path only makes sense as a fallback.
 - Cloud CPU containers pause when idle and can be reclaimed: always keep the checkpoint and data on HF, never only on local disk.
-- One writer per HF path. Concurrent sessions silently overwrite each other's `last.ckpt` and milestones and produce misleading timelines.
+- One writer per HF path. Concurrent sessions silently overwrite each other's `last.ckpt` and milestones and produce misleading timelines (v4/v5: a stale seed replaced v4's final; two table rows carried the wrong session). The experiment folders + upload guard make this structurally impossible for new runs.
+- A step number is not an identity: always carry the checkpoint sha256 (manifest/`--list`), never a bare `step_N`.
 - Kaggle script kernels have no live logs: a heartbeat file on HF with the trainer step, s/step, losses and upload status is the only visibility. Record GPU name and losses at each milestone, several early rows lack them.
 - Step labels are ambiguous (TensorBoard offset, 2 global steps per batch, resumed runs). Always read `global_step` from the checkpoint.
 - Gradient accumulation does not work with Piper's manual optimization; scale the batch instead and use fp16-mixed.

@@ -5,7 +5,7 @@ Pipeline: raw recordings → `training/prepare_dataset.py` → `training/train.p
 
 **Status (2026-09-30):** the generic pipeline is validated end to end by `training/smoke_test.sh` (synthetic data). A
 **personal, non-commercial custom Hindi voice is being trained** (IndicTTS Hindi female, 7.9 h, fine-tuned from Piper rohan on a
-Kaggle T4 GPU); it is in progress and has had no human listening test. **How it is run today is in
+Kaggle T4 GPU); it is in progress and has had no human listening test. Kaggle runs are now recorded as immutable experiments (section 6). **How it is run today is in
 [custom-voice-runbook.md](custom-voice-runbook.md)**; milestone results are in [training-progress.md](training-progress.md).
 No commercially clean production voice exists: that needs authorized recordings (see docs/research.md; vendor-API audio is
 not an option).
@@ -136,8 +136,8 @@ expressive/multi-speaker model exists yet.
 
 **Hardware.** Measured on Apple M4 (MPS), batch 8: ~7.7 s/step, which is impractical beyond smoke tests.
 A single NVIDIA GPU (L4 / A10G / RTX 4090 class) is the realistic target. Plan several hours for a fine-tune
-from rohan and a day or more for a vocoder warm start. Measured since: a Kaggle Tesla T4 (fp16-mixed, batch 24) runs about 0.83
-steps/s (~1.2 s per global step); see the runbook.
+from rohan and a day or more for a vocoder warm start. Measured since: a Kaggle Tesla T4 (fp16-mixed, batch 24) runs about 1.2 global steps/s (0.83 s per global step; the heartbeat field `sps` is
+seconds per step, earlier docs misread it as steps per second); 5000 steps take about 70 min. See the runbook.
 
 ## 4. Export and evaluate
 
@@ -161,3 +161,63 @@ on MPS, trains again to prove resume, exports, and synthesizes with the new ONNX
 - export: ONNX voice synthesized 3.25 s of audio at RTF 0.033.
 
 This proves the mechanics only. Training on synthetic audio from an existing voice does not make a new voice.
+
+
+## 6. Kaggle runs as experiments (hardening pass, 2026-09-30)
+
+Everything below concerns `training/kaggle/train_kernel.py` from the next push on. The running session (v5) uses the older code and is unchanged.
+
+### What changed
+- **Explicit resume point.** `RESUME_FROM=<HF path>` or `auto` (default) = the highest `global_step` among `experiments/*/checkpoints/*.ckpt` and `runs/hi_f/*.ckpt`
+  (step read from the file name, or from the file for `last.ckpt`). The downloaded file is verified: sha256 against the HF LFS hash, `torch.load`, all weights finite,
+  and the name's step equals the file's `global_step`; any mismatch aborts before training. The chosen path, step, sha256 and every candidate considered go into `manifest.json`.
+- **Artifact layout, one folder per run.** Everything is written to `experiments/<id>/` (`checkpoints/{last.ckpt,last.meta.json,final_step<N>.ckpt}`, `milestones/step_N/`,
+  `samples/step_N/`, `metrics.jsonl`, `heartbeat.txt`, `manifest.json`, `environment.json`, `session.json`, `result.json`, `crash.txt`; evaluations go in `evaluations/`).
+  `id` defaults to `hi_f-<KERNEL_VERSION|k>-<UTC start minute>`. `runs/hi_f/last.ckpt` and `milestones/` are **frozen legacy**: the kernel no longer writes them
+  (only the legacy heartbeat `runs/hi_f/kaggle_progress.txt`, which the hourly check-in reads, and `kaggle_crash.txt`).
+- **Upload guard** (`ExperimentGuard`). All uploads go through it: only under `experiments/<id>/`; refuses to start if the remote `session.json` names another session
+  (two sessions can no longer overwrite each other); final checkpoints, milestones, manifest and result are create-once (an existing path is skipped, never overwritten);
+  ownership is re-read every 10 min. Not atomic (HF has no compare-and-swap), documented in the class.
+- **Checkpoint integrity.** Each periodic upload first copies the checkpoint, loads it (a torn copy made while Lightning writes fails the load and is retried next cycle),
+  refuses non-finite weights, refuses to go backwards in step, then uploads and reads back the sha256 from HF.
+- **Reproducibility files.** `manifest.json` (git sha, kernel script sha256, resume checkpoint, dataset fingerprint, seed, batch size, LR env, full trainer CLI, UTC/IST start),
+  `environment.json` (python, torch, lightning, piper-tts, CUDA runtime, cuDNN, GPU, espeak-ng), `metrics.jsonl` (one line per 20 steps: step, epoch, lr, losses, seconds/step).
+  Kaggle script kernels cannot take env vars, so `training/kaggle/push.sh` stamps `GIT_SHA`, `KERNEL_VERSION`, `RESUME_FROM`, `EXPERIMENT_ID` into a temp copy of the script
+  (`--dry-run` shows it); a plain `kaggle kernels push -p training/kaggle` still works and records `git_sha: unknown`.
+- **Immutable records in git:** `training/experiments/<id>.json` (`python -m training.experiments validate`; create-once writer), results in a separate `<id>.result.json`.
+- **LR anneal default corrected:** `ANNEAL_EPOCHS` 160 -> 150 (see Evidence).
+
+### Why
+v4 and v5 ran concurrently from the same seed checkpoint, and v5's 20-minute upload re-sent the unchanged 310300 seed to `runs/hi_f/last.ckpt` after v4 had uploaded its
+final. Milestone folders `step_320000..345000` were written by both sessions, so a step number did not identify a model, and two rows of the 50-sentence table were labelled with the wrong session.
+
+### Evidence (verified 2026-09-30 06:25 UTC unless stated)
+- HF `runs/hi_f/last.ckpt`: `global_step` 310300, epoch 3191, sha256 25b56359... (the stale seed). `runs/hi_f/v4_final_step357212.ckpt`: `global_step` 357212, epoch 3347,
+  sha256 2561a9c9..., both optimizers `lr = 1.5257792529e-4`, schedulers `last_epoch = 2165` unchanged: 46.9k steps at a constant LR (downloaded, `torch.load(weights_only=False)`, CPU).
+- piper-tts 1.8.0 `piper/train/vits/lightning.py`: `automatic_optimization = False`, `opt_g.step()`/`opt_d.step()` only, no scheduler call anywhere; pinned by `tests/test_lr_anneal.py`.
+- Steps per epoch: (357212 - 310300) / (3347 - 3191) = 300.7; piper holds out 10% of `metadata.csv` (4013 rows) as validation and 5 as test, so 3607 clips / 24 = 151 batches x 2 optimizers = 302.
+  The earlier "about 336 steps per epoch / 54k steps" was wrong, so 160 epochs = 48.3k steps and 150 epochs = 45.3k steps, about one 11 h session at 1.2 steps/s.
+- Milestone provenance on HF now (upload time of the ONNX): 340000 03:31 (v5), 345000 04:41 (v5), 350000 05:50 (v5, v4 had ended at 05:10), 355000 04:39 (v4).
+- CPU smoke of the whole kernel script against a local directory (`python -m training.kernel_smoke`): all checks PASS (resume tie-break and probe, manifest, environment, metrics,
+  anneal, milestone export+upload, checkpoint upload with read-back, create-once final, result.json, nothing outside `experiments/<id>/`, second session with the same id refused).
+  Unit tests: `tests/test_kaggle_kernel.py` (guard with a fake HfApi, resume selection, NaN/torn checkpoints), `tests/test_lr_anneal.py`, `tests/test_experiments.py`.
+
+### Unverified
+- The new kernel has not run on Kaggle/GPU (no GPU here, and no push was allowed while v5 runs). The real `HfApi` calls it adds (`file_exists`, `get_paths_info`, `upload_folder`) were
+  only exercised read-only against the live repo; the writes were exercised against the local fake.
+- Kaggle's `torch`/CUDA versions for v4/v5 were not recorded (environment.json will record them from now on).
+- Whether the same seed in every session (piper draws the train/val split from `--seed_everything`, so it must stay 1234) makes each session replay the same batch order at its start is unmeasured.
+- The audible effect of the anneal; every number in docs is a proxy (section below and benchmarks.md), no human listening test has been run.
+
+### Next experiment (proposed launch config)
+| Item | Value |
+|---|---|
+| Dataset | `data/hi_f`, metadata.csv sha256 9bf8f152..., 4013 rows (3607 trained, 401 piper-validation, 5 piper-test), 4225 wavs incl. 212 held-out test clips |
+| Resume | `RESUME_FROM=auto`; today that resolves to `runs/hi_f/v4_final_step357212.ckpt` (verified step 357212) unless v5's final (`runs/hi_f/last.ckpt` after ~07:25 UTC) verifies higher. Pin it with `push.sh --resume-from runs/hi_f/v4_final_step357212.ckpt` for a fixed baseline |
+| Seed / batch | 1234 (do not change) / 24, fp16-mixed, T4, 11 h |
+| LR | `LR_MODE=anneal`, 1e-4 -> 5e-6 (ratio 0.05) over `ANNEAL_EPOCHS=150` (about 45k steps), then hold. Reason: 47k steps at constant 1.53e-4 (v4) plateaued on every proxy (340k vs 345k is a tie within the noise band), and the anneal is the standard fine-tune finish. The recorded step from 1.53e-4 to 1e-4 at the start is a 35% drop at once |
+| Evaluation | every 5000-step milestone: `python -m bench.compare_checkpoints --milestone <path> --milestone runs-baseline ...` with `--repeats 3`; decision by the paired CIs, then a blind A/B (`docs/listening-test/`) of best-anneal vs v4 final |
+| Artifact path | `experiments/<id>/` (record `training/experiments/<id>.json` after launch: `python -m training.experiments new <id> --from-hf`) |
+
+Launch: `training/kaggle/push.sh --kernel-version v6` (after `kaggle kernels status` says the previous session is complete). Dry run of the stamping: `training/kaggle/push.sh --dry-run`.
+Local checks before any push: `python -m training.kernel_smoke --ckpt <any real ckpt>` and `python -m training.lr_dryrun --ckpt <ckpt>` (both CPU).

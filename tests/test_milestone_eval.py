@@ -36,7 +36,7 @@ def test_kernel_wrapper_source_compiles_and_has_lr_control():
     compile(wrap, "wrap.py", "exec")
     compile(src, "train_kernel.py", "exec")
     assert 'state_key = "lr_ctl"' in wrap and "LR_MODE" in wrap
-    assert "milestones/step_{n}_{SID}" in src
+    assert "milestones/step_{n}" in src and "experiments/{self.id}/" in src
 
 
 def test_percentiles_and_stamps():

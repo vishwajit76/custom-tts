@@ -1,0 +1,88 @@
+{
+ "experiment_id": "hi_f-v4-20260929",
+ "status": "completed",
+ "kernel": "vishwajit76/custom-tts-hindi-train, kernel version v4 (per the session naming used in docs; Kaggle version number not independently verified)",
+ "git_sha": "unknown (started from the working tree before any commit of the kernel: first commit of training/kaggle/train_kernel.py is 5d279ed at 2026-09-29 19:21 UTC, after v4's derived start)",
+ "dataset": {
+  "repo_path": "data/hi_f (private HF dataset-in-model repo vishwajit76/custom-tts-hindi-train)",
+  "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3",
+  "metadata_rows": 4013,
+  "n_wavs": 4225,
+  "wavs_name_size_sha256": "41bb8b44304ae131af9dd82d38d415f9899cbca42e00eeed4be7041640b1deec",
+  "note": "metadata.csv = 4013 train rows; n_wavs also counts the 212 held-out test clips (test.csv) that training never reads. Fingerprint computed 2026-09-30 from the HF repo tree (sizes) and file; local data/hi_f/metadata.csv has the same sha256. Piper additionally hides a random 10% of the 4013 rows as validation (random_split under seed 1234), so ~3607 clips are trained on."
+ },
+ "base_checkpoint": {
+  "source": "Piper hi_IN rohan medium (rhasspy/piper-checkpoints epoch=3190-step=309852.ckpt) fine-tuned 448 steps on the CPU container -> HF runs/hi_f/last.ckpt (seed)",
+  "hf_path": "runs/hi_f/last.ckpt (content as of 2026-09-29 16:23 UTC; byte-identical seed still on HF at 2026-09-30 06:25 UTC)",
+  "global_step": 310300,
+  "epoch": 3191,
+  "sha256": "25b56359ea79e6cc1abb7bab974d8a361ff9a3726e02ee65dcfd33581199c911",
+  "size_bytes": 845852950,
+  "lr_g": 0.00015257792529439193,
+  "lr_d": 0.00015257792529439193,
+  "scheduler": {
+   "gamma": 0.999875,
+   "last_epoch": 2165
+  }
+ },
+ "config": {
+  "lr": {
+   "mode": "constant (checkpoint LR; piper-tts 1.8.0 never steps its ExponentialLR scheduler)",
+   "lr_g": 0.00015257792529439193,
+   "lr_d": 0.00015257792529439193,
+   "scheduler": "none effective (last_epoch stays 2165)"
+  },
+  "precision": "16-mixed",
+  "trainer": "python -m piper.train fit via Kaggle wrapper (training/kaggle/train_kernel.py)",
+  "checkpoint_every_steps": 500,
+  "milestone_every_steps": 5000,
+  "steps_per_epoch_approx": 302,
+  "max_hours": 11,
+  "piper_tts": "1.8.0",
+  "validation_split": "piper default 0.1 of metadata.csv (random_split under seed 1234)"
+ },
+ "seed": 1234,
+ "batch_size": 24,
+ "hardware": {
+  "gpu": "Tesla T4 (16 GB)",
+  "platform": "Kaggle script kernel",
+  "torch": "unknown (not recorded; Kaggle preinstalled)",
+  "cuda": "unknown",
+  "note": "speed ~0.83 s per global step = ~1.2 steps/s (heartbeat 'sps' is SECONDS per step)"
+ },
+ "dates": {
+  "started_utc": "2026-09-29 ~18:15 (derived: final 357212 at 05:10 UTC minus 46912 steps at ~0.83 s/step; not recorded)",
+  "started_ist": "~23:45 (derived)",
+  "ended_utc": "2026-09-30T05:10",
+  "ended_ist": "2026-09-30T10:40"
+ },
+ "steps": {
+  "start": 310300,
+  "end": 357212,
+  "epochs": "3191 -> 3347"
+ },
+ "outputs": {
+  "final_checkpoint": "runs/hi_f/v4_final_step357212.ckpt",
+  "final_sha256": "2561a9c9359587d555cd82ee39198ddcf154d20b5f19f691aad0e36a7169316b",
+  "final_size_bytes": 845888406,
+  "final_global_step_verified": 357212,
+  "final_lr_g": 0.00015257792529439193,
+  "final_scheduler_last_epoch": 2165,
+  "verified": "downloaded and torch.load(weights_only=False) on CPU 2026-09-30 06:25 UTC",
+  "milestones": "milestones/step_315000..355000 (every 5000). Names are NOT unique per experiment: v5 re-used step_320000..345000; the copy present at a given time is whichever session uploaded last. 350000 and 355000 are v4-only (v5 had not reached them when v4 ended)."
+ },
+ "concurrency": "Ran concurrently with v5 from ~20:25 UTC on the same seed checkpoint, same seed 1234, same HF paths (last.ckpt, milestones/step_N, heartbeat).",
+ "known_issues": [
+  "last.ckpt was never re-uploaded (Lightning wrote version_1, the uploader read version_0): only the deadline save produced a fresh file",
+  "v5's periodic upload at 05:18 UTC replaced runs/hi_f/last.ckpt with the stale 310300 seed after v4 uploaded its final",
+  "no session id: milestone provenance in HF is ambiguous for steps 320000-345000"
+ ],
+ "unknown": [
+  "git_sha",
+  "kaggle_kernel_version_number",
+  "exact start time",
+  "torch/cuda versions",
+  "kernel script hash",
+  "per-session milestone provenance for steps 320000-345000"
+ ]
+}

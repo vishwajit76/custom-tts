@@ -1,0 +1,45 @@
+{
+ "experiment_id": "hi_f-v6-anneal-planned",
+ "status": "planned",
+ "kernel": "vishwajit76/custom-tts-hindi-train (next push after v5 ends)",
+ "git_sha": "to be stamped by training/kaggle/push.sh at launch",
+ "dataset": {
+  "repo_path": "data/hi_f (private HF dataset-in-model repo vishwajit76/custom-tts-hindi-train)",
+  "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3",
+  "metadata_rows": 4013,
+  "n_wavs": 4225,
+  "wavs_name_size_sha256": "41bb8b44304ae131af9dd82d38d415f9899cbca42e00eeed4be7041640b1deec",
+  "note": "metadata.csv = 4013 train rows; n_wavs also counts the 212 held-out test clips (test.csv) that training never reads. Fingerprint computed 2026-09-30 from the HF repo tree (sizes) and file; local data/hi_f/metadata.csv has the same sha256. Piper additionally hides a random 10% of the 4013 rows as validation (random_split under seed 1234), so ~3607 clips are trained on."
+ },
+ "base_checkpoint": {
+  "rule": "RESUME_FROM=auto = highest global_step among experiments/*/checkpoints/*step<N>.ckpt and runs/hi_f/*.ckpt, verified by sha256 and torch.load; or pin RESUME_FROM explicitly",
+  "current_best_known_final": "runs/hi_f/v4_final_step357212.ckpt (verified step 357212) unless v5's final (runs/hi_f/last.ckpt after ~07:25 UTC) verifies higher"
+ },
+ "config": {
+  "lr": {
+   "mode": "anneal",
+   "LR_START": 0.0001,
+   "LR_D_START": 0.0001,
+   "LR_FINAL_RATIO": 0.05,
+   "ANNEAL_EPOCHS": 150,
+   "about_steps": 45300,
+   "note": "exponential 1e-4 -> 5e-6 over 150 epochs (about one 11 h session), then held; the previous plan of 160 epochs assumed 336 steps/epoch, measured 302"
+  },
+  "precision": "16-mixed",
+  "max_hours": 11,
+  "steps_per_epoch_approx": 302
+ },
+ "seed": 1234,
+ "batch_size": 24,
+ "hardware": "Kaggle Tesla T4 (expected)",
+ "dates": {
+  "planned": "after v5 deadline 2026-09-30T07:25Z"
+ },
+ "artifact_path": "experiments/<id>/ on HF (id = hi_f-<KERNEL_VERSION>-<UTC start>)",
+ "evaluation": "bench.compare_checkpoints on milestones, repeats>=3, same 50-sentence set, bootstrap CIs; decision rule in docs/training.md",
+ "unknown": [
+  "experiment_id (final id carries the launch minute)",
+  "git_sha",
+  "start time"
+ ]
+}
