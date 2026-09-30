@@ -133,3 +133,44 @@ def test_mp3_and_wav_at_8k(client):
     import soundfile as sf
     d, sr = sf.read(io.BytesIO(r.content), dtype="int16")
     assert sr == 8000 and d.ndim == 1
+
+
+# ---------- P5: pauses, headroom, and a real mu-law round trip ----------
+class PauseEngine(Tone):
+    """0.3 s tone, a 300 ms pause, 0.3 s tone: does the pause survive trimming and resampling?"""
+
+    def synth(self, text, voice, speed, ref=None, ref_text=None):
+        t = np.arange(int(NATIVE * 0.3)) / NATIVE
+        tone = (0.3 * np.sin(2 * np.pi * 1000 * t)).astype(np.float32)
+        return np.concatenate([np.zeros(NATIVE // 4, np.float32), tone, np.zeros(int(NATIVE * 0.3), np.float32), tone])
+
+
+def _longest_quiet_run_ms(x, sr, thr=0.003, skip_ms=40):
+    quiet, best, cur = np.abs(x) < thr, 0, 0
+    for q in quiet[int(sr * skip_ms / 1000):]:
+        cur = cur + 1 if q else 0
+        best = max(best, cur)
+    return best * 1000 / sr
+
+
+@pytest.mark.parametrize("sr", [8000, 16000, 22050])
+def test_internal_pause_length_is_preserved_through_trim_and_resample(monkeypatch, sr):
+    monkeypatch.setattr(tts, "engine", PauseEngine())
+    monkeypatch.setattr(settings, "cache_size", 0)
+    wav = _synth(sr)
+    assert abs(_longest_quiet_run_ms(wav, sr) - 300) < 12  # the 300 ms pause, to within filter ringing at its two edges
+    assert abs(len(wav) / sr - (0.03 + 0.3 + 0.3 + 0.3)) < 0.02  # lead silence trimmed to 30 ms; nothing else added or cut
+
+
+def test_mulaw_round_trip_is_labelled_quantisation_only():
+    """G.711 mu-law QUANTISATION only (audioop, removed in Python 3.13): no network codec, jitter, packet loss or transcoding.
+    It is here so a claim about 8 kHz telephony quality rests on a real encode/decode, not on the word 'telephony'."""
+    audioop = pytest.importorskip("audioop")
+    t = np.arange(8000) / 8000
+    x = (0.1 * np.sin(2 * np.pi * 1000 * t) + 0.05 * np.sin(2 * np.pi * 2500 * t)).astype(np.float32)  # about -20 dBFS speech level
+    pcm = np.rint(x * 32767).astype("<i2").tobytes()
+    y = np.frombuffer(audioop.ulaw2lin(audioop.lin2ulaw(pcm, 2), 2), "<i2").astype(np.float32) / 32767
+    snr = 10 * np.log10(np.sum(x**2) / np.sum((y - x) ** 2))
+    assert len(audioop.lin2ulaw(pcm, 2)) == len(x)  # 8 bits per sample
+    assert snr > 30  # G.711 mu-law is ~35-38 dB SNR at speech levels
+    assert level_db(y, 8000, 1000) > level_db(x, 8000, 1000) - 1  # in-band tone level preserved

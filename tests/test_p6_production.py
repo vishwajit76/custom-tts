@@ -86,3 +86,73 @@ def test_legacy_voice_delete_with_bad_id_is_422_not_500(client):
     """The unanchored pattern let '../evil'-like ids through validation; the engine's fullmatch then raised ValueError (500)."""
     assert client.delete("/v1/voices/a..%2Fb").status_code in (404, 422)
     assert client.delete("/v1/voices/evil%20x").status_code == 422
+
+
+def test_retention_is_enforced_while_running_not_only_at_startup(monkeypatch, tmp_path):
+    """An idle speaker kept its expired raw reference until the next restart or read."""
+    import time
+    from datetime import datetime, timedelta, timezone
+
+    import numpy as np
+
+    from app.main import app
+    from app.services import speaker_registry as sr
+
+    monkeypatch.setattr(settings, "speakers_dir", tmp_path / "spk")
+    monkeypatch.setattr(tts, "engine", Tone())
+    monkeypatch.setattr(settings, "retention_sweep_minutes", 0.0005)  # 30 ms
+    reg = sr.get_registry()
+    reg.create("o", "asha", "Asha", retention=sr.Retention(delete_after_days=1))
+    m = {"sha256": "h", "duration_s": 4.0, "sample_rate": 16000, "rms_dbfs": -20.0, "clip_fraction": 0.0, "speech_fraction": 0.9, "quality": 0.8}
+    with TestClient(app):  # lifespan running: the periodic sweep task is alive
+        ref = reg.add_reference("asha", "o", np.full(64000, 0.01, np.float32), 16000, m)
+        sp = reg._load("asha")
+        sp.references[0].created_at = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+        reg._save(sp)
+        wav = tmp_path / "spk" / "asha" / ref.path
+        assert wav.exists()
+        deadline = time.time() + 5
+        while wav.exists() and time.time() < deadline:
+            time.sleep(0.05)
+        assert not wav.exists() and reg._load("asha").references[0].path is None
+
+
+# ---------- WebSocket: a stale cancel must not poison a later request ----------
+def _events_until(ws, kinds):
+    seen = []
+    while True:
+        m = ws.receive()
+        if m.get("bytes") is not None:
+            continue
+        ev = json.loads(m["text"])
+        seen.append(ev)
+        if ev["type"] in kinds:
+            return seen
+
+
+def test_cancel_of_a_finished_or_unknown_id_does_not_cancel_a_later_request_with_that_id(client):
+    """cancel{id} for an id that was not queued was remembered forever: a later speak reusing the id (clients reuse "r1")
+    was silently answered `cancelled`, and the remembered set grew without bound."""
+    with client.websocket_connect("/v1/audio/ws") as ws:
+        ws.send_json({"type": "speak", "id": "r1", "text": "नमस्ते।", "sample_rate": 8000})
+        assert _events_until(ws, {"end"})[-1]["type"] == "end"
+        ws.send_json({"type": "cancel", "id": "r1"})  # too late: already finished
+        ws.send_json({"type": "cancel", "id": "never-sent"})
+        ws.send_json({"type": "speak", "id": "r1", "text": "नमस्ते।", "sample_rate": 8000})
+        ev = _events_until(ws, {"end", "cancelled", "error"})
+        assert ev[-1]["type"] == "end" and ev[-1]["audio_ms"] > 0
+
+
+def test_cancel_of_a_queued_id_still_works(client):
+    with client.websocket_connect("/v1/audio/ws") as ws:
+        ws.send_json({"type": "speak", "id": "first", "text": "यह एक लंबा वाक्य है। " * 10, "sample_rate": 8000})
+        ws.send_json({"type": "speak", "id": "second", "text": "नमस्ते।", "sample_rate": 8000})
+        ws.send_json({"type": "cancel", "id": "second"})
+        ends = []
+        while len(ends) < 2:
+            m = ws.receive()
+            if m.get("text"):
+                ev = json.loads(m["text"])
+                if ev["type"] in ("end", "cancelled"):
+                    ends.append((ev["id"], ev["type"]))
+        assert dict(ends) == {"first": "end", "second": "cancelled"}

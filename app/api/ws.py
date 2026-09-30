@@ -42,7 +42,8 @@ async def ws_tts(ws: WebSocket):
         return
     await ws.accept()
     pending: asyncio.Queue[WsSpeak] = asyncio.Queue(MAX_PENDING)
-    dropped: set[str] = set()
+    dropped: set[str] = set()  # ids cancelled while still queued
+    queued: set[str] = set()  # ids currently waiting in `pending`: only these can be cancelled ahead of time
     cur: dict = {"id": None, "task": None}
 
     async def send(obj: dict) -> None:
@@ -90,6 +91,7 @@ async def ws_tts(ws: WebSocket):
     async def pump() -> None:
         while True:
             m = await pending.get()
+            queued.discard(m.id)
             if m.id in dropped:
                 dropped.discard(m.id)
                 await send({"type": "cancelled", "id": m.id})
@@ -116,6 +118,7 @@ async def ws_tts(ws: WebSocket):
                     continue
                 try:
                     pending.put_nowait(m)
+                    queued.add(m.id)
                 except asyncio.QueueFull:
                     await send({"type": "error", "id": m.id, "code": "queue_full", "message": f"max {MAX_PENDING} queued requests"})
             elif kind == "cancel":
@@ -123,12 +126,16 @@ async def ws_tts(ws: WebSocket):
                 if rid is None:  # barge-in: drop everything
                     while not pending.empty():
                         await send({"type": "cancelled", "id": pending.get_nowait().id})
+                    queued.clear()
+                    dropped.clear()
                     if cur["task"]:
                         cur["task"].cancel()
                 elif rid == cur["id"]:
                     cur["task"].cancel()
-                else:
+                elif rid in queued:
                     dropped.add(rid)
+                # else: unknown or already finished. Remembering it would silently cancel a LATER request that reuses the id,
+                # and let a client grow this set without bound
             else:
                 await send({"type": "error", "code": "bad_request", "message": f"unknown type {kind!r}"})
     except (WebSocketDisconnect, RuntimeError):  # RuntimeError: receive after we closed a slow client

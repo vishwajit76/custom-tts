@@ -1,3 +1,5 @@
+import asyncio
+import contextlib
 import logging
 from contextlib import asynccontextmanager
 
@@ -14,19 +16,41 @@ setup_logging(settings.log_level)
 log = logging.getLogger("app")
 
 
+def _sweep_retention() -> None:
+    from app.services.speaker_registry import get_registry
+
+    if settings.speakers_dir.is_dir():
+        get_registry().purge_expired()  # per-speaker reference retention + interrupted consent revocations
+
+
+async def _retention_loop() -> None:
+    """Retention was only enforced at startup and when a speaker was read, so an idle speaker kept expired raw audio for
+    as long as the process ran. Sweep periodically (off the event loop: it fsyncs and overwrites files)."""
+    while True:
+        await asyncio.sleep(settings.retention_sweep_minutes * 60)
+        try:
+            await asyncio.to_thread(_sweep_retention)
+        except Exception:
+            log.exception("speaker retention sweep failed")
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     if not settings.keys:
         log.warning("API_KEYS empty: authentication DISABLED")
     tts.load()
     try:
-        from app.services.speaker_registry import get_registry
-
-        if settings.speakers_dir.is_dir():
-            get_registry().purge_expired()  # honour per-speaker reference retention
+        _sweep_retention()
     except Exception:
         log.exception("speaker retention purge failed")
-    yield
+    sweeper = asyncio.create_task(_retention_loop()) if settings.retention_sweep_minutes > 0 else None
+    try:
+        yield
+    finally:
+        if sweeper:
+            sweeper.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await sweeper
 
 
 app = FastAPI(title="Hindi TTS", version="2.0.0", lifespan=lifespan)
