@@ -14,7 +14,7 @@ done without something we do not have. "Evidence" names the test file / doc; no 
 | 4 Expressive model research | done (research only) | `model-selection.md`, `licenses.md` | bake-off not run: needs GPU and HF weights; licences from HF cards not re-read |
 | 5 Emotion / style / role / prosody | **blocked** for native emotion/style/role; partial for prosody | `tests/test_expressive_dsp.py` (fake native engine proves the plumbing and the capability gate); DSP pitch/energy | no engine supports emotion/style/role, so they are rejected/ignored on all real engines. DSP pitch/energy is opt-in (`DSP_PROSODY`), labelled `:dsp`, never emotion; its perceptual quality was not listened to |
 | 6 Hindi/Hinglish quality | done | `tests/test_pronunciation_corpus.py` (326 rows), normalizer tests | no native-listener review |
-| 7 Training/data pipeline | done (plumbing) | `tests/test_training_pipeline.py`, `test_prepare_dataset.py` | no production fine-tune (no authorised data, no GPU) |
+| 7 Training/data pipeline | done (plumbing) | `tests/test_training_pipeline.py`, `test_prepare_dataset.py` | no commercially clean fine-tune (no authorised data); a personal-use voice is training on Kaggle, see the 2026-09-30 update |
 | 8 Serving / telephony | done | `tests/test_telephony.py` (8k/16k PCM s16le, alias rejection, seam-free streaming resampler); barge-in docs | streaming is sentence-level, not model-internal; no G.711 encoding; GPU/ONNX-FP16 export unverified |
 | 9 Previews + evaluation | done (tooling) | `bench/eval.py`, `bench/previews.py`, `tests/test_bench_eval.py`; sample run in `benchmarks.md` | predicted MOS != human MOS; CER only if a local Whisper is cached; no listening test |
 | 10 Routing, API tests, deployment | done / partial | `tests/test_routing.py`, `tests/test_robustness.py`; CPU Dockerfile unchanged | routing tiers are config, not load-aware; GPU Dockerfile unverified; Docker not built in this environment |
@@ -83,7 +83,7 @@ verification limited (reason given); `[ ]` = not done (blocked, reason given).
 ## 10. Training pipeline: [training.md](training.md)
 - [x] Dataset prep: layouts, speakers, denoise, trim, segmentation (+ASR), normalization, validation, splits, report
 - [x] Train with checkpoints + auto-resume; export to ONNX voice; smoke test passes end to end
-- [ ] **Production voice fine-tune**: blocked on (a) authorized Hindi recordings or a downloaded CC BY 4.0 set and (b) an NVIDIA GPU. MPS measured at ~7.7 s/step, which is impractical
+- [~] **Production voice fine-tune**: personal-use custom Hindi voice now training on a Kaggle T4 (see the 2026-09-30 update and [custom-voice-runbook.md](custom-voice-runbook.md)); a commercial voice stays blocked on (a) authorized Hindi recordings or a downloaded CC BY 4.0 set and (b) an NVIDIA GPU. MPS measured at ~7.7 s/step, which is impractical
 
 ## 11. Human-like, multi-voice push (Sep 29): [research.md](research.md), [benchmarks.md §7](benchmarks.md)
 - [x] Research: 6 dimension reports + 17 primary-source license/speed verifications, written up in research.md (CPU tier vs GPU tier, voice inventory, fine-tune path, eval method, open questions)
@@ -110,3 +110,20 @@ verification limited (reason given); `[ ]` = not done (blocked, reason given).
 - Phase 9: CER runs locally via `bench/quality_fw.py` (faster-whisper small): mean CER Piper 0.309 / Kokoro 0.270 / Supertonic 0.295 — small-model ASR noise dominates; not comparable to §7. UTMOS blocked (torch.hub 403).
 - Security review: 13 fixes with regression tests (`tests/test_review_fixes.py`) — decode bombs, consent race, cross-owner legacy voice overwrite, DSP blocking the event loop, annotate CSRF/DNS-rebinding, Devanagari split key, rights validation, cloning consent for bound voices, retention purge of engine copies, upload body cap.
 - Phase 10: Docker not built — CLI present, no daemon in this environment.
+
+## Update 2026-09-30 — custom Hindi voice training phase (in progress)
+
+Status: **in progress, not finished, not validated by listeners.**
+
+- What runs: personal, non-commercial Piper fine-tune on IndicTTS Hindi female (7.9 h), init from Piper `hi_IN-rohan-medium`
+  (step 309852), on a Kaggle Tesla T4 (batch 24, fp16-mixed, about 0.83 steps/s, 11 h runs, checkpoint to a private HF repo every 20 min,
+  milestone ONNX every 5000 steps). Operating guide: [custom-voice-runbook.md](custom-voice-runbook.md); results:
+  [training-progress.md](training-progress.md).
+- Progress: milestones exported from step 310300 (CPU) through 345000 (Kaggle); the earlier "blocked on GPU/data" status in the training
+  section above is superseded for this personal voice (authorized commercial data is still missing, so no commercial voice).
+- Quality evidence is weak: CER (faster-whisper small, 3 sentences) fell from 0.163 (310.3k) to about 0.04 to 0.10 and then shows no trend; it is
+  noisy (the same step scored 0.061 and 0.039 on re-upload). **No human listening test has been done.** Predicted MOS (UTMOS) was not run.
+- Known process problem: two concurrent Kaggle sessions (v4, v5) overwrote each other's HF milestones, so step labels from the two
+  are not on one timeline. Fix is procedural: one session at a time.
+- Tokens used during setup were pasted in chat and should be rotated (runbook section 3).
+- The CPU long-train scripts remain as a fallback only (the container pauses when idle).

@@ -51,7 +51,7 @@ See section 1. Cancellation: cancelling the consuming task skips queued chunks; 
 ## 5. Training pipeline
 
 `training/` (Piper VITS only): `prepare_dataset.py` (layouts, denoise, trim, ASR segmentation, validation, splits, report) -> `train.py` (fine-tune, auto-resume, `--seed`, AMP `--precision`, `--warmstart-vocoder base`; gradient accumulation NOT wired) -> `export.py` (ONNX) -> drop into `MODELS_DIR`.
-`training/smoke_test.sh` validates plumbing with synthetic data only. **No production voice has been trained** (no authorized data, no NVIDIA GPU; MPS ~7.7 s/step). Multi-speaker rows are supported by Piper; there is no emotion/style-conditioned training. (Other workers are editing `training/`; re-check before relying on this section.)
+`training/smoke_test.sh` validates plumbing with synthetic data only. **No commercially clean production voice has been trained** (no authorized data); a personal-use custom Hindi voice has been training on a Kaggle T4 since 2026-09-29, see [custom-voice-runbook.md](custom-voice-runbook.md) (audited state at that date: none). Multi-speaker rows are supported by Piper; there is no emotion/style-conditioned training. (Other workers are editing `training/`; re-check before relying on this section.)
 
 ## 6. License notes (as found in the repo docs; see docs/licenses.md when it lands)
 

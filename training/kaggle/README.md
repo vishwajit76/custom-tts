@@ -1,6 +1,7 @@
 # Kaggle GPU training (Hindi Piper fine-tune)
 
 Kernel: https://www.kaggle.com/code/vishwajit76/custom-tts-hindi-train (private, GPU, internet on).
+Operating guide, secrets, evaluation and troubleshooting: [docs/custom-voice-runbook.md](../../docs/custom-voice-runbook.md).
 
 ## Relaunch
 

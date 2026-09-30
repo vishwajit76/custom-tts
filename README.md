@@ -11,7 +11,7 @@ Streaming Hindi and Hinglish text-to-speech server built for phone agents. It ru
 - **Text pipeline:** Hindi normalization for numbers (lakh/crore), ₹, dates, times (साढ़े दस बजे), phone
   numbers, ordinals, units and symbols. Romanized Hindi ("kya aap free hain?") and Indian names
   (Rahul, Lucknow) are converted to Devanagari; English words stay English.
-- **Voice training:** dataset prep → Piper fine-tune → ONNX export ([docs/training.md](docs/training.md)).
+- **Voice training:** dataset prep → Piper fine-tune → ONNX export ([docs/training.md](docs/training.md)); custom Hindi voice (in progress): [docs/custom-voice-runbook.md](docs/custom-voice-runbook.md). All docs: [docs/README.md](docs/README.md).
 - **Licensing:** read [docs/research.md](docs/research.md) before commercial use. The bundled Hindi voices are
   for evaluation; train your own voice for production.
 

@@ -3,10 +3,17 @@
 Pipeline: raw recordings → `training/prepare_dataset.py` → `training/train.py` (Piper VITS fine-tune, auto-resume) →
 `training/export.py` (ONNX voice) → drop into `MODELS_DIR` → `bench/quality.py` + `bench/bench.py`.
 
-**Status:** the pipeline is implemented and validated end to end by `training/smoke_test.sh` (synthetic data,
-1 epoch + resume + export, see below). **No production voice has been trained yet.** That needs authorized
-recordings and an NVIDIA GPU; neither was available here. See docs/research.md for why vendor-API audio is not
-an option.
+**Status (2026-09-30):** the generic pipeline is validated end to end by `training/smoke_test.sh` (synthetic data). A
+**personal, non-commercial custom Hindi voice is being trained** (IndicTTS Hindi female, 7.9 h, fine-tuned from Piper rohan on a
+Kaggle T4 GPU); it is in progress and has had no human listening test. **How it is run today is in
+[custom-voice-runbook.md](custom-voice-runbook.md)**; milestone results are in [training-progress.md](training-progress.md).
+No commercially clean production voice exists: that needs authorized recordings (see docs/research.md; vendor-API audio is
+not an option).
+
+> **Fallback only: CPU long-train path.** `training/run_longtrain.sh` (+ `supervise.sh`, `hf_sync.sh`, `status.sh`,
+> `export_latest.sh`) runs the same fine-tune on the 4 vCPU container (~7 s per batch-8 step) with an RSS watchdog and HF
+> backup. It is kept as a fallback because the cloud container **pauses when idle** and can be reclaimed, so it cannot train
+> unattended. Use the Kaggle GPU path (runbook) instead, and keep only one writer to HF `runs/hi_f/last.ckpt`.
 
 ## 1. Environment
 
@@ -76,7 +83,7 @@ dropped). The test set is written separately (`test.jsonl` / `test.csv` + `.held
 `assert_not_heldout` and refuses to load it. Audio-report SNR is a rough percentile estimate, and its reject thresholds
 (`LIMITS` in `audio_report.py`) are untuned defaults.
 
-Training flags (`training.train`): `--seed` (-> `--seed_everything`), `--precision 16-mixed` (AMP), resume is automatic,
+Training flags (`training.train`): `--seed` (-> `--seed_everything`), `--precision 16-mixed` (AMP, exercised on the Kaggle T4), resume is automatic,
 `--dry-run` prints the `piper.train` command. Multi-speaker: `file|speaker|text` rows set `--model.num_speakers`;
 `speaker_map.json` is written to the dataset dir (Piper's own map is in `config.json`). **Gradient accumulation is not
 available**: Piper's trainer uses manual optimization and Lightning raises `MisconfigurationException: Automatic gradient
@@ -86,7 +93,7 @@ rejects `--trainer.accumulate_grad_batches` up front, so use a larger `--batch-s
 **Flags verified against a live `python -m piper.train fit --help`** (piper-tts 1.8.0, 2026-09-29): every flag `training.train` emits exists
 (`--seed_everything`, `--ckpt_path`, `--data.{voice_name,csv_path,audio_dir,espeak_voice,cache_dir,config_path,batch_size}`,
 `--model.{sample_rate,num_speakers,vocoder_warmstart_ckpt}`, `--trainer.{default_root_dir,accelerator,devices,precision,max_epochs}`).
-`--trainer.precision` accepts `16-mixed`/`bf16-mixed` (not exercised: no GPU). Also available and unused here: `--model.warmstart_ckpt`
+`--trainer.precision` accepts `16-mixed`/`bf16-mixed` (`16-mixed` used on Kaggle T4). Also available and unused here: `--model.warmstart_ckpt`
 (weights-only warm start), `--data.num_workers` (default 1), `--data.trim_silence` (Silero VAD).
 
 **CPU smoke (plumbing only, NOT evidence of quality):** 6 clips of Piper rohan output (synthetic; 22.05 kHz) with the Hindi text,
@@ -94,7 +101,7 @@ rejects `--trainer.accumulate_grad_batches` up front, so use a larger `--batch-s
 --data <dir> --run <dir> --init <that last.ckpt> --epochs 1 --batch-size 2 --accelerator cpu --trainer.max_steps 4` (exercises `--init` with a
 local checkpoint, epoch-offset `max_epochs`, pass-through flags): exit 0, checkpoint written. Caveats: 6 clips leave the validation
 set empty (Lightning warns), so `val_mel`/`val_mos` were never logged and no best-checkpoint was saved; UTMOS (torch.hub, GitHub) was
-not loaded; `--init rohan|base` and `--warmstart-vocoder` (Hugging Face checkpoints) were not exercised. Setup notes: `piper-tts` from
+not loaded; `--init rohan|base` and `--warmstart-vocoder` (Hugging Face checkpoints) were not exercised in that smoke (`--init rohan` was used later for the real run, see the runbook). Setup notes: `piper-tts` from
 PyPI ships `piper.train` but not the compiled `monotonic_align` extension: build it with `cythonize -i core.pyx` from piper1-gpl and place
 `core*.so` in `piper/train/vits/monotonic_align/monotonic_align/` (`training/setup_env.sh` does this). Cython 3 prints `noexcept` warnings at build; the
 result imports and runs.
@@ -102,8 +109,9 @@ result imports and runs.
 Plumbing test (synthetic sine/noise audio, NOT evidence of quality): `pytest tests/test_training_pipeline.py`.
 
 **Honest status:** the manifest/rights/split/report/annotation tooling is implemented and unit/plumbing tested on
-synthetic data only. The annotation UI was not exercised in a browser. No production fine-tuning has been performed, no
-real data was processed, and no expressive/multi-speaker model exists yet.
+synthetic data only; the annotation UI was not exercised in a browser. The one real fine-tune (IndicTTS Hindi female, plain
+`file|text` layout, via `prepare_dataset`) is the custom voice in the runbook; the manifest/rights path was not used for it, and no
+expressive/multi-speaker model exists yet.
 
 ## 3. Train
 
@@ -128,8 +136,8 @@ real data was processed, and no expressive/multi-speaker model exists yet.
 
 **Hardware.** Measured on Apple M4 (MPS), batch 8: ~7.7 s/step, which is impractical beyond smoke tests.
 A single NVIDIA GPU (L4 / A10G / RTX 4090 class) is the realistic target. Plan several hours for a fine-tune
-from rohan and a day or more for a vocoder warm start. This is an estimate, not a measurement: no NVIDIA GPU
-was available.
+from rohan and a day or more for a vocoder warm start. Measured since: a Kaggle Tesla T4 (fp16-mixed, batch 24) runs about 0.83
+steps/s (~1.2 s per global step); see the runbook.
 
 ## 4. Export and evaluate
 
