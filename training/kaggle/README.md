@@ -22,9 +22,11 @@ Only one writer to HF `runs/hi_f/last.ckpt` at a time: keep the local CPU traine
 - Installs `piper-tts[train]==1.8.0` (constrained to the preinstalled torch), builds `monotonic_align` with cythonize.
 - Downloads `data/hi_f` + `runs/hi_f/{last.ckpt,config.json}` from private HF repo `vishwajit76/custom-tts-hindi-train`; Piper's cache is rebuilt on the VM.
 - Resumes with `--ckpt_path last.ckpt`, fp16-mixed, batch 24 (falls back 16/12/8 on CUDA OOM; 32 OOMs on a 16 GB GPU).
+- New checkpoints are written to `/tmp/w/ckpt/last.ckpt` (the downloaded seed is never rewritten; before 2026-09-30 the 20-min uploads re-sent the unchanged seed because Lightning wrote to `version_1`, so only the deadline save was fresh).
+- Learning rate: `LR_MODE=anneal` (default in the script; `LR_MODE=keep` disables) sets LR per epoch from `LR_START` (1e-4) to `LR_START*LR_FINAL_RATIO` (0.05) over `ANNEAL_EPOCHS` (160), then holds; see runbook section 4 and `training/lr_dryrun.py`.
 - Checkpoint every 500 global steps (Lightning counts both GAN optimizers, so 2 per batch); a thread uploads last.ckpt to HF every 20 min.
-- Every 5000 global steps: legacy ONNX export, 3 test sentences synthesized, uploaded to HF `milestones/step_<N>/`.
-- Heartbeat: `runs/hi_f/kaggle_progress.txt` on HF (last trainer lines, every 3 min). Kaggle shows no live logs for script kernels. Crashes go to `runs/hi_f/kaggle_crash.txt`.
+- Every 5000 global steps: legacy ONNX export, 3 test sentences synthesized, uploaded to HF `milestones/step_<N>_<session>/` (session = `$KERNEL_VERSION` or `k` + UTC start time, also in `session.json`).
+- Heartbeat: `runs/hi_f/kaggle_progress_<session>.txt` (per session) and the legacy `runs/hi_f/kaggle_progress.txt` on HF (first line names the session; trainer lines, LR, every 3 min). Kaggle shows no live logs for script kernels. Crashes go to `runs/hi_f/kaggle_crash.txt`.
 
 ## Pull results
 

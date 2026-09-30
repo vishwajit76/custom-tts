@@ -22,9 +22,8 @@ claims rest on community posts. Numbers for T4 speed of alternative models are n
 2. Val mel loss is a weak proxy for naturalness; it falls slowly (0.469 to 0.430) and may keep falling while audio gets
    *smoother/more averaged*. Piper's own logging calls `val_mel` the recommended target for early stopping (V-src), but
    nothing says it tracks perceived naturalness. Use it only to detect divergence/overfit (val rising while train falls).
-3. Learning-rate schedule is probably wrong for our setup (see 2.4): `train_kernel.py` sets `max_epochs = START_EPOCH+100000`,
-   so Piper's derived per-epoch decay (target 5% of LR at max_epochs, V-src) is effectively zero. LR is ~constant at 2e-4
-   forever. A low, decaying LR at the end of fine-tuning is the standard way to get a stable, cleaner final model (E).
+3. Learning-rate schedule is wrong for our setup (see 2.4, corrected): piper-tts 1.8.0 never steps its scheduler, so LR has been a flat
+   1.5258e-4 (the value in the checkpoint), and there is no `lr_final_ratio` in 1.8.0. A low, decaying LR at the end of fine-tuning is the standard way to get a stable, cleaner final model (E).
 4. Data hygiene (ASR-verified transcripts, dropping mispronounced/noisy clips, loudness match) usually matters more than more
    steps for a small single-speaker set (E, consistent with general VITS practice; not Piper-specific measured).
 5. Inference settings are free to test: try `noise_scale` 0.4-0.7 and `noise_w` 0.6-1.0 with `length_scale` ~1.0-1.1.
@@ -101,11 +100,15 @@ claims rest on community posts. Numbers for T4 speed of alternative models are n
 - Piper defaults: generator LR 2e-4, discriminator 1e-4, betas (0.8, 0.99); ExponentialLR per epoch; with `max_epochs` set,
   decay is derived so LR ends at `lr_final_ratio=0.05` of initial; `warmup_epochs=0` (V-src,
   [lightning.py](https://raw.githubusercontent.com/OHF-Voice/piper1-gpl/main/src/piper/train/vits/lightning.py)); docs: setting `max_epochs` enables the automatic decay (V-src TRAINING.md).
-- **Finding in our kernel (V-src, `training/kaggle/train_kernel.py`):** `--trainer.max_epochs = START_EPOCH + 100000` and resume
-  from `last.ckpt`. Decay per epoch is gamma = 0.05^(1/max_epochs) which is ~0.99997/epoch, so the LR is effectively constant
-  (E, arithmetic; whether the resumed scheduler state or the freshly derived gamma is used depends on the trainer; check
-  logged LR in `prog.json`/TensorBoard). Rohan's checkpoint is at epoch >3000, meaning its own scheduler may have
-  already decayed; inspect `ck0["lr_schedulers"]` / optimizer `param_groups[0]["lr"]` at load (cheap).
+- **CORRECTION 2026-09-30 (measured, supersedes the two bullets above and summary point 3).** The `lr_final_ratio` / "max_epochs derives the
+  decay" behaviour is in piper1-gpl `main`, NOT in the `piper-tts==1.8.0` package the kernel installs. 1.8.0 has `lr_decay=0.999875`,
+  `lr_decay_d=0.9999`, `warmup_epochs`, no `lr_final_ratio`, and its manual-optimization `training_step` never calls
+  `scheduler.step()` (V-src: `piper/train/vits/lightning.py`, `grep '\.step()'` finds only `opt_g.step()`/`opt_d.step()`). So the LR is **constant
+  at whatever the checkpoint's optimizer holds**, and `--trainer.max_epochs` has no effect on it. Read from HF `runs/hi_f/last.ckpt`
+  (global_step 310300, epoch 3191, the seed the Kaggle sessions resume from): both optimizers `lr = 1.5258e-4`, `initial_lr = 2e-4`,
+  scheduler `gamma = 0.999875`, `last_epoch = 2165` (rohan's own history). Lightning restores optimizer/scheduler state on `--ckpt_path`
+  resume, so `--model.learning_rate` is ignored on resume. The LR during v4/v5 was therefore a flat 1.5258e-4 (E for exact value after the
+  ckpt was re-saved: nothing steps it, so unchanged). The fix is done in the kernel wrapper (`LR_MODE=anneal`, see the runbook).
 - Recommendation (E): set a finite `max_epochs` for the final phase, e.g. a 2-session "anneal" run with LR starting at
   ~1e-4 (or the current value) decaying to 5% (`--model.learning_rate 1e-4`, `--trainer.max_epochs = START_EPOCH + N`, N chosen
   to equal ~1.5 sessions of planned epochs). Annealing generally reduces noisy artifacts in GAN vocoders; not measured for Piper here.
@@ -195,8 +198,8 @@ training on T4.
 1. On load, print the optimizer LR and scheduler state from `ck0` (`ck0["optimizer_states"][0]["param_groups"][0]["lr"]`,
    `ck0["lr_schedulers"]`) and log `lr` in `prog.json` via `tr.optimizers[0].param_groups[0]["lr"]`, so the LR question is answered by
    data first (E).
-2. Add env `ANNEAL_EPOCHS` (default unset). If set: `--trainer.max_epochs START_EPOCH+ANNEAL_EPOCHS`, `--model.learning_rate 1e-4`,
-   `--model.lr_final_ratio 0.05` (V-src flags exist). Otherwise keep current behaviour.
+2. (DONE 2026-09-30, corrected) env `LR_MODE=anneal LR_START LR_D_START LR_FINAL_RATIO ANNEAL_EPOCHS`, applied by a wrapper callback each epoch
+   because 1.8.0 has no `--model.lr_final_ratio` and ignores `--model.learning_rate` on resume. Default behaviour unchanged.
 3. Replace the 3 `SENTS` with reading the fixed 50-sentence file from the HF repo (or embed) and synthesise all of them per
    milestone with fixed `--noise-scale/--noise-w/--length-scale` and seed; upload WAVs. Also `pip install faster-whisper speechmos`
    (or torch.hub) and compute CER/UTMOS on Kaggle GPU at milestone time; write `metrics.json` per milestone.

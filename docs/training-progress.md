@@ -39,3 +39,50 @@ Voice files for every milestone (private): https://huggingface.co/vishwajit76/cu
 
 Open items: no listening test; per-sentence CER for the first three rows and losses for most rows were not recorded; run one
 Kaggle session at a time from now on (runbook section 9).
+
+## 50-sentence eval (from 2026-09-30)
+
+Protocol, metrics and how to run it: [custom-voice-runbook.md](custom-voice-runbook.md) section 6.1 (`python -m bench.milestone_eval`). Fixed text
+`bench/hi_eval_50.txt` (50 sentences, not in the training text), fixed params noise_scale 0.667 / noise_w 0.8 / length_scale 1.0, ASR = faster-whisper
+int8 (`small` comparable across rows; `large-v3` is the stronger one). Raw rows: `bench/results/milestones.jsonl`; per-sentence details:
+`bench/results/milestone_details/`. **Only compare rows with the same ASR.** Noise band (measured: three re-scores of 345000, small ASR: CER 0.1355 /
+0.1411 / 0.1453): about 0.01 CER, so 340000 vs 345000 is a tie on every metric.
+
+| Time UTC / IST | Step | Session | ASR (repeats) | CER mean / median / p90 | PER mean | UTMOS mean (min) | Spk-sim (real-vs-real 0.92) |
+|---|---|---|---|---|---|---|---|
+| 2026-09-30 03:53 / 09:23 | 340000 | v4 (older concurrent session) | small (x2) | 0.130 / 0.125 / 0.209 | 0.159 | 3.79 (2.39) | 0.908 |
+| 2026-09-30 04:09 / 09:39 | 345000 | v4 (older concurrent session) | small (x2) | 0.141 / 0.134 / 0.217 | 0.179 | 3.84 (2.88) | 0.913 |
+| 2026-09-30 04:25 / 09:55 | 340000 | v4 (older concurrent session) | large-v3 | 0.050 / 0.020 / 0.076 | 0.056 | 3.84 (2.49) | 0.906 |
+| 2026-09-30 04:35 / 10:05 | 345000 | v4 (older concurrent session) | large-v3 | 0.047 / 0.024 / 0.080 | 0.062 | 3.89 (2.97) | 0.911 |
+
+Reading the numbers:
+- Small ASR sits at CER about 0.13 on this set, much of it Whisper's own errors; large-v3 gives about 0.05. The old 3-sentence CER (0.07) is not comparable.
+- CER max about 0.70 is one sentence (#38): large-v3 writes "online order / delivery / upgrade" in Latin script. PER for it is 0.11. Sentence #30 (year "उन्नीस सौ अठासी") is
+  penalised because the normalizer reads the ASR's "1988" as "एक हज़ार नौ सौ अट्ठासी". Both are evaluation artefacts, not voice errors. PER is the fairer number for those.
+- UTMOS min 2.4-3.0 identifies the weakest sentences per checkpoint (details JSON), useful for listening. UTMOS is English-trained: relative use only.
+- Speaker similarity 0.91 vs 0.92 real-vs-real ceiling: the voice is close to the dataset speaker; it will not show naturalness.
+- No listening test yet: none of these numbers say the voice sounds natural.
+
+### Inference-parameter grid (milestone 350000, small ASR, 15 sentences x 2 repeats)
+
+`python -m bench.infer_grid --hf-step 350000`, full table in `bench/results/infer_grid_350000.json`, audio for the top-5 and default in
+`docs/samples/infer_grid/<config>/` (3 sentences each). Differences between single configs (CER 0.136-0.166) are inside the noise band (about 0.02 for 15 sentences);
+only the marginal trends are informative:
+
+| Factor | Value | mean CER | mean UTMOS |
+|---|---|---|---|
+| noise_scale | 0.5 / 0.667 / 0.8 | 0.142 / 0.147 / 0.156 | 3.91 / 3.81 / 3.74 |
+| noise_w | 0.6 / 0.8 / 1.0 | 0.152 / 0.146 / 0.147 | 3.82 / 3.79 / 3.85 |
+| length_scale | 1.0 / 1.1 | 0.147 / 0.150 | 3.82 / 3.82 |
+
+Top by rank-sum of CER and UTMOS: ns0.5/nw0.6/ls1.0 (CER 0.140, UTMOS 3.94), ns0.5/nw1.0/ls1.1 (0.142, 4.01), ns0.5/nw0.8/ls1.0 (0.139, 3.88),
+ns0.5/nw0.8/ls1.1 (0.138, 3.85), ns0.667/nw1.0/ls1.0 (0.136, 3.82). The default ns0.667/nw0.8/ls1.0 ranked 12th of 18 (CER 0.151, UTMOS 3.83).
+**Recommendation (not applied; server defaults unchanged):** noise_scale 0.5, noise_w 0.8 to 1.0 (no reliable difference), length_scale 1.0 (1.1 gives nothing).
+Lower noise_scale is the only consistent effect (cleaner, per the automatic metrics); the research note says it can also sound flatter, which these metrics cannot show:
+listen to `docs/samples/infer_grid/ns0.5_nw1.0_ls1.1` vs `ns0.667_nw0.8_ls1.0` before adopting it. Per-request: `noise_scale`/`noise_w` in the voice `config.json` `inference` block.
+
+### Learning rate (read from HF `runs/hi_f/last.ckpt`, 2026-09-30)
+
+Seed checkpoint (global_step 310300, epoch 3191): generator and discriminator `lr = 1.5258e-4`, ExponentialLR gamma 0.999875, `last_epoch` 2165. piper-tts 1.8.0 never steps the
+scheduler (manual optimization), so v1-v5 all trained at a **constant 1.5258e-4**. Also: HF `last.ckpt` is still this seed (the Kaggle 20-minute upload re-sent the
+unchanged seed, see training/kaggle/README.md); the trained weights appear to exist only in the running Kaggle session until its deadline save (last.ckpt has not changed on HF since 2026-09-29 16:23 UTC). Anneal implementation: runbook 6.4.
