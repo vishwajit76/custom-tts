@@ -1,9 +1,24 @@
-"""Request body size cap for upload routes (413). Checks Content-Length and counts streamed bytes (chunked bodies)."""
+"""Request body size cap (413) for upload routes and the JSON speech routes. Checks Content-Length and counts streamed
+bytes (chunked bodies). Without it a single POST of any size was buffered in memory before validation ran."""
 import re
 
 from app.core.config import settings
 
 UPLOAD_PATHS = re.compile(r"^/v1/(speakers/[^/]+/references|voices)/?$")
+SPEECH_PATHS = re.compile(r"^/v1/audio/speech(/stream)?/?$")
+
+
+def body_limit(path: str) -> int | None:
+    """Max body bytes for this path, None = not capped here. The JSON speech routes carry text (max_input_chars, at most 6 bytes
+    per char once JSON-escaped) and, only on a cloning engine, a base64 reference clip (4/3 of upload_max_bytes)."""
+    if UPLOAD_PATHS.match(path):
+        return settings.upload_max_bytes
+    if SPEECH_PATHS.match(path):
+        from app.services import tts  # late: tts builds the engine at import
+
+        text = settings.max_input_chars * 6 + 65536
+        return text + settings.upload_max_bytes * 4 // 3 if getattr(tts.engine, "supports_cloning", False) else text
+    return None
 
 
 class BodyLimitMiddleware:
@@ -11,9 +26,9 @@ class BodyLimitMiddleware:
         self.app = app
 
     async def __call__(self, scope, receive, send):
-        if scope["type"] != "http" or scope["method"] not in ("POST", "PUT", "PATCH") or not UPLOAD_PATHS.match(scope["path"]):
+        limit = body_limit(scope["path"]) if scope["type"] == "http" and scope["method"] in ("POST", "PUT", "PATCH") else None
+        if limit is None:
             return await self.app(scope, receive, send)
-        limit = settings.upload_max_bytes
         declared = dict(scope["headers"]).get(b"content-length")
         if declared and declared.isdigit() and int(declared) > limit:
             return await self._reject(send)

@@ -31,6 +31,10 @@ class Settings(BaseSettings):
 
     # --- piper ---
     models_dir: Path = Path("models/piper")  # every *.onnx + *.onnx.json here is a voice
+    # Extra directories (comma list) scanned for voices in addition to models_dir, e.g. MODELS_EXTRA=voices picks up the
+    # fine-tuned voices/hi_IN-custom-medium.onnx that training/export_latest.sh writes. Empty = nothing added; a stem
+    # already loaded from an earlier directory wins, so extra directories can never shadow a bundled voice.
+    models_extra: str = ""
     # Each worker thread runs one chunk at a time on a session shared per voice, using threads_per_worker
     # ONNX intra-op threads. 4 threads cut single-chunk latency ~2.3x vs 1 at equal throughput (docs/benchmarks.md).
     threads_per_worker: int = min(4, CPUS)

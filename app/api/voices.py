@@ -1,3 +1,5 @@
+import re
+
 from fastapi import APIRouter, Depends, Form, HTTPException, UploadFile
 from pydantic import TypeAdapter, constr
 
@@ -11,7 +13,7 @@ from app.services.routing import POLICIES, parse_tiers
 
 router = APIRouter(prefix="/v1/voices", dependencies=[Depends(require_api_key)])
 capabilities_router = APIRouter(prefix="/v1/capabilities", dependencies=[Depends(require_api_key)])
-VoiceId = constr(pattern=VOICE_ID)
+VoiceId = constr(pattern=f"^{VOICE_ID}$")  # pydantic patterns are searches: unanchored, "../evil" matched via "evil" and later raised a 500
 
 
 def _cloning_engine():
@@ -29,7 +31,7 @@ def _mirror_upload(owner: str, voice_id: str, consent_record_id: str | None, gra
         try:
             reg.create(owner, voice_id, voice_id, engine_bindings={engine_name: voice_id})
         except sreg.SpeakerExists:
-            reg.update(voice_id, owner, engine_bindings={**reg.get(voice_id, owner).engine_bindings, engine_name: voice_id})
+            reg.bind_engine(voice_id, owner, engine_name, voice_id)  # atomic: no lost update against a concurrent PATCH/upload
         if consent_record_id and granted_by:
             reg.set_consent(voice_id, owner, sreg.Consent(status="granted", consent_record_id=consent_record_id, granted_by=granted_by,
                                                             permitted_uses=["tts", "cloning"]))
@@ -87,6 +89,9 @@ def capabilities():
 async def upload_voice(voice_id: VoiceId = Form(), audio: UploadFile = ..., transcript: str | None = Form(None),
                        consent_record_id: str | None = Form(None), granted_by: str | None = Form(None), key: str = Depends(require_api_key)):
     """Register a reference voice (3-10s clean WAV) for zero-shot cloning. A transcript improves quality."""
+    # FastAPI does not enforce the pattern on this Form field (a 70-char id, "a b", "../x" all arrived here): check it explicitly
+    if not re.fullmatch(VOICE_ID, voice_id):
+        raise HTTPException(422, "voice_id must match " + VOICE_ID)
     engine = _cloning_engine()
     _guard_foreign_speaker(sreg.owner_id(key), voice_id)
     try:
