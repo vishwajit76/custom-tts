@@ -25,7 +25,7 @@ Voice files for every milestone (private): https://huggingface.co/vishwajit76/cu
 | 2026-09-29 (time -) | 310300 | CPU (last.ckpt, epoch 3191) | - | 0.163 | mel 0.547; loss_g 40.28, loss_d 1.83, kl 2.72, dur 1.35 | Milestone 1. About 6.85 s per log step. Samples: docs/samples/step_310300. |
 | 2026-09-29 (time -) | 315000 | Kaggle v1 | - | 0.047 | - | Milestone 2, HF milestones/step_315000. last.ckpt was never uploaded by this run, so resume still came from 310300. s/step, losses, GPU name not recorded. |
 | 2026-09-29 (time -) | 320000 | Kaggle (first run) | - | 0.102 | - | Milestone 3, first export. Superseded by the re-export below. |
-| 2026-09-29 22:55 / 2026-09-30 04:25 | 320000 | Kaggle v5 (re-trained) | 0.000 / 0.105 / 0.115 | 0.074 | val_mel 0.448; loss_g 34.29 (heartbeat at trainer step 321860) | Re-uploaded. About 1.20 s/step (0.835 steps/s, bs 24), Tesla T4. |
+| 2026-09-29 22:55 / 2026-09-30 04:25 | 320000 | Kaggle v5 (re-trained) | 0.000 / 0.105 / 0.115 | 0.074 | val_mel 0.448; loss_g 34.29 (heartbeat at trainer step 321860) | Re-uploaded. About 0.835 s per global step (1.2 steps/s, bs 24), Tesla T4; 'sps' in the heartbeat is seconds per step. |
 | 2026-09-29 21:46 / 2026-09-30 03:16 | 325000 | Kaggle (first upload) | 0.000 / 0.105 / 0.077 | 0.061 | - | Overwritten by the 00:04Z upload below. |
 | 2026-09-30 00:04 / 05:34 | 325000 | Kaggle v5 (re-trained) | 0.000 / 0.079 / 0.038 | 0.039 | - | Best CER so far, but see the CER caveat; this is within noise of 0.061. |
 | 2026-09-29 22:55 / 2026-09-30 04:25 | 330000 | Kaggle (first upload) | 0.000 / 0.132 / 0.154 | 0.095 | - | Overwritten by the 01:13Z upload below. |
@@ -35,10 +35,16 @@ Voice files for every milestone (private): https://huggingface.co/vishwajit76/cu
 | 2026-09-30 01:13 / 06:43 | 340000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.132 / 0.077 | 0.070 | - | Overwritten by the 03:31Z v5 upload below; docs/samples/step_340000 now holds the v5 copy. |
 | 2026-09-30 02:21 / 07:51 | 345000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.132 / 0.077 | 0.070 | - | Samples: docs/samples/step_345000. |
 | 2026-09-30 03:31 / 09:01 | 340000 | Kaggle v5 (re-trained) | 0.000 / 0.105 / 0.077 | 0.061 | train_mel 0.430; loss_g 33.69 (v5 heartbeat 04:19Z at trainer step 343440) | Re-uploaded, overwrote the 01:13Z v4 copy. Samples in docs/samples/step_340000 are this one. |
-| 2026-09-30 03:30 / 09:00 | 350000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.079 / 0.192 | 0.090 | - | Latest recorded milestone. s3 worse than earlier rows (0.192), within the noise caveat. Samples: docs/samples/step_350000. |
+| 2026-09-30 03:30 / 09:00 | 350000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.079 / 0.192 | 0.090 | - | Overwritten at 05:50 UTC by v5's own 350000 (no longer on HF). s3 worse than earlier rows (0.192), within the noise caveat. Samples: docs/samples/step_350000. |
 | 2026-09-30 04:39 / 10:09 | 355000 | Kaggle v4 session (older concurrent session) | 0.000 / 0.158 / 0.077 | 0.078 | - | v4's last milestone. Samples: docs/samples/step_355000. |
 | 2026-09-30 04:41 / 10:11 | 345000 | Kaggle v5 (re-trained) | 0.091 / 0.079 / 0.115 | 0.095 | - | Re-uploaded, overwrote the 02:21Z v4 copy. Samples in docs/samples/step_345000 are this one. |
 
+
+**Provenance of the `milestones/step_N` folders on HF as of 2026-09-30 06:25 UTC** (ONNX upload time from the HF commit; two sessions wrote these names, so this, not the step
+number, says which run a file came from): 315000 09-29 21:46, 320000 09-29 22:55, 325000 09-30 00:04, 330000 01:13, 335000 02:22, 340000 03:31 (v5), 345000 04:41 (v5),
+350000 05:50 (**v5**: the v4 copy from 03:30 was overwritten after v4 ended at 05:10), 355000 04:39 (v4). Rows above that evaluated a folder before its overwrite describe the earlier copy.
+`python -m bench.compare_checkpoints --list` prints this table live, and every new row records the ONNX sha256 and commit time. From the next kernel push on, milestones live in
+`experiments/<id>/milestones/step_N/` (unique per run, never overwritten).
 
 Note: v4 finished at 05:10 UTC / 10:40 IST; its final checkpoint (global_step 357212) is preserved as `runs/hi_f/v4_final_step357212.ckpt` on HF.
 Open items: no listening test; per-sentence CER for the first three rows and losses for most rows were not recorded; run one
@@ -54,9 +60,9 @@ int8 (`small` comparable across rows; `large-v3` is the stronger one). Raw rows:
 
 | Time UTC / IST | Step | Session | ASR (repeats) | CER mean / median / p90 | PER mean | UTMOS mean (min) | Spk-sim (real-vs-real 0.92) |
 |---|---|---|---|---|---|---|---|
-| 2026-09-30 03:53 / 09:23 | 340000 | v4 (older concurrent session) | small (x2) | 0.130 / 0.125 / 0.209 | 0.159 | 3.79 (2.39) | 0.908 |
+| 2026-09-30 03:53 / 09:23 | 340000 | v5 (corrected: the folder was overwritten by v5 at 03:31:33 UTC, before this eval; first published as v4) | small (x2) | 0.130 / 0.125 / 0.209 | 0.159 | 3.79 (2.39) | 0.908 |
 | 2026-09-30 04:09 / 09:39 | 345000 | v4 (older concurrent session) | small (x2) | 0.141 / 0.134 / 0.217 | 0.179 | 3.84 (2.88) | 0.913 |
-| 2026-09-30 04:25 / 09:55 | 340000 | v4 (older concurrent session) | large-v3 | 0.050 / 0.020 / 0.076 | 0.056 | 3.84 (2.49) | 0.906 |
+| 2026-09-30 04:25 / 09:55 | 340000 | v5 (corrected, same folder state as above) | large-v3 | 0.050 / 0.020 / 0.076 | 0.056 | 3.84 (2.49) | 0.906 |
 | 2026-09-30 04:35 / 10:05 | 345000 | v4 (older concurrent session) | large-v3 | 0.047 / 0.024 / 0.080 | 0.062 | 3.89 (2.97) | 0.911 |
 
 Reading the numbers:
@@ -89,4 +95,8 @@ listen to `docs/samples/infer_grid/ns0.5_nw1.0_ls1.1` vs `ns0.667_nw0.8_ls1.0` b
 
 Seed checkpoint (global_step 310300, epoch 3191): generator and discriminator `lr = 1.5258e-4`, ExponentialLR gamma 0.999875, `last_epoch` 2165. piper-tts 1.8.0 never steps the
 scheduler (manual optimization), so v1-v5 all trained at a **constant 1.5258e-4**. Also: HF `last.ckpt` is still this seed (the Kaggle 20-minute upload re-sent the
-unchanged seed, see training/kaggle/README.md); the trained weights appear to exist only in the running Kaggle session until its deadline save (last.ckpt has not changed on HF since 2026-09-29 16:23 UTC). Anneal implementation: runbook 6.4.
+unchanged seed, see training/kaggle/README.md); the trained weights appear to exist only in the running Kaggle session until its deadline save (corrected 2026-09-30: HF `last.ckpt` did change, at 05:10 UTC v4 uploaded its final there (step 357212, now also `v4_final_step357212.ckpt`), and at 05:18 v5's periodic upload replaced it
+with the stale 310300 seed; its sha256 25b56359... equals the seed's). Verified directly: `runs/hi_f/last.ckpt` global_step 310300, `v4_final_step357212.ckpt` global_step 357212, epoch 3347,
+both optimizers still lr 1.5258e-4 and the schedulers still `last_epoch` 2165, i.e. 46.9k steps at exactly constant LR. Measured steps per epoch 300.7 (302 expected: 3607 train clips after piper's
+10% validation split / 24 x 2 optimizers); the earlier 336 (54k steps for 160 epochs) was wrong, 160 epochs = 48.3k steps. Kernel default is now `ANNEAL_EPOCHS=150` (45k steps, one session).
+Anneal implementation and its tests: runbook 6.4, `tests/test_lr_anneal.py`, `training/lr_dryrun.py`.

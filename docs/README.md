@@ -23,6 +23,7 @@ UTMOS/CER, `bench/quality.py`, `bench/eval.py`). A human listening test has not 
 | [custom-voice-runbook.md](custom-voice-runbook.md) | Operational runbook for the custom Hindi voice: assets, Kaggle training, secrets, evaluation, serving, troubleshooting, lessons | you operate, resume or debug the voice training |
 | [training-progress.md](training-progress.md) | Milestone log: step, session, CER, losses, with caveats | you compare checkpoints or pick one to try |
 | [voice-quality-research.md](voice-quality-research.md) | Naturalness levers, evaluation protocol, stopping rule, alternative models | before changing training or deciding when to stop |
+| [listening-test/README.md](listening-test/README.md) | Blind A/B listening protocol, rating sheet template, pack generator (`bench/listening_pack.py`); no results yet | you need human evidence to choose a checkpoint |
 | [training.md](training.md) | Generic training pipeline: dataset prep, manifests, rights gate, splits, flags, CPU fallback, smoke test | you prepare new data or change the pipeline |
 | [PROGRESS.md](PROGRESS.md) | Phase status, what is done/partial/blocked, dated updates | you want the honest overall state of the project |
 | [plan.md](plan.md) | Original build brief (historical) | you want the original requirements |

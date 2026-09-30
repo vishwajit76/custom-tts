@@ -1,7 +1,7 @@
 # Voice quality research: making the Piper Hindi fine-tune sound natural
 
 Written 2026-09-30. Scope: personal, non-commercial Hindi voice, Piper VITS medium fine-tuned from the hi_IN rohan checkpoint on
-IndicTTS Hindi female (7.9 h), Kaggle T4 (batch 24, fp16, ~0.83 steps/s, ~35k steps per 11 h session, ~30 GPU h/week).
+IndicTTS Hindi female (7.9 h), Kaggle T4 (batch 24, fp16, ~1.2 global steps/s = 0.83 s/step, ~46k steps per 11 h session (measured v4: 46.9k), ~30 GPU h/week).
 
 ## Evidence labels
 
@@ -41,7 +41,7 @@ claims rest on community posts. Numbers for T4 speed of alternative models are n
   small/varied datasets and mostly older `piper` (rhasspy) trainers; no rigorous curve exists in what I found (U for ~8 h).
 - Piper1-gpl says a checkpoint "will speed up training a lot, even if from a different language" (V-src,
   [TRAINING.md](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/TRAINING.md)).
-- Our scale (E): 7.9 h at typical 4-6 s clips is ~5-7k clips, so ~250 steps/epoch at bs 24; 35k steps/session is ~140 epochs.
+- Our scale (E): 7.9 h at typical 4-6 s clips is ~5-7k clips, so ~250 steps/epoch at bs 24; measured: 302 steps/epoch at bs 24 (3607 train clips), ~46k steps/session is ~155 epochs.
   We are ~20k+ steps in (~80+ epochs). Community "+1000 epochs" would be ~250k steps, about 7 sessions (~77 GPU h). That is
   a budget upper bound, not a requirement. Expect the audible gain to come early (first 20-50k steps: speaker timbre, pacing)
   and then diminish; later steps mostly polish or start overfitting.
@@ -168,7 +168,7 @@ CPU real-time reference from this repo: Piper hi_IN medium RTF 0.022 at 4 thread
 
 | Model | Hindi support | License (personal use OK?) | Fine-tune on T4? | Latency | Verdict |
 |---|---|---|---|---|---|
-| Piper VITS (current) | fine-tune | code GPL; data CC BY 4.0 (IndicTTS, V-snip) | done, 0.83 steps/s | RTF 0.022 CPU | keep for serving |
+| Piper VITS (current) | fine-tune | code GPL; data CC BY 4.0 (IndicTTS, V-snip) | done, ~1.2 steps/s | RTF 0.022 CPU | keep for serving |
 | **IndicF5** (F5-TTS based, 0.4B) | Hindi + 10 langs, trained on 1417 h (Rasa, IndicTTS, LIMMITS, IndicVoices-R) | MIT on card (V-snip/V-src); note data lineage and "clone only with permission" (V-src) | fine-tune not documented (U); needs reference clip + transcript | GPU needed; ~RTF <1 on GPU likely, CPU slow (U) | best quality candidate; **zero-shot with IndicTTS female reference clip** is a cheap try (inference only) |
 | **Indic Parler-TTS** (0.9B) | Hindi speakers Rohit, Divya, Aman, Rani; ~107 h Hindi (V-src) | Apache-2.0 (V-src) | training possible but heavy; not for T4 free budget (E) | users report 5-15 s for a 10-15 word sentence without optimisation; team suggests flash-attn/streaming (V-snip) | fixed speakers, style via text description; too slow for interactive |
 | StyleTTS2 | multilingual PL-BERT covers 14 languages incl. Hindi (V-snip) | MIT code; pretrained bases English | T4 reported "not very feasible" for high fidelity; needs small batch, stage-2 NaN risk (V-snip) | fast-ish GPU, CPU slower than Piper | tempting for naturalness but high risk/effort on our hardware |

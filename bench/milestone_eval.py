@@ -16,6 +16,7 @@ TigreGotico/utmos-onnx on the HF hub (falls back to torch.hub, else skipped with
 Noise: Piper's ONNX graph draws its own random noise (not seedable from Python), so re-scoring the same file moves CER: three runs of
 milestone 345000 (small ASR) gave mean CER 0.1355 / 0.1411 (2 repeats) / 0.1453, a spread of 0.010 (std about 0.005), so treat differences below
 about 0.01 as noise (use --repeats N to average).
+Rows carry provenance (onnx sha256 + HF commit time). For repeat variance, CIs, telephony and paired comparisons use bench/compare_checkpoints.py.
 Token: HF token is read from ~/.cache/huggingface/token (or HF_TOKEN); nothing is uploaded.
 """
 import argparse
@@ -60,17 +61,37 @@ def resolve_hf(step: int, folder: str | None) -> tuple[Path, str]:
     from huggingface_hub import HfApi, hf_hub_download
 
     if folder is None:
-        names = sorted({f.split("/")[1] for f in HfApi().list_repo_files(REPO) if f.startswith("milestones/")})
-        cands = [n for n in names if re.fullmatch(rf"step_{step}(_.+)?", n)]
+        files = HfApi().list_repo_files(REPO)
+        # legacy milestones/step_N[_session] and the experiment layout experiments/<id>/milestones/step_N
+        names = sorted({f.rsplit("/", 1)[0] for f in files if f.endswith("/hi_IN-custom-medium.onnx") and (f.startswith("milestones/") or "/milestones/" in f)})
+        cands = [n for n in names if re.fullmatch(rf"(milestones/step_{step}(_.+)?|experiments/[^/]+/milestones/step_{step})", n)]
         if not cands:
-            sys.exit(f"no milestones/step_{step}* on {REPO}; have: {names}")
-        exact = [n for n in cands if n == f"step_{step}"]
+            sys.exit(f"no milestone for step {step} on {REPO}; have: {names}")
+        exact = [n for n in cands if n == f"milestones/step_{step}"]
         if len(cands) > 1 and not exact:
-            sys.exit(f"several sessions for step {step}: {cands}; pass --hf-folder milestones/<name>")
-        folder = "milestones/" + (exact or cands)[0]
+            sys.exit(f"several experiments/sessions for step {step}: {cands}; pass --hf-folder <one of them>")
+        if len(cands) > 1:
+            print(f"NOTE: step {step} exists in {cands}; using the legacy {exact[0]} (pass --hf-folder to choose)", file=sys.stderr)
+        folder = (exact or cands)[0]
     onnx = hf_hub_download(REPO, f"{folder}/hi_IN-custom-medium.onnx")
     hf_hub_download(REPO, f"{folder}/hi_IN-custom-medium.onnx.json")
     return Path(onnx), folder
+
+
+def provenance(folder: str, onnx: Path) -> dict:
+    """sha256 of the evaluated ONNX + the HF commit that wrote it: legacy milestones/step_N were overwritten by two concurrent sessions, so the step
+    number alone does not identify the model that was scored."""
+    import hashlib
+
+    from huggingface_hub import HfApi
+
+    out = {"onnx_sha256": hashlib.sha256(Path(onnx).read_bytes()).hexdigest(), "hf_folder": folder}
+    try:
+        i = HfApi().get_paths_info(REPO, [f"{folder}/hi_IN-custom-medium.onnx"], expand=True)[0]
+        out["hf_commit_utc"], out["hf_commit_title"] = i.last_commit.date.strftime("%Y-%m-%dT%H:%M:%SZ"), i.last_commit.title
+    except Exception as e:  # noqa: BLE001
+        out["hf_commit_error"] = repr(e)[:80]
+    return out
 
 
 def make_synth(onnx: Path, params: dict):
@@ -204,7 +225,7 @@ def evaluate(synth, sents, asr, normalize_text=True, utmos=None, refs=None, save
     rows, wavs = [], []
     for i, text in enumerate(sents, 1):
         ref = normalize(text) if normalize_text else text
-        cs, ps, hyps = [], [], []
+        cs, ps, hyps, cl = [], [], [], []
         for r in range(repeats):
             wav, sr = synth(ref)
             if r == 0:
@@ -216,8 +237,9 @@ def evaluate(synth, sents, asr, normalize_text=True, utmos=None, refs=None, save
             hyps.append(hyp)
             nh = normalize(hyp) if normalize_text else hyp
             cs.append(cer(ref, nh))
+            cl.append(cer(ref, nh, keep_marks=False))
             ps.append(per(ref, nh))
-        row = {"i": i, "ref": ref, "hyp": hyps[0], "cer": round(statistics.mean(cs), 4), "per": round(statistics.mean(ps), 4), "dur_s": round(len(wavs[-1][0]) / wavs[-1][1], 2)}
+        row = {"i": i, "ref": ref, "hyp": hyps[0], "cer": round(statistics.mean(cs), 4), "cer_legacy": round(statistics.mean(cl), 4), "per": round(statistics.mean(ps), 4), "dur_s": round(len(wavs[-1][0]) / wavs[-1][1], 2)}
         if utmos:
             row["utmos"] = round(utmos(*wavs[-1]), 3)
         rows.append(row)
@@ -225,15 +247,19 @@ def evaluate(synth, sents, asr, normalize_text=True, utmos=None, refs=None, save
     c = [r["cer"] for r in rows]
     res = {"cer": {"mean": round(statistics.mean(c), 4), "median": round(statistics.median(c), 4), "p90": round(pct(c, 90), 4),
                    "max": round(max(c), 4), "n": len(c)}}
+    res["cer_legacy_skeleton"] = {"mean": round(statistics.mean(r["cer_legacy"] for r in rows), 4),
+                                  "note": "consonant-only CER = the metric of rows before 2026-09-30 (vowel signs were dropped by a \\w regex bug); `cer` now counts them"}
     pp = [r["per"] for r in rows]
     res["per"] = {"mean": round(statistics.mean(pp), 4), "median": round(statistics.median(pp), 4), "p90": round(pct(pp, 90), 4),
                   "note": "phoneme error rate (espeak-ng, English runs in English IPA): script-neutral, so ASR writing 'online order' or 1988 costs little"}
     if utmos:
         u = [r["utmos"] for r in rows]
-        res["utmos"] = ({"mean": round(statistics.mean(u), 3), "min": round(min(u), 3), "p10": round(pct(u, 10), 3), "note": utmos.note}
+        res["utmos"] = ({"mean": round(statistics.mean(u), 3), "min": round(min(u), 3), "p10": round(pct(u, 10), 3), "note": utmos.note,
+                         "label": "UTMOS22 PREDICTED MOS (English-trained), first repeat only; ranking aid, not a listening-test MOS"}
                         if utmos.fn else {"skipped": utmos.note})
     if refs:
         res["spk_sim"] = spk_sim(wavs, refs)
+        res["spk_sim"]["label"] = "Resemblyzer d-vector cosine to real held-out clips (embedding similarity; not speaker verification, not naturalness)"
     return res, rows
 
 
@@ -268,10 +294,12 @@ def main():
     if not (a.onnx or a.hf_step):
         ap.error("one of --onnx / --hf-step is required")
 
+    prov = {}
     if a.hf_step:
         onnx, folder = resolve_hf(a.hf_step, a.hf_folder)
         step, source = a.hf_step, f"hf:{REPO}/{folder}"
         session = a.session or (folder.split("_", 2)[2] if folder.count("_") >= 2 else "unrecorded")
+        prov = provenance(folder, onnx)
     else:
         onnx, step, source = Path(a.onnx), a.step, f"file:{a.onnx}"
         session = a.session or "unrecorded"
@@ -284,7 +312,7 @@ def main():
     refs = None if a.no_spk else pick_refs(a.n_refs, a.ref_dir)
     res, rows = evaluate(make_synth(onnx, params), sents, a.asr, not a.no_normalize, utmos, refs, a.save_wavs, a.repeats)
     row = {"step": step, "session": session, "source": source, "asr": a.asr, "params": {k: v for k, v in params.items() if k != "normalize_text"},
-           "normalize_text": not a.no_normalize, "repeats": a.repeats, "sentence_set": Path(a.sentences).name, **res,
+           "normalize_text": not a.no_normalize, "repeats": a.repeats, "sentence_set": Path(a.sentences).name, **({"provenance": prov} if prov else {}), **res,
            "eval_s": round(time.time() - t0), **now_stamps()}
     row["spk_sim"].pop("per_sentence", None) if "spk_sim" in row else None
     print(json.dumps(row, ensure_ascii=False))
