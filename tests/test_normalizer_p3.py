@@ -9,7 +9,7 @@ from app.services import hinglish
 from app.services.text_normalizer import normalize
 
 LATIN, DEV = re.compile(r"[A-Za-z]"), re.compile(r"[ऀ-ॿ]")
-BRANDS = ["WhatsApp", "Google", "Amazon", "Flipkart", "YouTube", "Paytm", "PhonePe", "Zomato", "Swiggy", "Instagram",
+BRANDS = ["Google", "Amazon", "Flipkart", "YouTube", "Paytm", "PhonePe", "Zomato", "Swiggy", "Instagram",
           "Airtel", "Jio", "Tata", "Infosys", "Reliance", "Gmail", "GPay"]
 
 
@@ -21,6 +21,12 @@ def test_brand_is_spoken_from_devanagari_spelling(brand):
     assert DEV.search(dev) and not LATIN.search(dev)
     assert normalize(brand.lower()) == normalize(brand.upper()) == dev  # case-insensitive
     assert normalize(f"Order from {brand} now") == f"Order from {dev} now"  # also inside an English sentence
+
+
+def test_whatsapp_stays_on_the_english_route():
+    """Measured (Whisper-small CER, 3 carrier sentences): English route 0.156 vs Devanagari 0.21-0.33 on the custom voice, 0.211 vs
+    0.196-0.348 on rohan: no reliable gain, so WhatsApp is the documented exception to the brand table."""
+    assert normalize("WhatsApp par link bhejiye") == "WhatsApp पर link भेजिए"
 
 
 def test_ordinary_english_words_are_not_respelled():

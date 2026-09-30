@@ -40,7 +40,7 @@ pc038	code_switch	मैं आपको call back करूँगी	मैं 
 pc039	code_switch	main aapko call back karungi	मैं आपको call back करूँगी	machine-drafted, needs native review	
 pc040	code_switch	please apna account number bataiye	please अपना account number बताइए	machine-drafted, needs native review	
 pc041	code_switch	aapka payment failed ho gaya hai	आपका payment failed हो गया है	machine-drafted, needs native review	
-pc042	code_switch	WhatsApp par link bhej diya hai	व्हाट्सऐप पर link भेज दिया है	machine-drafted, needs native review	brand respelled in Devanagari (docs/voice-system.md, brand names)
+pc042	code_switch	WhatsApp par link bhej diya hai	WhatsApp पर link भेज दिया है	machine-drafted, needs native review	WhatsApp is NOT respelled: the English route measured better (docs/voice-system.md)
 pc043	code_switch	kal ki meeting cancel ho gayi	कल की meeting cancel हो गई	machine-drafted, needs native review	
 pc044	code_switch	aapki EMI kal due hai	आपकी ई एम आई कल due है	machine-drafted, needs native review	
 pc045	code_switch	Hello sir, main Priya bol rahi hoon	Hello sir, मैं प्रिया बोल रही हूँ	machine-drafted, needs native review	
@@ -325,9 +325,9 @@ pc323	technical	ISO 9001	आई एस ओ नौ शून्य शून्�
 pc324	technical	API key	ए पी आई key	machine-drafted, needs native review	
 pc325	technical	5 mins	पाँच मिनट	machine-drafted, needs native review	
 pc326	technical	2 hrs	दो घंटे	machine-drafted, needs native review	
-pc327	brands	aapka WhatsApp number 9876543210 hai	आपका व्हाट्सऐप number नौ आठ सात छह पाँच, चार तीन दो एक शून्य है	machine-drafted, needs native review	Devanagari respelling; brand read like the name, not letter by letter
+pc327	brands	aapka WhatsApp number 9876543210 hai	आपका WhatsApp number नौ आठ सात छह पाँच, चार तीन दो एक शून्य है	machine-drafted, needs native review	WhatsApp stays Latin (English route measured better); digits in 5+5 groups
 pc328	brands	Google Pay se payment kar dijiye	गूगल Pay से payment कर दीजिए	machine-drafted, needs native review	Pay/payment are ordinary English and stay Latin
-pc329	brands	Amazon aur Flipkart par order kijiye	अमेज़न और फ्लिपकार्ट पर order कीजिए	machine-drafted, needs native review	
+pc329	brands	Amazon aur Flipkart par order kijiye	अमेज़न और फ़्लिपकार्ट पर order कीजिए	machine-drafted, needs native review	
 pc330	brands	YouTube par video dekhiye	यूट्यूब पर video देखिए	machine-drafted, needs native review	
 pc331	brands	Paytm ya PhonePe use karein	पेटीएम या फ़ोनपे use करें	machine-drafted, needs native review	use before a light verb is the English verb, not उसे
 pc332	brands	Zomato aur Swiggy se khana mangwaya	ज़ोमैटो और स्विगी से खाना मँगवाया	machine-drafted, needs native review	mangwaya was left in Latin (lexicon gap)
@@ -357,7 +357,7 @@ pc355	glued_alnum	iPhone15 Pro	iPhone पंद्रह Pro	machine-drafted, ne
 pc356	glued_alnum	COVID-19 ke baad	COVID उन्नीस के बाद	machine-drafted, needs native review	
 pc357	urls_emails	mail karein support@paytm.com par	mail करें support एट पेटीएम डॉट कॉम पर	machine-drafted, needs native review	scheme-less email: local part, @, domain spoken; brand domain respelled
 pc358	urls_emails	mera email rahul.sharma92@gmail.com hai	मेरा email राहुल डॉट शर्मा नौ दो एट जीमेल डॉट कॉम है	machine-drafted, needs native review	digits read one by one; name and brand respelled
-pc359	urls_emails	visit www.flipkart.com/offers	visit डब्ल्यू डब्ल्यू डब्ल्यू डॉट फ्लिपकार्ट डॉट कॉम स्लैश offers	machine-drafted, needs native review	www spelled, dots and slash spoken
+pc359	urls_emails	visit www.flipkart.com/offers	visit डब्ल्यू डब्ल्यू डब्ल्यू डॉट फ़्लिपकार्ट डॉट कॉम स्लैश offers	machine-drafted, needs native review	www spelled, dots and slash spoken
 pc360	urls_emails	https://www.google.com/search?q=hindi	डब्ल्यू डब्ल्यू डब्ल्यू डॉट गूगल डॉट कॉम स्लैश search क्वेश्चन मार्क q बराबर hindi	machine-drafted, needs native review	scheme dropped
 pc361	urls_emails	example.com/pay ka link	example डॉट कॉम स्लैश pay का link	machine-drafted, needs native review	bare domain with a common TLD
 pc362	urls_emails	a.b@c.co.in	a डॉट b एट c डॉट को डॉट इन	machine-drafted, needs native review	two-label TLD

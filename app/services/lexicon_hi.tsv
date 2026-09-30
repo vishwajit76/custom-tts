@@ -858,12 +858,12 @@ chalte	चलते	hi
 pehchan	पहचान	hi
 pehchanta	पहचानता	hi
 bechna	बेचना	hi
-# names: brands and companies (Devanagari respelling of how Indians say them; see docs/voice-system.md)
-whatsapp	व्हाट्सऐप	name
+# names: brands and companies (Devanagari respelling of how Indians say them; see docs/voice-system.md).
+# WhatsApp is deliberately NOT here: the English route read better on both voices (Whisper-small CER 0.156 vs 0.21-0.33 custom).
 google	गूगल	name
 gpay	जीपे	name
 amazon	अमेज़न	name
-flipkart	फ्लिपकार्ट	name
+flipkart	फ़्लिपकार्ट	name
 youtube	यूट्यूब	name
 paytm	पेटीएम	name
 phonepe	फ़ोनपे	name
