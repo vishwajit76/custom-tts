@@ -23,7 +23,8 @@ sf.write(f"{out}/bad_mismatch.wav", np.zeros(22050 * 2, np.float32) + 0.1 * np.s
 rows.append("bad_mismatch|" + " ".join(SENTENCES))  # 2 s of audio, 700+ chars: must be rejected
 open(f"{out}/metadata.csv", "w").write("\n".join(rows) + "\n")
 PY
-.venv/bin/python -m training.prepare_dataset --input "$W/raw" --output "$W/data" --denoise
+# synthetic audio from an installed voice: rights are declared only for this throwaway smoke run
+.venv/bin/python -m training.prepare_dataset --input "$W/raw" --output "$W/data" --denoise --allow-unverified-rights
 .venv-train/bin/python -m training.train --data "$W/data" --run "$W/run" --init rohan --epochs 1 --batch-size 8 \
   --accelerator "${ACCEL:-auto}" --trainer.log_every_n_steps 1
 .venv-train/bin/python -m training.train --data "$W/data" --run "$W/run" --epochs 1 --batch-size 8 --accelerator "${ACCEL:-auto}"  # resume

@@ -31,6 +31,10 @@ class Settings(BaseSettings):
 
     # --- piper ---
     models_dir: Path = Path("models/piper")  # every *.onnx + *.onnx.json here is a voice
+    # Extra directories (comma list) scanned for voices in addition to models_dir, e.g. MODELS_EXTRA=voices picks up the
+    # fine-tuned voices/hi_IN-custom-medium.onnx that training/export_latest.sh writes. Empty = nothing added; a stem
+    # already loaded from an earlier directory wins, so extra directories can never shadow a bundled voice.
+    models_extra: str = ""
     # Each worker thread runs one chunk at a time on a session shared per voice, using threads_per_worker
     # ONNX intra-op threads. 4 threads cut single-chunk latency ~2.3x vs 1 at equal throughput (docs/benchmarks.md).
     threads_per_worker: int = min(4, CPUS)
@@ -52,6 +56,28 @@ class Settings(BaseSettings):
     device: str = "auto"  # auto | cuda:0 | cpu
     language: str = "Auto"
     voices_dir: Path = Path("voices")  # qwen3 reference clips
+
+    # --- speaker registry / cloning (docs/voice-system.md) ---
+    speakers_dir: Path = Path("speakers")  # persistent registry: one dir per speaker (record + references + embeddings)
+    keep_raw_reference: bool = True  # default retention for new speakers: keep uploaded reference audio on disk
+    reference_delete_after_days: int | None = None  # default: purge raw references this many days after upload
+    ref_max_bytes: int = 10_000_000
+    ref_min_seconds: float = 3.0
+    ref_max_seconds: float = 30.0
+    ref_min_sample_rate: int = 16000
+    upload_max_bytes: int = 11_000_000  # request body cap for upload routes (multipart overhead above ref_max_bytes)
+    max_references_per_speaker: int = 10
+    retention_sweep_minutes: float = 60  # how often expired raw references are purged while running; 0 = only at startup/on read
+    speaker_encoder: str = "mfcc"  # mfcc (baseline, NOT neural) | resemblyzer | speechbrain (optional installs)
+
+    # --- expressive engine / DSP / routing (docs/voice-system.md) ---
+    expressive_engine: str = ""  # package.module:ClassName of an ExpressiveEngine subclass; used with ENGINES=...,expressive. Off by default.
+    # Opt-in DSP post-processing for condition.pitch (semitones) / condition.energy (gain). Signal processing, not emotion:
+    # reported as "pitch:dsp" / "energy:dsp". Off = pitch/energy are rejected/ignored like any unsupported control.
+    dsp_prosody: bool = False
+    # engine -> latency tier for routing_policy, from docs/benchmarks.md (fast = real-time at several streams on CPU,
+    # balanced = ~2 real-time streams per 4 cores, slow = GPU / not real-time). Unlisted engines count as slow.
+    engine_latency_tiers: str = "piper:fast,supertonic:balanced,kokoro:balanced,expressive:slow,qwen:slow"
 
     # --- streaming ---
     # output rate when a request doesn't set sample_rate. 24 kHz = OpenAI's pcm contract, which OpenAI-shaped

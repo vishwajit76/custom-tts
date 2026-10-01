@@ -5,10 +5,15 @@ voices/*
 !voices/.gitkeep
 .venv/
 out/
-models/
+/models/
 *.log
 .pytest_cache/
 .venv-train/
 training/runs/
 bench/results/**/*.wav
 logs/
+speakers/
+data/
+training/runs/
+*.ckpt
+voices/*.onnx*

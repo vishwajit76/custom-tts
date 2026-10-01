@@ -15,7 +15,8 @@ import numpy as np
 import soxr
 
 from app.core.config import settings
-from app.services import audio_utils, text_normalizer
+from app.services import audio_utils, dsp, expressive_engine, text_normalizer
+from app.services.conditioning import DEFAULT_CAPABILITIES, EngineCapabilities
 from app.services.scheduler import Scheduler
 
 log = logging.getLogger(__name__)
@@ -61,12 +62,19 @@ class MultiEngine:
     def sample_rate(self, voice: str) -> int:
         return self._owner(voice).sample_rate(voice)
 
+    def capabilities_for(self, voice: str) -> EngineCapabilities:
+        return getattr(self._owner(voice), "capabilities", DEFAULT_CAPABILITIES)
+
     def synth(self, text: str, voice: str, speed: float, ref=None, ref_text=None) -> np.ndarray:
         return self._owner(voice).synth(text, voice, speed, ref, ref_text)
 
+    def synth_native(self, text: str, voice: str, speed: float, controls: dict, ref=None, ref_text=None) -> np.ndarray:
+        return self._owner(voice).synth_native(text, voice, speed, controls, ref, ref_text)
+
 
 _ENGINES = {"piper": "piper_engine.PiperEngine", "supertonic": "supertonic_engine.SupertonicEngine",
-            "kokoro": "kokoro_engine.KokoroEngine", "qwen3": "qwen_engine.QwenEngine"}
+            "kokoro": "kokoro_engine.KokoroEngine", "qwen3": "qwen_engine.QwenEngine",
+            "expressive": "expressive_engine.ExpressiveEngine"}  # "expressive": class taken from EXPRESSIVE_ENGINE, off by default
 
 
 def _make_engine(names: str):
@@ -78,6 +86,9 @@ def _make_engine(names: str):
         raise ValueError("qwen3 (voice cloning) runs alone: ENGINES=qwen3")
     engines = []
     for n in names:
+        if n == "expressive":
+            engines.append(expressive_engine.build_configured(settings.expressive_engine))
+            continue
         mod, cls = _ENGINES[n].split(".")
         engines.append(getattr(importlib.import_module(f"app.services.{mod}"), cls)())
     return engines[0] if len(engines) == 1 else MultiEngine(engines)
@@ -86,6 +97,7 @@ def _make_engine(names: str):
 engine = _make_engine(settings.engines)
 scheduler: Scheduler | None = None
 _cache: OrderedDict[tuple, np.ndarray] = OrderedDict()
+_cache_epoch = 0  # bumped by clear_cache(): a chunk synthesized before a voice was replaced/deleted must not be cached after it
 stats = {
     "streams_active": 0, "streams_total": 0, "streams_rejected": 0, "streams_cancelled": 0, "streams_failed": 0,
     "chunks_total": 0, "cache_hits": 0, "audio_seconds_total": 0.0, "synth_seconds_total": 0.0,
@@ -96,6 +108,11 @@ ttfa_recent: deque[float] = deque(maxlen=2000)  # seconds, for /metrics quantile
 def load() -> None:
     global scheduler
     engine.load()
+    if settings.dsp_prosody:  # first librosa call JIT-compiles for seconds; keep that off the first request
+        try:
+            dsp.apply_prosody(np.zeros(8192, np.float32), 24000, pitch=1.0)
+        except ImportError as e:
+            raise RuntimeError("DSP_PROSODY=true needs librosa: pip install -r requirements-dsp.txt") from e
     scheduler = Scheduler(engine.max_workers)
 
 
@@ -105,6 +122,18 @@ def resolve_voice(voice: str) -> str:
     if voice == "default" and engine.has_voice(settings.default_voice):
         return settings.default_voice
     raise KeyError(voice)
+
+
+def capabilities_for(voice: str | None = None) -> EngineCapabilities:
+    """Capabilities of the engine that would serve `voice` (None or a cloning reference: the single engine's own)."""
+    if voice is not None and hasattr(engine, "capabilities_for") and engine.has_voice(voice):
+        return engine.capabilities_for(voice)
+    return getattr(engine, "capabilities", DEFAULT_CAPABILITIES)
+
+
+def engine_name(voice: str | None = None) -> str:
+    owner = engine._owner(voice) if voice is not None and hasattr(engine, "_owner") and engine.has_voice(voice) else engine
+    return type(owner).__name__.removesuffix("Engine").lower()
 
 
 def split_for_stream(text: str) -> list[str]:
@@ -151,17 +180,21 @@ def _slot():
         stats["streams_active"] -= 1
 
 
-async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref, ref_text) -> np.ndarray:
-    key = (voice, text, speed)
+async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref, ref_text, controls: dict | None = None) -> np.ndarray:
+    key = (voice, text, speed, tuple(sorted(controls.items())) if controls else ())
     if ref is None and key in _cache:
         _cache.move_to_end(key)
         stats["cache_hits"] += 1
         return _cache[key]
     t = time.perf_counter()
-    wav = await scheduler.run(deadline, engine.synth, text, voice, speed, ref, ref_text)
+    epoch = _cache_epoch
+    if controls:  # native controls only reach an engine that declared them (prepare_ex/validate_condition guarantee it)
+        wav = await scheduler.run(deadline, engine.synth_native, text, voice, speed, controls, ref, ref_text)
+    else:
+        wav = await scheduler.run(deadline, engine.synth, text, voice, speed, ref, ref_text)
     wav = trim_lead(wav, engine.sample_rate(voice), settings.lead_silence_ms)
     stats["synth_seconds_total"] += time.perf_counter() - t
-    if ref is None and settings.cache_size:
+    if ref is None and settings.cache_size and epoch == _cache_epoch:
         _cache[key] = wav
         if len(_cache) > settings.cache_size:
             _cache.popitem(last=False)
@@ -171,8 +204,12 @@ async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref
 async def stream(
     text: str, voice: str, speed: float = 1.0, sample_rate: int | None = None,
     ref=None, ref_text: str | None = None, frame_ms: int = 0, request_id: str = "",
+    controls: dict | None = None, dsp_controls: dict | None = None,
 ) -> AsyncIterator[bytes]:
     """Yield PCM s16le mono bytes at `sample_rate` (None = model rate; the APIs always pass one).
+
+    `controls`: validated native controls for engine.synth_native. `dsp_controls`: {pitch, energy, strength} applied as
+    post-processing (app/services/dsp.py) to each chunk after the cache, before resampling.
 
     Raises Overloaded on the first iteration when at capacity. Cancelling the consuming task stops
     synthesis at once: queued chunks are skipped by the workers, nothing more is yielded.
@@ -188,7 +225,9 @@ async def stream(
         sent_s, buf, ttfa = 0.0, b"", None
         for i, c in enumerate(chunks):
             # deadline = when the audio already produced finishes playing (client plays in real time)
-            wav = await _synth_chunk(c, voice, speed, t0 + sent_s, ref, ref_text)
+            wav = await _synth_chunk(c, voice, speed, t0 + sent_s, ref, ref_text, controls)
+            if dsp_controls:
+                wav = await asyncio.to_thread(dsp.apply_prosody, wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
             sent_s += len(wav) / sr_in
             stats["chunks_total"] += 1
             if rs is not None:
@@ -215,11 +254,14 @@ async def stream(
 
 
 async def synthesize(text: str, voice: str, speed: float = 1.0, sample_rate: int | None = None, ref=None, ref_text=None,
-                     request_id: str = "") -> np.ndarray:
-    pcm = b"".join([b async for b in stream(text, voice, speed, sample_rate, ref, ref_text, request_id=request_id)])
+                     request_id: str = "", controls: dict | None = None, dsp_controls: dict | None = None) -> np.ndarray:
+    pcm = b"".join([b async for b in stream(text, voice, speed, sample_rate, ref, ref_text, request_id=request_id,
+                                            controls=controls, dsp_controls=dsp_controls)])
     return np.frombuffer(pcm, dtype="<i2").astype(np.float32) / 32767
 
 
 def clear_cache(voice: str) -> None:
+    global _cache_epoch
+    _cache_epoch += 1  # also drops the result of any synthesis still in flight for this voice (store is skipped)
     for k in [k for k in _cache if k[0] == voice]:
         del _cache[k]

@@ -1,0 +1,110 @@
+{
+ "experiment_id": "hi_f-v6-0930T0731Z",
+ "status": "launched",
+ "kernel": "vishwajit76/custom-tts-hindi-train",
+ "git_sha": "306267179199",
+ "dataset": {
+  "repo_path": "data/hi_f",
+  "metadata_sha256": "9bf8f1522124b220287dcea5d229327d63e93f0edba62283a0b74a3a02d6c0c3",
+  "metadata_rows": 4013,
+  "n_wavs": 4225,
+  "wavs_name_size_sha256": "41bb8b44304ae131af9dd82d38d415f9899cbca42e00eeed4be7041640b1deec"
+ },
+ "base_checkpoint": {
+  "requested": "runs/hi_f/v4_final_step357212.ckpt",
+  "path": "runs/hi_f/v4_final_step357212.ckpt",
+  "global_step": 357212,
+  "epoch": 3347,
+  "sha256": "2561a9c9359587d555cd82ee39198ddcf154d20b5f19f691aad0e36a7169316b",
+  "remote_sha256": "2561a9c9359587d555cd82ee39198ddcf154d20b5f19f691aad0e36a7169316b",
+  "considered": []
+ },
+ "config": {
+  "lr": {
+   "env": {
+    "LR_MODE": "anneal",
+    "LR_START": "1e-4",
+    "LR_FINAL_RATIO": "0.05",
+    "ANNEAL_EPOCHS": "150"
+   },
+   "checkpoint": {
+    "lr_g": 0.00015257792529439193,
+    "lr_d": 0.00015257792529439193,
+    "sched": [
+     {
+      "gamma": 0.999875,
+      "base_lrs": [
+       0.0002
+      ],
+      "last_epoch": 2165,
+      "_last_lr": [
+       0.00015257792529439193
+      ]
+     },
+     {
+      "gamma": 0.999875,
+      "base_lrs": [
+       0.0002
+      ],
+      "last_epoch": 2165,
+      "_last_lr": [
+       0.00015257792529439193
+      ]
+     }
+    ],
+    "lr_ctl": null
+   }
+  },
+  "precision": "16-mixed",
+  "cli": [
+   "/usr/bin/python3",
+   "/tmp/w/wrap.py",
+   "fit",
+   "--seed_everything",
+   "1234",
+   "--data.voice_name",
+   "hi_f",
+   "--data.csv_path",
+   "/tmp/w/hf/data/hi_f/metadata.csv",
+   "--data.audio_dir",
+   "/tmp/w/hf/data/hi_f/wavs",
+   "--data.espeak_voice",
+   "hi",
+   "--data.cache_dir",
+   "/tmp/w/run/cache",
+   "--data.config_path",
+   "/tmp/w/run/config.json",
+   "--data.batch_size",
+   "24",
+   "--data.num_workers",
+   "3",
+   "--model.sample_rate",
+   "22050",
+   "--model.num_speakers",
+   "1",
+   "--trainer.default_root_dir",
+   "/tmp/w/run",
+   "--trainer.accelerator",
+   "gpu",
+   "--trainer.devices",
+   "1",
+   "--trainer.precision",
+   "16-mixed",
+   "--trainer.max_epochs",
+   "103348",
+   "--trainer.log_every_n_steps",
+   "50",
+   "--ckpt_path",
+   "/root/.cache/huggingface/hub/models--vishwajit76--custom-tts-hindi-train/snapshots/d8ef4d5d8fb88537dcb3428b4c96468291f6c12c/runs/hi_f/v4_final_step357212.ckpt"
+  ],
+  "max_hours": 11.0
+ },
+ "seed": 1234,
+ "batch_size": 24,
+ "hardware": "see HF experiments/<id>/environment.json",
+ "dates": {
+  "started_utc": "2026-09-30T07:31:48Z",
+  "started_ist": "2026-09-30T13:01:48+05:30"
+ },
+ "unknown": []
+}

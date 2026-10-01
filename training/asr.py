@@ -31,10 +31,17 @@ def transcribe(wav: np.ndarray, sr: int) -> str:
     return out["text"].strip()
 
 
-def _clean(s: str) -> str:
+def _clean(s: str, keep_marks: bool = True) -> str:
+    """Normalize for CER: NFC, lower case, drop nukta, drop punctuation/symbols/spaces. `keep_marks=True` (default) KEEPS Devanagari vowel signs, virama and
+    anusvara (Unicode categories Mn/Mc): they carry the vowels. Before 2026-09-30 this used re `[^\\w]`, and Python's `\\w` does not match combining marks,
+    so every matra and virama was silently deleted (cer('की', 'कु') was 0.0, 'नमस्ते' became 'नमसत') and every published CER was a consonant-skeleton error rate.
+    `keep_marks=False` reproduces that legacy behaviour for comparing with old rows (bench/results/milestones.jsonl rows before the fix).
+    Chandrabindu is mapped to anusvara (a spelling variant ASR outputs freely, not a pronunciation difference)."""
     s = unicodedata.normalize("NFC", s.lower())
-    s = s.replace("़", "")  # nukta: ASR and scripts disagree on ज़/ज
-    return re.sub(r"[^\w]|_", "", s)  # drop spaces and punctuation; CER is about sounds, not spacing
+    s = s.replace("\u093c", "").replace("\u0901", "\u0902")  # nukta ASR and scripts disagree on; chandrabindu -> anusvara
+    if not keep_marks:
+        return re.sub(r"[^\w]|_", "", s)
+    return "".join(c for c in s if unicodedata.category(c)[0] in "LMN")
 
 
 def _edit_rate(r, h) -> float:
@@ -49,9 +56,10 @@ def _edit_rate(r, h) -> float:
     return prev[-1] / len(r)
 
 
-def cer(ref: str, hyp: str) -> float:
-    """Character error rate (Levenshtein / len(ref)) after dropping punctuation, spaces and nukta."""
-    return _edit_rate(_clean(ref), _clean(hyp))
+def cer(ref: str, hyp: str, keep_marks: bool = True) -> float:
+    """Character error rate (Levenshtein / len(ref)) after dropping punctuation, spaces and nukta; vowel signs count (see `_clean`).
+    `keep_marks=False` = the legacy consonant-skeleton CER that all pre-2026-09-30 numbers used."""
+    return _edit_rate(_clean(ref, keep_marks), _clean(hyp, keep_marks))
 
 
 def phonemes(text: str) -> list[str]:

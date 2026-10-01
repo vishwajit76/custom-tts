@@ -1,0 +1,2337 @@
+{
+  "encoder": "mfcc",
+  "encoder_neural": false,
+  "reference": "same voice, neutral condition",
+  "voices": {
+    "hi_IN-rohan-medium": {
+      "neutral": {
+        "condition": null,
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 0.847,
+            "chars_per_s": 8.27,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.4,
+            "silence_ratio": 0.265,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 210,
+            "rms_dbfs_mean": -17.1,
+            "rms_dbfs_std": 6.1,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 141.8,
+              "spread_semitones_p5_p95": 8.9,
+              "std_semitones": 3.15,
+              "voiced_fraction": 0.585
+            },
+            "speaker_similarity": null,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.55,
+              "f0_median_hz_after": 142.6,
+              "speaker_similarity_after": null
+            },
+            "speaker_similarity_note": "encoder rejected the audio (under 1 s, silent, or backend unavailable)"
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 3.249,
+            "chars_per_s": 12.31,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.7,
+            "silence_ratio": 0.217,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 190,
+            "rms_dbfs_mean": -19.0,
+            "rms_dbfs_std": 8.6,
+            "pauses": {
+              "count": 1,
+              "total_ms": 320,
+              "max_ms": 320,
+              "mean_ms": 320
+            },
+            "f0": {
+              "median_hz": 159.1,
+              "spread_semitones_p5_p95": 10.85,
+              "std_semitones": 3.54,
+              "voiced_fraction": 0.544
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.46,
+              "f0_median_hz_after": 161.9,
+              "speaker_similarity_after": 0.9605
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 2.673,
+            "chars_per_s": 13.47,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.7,
+            "silence_ratio": 0.2,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 290,
+            "rms_dbfs_mean": -19.3,
+            "rms_dbfs_std": 8.4,
+            "pauses": {
+              "count": 1,
+              "total_ms": 120,
+              "max_ms": 120,
+              "mean_ms": 120
+            },
+            "f0": {
+              "median_hz": 152.8,
+              "spread_semitones_p5_p95": 10.46,
+              "std_semitones": 3.22,
+              "voiced_fraction": 0.756
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.32,
+              "f0_median_hz_after": 154.6,
+              "speaker_similarity_after": 0.9641
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 7.026,
+            "chars_per_s": 6.83,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.5,
+            "silence_ratio": 0.183,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 200,
+            "rms_dbfs_mean": -19.5,
+            "rms_dbfs_std": 8.5,
+            "pauses": {
+              "count": 2,
+              "total_ms": 610,
+              "max_ms": 340,
+              "mean_ms": 305
+            },
+            "f0": {
+              "median_hz": 153.7,
+              "spread_semitones_p5_p95": 9.52,
+              "std_semitones": 2.87,
+              "voiced_fraction": 0.702
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.6,
+              "f0_median_hz_after": 153.7,
+              "speaker_similarity_after": 0.9488
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 5.547,
+            "chars_per_s": 12.08,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.7,
+            "silence_ratio": 0.193,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 250,
+            "rms_dbfs_mean": -18.7,
+            "rms_dbfs_std": 8.1,
+            "pauses": {
+              "count": 2,
+              "total_ms": 490,
+              "max_ms": 340,
+              "mean_ms": 245
+            },
+            "f0": {
+              "median_hz": 150.2,
+              "spread_semitones_p5_p95": 9.98,
+              "std_semitones": 3.23,
+              "voiced_fraction": 0.706
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.45,
+              "f0_median_hz_after": 150.2,
+              "speaker_similarity_after": 0.9739
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 5.667,
+            "chars_per_s": 10.76,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.4,
+            "silence_ratio": 0.202,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 260,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.4,
+            "pauses": {
+              "count": 2,
+              "total_ms": 520,
+              "max_ms": 360,
+              "mean_ms": 260
+            },
+            "f0": {
+              "median_hz": 136.9,
+              "spread_semitones_p5_p95": 13.36,
+              "std_semitones": 3.83,
+              "voiced_fraction": 0.73
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.15,
+              "f0_median_hz_after": 136.9,
+              "speaker_similarity_after": 0.9778
+            }
+          }
+        ]
+      },
+      "speed-0.85": {
+        "condition": {
+          "speed": 0.85
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 1.049,
+            "chars_per_s": 6.67,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.7,
+            "silence_ratio": 0.272,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 270,
+            "rms_dbfs_mean": -17.3,
+            "rms_dbfs_std": 5.8,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 140.1,
+              "spread_semitones_p5_p95": 8.95,
+              "std_semitones": 2.87,
+              "voiced_fraction": 0.545
+            },
+            "speaker_similarity": null,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.56,
+              "f0_median_hz_after": 140.5,
+              "speaker_similarity_after": 0.9456
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 3.445,
+            "chars_per_s": 11.61,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.6,
+            "silence_ratio": 0.239,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 260,
+            "rms_dbfs_mean": -18.2,
+            "rms_dbfs_std": 7.8,
+            "pauses": {
+              "count": 1,
+              "total_ms": 320,
+              "max_ms": 320,
+              "mean_ms": 320
+            },
+            "f0": {
+              "median_hz": 143.4,
+              "spread_semitones_p5_p95": 9.2,
+              "std_semitones": 3.33,
+              "voiced_fraction": 0.606
+            },
+            "speaker_similarity": 0.9993,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.49,
+              "f0_median_hz_after": 143.4,
+              "speaker_similarity_after": 0.9634
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.915,
+            "chars_per_s": 12.35,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.0,
+            "silence_ratio": 0.224,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 320,
+            "rms_dbfs_mean": -19.2,
+            "rms_dbfs_std": 8.2,
+            "pauses": {
+              "count": 1,
+              "total_ms": 150,
+              "max_ms": 150,
+              "mean_ms": 150
+            },
+            "f0": {
+              "median_hz": 157.3,
+              "spread_semitones_p5_p95": 10.79,
+              "std_semitones": 3.28,
+              "voiced_fraction": 0.694
+            },
+            "speaker_similarity": 0.9993,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.43,
+              "f0_median_hz_after": 157.3,
+              "speaker_similarity_after": 0.9662
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 7.898,
+            "chars_per_s": 6.08,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.6,
+            "silence_ratio": 0.194,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 260,
+            "rms_dbfs_mean": -19.0,
+            "rms_dbfs_std": 8.0,
+            "pauses": {
+              "count": 3,
+              "total_ms": 830,
+              "max_ms": 350,
+              "mean_ms": 277
+            },
+            "f0": {
+              "median_hz": 148.5,
+              "spread_semitones_p5_p95": 10.68,
+              "std_semitones": 3.24,
+              "voiced_fraction": 0.634
+            },
+            "speaker_similarity": 0.9994,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.72,
+              "f0_median_hz_after": 148.5,
+              "speaker_similarity_after": 0.9516
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.336,
+            "chars_per_s": 10.58,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.5,
+            "silence_ratio": 0.236,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 300,
+            "rms_dbfs_mean": -18.6,
+            "rms_dbfs_std": 7.9,
+            "pauses": {
+              "count": 3,
+              "total_ms": 880,
+              "max_ms": 400,
+              "mean_ms": 293
+            },
+            "f0": {
+              "median_hz": 140.9,
+              "spread_semitones_p5_p95": 9.91,
+              "std_semitones": 2.99,
+              "voiced_fraction": 0.657
+            },
+            "speaker_similarity": 0.9988,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.56,
+              "f0_median_hz_after": 140.9,
+              "speaker_similarity_after": 0.9741
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.232,
+            "chars_per_s": 9.79,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.1,
+            "silence_ratio": 0.201,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 330,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.2,
+            "pauses": {
+              "count": 2,
+              "total_ms": 530,
+              "max_ms": 340,
+              "mean_ms": 265
+            },
+            "f0": {
+              "median_hz": 142.6,
+              "spread_semitones_p5_p95": 13.67,
+              "std_semitones": 3.97,
+              "voiced_fraction": 0.769
+            },
+            "speaker_similarity": 0.9996,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.17,
+              "f0_median_hz_after": 142.6,
+              "speaker_similarity_after": 0.9788
+            }
+          }
+        ]
+      },
+      "speed-1.15": {
+        "condition": {
+          "speed": 1.15
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 0.84,
+            "chars_per_s": 8.33,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.8,
+            "silence_ratio": 0.28,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 220,
+            "rms_dbfs_mean": -17.8,
+            "rms_dbfs_std": 6.9,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 136.2,
+              "spread_semitones_p5_p95": 14.15,
+              "std_semitones": 4.47,
+              "voiced_fraction": 0.679
+            },
+            "speaker_similarity": null,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.51,
+              "f0_median_hz_after": 129.0,
+              "speaker_similarity_after": null
+            },
+            "speaker_similarity_note": "encoder rejected the audio (under 1 s, silent, or backend unavailable)"
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.971,
+            "chars_per_s": 13.47,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.6,
+            "silence_ratio": 0.183,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 140,
+            "rms_dbfs_mean": -18.4,
+            "rms_dbfs_std": 8.0,
+            "pauses": {
+              "count": 1,
+              "total_ms": 240,
+              "max_ms": 240,
+              "mean_ms": 240
+            },
+            "f0": {
+              "median_hz": 146.3,
+              "spread_semitones_p5_p95": 12.21,
+              "std_semitones": 3.77,
+              "voiced_fraction": 0.613
+            },
+            "speaker_similarity": 0.9992,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.46,
+              "f0_median_hz_after": 148.9,
+              "speaker_similarity_after": 0.9572
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.487,
+            "chars_per_s": 14.48,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.8,
+            "silence_ratio": 0.194,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 250,
+            "rms_dbfs_mean": -19.2,
+            "rms_dbfs_std": 8.6,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 148.5,
+              "spread_semitones_p5_p95": 8.9,
+              "std_semitones": 2.75,
+              "voiced_fraction": 0.75
+            },
+            "speaker_similarity": 0.9993,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.31,
+              "f0_median_hz_after": 148.9,
+              "speaker_similarity_after": 0.9624
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.832,
+            "chars_per_s": 7.03,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.0,
+            "silence_ratio": 0.179,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 200,
+            "rms_dbfs_mean": -19.4,
+            "rms_dbfs_std": 8.4,
+            "pauses": {
+              "count": 2,
+              "total_ms": 600,
+              "max_ms": 300,
+              "mean_ms": 300
+            },
+            "f0": {
+              "median_hz": 151.5,
+              "spread_semitones_p5_p95": 9.53,
+              "std_semitones": 2.78,
+              "voiced_fraction": 0.687
+            },
+            "speaker_similarity": 0.9996,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.68,
+              "f0_median_hz_after": 152.4,
+              "speaker_similarity_after": 0.9497
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 5.285,
+            "chars_per_s": 12.68,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.3,
+            "silence_ratio": 0.19,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 180,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.3,
+            "pauses": {
+              "count": 2,
+              "total_ms": 500,
+              "max_ms": 300,
+              "mean_ms": 250
+            },
+            "f0": {
+              "median_hz": 149.3,
+              "spread_semitones_p5_p95": 10.3,
+              "std_semitones": 3.29,
+              "voiced_fraction": 0.668
+            },
+            "speaker_similarity": 0.9998,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.53,
+              "f0_median_hz_after": 149.3,
+              "speaker_similarity_after": 0.9735
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 5.141,
+            "chars_per_s": 11.87,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.1,
+            "silence_ratio": 0.152,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 200,
+            "rms_dbfs_mean": -19.3,
+            "rms_dbfs_std": 8.4,
+            "pauses": {
+              "count": 1,
+              "total_ms": 260,
+              "max_ms": 260,
+              "mean_ms": 260
+            },
+            "f0": {
+              "median_hz": 146.8,
+              "spread_semitones_p5_p95": 11.79,
+              "std_semitones": 3.64,
+              "voiced_fraction": 0.755
+            },
+            "speaker_similarity": 0.9989,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.14,
+              "f0_median_hz_after": 146.8,
+              "speaker_similarity_after": 0.9791
+            }
+          }
+        ]
+      },
+      "pitch+2": {
+        "condition": {
+          "pitch": 2.0
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          }
+        ]
+      },
+      "energy-1.3": {
+        "condition": {
+          "energy": 1.3
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for piper: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          }
+        ]
+      }
+    },
+    "kokoro:hf_alpha": {
+      "neutral": {
+        "condition": null,
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 1.262,
+            "chars_per_s": 5.55,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -2.3,
+            "silence_ratio": 0.331,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 400,
+            "rms_dbfs_mean": -16.1,
+            "rms_dbfs_std": 6.8,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 252.6,
+              "spread_semitones_p5_p95": 7.27,
+              "std_semitones": 2.44,
+              "voiced_fraction": 0.595
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.17,
+              "f0_median_hz_after": 251.1,
+              "speaker_similarity_after": 0.9467
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 3.532,
+            "chars_per_s": 11.32,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.3,
+            "silence_ratio": 0.239,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 460,
+            "rms_dbfs_mean": -18.9,
+            "rms_dbfs_std": 8.9,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 216.7,
+              "spread_semitones_p5_p95": 11.53,
+              "std_semitones": 3.7,
+              "voiced_fraction": 0.67
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 1.09,
+              "f0_median_hz_after": 218.6,
+              "speaker_similarity_after": 0.9471
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 3.215,
+            "chars_per_s": 11.2,
+            "clipping_ratio": 0.0001943760528702864,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.244,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 460,
+            "rms_dbfs_mean": -19.3,
+            "rms_dbfs_std": 9.7,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 229.0,
+              "spread_semitones_p5_p95": 10.78,
+              "std_semitones": 3.49,
+              "voiced_fraction": 0.731
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.04,
+              "f0_median_hz_after": 226.3,
+              "speaker_similarity_after": 0.95
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 7.824,
+            "chars_per_s": 6.13,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.5,
+            "silence_ratio": 0.253,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 490,
+            "rms_dbfs_mean": -18.4,
+            "rms_dbfs_std": 8.0,
+            "pauses": {
+              "count": 4,
+              "total_ms": 980,
+              "max_ms": 510,
+              "mean_ms": 245
+            },
+            "f0": {
+              "median_hz": 212.4,
+              "spread_semitones_p5_p95": 10.92,
+              "std_semitones": 3.48,
+              "voiced_fraction": 0.712
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 1.06,
+              "f0_median_hz_after": 212.4,
+              "speaker_similarity_after": 0.9459
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 6.524,
+            "chars_per_s": 10.27,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -0.3,
+            "silence_ratio": 0.249,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 500,
+            "rms_dbfs_mean": -18.9,
+            "rms_dbfs_std": 8.9,
+            "pauses": {
+              "count": 2,
+              "total_ms": 660,
+              "max_ms": 470,
+              "mean_ms": 330
+            },
+            "f0": {
+              "median_hz": 222.5,
+              "spread_semitones_p5_p95": 12.53,
+              "std_semitones": 3.71,
+              "voiced_fraction": 0.681
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.65,
+              "f0_median_hz_after": 222.5,
+              "speaker_similarity_after": 0.944
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 6.644,
+            "chars_per_s": 9.18,
+            "clipping_ratio": 6.898671065092097e-05,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.263,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 500,
+            "rms_dbfs_mean": -18.6,
+            "rms_dbfs_std": 8.6,
+            "pauses": {
+              "count": 2,
+              "total_ms": 660,
+              "max_ms": 450,
+              "mean_ms": 330
+            },
+            "f0": {
+              "median_hz": 222.5,
+              "spread_semitones_p5_p95": 12.27,
+              "std_semitones": 3.7,
+              "voiced_fraction": 0.697
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.06,
+              "energy_above_4khz_lost_pct": 0.92,
+              "f0_median_hz_after": 222.5,
+              "speaker_similarity_after": 0.9524
+            }
+          }
+        ]
+      },
+      "speed-0.85": {
+        "condition": {
+          "speed": 0.85
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 1.468,
+            "chars_per_s": 4.77,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -3.1,
+            "silence_ratio": 0.317,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 450,
+            "rms_dbfs_mean": -16.5,
+            "rms_dbfs_std": 7.1,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 239.8,
+              "spread_semitones_p5_p95": 9.32,
+              "std_semitones": 2.92,
+              "voiced_fraction": 0.62
+            },
+            "speaker_similarity": 0.9973,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.09,
+              "f0_median_hz_after": 239.8,
+              "speaker_similarity_after": 0.9492
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 4.047,
+            "chars_per_s": 9.88,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.5,
+            "silence_ratio": 0.256,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 530,
+            "rms_dbfs_mean": -18.3,
+            "rms_dbfs_std": 8.2,
+            "pauses": {
+              "count": 1,
+              "total_ms": 160,
+              "max_ms": 160,
+              "mean_ms": 160
+            },
+            "f0": {
+              "median_hz": 213.0,
+              "spread_semitones_p5_p95": 10.59,
+              "std_semitones": 3.37,
+              "voiced_fraction": 0.664
+            },
+            "speaker_similarity": 0.9998,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.06,
+              "f0_median_hz_after": 213.6,
+              "speaker_similarity_after": 0.9506
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 3.698,
+            "chars_per_s": 9.73,
+            "clipping_ratio": 0.0002028054757478452,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.25,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 510,
+            "rms_dbfs_mean": -19.1,
+            "rms_dbfs_std": 9.5,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 211.8,
+              "spread_semitones_p5_p95": 10.1,
+              "std_semitones": 3.28,
+              "voiced_fraction": 0.647
+            },
+            "speaker_similarity": 0.9997,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.99,
+              "f0_median_hz_after": 211.8,
+              "speaker_similarity_after": 0.9508
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 9.159,
+            "chars_per_s": 5.24,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.9,
+            "silence_ratio": 0.258,
+            "silent": false,
+            "lead_silence_ms": 30,
+            "trail_silence_ms": 530,
+            "rms_dbfs_mean": -18.5,
+            "rms_dbfs_std": 8.0,
+            "pauses": {
+              "count": 5,
+              "total_ms": 1260,
+              "max_ms": 560,
+              "mean_ms": 252
+            },
+            "f0": {
+              "median_hz": 213.6,
+              "spread_semitones_p5_p95": 11.62,
+              "std_semitones": 3.46,
+              "voiced_fraction": 0.693
+            },
+            "speaker_similarity": 0.9999,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.07,
+              "energy_above_4khz_lost_pct": 1.07,
+              "f0_median_hz_after": 213.6,
+              "speaker_similarity_after": 0.9484
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 7.735,
+            "chars_per_s": 8.66,
+            "clipping_ratio": 1.6159613892958717e-05,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.26,
+            "silent": false,
+            "lead_silence_ms": 30,
+            "trail_silence_ms": 560,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.7,
+            "pauses": {
+              "count": 3,
+              "total_ms": 900,
+              "max_ms": 520,
+              "mean_ms": 300
+            },
+            "f0": {
+              "median_hz": 221.2,
+              "spread_semitones_p5_p95": 12.07,
+              "std_semitones": 3.6,
+              "voiced_fraction": 0.678
+            },
+            "speaker_similarity": 0.9998,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 0.66,
+              "f0_median_hz_after": 221.2,
+              "speaker_similarity_after": 0.9446
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 7.581,
+            "chars_per_s": 8.05,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.0,
+            "silence_ratio": 0.271,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 570,
+            "rms_dbfs_mean": -18.6,
+            "rms_dbfs_std": 8.7,
+            "pauses": {
+              "count": 5,
+              "total_ms": 1110,
+              "max_ms": 490,
+              "mean_ms": 222
+            },
+            "f0": {
+              "median_hz": 217.4,
+              "spread_semitones_p5_p95": 11.68,
+              "std_semitones": 3.61,
+              "voiced_fraction": 0.681
+            },
+            "speaker_similarity": 0.9999,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 0.92,
+              "f0_median_hz_after": 217.4,
+              "speaker_similarity_after": 0.9528
+            }
+          }
+        ]
+      },
+      "speed-1.15": {
+        "condition": {
+          "speed": 1.15
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 1.049,
+            "chars_per_s": 6.67,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.7,
+            "silence_ratio": 0.35,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 350,
+            "rms_dbfs_mean": -15.9,
+            "rms_dbfs_std": 7.1,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 260.0,
+              "spread_semitones_p5_p95": 8.93,
+              "std_semitones": 2.8,
+              "voiced_fraction": 0.576
+            },
+            "speaker_similarity": 0.9966,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.14,
+              "f0_median_hz_after": 260.8,
+              "speaker_similarity_after": 0.9424
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 3.119,
+            "chars_per_s": 12.82,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.3,
+            "silence_ratio": 0.239,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 430,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.6,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 219.9,
+              "spread_semitones_p5_p95": 11.73,
+              "std_semitones": 3.76,
+              "voiced_fraction": 0.692
+            },
+            "speaker_similarity": 0.9999,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.04,
+              "f0_median_hz_after": 221.2,
+              "speaker_similarity_after": 0.9474
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.973,
+            "chars_per_s": 12.11,
+            "clipping_ratio": 0.00011211076543625101,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.258,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 400,
+            "rms_dbfs_mean": -18.6,
+            "rms_dbfs_std": 9.1,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 227.0,
+              "spread_semitones_p5_p95": 10.77,
+              "std_semitones": 3.55,
+              "voiced_fraction": 0.688
+            },
+            "speaker_similarity": 0.9998,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.01,
+              "f0_median_hz_after": 227.0,
+              "speaker_similarity_after": 0.9495
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 7.171,
+            "chars_per_s": 6.69,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -1.4,
+            "silence_ratio": 0.243,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 450,
+            "rms_dbfs_mean": -18.7,
+            "rms_dbfs_std": 8.2,
+            "pauses": {
+              "count": 2,
+              "total_ms": 620,
+              "max_ms": 440,
+              "mean_ms": 310
+            },
+            "f0": {
+              "median_hz": 214.3,
+              "spread_semitones_p5_p95": 11.7,
+              "std_semitones": 3.54,
+              "voiced_fraction": 0.713
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.04,
+              "energy_above_4khz_lost_pct": 1.0,
+              "f0_median_hz_after": 213.6,
+              "speaker_similarity_after": 0.9446
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.031,
+            "chars_per_s": 11.11,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -0.3,
+            "silence_ratio": 0.253,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 450,
+            "rms_dbfs_mean": -18.7,
+            "rms_dbfs_std": 8.6,
+            "pauses": {
+              "count": 2,
+              "total_ms": 600,
+              "max_ms": 430,
+              "mean_ms": 300
+            },
+            "f0": {
+              "median_hz": 221.2,
+              "spread_semitones_p5_p95": 12.38,
+              "std_semitones": 3.74,
+              "voiced_fraction": 0.703
+            },
+            "speaker_similarity": 0.9999,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.07,
+              "energy_above_4khz_lost_pct": 0.67,
+              "f0_median_hz_after": 221.2,
+              "speaker_similarity_after": 0.9436
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.056,
+            "chars_per_s": 10.07,
+            "clipping_ratio": 0.00014449574425629417,
+            "peak_dbfs": 0.0,
+            "silence_ratio": 0.255,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 430,
+            "rms_dbfs_mean": -18.8,
+            "rms_dbfs_std": 8.9,
+            "pauses": {
+              "count": 2,
+              "total_ms": 640,
+              "max_ms": 450,
+              "mean_ms": 320
+            },
+            "f0": {
+              "median_hz": 223.7,
+              "spread_semitones_p5_p95": 11.92,
+              "std_semitones": 3.66,
+              "voiced_fraction": 0.71
+            },
+            "speaker_similarity": 0.9999,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.02,
+              "energy_above_4khz_lost_pct": 0.83,
+              "f0_median_hz_after": 223.7,
+              "speaker_similarity_after": 0.9502
+            }
+          }
+        ]
+      },
+      "pitch+2": {
+        "condition": {
+          "pitch": 2.0
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          }
+        ]
+      },
+      "energy-1.3": {
+        "condition": {
+          "energy": 1.3
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for kokoro: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          }
+        ]
+      }
+    },
+    "supertonic:F3": {
+      "neutral": {
+        "condition": null,
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 1.281,
+            "chars_per_s": 5.47,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -12.7,
+            "silence_ratio": 0.595,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 730,
+            "rms_dbfs_mean": -25.1,
+            "rms_dbfs_std": 3.8,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 162.8,
+              "spread_semitones_p5_p95": 7.45,
+              "std_semitones": 2.38,
+              "voiced_fraction": 0.432
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 5.17,
+              "f0_median_hz_after": 162.8,
+              "speaker_similarity_after": 0.9723
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 2.855,
+            "chars_per_s": 14.01,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -7.1,
+            "silence_ratio": 0.251,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 450,
+            "rms_dbfs_mean": -26.6,
+            "rms_dbfs_std": 4.9,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 163.8,
+              "spread_semitones_p5_p95": 9.6,
+              "std_semitones": 2.93,
+              "voiced_fraction": 0.732
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 16.98,
+              "f0_median_hz_after": 163.8,
+              "speaker_similarity_after": 0.9727
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 2.606,
+            "chars_per_s": 13.81,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -9.2,
+            "silence_ratio": 0.29,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 500,
+            "rms_dbfs_mean": -28.0,
+            "rms_dbfs_std": 5.5,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 193.1,
+              "spread_semitones_p5_p95": 12.15,
+              "std_semitones": 4.14,
+              "voiced_fraction": 0.65
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 11.39,
+              "f0_median_hz_after": 192.5,
+              "speaker_similarity_after": 0.9751
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 6.937,
+            "chars_per_s": 6.92,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -8.6,
+            "silence_ratio": 0.289,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 650,
+            "rms_dbfs_mean": -26.8,
+            "rms_dbfs_std": 4.6,
+            "pauses": {
+              "count": 2,
+              "total_ms": 730,
+              "max_ms": 590,
+              "mean_ms": 365
+            },
+            "f0": {
+              "median_hz": 169.1,
+              "spread_semitones_p5_p95": 9.31,
+              "std_semitones": 2.78,
+              "voiced_fraction": 0.714
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.06,
+              "energy_above_4khz_lost_pct": 10.47,
+              "f0_median_hz_after": 169.6,
+              "speaker_similarity_after": 0.9743
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 5.997,
+            "chars_per_s": 11.17,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -9.4,
+            "silence_ratio": 0.316,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 730,
+            "rms_dbfs_mean": -27.1,
+            "rms_dbfs_std": 5.4,
+            "pauses": {
+              "count": 1,
+              "total_ms": 610,
+              "max_ms": 610,
+              "mean_ms": 610
+            },
+            "f0": {
+              "median_hz": 186.0,
+              "spread_semitones_p5_p95": 12.18,
+              "std_semitones": 3.69,
+              "voiced_fraction": 0.701
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.02,
+              "energy_above_4khz_lost_pct": 8.39,
+              "f0_median_hz_after": 186.0,
+              "speaker_similarity_after": 0.9868
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [],
+            "ignored": [],
+            "duration_s": 5.533,
+            "chars_per_s": 11.02,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -13.3,
+            "silence_ratio": 0.307,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 690,
+            "rms_dbfs_mean": -27.3,
+            "rms_dbfs_std": 4.9,
+            "pauses": {
+              "count": 1,
+              "total_ms": 600,
+              "max_ms": 600,
+              "mean_ms": 600
+            },
+            "f0": {
+              "median_hz": 172.5,
+              "spread_semitones_p5_p95": 11.12,
+              "std_semitones": 3.63,
+              "voiced_fraction": 0.743
+            },
+            "speaker_similarity": 1.0,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.05,
+              "energy_above_4khz_lost_pct": 0.6,
+              "f0_median_hz_after": 172.5,
+              "speaker_similarity_after": 0.9861
+            }
+          }
+        ]
+      },
+      "speed-0.85": {
+        "condition": {
+          "speed": 0.85
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 1.32,
+            "chars_per_s": 5.3,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -8.6,
+            "silence_ratio": 0.485,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 620,
+            "rms_dbfs_mean": -26.6,
+            "rms_dbfs_std": 4.3,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 154.6,
+              "spread_semitones_p5_p95": 6.17,
+              "std_semitones": 2.24,
+              "voiced_fraction": 0.53
+            },
+            "speaker_similarity": 0.9925,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 14.41,
+              "f0_median_hz_after": 154.6,
+              "speaker_similarity_after": 0.9781
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 3.52,
+            "chars_per_s": 11.36,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -8.2,
+            "silence_ratio": 0.383,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 730,
+            "rms_dbfs_mean": -27.5,
+            "rms_dbfs_std": 5.2,
+            "pauses": {
+              "count": 2,
+              "total_ms": 450,
+              "max_ms": 330,
+              "mean_ms": 225
+            },
+            "f0": {
+              "median_hz": 180.7,
+              "spread_semitones_p5_p95": 11.4,
+              "std_semitones": 3.96,
+              "voiced_fraction": 0.593
+            },
+            "speaker_similarity": 0.9946,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 18.4,
+              "f0_median_hz_after": 180.7,
+              "speaker_similarity_after": 0.9798
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 3.037,
+            "chars_per_s": 11.85,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -8.7,
+            "silence_ratio": 0.344,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 740,
+            "rms_dbfs_mean": -27.3,
+            "rms_dbfs_std": 5.5,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 175.5,
+              "spread_semitones_p5_p95": 9.77,
+              "std_semitones": 3.24,
+              "voiced_fraction": 0.653
+            },
+            "speaker_similarity": 0.9977,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 10.03,
+              "f0_median_hz_after": 176.6,
+              "speaker_similarity_after": 0.9806
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 8.04,
+            "chars_per_s": 5.97,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -10.6,
+            "silence_ratio": 0.309,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 790,
+            "rms_dbfs_mean": -27.5,
+            "rms_dbfs_std": 4.8,
+            "pauses": {
+              "count": 4,
+              "total_ms": 1140,
+              "max_ms": 750,
+              "mean_ms": 285
+            },
+            "f0": {
+              "median_hz": 176.1,
+              "spread_semitones_p5_p95": 9.33,
+              "std_semitones": 2.82,
+              "voiced_fraction": 0.7
+            },
+            "speaker_similarity": 0.9992,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.02,
+              "energy_above_4khz_lost_pct": 7.01,
+              "f0_median_hz_after": 176.6,
+              "speaker_similarity_after": 0.9794
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.904,
+            "chars_per_s": 9.7,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -6.7,
+            "silence_ratio": 0.327,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 690,
+            "rms_dbfs_mean": -26.4,
+            "rms_dbfs_std": 5.1,
+            "pauses": {
+              "count": 1,
+              "total_ms": 730,
+              "max_ms": 730,
+              "mean_ms": 730
+            },
+            "f0": {
+              "median_hz": 180.7,
+              "spread_semitones_p5_p95": 11.9,
+              "std_semitones": 3.55,
+              "voiced_fraction": 0.683
+            },
+            "speaker_similarity": 0.9995,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.04,
+              "energy_above_4khz_lost_pct": 13.36,
+              "f0_median_hz_after": 180.7,
+              "speaker_similarity_after": 0.9831
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 6.42,
+            "chars_per_s": 9.5,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -14.4,
+            "silence_ratio": 0.309,
+            "silent": false,
+            "lead_silence_ms": 30,
+            "trail_silence_ms": 600,
+            "rms_dbfs_mean": -27.4,
+            "rms_dbfs_std": 4.8,
+            "pauses": {
+              "count": 2,
+              "total_ms": 970,
+              "max_ms": 820,
+              "mean_ms": 485
+            },
+            "f0": {
+              "median_hz": 172.5,
+              "spread_semitones_p5_p95": 11.76,
+              "std_semitones": 3.55,
+              "voiced_fraction": 0.734
+            },
+            "speaker_similarity": 0.9995,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 1.26,
+              "f0_median_hz_after": 172.5,
+              "speaker_similarity_after": 0.9844
+            }
+          }
+        ]
+      },
+      "speed-1.15": {
+        "condition": {
+          "speed": 1.15
+        },
+        "n_ok": 6,
+        "n_unsupported": 0,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 1.005,
+            "chars_per_s": 6.97,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -14.2,
+            "silence_ratio": 0.459,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 440,
+            "rms_dbfs_mean": -27.2,
+            "rms_dbfs_std": 4.3,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 171.6,
+              "spread_semitones_p5_p95": 8.42,
+              "std_semitones": 3.17,
+              "voiced_fraction": 0.571
+            },
+            "speaker_similarity": 0.993,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 5.33,
+              "f0_median_hz_after": 169.1,
+              "speaker_similarity_after": 0.9758
+            }
+          },
+          {
+            "i": 1,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.51,
+            "chars_per_s": 15.93,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -6.4,
+            "silence_ratio": 0.217,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 320,
+            "rms_dbfs_mean": -26.9,
+            "rms_dbfs_std": 5.6,
+            "pauses": {
+              "count": 0,
+              "total_ms": 0,
+              "max_ms": 0,
+              "mean_ms": 0
+            },
+            "f0": {
+              "median_hz": 152.8,
+              "spread_semitones_p5_p95": 8.07,
+              "std_semitones": 2.68,
+              "voiced_fraction": 0.739
+            },
+            "speaker_similarity": 0.9991,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 20.84,
+              "f0_median_hz_after": 152.8,
+              "speaker_similarity_after": 0.9711
+            }
+          },
+          {
+            "i": 2,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 2.308,
+            "chars_per_s": 15.6,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -15.2,
+            "silence_ratio": 0.349,
+            "silent": false,
+            "lead_silence_ms": 40,
+            "trail_silence_ms": 520,
+            "rms_dbfs_mean": -27.8,
+            "rms_dbfs_std": 5.1,
+            "pauses": {
+              "count": 1,
+              "total_ms": 120,
+              "max_ms": 120,
+              "mean_ms": 120
+            },
+            "f0": {
+              "median_hz": 182.8,
+              "spread_semitones_p5_p95": 10.22,
+              "std_semitones": 3.37,
+              "voiced_fraction": 0.69
+            },
+            "speaker_similarity": 0.9983,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 1.73,
+              "f0_median_hz_after": 182.8,
+              "speaker_similarity_after": 0.9823
+            }
+          },
+          {
+            "i": 3,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 5.993,
+            "chars_per_s": 8.01,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -7.5,
+            "silence_ratio": 0.256,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 430,
+            "rms_dbfs_mean": -27.1,
+            "rms_dbfs_std": 4.6,
+            "pauses": {
+              "count": 2,
+              "total_ms": 560,
+              "max_ms": 420,
+              "mean_ms": 280
+            },
+            "f0": {
+              "median_hz": 169.6,
+              "spread_semitones_p5_p95": 9.7,
+              "std_semitones": 3.22,
+              "voiced_fraction": 0.765
+            },
+            "speaker_similarity": 0.9993,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 8.75,
+              "f0_median_hz_after": 170.1,
+              "speaker_similarity_after": 0.9747
+            }
+          },
+          {
+            "i": 4,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 5.297,
+            "chars_per_s": 12.65,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -8.1,
+            "silence_ratio": 0.28,
+            "silent": false,
+            "lead_silence_ms": 10,
+            "trail_silence_ms": 580,
+            "rms_dbfs_mean": -27.1,
+            "rms_dbfs_std": 5.8,
+            "pauses": {
+              "count": 1,
+              "total_ms": 460,
+              "max_ms": 460,
+              "mean_ms": 460
+            },
+            "f0": {
+              "median_hz": 180.7,
+              "spread_semitones_p5_p95": 13.1,
+              "std_semitones": 4.29,
+              "voiced_fraction": 0.714
+            },
+            "speaker_similarity": 0.9994,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.0,
+              "energy_above_4khz_lost_pct": 10.57,
+              "f0_median_hz_after": 180.7,
+              "speaker_similarity_after": 0.9849
+            }
+          },
+          {
+            "i": 5,
+            "status": "ok",
+            "applied": [
+              "speed"
+            ],
+            "ignored": [],
+            "duration_s": 4.827,
+            "chars_per_s": 12.64,
+            "clipping_ratio": 0.0,
+            "peak_dbfs": -13.8,
+            "silence_ratio": 0.272,
+            "silent": false,
+            "lead_silence_ms": 20,
+            "trail_silence_ms": 360,
+            "rms_dbfs_mean": -27.8,
+            "rms_dbfs_std": 4.9,
+            "pauses": {
+              "count": 1,
+              "total_ms": 590,
+              "max_ms": 590,
+              "mean_ms": 590
+            },
+            "f0": {
+              "median_hz": 186.5,
+              "spread_semitones_p5_p95": 11.37,
+              "std_semitones": 3.46,
+              "voiced_fraction": 0.775
+            },
+            "speaker_similarity": 0.9985,
+            "roundtrip_8k": {
+              "lsd_db_100_3400hz": 0.01,
+              "energy_above_4khz_lost_pct": 0.8,
+              "f0_median_hz_after": 186.0,
+              "speaker_similarity_after": 0.9828
+            }
+          }
+        ]
+      },
+      "pitch+2": {
+        "condition": {
+          "pitch": 2.0
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: pitch; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['pitch']}"
+          }
+        ]
+      },
+      "energy-1.3": {
+        "condition": {
+          "energy": 1.3
+        },
+        "n_ok": 0,
+        "n_unsupported": 6,
+        "cer": {
+          "skipped": "OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck you"
+        },
+        "rows": [
+          {
+            "i": 0,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 1,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 2,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 3,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 4,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          },
+          {
+            "i": 5,
+            "status": "unsupported",
+            "reason": "{'message': 'unsupported controls for supertonic: energy; use fallback=\"ignore\" to synthesize without them', 'unsupported': ['energy']}"
+          }
+        ]
+      }
+    }
+  },
+  "label": "eval-engines-20260929",
+  "date": "2026-09-29",
+  "engines": "piper,kokoro,supertonic",
+  "dsp_prosody": false,
+  "elapsed_s": 103.8,
+  "notes": "Objective signal statistics only. Predicted MOS is not human MOS; speaker similarity backend is reported in `encoder` (mfcc is not a neural verifier); DSP pitch/energy is not emotion."
+}

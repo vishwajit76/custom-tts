@@ -15,6 +15,7 @@ from kokoro_onnx import SAMPLE_RATE, Kokoro
 
 from app.core.config import settings
 from app.services import indian_english
+from app.services.conditioning import EngineCapabilities
 from app.services.piper_engine import make_session
 
 log = logging.getLogger(__name__)
@@ -44,6 +45,7 @@ def phonemes(text: str) -> str:
 
 class KokoroEngine:
     supports_cloning = False
+    capabilities = EngineCapabilities(speed=True, streaming="sentence", sample_rates=(SAMPLE_RATE,), languages=("hi", "hinglish"))
 
     def __init__(self) -> None:
         self.kokoro: Kokoro | None = None

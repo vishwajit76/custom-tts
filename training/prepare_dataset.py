@@ -12,7 +12,14 @@ Per clip: load mono @22.05 kHz -> optional denoise -> trim silence -> reject cli
 Output: metadata.csv (train; Piper holds out its own validation split), test.csv (never trained on),
 report.json (hours per speaker, every rejection with its reason).
 
-Usage: python -m training.prepare_dataset --input data/raw --output data/myvoice [--speaker NAME] [--denoise] [--asr] [--asr-validate]
+Manifest mode: --manifest manifest.(csv|jsonl) replaces directory discovery (fields: audio,text,speaker_id,language,
+optional emotion/style/role + label_source; only label_source=human_verified labels are kept, see training/manifest.py).
+Rights: --rights rights.jsonl is REQUIRED (training/data_rights.py); clips without a rights entry, without speaker
+authorization/tts_training permission, or vendor-generated without permission make the run abort.
+Splits: training/split.py (seeded, no transcript/audio-hash leakage, optional --speaker-disjoint-test).
+
+Usage: python -m training.prepare_dataset (--input data/raw | --manifest m.jsonl) --rights rights.jsonl --output data/myvoice
+       [--speaker NAME] [--denoise] [--asr] [--asr-validate] [--seed N] [--speaker-disjoint-test]
 Only use recordings from speakers who consented to voice cloning / TTS training.
 """
 import argparse
@@ -29,6 +36,9 @@ import soundfile as sf
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app.services.text_normalizer import normalize  # noqa: E402
+from training import data_rights  # noqa: E402
+from training.manifest import HUMAN, load_manifest, sha256_file, write_jsonl  # noqa: E402
+from training.split import make_splits, write_splits  # noqa: E402
 
 SR = 22050
 AUDIO = {".wav", ".flac", ".mp3", ".ogg", ".m4a"}
@@ -96,7 +106,14 @@ def asr_segments(wav: np.ndarray) -> list[np.ndarray]:
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--input", type=Path, required=True)
+    p.add_argument("--input", type=Path, help="directory of raw recordings (or use --manifest)")
+    p.add_argument("--manifest", type=Path, help="CSV/JSONL manifest instead of --input")
+    p.add_argument("--rights", type=Path, help="data-rights JSONL (required)")
+    p.add_argument("--allow-unverified-rights", action="store_true",
+                   help="DANGEROUS: skip the rights check (tests / data whose rights are documented elsewhere); recorded in report.json")
+    p.add_argument("--seed", type=int, default=1234)
+    p.add_argument("--val-fraction", type=float, default=0.0, help="Piper holds out its own validation split; keep 0 unless you want val.csv")
+    p.add_argument("--speaker-disjoint-test", action="store_true")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--speaker", default="speaker0", help="speaker name for files not in a speaker sub-directory")
     p.add_argument("--denoise", action="store_true")
@@ -105,19 +122,34 @@ def main() -> None:
     p.add_argument("--max-cer", type=float, default=0.35)
     p.add_argument("--test-fraction", type=float, default=0.05)
     a = p.parse_args()
+    if bool(a.input) == bool(a.manifest):
+        p.error("give exactly one of --input / --manifest")
     if a.asr or a.asr_validate:
         from training.asr import cer, transcribe
 
     wav_dir = a.output / "wavs"
     wav_dir.mkdir(parents=True, exist_ok=True)
-    rows: list[tuple[str, str, str]] = []
+    rows: list[dict] = []
     rejected: list[dict] = []
     seconds: dict[str, float] = defaultdict(float)
 
     def reject(src, reason):
         rejected.append({"file": str(src), "reason": reason})
 
-    for path, text, speaker in discover(a.input, a.speaker):
+    if a.manifest:
+        items = [(Path(r["audio"]), r["text"], r["speaker_id"], r) for r in load_manifest(a.manifest) if not r["rejected"]]
+    else:
+        items = [(pa, t, sp, {}) for pa, t, sp in discover(a.input, a.speaker)]
+    if a.allow_unverified_rights:
+        print("WARNING: rights check skipped (--allow-unverified-rights)", file=sys.stderr)
+    else:
+        try:
+            data_rights.enforce([{"id": str(pa), "speaker_id": sp, "rights_id": m.get("rights_id")} for pa, _, sp, m in items],
+                                a.rights)
+        except data_rights.RightsError as e:
+            sys.exit(f"refusing to prepare: {e}")
+
+    for path, text, speaker, meta in items:
         try:
             wav, _ = librosa.load(path, sr=SR, mono=True)
         except Exception as e:  # noqa: BLE001 - bad file: report, keep going
@@ -156,19 +188,33 @@ def main() -> None:
                     continue
             uid = hashlib.sha1(f"{speaker}/{path}/{k}".encode()).hexdigest()[:12]
             sf.write(wav_dir / f"{uid}.wav", loudness_normalize(seg), SR, subtype="PCM_16")
-            rows.append((uid, speaker, norm))
+            rec = {"id": uid, "audio": f"wavs/{uid}.wav", "text": norm, "speaker_id": speaker,
+                   "language": meta.get("language") or "hi", "rights_id": meta.get("rights_id"),
+                   "audio_sha256": sha256_file(wav_dir / f"{uid}.wav"), "rejected": False}
+            if meta.get("label_source") == HUMAN:  # already filtered by load_manifest; never invented
+                rec.update({k: meta.get(k) for k in ("emotion", "style", "role")}, label_source=HUMAN)
+            rows.append(rec)
             seconds[speaker] += dur
 
-    multi = len({r[1] for r in rows}) > 1
-    train, test = [], []
-    for uid, speaker, text in rows:
-        # deterministic split: the same clip lands on the same side on every run
-        (test if int(uid, 16) % 10_000 < a.test_fraction * 10_000 else train).append(
-            f"{uid}.wav|{speaker}|{text}" if multi else f"{uid}.wav|{text}")
-    (a.output / "metadata.csv").write_text("\n".join(train) + "\n", encoding="utf-8")
-    (a.output / "test.csv").write_text("\n".join(test) + "\n", encoding="utf-8")
+    multi = len({r["speaker_id"] for r in rows}) > 1
+    splits, dropped = make_splits(rows, a.seed, a.val_fraction, a.test_fraction, a.speaker_disjoint_test)
+
+    def line(r):
+        return f"{r['id']}.wav|{r['speaker_id']}|{r['text']}" if multi else f"{r['id']}.wav|{r['text']}"
+
+    for name, fname in (("train", "metadata.csv"), ("val", "val.csv"), ("test", "test.csv")):
+        if name == "val" and not splits["val"]:
+            continue
+        (a.output / fname).write_text("".join(line(r) + "\n" for r in splits[name]), encoding="utf-8")
+    (a.output / "test.csv.heldout").write_text("Held-out test set: never train on test.csv.\n", encoding="utf-8")
+    write_splits(splits, a.output / "splits", dropped, {"seed": a.seed, "speaker_disjoint_test": a.speaker_disjoint_test})
+    write_jsonl(a.output / "manifest.jsonl", rows)
+    (a.output / "speaker_map.json").write_text(
+        json.dumps({s: i for i, s in enumerate(sorted({r["speaker_id"] for r in splits["train"]}))}, ensure_ascii=False), encoding="utf-8")
+    train, test = splits["train"], splits["test"]
     report = {
-        "clips": len(rows), "train": len(train), "test": len(test), "multi_speaker": multi,
+        "rights_check": "skipped" if a.allow_unverified_rights else "passed", "seed": a.seed,
+        "dropped_for_leakage": len(dropped), "clips": len(rows), "train": len(train), "test": len(test), "multi_speaker": multi,
         "hours": {s: round(v / 3600, 3) for s, v in seconds.items()},
         "rejected": len(rejected), "rejected_by_reason": Counter(r["reason"].split(":")[0].split(" ")[0] for r in rejected),
         "rejections": rejected,

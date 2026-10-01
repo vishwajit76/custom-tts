@@ -11,6 +11,7 @@ from piper.config import PiperConfig, SynthesisConfig
 
 from app.core.config import settings
 from app.services import indian_english
+from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
 # speaker in hi_IN-<speaker>-medium -> gender. rohan: MODEL_CARD dataset "Hindi Mono Male"; the pratham and
@@ -34,8 +35,22 @@ def _speaker(voice_id: str) -> str:
     return parts[1] if ":" not in voice_id and len(parts) == 3 else name
 
 
+def model_files(dirs: list[Path]) -> list[Path]:
+    """*.onnx in each directory, in order; the first occurrence of a file stem wins (an extra directory cannot shadow a voice)."""
+    seen: dict[str, Path] = {}
+    for d in dirs:
+        for model in sorted(Path(d).glob("*.onnx")):
+            if model.stem in seen:
+                log.warning("duplicate voice ignored", extra={"extra_fields": {"voice": model.stem, "kept": str(seen[model.stem]), "ignored": str(model)}})
+            else:
+                seen[model.stem] = model
+    return list(seen.values())
+
+
 class PiperEngine:
     supports_cloning = False
+    # speed = VITS length_scale; no emotion/style/pitch/energy conditioning exists in the model or this code
+    capabilities = EngineCapabilities(speed=True, streaming="sentence", languages=("hi", "hinglish"))
 
     def __init__(self) -> None:
         self._voices: dict[str, tuple[PiperVoice, int | None]] = {}  # voice_id -> (voice, speaker_id)
@@ -47,7 +62,8 @@ class PiperEngine:
 
     def load(self) -> None:
         t = time.perf_counter()
-        for model in sorted(settings.models_dir.glob("*.onnx")):
+        dirs = [settings.models_dir, *(Path(d.strip()) for d in settings.models_extra.split(",") if d.strip())]
+        for model in model_files(dirs):
             cfg_path = Path(f"{model}.json")
             if not cfg_path.exists():
                 log.warning("skipping voice without config", extra={"extra_fields": {"model": str(model)}})
@@ -61,7 +77,7 @@ class PiperEngine:
                 self._voices[model.stem] = (voice, None)
             self.synth("नमस्ते।", next(reversed(self._voices)), 1.0)  # warm-up: first run allocates
         if not self._voices:
-            raise RuntimeError(f"no Piper voices (*.onnx + *.onnx.json) in {settings.models_dir}; run scripts/download_voices.py")
+            raise RuntimeError(f"no Piper voices (*.onnx + *.onnx.json) in {dirs}; run scripts/download_voices.py")
         log.info("piper voices loaded", extra={"extra_fields": {"voices": list(self._voices), "secs": round(time.perf_counter() - t, 2)}})
 
     def voices(self) -> list[dict]:

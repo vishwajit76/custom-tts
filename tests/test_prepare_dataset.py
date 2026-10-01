@@ -39,7 +39,13 @@ def test_prepare_end_to_end(tmp_path, monkeypatch):
     (raw / "clipped.txt").write_text("नमस्ते", "utf-8")
     sf.write(raw / "untranscribed.wav", tone(2), SR)
 
-    monkeypatch.setattr(sys, "argv", ["prep", "--input", str(raw), "--output", str(out), "--speaker", "main"])
+    rights = tmp_path / "rights.jsonl"
+    rights.write_text(json.dumps({
+        "rights_id": "r1", "source": "synthetic test", "licence": "test", "consent_record_id": "c1",
+        "speaker_authorization": True, "speaker_ids": ["main", "asha"], "permitted_uses": ["tts_training"],
+        "vendor_generated": False}) + "\n", "utf-8")
+    monkeypatch.setattr(sys, "argv", ["prep", "--input", str(raw), "--output", str(out), "--speaker", "main",
+                                      "--rights", str(rights)])
     pd.main()
     report = json.loads((out / "report.json").read_text("utf-8"))
     rows = (out / "metadata.csv").read_text("utf-8").strip().splitlines() + [
@@ -53,3 +59,17 @@ def test_prepare_end_to_end(tmp_path, monkeypatch):
     for r in rows:
         data, sr = sf.read(out / "wavs" / r.split("|")[0])
         assert sr == SR and data.ndim == 1
+
+
+def test_prepare_refuses_without_rights(tmp_path, monkeypatch):
+    import pytest
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    sf.write(raw / "a.wav", tone(2.5), SR)
+    (raw / "a.txt").write_text("नमस्ते, आपका दिन शुभ हो।", "utf-8")
+    monkeypatch.setattr(sys, "argv", ["prep", "--input", str(raw), "--output", str(tmp_path / "o")])
+    with pytest.raises(SystemExit) as e:
+        pd.main()
+    assert "refusing" in str(e.value)
+    assert not (tmp_path / "o" / "metadata.csv").exists()

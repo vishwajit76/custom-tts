@@ -10,8 +10,9 @@ Streaming Hindi and Hinglish text-to-speech server built for phone agents. It ru
   OpenAI-compatible `/v1/audio/speech`. PCM s16le at 8/16/22.05/24/44.1/48 kHz, resampled with soxr HQ.
 - **Text pipeline:** Hindi normalization for numbers (lakh/crore), ₹, dates, times (साढ़े दस बजे), phone
   numbers, ordinals, units and symbols. Romanized Hindi ("kya aap free hain?") and Indian names
-  (Rahul, Lucknow) are converted to Devanagari; English words stay English.
-- **Voice training:** dataset prep → Piper fine-tune → ONNX export ([docs/training.md](docs/training.md)).
+  (Rahul, Lucknow) are converted to Devanagari; English words stay English, except a curated table of brand names (Paytm, Zomato, Jio...)
+  that is respelled in Devanagari because the English G2P mangled them. URLs/emails, am/pm, phone-number groups and acronyms are read as words ([docs/voice-system.md](docs/voice-system.md#text-normalization-for-a-hindi-voice)).
+- **Voice training:** dataset prep → Piper fine-tune → ONNX export ([docs/training.md](docs/training.md)); custom Hindi voice (in progress): [docs/custom-voice-runbook.md](docs/custom-voice-runbook.md). All docs: [docs/README.md](docs/README.md).
 - **Licensing:** read [docs/research.md](docs/research.md) before commercial use. The bundled Hindi voices are
   for evaluation; train your own voice for production.
 
@@ -137,7 +138,7 @@ ENGINES=piper,supertonic,kokoro uvicorn app.main:app --port 8000
 
 ## Configuration
 
-See [.env.example](.env.example). The ones that matter: `API_KEYS`, `DEFAULT_VOICE`, `MODELS_DIR`, `MAX_STREAMS`,
+See [.env.example](.env.example). The ones that matter: `API_KEYS`, `DEFAULT_VOICE`, `MODELS_DIR`, `MODELS_EXTRA`, `MAX_STREAMS`,
 `WORKERS`, `THREADS_PER_WORKER`, `FIRST_CHUNK_CHARS`, `MAX_CHUNK_CHARS`, `USE_CUDA`.
 
 ## Deployment
@@ -146,7 +147,8 @@ See [.env.example](.env.example). The ones that matter: `API_KEYS`, `DEFAULT_VOI
   `HF_HUB_OFFLINE=1`, health check, graceful shutdown. 820 MB image, ~230–470 MB RSS under load.
 - `Dockerfile.gpu`: CUDA 12 + `onnxruntime-gpu` (`USE_CUDA=1`). **Untested**: no NVIDIA GPU was available here.
 - `docker-compose.yml`: CPU service with CPU/memory limits, log rotation, restart policy; `--profile gpu` for GPU.
-- Custom voices: mount a directory of `*.onnx` + `*.onnx.json` at `/srv/models/piper`.
+- Custom voices: mount a directory of `*.onnx` + `*.onnx.json` at `/srv/models/piper`, or keep the bundled voices and add a directory with `MODELS_EXTRA`
+  (e.g. `MODELS_EXTRA=voices` exposes the fine-tuned `voices/hi_IN-custom-medium.onnx` as voice `hi_IN-custom-medium`; default unchanged, personal-use voice; see "Using the custom voice" in docs/custom-voice-runbook.md: `MODELS_EXTRA=voices`, select with `voice=hi_IN-custom-medium`, or `DEFAULT_VOICE=hi_IN-custom-medium` to make it the default; the v6 final checkpoint is bundled).
 - Sizing: one 4-vCPU container handles ~10 simulated concurrent calls with p95 TTFA under ~500 ms. For 200 calls,
   see [docs/benchmarks.md](docs/benchmarks.md#scaling-to-200-calls).
 - License: `piper-tts` and espeak-ng are GPL-3.0. Fine for a hosted service; distributing the image to third

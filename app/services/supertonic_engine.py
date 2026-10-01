@@ -11,6 +11,7 @@ import numpy as np
 from supertonic import TTS
 
 from app.core.config import settings
+from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
 PREFIX = "supertonic:"
@@ -18,6 +19,8 @@ PREFIX = "supertonic:"
 
 class SupertonicEngine:
     supports_cloning = False
+    # preset voice styles only; speed is native but the model accepts 0.7-2.0 (synth clamps)
+    capabilities = EngineCapabilities(speed=True, speed_range=(0.7, 2.0), streaming="sentence", languages=("hi",))
 
     def __init__(self) -> None:
         self.tts: TTS | None = None

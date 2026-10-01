@@ -1,0 +1,41 @@
+{
+  "label": "bl-supertonic-F3-20260929-4vcpu",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 704.2,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 737.6175699999976,
+      "ttfa_ms_p95": 1068.494218000012,
+      "ttfa_ms_p99": 1068.494218000012,
+      "rtf_p50": 0.2784406161469817,
+      "rtf_p95": 0.45986805102656964,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 69.3124375,
+      "wall_s": 18.229302655000026,
+      "rss_mb": 715.8
+    },
+    "5": {
+      "requests": 65,
+      "errors": 0,
+      "ttfa_ms_p50": 4583.698706999996,
+      "ttfa_ms_p95": 6270.756364999954,
+      "ttfa_ms_p99": 6733.603796000011,
+      "rtf_p50": 1.3036358267361432,
+      "rtf_p95": 2.5596380103890195,
+      "underrun_requests": 27,
+      "underrun_ms_max": 1995.1827769999682,
+      "audio_s_total": 347.80625,
+      "wall_s": 91.97967191099997,
+      "rss_mb": 729.9
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 10.890324000001783,
+    "cancel_ack_ms_max": 16.98453899996366,
+    "buffered_ahead_ms_max": 0.0
+  }
+}

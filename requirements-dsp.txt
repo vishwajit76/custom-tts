@@ -1,0 +1,3 @@
+# DSP_PROSODY=true (pitch/energy post-processing, app/services/dsp.py). Build: --build-arg REQUIREMENTS=requirements-dsp.txt
+-r requirements.txt
+librosa
