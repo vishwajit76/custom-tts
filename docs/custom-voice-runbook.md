@@ -310,3 +310,20 @@ your notes; the file name does not carry it.
 - torch >= 2.9 breaks Piper's ONNX export; use the legacy exporter.
 - Three-sentence CER with a small Whisper is too noisy to rank checkpoints 5000 steps apart. Improvement from 310k (0.163) to 315k (0.047) is real-looking, after that the numbers hover around 0.04 to 0.10 with no trend. Losses were still falling slowly when last recorded (mel 0.547 at 310.3k on CPU, 0.448 at about 321.9k on Kaggle; different logging points), so more steps may help, but listening is needed.
 - Never paste tokens into chat; keep them in files with restricted permissions and rotate anything that leaked.
+
+## 11. Using the custom voice
+
+Packaged 2026-10-01: the v6 final checkpoint (`experiments/hi_f-v6-0930T0731Z/checkpoints/final_step402504.ckpt`, step 402504, sha256 `6c779a23...e136bb5`)
+exported with the legacy exporter (CPU) to `voices/hi_IN-custom-medium.onnx` (63,516,051 bytes, sha256 `e18a819adc05e35f83d6314695e21877b736cb5e68040255d05fdf4c90a6596e`) + `.onnx.json`
+(identical to the milestone/config json). Also on HF at `experiments/hi_f-v6-0930T0731Z/export/`. Committed with `git add -f` (gitignored pattern, under 100 MB). Personal, non-commercial use only. Human listening test still pending.
+
+```bash
+MODELS_EXTRA=voices uvicorn app.main:app            # or set MODELS_EXTRA=voices in .env (it is in .env.example)
+curl -s localhost:8000/v1/voices | grep hi_IN-custom-medium
+curl -s localhost:8000/v1/audio/speech -H 'content-type: application/json' \
+  -d '{"input":"नमस्ते, आप कैसे हैं?","voice":"hi_IN-custom-medium","response_format":"wav","sample_rate":22050}' -o out.wav   # 8000 works too
+```
+
+- Default voice is unchanged (`hi_IN-rohan-medium`). To make the custom voice the default set `DEFAULT_VOICE=hi_IN-custom-medium` (with `MODELS_EXTRA=voices`).
+- Recommended inference params: the defaults baked into the json (noise_scale 0.667, noise_w 0.8, length_scale 1.0, i.e. speed 1.0). They are unchanged. The infer-grid (6.3) suggests noise_scale 0.5 (global env `NOISE_SCALE=0.5`; noise_w 0.8 to 1.0 via `NOISE_W`) as a possible improvement; this is pending a listening comparison, do not adopt it before listening.
+- Re-export a different checkpoint: download it, `python training/export_onnx_legacy.py --checkpoint X.ckpt --output-file voices/hi_IN-custom-medium.onnx`, copy the experiment's `config.json` to `voices/hi_IN-custom-medium.onnx.json`, restart the server.

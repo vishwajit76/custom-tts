@@ -145,3 +145,5 @@ Status: **in progress, not finished, not validated by listeners.**
 - Telephony CER (custom voice, whisper-small, n=20): 22.05k 0.300 / 16k 0.311 / 8k 0.329 / 8k+μ-law 0.340 (quantisation only, not a network codec). 10-min soak: 0 errors, flat RSS; cancel ack ≤3.4 ms. Latencies measured under contention (upper bounds).
 
 **Unverified / blocked:** anneal's audible effect; listening tests; native corpus review; Qwen3 cloning (no GPU); real codec/network; uncontended latency for the custom voice.
+
+**Custom voice packaged (2026-10-01):** v6 final (step 402504) exported to ONNX, installed as `voices/hi_IN-custom-medium.onnx`, served via `MODELS_EXTRA=voices` (verified /v1/voices + /v1/audio/speech at 22.05k and 8k), backed up on HF `experiments/hi_f-v6-0930T0731Z/export/`. Default voice unchanged. **Human listening test still pending.**

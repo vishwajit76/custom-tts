@@ -148,7 +148,7 @@ See [.env.example](.env.example). The ones that matter: `API_KEYS`, `DEFAULT_VOI
 - `Dockerfile.gpu`: CUDA 12 + `onnxruntime-gpu` (`USE_CUDA=1`). **Untested**: no NVIDIA GPU was available here.
 - `docker-compose.yml`: CPU service with CPU/memory limits, log rotation, restart policy; `--profile gpu` for GPU.
 - Custom voices: mount a directory of `*.onnx` + `*.onnx.json` at `/srv/models/piper`, or keep the bundled voices and add a directory with `MODELS_EXTRA`
-  (e.g. `MODELS_EXTRA=voices` exposes the fine-tuned `voices/hi_IN-custom-medium.onnx` as voice `hi_IN-custom-medium`; default unchanged, personal-use voice, see docs/custom-voice-runbook.md).
+  (e.g. `MODELS_EXTRA=voices` exposes the fine-tuned `voices/hi_IN-custom-medium.onnx` as voice `hi_IN-custom-medium`; default unchanged, personal-use voice; see "Using the custom voice" in docs/custom-voice-runbook.md: `MODELS_EXTRA=voices`, select with `voice=hi_IN-custom-medium`, or `DEFAULT_VOICE=hi_IN-custom-medium` to make it the default; the v6 final checkpoint is bundled).
 - Sizing: one 4-vCPU container handles ~10 simulated concurrent calls with p95 TTFA under ~500 ms. For 200 calls,
   see [docs/benchmarks.md](docs/benchmarks.md#scaling-to-200-calls).
 - License: `piper-tts` and espeak-ng are GPL-3.0. Fine for a hosted service; distributing the image to third

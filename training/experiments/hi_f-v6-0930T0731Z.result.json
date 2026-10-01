@@ -14,5 +14,24 @@
   "batch_size": 24,
   "oom_retries": 0,
   "val_mel_best": 0.403,
-  "note": "LR anneal 1e-4 -> 5e-6 completed. Kaggle weekly GPU quota exhausted after this run; no relaunch without user approval."
+  "note": "LR anneal 1e-4 -> 5e-6 completed. Kaggle weekly GPU quota exhausted after this run; no relaunch without user approval.",
+  "export": {
+    "exported_utc": "2026-10-01",
+    "exporter": "training/export_onnx_legacy.py (CPU)",
+    "onnx": "voices/hi_IN-custom-medium.onnx",
+    "onnx_sha256": "e18a819adc05e35f83d6314695e21877b736cb5e68040255d05fdf4c90a6596e",
+    "onnx_bytes": 63516051,
+    "json_sha256": "ec76a8873e761b8a5a6dfa8a622e4512ed1bdd4dd5302b4982782c00c0c4942c",
+    "hf_path": "experiments/hi_f-v6-0930T0731Z/export/",
+    "config_matches_milestone_json": true,
+    "legacy_cer_3sentence": {
+      "final_step402504": 0.093,
+      "step_400000": 0.099
+    },
+    "quick_cer_5sentence": {
+      "final_step402504": 0.144,
+      "step_400000": 0.171
+    },
+    "listening_test": "pending"
+  }
 }
