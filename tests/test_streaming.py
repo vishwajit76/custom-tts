@@ -65,6 +65,15 @@ def test_trim_lead():
     assert len(tts.trim_lead(wav, SR, 30)) == SR * 30 // 1000 + 10
 
 
+def test_trim_tail_caps_pause_mid_sentence_more_than_at_sentence_end():
+    # a 400 ms end-of-utterance tail left on a chunk cut at a comma was heard as a pause after "ठीक है,"
+    wav = np.concatenate([np.ones(10), np.zeros(SR)]).astype(np.float32)
+    assert len(tts.trim_tail(wav, SR, 150)) == 10 + SR * 150 // 1000
+    assert len(tts.trim_tail(np.zeros(5, np.float32), SR, 150)) == 5
+    ends = [c for c in ["ठीक है,", "ठीक है।", "आप कैसे हैं?", 'उसने कहा "ठीक है।"', "और बाकी"] if tts._SENTENCE_END.search(c)]
+    assert ends == ["ठीक है।", "आप कैसे हैं?", 'उसने कहा "ठीक है।"']
+
+
 def test_scheduler_runs_earliest_deadline_first():
     s = Scheduler(1)
     gate, order = threading.Event(), []

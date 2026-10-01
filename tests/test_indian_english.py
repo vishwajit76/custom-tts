@@ -11,6 +11,13 @@ def test_indianize_rules():
     assert indianize("pˈɑːləsi") == "pˈɔləsi" and indianize("kˈɑːɹd") == "kˈaːɾɖ"
 
 
+def test_indianize_keeps_flapped_t_affricates_and_single_r():
+    # heard on a call as unclear: "property" lost its t, "enquiry" got a double r, "budget" became "budzit"
+    assert indianize("pɹˈɑːpɚɾi") == "pɾˈɔpəɾʈi"  # property: प्रॉपर्टी
+    assert indianize("ɛŋkwˈaɪɚɹi") == "ɛŋkwˈaːɪəɾi"  # enquiry: इंक्वायरी (kʋ was heard as एंखारी)
+    assert indianize("bˈʌdʒɪt") == "bˈʌɟɪʈ" and indianize("tʃˈɛk") == "cˈɛk"  # budget, check: ज/च
+
+
 def test_mark_only_touches_english():
     out = mark("आपका loan approve हो गया")
     assert out.startswith("आपका [[") and out.endswith("]] हो गया") and "ɾ" in out

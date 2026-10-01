@@ -80,6 +80,6 @@ class KokoroEngine:
         ps = phonemes(text)
         if not ps.strip():
             return np.zeros(0, np.float32)
-        # trim=False keeps the model's own end-of-sentence pause; the lead silence is trimmed by tts.trim_lead
+        # trim=False keeps the model's own end-of-sentence pause; tts.trim_lead/trim_tail cap lead and tail silence
         wav, _ = self.kokoro.create(ps, self._styles[voice], speed=speed, is_phonemes=True, trim=False)
         return np.asarray(wav, dtype=np.float32)

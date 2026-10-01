@@ -21,6 +21,8 @@ from app.services.scheduler import Scheduler
 
 log = logging.getLogger(__name__)
 _SPEAKABLE = re.compile(r"[^\W_]")  # a letter or digit; matras and virama are marks, not letters
+_SENTENCE_END = re.compile(r"[।.?!]\W*$")  # closing quotes/brackets may follow
+_MIN_S_PER_CHAR = 0.05  # speech per character at speed 1 is ~0.065-0.085 s (Kokoro/Supertonic/Piper Hindi); a floor
 
 
 class Overloaded(Exception):
@@ -161,6 +163,13 @@ def trim_lead(wav: np.ndarray, sr: int, keep_ms: int, threshold: float = 0.01) -
     return wav[max(0, loud[0] - sr * keep_ms // 1000):]
 
 
+def trim_tail(wav: np.ndarray, sr: int, keep_ms: int, threshold: float = 0.01) -> np.ndarray:
+    loud = np.flatnonzero(np.abs(wav) > threshold)
+    if not len(loud):
+        return wav
+    return wav[:loud[-1] + 1 + sr * keep_ms // 1000]
+
+
 @contextmanager
 def _slot():
     if stats["streams_active"] >= settings.max_streams:
@@ -192,7 +201,9 @@ async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref
         wav = await scheduler.run(deadline, engine.synth_native, text, voice, speed, controls, ref, ref_text)
     else:
         wav = await scheduler.run(deadline, engine.synth, text, voice, speed, ref, ref_text)
-    wav = trim_lead(wav, engine.sample_rate(voice), settings.lead_silence_ms)
+    sr = engine.sample_rate(voice)
+    wav = trim_lead(wav, sr, settings.lead_silence_ms)
+    wav = trim_tail(wav, sr, settings.sentence_pause_ms if _SENTENCE_END.search(text) else settings.pause_ms)
     stats["synth_seconds_total"] += time.perf_counter() - t
     if ref is None and settings.cache_size and epoch == _cache_epoch:
         _cache[key] = wav
@@ -223,27 +234,45 @@ async def stream(
         chunks = split_for_stream(text_normalizer.normalize(text))
         t0 = time.monotonic()
         sent_s, buf, ttfa = 0.0, b"", None
-        for i, c in enumerate(chunks):
-            # deadline = when the audio already produced finishes playing (client plays in real time)
-            wav = await _synth_chunk(c, voice, speed, t0 + sent_s, ref, ref_text, controls)
-            if dsp_controls:
-                wav = await asyncio.to_thread(dsp.apply_prosody, wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
-            sent_s += len(wav) / sr_in
-            stats["chunks_total"] += 1
-            if rs is not None:
-                wav = rs.resample_chunk(wav, last=i == len(chunks) - 1)
-            buf += audio_utils.to_pcm16(wav)
-            if ttfa is None and buf:
-                ttfa = time.monotonic() - t0
-                ttfa_recent.append(ttfa)
-            if frame:
-                whole = len(buf) - len(buf) % frame
-                for off in range(0, whole, frame):
-                    yield buf[off:off + frame]
-                buf = buf[whole:]
-            elif buf:
-                yield buf
-                buf = b""
+
+        def synth(c: str, deadline: float) -> asyncio.Future:
+            return asyncio.ensure_future(_synth_chunk(c, voice, speed, deadline, ref, ref_text, controls))
+
+        # deadline = when the audio already produced finishes playing (client plays in real time)
+        ahead = synth(chunks[0], t0) if chunks else None
+        try:
+            for i, c in enumerate(chunks):
+                cur, ahead = ahead, None
+                # One chunk of look-ahead: chunk i+1 synthesizes while chunk i is sent and played. Without it a long
+                # chunk after the short first one started only once that one was out, and the player ran dry mid-
+                # sentence (measured 0.2-0.5 s on Kokoro, heard as a pause after "ठीक है,"). Its deadline estimates
+                # chunk i's length from its text, on the short side so the prefetch is never later than reality.
+                if i + 1 < len(chunks):
+                    ahead = synth(chunks[i + 1], t0 + sent_s + _MIN_S_PER_CHAR * len(c) / speed)
+                wav = await cur
+                if dsp_controls:
+                    wav = await asyncio.to_thread(dsp.apply_prosody, wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
+                sent_s += len(wav) / sr_in
+                stats["chunks_total"] += 1
+                if rs is not None:
+                    wav = rs.resample_chunk(wav, last=i == len(chunks) - 1)
+                buf += audio_utils.to_pcm16(wav)
+                if ttfa is None and buf:
+                    ttfa = time.monotonic() - t0
+                    ttfa_recent.append(ttfa)
+                if frame:
+                    whole = len(buf) - len(buf) % frame
+                    for off in range(0, whole, frame):
+                        yield buf[off:off + frame]
+                    buf = buf[whole:]
+                elif buf:
+                    yield buf
+                    buf = b""
+        finally:  # cancelled, failed or abandoned: the look-ahead chunk must not keep a worker busy
+            if ahead is not None:
+                ahead.cancel()
+                if ahead.done() and not ahead.cancelled():
+                    ahead.exception()  # retrieved: a failure nobody will await is not "never retrieved"
         if buf:
             yield buf
         stats["audio_seconds_total"] += sent_s

@@ -12,8 +12,13 @@ import re
 from piper import voice as _pv
 from piper.phonemize_espeak import ESPEAK_DATA_DIR, EspeakPhonemizer
 
-# multi-symbol rules first. en-us merges "policy/document" (Indian ɔ: पॉलिसी) with "car" (Indian aː before r)
-_SEQ = [("əʊ", "oː"), ("oʊ", "oː"), ("eɪ", "eː"), ("ɜː", "əɾ"), ("ɑːɹ", "aːɾ"), ("ɑː", "ɔ"), ("ɚ", "əɾ")]
+# multi-symbol rules first. en-us merges "policy/document" (Indian ɔ: पॉलिसी) with "car" (Indian aː before r).
+# Before anything adds a ɾ: en-us flaps t/d to ɾ ("property" pɹˈɑːpɚɾi), which the tapped-r rule would turn into
+# "proper-ri"; Indian English keeps the t (प्रॉपर्टी). dʒ/tʃ become the Hindi voice's own ज/च (ɟ/c) rather than
+# being split by the per-character rules into ɖz/ʈʃ ("budget" -> "budzit"). ɚɹ is one r ("enquiry"), not two.
+# aɪ -> aːɪ is how espeak-ng's Hindi writes टाइम/वाइफ़, so the voices know it ("time", "enquiry").
+_SEQ = [("ɾ", "ʈ"), ("dʒ", "ɟ"), ("tʃ", "c"), ("ɚɹ", "əɾ"), ("aɪ", "aːɪ"),
+        ("əʊ", "oː"), ("oʊ", "oː"), ("eɪ", "eː"), ("ɜː", "əɾ"), ("ɑːɹ", "aːɾ"), ("ɑː", "ɔ"), ("ɚ", "əɾ")]
 _CHAR = str.maketrans({
     "t": "ʈ", "d": "ɖ", "ɹ": "ɾ", "v": "ʋ", "w": "ʋ", "æ": "ɛ", "ð": "d", "ɐ": "ʌ", "ɑ": "a", "ɜ": "ə",
     "ʒ": "z", "ᵻ": "ɪ", "ɒ": "ɔ",
@@ -25,7 +30,9 @@ _DANDA_AFTER_BLOCK = re.compile(r"\]\](\s*)।")
 def indianize(ipa: str) -> str:
     for a, b in _SEQ:
         ipa = ipa.replace(a, b)
-    return ipa.translate(_CHAR).replace("θ", "tʰ")  # after translate, so the dental t of θ stays dental
+    # after translate, so the dental t of θ stays dental. kw keeps its w: as kʋ the Hindi voices drop it
+    # ("enquiry" was heard as एंखारी, with w: इंक्वायरी)
+    return ipa.translate(_CHAR).replace("θ", "tʰ").replace("kʋ", "kw")
 
 
 def espeak(voice: str, text: str) -> list[list[str]]:

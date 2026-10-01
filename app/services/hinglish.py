@@ -94,11 +94,15 @@ def _sentence(m: re.Match) -> str:
             return w
         if k == "hi" and w == "Hi":
             return w  # the greeting ("Hi, main Priya bol rahi hoon"); the Hindi particle is written lowercase
+        if k == "hey" and not s[:wm.start()].strip():
+            return w  # greeting opens the sentence ("Hey, kya haal hai?"); later it is "hai" misspelt ("thik hey")
         if k == "use" and _LIGHT_VERB.match(s, wm.end()):
             return w  # English verb: "use karein"
         if k == "ai" and w == "ai":
             return "ए आई"  # lazily typed "AI" (Hindi has no common Romanized "ai"); uppercase AI is an acronym rule
         if k in _LEX["amb"]:
+            if "-" in (s[wm.start() - 1:wm.start()], s[wm.end():wm.end() + 1]):
+                return w  # inside an English compound: "ready-to-move", "up-to-date"
             return _LEX["amb"][k]
         if (w.isupper() and len(w) > 1) or not _HINDI_SHAPE.search(k):
             return w  # acronym (OTP) or probably English (call, office)

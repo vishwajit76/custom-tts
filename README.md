@@ -85,6 +85,8 @@ text ─ normalize (Hinglish → numbers/₹/dates/times → abbreviations) ─ 
 
 - **Time to first audio:** the first chunk is cut at a clause or word boundary (`FIRST_CHUNK_CHARS`). The model
   pads every utterance with ~250 ms of leading silence; it is trimmed to 30 ms (`LEAD_SILENCE_MS`).
+  The end-of-utterance silence is capped at 150 ms when a chunk ends mid-sentence (`PAUSE_MS`) and 350 ms at a
+  sentence end (`SENTENCE_PAUSE_MS`), so a chunk cut at a comma does not leave a long pause inside the sentence.
 - **Scheduling:** each chunk is queued with a deadline, the moment the audio already sent to that call runs out.
   Workers take the earliest deadline first, so a new call's first chunk jumps ahead of chunks that still have
   seconds of slack. `MAX_CHUNK_CHARS=120` bounds how long any single (non-preemptible) run blocks a worker.

@@ -127,6 +127,14 @@ def test_pcm16_rounding_and_clipping():
     assert abs(np.frombuffer(audio_utils.to_pcm16(np.array([0.5 / 32767 * 0.6])), "<i2")[0]) == 0
 
 
+def test_soft_limit_bends_overshoot_without_touching_normal_levels():
+    x = np.array([0.0, 0.5, -0.89, 0.95, 1.1, -1.4], np.float32)  # Kokoro peaks reach 1.1-1.4
+    y = audio_utils.soft_limit(x)
+    assert np.array_equal(y[:3], x[:3])
+    assert np.all(np.abs(y[3:]) < 1) and np.all(np.abs(y[3:]) > 0.9) and np.all(np.sign(y) == np.sign(x))
+    assert abs(y[4]) < abs(y[5])  # still monotonic: louder in, louder out
+
+
 def test_mp3_and_wav_at_8k(client):
     r = client.post("/v1/audio/speech", json={"input": "नमस्ते।", "sample_rate": 8000, "response_format": "wav"})
     import io

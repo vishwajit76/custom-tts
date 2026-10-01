@@ -33,8 +33,20 @@ def change_speed(wav: np.ndarray, speed: float) -> np.ndarray:
     return librosa.effects.time_stretch(wav, rate=speed)
 
 
+_KNEE = 0.9
+
+
+def soft_limit(wav: np.ndarray) -> np.ndarray:
+    """Bend peaks above 0.9 smoothly into (0.9, 1.0). Kokoro overshoots to 1.1-1.4 on a few transient samples; hard
+    clipping those crackles, while a gain cut would quieten the whole chunk for a handful of samples."""
+    a = np.abs(wav)
+    if a.max(initial=0) <= _KNEE:
+        return wav
+    return np.where(a > _KNEE, np.sign(wav) * (_KNEE + (1 - _KNEE) * np.tanh((a - _KNEE) / (1 - _KNEE))), wav)
+
+
 def to_pcm16(wav: np.ndarray) -> bytes:
-    return np.rint(np.clip(wav, -1, 1) * 32767).astype("<i2").tobytes()  # round, not truncate: no DC bias
+    return np.rint(np.clip(soft_limit(wav), -1, 1) * 32767).astype("<i2").tobytes()  # round, not truncate: no DC bias
 
 
 def encode(wav: np.ndarray, sr: int, fmt: str) -> bytes:

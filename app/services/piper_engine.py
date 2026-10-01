@@ -15,8 +15,9 @@ from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
 # speaker in hi_IN-<speaker>-medium -> gender. rohan: MODEL_CARD dataset "Hindi Mono Male"; the pratham and
-# priyamvada cards don't say, so by name and median pitch (~98 Hz, ~214 Hz). Other (e.g. fine-tuned) voices: None.
-GENDER = {"rohan": "M", "pratham": "M", "priyamvada": "F"}
+# priyamvada cards don't say, so by name and median pitch (~98 Hz, ~214 Hz). custom: fine-tuned on the IndicTTS Hindi
+# female speaker (docs/custom-voice-runbook.md). Other voices: None.
+GENDER = {"rohan": "M", "pratham": "M", "priyamvada": "F", "custom": "F"}
 
 
 def make_session(model: Path, threads: int, use_cuda: bool) -> ort.InferenceSession:

@@ -87,6 +87,10 @@ class Settings(BaseSettings):
     max_chunk_chars: int = 120  # shorter chunks = shorter non-preemptible runs: p95 TTFA 293->215 ms at 20 calls
     max_input_chars: int = 4000
     lead_silence_ms: int = 30  # model pads ~250 ms of silence before each chunk; trim it to this
+    # Engines end every chunk with an end-of-utterance silence (Kokoro ~400 ms, Supertonic ~500-700 ms). A chunk cut
+    # mid-sentence (at a comma, or the short first chunk) would leave that whole pause inside the sentence: cap it.
+    pause_ms: int = 150  # chunk that ends mid-sentence (Kokoro's own pause at a comma is ~120 ms)
+    sentence_pause_ms: int = 350  # chunk that ends a sentence (। . ? !)
     cache_size: int = 256  # cached chunks (repeated calling phrases)
 
     # --- protection ---
