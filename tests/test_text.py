@@ -1,6 +1,6 @@
 import numpy as np
 
-from app.services.text_normalizer import chunk, normalize, num_to_words
+from app.services.text_normalizer import chunk, cut_at_phrase, normalize, num_to_words
 
 
 def test_numbers():
@@ -130,3 +130,13 @@ def test_chunk():
     parts = chunk(text, 50)
     assert all(len(p) <= 50 for p in parts)
     assert " ".join(parts).split() == text.split()
+
+
+def test_long_clauses_are_cut_at_phrase_breaks_not_mid_phrase():
+    # "commercial | project" and "shops | available हैं" were heard as hiccups: each chunk is its own utterance
+    s = "अहमदाबाद में हमारे पास Sindhu Bhavan Road par एक excellent commercial project है जहाँ office spaces और retail shops available हैं."
+    assert cut_at_phrase(s, 71) == ["अहमदाबाद में हमारे पास Sindhu Bhavan Road par",
+                                    "एक excellent commercial project है जहाँ office spaces और retail shops available हैं."]
+    assert chunk(s, 120)[-1] == "और retail shops available हैं."  # before the conjunction, not before "available"
+    assert cut_at_phrase("मैं श्रेया बोल रही हूँ और आपके loan के बारे में", 40)[0] == "मैं श्रेया बोल रही हूँ"
+    assert cut_at_phrase("छोटा", 40) == ["छोटा"] and cut_at_phrase("x" * 50, 40) == ["x" * 50]

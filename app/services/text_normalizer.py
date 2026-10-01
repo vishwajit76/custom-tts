@@ -494,6 +494,35 @@ def normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+# Where a long clause may be cut into two utterances. Each chunk is spoken on its own, ending in a phrase-final fall
+# and a short pause, so a cut mid-phrase ("excellent commercial | project") sounds like a hiccup. Strong: after a comma
+# or a verb ending, before a conjunction. Weak: after a postposition, which closes a noun phrase ("Road पर | एक").
+# Not after के/की/का: the genitive binds to the next word.
+_BREAK_BEFORE = frozenset("और लेकिन क्योंकि जहाँ जहां जो कि तो या अगर जब ताकि and but because so or".split())
+_BREAK_AFTER = frozenset("है हैं था थी थे हूँ हूं".split())
+_WEAK_AFTER = frozenset("में पर से को ने तक लिए पास बाद mein par se ko tak liye".split())
+
+
+def cut_at_phrase(text: str, limit: int) -> list[str]:
+    """`text` in two at the last strong phrase break in the second half of `limit` chars, else the last weak one,
+    else the last space within `limit`. Unchanged when it fits or no space is in reach."""
+    if len(text) <= limit:
+        return [text]
+    words, pos, strong, weak, space = text.split(" "), 0, 0, 0, 0
+    for w, nxt in zip(words, words[1:]):
+        pos += len(w)
+        if pos > limit:
+            break
+        if pos >= limit // 2:
+            if w.endswith((",", ";")) or w in _BREAK_AFTER or nxt in _BREAK_BEFORE:
+                strong = pos
+            elif w in _WEAK_AFTER:
+                weak = pos
+        space, pos = pos, pos + 1
+    cut = strong or weak or space
+    return [text[:cut], text[cut + 1:]] if cut else [text]
+
+
 def chunk(text: str, max_chars: int) -> list[str]:
     """Split on sentence ends (। . ? !), then on commas if a sentence is too long."""
     sentences = [s.strip() for s in re.split(r"(?<=[।.?!])\s+", text) if s.strip()]
@@ -504,11 +533,12 @@ def chunk(text: str, max_chars: int) -> list[str]:
             if len(p) > max_chars and cur:
                 chunks.append(cur)
                 cur = ""
-            while len(p) > max_chars:  # no punctuation at all: hard split on space
-                cut = p.rfind(" ", 0, max_chars)
-                cut = cut if cut > 0 else max_chars
-                chunks.append(p[:cut].strip())
-                p = p[cut:].strip()
+            while len(p) > max_chars:  # no punctuation at all: split at a phrase break, else a space, else hard
+                head, *rest = cut_at_phrase(p, max_chars)
+                if not rest:
+                    head, rest = p[:max_chars], [p[max_chars:]]
+                chunks.append(head.strip())
+                p = rest[0].strip()
             if cur and len(cur) + len(p) + 1 > max_chars:
                 chunks.append(cur)
                 cur = p

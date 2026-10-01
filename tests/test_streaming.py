@@ -92,6 +92,48 @@ def test_scheduler_runs_earliest_deadline_first():
     assert order == [1, 2, 3]
 
 
+def test_scheduler_worker_survives_a_closed_loop():
+    s, gate = Scheduler(1), threading.Event()
+
+    async def abandon():  # queue a job, then let asyncio.run close the loop under it
+        asyncio.ensure_future(s.run(0, gate.wait))
+        await asyncio.sleep(0.05)
+
+    asyncio.run(abandon())
+    gate.set()
+    time.sleep(0.05)  # the worker resolves into the closed loop: must not die
+
+    async def again():
+        return await asyncio.wait_for(s.run(0, lambda: "alive"), 2)
+
+    assert asyncio.run(again()) == "alive"
+
+
+def test_stream_synthesizes_the_next_chunk_while_the_current_one_plays(monkeypatch):
+    # a long chunk after a short first one started only once the first was consumed: the player ran dry mid-sentence
+    started = {}
+
+    class Slow(FakeEngine):
+        def synth(self, text, voice, speed, ref=None, ref_text=None):
+            started[text] = time.monotonic()
+            return super().synth(text, voice, speed)
+
+    monkeypatch.setattr(tts, "engine", Slow())
+    monkeypatch.setattr(tts, "scheduler", Scheduler(2))
+    monkeypatch.setattr(settings, "cache_size", 0)
+
+    async def main():
+        chunks = tts.split_for_stream("नमस्ते, मैं आपकी बैंक से बात कर रही हूँ और आपकी किस्त के बारे में पूछना चाहती हूँ।")
+        gen = tts.stream("नमस्ते, मैं आपकी बैंक से बात कर रही हूँ और आपकी किस्त के बारे में पूछना चाहती हूँ।", "fake")
+        await gen.__anext__()  # first chunk handed over; the client is now playing it
+        playing = time.monotonic()
+        await asyncio.sleep(0.2)
+        assert len(chunks) > 1 and started.get(chunks[1], float("inf")) < playing + 0.1  # running, not awaiting the next pull
+        await gen.aclose()
+
+    asyncio.run(main())
+
+
 def test_http_speech_and_stream(client):
     r = client.post("/v1/audio/speech", json={"input": "नमस्ते।", "voice": "default"})
     assert r.status_code == 200 and r.content[:4] == b"RIFF"
@@ -179,3 +221,9 @@ def test_multi_engine_routes_by_voice_id(client, monkeypatch):
         tts.MultiEngine([FakeEngine(), FakeEngine()]).load()
     with pytest.raises(ValueError):
         tts._make_engine("piper,qwen3")
+
+
+def test_second_chunk_is_small_enough_to_be_ready_before_the_first_ends():
+    parts = tts.split_for_stream("नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?")
+    assert parts[:2] == ["नमस्ते,", "मैं श्रेया बोल रही हूँ"] and len(parts[1]) <= 3 * len(parts[0]) + 20
+    assert tts.split_for_stream("नमस्ते। आप कैसे हैं और घर पर सब कैसे हैं?")[1] == "आप कैसे हैं और घर पर सब कैसे हैं?"  # after a full sentence: untouched

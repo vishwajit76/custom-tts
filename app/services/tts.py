@@ -147,6 +147,11 @@ def split_for_stream(text: str) -> list[str]:
     if out and len(out[0]) > settings.first_chunk_chars:
         head = text_normalizer.chunk(out[0], settings.first_chunk_chars)
         out[:1] = [head[0], " ".join(head[1:])] if len(head) > 1 else head
+    # The second chunk synthesizes while the first one plays (stream's look-ahead), so it must not dwarf it: after a
+    # short "नमस्ते," a 120-char rest was still synthesizing when the first had finished playing, a 0.2-0.5 s stall mid-
+    # sentence. ~3x the first chunk + 20 chars keeps it inside that window at the measured RTF ~0.25 on CPU.
+    if len(out) > 1 and not _SENTENCE_END.search(out[0]):
+        out[1:2] = text_normalizer.cut_at_phrase(out[1], 3 * len(out[0]) + 20)
     kept: list[str] = []
     for c in out:  # a chunk with no letter or digit ("।", "...", a quote, a lone matra) must never reach an engine
         if _SPEAKABLE.search(c):

@@ -42,7 +42,11 @@ class Scheduler:
                 result, exc = None, e
             finally:
                 self.busy -= 1
-            loop.call_soon_threadsafe(_resolve, fut, result, exc)
+            try:
+                loop.call_soon_threadsafe(_resolve, fut, result, exc)
+            except RuntimeError:  # that loop closed while the job ran (shutdown, a test client): nobody awaits it,
+                pass  # and an uncaught raise here would kill this worker for good
+
 
 
 def _resolve(fut: asyncio.Future, result, exc) -> None:
