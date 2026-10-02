@@ -123,36 +123,11 @@ def convert(text: str) -> str:
 
 
 # --- opt-in persona gender agreement -------------------------------------------------------------------------
-# NEVER called by normalize()/convert() or by the API. The application calls it explicitly, only on text it wrote
-# for its own persona (a system-authored script), never on arbitrary user content. Scope is first-person verb
-# agreement only; it does not touch third-person or quoted speech, and it cannot know which "गया" refers to the
-# speaker, so it is deliberately limited to fixed, unambiguous first-person phrases.
-_FEM = {  # masculine -> feminine. Only phrases that are unambiguously first person (explicit हूँ/ऊँगा or मैं)
-    "करता हूँ": "करती हूँ", "करता हूं": "करती हूं", "रहा हूँ": "रही हूँ", "रहा हूं": "रही हूं",
-    "सकता हूँ": "सकती हूँ", "सकता हूं": "सकती हूं", "चाहता हूँ": "चाहती हूँ", "चाहता हूं": "चाहती हूं",
-    "जानता हूँ": "जानती हूँ", "समझता हूँ": "समझती हूँ", "देता हूँ": "देती हूँ", "लेता हूँ": "लेती हूँ",
-    "बताता हूँ": "बताती हूँ", "भेजता हूँ": "भेजती हूँ", "बोलता हूँ": "बोलती हूँ",
-    "करूँगा": "करूँगी", "करूंगा": "करूंगी", "आऊँगा": "आऊँगी", "दूँगा": "दूँगी", "बताऊँगा": "बताऊँगी",
-    "भेजूँगा": "भेजूँगी", "देखूँगा": "देखूँगी", "मैं गया था": "मैं गई थी", "मैं आया था": "मैं आई थी",
-    "मैं गया": "मैं गई", "मैं आया": "मैं आई",
-    "आपका सहायक हूँ": "आपकी सहायक हूँ", "आपका असिस्टेंट हूँ": "आपकी असिस्टेंट हूँ",
-}
-_MASC = {f: m for m, f in _FEM.items()}
-
-
+# NEVER called by normalize()/convert() or by the API. Thin wrapper over app/services/persona_grammar.py (the rules
+# live there); speaker-authored text only.
 def apply_persona_gender(text: str, gender: str) -> str:
-    """Rewrite first-person Hindi verb endings to the persona's grammatical gender ("male"/"female"/"m"/"f").
+    """Rewrite first-person Hindi agreement to the persona's gender ("male"/"female"/"m"/"f"); any other value
+    (including "neutral"/None) returns text unchanged."""
+    from app.services import persona_grammar  # lazy: hinglish.py is vendored into the Kaggle bundle without it
 
-    Explicit, opt-in, phrase-level (fixed phrases only, longest first). Returns text unchanged for any other gender
-    value (including "neutral"/None), so callers cannot get a silent rewrite. Never called automatically."""
-    g = (gender or "").strip().lower()
-    if g in ("female", "f", "woman", "feminine"):
-        table = _FEM
-    elif g in ("male", "m", "man", "masculine"):
-        table = _MASC
-    else:
-        return text
-    for src in sorted(table, key=len, reverse=True):
-        if src != table[src]:
-            text = text.replace(src, table[src])
-    return text
+    return persona_grammar.apply(text, persona_grammar.Persona(persona_grammar.normalize_gender(gender)))

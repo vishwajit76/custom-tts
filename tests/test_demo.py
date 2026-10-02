@@ -14,6 +14,7 @@ from starlette.websockets import WebSocketDisconnect
 from app.api import demo
 from app.core.config import settings
 from app.services import providers, tts
+from app.services.persona_grammar import Persona, llm_hint
 
 SR = 22050
 FRAME_24K = 24000 * 40 // 1000 * 2  # bytes in a 40 ms frame at the default 24 kHz
@@ -205,7 +206,7 @@ def test_system_prompt_carries_voice_gender(client, monkeypatch):
     with client.websocket_connect("/demo/ws") as ws:
         ws.send_json({"type": "text", "text": "नमस्ते"})
         until(ws, {"turn_end"})
-    assert calls["llm"][0][1][0]["content"] == f"{settings.demo_system_prompt} {demo._PERSONA['F']}"
+    assert calls["llm"][0][1][0]["content"] == f"{settings.demo_system_prompt} {llm_hint(Persona('female'))}"
 
 
 def test_wav_turn_yields_transcript_first(client):
