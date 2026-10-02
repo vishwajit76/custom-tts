@@ -69,7 +69,6 @@ def test_ellipsis_between_words_is_its_own_longer_pause():
 @pytest.mark.parametrize("name,mark", [("yes/no question", "?"), ("wh-question", "?"), ("exclamation", "!")])
 def test_question_and_exclamation_marks_reach_the_vits_model(name, mark):
     """The VITS voice learned question intonation from '?': the phoneme string it gets must end with the mark."""
-    phonemize = pytest.importorskip("piper.phonemize_espeak").EspeakPhonemizer().phonemize
     piece = tts.split_for_stream(text_normalizer.normalize(CASES[name][0]))[0]
     sent = indian_english.mark(piece)  # what PiperEngine.synth hands to espeak
-    assert phonemize("hi", sent)[-1][-1] == mark
+    assert indian_english.espeak("hi", sent)[-1][-1] == mark  # the shared instance: a 2nd EspeakPhonemizer corrupts espeak (SIGSEGV later)
