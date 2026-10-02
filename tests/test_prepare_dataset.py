@@ -9,9 +9,14 @@ from training import prepare_dataset as pd
 SR = pd.SR
 
 
-def tone(seconds: float, amp: float = 0.3) -> np.ndarray:
+def tone(seconds: float, amp: float = 0.3, seed: int = 0) -> np.ndarray:
+    """Modulated tone with a quiet 0.3 s noise-floor lead-in/out (a gate-friendly stand-in for a clean recording)."""
     t = np.arange(int(SR * seconds)) / SR
-    return (amp * np.sin(2 * np.pi * 220 * t) * (1 + 0.5 * np.sin(2 * np.pi * 3 * t))).astype(np.float32)
+    x = amp * np.sin(2 * np.pi * 220 * t) * (1 + 0.5 * np.sin(2 * np.pi * 3 * t))
+    x += np.random.default_rng(seed).normal(0, amp / 1000, len(t))
+    x[: int(0.3 * SR)] *= 0.01 if seconds > 1 else 1
+    x[-int(0.3 * SR):] *= 0.01 if seconds > 1 else 1
+    return x.astype(np.float32)
 
 
 def test_denoise_and_loudness():
@@ -54,8 +59,12 @@ def test_prepare_end_to_end(tmp_path, monkeypatch):
     assert {r.split("|")[1] for r in rows} == {"main", "asha"}
     assert any("पाँच सौ रुपये" in r for r in rows)  # transcripts normalized like inference
     reasons = " ".join(r["reason"] for r in report["rejections"])
-    for word in ("too short", "speech rate", "clipped", "no transcript"):
+    for word in ("too_short", "speech_rate_high", "clipping", "no_transcript"):
         assert word in reasons
+    assert report["rejected_by_reason"]["no_transcript"] == 1
+    rep = json.loads((out / "dataset_report.json").read_text("utf-8"))
+    assert rep["clips"] == {"total": 6, "accepted": 2, "rejected": 4} and set(rep["by_speaker"]) == {"main", "asha"}
+    assert (out / "dataset_report.md").exists() and len((out / "rejected.jsonl").read_text("utf-8").splitlines()) == 4
     for r in rows:
         data, sr = sf.read(out / "wavs" / r.split("|")[0])
         assert sr == SR and data.ndim == 1

@@ -10,3 +10,4 @@ bench/results
 .env
 **/__pycache__
 .pytest_cache
+!voices/catalog.json

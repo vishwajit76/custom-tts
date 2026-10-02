@@ -39,6 +39,7 @@ from app.core.config import settings
 from app.core.security import authorize, require_api_key
 from app.models.schemas import VOICE_ID, SampleRate
 from app.services import providers, tts
+from app.services.persona_grammar import Persona, llm_hint, normalize_gender
 
 log = logging.getLogger(__name__)
 PAGE = Path(__file__).resolve().parent.parent / "static" / "demo.html"
@@ -129,15 +130,10 @@ class Segmenter:
         return [seg] if seg else []
 
 
-_PERSONA = {
-    "F": "You are a woman: use feminine first-person verb forms (करती हूँ, रही हूँ, सकती हूँ).",
-    "M": "You are a man: use masculine first-person verb forms (करता हूँ, रहा हूँ, सकता हूँ).",
-}
-
-
 def persona(voice: str) -> str:
     """Hindi verbs agree with the speaker's gender, so tell the LLM which voice speaks ('' when unknown)."""
-    return _PERSONA.get(next((v.get("gender") for v in tts.engine.voices() if v["voice_id"] == voice), None), "")
+    g = next((v.get("gender") for v in tts.engine.voices() if v["voice_id"] == voice), None)
+    return llm_hint(Persona(normalize_gender(g)))
 
 
 # --- websocket ---

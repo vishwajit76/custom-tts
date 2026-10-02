@@ -55,6 +55,8 @@ def main() -> None:
     p.add_argument("--run", type=Path, required=True, help="checkpoints, logs and config.json go here")
     p.add_argument("--init", default="rohan", help="rohan | base | path to .ckpt (ignored when resuming)")
     p.add_argument("--warmstart-vocoder", help="base | path: train from scratch with a pretrained vocoder instead of --init")
+    p.add_argument("--warmstart", help="rohan | path: non-strict init (copy every same-shape weight, fresh optimizer, epoch 0); "
+                   "use it to turn a single-speaker checkpoint into a multi-speaker model")
     p.add_argument("--epochs", type=int, default=200, help="epochs to train in this invocation")
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--accelerator", default="auto", help="auto | gpu | mps | cpu")
@@ -74,10 +76,10 @@ def main() -> None:
 
     resume = last_checkpoint(a.run)
     if a.dry_run:
-        ckpt = str(resume) if resume else None if a.warmstart_vocoder else f"<{a.init}>"
+        ckpt = str(resume) if resume else None if (a.warmstart_vocoder or a.warmstart) else f"<{a.init}>"
         start = 0
     else:
-        ckpt = str(resume) if resume else None if a.warmstart_vocoder else resolve(a.init)
+        ckpt = str(resume) if resume else None if (a.warmstart_vocoder or a.warmstart) else resolve(a.init)
         start = epoch_of(ckpt) if ckpt else 0
     cmd = [
         sys.executable, "-m", os.environ.get("PIPER_TRAIN_MODULE", "piper.train"), "fit", "--seed_everything", str(a.seed),
@@ -91,8 +93,10 @@ def main() -> None:
         cmd += ["--ckpt_path", ckpt]
     if a.warmstart_vocoder and not resume:
         cmd += ["--model.vocoder_warmstart_ckpt", a.warmstart_vocoder if a.dry_run else resolve(a.warmstart_vocoder)]
+    if a.warmstart and not resume:
+        cmd += ["--model.warmstart_ckpt", a.warmstart if a.dry_run else resolve(a.warmstart)]
     cmd += extra
-    print(("resuming from " if resume else "starting from ") + str(ckpt or "scratch + warm vocoder"), f"at epoch {start}", flush=True)
+    print(("resuming from " if resume else "starting from ") + str(ckpt or (f"warmstart {a.warmstart}" if a.warmstart else "scratch + warm vocoder")), f"at epoch {start}", flush=True)
     if a.dry_run:
         print(" ".join(cmd))
         return

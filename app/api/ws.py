@@ -2,7 +2,8 @@
 
 Client -> server (JSON text):
   {"type":"speak","id":"r1","text":"...","voice":"default","speed":1.0,"sample_rate":8000,"frame_ms":40,
-   "condition":{"emotion":"calm","fallback":"ignore"}}     (condition optional; see docs/voice-system.md)
+   "condition":{"emotion":"calm","fallback":"ignore"},     (condition optional; see docs/voice-system.md)
+   "persona":{"gender":"female"}}     (optional; rewrites first-person Hindi agreement, assistant-authored text only)
   {"type":"cancel","id":"r1"}   cancel one request (playing or queued)
   {"type":"cancel"}             cancel everything (barge-in)
 Server -> client:

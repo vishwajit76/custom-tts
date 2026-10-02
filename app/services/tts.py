@@ -15,7 +15,7 @@ import numpy as np
 import soxr
 
 from app.core.config import settings
-from app.services import audio_utils, dsp, expressive_engine, text_normalizer
+from app.services import audio_utils, dsp, expressive_engine, text_normalizer, voice_catalog
 from app.services.conditioning import DEFAULT_CAPABILITIES, EngineCapabilities
 from app.services.scheduler import Scheduler
 
@@ -65,7 +65,8 @@ class MultiEngine:
         return self._owner(voice).sample_rate(voice)
 
     def capabilities_for(self, voice: str) -> EngineCapabilities:
-        return getattr(self._owner(voice), "capabilities", DEFAULT_CAPABILITIES)
+        owner = self._owner(voice)
+        return owner.capabilities_for(voice) if hasattr(owner, "capabilities_for") else getattr(owner, "capabilities", DEFAULT_CAPABILITIES)
 
     def synth(self, text: str, voice: str, speed: float, ref=None, ref_text=None) -> np.ndarray:
         return self._owner(voice).synth(text, voice, speed, ref, ref_text)
@@ -109,6 +110,7 @@ ttfa_recent: deque[float] = deque(maxlen=2000)  # seconds, for /metrics quantile
 
 def load() -> None:
     global scheduler
+    voice_catalog.get()  # validate voices/catalog.json up front: a bad catalog stops startup, not the first request
     engine.load()
     if settings.dsp_prosody:  # first librosa call JIT-compiles for seconds; keep that off the first request
         try:
@@ -123,6 +125,8 @@ def resolve_voice(voice: str) -> str:
         return voice
     if voice == "default" and engine.has_voice(settings.default_voice):
         return settings.default_voice
+    if (target := voice_catalog.get().alias_target(voice)) and engine.has_voice(target):  # catalog alias -> its voice id
+        return target
     raise KeyError(voice)
 
 

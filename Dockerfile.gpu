@@ -9,6 +9,7 @@ COPY requirements.txt .
 # piper-tts depends on the CPU onnxruntime wheel; swap it for the CUDA build (same module name)
 RUN pip install --no-cache-dir -r requirements.txt && pip uninstall -y onnxruntime && pip install --no-cache-dir onnxruntime-gpu
 COPY app app
+COPY voices/catalog.json voices/catalog.json
 COPY scripts scripts
 ARG VOICES="hi_IN-rohan-medium"
 RUN python scripts/download_voices.py $VOICES && rm -rf /root/.cache/huggingface

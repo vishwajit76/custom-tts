@@ -79,6 +79,12 @@ class EngineCapabilities:
     speaker_embedding: bool = False  # consumes an external speaker embedding
     native_emotion: bool = False  # model trained with emotion conditioning
     native_style: bool = False
+    # Which values native_emotion / native_style cover; () = every value. A Piper multi-speaker voice has recorded only
+    # the styles its catalog entry lists (voices/catalog.json), so only those are native for it.
+    emotion_values: tuple[str, ...] = ()
+    style_values: tuple[str, ...] = ()
+    # emotion/style select a recorded speaker: no *_strength, and emotion and style cannot both be sent (one speaker per request)
+    discrete_styles: bool = False
     prompt_emotion: bool = False  # emotion/style steered by a text prompt: best effort, NOT validated
     role: bool = False
     style_reference: bool = False
@@ -92,7 +98,8 @@ class EngineCapabilities:
 
     def as_dict(self) -> dict:
         d = asdict(self)
-        d["speed_range"], d["sample_rates"], d["languages"] = list(self.speed_range), list(self.sample_rates), list(self.languages)
+        for k in ("speed_range", "sample_rates", "languages", "emotion_values", "style_values"):
+            d[k] = list(d[k])
         return d
 
 
@@ -170,8 +177,17 @@ def validate_condition(cond: VoiceCondition, caps: EngineCapabilities, engine: s
     gate(["speaker_embedding"], caps.speaker_embedding)
     gate(["reference_audio", "reference_text"], caps.cloning)
     gate(["style_reference"], caps.style_reference)
-    gate(["emotion", "emotion_strength"], caps.native_emotion or caps.prompt_emotion, "" if caps.native_emotion else ":steered")
-    gate(["style", "style_strength"], caps.native_style or caps.prompt_emotion, "" if caps.native_style else ":steered")
+    def native(on: bool, values: tuple[str, ...], v) -> bool:  # native for this value (a voice may cover only some)
+        return on and (not values or v is None or getattr(v, "value", v) in values)
+
+    emo_native, sty_native = native(caps.native_emotion, caps.emotion_values, cond.emotion), native(caps.native_style, caps.style_values, cond.style)
+    emo_ok = emo_native or caps.prompt_emotion
+    gate(["emotion"], emo_ok, "" if emo_native else ":steered")
+    gate(["emotion_strength"], emo_ok and not caps.discrete_styles, "" if emo_native else ":steered")
+    # discrete styles: one recorded speaker per request, so a style next to an applied emotion is not honoured
+    sty_ok = (sty_native or caps.prompt_emotion) and not (caps.discrete_styles and cond.emotion is not None and emo_ok)
+    gate(["style"], sty_ok, "" if sty_native else ":steered")
+    gate(["style_strength"], sty_ok and not caps.discrete_styles, "" if sty_native else ":steered")
     gate(["role"], caps.role)
     gate(["pitch"], caps.pitch or dsp, "" if caps.pitch else ":dsp")
     gate(["energy"], caps.energy or dsp, "" if caps.energy else ":dsp")

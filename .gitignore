@@ -17,3 +17,6 @@ data/
 training/runs/
 *.ckpt
 voices/*.onnx*
+work/
+.claude/worktrees/
+!voices/catalog.json
