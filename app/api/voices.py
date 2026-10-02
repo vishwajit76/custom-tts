@@ -5,7 +5,7 @@ from pydantic import TypeAdapter, constr
 
 from app.core.security import require_api_key
 from app.models.schemas import VOICE_ID, SampleRate
-from app.services import audio_utils, tts
+from app.services import audio_utils, tts, voice_catalog
 from app.services import speaker_registry as sreg
 from app.core.config import settings
 from app.services.conditioning import DEFAULT_CAPABILITIES, Emotion, Role, Style, control_kinds
@@ -61,8 +61,10 @@ def _mirror_delete(owner: str, voice_id: str) -> None:
 
 @router.get("")
 def list_voices():
-    # `capabilities` is additive: what conditioning controls the engine behind this voice really honours
-    return {"data": [{**v, "capabilities": tts.capabilities_for(v["voice_id"]).as_dict()} for v in tts.engine.voices()]}
+    # Additive: `capabilities` (what conditioning controls the engine behind this voice really honours) and the catalog
+    # metadata (gender, age_group, style, family, styles, status, language; docs/voices.md). Fields an engine already sent win.
+    return {"data": [{**voice_catalog.metadata(v["voice_id"]), **v, "capabilities": tts.capabilities_for(v["voice_id"]).as_dict()}
+                     for v in tts.engine.voices()]}
 
 
 @capabilities_router.get("")

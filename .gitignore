@@ -19,3 +19,4 @@ training/runs/
 voices/*.onnx*
 work/
 .claude/worktrees/
+!voices/catalog.json
