@@ -213,7 +213,7 @@ def test_multi_engine_routes_by_voice_id(client, monkeypatch):
     assert [v["voice_id"] for v in client.get("/v1/voices").json()["data"]] == ["fake", "other:v"]
     assert multi.sample_rate("fake") == SR and multi.sample_rate("other:v") == 16000
     r = client.post("/v1/audio/speech", json={"input": "नमस्ते।", "voice": "other:v", "response_format": "pcm", "sample_rate": 16000})
-    assert r.status_code == 200 and len(r.content) == 3200  # OtherEngine's 1600 samples, not FakeEngine's sine
+    assert r.status_code == 200 and abs(len(r.content) - (3200 + 2 * 16 * settings.lead_silence_ms)) <= 20  # + the padded lead (less the fade-in's quiet start); OtherEngine's 1600 samples, not FakeEngine's sine
     assert client.post("/v1/audio/speech", json={"input": "x", "voice": "nope"}).status_code == 404
     with pytest.raises(KeyError):
         multi.synth("x", "nope", 1.0)
