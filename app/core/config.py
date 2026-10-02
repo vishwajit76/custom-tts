@@ -35,6 +35,8 @@ class Settings(BaseSettings):
     # fine-tuned voices/hi_IN-custom-medium.onnx that training/export_latest.sh writes. Empty = nothing added; a stem
     # already loaded from an earlier directory wins, so extra directories can never shadow a bundled voice.
     models_extra: str = ""
+    # Explicit voice catalog (docs/voices.md): per-voice gender, age group, style, speaker and style speakers. Missing = none.
+    voice_catalog: Path = Path("voices/catalog.json")
     # Each worker thread runs one chunk at a time on a session shared per voice, using threads_per_worker
     # ONNX intra-op threads. 4 threads cut single-chunk latency ~2.3x vs 1 at equal throughput (docs/benchmarks.md).
     threads_per_worker: int = min(4, CPUS)
