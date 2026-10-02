@@ -1,0 +1,35 @@
+# Hindi word-level respellings. Each row fixes one measured espeak-ng `hi` error (docs/pronunciation.md, probe in
+# bench/results/pronunciation_probe_v7.tsv). Keys are NFC. A row applies only when its category is enabled
+# (settings.pronunciation_rules): grammar | schwa.
+# schwa respellings put an explicit virama where espeak keeps a schwa a native speaker drops (or a schwa where espeak
+# drops one); they are text tricks for espeak-based engines, not correct orthography.
+word	respelling	category	reason
+यह	ये	grammar	espeak reads the letters (jəh, "yah"); colloquial Hindi is yeh [jeː]
+वह	वो	grammar	espeak reads the letters (ʋəh, "vah"); colloquial Hindi is vo [ʋoː]
+जनवरी	जन्वरी	schwa	espeak jˈʌnəʋɾi (janavri) keeps the schwa after न and drops the one after व; Hindi is jan-va-ri
+फ़रवरी	फ़र्वरी	schwa	espeak fˈʌɾəʋɾi (faravri); Hindi is far-va-ri
+मतलब	मत्लब	schwa	espeak mˈʌtəlˌəb (matalab); Hindi is mat-lab
+बचपन	बच्पन	schwa	espeak bˈʌcəpˌən (bachapan); Hindi is bach-pan
+एकदम	एक्दम	schwa	espeak ˈeːkədˌəm (ekadam); Hindi is ek-dam
+दशमलव	दश्मलव	schwa	espeak dˈʌʃəmˌələʋ (4 syllables); Hindi is dash-ma-lav
+उनसठ	उन्सठ	schwa	espeak ˈʊnəsˌəʈʰ (unasath); Hindi is un-sath
+इकसठ	इक्सठ	schwa	espeak ˈɪkəsˌəʈʰ (ikasath); Hindi is ik-sath
+तिरसठ	तिर्सठ	schwa	espeak tˈɪɾəsˌəʈʰ (tirasath); Hindi is tir-sath
+सड़सठ	सड़्सठ	schwa	espeak sˈʌr.əsˌəʈʰ (sarasath); Hindi is sar-sath
+अड़सठ	अड़्सठ	schwa	espeak ˈʌr.əsˌəʈʰ (arasath); Hindi is ar-sath
+तिरपन	तिर्पन	schwa	espeak tˈɪɾəpˌən (tirapan); Hindi is tir-pan
+पचपन	पच्पन	schwa	espeak pˈʌcəpˌən (pachapan); Hindi is pach-pan
+अमृतसर	अमृत्सर	schwa	espeak ˈʌmɾɪtˌəsəɾ (amritasar); Hindi is amrit-sar
+सैमसंग	सैम्संग	schwa	espeak sˌɛːməsˈʌŋɡ (saimasang); Hindi is saim-sang
+हलचल	हल्चल	schwa	espeak halcˈal (full a vowels, not schwas); Hindi is həl-chəl
+नमस्कार	नमसकार	schwa	espeak nˌəmskˈaːɾ (namskaar) drops the schwa before स्क; Hindi is na-mas-kaar
+पुरस्कार	पुरसकार	schwa	espeak pˌʊɾskˈaːɾ (purskaar); Hindi is pu-ras-kaar
+तिरस्कार	तिरसकार	schwa	espeak tˌɪɾskˈaːɾ (tirskaar); Hindi is ti-ras-kaar
+राजस्थान	राजसथान	schwa	espeak ɾˌaːɟstʰˈaːn (raajsthaan); Hindi is raa-ja-sthaan
+रामचरित	राम्चरित	schwa	espeak ɾˈaːməcɾɪt (raamacharit) keeps the schwa after म and drops the one after च; the compound is raam-cha-rit
+हँसना	हँस्ना	schwa	espeak hˈʌnsənˌaː (hansanaa) keeps the schwa after स; Hindi is hans-naa
+हंसना	हंस्ना	schwa	same word, anusvara spelling
+एफ	एफ़	english	the letter name F: espeak reads फ as aspirated pʰ (ˈeːpʰ, "ep"); it is [ɛf] (used in PDF, HDFC, IFSC, FD, FAQ)
+करवट	कर्वट	schwa	espeak kˈʌɾəʋˌəʈ (karavat) keeps the schwa after र; Hindi is kar-vat
+ज़िंदगी	ज़िन्दगी	schwa	espeak zˈĩdɡˌi (zindgi) drops the schwa after द; Hindi is zin-da-gi
+इंतज़ार	इंतिज़ार	schwa	espeak ˌĩtzˈaːɾ (intzaar) drops the schwa after त; spoken in-ta/ti/te-zaar, the i spelling keeps a vowel there
