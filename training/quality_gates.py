@@ -154,7 +154,7 @@ def measure(wav: np.ndarray, sr: int, th: Thresholds = Thresholds()) -> dict:
     db = _db(p)
     noise_db, peak_db = float(np.percentile(db, 10)), float(np.percentile(db, 95))
     speech = db > max(noise_db + th.vad_floor_db, peak_db - th.vad_rel_db)
-    noise_p = p[db <= noise_db].mean()
+    noise_p = np.sort(p)[: max(1, len(p) // 10)].mean()
     snr = float(np.clip(_db(p[speech].mean() - noise_p) - _db(noise_p), 0, 70)) if speech.any() else 0.0
     spec = np.abs(np.fft.rfft(fr[speech if speech.any() else slice(None)] * np.hanning(FRAME), axis=1)) ** 2
     freqs, avg = np.fft.rfftfreq(FRAME, 1 / sr), spec.mean(axis=0)
