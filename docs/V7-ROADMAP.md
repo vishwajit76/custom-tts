@@ -60,7 +60,7 @@ Each worker owns its files; shared files (`README.md`, `docs/PROGRESS.md`) are e
 |---|---|---|
 | T1 | in progress | |
 | T2 | in progress | |
-| T3 | in progress | |
+| T3 | landed, untuned on real data | `training/ingest_hf.py`, `quality_gates.py`, gated `prepare_dataset`; docs/training.md section 2c. Thresholds need a first look at real Rasa audio |
 | T4 | in progress | |
 | T5 | in progress | |
 | T6 | in progress | |
