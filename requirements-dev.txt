@@ -7,6 +7,7 @@ onnx
 torch
 transformers
 pyarrow  # training.ingest_hf tests
+librosa  # DSP_PROSODY tests (tests/test_expressive_dsp.py) and dataset prep
 # OPTIONAL, not needed for the test suite (tests skip when absent):
 # resemblyzer            # neural speaker encoder backend (Apache-2.0 code; bundled weights, provenance unstated: docs/licenses.md)
 # faster-whisper         # CPU ASR for bench/quality_fw.py (CER/PER); weights from the HF hub (Systran/faster-whisper-*)

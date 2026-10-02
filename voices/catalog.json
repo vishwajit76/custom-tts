@@ -247,13 +247,18 @@
       "voice_id": "hi-IN-young-female",
       "engine": "piper",
       "model": "hi_IN-v7-medium",
-      "speaker": "f_neutral",
+      "speaker": "f_conversational",
       "styles": {
         "neutral": "f_neutral",
+        "conversational": "f_conversational",
         "happy": "f_happy",
-        "conversational": "f_conversation"
+        "sad": "f_sad",
+        "angry": "f_angry",
+        "fearful": "f_fearful",
+        "surprised": "f_surprised",
+        "disgusted": "f_disgusted"
       },
-      "default_style": "neutral",
+      "default_style": "conversational",
       "gender": "F",
       "age_group": "unspecified",
       "style": "conversational, natural",
@@ -263,20 +268,25 @@
       "aliases": [],
       "name": "Piper Hindi young female",
       "license": "Trained data AI4Bharat Rasa Hindi, CC-BY-4.0 (docs/V7-ROADMAP.md); model licence to be confirmed before release",
-      "data_source": "AI4Bharat Rasa Hindi female speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists",
+      "data_source": "AI4Bharat Rasa Hindi female speaker, train split, V7 gates (data/hi_v7 on the private HF repo; dataset_report.md). Styles: Rasa CONV+ALEXA -> conversational; read styles -> neutral; each emotion its own speaker",
       "pronunciation_rules": "all"
     },
     {
       "voice_id": "hi-IN-young-male",
       "engine": "piper",
       "model": "hi_IN-v7-medium",
-      "speaker": "m_neutral",
+      "speaker": "m_conversational",
       "styles": {
         "neutral": "m_neutral",
+        "conversational": "m_conversational",
         "happy": "m_happy",
-        "conversational": "m_conversation"
+        "sad": "m_sad",
+        "angry": "m_angry",
+        "fearful": "m_fearful",
+        "surprised": "m_surprised",
+        "disgusted": "m_disgusted"
       },
-      "default_style": "neutral",
+      "default_style": "conversational",
       "gender": "M",
       "age_group": "unspecified",
       "style": "conversational, natural",
@@ -286,7 +296,7 @@
       "aliases": [],
       "name": "Piper Hindi young male",
       "license": "Trained data AI4Bharat Rasa Hindi, CC-BY-4.0 (docs/V7-ROADMAP.md); model licence to be confirmed before release",
-      "data_source": "AI4Bharat Rasa Hindi male speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists",
+      "data_source": "AI4Bharat Rasa Hindi male speaker, train split, V7 gates (data/hi_v7 on the private HF repo; dataset_report.md). Styles: Rasa CONV+ALEXA -> conversational; read styles -> neutral; each emotion its own speaker",
       "pronunciation_rules": "all"
     }
   ]

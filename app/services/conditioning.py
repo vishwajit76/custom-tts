@@ -21,6 +21,11 @@ class Emotion(str, Enum):
     empathetic = "empathetic"
     apologetic = "apologetic"
     serious = "serious"
+    # V7: recorded Rasa emotion styles (learned speakers of the multi-speaker model, never DSP)
+    angry = "angry"
+    fearful = "fearful"
+    surprised = "surprised"
+    disgusted = "disgusted"
 
 
 class Style(str, Enum):
