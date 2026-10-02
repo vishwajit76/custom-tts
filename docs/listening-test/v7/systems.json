@@ -1,0 +1,7 @@
+[
+  {"name": "v6", "spec": "voices/hi_IN-custom-medium.onnx", "status": "available"},
+  {"name": "v7_baseline", "spec": null, "status": "placeholder: first V7 multi-speaker Piper medium; set spec to PATH.onnx@SPEAKER when it exists"},
+  {"name": "v7_improved", "spec": null, "status": "placeholder: V7 after the improvement pass or the medium-vs-high winner"},
+  {"name": "young_female", "spec": null, "status": "placeholder: hi-IN-young-female (Rasa female speaker)"},
+  {"name": "young_male", "spec": null, "status": "placeholder: hi-IN-young-male (Rasa male speaker)"}
+]
