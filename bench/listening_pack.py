@@ -11,6 +11,10 @@ of ratings that real listeners filled in. Protocol: docs/listening-test/README.m
   python -m bench.listening_pack merge --key <out>/KEY_DO_NOT_SHARE.csv --ratings l1.csv l2.csv l3.csv --out results.csv
         -> unblinded long table + per-dimension counts, exact two-sided sign tests (ties excluded), listener consistency on the hidden repeats.
 
+V7 test (any set of systems, 1-5 ratings on six dimensions + blinded A/B, sealed key, anchor, analysis with CIs): docs/listening-test/v7/README.md
+  python -m bench.listening_pack make-v7 --system v6=voices/hi_IN-custom-medium.onnx --system v7=exp/v7.onnx@young_female --n-items 20 --listeners 5 --out /tmp/v7pack
+  python -m bench.listening_pack analyze-v7 --key /tmp/v7pack/organizer/KEY_DO_NOT_SHARE.json --rating l1_rating.csv ... --ab l1_ab.csv ... --out docs/listening-test/v7/results/run1.json
+
 Rating cell values: A, B or tie (lower case ok) for naturalness, pronunciation, speaker_similarity, prosody, overall_preference.
 Design: same sentence for A and B, random A/B side per item, random item order, RMS-matched loudness, one synthesis per model per item (Piper's noise is
 unseeded, so a single draw is one sample: use >= 20 items and several listeners; --consistency N adds N hidden repeats with swapped sides).
@@ -169,6 +173,222 @@ def cmd_merge(a) -> None:
     print("Votes from several listeners on the same items are not independent: treat the p-values as optimistic; report per-listener counts too.")
 
 
+# ---------------------------------------------------------------- V7 test (docs/listening-test/v7/README.md): any set of systems, blinded ids, sealed key
+DIMS_V7 = ["naturalness", "pronunciation", "prosody", "clarity", "conversational_realism", "speaker_consistency"]
+AB_COLS = ["item_id", "text", *DIMS_V7, "overall_preference", "comment"]
+RATE_COLS = ["stimulus_id", "text", *DIMS_V7, "comment"]
+ANCHOR = "ANCHOR"
+V7_RATE = 24000  # every stimulus is resampled to one rate: a differing file sample rate would reveal the model
+
+
+def _tokens(rng: random.Random, n: int) -> list[str]:
+    out: set[str] = set()
+    while len(out) < n:
+        out.add(f"{rng.getrandbits(32):08x}")
+    lst = sorted(out)  # sorted first: set order is hash-randomized per process
+    rng.shuffle(lst)
+    return lst
+
+
+def plan_v7(systems: list[str], item_ids: list[str], seed: int, pairs: list[tuple[str, str]] | None = None, anchor: bool = True) -> dict:
+    """Pure and seeded. rating stimuli = item x (system + anchor), blind id each; A/B items = item x pair, random side, blind id each.
+    The key (blind id -> system) is what must stay sealed; nothing else in the plan names a system."""
+    rng = random.Random(seed)
+    pairs = pairs if pairs is not None else [(systems[i], systems[j]) for i in range(len(systems)) for j in range(i + 1, len(systems))]
+    names = [*systems, *([ANCHOR] if anchor else [])]
+    cells = [(it, s) for it in item_ids for s in names]
+    ab_cells = [(it, p) for it in item_ids for p in pairs]
+    tok = _tokens(rng, len(cells) + len(ab_cells))
+    stimuli = {tok[k]: {"item": it, "system": s} for k, (it, s) in enumerate(cells)}
+    ab = {}
+    for k, (it, (x, y)) in enumerate(ab_cells):
+        a, b = (x, y) if rng.random() < 0.5 else (y, x)
+        ab[tok[len(cells) + k]] = {"item": it, "A": a, "B": b}
+    return {"seed": seed, "systems": systems, "pairs": [list(p) for p in pairs], "anchor": anchor, "stimuli": stimuli, "ab": ab}
+
+
+def degrade_anchor(wav: np.ndarray, sr: int, seed: int = 0) -> np.ndarray:
+    """Low anchor: band-limited to 4 kHz and noisy. Listeners who rate it as good as the systems are not discriminating."""
+    import soxr
+
+    lo = soxr.resample(soxr.resample(np.asarray(wav, np.float32), sr, 8000, quality="HQ"), 8000, sr, quality="HQ") if sr > 8000 else np.asarray(wav, np.float32)
+    lo = soxr.resample(soxr.resample(lo, sr, 4000, quality="HQ"), 4000, sr, quality="HQ")
+    rms = float(np.sqrt(np.mean(lo ** 2))) + 1e-9
+    return (lo + np.random.default_rng(seed).normal(0, rms * 0.1, len(lo))).astype(np.float32)
+
+
+def _prep(wav: np.ndarray, sr: int) -> np.ndarray:
+    import soxr
+
+    return rms_match(soxr.resample(np.asarray(wav, np.float32), sr, V7_RATE, quality="HQ") if sr != V7_RATE else np.asarray(wav, np.float32))
+
+
+def render_v7(plan: dict, audio: dict, texts: dict, out: Path, listeners: int = 3, provenance: dict | None = None) -> dict:
+    """audio[(system, item)] = (float wav, sr) for every system AND item (the anchor is derived). Writes out/listener_pack/{audio,sheets} and out/organizer/
+    {KEY_DO_NOT_SHARE.json, pack_manifest.json}. Returns the key. The listener pack contains only blind ids and corpus text."""
+    import hashlib
+
+    lp, org = out / "listener_pack", out / "organizer"
+    (lp / "audio").mkdir(parents=True, exist_ok=True)
+    (lp / "sheets").mkdir(exist_ok=True)
+    org.mkdir(parents=True, exist_ok=True)
+    for sid, s in plan["stimuli"].items():
+        w, sr = audio[(s["system"], s["item"])] if s["system"] != ANCHOR else (lambda a: (degrade_anchor(a[0], a[1], plan["seed"]), a[1]))(audio[(plan["systems"][0], s["item"])])
+        sf.write(lp / "audio" / f"r_{sid}.wav", _prep(w, sr), V7_RATE, subtype="PCM_16")
+    for iid, s in plan["ab"].items():
+        for side in "AB":
+            w, sr = audio[(s[side], s["item"])]
+            sf.write(lp / "audio" / f"ab_{iid}_{side}.wav", _prep(w, sr), V7_RATE, subtype="PCM_16")
+    for k in range(1, listeners + 1):  # same blind audio, a different order per listener
+        rng = random.Random(plan["seed"] * 1000 + k)
+        for name, cols, ids, idcol, extra in (("rating", RATE_COLS, list(plan["stimuli"]), "stimulus_id", plan["stimuli"]), ("ab", AB_COLS, list(plan["ab"]), "item_id", plan["ab"])):
+            rng.shuffle(ids)
+            with open(lp / "sheets" / f"listener_{k:02d}_{name}.csv", "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, cols)
+                w.writeheader()
+                w.writerows({idcol: i, "text": texts[extra[i]["item"]]} for i in ids)
+    key = {"seed": plan["seed"], "rate_hz": V7_RATE, "stimuli": plan["stimuli"], "ab": plan["ab"], "systems": plan["systems"], "pairs": plan["pairs"], "anchor": plan["anchor"],
+           "provenance": provenance or {}}
+    kb = json.dumps(key, ensure_ascii=False, indent=1, sort_keys=True).encode("utf-8")
+    (org / "KEY_DO_NOT_SHARE.json").write_bytes(kb)
+    (org / "pack_manifest.json").write_text(json.dumps({
+        "key_sha256": hashlib.sha256(kb).hexdigest(), "n_rating_stimuli": len(plan["stimuli"]), "n_ab_items": len(plan["ab"]), "listeners": listeners, "seed": plan["seed"],
+        "note": "key_sha256 commits to the sealed key at pack time: record it (e.g. in the repo) BEFORE listeners start, so the assignment cannot be changed afterwards; analyze verifies it"}, indent=1))
+    return key
+
+
+def _read_scores(path, cols, allowed):
+    rows = read_csv(path)
+    for r in rows:
+        for c in cols:
+            v = (r.get(c) or "").strip()
+            if v and v.lower() not in allowed:
+                raise ValueError(f"{path}: {r.get('stimulus_id') or r.get('item_id')} {c}: {v!r} not in {sorted(allowed)}")
+    return rows
+
+
+def _boot_mean(by_item: dict, b: int, seed: int) -> list[float]:
+    """95% CI of the mean over all ratings, resampling ITEMS (a listener's ratings of one sentence are not independent of each other's)."""
+    items = list(by_item)
+    s = np.array([sum(by_item[i]) for i in items], float)
+    c = np.array([len(by_item[i]) for i in items], float)
+    idx = np.random.default_rng(seed).integers(0, len(items), size=(b, len(items)))
+    m = s[idx].sum(1) / c[idx].sum(1)
+    return [round(float(np.percentile(m, 2.5)), 3), round(float(np.percentile(m, 97.5)), 3)]
+
+
+def analyze_v7(key: dict, rating_sheets: dict[str, list[dict]], ab_sheets: dict[str, list[dict]], b: int = 2000, seed: int = 0) -> dict:
+    """Unblind and summarize. Ratings are integers 1-5 (blank = not rated); A/B cells are A, B or tie. Never mixed with automated metrics: this output is the human evidence."""
+    out: dict = {"n_listeners": {"rating": len(rating_sheets), "ab": len(ab_sheets)}, "scale": "1 (bad) to 5 (excellent); means are of ratings, not MOS predictions",
+                 "ratings": {}, "rating_pair_diffs": [], "ab": [], "listener_checks": {}}
+    data: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))  # dim -> system -> item -> [values]
+    per_listener_anchor: dict = defaultdict(lambda: defaultdict(list))
+    for lid, sheet in rating_sheets.items():
+        for r in sheet:
+            k = key["stimuli"][r["stimulus_id"]]
+            for d in DIMS_V7:
+                v = (r.get(d) or "").strip()
+                if v:
+                    data[d][k["system"]][k["item"]].append(int(v))
+                    if d == "naturalness":
+                        per_listener_anchor[lid][k["system"]].append(int(v))
+    for d in DIMS_V7:
+        out["ratings"][d] = {}
+        for s, by in data[d].items():
+            vals = [x for v in by.values() for x in v]
+            out["ratings"][d][s] = {"mean": round(float(np.mean(vals)), 3), "ci95": _boot_mean(by, b, seed), "n_ratings": len(vals), "n_items": len(by)}
+        systems = [s for s in key["systems"] if s in data[d]]
+        for i, x in enumerate(systems):
+            for y in systems[i + 1:]:
+                common = sorted(set(data[d][x]) & set(data[d][y]))
+                if len(common) < 3:
+                    continue
+                dx = np.array([np.mean(data[d][y][c]) - np.mean(data[d][x][c]) for c in common])
+                idx = np.random.default_rng(seed).integers(0, len(dx), size=(b, len(dx)))
+                bm = dx[idx].mean(1)
+                lo, hi = float(np.percentile(bm, 2.5)), float(np.percentile(bm, 97.5))
+                out["rating_pair_diffs"].append({"dimension": d, "baseline": x, "candidate": y, "delta_mean": round(float(dx.mean()), 3), "ci95": [round(lo, 3), round(hi, 3)],
+                                                 "excludes_zero": bool(lo > 0 or hi < 0), "n_items": len(common)})
+    for lid, by in per_listener_anchor.items():
+        sysm = {s: float(np.mean(v)) for s, v in by.items() if s != ANCHOR}
+        anc = float(np.mean(by[ANCHOR])) if ANCHOR in by else None
+        out["listener_checks"][lid] = {"anchor_naturalness_mean": None if anc is None else round(anc, 2), "min_system_naturalness_mean": round(min(sysm.values()), 2) if sysm else None,
+                                       "flag_anchor_not_below_all_systems": bool(anc is not None and sysm and anc >= min(sysm.values()))}
+    wins: dict = defaultdict(lambda: defaultdict(Counter))  # (a,b) sorted -> dim -> Counter(system|tie)
+    per_l: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(Counter)))
+    for lid, sheet in ab_sheets.items():
+        for r in sheet:
+            k = key["ab"][r["item_id"]]
+            pair = tuple(sorted((k["A"], k["B"])))
+            for d in [*DIMS_V7, "overall_preference"]:
+                v = (r.get(d) or "").strip().lower()
+                if v in ("a", "b"):
+                    w = k[v.upper()]
+                elif v == "tie":
+                    w = "tie"
+                elif v == "":
+                    continue
+                else:
+                    raise ValueError(f"{r['item_id']} {d}: {v!r} not A, B or tie")
+                wins[pair][d][w] += 1
+                per_l[pair][d][lid][w] += 1
+    n_tests = max(1, sum(len(v) for v in wins.values()))
+    for pair, dims in sorted(wins.items()):
+        for d, c in dims.items():
+            x, y = pair
+            n = c[x] + c[y]
+            out["ab"].append({"pair": [x, y], "dimension": d, x: c[x], y: c[y], "tie": c["tie"], "n_non_tie": n, "sign_test_p_two_sided": round(sign_test_p(c[x], n), 4),
+                              "bonferroni_alpha": round(0.05 / n_tests, 5), "per_listener": {l: {x: v[x], y: v[y], "tie": v["tie"]} for l, v in per_l[pair][d].items()}})
+    out["ab_note"] = ("sign test on non-tie votes pooled over listeners; votes on the same items are not independent, so p-values are optimistic: read per_listener and the item count. "
+                      "bonferroni_alpha is 0.05 divided by the number of (pair, dimension) tests")
+    return out
+
+
+def cmd_make_v7(a) -> None:
+    from bench import corpus as corpus_mod
+    from bench import v7_eval as ve
+
+    specs = list(a.system)
+    if a.systems_file:
+        for e in json.loads(Path(a.systems_file).read_text("utf-8")):
+            if e.get("spec"):
+                specs.append(f"{e['name']}={e['spec']}")
+            else:
+                print(f"skip {e['name']}: placeholder, no voice yet")
+    if len(specs) < 2:
+        sys.exit("need at least two systems")
+    rows = corpus_mod.stratified(corpus_mod.load(a.corpus), a.n_items, a.seed)
+    systems = ve.build_piper_systems(specs, True, a.seed)
+    pairs = [tuple(p.split(":")) for p in a.pairs.split(",")] if a.pairs else None
+    audio = {}
+    for s in systems:
+        syn = ve.synthesize_all(s, rows, 1)
+        for r, w in zip(rows, syn["audio"]):
+            audio[(s.name, r["id"])] = (w.astype(np.float32) / 32767, syn["sr"])
+    plan = plan_v7([s.name for s in systems], [r["id"] for r in rows], a.seed, pairs, not a.no_anchor)
+    prov = {s.name: s.info() for s in systems} | {"corpus": a.corpus, "corpus_sha256": corpus_mod.VERSIONS[a.corpus][1]}
+    render_v7(plan, audio, {r["id"]: r["text"] for r in rows}, Path(a.out), a.listeners, prov)
+    print(f"pack in {a.out}: give listeners ONLY {a.out}/listener_pack; keep {a.out}/organizer sealed (record pack_manifest.json key_sha256 before the test)")
+
+
+def cmd_analyze_v7(a) -> None:
+    import hashlib
+
+    kb = Path(a.key).read_bytes()
+    man = Path(a.key).with_name("pack_manifest.json")
+    if man.exists() and json.loads(man.read_text())["key_sha256"] != hashlib.sha256(kb).hexdigest():
+        sys.exit("KEY sha256 does not match pack_manifest.json: the key was changed after the pack was made")
+    key = json.loads(kb)
+    rating = {Path(p).stem: _read_scores(p, DIMS_V7, {"1", "2", "3", "4", "5"}) for p in a.rating}
+    ab = {Path(p).stem: _read_scores(p, [*DIMS_V7, "overall_preference"], {"a", "b", "tie"}) for p in a.ab}
+    res = analyze_v7(key, rating, ab, a.bootstrap, a.seed)
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(a.out).write_text(json.dumps(res, ensure_ascii=False, indent=1) + "\n", "utf-8")
+    for d, m in res["ratings"].items():
+        print(d, {s: f"{v['mean']} {v['ci95']}" for s, v in m.items()})
+    print("wrote", a.out)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -176,9 +396,22 @@ def main() -> None:
     m.add_argument("--a"); m.add_argument("--b"); m.add_argument("--a-onnx"); m.add_argument("--b-onnx"); m.add_argument("--a-label"); m.add_argument("--b-label")
     m.add_argument("--n", type=int, default=20); m.add_argument("--seed", type=int, default=7); m.add_argument("--consistency", type=int, default=3)
     m.add_argument("--sentences", default=str(HERE / "hi_eval_50.txt")); m.add_argument("--out", required=True)
+    v = sub.add_parser("make-v7")
+    v.add_argument("--system", action="append", default=[], help="NAME=PATH.onnx[@SPEAKER] | NAME=voice:ID (see bench/v7_eval.py)")
+    v.add_argument("--systems-file", help="docs/listening-test/v7/systems.json; entries with spec null are placeholders and skipped")
+    v.add_argument("--corpus", default="v2"); v.add_argument("--n-items", type=int, default=20); v.add_argument("--seed", type=int, default=7)
+    v.add_argument("--listeners", type=int, default=5); v.add_argument("--pairs", help="a:b,c:d (default: every pair)"); v.add_argument("--no-anchor", action="store_true")
+    v.add_argument("--out", required=True)
+    z = sub.add_parser("analyze-v7")
+    z.add_argument("--key", required=True); z.add_argument("--rating", nargs="*", default=[]); z.add_argument("--ab", nargs="*", default=[])
+    z.add_argument("--bootstrap", type=int, default=2000); z.add_argument("--seed", type=int, default=0); z.add_argument("--out", required=True)
     g = sub.add_parser("merge")
     g.add_argument("--key", required=True); g.add_argument("--ratings", nargs="+", required=True); g.add_argument("--out", required=True)
     a = ap.parse_args()
+    if a.cmd == "make-v7":
+        return cmd_make_v7(a)
+    if a.cmd == "analyze-v7":
+        return cmd_analyze_v7(a)
     if a.cmd == "make":
         if not ((a.a or a.a_onnx) and (a.b or a.b_onnx)):
             ap.error("give --a/--a-onnx and --b/--b-onnx")
