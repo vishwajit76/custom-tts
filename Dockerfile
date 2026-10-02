@@ -6,6 +6,7 @@ COPY requirements*.txt ./
 ARG REQUIREMENTS=requirements.txt
 RUN pip install --no-cache-dir -r $REQUIREMENTS
 COPY app app
+COPY voices/catalog.json voices/catalog.json
 COPY scripts scripts
 ARG VOICES="hi_IN-rohan-medium"
 RUN python scripts/download_voices.py $VOICES && rm -rf /root/.cache/huggingface

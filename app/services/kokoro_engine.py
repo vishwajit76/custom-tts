@@ -14,7 +14,7 @@ import numpy as np
 from kokoro_onnx import SAMPLE_RATE, Kokoro
 
 from app.core.config import settings
-from app.services import indian_english
+from app.services import indian_english, voice_catalog
 from app.services.conditioning import EngineCapabilities
 from app.services.piper_engine import make_session
 
@@ -68,7 +68,7 @@ class KokoroEngine:
 
     def voices(self) -> list[dict]:
         return [{"voice_id": v, "sample_rate": SAMPLE_RATE, "language": "hi", "engine": "kokoro",
-                 "gender": v[len(PREFIX) + 1].upper(), "name": f"Kokoro {NAMES[v[len(PREFIX):]]}"} for v in self._styles]
+                 "gender": voice_catalog.gender_of(v), "name": f"Kokoro {NAMES[v[len(PREFIX):]]}"} for v in self._styles]
 
     def has_voice(self, voice: str) -> bool:
         return voice in self._styles

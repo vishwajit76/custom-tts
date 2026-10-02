@@ -11,6 +11,7 @@ import numpy as np
 from supertonic import TTS
 
 from app.core.config import settings
+from app.services import voice_catalog
 from app.services.conditioning import EngineCapabilities
 
 log = logging.getLogger(__name__)
@@ -42,7 +43,7 @@ class SupertonicEngine:
 
     def voices(self) -> list[dict]:
         sr = self.tts.sample_rate
-        return [{"voice_id": v, "sample_rate": sr, "language": "hi", "engine": "supertonic", "gender": v[len(PREFIX)],
+        return [{"voice_id": v, "sample_rate": sr, "language": "hi", "engine": "supertonic", "gender": voice_catalog.gender_of(v),
                  "name": f"Supertonic {v[len(PREFIX):]}"} for v in self._styles]
 
     def has_voice(self, voice: str) -> bool:
