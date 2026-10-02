@@ -27,7 +27,7 @@ def tag(text: str) -> list[tuple[str, str]]:
                     out.append((t, "en"))
                 else:
                     out.append((t, "hi-Latn"))
-            elif "ऀ" <= t[0] <= "ॿ" and not ("०" <= t[0] <= "९"):
+            elif "ऀ" <= t[0] <= "ॣ" or "ॱ" <= t[0] <= "ॿ":  # not the danda or Devanagari digits
                 out.append((t, "hi"))
             elif t[0].isdigit() or "०" <= t[0] <= "९":
                 out.append((t, "num"))
