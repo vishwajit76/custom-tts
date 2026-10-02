@@ -1,0 +1,15 @@
+{
+  "id": "vishwajit76/custom-tts-v7-data",
+  "title": "custom-tts-v7-data",
+  "code_file": "data_kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["vishwajit76/cttsh-secrets"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
