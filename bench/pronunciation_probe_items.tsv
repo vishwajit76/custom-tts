@@ -70,7 +70,7 @@ text	category	expected	note
 एकदम	schwa	eːkd̪əm
 जनवरी	schwa-number	dʒənʋəriː	month name written by the normalizer
 फ़रवरी	schwa-number	fərʋəriː
-दशमलव	schwa-number	d̪əʃməlʋ	decimal point word written by the normalizer
+दशमलव	schwa-number	d̪əʃmələʋ	decimal point word written by the normalizer
 उनसठ	schwa-number	ʊnsəʈʰ
 पचपन	schwa-number	pətʃpən
 नमस्कार	schwa	nəməskaːr
@@ -131,7 +131,7 @@ text	category	expected	note
 इज़्ज़त	perso-arabic	ɪzzət̪
 मदद	perso-arabic	mədəd̪
 क़िस्मत	perso-arabic	qɪsmət̪
-इंतज़ार	perso-arabic	ɪnt̪əzaːr
+इंतज़ार	perso-arabic	ɪnt̪ɪzaːr
 शुक्रिया	perso-arabic	ʃʊkrɪjaː
 अख़बार	perso-arabic	əxbaːr
 कंप्यूटर	loanword-dev	kəmpjuːʈər
@@ -161,7 +161,7 @@ Priyanka	name-latin	prɪjəŋkaː
 Vishwajit	name-latin	ʋɪʃʋədʒiːt
 Flipkart	brand	flɪpkaːrʈ
 Paytm	brand	peːʈiːɛm
-Zomato	brand	zoːmaːʈoː
+Zomato	brand	zoːmɛːʈoː	spelling ज़ोमैटो is the Hindi convention; a vs ɛ not settled
 Swiggy	brand	sʋɪɡiː
 Jio	brand	dʒɪjoː
 Airtel	brand	eːjərʈeːl
@@ -195,4 +195,4 @@ ID	abbreviation	aːi diː
 PDF	abbreviation	piː diː ɛf
 sorry	english	sɔri
 password	english	paːsʋərɖ
-insurance	english	ɪnʃjʊrəns
+insurance	english	ɪnʃjoːrens

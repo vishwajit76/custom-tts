@@ -37,7 +37,8 @@ _MAP = str.maketrans({"ʌ": "ə", "ɐ": "ə", "ɦ": "h", "ɡ": "g", "ɾ": "r", "
 
 
 def broad(ipa: str) -> str:
-    s = unicodedata.normalize("NFD", ipa).translate(_MAP).replace("C", "tʃ").replace("J", "dʒ")
+    s = unicodedata.normalize("NFD", ipa).replace("\u0361", "").replace("tʃ", "c").replace("dʒ", "ɟ").translate(_MAP)
+    s = s.replace("C", "tʃ").replace("J", "dʒ")
     s = re.sub(r"[nm](?=[ptkbdgfsʃzxqhjvlrmn])", "", s)  # nasal before a consonant: nasalised vowel and V+N are one thing
     s = re.sub(r"(.)\1+", r"\1", s)  # gemination
     return s

@@ -19,6 +19,7 @@ _MATRAS = frozenset("ािीुूृॄॅॆेैॉॊोौ")
 _MARKS = frozenset("ँंः")
 _CONS = frozenset(chr(c) for c in range(0x0915, 0x093A)) | frozenset("क़ख़ग़ज़ड़ढ़फ़य़")
 _INDEP = frozenset(chr(c) for c in range(0x0904, 0x0915))
+_H = ("ह", "ढ\u093c")  # ढ़ is read r.h: its h part behaves like ह (पढ़ता: espeak pa-r.h-a-taa)
 _NASALS = frozenset("नमण")
 _NOT_X = frozenset("रनम")  # espeak already drops the schwa after र्/न्/म् + nasal (कर्म, जन्म): leave those alone
 
@@ -91,7 +92,7 @@ def word(w: str) -> str:
         u[-3].halant()  # KAR
         changed = True
     for i in range(n - 2, 0, -1):  # H
-        if u[i].bare and u[i].text == "ह" and _vowelled(u, i - 1) and not u[i - 1].mark:
+        if u[i].bare and u[i].text in _H and _vowelled(u, i - 1) and not u[i - 1].mark:
             nxt = u[i + 1]
             if nxt.cons and (nxt.v == "m" or (nxt.v == "a" and i + 1 < n - 1)):
                 u[i].halant()
