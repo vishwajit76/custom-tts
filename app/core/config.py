@@ -92,6 +92,18 @@ class Settings(BaseSettings):
     pause_ms: int = 150  # chunk that ends mid-sentence (Kokoro's own pause at a comma is ~120 ms)
     sentence_pause_ms: int = 350  # chunk that ends a sentence (। . ? !)
     cache_size: int = 256  # cached chunks (repeated calling phrases)
+    # Audio quality (bench/audio_quality.py, docs/benchmarks.md). Each switch off ("" / 0) restores the pre-v7 behaviour.
+    # pause_plan: total silence (ms) between the last speech of one piece and the first of the next, chosen by how the
+    # first piece ends: comma, colon (; :), dash, ellipsis, sentence (। .), question, exclaim, phrase (cut mid-sentence,
+    # no punctuation). Only where the text is split into pieces; the model's own pause inside a piece is untouched. A
+    # piece's trailing silence is capped to its gap and padded up to it (the engines' own tails ranged 40-280 ms by voice).
+    # Also pads each piece's lead silence to exactly lead_silence_ms (an onset at sample 0 was left at 0 ms). "" = caps only.
+    pause_plan: str = "comma:180,colon:240,dash:200,ellipsis:420,sentence:320,question:360,exclaim:300,phrase:130"
+    # Raised-cosine fade (ms) on a chunk edge that was cut while still audible (> -54 dBFS), never on a natural silence edge.
+    fade_ms: float = 3.0
+    # Static per-voice gain in dB (voice id or model stem -> dB), calibrated offline to -20 LUFS median speech level
+    # (python -m bench.audio_quality --calibrate --target-lufs -20): the four Piper voices ranged -20.5..-15.7 LUFS.
+    voice_gain_db: str = "hi_IN-custom-medium:0.5,hi_IN-pratham-medium:-1.6,hi_IN-priyamvada-medium:-4.3,hi_IN-rohan-medium:-3.7"
 
     # --- protection ---
     api_keys: str = ""  # comma separated; empty disables auth (dev only)

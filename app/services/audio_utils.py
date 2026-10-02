@@ -33,6 +33,34 @@ def change_speed(wav: np.ndarray, speed: float) -> np.ndarray:
     return librosa.effects.time_stretch(wav, rate=speed)
 
 
+def parse_kv(spec: str) -> dict[str, float]:
+    """'a:1.5,b:-2' -> {'a': 1.5, 'b': -2.0}. The value is after the LAST colon (voice ids may be 'model:speaker')."""
+    out = {}
+    for item in spec.split(","):
+        if item.strip():
+            k, _, v = item.rpartition(":")
+            out[k.strip()] = float(v)
+    return out
+
+
+def edge_fades(wav: np.ndarray, sr: int, ms: float, thr: float = 0.002) -> np.ndarray:
+    """Raised-cosine fade over `ms` on whichever end of `wav` is still audible (> thr, ~-54 dBFS): those are hard cuts. An
+    end that is already silent is a natural edge and is left alone. Returns `wav` itself when nothing needed a fade."""
+    n = min(int(sr * ms / 1000), len(wav) // 4)
+    if n < 2 or not len(wav):
+        return wav
+    ramp = (0.5 - 0.5 * np.cos(np.pi * np.arange(n) / n)).astype(wav.dtype)
+    head, tail = abs(wav[0]) > thr, abs(wav[-1]) > thr
+    if not (head or tail):
+        return wav
+    wav = wav.copy()  # the input may be a cached chunk
+    if head:
+        wav[:n] *= ramp
+    if tail:
+        wav[-n:] *= ramp[::-1]
+    return wav
+
+
 _KNEE = 0.9
 
 
