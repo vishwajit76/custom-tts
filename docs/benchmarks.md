@@ -443,7 +443,7 @@ Time to first audio (`tts.stream`, first byte, 20 warm repeats after 3 warm-ups,
 
 Target p50 < 100 ms holds. The added work per chunk is a few numpy passes over milliseconds of audio.
 
-## 11. V7 evaluation (2026-10-02)
+## 12. V7 evaluation (2026-10-02)
 
 Harness `python -m bench.v7_eval` (docstring has the full contract), corpus `bench/corpus/hi_eval_v2.tsv` (258 rows, sha256 `814850bf...2f601`, [bench/corpus/README.md](../bench/corpus/README.md), not native-reviewed),
 human test protocol [listening-test/v7/README.md](listening-test/v7/README.md). One JSON per run in `bench/results/v7_eval/`: CER/PER overall and per category with bootstrap CIs and the ASR model name, UTMOS as *predicted* MOS,

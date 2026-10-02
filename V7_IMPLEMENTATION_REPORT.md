@@ -16,7 +16,7 @@ evaluation. Architecture and data details: [docs/V7.md](docs/V7.md). Plan and st
 | 5 | Existing voices keep working | **done**: legacy ids pinned by tests; pronunciation rules default off |
 | 6 | Persona gender agreement robust | **done** within stated limits (tests/test_persona_grammar.py, 429 cases) |
 | 7 | Benchmarks reproducible | **done** for the harness (hash-pinned corpus, seeds, recorded env); no V7 numbers yet |
-| 8 | All tests pass | **done**: 1472 passed, 2 skipped, 4 xfailed; 5 consecutive clean full runs |
+| 8 | All tests pass | **done**: 1490 passed, 2 skipped, 4 xfailed; repeated clean full runs (exit 0) |
 | 9 | Telephony stable | **done** for the pipeline (8/16 kHz length, level, aliasing within bounds); V7 voices not measured yet |
 | 10 | Docs match implementation | **done** for landed code |
 | 11 | Voice/data rights documented | **done**; the V7 weights inherit a non-commercial lineage (see Licensing) |
@@ -79,8 +79,26 @@ session each. Measured feasibility: on the M4 GPU, medium trains at about 3 s pe
 
 ## Benchmark tables
 
-**Pending** for V7. The V6 quick baseline on corpus v2 is in `bench/results/v7_eval/` and `docs/benchmarks.md` (V7 evaluation
-section).
+**Pending** for V7. V6 baseline (`bench/results/v7_eval/v6_baseline_quick_small.json`; `bench/v7_eval.py --quick`: corpus v2
+sha256 `814850bf...`, 32 stratified rows, faster-whisper small, seeded VITS noise, 95% bootstrap CIs over rows, Apple M4):
+
+| Metric | V6 `hi_IN-custom-medium` | V7 young female | V7 young male |
+|---|---|---|---|
+| CER | 0.206 [0.160, 0.254] | pending | pending |
+| PER | 0.168 [0.144, 0.191] | pending | pending |
+| CER 16 kHz / 8 kHz | 0.209 / 0.220 | pending | pending |
+| Predicted MOS (UTMOS22, not human MOS) | 4.04 [3.93, 4.13] | pending | pending |
+| TTFA p50 / p95 (harness: one scheduler worker, seeded graph copy) | 113 / 166 ms | pending | pending |
+| RTF p50 | 0.036 | pending | pending |
+| Clipped samples | 0 | pending | pending |
+
+Per-category CER (n of 3-8 rows each, indicative only): Hindi 0.151, questions 0.102, expressive 0.133, numbers 0.183, pronunciation
+0.198, Hinglish 0.429. Whisper small explains much of the CER level; compare systems only within one run of the harness. The harness
+TTFA (113 ms) is higher than the T6 measurement (34-38 ms, `tts.stream` with the normal worker pool and an unmodified session); the
+cause is not yet isolated, so the latency target is only claimed for the T6 setup.
+
+Corpus v2 vs training text: no exact sentence overlap with Rasa train (`data/hi_v7`) or IndicTTS (`data/hi_f`); 12 and 2 rows
+share a common 5-word phrase (e.g. "मैं आपकी क्या मदद कर सकती हूँ"), accepted and recorded here.
 
 ## Audio-quality findings
 
