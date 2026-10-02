@@ -8,7 +8,7 @@ TMP=$(mktemp -d); cp training/kaggle/datakernel/kernel-metadata.json training/ka
 import base64, io, re, sys, zipfile
 from pathlib import Path
 FILES = ["app/__init__.py", "app/services/__init__.py", "app/services/text_normalizer.py", "app/services/hinglish.py", "app/services/lexicon_hi.tsv",
-         "app/services/persona_grammar.py", *map(str, Path("app/services/pronunciation").glob("*")), *map(str, Path("training").glob("*.py"))]
+         "app/services/persona_grammar.py", *map(str, Path("app/services/pronunciation").rglob("*")), *map(str, Path("training").glob("*.py"))]
 buf = io.BytesIO()
 with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
     for f in FILES:

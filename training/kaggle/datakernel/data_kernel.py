@@ -31,10 +31,27 @@ raw, out = W / "rasa_hi", W / "stage" / "data" / VOICE_NAME  # staged so upload_
 test_out = W / "stage_test" / "data" / f"{VOICE_NAME}_rasa_test"
 for split in ("train", "test"):  # Rasa's own test split stays a separate held-out set (never trained on)
     sh(sys.executable, "-m", "training.ingest_hf", *([LOCAL] if LOCAL else []), "--preset", "rasa",
-       "--out", raw if split == "train" else test_out, "--split", split, "--map", "speaker_id={gender}_{style}", cwd=src, env=env)
+       "--out", raw if split == "train" else test_out, "--split", split,  cwd=src, env=env)
+
+# Piper speaker = gender x style group (Rasa labels seen 2026-10-02 on Hindi/test-00000). Read-speech styles share one "neutral" speaker;
+# CONV and ALEXA (voice-assistant requests) are the conversational register we serve; each emotion keeps its own speaker so it is learned, not DSP.
+import csv, collections
+GROUP = {"CONV": "conversational", "ALEXA": "conversational", "HAPPY": "happy", "SAD": "sad", "ANGER": "angry", "FEAR": "fearful",
+         "SURPRISE": "surprised", "DISGUST": "disgusted"}  # everything else (WIKI, BOOK, NEWS, INDIC, PROPER NOUN, DIGI, UMANG, BB, ...) -> neutral
+for meta in (raw / "metadata.csv", test_out / "metadata.csv"):
+    rows, new_of = list(csv.DictReader(open(meta, encoding="utf-8"))), collections.defaultdict(set)
+    for r in rows:
+        new = f"{(r.get('gender') or 'x')[0].lower()}_{GROUP.get((r.get('style') or '').upper(), 'neutral')}"
+        new_of[r["speaker_id"]].add(new); r["speaker_id"] = new
+    with open(meta, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
+    rights = meta.parent / "rights.jsonl"  # the rights entry covers the same recordings under their new speaker ids
+    ents = [json.loads(l) for l in rights.read_text("utf-8").splitlines() if l.strip()]
+    for e in ents:
+        e["speaker_ids"] = sorted({n for o in e.get("speaker_ids", []) for n in new_of.get(o, {o})})
+    rights.write_text("".join(json.dumps(e, ensure_ascii=False) + "\n" for e in ents), "utf-8")
 
 # what is in the corpus: hours per gender x style (printed for the advisor; also uploaded)
-import csv, collections
 hours = collections.Counter()
 for r in csv.DictReader(open(raw / "metadata.csv", encoding="utf-8")):
     hours[(r.get("gender"), r.get("style"))] += float(r.get("duration") or 0) / 3600
