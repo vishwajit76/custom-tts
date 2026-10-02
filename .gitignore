@@ -18,3 +18,4 @@ training/runs/
 *.ckpt
 voices/*.onnx*
 work/
+.claude/worktrees/
