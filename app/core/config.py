@@ -28,6 +28,11 @@ class Settings(BaseSettings):
     model_name: str = "hindi-tts-v2"  # public name exposed by /v1/models
     default_voice: str = "hi_IN-rohan-medium"  # what voice="default" resolves to
     log_level: str = "INFO"
+    # Hindi pronunciation respellings (app/services/pronunciation, docs/pronunciation.md): comma list of rule groups
+    # (grammar, schwa, names, english), or all | off. OFF by default: tests/data/pronunciation_corpus.tsv pins today's
+    # output (it keeps "WhatsApp", "sorry", "यह" as written) and the halant respellings are not audio-verified. Turn on
+    # per deployment, after a native listener has approved, with PRONUNCIATION_RULES=all.
+    pronunciation_rules: str = "off"
 
     # --- piper ---
     models_dir: Path = Path("models/piper")  # every *.onnx + *.onnx.json here is a voice
