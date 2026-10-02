@@ -274,7 +274,7 @@ deleted (`keep_raw_reference=false`).
 
 **Using the personal custom voice.** `training/export_latest.sh` writes `voices/hi_IN-custom-medium.onnx` + `.onnx.json` (gitignored, personal-use, intermediate checkpoint; see
 [custom-voice-runbook.md](custom-voice-runbook.md)). It is selectable next to the bundled voices with `MODELS_EXTRA=voices` (default empty: no other deployment changes; a voice whose
-file stem is already loaded from `MODELS_DIR` is never shadowed): `GET /v1/voices` then lists `hi_IN-custom-medium` (engine `piper`, 22.05 kHz, no gender claimed), and
+file stem is already loaded from `MODELS_DIR` is never shadowed): `GET /v1/voices` then lists `hi_IN-custom-medium` (engine `piper`, 22.05 kHz, gender F from the voice catalog, see [voices.md](voices.md)), and
 `{"voice": "hi_IN-custom-medium"}` or `DEFAULT_VOICE=hi_IN-custom-medium` selects it. `voices/` is also `VOICES_DIR`, where the qwen3 engine keeps its `*.wav` reference clips; the two
 uses do not collide (Piper reads only `*.onnx`). Its inference defaults are the voice's own (`noise_scale` 0.667, `noise_w` 0.8, `length_scale` 1.0 from its `.onnx.json`); see the infer-grid
 note under "Four mechanisms" for the pending recommendation. The `speaker_id` path for it needs a registry speaker with `engine_bindings {"piper": "hi_IN-custom-medium"}` and recorded consent.
