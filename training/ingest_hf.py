@@ -154,8 +154,12 @@ def ingest(repo: str, out: Path, mapping: dict[str, str], *, config: str = "", s
                 break
             if local is None:
                 from huggingface_hub import hf_hub_download
+                from huggingface_hub.errors import GatedRepoError
 
-                local = Path(hf_hub_download(repo, name, repo_type="dataset", revision=sha))
+                try:
+                    local = Path(hf_hub_download(repo, name, repo_type="dataset", revision=sha))
+                except GatedRepoError:
+                    raise SystemExit(f"{repo} is gated: accept its terms on huggingface.co with the account behind HF_TOKEN, then rerun") from None
             pf = pq.ParquetFile(local)
             cols = [c for c in pf.schema_arrow.names if c in need]
             row_no = -1
