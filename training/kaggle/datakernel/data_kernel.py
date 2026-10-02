@@ -19,7 +19,8 @@ def sh(*cmd, **kw):
 
 src = W / "src"
 zipfile.ZipFile(io.BytesIO(base64.b64decode(CODE_B64))).extractall(src)
-env = dict(os.environ, PYTHONPATH=str(src), PYTHONUNBUFFERED="1")
+env = dict(os.environ, PYTHONPATH=str(src), PYTHONUNBUFFERED="1",
+           PRONUNCIATION_RULES=os.environ.get("PRONUNCIATION_RULES", "all"))  # train on rule-corrected text; the V7 catalog entries pin the same rules
 if not LOCAL:
     tok = glob.glob("/kaggle/input/**/hf_token", recursive=True)
     assert tok, "hf_token not found under /kaggle/input"

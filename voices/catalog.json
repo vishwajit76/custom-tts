@@ -263,7 +263,8 @@
       "aliases": [],
       "name": "Piper Hindi young female",
       "license": "Trained data AI4Bharat Rasa Hindi, CC-BY-4.0 (docs/V7-ROADMAP.md); model licence to be confirmed before release",
-      "data_source": "AI4Bharat Rasa Hindi female speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists"
+      "data_source": "AI4Bharat Rasa Hindi female speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists",
+      "pronunciation_rules": "all"
     },
     {
       "voice_id": "hi-IN-young-male",
@@ -285,7 +286,8 @@
       "aliases": [],
       "name": "Piper Hindi young male",
       "license": "Trained data AI4Bharat Rasa Hindi, CC-BY-4.0 (docs/V7-ROADMAP.md); model licence to be confirmed before release",
-      "data_source": "AI4Bharat Rasa Hindi male speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists"
+      "data_source": "AI4Bharat Rasa Hindi male speaker (dataset label). Planned: speaker keys and style names are placeholders until the trained speaker_id_map exists",
+      "pronunciation_rules": "all"
     }
   ]
 }
