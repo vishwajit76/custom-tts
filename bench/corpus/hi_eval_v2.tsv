@@ -1,0 +1,259 @@
+id	category	subcategory	text	notes
+hi-001	hindi	statement	आपकी बुकिंग की पुष्टि हो गई है, टिकट आपके मोबाइल पर भेज दिया गया है।	domain=booking
+hi-002	hindi	statement	आपका सामान आज शाम छह बजे तक आपके पते पर पहुँच जाएगा।	domain=delivery
+hi-003	hindi	statement	मैं आपके खाते की जानकारी देख रही हूँ, कृपया थोड़ी देर लाइन पर बने रहिए।	domain=banking; speaker=f
+hi-004	hindi	statement	डॉक्टर साहब कल सुबह ग्यारह बजे से दोपहर एक बजे तक उपलब्ध रहेंगे।	domain=appointment
+hi-005	hindi	statement	आपकी समस्या हमारे तकनीकी विभाग को भेज दी गई है।	domain=support
+hi-006	hindi	statement	हमारी शाखा सोमवार से शनिवार तक सुबह दस बजे से शाम चार बजे तक खुली रहती है।	domain=banking
+hi-007	hindi	statement	आपका पार्सल अभी हमारे गोदाम में है और कल सुबह रवाना होगा।	domain=delivery
+hi-008	hindi	statement	मैंने आपकी शिकायत दर्ज कर ली है और जल्दी ही आपको जवाब मिल जाएगा।	domain=support
+hi-009	hindi	statement	इस होटल में नाश्ते के साथ दो लोगों के लिए कमरा उपलब्ध है।	domain=booking
+hi-010	hindi	statement	आपके क्रेडिट कार्ड की सीमा इस महीने पूरी तरह इस्तेमाल हो चुकी है।	domain=banking
+hi-011	hindi	statement	हमारे डिलीवरी एजेंट आपके मोहल्ले में पहुँच चुके हैं।	domain=delivery
+hi-012	hindi	statement	आपकी अगली किस्त अगले महीने की पाँच तारीख़ को कटेगी।	domain=banking
+hi-013	hindi	statement	मैं पिछले दस मिनट से आपकी रिपोर्ट देख रहा हूँ, सब कुछ ठीक दिख रहा है।	domain=support; speaker=m
+hi-014	hindi	statement	आपकी रिपोर्ट तैयार है, आप उसे कल दोपहर के बाद ले सकते हैं।	domain=appointment
+hi-015	hindi	statement	इस ट्रेन में वातानुकूलित डिब्बे की कुछ सीटें अभी ख़ाली हैं।	domain=booking
+hi-016	hindi	statement	आपके इंटरनेट कनेक्शन में कल रात से गड़बड़ी चल रही थी, अब उसे ठीक कर दिया गया है।	domain=support
+hi-017	hindi	statement	हमने आपके पुराने खाते को नए बचत खाते से जोड़ दिया है।	domain=banking
+hi-018	hindi	statement	बारिश की वजह से आज डिलीवरी में थोड़ी देर हो रही है।	domain=delivery
+hi-019	hindi	statement	आपके बच्चे का टीकाकरण अगले हफ़्ते मंगलवार को होना है।	domain=appointment
+hi-020	hindi	statement	यह उड़ान समय पर है और यात्री सात नंबर गेट पर पहुँच सकते हैं।	domain=booking
+hi-021	hindi	statement	आपके मोबाइल पर एक संदेश भेजा गया है, उसमें पूरा विवरण लिखा है।	domain=support
+hi-022	hindi	statement	मैं आपकी बात अच्छी तरह समझ रही हूँ, इसलिए आपको दोबारा कुछ बताने की ज़रूरत नहीं है।	domain=support; speaker=f
+hi-023	hindi	statement	पिछले महीने का विवरण हमारी वेबसाइट पर उपलब्ध है।	domain=banking
+hi-024	hindi	statement	कल की तुलना में आज आपके इलाक़े में ज़्यादा ऑर्डर आए हैं।	domain=delivery
+hi-025	hindi	statement	हमारे यहाँ हर मरीज़ के लिए अलग से समय तय किया जाता है।	domain=appointment
+hi-026	hindi	statement	आपने जो टिकट रद्द किया था, उसका पैसा तीन से पाँच कार्यदिवसों में वापस आ जाएगा।	domain=booking
+hi-027	hindi	statement	आपके खाते में अभी पर्याप्त राशि मौजूद नहीं है।	domain=banking
+hi-028	hindi	statement	मैं इस काम पर पिछले हफ़्ते से लगा हुआ हूँ और अब यह लगभग पूरा हो चुका है।	domain=support; speaker=m
+hi-029	hindi	statement	आपका अनुरोध हमारे सिस्टम में सफलतापूर्वक दर्ज हो गया है।	domain=support
+hi-030	hindi	statement	डिलीवरी के समय किसी बड़े व्यक्ति का घर पर होना ज़रूरी है।	domain=delivery
+hi-031	hindi	confirmation	जी हाँ, आपकी बुकिंग शुक्रवार की ही है और आपको खिड़की वाली सीट मिली है।	domain=booking
+hi-032	hindi	confirmation	बिल्कुल, आपका भुगतान सफल रहा और रसीद आपके ईमेल पर भेज दी गई है।	domain=banking
+hi-033	hindi	confirmation	ठीक है, मैंने आपका पता बदल दिया है, अब सामान नए पते पर जाएगा।	domain=delivery
+hi-034	hindi	confirmation	जी, आपका अपॉइंटमेंट शनिवार सुबह साढ़े नौ बजे के लिए पक्का हो गया है।	domain=appointment
+hi-035	hindi	confirmation	हाँ, आपकी शिकायत का नंबर आपको संदेश में भेज दिया गया है।	domain=support
+hi-036	hindi	confirmation	जी बिल्कुल, मैं अभी आपका कार्ड बंद कर देती हूँ।	domain=banking; speaker=f
+hi-037	hindi	confirmation	ठीक है सर, तो मैं कल दोपहर तीन बजे का समय आपके नाम से लिख लेता हूँ।	domain=appointment; speaker=m
+hi-038	hindi	confirmation	जी हाँ, आपका ऑर्डर रद्द हो चुका है और पैसे वापस भेज दिए गए हैं।	domain=delivery
+hi-039	hindi	confirmation	जी, मैं पुष्टि करती हूँ कि कमरा दो रातों के लिए आपके नाम पर सुरक्षित है।	domain=booking; speaker=f
+hi-040	hindi	confirmation	हाँ जी, आपका नंबर बदल दिया गया है, अब से संदेश नए नंबर पर आएँगे।	domain=support
+hi-041	hindi	confirmation	जी, मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है।	domain=support
+hi-042	hindi	confirmation	सही कह रहे हैं आप, मेरे रिकॉर्ड में भी यही तारीख़ दिख रही है।	domain=banking
+hi-043	hindi	uncertainty	शायद आपका पार्सल आज शाम तक पहुँच जाए, पर मैं पक्का नहीं कह सकती।	domain=delivery; speaker=f
+hi-044	hindi	uncertainty	मुझे ठीक से याद नहीं है, मैं एक बार रिकॉर्ड देखकर बताता हूँ।	domain=support; speaker=m
+hi-045	hindi	uncertainty	हो सकता है कि बारिश की वजह से उड़ान में देर हो जाए।	domain=booking
+hi-046	hindi	uncertainty	शायद डॉक्टर साहब अभी मरीज़ को देख रहे होंगे, मैं पता करके बताती हूँ।	domain=appointment; speaker=f
+hi-047	hindi	uncertainty	मुझे लगता है कि आपका पैसा कल तक वापस आ जाएगा, लेकिन बैंक से पूछना पड़ेगा।	domain=banking
+hi-048	hindi	uncertainty	पक्का तो नहीं कह सकता, पर शायद यह समस्या सर्वर की वजह से है।	domain=support; speaker=m
+hi-049	hindi	uncertainty	मेरे ख़याल से आपका ऑर्डर आज ही निकल गया होगा, फिर भी मैं जाँच लेती हूँ।	domain=delivery; speaker=f
+hi-050	hindi	uncertainty	शायद सीट मिल जाए, लेकिन अभी इंतज़ार सूची में काफ़ी नाम हैं।	domain=booking
+hi-051	hindi	uncertainty	यह तो मुझे भी नहीं पता कि इसमें कितना समय लगेगा, शायद एक या दो दिन।	domain=support
+hi-052	hindi	uncertainty	हो सकता है आपके खाते में कोई पुरानी बकाया राशि बची हो, मैं देख लेती हूँ।	domain=banking; speaker=f
+hi-053	hindi	apology	असुविधा के लिए हमें बहुत खेद है, हम इसे जल्द से जल्द ठीक करेंगे।	domain=support
+hi-054	hindi	apology	माफ़ कीजिए, आपका ऑर्डर देर से पहुँचा, इसके लिए मैं सचमुच शर्मिंदा हूँ।	domain=delivery
+hi-055	hindi	apology	मुझे बहुत अफ़सोस है कि आपको इतनी बार फ़ोन करना पड़ा।	domain=support
+hi-056	hindi	apology	क्षमा कीजिए, हमारी तरफ़ से आपका नाम ग़लत लिख दिया गया था।	domain=booking
+hi-057	hindi	apology	आपको जो परेशानी हुई, उसके लिए मैं दिल से माफ़ी माँगता हूँ।	domain=support; speaker=m
+hi-058	hindi	apology	माफ़ कीजिएगा, लाइन में कुछ आवाज़ आ रही थी, इसलिए मैं आपकी बात पूरी तरह नहीं सुन पाई।	domain=support; speaker=f
+hi-059	hindi	apology	देरी के लिए क्षमा चाहती हूँ, आपका फ़ोन उठाने में कुछ समय लग गया।	domain=appointment; speaker=f
+hi-060	hindi	apology	हमें खेद है कि आपके खाते से ग़लत राशि कट गई, उसे आज ही वापस कर दिया जाएगा।	domain=banking
+hi-061	hindi	apology	माफ़ कीजिए, डॉक्टर साहब को एक आपातकालीन मरीज़ देखना पड़ा, इसलिए आपका समय आगे बढ़ गया है।	domain=appointment
+hi-062	hindi	apology	ग़लती हमारी थी, और मैं आपसे वादा करता हूँ कि दोबारा ऐसा नहीं होगा।	domain=support; speaker=m
+hi-063	hindi	request	कृपया अपना बुकिंग नंबर बताइए।	domain=booking
+hi-064	hindi	request	कृपया अपना पूरा नाम और जन्म की तारीख़ बता दीजिए।	domain=booking
+hi-065	hindi	request	आपसे निवेदन है कि आप डिलीवरी के समय अपना फ़ोन पास रखें।	domain=delivery
+hi-066	hindi	request	ज़रा एक बार अपना पता दोहरा दीजिए।	domain=delivery
+hi-067	hindi	request	कृपया लाइन पर बने रहिए, मैं आपको विशेषज्ञ से जोड़ रही हूँ।	domain=support; speaker=f
+hi-068	hindi	request	अगर आपको कोई आपत्ति न हो, तो कृपया अपना वैकल्पिक नंबर भी दे दीजिए।	domain=support
+hi-069	hindi	request	मुझे थोड़ा समय दीजिए, मैं आपका खाता जाँच लेती हूँ।	domain=banking; speaker=f
+hi-070	hindi	request	कृपया ध्यान दें कि बैंक कभी आपसे आपका पिन नहीं माँगता।	domain=banking
+hi-071	hindi	request	आप चाहें तो मैं आपको दोपहर बाद दोबारा फ़ोन कर सकता हूँ, बस आप समय बता दीजिए।	domain=appointment; speaker=m
+hi-072	hindi	request	कृपया अपने साथ पुरानी रिपोर्ट और पहचान पत्र ज़रूर लाइएगा।	domain=appointment
+hi-073	hindi	request	कृपया इस बातचीत के बाद हमारी सेवा को रेटिंग ज़रूर दीजिएगा।	domain=support
+hi-074	hindi	request	ज़रा धीरे बोलिए, मैं सब कुछ लिख रही हूँ।	domain=support; speaker=f
+hi-075	hindi	request	कृपया यात्रा से एक घंटा पहले हवाई अड्डे पर पहुँचने की कोशिश कीजिए।	domain=booking
+hi-076	hindi	request	मेरी बात ध्यान से सुन लीजिए, यह आपके पैसों की सुरक्षा का मामला है।	domain=banking
+hi-077	hindi	instruction	सबसे पहले अपना मोबाइल ऐप खोलिए और मेन्यू में जाकर बुकिंग का विकल्प चुनिए।	domain=booking
+hi-078	hindi	instruction	अब स्क्रीन पर दिख रहे हरे बटन को दबाइए।	domain=support
+hi-079	hindi	instruction	पैकेट खोलने से पहले उसकी तस्वीर ज़रूर खींच लीजिए।	domain=delivery
+hi-080	hindi	instruction	दवा सुबह ख़ाली पेट लीजिए और उसके आधे घंटे बाद नाश्ता कीजिए।	domain=appointment
+hi-081	hindi	instruction	अपना पिन किसी के साथ साझा मत कीजिए, चाहे फ़ोन करने वाला ख़ुद को बैंक कर्मचारी ही क्यों न बताए।	domain=banking
+hi-082	hindi	instruction	राउटर का प्लग निकालिए, एक मिनट रुकिए और फिर उसे दोबारा लगा दीजिए।	domain=support
+hi-083	hindi	instruction	डिलीवरी बॉय को ओटीपी तभी बताइए जब सामान आपके हाथ में आ जाए।	domain=delivery
+hi-084	hindi	instruction	फ़ॉर्म में अपना नाम वैसे ही लिखिए जैसे वह पहचान पत्र पर छपा है।	domain=booking
+hi-085	hindi	instruction	सीधे जाइए, फिर दूसरे मोड़ से दाईं ओर मुड़ जाइए, क्लिनिक आपको बाईं तरफ़ दिखेगा।	domain=appointment
+hi-086	hindi	instruction	पहले पुराना पासवर्ड डालिए, फिर नीचे दो बार नया पासवर्ड लिखकर पुष्टि दबाइए।	domain=support
+hi-087	hindi	instruction	चेक पर तारीख़ और हस्ताक्षर करना मत भूलिएगा।	domain=banking
+hi-088	hindi	instruction	बिल जमा करने के बाद रसीद का स्क्रीनशॉट अपने पास सुरक्षित रख लीजिए।	domain=banking
+hi-089	hindi	instruction	जाँच से दो घंटे पहले कुछ भी मत खाइए, सिर्फ़ पानी पी सकते हैं।	domain=appointment
+hi-090	hindi	instruction	पार्सल लौटाने के लिए उसे उसी डिब्बे में पैक कीजिए और एजेंट के आने तक सँभालकर रखिए।	domain=delivery
+hi-091	hindi	exclamation	वाह, आपकी सीट तो बिज़नेस क्लास में अपग्रेड हो गई है!	domain=booking
+hi-092	hindi	exclamation	अरे वाह, आपका पार्सल तो समय से पहले ही पहुँच गया!	domain=delivery
+hi-093	hindi	exclamation	बधाई हो, आपका लोन मंज़ूर हो गया है!	domain=banking
+hi-094	hindi	exclamation	शाबाश, आपने सारे चरण सही सही पूरे कर लिए!	domain=support
+hi-095	hindi	exclamation	ओह, यह तो बहुत बुरा हुआ, आपका सामान रास्ते में ही ख़राब हो गया!	domain=delivery
+hi-096	hindi	exclamation	हे भगवान, आपका फ़ोन तो पानी में गिर गया था!	domain=support
+hi-097	hindi	exclamation	कमाल है, इतनी जल्दी आपका पैसा वापस भी आ गया!	domain=banking
+hi-098	hindi	exclamation	मुबारक हो, आपके बेटे का नाम स्कूल की सूची में आ गया है!	domain=appointment
+hi-099	hindi	exclamation	अरे, आज तो सच में बहुत भीड़ है, मैंने ऐसा पहले कभी नहीं देखा!	domain=booking
+hi-100	hindi	exclamation	बहुत बढ़िया, अब सब कुछ बिल्कुल ठीक चल रहा है!	domain=support
+hg-001	hinglish	statement	आपका order आज शाम तक deliver हो जाएगा।	domain=delivery; script=mixed
+hg-002	hinglish	statement	मैंने आपका ticket book कर दिया है, confirmation आपके email पर आएगा।	domain=booking; script=mixed
+hg-003	hinglish	statement	आपके account में अभी balance कम है, इसलिए payment fail हो गया।	domain=banking; script=mixed
+hg-004	hinglish	statement	Doctor की availability कल सुबह की है, afternoon में slot नहीं बचा।	domain=appointment; script=mixed
+hg-005	hinglish	statement	आपकी EMI हर महीने की दस तारीख़ को auto debit होती है।	domain=banking; script=mixed
+hg-006	hinglish	statement	आपका refund process हो चुका है, पाँच working days में account में आ जाएगा।	domain=banking; script=mixed
+hg-007	hinglish	statement	हमारे delivery partner ने तीन बार कोशिश की, लेकिन आप घर पर available नहीं थे।	domain=delivery; script=mixed
+hg-008	hinglish	statement	आपका flight गेट नंबर बारह से depart होगा और boarding पौन घंटे पहले शुरू होगी।	domain=booking; script=mixed
+hg-009	hinglish	statement	Hotel का check-in दोपहर दो बजे से है और check-out सुबह ग्यारह बजे तक।	domain=booking; script=mixed
+hg-010	hinglish	statement	आपके phone पर एक link भेजा गया है, उसी से आप video call join कर सकते हैं।	domain=appointment; script=mixed
+hg-011	hinglish	statement	आपके area में आज network की problem चल रही है, engineer मौके पर पहुँच चुके हैं।	domain=support; script=mixed
+hg-012	hinglish	statement	aapka order kal subah tak aapke ghar pahunch jayega.	domain=delivery; script=roman
+hg-013	hinglish	statement	main aapki details check kar rahi hoon, bas ek minute lagega.	domain=support; script=roman; speaker=f
+hg-014	hinglish	statement	aapka appointment Tuesday ko shaam paanch baje ka fix ho gaya hai.	domain=appointment; script=roman
+hg-015	hinglish	request	Please अपना booking ID बता दीजिए।	domain=booking; script=mixed
+hg-016	hinglish	request	कृपया थोड़ा wait कीजिए, मैं system में check कर रही हूँ।	domain=support; script=mixed; speaker=f
+hg-017	hinglish	request	आप अपना registered mobile number confirm कर दीजिए।	domain=banking; script=mixed
+hg-018	hinglish	request	Please delivery के समय अपना phone on रखिएगा।	domain=delivery; script=mixed
+hg-019	hinglish	request	एक बार अपनी date of birth बता दीजिए, उसके बाद मैं request submit कर दूँगा।	domain=banking; script=mixed; speaker=m
+hg-020	hinglish	request	kripya apna email ID bataiye, main confirmation wahin bhej deti hoon.	domain=booking; script=roman; speaker=f
+hg-021	hinglish	request	thoda sa wait kijiye, main manager se baat karke aapko batati hoon.	domain=support; script=roman; speaker=f
+hg-022	hinglish	request	aap please apna order number dobara bol dijiye.	domain=delivery; script=roman
+hg-023	hinglish	instruction	App खोलिए, Settings में जाइए और Notifications को off कर दीजिए।	domain=support; script=mixed
+hg-024	hinglish	instruction	पहले अपना username डालिए, फिर Next पर click कीजिए।	domain=support; script=mixed
+hg-025	hinglish	instruction	Payment करने के बाद screenshot ज़रूर save कर लीजिए।	domain=banking; script=mixed
+hg-026	hinglish	instruction	Package को open करने से पहले seal check कर लीजिए।	domain=delivery; script=mixed
+hg-027	hinglish	instruction	Form में date of birth वही लिखिए जो Aadhaar card पर है।	domain=booking; script=mixed
+hg-028	hinglish	instruction	Reports अपलोड करने के लिए नीचे वाले Upload बटन पर tap कीजिए।	domain=appointment; script=mixed
+hg-029	hinglish	instruction	phone ko restart kijiye aur phir se login karke dekhiye.	domain=support; script=roman
+hg-030	hinglish	instruction	link par click karne se pehle check kar lijiye ki website ka address sahi hai.	domain=banking; script=roman
+hg-031	hinglish	confirmation	Yes, आपकी booking confirm है और seat भी allot हो गई है।	domain=booking; script=mixed
+hg-032	hinglish	confirmation	जी हाँ, आपका payment successfully हो गया है।	domain=banking; script=mixed
+hg-033	hinglish	confirmation	ठीक है, मैं address update कर देती हूँ, अब parcel नए address पर जाएगा।	domain=delivery; script=mixed; speaker=f
+hg-034	hinglish	confirmation	जी, आपका appointment reschedule हो गया है, new time शुक्रवार शाम पाँच बजे है।	domain=appointment; script=mixed
+hg-035	hinglish	confirmation	ji haan, aapka ticket cancel ho gaya hai aur refund bhi start ho gaya hai.	domain=booking; script=roman
+hg-036	hinglish	confirmation	bilkul sir, main abhi aapki request escalate kar deta hoon.	domain=support; script=roman; speaker=m
+hg-037	hinglish	yes_no_question	क्या आपको confirmation message मिल गया?	domain=booking; script=mixed
+hg-038	hinglish	yes_no_question	क्या आप अभी free हैं, या मैं आपको थोड़ी देर बाद call करूँ?	domain=appointment; script=mixed
+hg-039	hinglish	yes_no_question	क्या आपने app में दोबारा login करके देखा?	domain=support; script=mixed
+hg-040	hinglish	yes_no_question	क्या मैं आपका address एक बार verify कर सकती हूँ?	domain=delivery; script=mixed; speaker=f
+hg-041	hinglish	yes_no_question	kya aapko OTP mil gaya?	domain=banking; script=roman
+hg-042	hinglish	yes_no_question	kya aap card ko abhi block karna chahenge?	domain=banking; script=roman
+hg-043	hinglish	wh_question	आपका delivery address कौन सा है?	domain=delivery; script=mixed
+hg-044	hinglish	wh_question	आपको कितने बजे का slot चाहिए?	domain=appointment; script=mixed
+hg-045	hinglish	wh_question	aapne payment kis card se kiya tha?	domain=banking; script=roman
+hg-046	hinglish	wh_question	aapko yeh problem kab se aa rahi hai?	domain=support; script=roman
+hg-047	hinglish	apology	Sorry, आपको wait करना पड़ा, system में थोड़ी problem थी।	domain=support; script=mixed
+hg-048	hinglish	apology	हमें बहुत खेद है कि आपका order late हो गया, हम इसके लिए माफ़ी चाहते हैं।	domain=delivery; script=mixed
+hg-049	hinglish	apology	माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।	domain=booking; script=mixed
+hg-050	hinglish	apology	sorry sir, aapko dobara call karna pada, main is baat ke liye maafi chahti hoon.	domain=support; script=roman; speaker=f
+num-001	numbers	currency	आपके खाते से ₹1,250 कट गए हैं।	domain=banking
+num-002	numbers	currency	आपका बकाया बिल ₹2,499.50 है, जिसे आप आज ही जमा कर सकते हैं।	domain=banking
+num-003	numbers	currency	कुल राशि Rs. 15,000 होगी, जिसमें जीएसटी शामिल है।	domain=booking
+num-004	numbers	currency	आपकी EMI ₹8,750 प्रति माह है और अभी 15 किस्तें बाक़ी हैं।	domain=banking
+num-005	numbers	currency	आपके खाते में ₹1,00,000 से ज़्यादा की राशि जमा हुई है।	domain=banking
+num-006	numbers	currency	इस टिकट का किराया 450 रुपये है।	domain=booking
+num-007	numbers	currency	आपका लोन ₹5 लाख का है और ब्याज दर 9.5% सालाना है।	domain=banking
+num-008	numbers	currency	वापसी की राशि ₹349 आपके खाते में आ गई है।	domain=delivery
+num-009	numbers	date	आपका ऑर्डर 15 अक्टूबर को पहुँचेगा।	domain=delivery
+num-010	numbers	date	आपकी अपॉइंटमेंट 03/11/2026 को है।	domain=appointment
+num-011	numbers	date	आपकी बुकिंग 3 नवंबर 2026 से 6 नवंबर 2026 तक है।	domain=booking
+num-012	numbers	date	आपकी पॉलिसी 31 मार्च 2027 को समाप्त हो जाएगी।	domain=banking
+num-013	numbers	date	आपकी जन्मतिथि 12-08-1994 के रूप में दर्ज है।	domain=banking
+num-014	numbers	date	बैंक 26 जनवरी और 15 अगस्त को बंद रहेगा।	domain=banking
+num-015	numbers	time	बैंक शाम 4 बजे बंद हो जाता है।	domain=banking
+num-016	numbers	time	ट्रेन रात 11:45 बजे रवाना होगी।	domain=booking
+num-017	numbers	time	आपकी अपॉइंटमेंट सुबह 10:30 बजे है।	domain=appointment
+num-018	numbers	time	कृपया 7:15 बजे तक स्टेशन पहुँच जाइए।	domain=booking
+num-019	numbers	time	हमारी हेल्पलाइन सुबह 9 बजे से रात 9 बजे तक चालू रहती है।	domain=support
+num-020	numbers	time	फ़्लाइट की बोर्डिंग दोपहर 2:50 बजे शुरू होगी।	domain=booking
+num-021	numbers	phone_otp	मेरा नंबर 98765 43210 है।	domain=support
+num-022	numbers	phone_otp	आपका OTP 482915 है, इसे किसी को न बताएँ।	domain=banking
+num-023	numbers	phone_otp	हमारा टोल फ़्री नंबर 1800 123 4567 है।	domain=support
+num-024	numbers	phone_otp	आपके कार्ड के आख़िरी चार अंक 4821 हैं।	domain=banking; known_gap=ideal reading is digit by digit
+num-025	numbers	percent_quantity	इस ऑफ़र पर 25% की छूट मिलेगी।	domain=booking
+num-026	numbers	percent_quantity	आपके पैकेट का वज़न 2.5 किलो है।	domain=delivery
+num-027	numbers	percent_quantity	दूरी लगभग 12 किमी है और पहुँचने में 40 मिनट लगेंगे।	domain=delivery
+num-028	numbers	percent_quantity	आज का तापमान 38 डिग्री है और नमी 65% है।	domain=booking
+num-029	numbers	ordinal_id	आपकी सीट नंबर 14A है।	domain=booking
+num-030	numbers	ordinal_id	आपका कमरा तीसरी मंज़िल पर है, कमरा नंबर 305।	domain=booking
+num-031	numbers	ordinal_id	आपका शिकायत नंबर SR-48213 है।	domain=support
+num-032	numbers	ordinal_id	आपका PNR नंबर 2845671930 है।	domain=booking
+pron-001	pronunciation	schwa_deletion	आपका कमरा तैयार है, चाबी रिसेप्शन से मिल जाएगी।	focus=कमरा, चाबी
+pron-002	pronunciation	schwa_deletion	समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।	focus=समझना, बोल
+pron-003	pronunciation	schwa_deletion	मैं आपके सवाल का जवाब ज़रूर दूँगी, बस थोड़ा सब्र कीजिए।	focus=जवाब, सब्र; speaker=f
+pron-004	pronunciation	schwa_deletion	बरसात के मौसम में सड़कें अक्सर फिसलन भरी हो जाती हैं।	focus=बरसात, सड़कें, फिसलन, अक्सर
+pron-005	pronunciation	conjunct	कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।	focus=कृपया, प्रमाणपत्र, प्रति, त्र
+pron-006	pronunciation	conjunct	श्रीमान, आपकी प्रार्थना स्वीकार कर ली गई है, शुल्क में छूट मिलेगी।	focus=श्रीमान, प्रार्थना, स्वीकार, शुल्क
+pron-007	pronunciation	conjunct	मुख्य अध्यापक ने कक्षा के सभी विद्यार्थियों को क्षमा कर दिया।	focus=क्ष, ध्य, र्थ, ख्य
+pron-008	pronunciation	conjunct	उनका स्वास्थ्य अब बेहतर है और वे अस्पताल से छुट्टी लेकर घर जा सकते हैं।	focus=स्वास्थ्य, अस्पताल, छुट्टी
+pron-009	pronunciation	nukta	ज़रूरी काग़ज़ात फ़ोन पर भेजने की ज़रूरत नहीं है, हम ख़ुद ले लेंगे।	focus=ज़रूरी, काग़ज़ात, ख़ुद
+pron-010	pronunciation	nukta	आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।	focus=फ़ाइल, ग़लतियाँ
+pron-011	pronunciation	nukta	ज़िंदगी भर की बचत को सुरक्षित रखने के लिए बीमा ज़रूर कराइए।	focus=ज़िंदगी, बीमा, ज़रूर
+pron-012	pronunciation	nukta	आज की ख़बर में बिजली के बिल में राहत का ज़िक्र है।	focus=ख़बर, ज़िक्र, राहत
+pron-013	pronunciation	anusvara_chandrabindu	माँ ने कहा कि वहाँ जाँच के लिए पाँच लोग आँगन में खड़े हैं।	focus=माँ, वहाँ, जाँच, पाँच, आँगन
+pron-014	pronunciation	anusvara_chandrabindu	आपका संदेश मिल गया है, हम संपर्क करके आपको सूचना दे देंगे।	focus=संदेश, संपर्क, सूचना
+pron-015	pronunciation	anusvara_chandrabindu	यहाँ से सीधे जाइए, वहाँ दाएँ और बाएँ दोनों तरफ़ दुकानें हैं, कहीं भी पूछ लीजिए।	focus=यहाँ, दाएँ, बाएँ, कहीं
+pron-016	pronunciation	ri_vowel	आपकी माता जी का ऋण चुका दिया गया है, अब कोई बकाया नहीं है।	focus=ऋण
+pron-017	pronunciation	ri_vowel	हम ऋषिकेश के लिए बस का टिकट देख रहे हैं, कृपया बताइए कौन सी बस ठीक रहेगी।	focus=ऋषिकेश, कृपया
+pron-018	pronunciation	ri_vowel	गृह प्रवेश की पूजा के लिए पंडित जी ने मृदुल जी की कुंडली देखकर शुभ मुहूर्त निकाला है।	focus=गृह, मृदुल, कुंडली
+pron-019	pronunciation	perso_arabic	जनाब, आपकी ख़्वाहिश के मुताबिक़ हमने सारा इंतज़ाम कर दिया है।	focus=ख़्वाहिश, मुताबिक़, इंतज़ाम
+pron-020	pronunciation	perso_arabic	मुझे अफ़सोस है, यह मामला हमारे इख़्तियार से बाहर है।	focus=अफ़सोस, इख़्तियार
+pron-021	pronunciation	perso_arabic	आपकी दरख़्वास्त मंज़ूर हो गई है, अब कोई और क़ानूनी कार्रवाई नहीं होगी।	focus=दरख़्वास्त, मंज़ूर, क़ानूनी
+pron-022	pronunciation	english_loan	मेरा स्मार्टफ़ोन हैंग हो गया है, कृपया इंटरनेट बंद करके दोबारा चालू कीजिए।	focus=स्मार्टफ़ोन, हैंग, इंटरनेट
+pron-023	pronunciation	english_loan	कॉलेज की फ़ीस ऑनलाइन जमा करने के लिए आपको वेबसाइट पर रजिस्टर करना होगा।	focus=ऑनलाइन, रजिस्टर, वेबसाइट
+pron-024	pronunciation	english_loan	डॉक्टर ने ऑपरेशन के बाद कुछ दिन हॉस्पिटल में रहने की सलाह दी है।	focus=ऑपरेशन, हॉस्पिटल
+pron-025	pronunciation	indian_name	नमस्ते, मैं प्रियंका शर्मा बोल रही हूँ, क्या मेरी बात श्रीमान विवेक अग्रवाल से हो रही है?	focus=प्रियंका, श्रीमान, अग्रवाल
+pron-026	pronunciation	indian_name	आपका ऑर्डर श्रीमती ज्ञानवती देवी और श्री गजेंद्र सिंह के नाम से बुक हुआ है।	focus=ज्ञानवती, गजेंद्र
+pron-027	pronunciation	indian_name	मेरा नाम अभिषेक चतुर्वेदी है और मेरी बहन का नाम ऐश्वर्या है।	focus=अभिषेक, चतुर्वेदी, ऐश्वर्या
+pron-028	pronunciation	brand	आपका पेमेंट PhonePe और Google Pay दोनों से हो सकता है।	focus=PhonePe, Google Pay
+pron-029	pronunciation	brand	आप अपना सामान Flipkart या Amazon से मँगवा सकते हैं, दोनों जगह डिलीवरी मुफ़्त है।	focus=Flipkart, Amazon
+pron-030	pronunciation	brand	आपका खाता HDFC बैंक में है और कार्ड Paytm से जुड़ा है।	focus=HDFC, Paytm
+pron-031	pronunciation	city	आपकी ट्रेन अहमदाबाद से जयपुर होते हुए चंडीगढ़ जाएगी।	focus=अहमदाबाद, जयपुर, चंडीगढ़
+pron-032	pronunciation	city	मेरी फ़्लाइट बेंगलुरु से लखनऊ की है, और वापसी तिरुवनंतपुरम से है।	focus=बेंगलुरु, लखनऊ, तिरुवनंतपुरम
+q-001	questions	yes_no_question	क्या आपको अपना ऑर्डर समय पर मिल गया था?	domain=delivery
+q-002	questions	yes_no_question	क्या मैं आपका नाम और मोबाइल नंबर एक बार दोहरा सकती हूँ?	domain=support; speaker=f
+q-003	questions	yes_no_question	क्या आप इसी नंबर पर दोबारा बात करना चाहेंगे?	domain=appointment
+q-004	questions	yes_no_question	क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?	domain=booking
+q-005	questions	yes_no_question	क्या आपके पास पुरानी रिपोर्ट मौजूद है?	domain=appointment
+q-006	questions	yes_no_question	क्या आपका इंटरनेट अब ठीक से चल रहा है?	domain=support
+q-007	questions	yes_no_question	क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?	domain=support
+q-008	questions	yes_no_question	क्या आपको नाश्ते के साथ चाय भी चाहिए या सिर्फ़ कॉफ़ी?	domain=booking
+q-009	questions	yes_no_question	क्या डिलीवरी के वक़्त घर पर कोई मौजूद रहेगा?	domain=delivery
+q-010	questions	yes_no_question	क्या आप बता सकते हैं कि आपने आख़िरी बार कार्ड कब इस्तेमाल किया था?	domain=banking
+q-011	questions	yes_no_question	ठीक है न, तो मैं इसे आज ही भेज दूँ?	domain=delivery
+q-012	questions	wh_question	आपका अपॉइंटमेंट किस दिन और किस समय का रखें?	domain=appointment
+q-013	questions	wh_question	आपने यह टिकट कहाँ से बुक किया था?	domain=booking
+q-014	questions	wh_question	आपका बैंक खाता किस शहर की शाखा में है?	domain=banking
+q-015	questions	wh_question	आपको यह परेशानी कब से हो रही है?	domain=support
+q-016	questions	wh_question	आप कितने लोगों के लिए कमरा लेना चाहते हैं?	domain=booking
+q-017	questions	wh_question	डिलीवरी के लिए आपका पूरा पता क्या है?	domain=delivery
+q-018	questions	wh_question	आपका ऑर्डर किस पते पर भेजा जाना चाहिए था?	domain=delivery
+q-019	questions	wh_question	इस महीने आपके कार्ड से इतने ज़्यादा पैसे कैसे कट गए?	domain=banking
+q-020	questions	wh_question	मैं आपकी क्या मदद कर सकती हूँ?	domain=support; speaker=f
+q-021	questions	wh_question	आपने कितने बजे फ़ोन किया था और किससे बात हुई थी?	domain=support
+q-022	questions	wh_question	आप किस वजह से अपनी बुकिंग रद्द करना चाहते हैं?	domain=booking
+exp-001	expressive	joy	बहुत बहुत बधाई! आप हमारे दस लाखवें ग्राहक बने हैं, आपको एक शानदार तोहफ़ा मिलेगा!	domain=banking
+exp-002	expressive	joy	यह तो सचमुच बहुत ख़ुशी की बात है, आपके घर नया मेहमान आया है, ढेर सारी शुभकामनाएँ!	domain=appointment
+exp-003	expressive	joy	आख़िरकार आपकी मेहनत रंग लाई, और मुझे आपके लिए बेहद ख़ुशी हो रही है!	domain=banking
+exp-004	expressive	joy	वाह, क्या ख़बर सुनाई है आपने, मेरा तो दिन बन गया!	domain=support
+exp-005	expressive	joy	बिल्कुल बढ़िया! आपकी छुट्टियाँ अब पक्की हैं, बहुत मज़ा आएगा!	domain=booking
+exp-006	expressive	sympathy	यह सुनकर मुझे बहुत दुख हुआ, भगवान आपके परिवार को हिम्मत दे।	domain=support
+exp-007	expressive	sympathy	मैं समझ सकती हूँ कि यह समय आपके लिए कितना कठिन है, आप अकेले नहीं हैं।	domain=support; speaker=f
+exp-008	expressive	sympathy	आपके साथ जो हुआ, उसके बारे में सुनकर सचमुच बहुत बुरा लगा।	domain=delivery
+exp-009	expressive	sympathy	आप चिंता मत कीजिए, हम सब आपके साथ हैं और हर संभव मदद करेंगे।	domain=banking
+exp-010	expressive	sympathy	आपकी तकलीफ़ मैं महसूस कर सकता हूँ, इसलिए आज यह काम मैं ख़ुद देखूँगा।	domain=support; speaker=m
+exp-011	expressive	urgency	जल्दी कीजिए, आपके कार्ड से अभी पैसे निकल रहे हैं, तुरंत उसे ब्लॉक करवाइए!	domain=banking
+exp-012	expressive	urgency	कृपया अभी घर से बाहर निकल जाइए, इमारत में आग लग गई है!	domain=support
+exp-013	expressive	urgency	ध्यान दीजिए, आपकी उड़ान का गेट पाँच मिनट में बंद होने वाला है, फ़ौरन पहुँचिए!	domain=booking
+exp-014	expressive	urgency	रुकिए, यह रक़म मत भेजिए, यह बहुत बड़ी धोखाधड़ी हो सकती है!	domain=banking
+exp-015	expressive	surprise	क्या बात कर रहे हैं आप, इतनी जल्दी आपका ऑर्डर पहुँच भी गया?	domain=delivery
+exp-016	expressive	surprise	अरे, मुझे तो यक़ीन ही नहीं हो रहा कि आप आज ही आ गए!	domain=appointment
+exp-017	expressive	surprise	सच में? मैंने तो सोचा भी नहीं था कि यह इतना सस्ता होगा!	domain=booking
+exp-018	expressive	surprise	हैरानी की बात है, पूरे साल में पहली बार आपके खाते में गड़बड़ी हुई है!	domain=banking
+exp-019	expressive	reassurance	घबराइए मत, आपका सारा पैसा बिल्कुल सुरक्षित है।	domain=banking
+exp-020	expressive	reassurance	आप बिल्कुल निश्चिंत रहिए, मैं यह काम अपनी ज़िम्मेदारी पर पूरा करवाऊँगी।	domain=support; speaker=f
+exp-021	expressive	reassurance	कोई बात नहीं, ग़लती किसी से भी हो सकती है, हम इसे अभी ठीक कर देते हैं।	domain=support
+exp-022	expressive	reassurance	सब ठीक हो जाएगा, बस कुछ मिनट इंतज़ार कीजिए, मैं यहीं आपके साथ हूँ।	domain=support
