@@ -442,3 +442,30 @@ Time to first audio (`tts.stream`, first byte, 20 warm repeats after 3 warm-ups,
 | after (runs 2 and 3, repeated) | 37.8 / 34.1 ms | 48.3 / 37.8 ms |
 
 Target p50 < 100 ms holds. The added work per chunk is a few numpy passes over milliseconds of audio.
+
+## 11. V7 evaluation (2026-10-02)
+
+Harness `python -m bench.v7_eval` (docstring has the full contract), corpus `bench/corpus/hi_eval_v2.tsv` (258 rows, sha256 `814850bf...2f601`, [bench/corpus/README.md](../bench/corpus/README.md), not native-reviewed),
+human test protocol [listening-test/v7/README.md](listening-test/v7/README.md). One JSON per run in `bench/results/v7_eval/`: CER/PER overall and per category with bootstrap CIs and the ASR model name, UTMOS as *predicted* MOS,
+speaker similarity, TTFA/RTF p50/p95, RSS, audio duration, clipping, 8 and 16 kHz variants, environment, corpus and model sha256, git commit, seed; paired deltas when two systems are given (medium vs high: same corpus, same params, `--system med=...onnx --system high=...onnx`).
+Synthesis goes through `app.services.tts.stream` on a real `PiperEngine` (voice-catalog pronunciation rules applied to text and reference); Piper's graph noise is seeded so reruns reproduce the audio. `--quick` = 32 stratified rows.
+
+**V6 quick baseline** (`bench/results/v7_eval/v6_baseline_quick_small.json`, `hi_IN-custom-medium.onnx` sha256 e18a819a...6596e, Apple M4, seed 0):
+ASR **faster-whisper small** (int8 CPU, beam 5, hi), **n = 32 rows**, 95% bootstrap CIs over rows.
+
+| metric | mean [95% CI] |
+|---|---|
+| CER (vowel-aware) | 0.206 [0.160, 0.254] |
+| PER | 0.168 [0.144, 0.191] |
+| CER after 8 kHz / 16 kHz server resampler | 0.220 [0.174, 0.271] / 0.209 [0.162, 0.260] |
+| UTMOS22 **predicted** MOS (English-trained, not a MOS) | 4.04 [3.93, 4.13] |
+| speaker self-consistency (Resemblyzer, leave-one-out; no real reference clips were available, so NOT similarity to the target speaker) | 0.944 [0.937, 0.950] |
+| TTFA p50 / p95 (64 warm streams, 1 worker x 4 threads, cache off) | 113 / 166 ms |
+| RTF p50 / p95 | 0.036 / 0.041 |
+| RSS after synthesis phase / process peak | 684 / 926 MB |
+| clipping | 0 of 32 clips; 119 s audio, 0.087 s per character |
+
+Per category CER (n tiny, indicative only): hindi 0.151 (12), questions 0.102 (3), expressive 0.133 (3), numbers 0.183 (4), pronunciation 0.198 (4), hinglish 0.429 (6; romanized rows and Latin words inflate CER, PER 0.211).
+Wall time: quick run 259 s (whisper small, 3 ASR passes per row). The full corpus is ~8x the rows, so roughly 35 min with small and longer with large-v3-turbo (not measured).
+The corpus is new, so these numbers are not comparable with section 10 (50-sentence v1).
+Not claimed: naturalness (no listening test); overlap of v2 with the real IndicTTS training text (not present on this machine).

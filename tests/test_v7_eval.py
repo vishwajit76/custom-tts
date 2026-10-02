@@ -119,3 +119,12 @@ def test_seeded_noise_graph_patch_sets_seed_only_on_random_nodes():
         b = ve.seeded_make_session(5)(p, 1, False).run(None, {"x": np.zeros(2, np.float32)})[0]
         c = ve.seeded_make_session(6)(p, 1, False).run(None, {"x": np.zeros(2, np.float32)})[0]
     assert np.array_equal(a, b) and not np.array_equal(a, c)
+
+
+def test_reference_uses_the_voices_pronunciation_rules(monkeypatch, rows):
+    from app.services import voice_catalog
+
+    monkeypatch.setattr(voice_catalog, "rules_of", lambda v: "all" if v == "b" else None)
+    s = systems()
+    assert s[0].info()["pronunciation_rules"] is None and s[1].info()["pronunciation_rules"] == "all"
+    assert run(rows[:6])["systems"]["b"]["system"]["pronunciation_rules"] == "all"

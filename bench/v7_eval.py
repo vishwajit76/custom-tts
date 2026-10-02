@@ -118,8 +118,16 @@ class System:
     def __init__(self, name: str, engine, voice: str, model_path: Path | None = None, params: dict | None = None):
         self.name, self.engine, self.voice, self.model_path, self.params = name, engine, voice, model_path, params or {}
 
+    @property
+    def rules(self) -> str | None:
+        """Pronunciation rule groups the server applies to this voice (catalog `pronunciation_rules`; None = settings default). The CER/PER
+        reference is normalized with the same rules, so V7 voices are scored on what they are actually asked to say."""
+        from app.services import voice_catalog
+
+        return voice_catalog.rules_of(self.voice)
+
     def info(self) -> dict:
-        return {"name": self.name, "voice_id": self.voice, "sample_rate": self.engine.sample_rate(self.voice),
+        return {"name": self.name, "pronunciation_rules": self.rules, "voice_id": self.voice, "sample_rate": self.engine.sample_rate(self.voice),
                 "model_file": self.model_path.name if self.model_path else None,
                 "model_sha256": sha256_file(self.model_path) if self.model_path else None, "inference_params": self.params}
 
@@ -260,18 +268,18 @@ def score_system(system: System, rows: list[dict], syn: dict, asr, asr_name: str
     for i, r in enumerate(rows):
         a = syn["audio"][i]
         wav = a.astype(np.float32) / 32767
-        ref = normalize(r["text"])
+        ref = normalize(r["text"], system.rules)
         dur = len(wav) / sr
         row = {"id": r["id"], "category": r["category"], "subcategory": r["subcategory"], "ref": ref, "dur_s": round(dur, 3), "audio_sha256": hashlib.sha256(a.tobytes()).hexdigest()[:16],
                "s_per_char": round(dur / max(1, len(ref.replace(" ", ""))), 4), "clip_fraction": float(np.mean(np.abs(wav) >= 0.999)) if len(wav) else 0.0,
                "silent": bool(not len(wav) or np.max(np.abs(wav)) < 1e-3)}
         if asr is not None and not row["silent"]:
             hyp = asr(wav, sr)
-            nh = normalize(hyp)
+            nh = normalize(hyp, system.rules)
             row |= {"hyp": hyp, "cer": cer(ref, nh), "per": per(ref, nh)}
             for t in TELEPHONY:
                 w2 = server_resample(wav, sr, t)
-                row[f"cer_{t // 1000}k"] = cer(ref, normalize(asr(w2, t)))
+                row[f"cer_{t // 1000}k"] = cer(ref, normalize(asr(w2, t), system.rules))
         elif asr is not None:
             row |= {"hyp": "", "cer": 1.0, "per": 1.0, "cer_8k": 1.0, "cer_16k": 1.0}
         if utmos is not None and not row["silent"]:
