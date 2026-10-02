@@ -53,9 +53,15 @@ class Voice(BaseModel):
     status: Literal["experimental", "production", "planned"]
     aliases: list[str] = []
     name: str | None = None  # display name for /v1/voices; default "Piper <voice_id>"
+    # pronunciation rule groups for this voice's text (app/services/pronunciation); None = settings.pronunciation_rules.
+    # A model trained on rule-corrected text must be served with the same rules, so V7 voices pin theirs here.
+    pronunciation_rules: str | None = None
 
     @model_validator(mode="after")
     def _check(self):
+        if self.pronunciation_rules is not None:
+            from app.services.pronunciation import lexical
+            lexical.parse(self.pronunciation_rules)  # unknown group -> ValueError -> catalog rejected
         if self.age_group != "unspecified" and not (self.age_evidence or "").strip():
             raise ValueError(f"{self.voice_id}: age_group {self.age_group!r} needs age_evidence (dataset metadata or a stated listener screening)")
         if self.engine == "piper" and not self.model:
@@ -129,6 +135,12 @@ def gender_of(voice_id: str) -> str | None:
     """'F' | 'M' as declared in the catalog; None when the voice is not catalogued or no gender is declared."""
     v = get().get(voice_id)
     return v.gender if v else None
+
+
+def rules_of(voice_id: str) -> str | None:
+    """Pronunciation rule groups pinned by the catalog for this voice, or None (use the global setting)."""
+    v = get().get(voice_id)
+    return v.pronunciation_rules if v else None
 
 
 def metadata(voice_id: str) -> dict:

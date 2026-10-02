@@ -1,0 +1,6 @@
+# English words the Indian-English path gets wrong, as a Devanagari respelling the Hindi voice reads correctly.
+# Keys are lowercase Latin. Add a row only for an audible error (docs/pronunciation.md), never to restyle a word.
+word	respelling	category	reason
+sorry	सॉरी	loanword	en-us gives American sˈɑːɹi -> sˈaːɾi ("saari"); Indian English is sɔɾi
+password	पास्वर्ड	loanword	en-us gives pˈæswɜːd -> pˈɛsʋəɾɖ ("pes-verd"); spoken pasvard in India
+insurance	इंश्योरेंस	loanword	en-us gives ɪnʃˈʊɹəns with a doubled trill (ʊɾɾəns); spoken in-shyo-rens

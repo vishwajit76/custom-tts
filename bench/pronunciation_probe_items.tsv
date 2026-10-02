@@ -1,0 +1,198 @@
+text	category	expected	note
+है	grammar	hɛː
+हैं	grammar	hɛ̃ː
+हूँ	grammar	hũː
+हो	grammar	hoː
+था	grammar	t̪ʰaː
+थी	grammar	t̪ʰiː
+थे	grammar	t̪ʰeː
+थीं	grammar	t̪ʰĩː
+करता	grammar	kərt̪aː
+करती	grammar	kərt̪iː
+करते	grammar	kərt̪eː
+रहा	grammar	rəɦaː
+रही	grammar	rəɦiː
+रहे	grammar	rəɦeː
+गया	grammar	ɡəjaː
+गई	grammar	ɡəiː
+गए	grammar	ɡəeː
+चाहता	grammar	tʃaːɦt̪aː
+चाहती	grammar	tʃaːɦt̪iː
+सकता	grammar	səkt̪aː
+सकती	grammar	səkt̪iː
+जाएगा	grammar	dʒaːeːɡaː
+जाएगी	grammar	dʒaːeːɡiː
+करेगा	grammar	kəreːɡaː
+करेगी	grammar	kəreːɡiː
+मिलेगा	grammar	mɪleːɡaː
+मिलेगी	grammar	mɪleːɡiː
+देगा	grammar	d̪eːɡaː
+देगी	grammar	d̪eːɡiː
+ने	grammar	neː
+को	grammar	koː
+से	grammar	seː
+में	grammar	mẽː
+पर	grammar	pər
+यह	grammar	jeː	colloquial yeh, not the literal yah
+ये	grammar	jeː
+वह	grammar	ʋoː	colloquial vo, not the literal vah
+वे	grammar	ʋeː
+मेरा	grammar	meːraː
+मेरी	grammar	meːriː
+मेरे	grammar	meːreː
+आपका	grammar	aːpkaː
+आपकी	grammar	aːpkiː
+आपके	grammar	aːpkeː
+इसका	grammar	ɪskaː
+इसकी	grammar	ɪskiː
+इसके	grammar	ɪskeː
+कमला	schwa	kəmlaː
+समझना	schwa	səmədʒʰnaː
+करवट	schwa	kərʋəʈ
+अपना	schwa	əpnaː
+सरकार	schwa	sərkaːr
+नमकीन	schwa	nəmkiːn
+बदलना	schwa	bəd̪əlnaː
+हलचल	schwa	ɦəlt͡ʃəl
+रामचरित	schwa	raːmtʃərɪt̪	compound: the schwa before the second member is dropped
+धनवान	schwa	d̪ʰənʋaːn
+राम	schwa	raːm	final schwa dropped
+कमल	schwa	kəməl
+कर	schwa	kər
+रहता	schwa	rəɦt̪aː
+पहला	schwa	pəɦlaː	broad: the schwa is raised to [ɛ] before ह, not compared here
+पहचान	schwa	pəɦtʃaːn
+मेहनत	schwa	meːɦnət̪
+देखकर	schwa	d̪eːkʰkər
+बजकर	schwa	bədʒkər
+मतलब	schwa	mət̪ləb
+बचपन	schwa	bətʃpən
+एकदम	schwa	eːkd̪əm
+जनवरी	schwa-number	dʒənʋəriː	month name written by the normalizer
+फ़रवरी	schwa-number	fərʋəriː
+दशमलव	schwa-number	d̪əʃmələʋ	decimal point word written by the normalizer
+उनसठ	schwa-number	ʊnsəʈʰ
+पचपन	schwa-number	pətʃpən
+नमस्कार	schwa	nəməskaːr
+राजस्थान	schwa	raːdʒəst̪ʰaːn
+सैमसंग	schwa	sɛːmsəŋɡ
+अमृतसर	schwa	əmrɪt̪sər
+हँसना	schwa	ɦə̃snaː
+दिल्ली	conjunct	d̪ɪlliː
+उत्तर	conjunct	ʊt̪t̪ər
+प्रदेश	conjunct	prəd̪eːʃ
+प्रश्न	conjunct	prəʃn	final cluster: schwa dropped
+कृष्ण	conjunct	kr̩ɪʂn
+फ़िल्म	conjunct	fɪlm
+ब्रह्म	conjunct	brəɦm
+स्वप्न	conjunct	sʋəpn
+कर्म	conjunct	kərm
+धर्म	conjunct	d̪ʰərm
+शब्द	conjunct	ʃəbd̪
+सत्य	conjunct	sət̪jə
+सम्बन्ध	halant	səmbənd̪ʰ	explicit halant spelling
+हिन्दी	halant	hɪnd̪iː
+अन्त	halant	ənt̪
+गङ्गा	halant	ɡəŋɡaː
+ज़रा	nukta	zəraː
+फ़ोन	nukta	foːn
+क़ीमत	nukta	qiːmət̪
+ख़बर	nukta	xəbər
+ग़लत	nukta	ɣələt̪
+लड़का	nukta	ləɽkaː
+पढ़ना	nukta	pəɽʰnaː
+बड़ा	nukta	bəɽaː
+ज़रा	nukta-nfd	zəraː	precomposed U+095B
+ख़बर	nukta-nfd	xəbər	precomposed U+0959
+लड़का	nukta-nfd	ləɽkaː	precomposed U+095C
+पढ़ना	nukta-nfd	pəɽʰnaː	precomposed U+095D
+संबंध	anusvara	səmbənd̪ʰ
+अंत	anusvara	ənt̪
+हिंदी	anusvara	hɪnd̪iː	nasalised vowel or n+d are both normal Hindi
+गंगा	anusvara	ɡəŋɡaː
+संपर्क	anusvara	səmpərk
+सुंदर	anusvara	sʊnd̪ər
+पंच	anusvara	pəntʃ
+हाँ	chandrabindu	ɦãː
+माँ	chandrabindu	mãː
+आँख	chandrabindu	aːnkʰ
+पाँच	chandrabindu	pãːntʃ
+चाँद	chandrabindu	tʃaːnd̪
+कृपया	rii	krɪpəjaː	three syllables: kri-pa-yaa
+ऋषि	rii	rɪʃɪ
+गृह	rii	grɪɦ
+मृत्यु	rii	mrɪt̪jʊ
+ज़रूर	perso-arabic	zərurː
+ख़ुश	perso-arabic	xʊʃ
+वक़्त	perso-arabic	vəqt̪
+क़ानून	perso-arabic	qaːnuːn
+मुश्किल	perso-arabic	mʊʃkɪl
+ज़िंदगी	perso-arabic	zɪnd̪əɡiː
+इज़्ज़त	perso-arabic	ɪzzət̪
+मदद	perso-arabic	mədəd̪
+क़िस्मत	perso-arabic	qɪsmət̪
+इंतज़ार	perso-arabic	ɪnt̪ɪzaːr
+शुक्रिया	perso-arabic	ʃʊkrɪjaː
+अख़बार	perso-arabic	əxbaːr
+कंप्यूटर	loanword-dev	kəmpjuːʈər
+मोबाइल	loanword-dev	moːbaːɪl
+ऑफ़िस	loanword-dev	ɔfɪs
+बैंक	loanword-dev	bɛŋk
+टिकट	loanword-dev	ʈɪkəʈ
+अकाउंट	loanword-dev	əkaʊnʈ
+ऑर्डर	loanword-dev	ɔrɖər
+डिलीवरी	loanword-dev	ɖɪliːʋəriː	four syllables; espeak drops the schwa
+अपडेट	loanword-dev	əpɖeːʈ
+राहुल	name-dev	raːɦʊl
+प्रिया	name-dev	prɪjaː
+अर्जुन	name-dev	ərdʒʊn
+श्रेया	name-dev	ʃreːjaː
+मेहता	name-dev	meːɦt̪aː
+कोहली	name-dev	koːɦliː
+नेहरू	name-dev	neːɦruː
+शाहरुख़	name-dev	ʃaːɦrʊx
+तेंदुलकर	name-dev	t̪eːnd̪ʊlkər
+अंबेडकर	name-dev	əmbeːɖkər
+Rahul	name-latin	raːɦʊl
+Priya	name-latin	prɪjaː
+Arjun	name-latin	ərdʒʊn
+Shreya	name-latin	ʃreːjaː
+Priyanka	name-latin	prɪjəŋkaː
+Vishwajit	name-latin	ʋɪʃʋədʒiːt
+Flipkart	brand	flɪpkaːrʈ
+Paytm	brand	peːʈiːɛm
+Zomato	brand	zoːmɛːʈoː	spelling ज़ोमैटो is the Hindi convention; a vs ɛ not settled
+Swiggy	brand	sʋɪɡiː
+Jio	brand	dʒɪjoː
+Airtel	brand	eːjərʈeːl
+Infosys	brand	ɪnfoːsɪs
+WhatsApp	brand	ʋaːʈsɛp
+Google Pay	brand	ɡuːɡəl peː
+PhonePe	brand	foːnpeː
+UPI	brand	juːpiːaːi
+Zerodha	brand	zeːroːd̪ʰaː
+Groww	brand	ɡroː
+Aadhaar	brand	aːd̪ʰaːr
+बेंगलुरु	city	beːŋɡəluːru
+Bengaluru	city	beːŋɡəluːru
+Chennai	city	tʃeːnnəiː
+Hyderabad	city	ɦɛːd̪rabaːd̪	broad: hai-dra-baad as spoken in Hindi
+Pune	city	puɳeː
+Gurugram	city	ɡʊrʊɡraːm
+Noida	city	noːeːɖaː
+Kolkata	city	koːlkaːt̪aː
+Thiruvananthapuram	city	t̪ɪrʊʋənənt̪əpʊrəm
+Mysuru	city	mɛːsuːrʊ
+Tiruchirappalli	city	t̪ɪrʊtʃɪraːpəlliː
+OTP	abbreviation	oː tiː piː
+KYC	abbreviation	keː ʋaːi siː
+EMI	abbreviation	iː ɛm aːi
+GST	abbreviation	dʒiː ɛs tiː
+PAN	abbreviation	pɛn
+ATM	abbreviation	eː tiː ɛm
+SMS	abbreviation	ɛs ɛm ɛs
+ID	abbreviation	aːi diː
+PDF	abbreviation	piː diː ɛf
+sorry	english	sɔri
+password	english	paːsʋərɖ
+insurance	english	ɪnʃjoːrens

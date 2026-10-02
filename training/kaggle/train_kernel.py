@@ -603,6 +603,10 @@ cmd = [sys.executable, str(W / "wrap.py"), "fit", "--seed_everything", str(SEED_
        "--trainer.default_root_dir", str(RUN), "--trainer.accelerator", "cpu" if SMOKE else "gpu", "--trainer.devices", "1",
        "--trainer.precision", "32-true" if SMOKE else "16-mixed", "--trainer.max_epochs", str(START_EPOCH + (int(os.environ.get("SMOKE_EPOCHS", "1000")) if SMOKE else 100000)),
        "--trainer.log_every_n_steps", "50"] + (["--model.warmstart_ckpt", str(SEED)] if INIT_MODE == "warmstart" else ["--ckpt_path", str(SEED)])
+VOC = os.environ.get("VOCODER_WARMSTART")  # piper-checkpoints path, e.g. en/en_GB/cori/high/cori-high-500.ckpt (high decoder for the medium-vs-high experiment)
+if VOC and INIT_MODE == "warmstart":
+    cmd += ["--model.vocoder_warmstart_ckpt", hf_hub_download("rhasspy/piper-checkpoints", VOC, repo_type="dataset") if not SMOKE else VOC]
+cmd += os.environ.get("EXTRA_ARGS", "").split()  # e.g. high: --model.resblock 1 --model.upsample_initial_channel 512 ...
 if SMOKE:
     cmd += ["--trainer.enable_progress_bar", "false"]
 env = dict(os.environ, DEADLINE=str(T0 + MAX_H * 3600), PYTHONUNBUFFERED="1", W_DIR=str(W), LAST_CKPT=str(LAST), CKPT_DIR=str(OUT_CK), MS_EVERY=str(MS_EVERY),

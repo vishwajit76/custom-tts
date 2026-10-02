@@ -396,3 +396,49 @@ Section 9's uncontended rohan rows on this box (119 / 274 ms p50 at 1 / 5 stream
 ### Not measured here
 
 Any uncontended run of the above; concurrency above 5 for the custom voice; Kokoro/Supertonic/Qwen; GPU; real G.711/network codec; listening tests (brand spellings, infer-grid settings, 8 kHz naturalness); `--call-sim` at 10+ calls.
+
+## 11. Audio quality and prosody, T6 (2026-10-02)
+
+`python -m bench.audio_quality --out bench/results/audio_quality_{before,after}.json` renders 14 fixed sentences (one-word replies,
+questions, long comma sentences, Hinglish, every punctuation class) through `tts.stream`/`tts.synthesize` for each Piper voice
+(M4, idle apart from other agents' jobs; VITS is stochastic, so rows move a little run to run). Methods are in the script's
+docstring: loudness = BS.1770-4 K-weighted gated LUFS (validated on a 997 Hz sine, -3.01 +-0.04), true peak = 4x oversampled,
+silence threshold -50 dBFS, telephony compared against an FFT-resampled ideal of the same cached audio.
+"Before" = the code at de40845; "after" = defaults below (`PAUSE_PLAN=""`, `FADE_MS=0`, `VOICE_GAIN_DB=""` reproduce "before").
+
+What the measurement showed, and what was changed:
+
+| | before | after |
+|---|---|---|
+| Median speech level per voice (custom / pratham / rohan / priyamvada), LUFS | -20.5 / -18.4 / -16.3 / -15.7 (4.8 LU apart) | -20.0 / -19.7 / -19.8 / -19.9 (0.3 LU apart) |
+| True peak, worst utterance per voice, dBTP | -3.6 / -1.9 / -0.8 / -1.3 | -2.9 / -3.2 / -4.9 / -5.6 |
+| Lead silence min across utterances, ms (target 30) | custom 5, pratham 0 (onset at sample 0) | custom 9, pratham 16: onset-in-first-ms remains where the model starts voiced, but never 0 for a padded chunk |
+| Chunk edge, loudest first/last sample, dBFS | custom -73, pratham -43, rohan -54, priyamvada -51 | -84, -67, -65, -64 |
+| Gap at a sentence seam, min / median / max ms (12 seams, 4 voices) | 94 / 190 / 245 | 287 / 310 / 319 |
+| Gap at a colon/semicolon seam | 44 / 150 / 155 | 231 / 232 / 234 |
+| Gap at an ellipsis seam | 103 / 110 / 169 | 388 / 409 / 415 |
+| Gap at a mid-sentence phrase cut | 152 / 160 / 169 | 117 / 120 / 129 |
+| Gap at a comma seam | 92 / 152 / 175 | 62 / 163 / 178 (see note) |
+| Clipped samples, seam jump, seam spectral-flux spike, DC | 0, 0, 0, < 0.002 | unchanged |
+| Chunk loudness spread inside one utterance, median | 0.7-1.5 dB | unchanged (a per-chunk gain would pump; not done) |
+| 8 / 16 kHz: length ratio, passband error, level change | 1.000, 0.0 dB, +0.1 / 0.0 dB median | unchanged |
+| 8 / 16 kHz: top-10 % band vs ideal (negative = rolled off, no aliasing) | -1 to -4 dB | unchanged |
+
+Notes. Nothing needed fixing in telephony resampling (soxr HQ is transparent: passband 0.0 dB, no energy added near Nyquist),
+in clipping (the existing soft limiter never engaged on Piper) or in seams (every seam sits in silence, so no clicks existed to
+remove; the edge fade only matters for chunks cut while audible, seen on pratham). Gaps are measured at -50 dBFS while the plan is
+applied at -40 dBFS (the trim threshold), so measured values sit slightly under the plan (sentence 320 -> 287-319); the spread
+inside a class dropping from ~150 ms to ~30 ms is the gain. The comma row did not improve: the spread comes from soft onsets
+between -50 and -40 dBFS in the next piece. The plan values are defaults chosen to keep the old median where it was reasonable
+(comma, phrase) and to lengthen between-sentence gaps from the engines' 100-250 ms to ~320 ms; the length is a listening
+decision, not something these metrics can confirm. No listening test was run.
+
+Time to first audio (`tts.stream`, first byte, 20 warm repeats after 3 warm-ups, cache off, custom voice, native rate):
+
+| | p50 | p95 |
+|---|---|---|
+| before | 33.3 ms | 43.6 ms |
+| after (run 1, concurrent load from other jobs: load average 4.7) | 47.1 ms | 146.0 ms |
+| after (runs 2 and 3, repeated) | 37.8 / 34.1 ms | 48.3 / 37.8 ms |
+
+Target p50 < 100 ms holds. The added work per chunk is a few numpy passes over milliseconds of audio.

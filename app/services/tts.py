@@ -110,6 +110,7 @@ ttfa_recent: deque[float] = deque(maxlen=2000)  # seconds, for /metrics quantile
 
 def load() -> None:
     global scheduler
+    check_audio_settings()
     voice_catalog.get()  # validate voices/catalog.json up front: a bad catalog stops startup, not the first request
     engine.load()
     if settings.dsp_prosody:  # first librosa call JIT-compiles for seconds; keep that off the first request
@@ -179,6 +180,56 @@ def trim_tail(wav: np.ndarray, sr: int, keep_ms: int, threshold: float = 0.01) -
     return wav[:loud[-1] + 1 + sr * keep_ms // 1000]
 
 
+def _trailing(wav: np.ndarray, threshold: float = 0.01) -> int:
+    loud = np.flatnonzero(np.abs(wav) > threshold)
+    return len(wav) - 1 - loud[-1] if len(loud) else 0
+
+
+def pad_lead(wav: np.ndarray, sr: int, ms: int, threshold: float = 0.01) -> np.ndarray:
+    """Zeros in front so the silence before the first sample above `threshold` is exactly `ms` (trim_lead only shortens)."""
+    loud = np.flatnonzero(np.abs(wav) > threshold)
+    short = sr * ms // 1000 - (loud[0] if len(loud) else 0)
+    return np.concatenate([np.zeros(short, wav.dtype), wav]) if len(loud) and short > 0 else wav
+
+
+def pad_tail(wav: np.ndarray, sr: int, ms: int, threshold: float = 0.01) -> np.ndarray:
+    """Zeros appended so the silence after the last sample above `threshold` is `ms`; never shortens."""
+    short = sr * ms // 1000 - _trailing(wav, threshold)
+    return np.concatenate([wav, np.zeros(short, wav.dtype)]) if len(wav) and short > 0 else wav
+
+
+_GAP_CLASSES = {"comma", "colon", "dash", "ellipsis", "sentence", "question", "exclaim", "phrase"}
+_CLOSERS = "\"'”’»)]}"
+
+
+def gap_class(text: str) -> str:
+    """How a piece ends, for settings.pause_plan: its last punctuation mark (closing quotes/brackets ignored)."""
+    t = text.rstrip().rstrip(_CLOSERS).rstrip()
+    if t.endswith(("...", "…")):
+        return "ellipsis"
+    return {"।": "sentence", ".": "sentence", "?": "question", "!": "exclaim", ",": "comma", ";": "colon", ":": "colon",
+            "-": "dash", "–": "dash", "—": "dash"}.get(t[-1:], "phrase")
+
+
+def gap_ms(text: str) -> int | None:
+    """Planned silence after this piece (settings.pause_plan), None when the plan is off."""
+    plan = audio_utils.parse_kv(settings.pause_plan)
+    return round(plan[gap_class(text)]) if plan else None
+
+
+def check_audio_settings() -> None:
+    """Fail at startup, not on the first request, if the pause plan or the voice gains do not parse."""
+    if unknown := set(audio_utils.parse_kv(settings.pause_plan)) - _GAP_CLASSES:
+        raise ValueError(f"PAUSE_PLAN: unknown class(es) {sorted(unknown)}; have {sorted(_GAP_CLASSES)}")
+    audio_utils.parse_kv(settings.voice_gain_db)
+
+
+def voice_gain(voice: str) -> float:
+    gains = audio_utils.parse_kv(settings.voice_gain_db)
+    db = gains.get(voice, gains.get(voice.split(":")[0], 0.0))
+    return 10 ** (db / 20)
+
+
 @contextmanager
 def _slot():
     if stats["streams_active"] >= settings.max_streams:
@@ -199,7 +250,7 @@ def _slot():
 
 
 async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref, ref_text, controls: dict | None = None) -> np.ndarray:
-    key = (voice, text, speed, tuple(sorted(controls.items())) if controls else ())
+    key = (voice, text, speed, tuple(sorted(controls.items())) if controls else (), settings.pause_plan, settings.fade_ms)
     if ref is None and key in _cache:
         _cache.move_to_end(key)
         stats["cache_hits"] += 1
@@ -212,7 +263,15 @@ async def _synth_chunk(text: str, voice: str, speed: float, deadline: float, ref
         wav = await scheduler.run(deadline, engine.synth, text, voice, speed, ref, ref_text)
     sr = engine.sample_rate(voice)
     wav = trim_lead(wav, sr, settings.lead_silence_ms)
-    wav = trim_tail(wav, sr, settings.sentence_pause_ms if _SENTENCE_END.search(text) else settings.pause_ms)
+    gap = gap_ms(text)
+    if gap is None:
+        wav = trim_tail(wav, sr, settings.sentence_pause_ms if _SENTENCE_END.search(text) else settings.pause_ms)
+    else:  # the trailing silence is capped to the planned gap less the next piece's lead; stream() pads it up
+        wav = trim_tail(wav, sr, max(0, gap - settings.lead_silence_ms))
+    if settings.fade_ms:
+        wav = audio_utils.edge_fades(wav, sr, settings.fade_ms)  # before the lead pad: fades the cut, not the padding
+    if gap is not None:
+        wav = pad_lead(wav, sr, settings.lead_silence_ms)
     stats["synth_seconds_total"] += time.perf_counter() - t
     if ref is None and settings.cache_size and epoch == _cache_epoch:
         _cache[key] = wav
@@ -240,7 +299,7 @@ async def stream(
         sr_out = sample_rate or sr_in
         rs = soxr.ResampleStream(sr_in, sr_out, 1, dtype="float32", quality="HQ") if sr_out != sr_in else None
         frame = sr_out * frame_ms // 1000 * 2  # bytes; 0 = whole chunks
-        chunks = split_for_stream(text_normalizer.normalize(text))
+        chunks = split_for_stream(text_normalizer.normalize(text, voice_catalog.rules_of(voice)))
         t0 = time.monotonic()
         sent_s, buf, ttfa = 0.0, b"", None
 
@@ -259,6 +318,10 @@ async def stream(
                 if i + 1 < len(chunks):
                     ahead = synth(chunks[i + 1], t0 + sent_s + _MIN_S_PER_CHAR * len(c) / speed)
                 wav = await cur
+                if i + 1 < len(chunks) and (gap := gap_ms(c)) is not None:
+                    wav = pad_tail(wav, sr_in, gap - settings.lead_silence_ms)
+                if (g := voice_gain(voice) if ref is None else 1.0) != 1.0:
+                    wav = wav * np.float32(g)  # a new array: `wav` may be the cached chunk
                 if dsp_controls:
                     wav = await asyncio.to_thread(dsp.apply_prosody, wav, sr_in, dsp_controls.get("pitch"), dsp_controls.get("energy"), dsp_controls.get("strength"))
                 sent_s += len(wav) / sr_in
