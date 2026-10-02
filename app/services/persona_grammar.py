@@ -171,7 +171,7 @@ def _part(p: str) -> tuple[str, str] | None:
     if p.endswith("ी") or p.endswith("ई"):
         if p in ("की", "दी", "ली", "पी"):
             return None  # also the genitive की / ambiguous: only the masculine side is rewritten
-        return (p[:-2] + "या", p) if p.endswith("ई") else (p[:-1] + "ा", p)
+        return (p[:-1] + "या", p) if p.endswith("ई") else (p[:-1] + "ा", p)
     if p.endswith("ा"):
         return p, _fem(p)
     return None
@@ -281,9 +281,15 @@ def _eligible(cl: list, fl: list[_Flags]) -> list[bool]:
                 ok[i - 1] = False
             if i + 1 < len(fl) and cl[i + 1][0] <= {"p"}:
                 ok[i + 1] = False
+    emb = False  # previous clause was reported content that we refused: "... कि X है और मैं ..." stays untouched
     for i, (b, _) in enumerate(cl):
         if "k" in b:  # कि-clause: eligible only under a first-person, eligible matrix clause
             ok[i] = ok[i] and i > 0 and "s" not in b and ok[i - 1] and fl[i - 1].fp and not fl[i - 1].other
+            emb = not ok[i]
+        elif b == {"c"} and emb:
+            ok[i] = False
+        else:
+            emb = False
     return ok
 
 

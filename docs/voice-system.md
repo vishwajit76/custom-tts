@@ -291,6 +291,49 @@ note under "Four mechanisms" for the pending recommendation. The `speaker_id` pa
   collect and audit consent out of band. Do not use it to imitate people without permission.
 
 
+## Persona grammar (V7)
+
+Hindi first-person verbs, participles and a few predicate adjectives agree with the speaker's gender (`करता/करती हूँ`,
+`गया/गई`, `करूँगा/करूँगी`). `app/services/persona_grammar.py` rewrites a script to the voice's gender:
+`apply(text, Persona(gender, persona="assistant", age_group="adult"))`; `rewrite()` returns the same text plus the list
+of changes (rule, offsets into the original) for logs and tests; `llm_hint(persona)` is the Hindi system-prompt sentence
+the demo adds so the LLM writes the right forms in the first place. `hinglish.apply_persona_gender` is a thin wrapper.
+
+**Opt-in and speaker-authored only.** Nothing calls it automatically. On `POST /v1/audio/speech`, `/speech/stream` and
+the WebSocket `speak` message, an optional `"persona": {"gender": "female"|"male"|"neutral", "persona": "...",
+"age_group": "young_adult"|"adult"|"mature"}` applies it to the text; absent = text unchanged. Send it only for text the
+assistant itself wrote: a user's "मैं जाता हूँ" is the user's grammar and must not be rewritten.
+
+**How it decides** (rule-based, clause-bounded, one pass). Quoted spans (`"..."`, curly, guillemets, backticks) are opaque.
+Text is split into clauses at punctuation and at conjunctions/subordinators (और, लेकिन, कि, जब, ...). A first-person
+clause is anchored by `हूँ/हूं`, a 1sg future (`-ूँगा/-ऊँगा`, any nasal spelling), or `था/थी` with an explicit `मैं`.
+The anchor and the agreeing chain to its left flip: `-ता/-ती` by morphology (with a noun/name guard), `रहा`, `चुका`,
+`वाला`, `गया`, a passive participle before `गया` (`बनाया गया हूँ`), and predicate adjectives from a closed list
+(`अच्छा`, `नया`, `थका हुआ`, ...) only when they touch the auxiliary. With an explicit `मैं`, a clause-final perfective
+(`मैं घर गया`) and `आपका/आपकी` + a role noun (`सहायक`, `असिस्टेंट`, ...) flip too. The writer's `ँ/ं` spelling is kept.
+
+**Guarantees.** `neutral` and non-Devanagari text return unchanged; idempotent (applying twice = once); the other
+direction is symmetric (f->m); quoted speech, third person (`वह/वो/वे`, named subjects without `मैं`), second person
+(`आप/तुम`), English, and anything outside a first-person clause stay byte-identical. When unsure it leaves text
+unchanged (precision over recall). About 40 us for a 130-character sentence on the M4 (budget 500 us).
+
+**Not rewritten, on purpose.**
+- `हम`: plural or royal, may include other genders, so there is no safe single flip.
+- Reported speech: the clause after `कहा कि`/`बोला कि`/`he said that`, and a comma-separated clause next to a
+  non-first-person reporting verb (`राहुल ने कहा, मैं आऊँगा`). A `कि` clause is rewritten only under a first-person
+  matrix (`मुझे लगता है कि मैं ...`).
+- `मैंने ...` (ergative: the verb agrees with the object) and `मुझे`-constructions (`मुझे पता है`, `मुझे जाना है`).
+- Nouns and names (`मैं लड़का हूँ`, `मैं गीता हूँ`, `रास्ता`, `पता`); invariant predicates (`तैयार`, `खुश`, `ठीक`).
+- Subject ellipsis across conjunctions: `मैं आया और सो गया` rewrites only the first clause.
+
+**Known limits.** A second, differently-subjected predicate inside one comma-less clause with an explicit `मैं`
+(`मैं पहुँची ट्रेन जा चुकी थी`) can be rewritten wrongly; names ending in `ता/ती` that are not in the guard list can be
+mistaken for verbs directly before `हूँ`; the adjective/participle lists are closed, so rare adjectives
+(`मैं शर्मिंदा हूँ`) are left masculine (precision over recall).
+
+**`age_group`.** Hindi grammar does not inflect for age, so it changes no rewrite. It is metadata for voice selection
+(`hi-IN-young-female`, ...) and for LLM persona prompts only.
+
 ## Text normalization for a Hindi voice
 
 Code: `app/services/text_normalizer.py` (rules), `hinglish.py` + `lexicon_hi.tsv` (Romanized Hindi, names, brands), `indian_english.py` (English runs -> phonemes).

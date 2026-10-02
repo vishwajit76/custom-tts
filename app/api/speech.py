@@ -7,7 +7,7 @@ from fastapi.responses import Response, StreamingResponse
 from app.core.config import settings
 from app.core.security import require_api_key
 from app.models.schemas import SpeechRequest, WsSpeak
-from app.services import audio_utils, routing, tts
+from app.services import audio_utils, persona_grammar, routing, tts
 from app.services import speaker_registry as sreg
 from app.services.conditioning import UnsupportedControl, split_controls, validate_condition
 
@@ -70,6 +70,8 @@ def prepare_ex(req: SpeechRequest | WsSpeak, owner: str | None = None, info: dic
     text = req.input if isinstance(req, SpeechRequest) else req.text
     if len(text) > settings.max_input_chars:
         raise HTTPException(400, f"input exceeds {settings.max_input_chars} chars")
+    if req.persona:  # opt-in; the caller guarantees the text is the assistant's own (docs/voice-system.md)
+        text = persona_grammar.apply(text, req.persona)
     cond = req.condition
     ref_b64 = getattr(req, "reference_audio", None) or (cond.reference_audio if cond else None)
     ref_text = getattr(req, "reference_text", None) or (cond.reference_text if cond else None)
