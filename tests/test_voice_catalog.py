@@ -409,3 +409,14 @@ def test_persona_gender_comes_from_the_catalog(client):
     assert voice_catalog.gender_of("hi-IN-young-female") == "F" and voice_catalog.gender_of("hi-IN-young-male") == "M"
     assert voice_catalog.gender_of("not-a-voice") is None
     assert {v["voice_id"]: v["gender"] for v in tts.engine.voices()} == {"hi-IN-young-female": "F", "hi-IN-young-male": "M"}
+
+
+def test_pronunciation_rules_pinned_per_voice(tmp_path, monkeypatch):
+    path = write_catalog(tmp_path, [entry("hi-IN-young-male", speaker="m_neutral", gender="M", pronunciation_rules="all"),
+                                    entry("hi-IN-young-female", speaker="f_neutral", gender="F")])
+    monkeypatch.setattr(settings, "voice_catalog", path)
+    assert voice_catalog.rules_of("hi-IN-young-male") == "all"
+    assert voice_catalog.rules_of("hi-IN-young-female") is None and voice_catalog.rules_of("hi_IN-rohan-medium") is None
+    with pytest.raises(voice_catalog.CatalogError):
+        (tmp_path / "bad").mkdir()
+        voice_catalog._load(str(write_catalog(tmp_path / "bad", [entry("hi-IN-x", pronunciation_rules="bogus")])))

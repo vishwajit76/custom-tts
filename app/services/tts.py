@@ -240,7 +240,7 @@ async def stream(
         sr_out = sample_rate or sr_in
         rs = soxr.ResampleStream(sr_in, sr_out, 1, dtype="float32", quality="HQ") if sr_out != sr_in else None
         frame = sr_out * frame_ms // 1000 * 2  # bytes; 0 = whole chunks
-        chunks = split_for_stream(text_normalizer.normalize(text))
+        chunks = split_for_stream(text_normalizer.normalize(text, voice_catalog.rules_of(voice)))
         t0 = time.monotonic()
         sent_s, buf, ttfa = 0.0, b"", None
 
