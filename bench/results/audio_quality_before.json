@@ -1,0 +1,3736 @@
+{
+ "settings": {
+  "lead_silence_ms": 30,
+  "pause_ms": 150,
+  "sentence_pause_ms": 350
+ },
+ "overrides": [],
+ "sentences": [
+  {
+   "id": "yes",
+   "text": "जी हाँ।"
+  },
+  {
+   "id": "no",
+   "text": "जी नहीं।"
+  },
+  {
+   "id": "ok",
+   "text": "ठीक है।"
+  },
+  {
+   "id": "wait",
+   "text": "एक मिनट रुकिए।"
+  },
+  {
+   "id": "yn-question",
+   "text": "क्या आप अभी बात कर सकते हैं?"
+  },
+  {
+   "id": "wh-question",
+   "text": "आपका नाम क्या है?"
+  },
+  {
+   "id": "exclaim",
+   "text": "बहुत बढ़िया!"
+  },
+  {
+   "id": "apology",
+   "text": "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।"
+  },
+  {
+   "id": "greeting",
+   "text": "नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?"
+  },
+  {
+   "id": "long-commas",
+   "text": "आपकी किस्त की तारीख पंद्रह अगस्त है, इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा, और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।"
+  },
+  {
+   "id": "hinglish",
+   "text": "आपका EMI ₹5,000 है, due date 5 तारीख को है, please payment time पर कर दीजिए।"
+  },
+  {
+   "id": "three-sentences",
+   "text": "नमस्ते। मैं आपकी मदद के लिए यहाँ हूँ। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+  },
+  {
+   "id": "ellipsis-dash",
+   "text": "हम्म... मुझे सोचने दीजिए। शायद कल - या परसों - हो जाएगा।"
+  },
+  {
+   "id": "colon-semicolon",
+   "text": "ध्यान दीजिए: आपका OTP चार अंकों का है; इसे किसी से साझा न करें।"
+  }
+ ],
+ "voices": {
+  "hi_IN-pratham-medium": {
+   "summary": {
+    "lead_ms": {
+     "min": 0.0,
+     "median": 28.25,
+     "max": 29.6
+    },
+    "trail_ms_sentence_end": {
+     "min": 115.9,
+     "median": 185.8,
+     "max": 239.6
+    },
+    "gap_ms": {
+     "min": 92.1,
+     "median": 158.8,
+     "max": 239.0
+    },
+    "stall_ms": {
+     "min": -8185.5,
+     "median": -2237.9,
+     "max": -434.4
+    },
+    "lufs": {
+     "min": -20.52,
+     "median": -18.34,
+     "max": -14.45
+    },
+    "lufs_std": 1.26,
+    "chunk_lufs_spread_db": {
+     "min": 0.49,
+     "median": 1.65,
+     "max": 2.91
+    },
+    "true_peak_db": {
+     "min": -4.42,
+     "median": -2.61,
+     "max": -1.86
+    },
+    "edge_db_max": -43.0,
+    "clip_frac_max": 0.0,
+    "dc_abs_max": 0.000425,
+    "seam_jump_ratio": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.05
+    },
+    "seam_flux_spike": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.05
+    },
+    "tel8000_level_change_db": {
+     "min": -0.12,
+     "median": 0.1,
+     "max": 0.17
+    },
+    "tel8000_guard_db": {
+     "min": -1.98,
+     "median": -1.38,
+     "max": -0.6
+    },
+    "tel8000_pass_db": {
+     "min": -0.0,
+     "median": -0.0,
+     "max": -0.0
+    },
+    "tel8000_fold_db": {
+     "min": -35.08,
+     "median": -27.74,
+     "max": -17.0
+    },
+    "tel16000_level_change_db": {
+     "min": -0.07,
+     "median": 0.02,
+     "max": 0.04
+    },
+    "tel16000_guard_db": {
+     "min": -4.73,
+     "median": -3.17,
+     "max": -2.31
+    },
+    "tel16000_pass_db": {
+     "min": -0.0,
+     "median": 0.0,
+     "max": -0.0
+    },
+    "tel16000_fold_db": {
+     "min": -41.89,
+     "median": -35.23,
+     "max": -22.16
+    }
+   },
+   "utterances": [
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "yes",
+     "text": "जी हाँ।",
+     "pieces": [
+      "जी हाँ।"
+     ],
+     "dur_s": 0.801,
+     "chunks": 1,
+     "lead_ms": 28.7,
+     "trail_ms": 158.7,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.19,
+     "peak_db": -3.71,
+     "true_peak_db": -3.62,
+     "clip_frac": 0.0,
+     "dc": 0.00025,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -18.19
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.129,
+       "guard_db": -0.99,
+       "pass_db": -0.0,
+       "fold_db": -28.6,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.8,
+       "trail_ms": 158.9,
+       "peak_db": -3.6,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.033,
+       "guard_db": -3.4,
+       "pass_db": -0.0,
+       "fold_db": -39.0,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.7,
+       "trail_ms": 158.7,
+       "peak_db": -3.65,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "no",
+     "text": "जी नहीं।",
+     "pieces": [
+      "जी नहीं।"
+     ],
+     "dur_s": 0.804,
+     "chunks": 1,
+     "lead_ms": 29.3,
+     "trail_ms": 115.9,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -14.45,
+     "peak_db": -2.24,
+     "true_peak_db": -2.24,
+     "clip_frac": 0.0,
+     "dc": 0.000425,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -14.45
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.147,
+       "guard_db": -1.47,
+       "pass_db": 0.0,
+       "fold_db": -29.74,
+       "dur_ratio": 0.9999,
+       "lead_ms": 29.4,
+       "trail_ms": 115.9,
+       "peak_db": -2.3,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.034,
+       "guard_db": -2.72,
+       "pass_db": -0.0,
+       "fold_db": -38.36,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.3,
+       "trail_ms": 115.9,
+       "peak_db": -2.25,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "ok",
+     "text": "ठीक है।",
+     "pieces": [
+      "ठीक है।"
+     ],
+     "dur_s": 0.743,
+     "chunks": 1,
+     "lead_ms": 0.0,
+     "trail_ms": 236.3,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -20.52,
+     "peak_db": -4.42,
+     "true_peak_db": -4.42,
+     "clip_frac": 0.0,
+     "dc": 9.9e-05,
+     "edge_db": -52.0,
+     "seams": [],
+     "chunk_lufs": [
+      -20.52
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.15,
+       "guard_db": -1.31,
+       "pass_db": -0.0,
+       "fold_db": -29.65,
+       "dur_ratio": 0.9999,
+       "lead_ms": 0.1,
+       "trail_ms": 236.2,
+       "peak_db": -4.41,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.034,
+       "guard_db": -4.73,
+       "pass_db": 0.0,
+       "fold_db": -35.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 0.1,
+       "trail_ms": 236.3,
+       "peak_db": -4.4,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "wait",
+     "text": "एक मिनट रुकिए।",
+     "pieces": [
+      "एक मिनट रुकिए।"
+     ],
+     "dur_s": 1.239,
+     "chunks": 1,
+     "lead_ms": 28.0,
+     "trail_ms": 179.9,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.06,
+     "peak_db": -2.48,
+     "true_peak_db": -2.46,
+     "clip_frac": 0.0,
+     "dc": 0.000324,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -18.06
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.168,
+       "guard_db": -0.6,
+       "pass_db": -0.0,
+       "fold_db": -32.68,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.0,
+       "trail_ms": 179.9,
+       "peak_db": -2.64,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.035,
+       "guard_db": -3.49,
+       "pass_db": -0.0,
+       "fold_db": -39.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.1,
+       "trail_ms": 179.9,
+       "peak_db": -2.55,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "yn-question",
+     "text": "क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 1.68,
+     "chunks": 1,
+     "lead_ms": 29.6,
+     "trail_ms": 146.7,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.86,
+     "peak_db": -3.09,
+     "true_peak_db": -3.0,
+     "clip_frac": 0.0,
+     "dc": 0.000321,
+     "edge_db": -57.4,
+     "seams": [],
+     "chunk_lufs": [
+      -18.86
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.099,
+       "guard_db": -1.44,
+       "pass_db": 0.0,
+       "fold_db": -22.38,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.8,
+       "trail_ms": 146.6,
+       "peak_db": -3.35,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.018,
+       "guard_db": -2.31,
+       "pass_db": 0.0,
+       "fold_db": -28.75,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 146.7,
+       "peak_db": -3.11,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "wh-question",
+     "text": "आपका नाम क्या है?",
+     "pieces": [
+      "आपका नाम क्या है?"
+     ],
+     "dur_s": 1.207,
+     "chunks": 1,
+     "lead_ms": 28.3,
+     "trail_ms": 215.5,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.24,
+     "peak_db": -2.56,
+     "true_peak_db": -2.55,
+     "clip_frac": 0.0,
+     "dc": 0.000303,
+     "edge_db": -74.7,
+     "seams": [],
+     "chunk_lufs": [
+      -18.24
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.128,
+       "guard_db": -1.93,
+       "pass_db": 0.0,
+       "fold_db": -31.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.4,
+       "trail_ms": 215.4,
+       "peak_db": -2.4,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.031,
+       "guard_db": -4.5,
+       "pass_db": 0.0,
+       "fold_db": -39.92,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.3,
+       "trail_ms": 215.4,
+       "peak_db": -2.57,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "exclaim",
+     "text": "बहुत बढ़िया!",
+     "pieces": [
+      "बहुत बढ़िया!"
+     ],
+     "dur_s": 1.1,
+     "chunks": 1,
+     "lead_ms": 26.7,
+     "trail_ms": 219.8,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.51,
+     "peak_db": -2.68,
+     "true_peak_db": -2.67,
+     "clip_frac": 0.0,
+     "dc": 0.000281,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -18.51
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.148,
+       "guard_db": -0.78,
+       "pass_db": -0.0,
+       "fold_db": -35.08,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 219.8,
+       "peak_db": -2.64,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.033,
+       "guard_db": -3.97,
+       "pass_db": 0.0,
+       "fold_db": -41.89,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.7,
+       "trail_ms": 219.8,
+       "peak_db": -2.66,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "apology",
+     "text": "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।",
+     "pieces": [
+      "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।"
+     ],
+     "dur_s": 3.089,
+     "chunks": 1,
+     "lead_ms": 28.6,
+     "trail_ms": 169.3,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -19.02,
+     "peak_db": -2.79,
+     "true_peak_db": -2.7,
+     "clip_frac": 0.0,
+     "dc": 0.000215,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -19.02
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.036,
+       "guard_db": -1.05,
+       "pass_db": -0.0,
+       "fold_db": -19.09,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.6,
+       "trail_ms": 169.2,
+       "peak_db": -3.23,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.02,
+       "guard_db": -4.33,
+       "pass_db": -0.0,
+       "fold_db": -25.65,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.6,
+       "trail_ms": 169.2,
+       "peak_db": -2.74,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "greeting",
+     "text": "नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "नमस्ते,",
+      "मैं श्रेया बोल रही हूँ",
+      "और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 6.292,
+     "chunks": 3,
+     "lead_ms": 22.4,
+     "trail_ms": 117.8,
+     "gaps_ms": [
+      92.1,
+      151.9
+     ],
+     "stall_ms": [
+      -751.3,
+      -2041.5
+     ],
+     "lufs": -19.05,
+     "peak_db": -3.18,
+     "true_peak_db": -3.1,
+     "clip_frac": 0.0,
+     "dc": 0.000269,
+     "edge_db": -74.7,
+     "seams": [
+      {
+       "jump": 0.00012,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.001
+      },
+      {
+       "jump": 0.00012,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -18.05,
+      -17.01,
+      -19.92
+     ],
+     "chunk_lufs_spread_db": 2.91,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.09,
+       "guard_db": -1.63,
+       "pass_db": -0.0,
+       "fold_db": -29.23,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.5,
+       "trail_ms": 117.6,
+       "peak_db": -3.16,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.015,
+       "guard_db": -2.37,
+       "pass_db": 0.0,
+       "fold_db": -40.74,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.4,
+       "trail_ms": 117.8,
+       "peak_db": -3.35,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "long-commas",
+     "text": "आपकी किस्त की तारीख पंद्रह अगस्त है, इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा, और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।",
+     "pieces": [
+      "आपकी किस्त की तारीख पंद्रह अगस्त है,",
+      "इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा,",
+      "और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।"
+     ],
+     "dur_s": 11.511,
+     "chunks": 3,
+     "lead_ms": 28.2,
+     "trail_ms": 239.6,
+     "gaps_ms": [
+      165.4,
+      151.9
+     ],
+     "stall_ms": [
+      -2434.3,
+      -8185.5
+     ],
+     "lufs": -18.44,
+     "peak_db": -1.9,
+     "true_peak_db": -1.86,
+     "clip_frac": 0.0,
+     "dc": 0.000294,
+     "edge_db": -74.7,
+     "seams": [
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -18.56,
+      -18.51,
+      -18.04
+     ],
+     "chunk_lufs_spread_db": 0.53,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.052,
+       "guard_db": -1.3,
+       "pass_db": -0.0,
+       "fold_db": -22.88,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.2,
+       "trail_ms": 241.9,
+       "peak_db": -1.94,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.001,
+       "guard_db": -2.64,
+       "pass_db": -0.0,
+       "fold_db": -29.38,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.2,
+       "trail_ms": 239.6,
+       "peak_db": -1.89,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "hinglish",
+     "text": "आपका EMI ₹5,000 है, due date 5 तारीख को है, please payment time पर कर दीजिए।",
+     "pieces": [
+      "आपका ई एम आई पाँच हज़ार रुपये है, due date पाँच तारीख को है,",
+      "please payment time पर कर दीजिए।"
+     ],
+     "dur_s": 6.627,
+     "chunks": 2,
+     "lead_ms": 28.8,
+     "trail_ms": 226.2,
+     "gaps_ms": [
+      172.5
+     ],
+     "stall_ms": [
+      -4573.1
+     ],
+     "lufs": -17.91,
+     "peak_db": -2.07,
+     "true_peak_db": -2.02,
+     "clip_frac": 0.0,
+     "dc": 0.000314,
+     "edge_db": -73.4,
+     "seams": [
+      {
+       "jump": 9e-05,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -18.08,
+      -17.59
+     ],
+     "chunk_lufs_spread_db": 0.49,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.092,
+       "guard_db": -1.64,
+       "pass_db": -0.0,
+       "fold_db": -22.97,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.9,
+       "trail_ms": 226.1,
+       "peak_db": -2.3,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.013,
+       "guard_db": -2.44,
+       "pass_db": 0.0,
+       "fold_db": -28.23,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.8,
+       "trail_ms": 226.2,
+       "peak_db": -2.3,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "three-sentences",
+     "text": "नमस्ते। मैं आपकी मदद के लिए यहाँ हूँ। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?",
+     "pieces": [
+      "नमस्ते।",
+      "मैं आपकी मदद के लिए यहाँ हूँ।",
+      "बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+     ],
+     "dur_s": 5.628,
+     "chunks": 3,
+     "lead_ms": 26.7,
+     "trail_ms": 191.7,
+     "gaps_ms": [
+      237.9,
+      171.2
+     ],
+     "stall_ms": [
+      -853.2,
+      -2689.1
+     ],
+     "lufs": -19.06,
+     "peak_db": -2.47,
+     "true_peak_db": -2.41,
+     "clip_frac": 0.0,
+     "dc": 0.000309,
+     "edge_db": -43.0,
+     "seams": [
+      {
+       "jump": 0.00711,
+       "jump_ratio": 0.053,
+       "flux_spike": 0.054
+      },
+      {
+       "jump": 9e-05,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -17.93,
+      -18.77,
+      -19.0
+     ],
+     "chunk_lufs_spread_db": 1.06,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.047,
+       "guard_db": -1.15,
+       "pass_db": 0.0,
+       "fold_db": -26.87,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 191.8,
+       "peak_db": -2.23,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.002,
+       "guard_db": -3.39,
+       "pass_db": -0.0,
+       "fold_db": -34.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 191.8,
+       "peak_db": -2.44,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "ellipsis-dash",
+     "text": "हम्म... मुझे सोचने दीजिए। शायद कल - या परसों - हो जाएगा।",
+     "pieces": [
+      "हम्म...",
+      "मुझे सोचने दीजिए।",
+      "शायद कल - या परसों - हो जाएगा।"
+     ],
+     "dur_s": 3.94,
+     "chunks": 3,
+     "lead_ms": 29.2,
+     "trail_ms": 211.7,
+     "gaps_ms": [
+      115.2,
+      239.0
+     ],
+     "stall_ms": [
+      -434.4,
+      -1921.3
+     ],
+     "lufs": -17.94,
+     "peak_db": -2.41,
+     "true_peak_db": -2.4,
+     "clip_frac": 0.0,
+     "dc": 0.000364,
+     "edge_db": -54.7,
+     "seams": [
+      {
+       "jump": 0.00012,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 0.00049,
+       "jump_ratio": 0.003,
+       "flux_spike": 0.025
+      }
+     ],
+     "chunk_lufs": [
+      -16.39,
+      -17.1,
+      -18.64
+     ],
+     "chunk_lufs_spread_db": 2.24,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.06,
+       "guard_db": -1.95,
+       "pass_db": -0.0,
+       "fold_db": -18.33,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.2,
+       "trail_ms": 214.0,
+       "peak_db": -2.4,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.036,
+       "guard_db": -2.48,
+       "pass_db": -0.0,
+       "fold_db": -25.23,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.2,
+       "trail_ms": 213.9,
+       "peak_db": -2.48,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-pratham-medium",
+     "id": "colon-semicolon",
+     "text": "ध्यान दीजिए: आपका OTP चार अंकों का है; इसे किसी से साझा न करें।",
+     "pieces": [
+      "ध्यान दीजिए: आपका ओ टी पी चार अंकों का है;",
+      "इसे किसी से साझा न करें।"
+     ],
+     "dur_s": 5.031,
+     "chunks": 2,
+     "lead_ms": 26.1,
+     "trail_ms": 143.4,
+     "gaps_ms": [
+      152.2
+     ],
+     "stall_ms": [
+      -3315.2
+     ],
+     "lufs": -17.94,
+     "peak_db": -2.99,
+     "true_peak_db": -2.99,
+     "clip_frac": 0.0,
+     "dc": 0.00032,
+     "edge_db": -76.3,
+     "seams": [
+      {
+       "jump": 0.0,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -18.81,
+      -16.54
+     ],
+     "chunk_lufs_spread_db": 2.27,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.118,
+       "guard_db": -1.98,
+       "pass_db": -0.0,
+       "fold_db": -17.0,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.1,
+       "trail_ms": 143.2,
+       "peak_db": -2.89,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.071,
+       "guard_db": -2.95,
+       "pass_db": -0.0,
+       "fold_db": -22.16,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.1,
+       "trail_ms": 143.4,
+       "peak_db": -2.96,
+       "clip_frac": 0.0
+      }
+     }
+    }
+   ],
+   "ttfa_native": {
+    "n": 20,
+    "p50_ms": 32.7,
+    "p95_ms": 67.6,
+    "min_ms": 28.9,
+    "max_ms": 67.6
+   },
+   "ttfa_8k": {
+    "n": 20,
+    "p50_ms": 31.8,
+    "p95_ms": 36.3,
+    "min_ms": 29.2,
+    "max_ms": 36.3
+   }
+  },
+  "hi_IN-priyamvada-medium": {
+   "summary": {
+    "lead_ms": {
+     "min": 19.5,
+     "median": 27.65,
+     "max": 29.9
+    },
+    "trail_ms_sentence_end": {
+     "min": 29.8,
+     "median": 93.6,
+     "max": 239.1
+    },
+    "gap_ms": {
+     "min": 43.9,
+     "median": 117.8,
+     "max": 159.8
+    },
+    "stall_ms": {
+     "min": -9548.5,
+     "median": -2658.4,
+     "max": -417.3
+    },
+    "lufs": {
+     "min": -18.5,
+     "median": -15.87,
+     "max": -12.92
+    },
+    "lufs_std": 1.12,
+    "chunk_lufs_spread_db": {
+     "min": 0.59,
+     "median": 1.13,
+     "max": 4.1
+    },
+    "true_peak_db": {
+     "min": -4.36,
+     "median": -1.75,
+     "max": -1.26
+    },
+    "edge_db_max": -50.5,
+    "clip_frac_max": 0.0,
+    "dc_abs_max": 0.001851,
+    "seam_jump_ratio": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.02
+    },
+    "seam_flux_spike": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.14
+    },
+    "tel8000_level_change_db": {
+     "min": -0.08,
+     "median": 0.01,
+     "max": 0.13
+    },
+    "tel8000_guard_db": {
+     "min": -4.08,
+     "median": -2.91,
+     "max": -2.26
+    },
+    "tel8000_pass_db": {
+     "min": 0.0,
+     "median": -0.0,
+     "max": -0.0
+    },
+    "tel8000_fold_db": {
+     "min": -25.24,
+     "median": -20.31,
+     "max": -17.22
+    },
+    "tel16000_level_change_db": {
+     "min": -0.02,
+     "median": 0.02,
+     "max": 0.03
+    },
+    "tel16000_guard_db": {
+     "min": -3.9,
+     "median": -2.52,
+     "max": -0.99
+    },
+    "tel16000_pass_db": {
+     "min": -0.0,
+     "median": 0.0,
+     "max": -0.0
+    },
+    "tel16000_fold_db": {
+     "min": -40.1,
+     "median": -31.72,
+     "max": -26.73
+    }
+   },
+   "utterances": [
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "yes",
+     "text": "जी हाँ।",
+     "pieces": [
+      "जी हाँ।"
+     ],
+     "dur_s": 0.643,
+     "chunks": 1,
+     "lead_ms": 27.1,
+     "trail_ms": 29.8,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.12,
+     "peak_db": -3.08,
+     "true_peak_db": -3.08,
+     "clip_frac": 0.0,
+     "dc": 0.001475,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -15.12
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.042,
+       "guard_db": -3.72,
+       "pass_db": 0.0,
+       "fold_db": -18.94,
+       "dur_ratio": 0.9999,
+       "lead_ms": 27.1,
+       "trail_ms": 29.8,
+       "peak_db": -3.38,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.026,
+       "guard_db": -1.0,
+       "pass_db": -0.0,
+       "fold_db": -33.01,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.1,
+       "trail_ms": 29.8,
+       "peak_db": -3.37,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "no",
+     "text": "जी नहीं।",
+     "pieces": [
+      "जी नहीं।"
+     ],
+     "dur_s": 0.748,
+     "chunks": 1,
+     "lead_ms": 27.5,
+     "trail_ms": 57.5,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -12.92,
+     "peak_db": -2.86,
+     "true_peak_db": -2.73,
+     "clip_frac": 0.0,
+     "dc": 0.001851,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -12.92
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.106,
+       "guard_db": -2.61,
+       "pass_db": 0.0,
+       "fold_db": -24.93,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.5,
+       "trail_ms": 57.4,
+       "peak_db": -3.01,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.001,
+       "guard_db": -3.16,
+       "pass_db": 0.0,
+       "fold_db": -30.13,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.4,
+       "trail_ms": 57.4,
+       "peak_db": -2.83,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "ok",
+     "text": "ठीक है।",
+     "pieces": [
+      "ठीक है।"
+     ],
+     "dur_s": 0.728,
+     "chunks": 1,
+     "lead_ms": 29.8,
+     "trail_ms": 183.7,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.5,
+     "peak_db": -4.4,
+     "true_peak_db": -4.36,
+     "clip_frac": 0.0,
+     "dc": 0.000887,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -18.5
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.133,
+       "guard_db": -2.37,
+       "pass_db": 0.0,
+       "fold_db": -24.63,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.4,
+       "trail_ms": 183.6,
+       "peak_db": -4.03,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.034,
+       "guard_db": -1.19,
+       "pass_db": 0.0,
+       "fold_db": -35.58,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 183.7,
+       "peak_db": -4.43,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "wait",
+     "text": "एक मिनट रुकिए।",
+     "pieces": [
+      "एक मिनट रुकिए।"
+     ],
+     "dur_s": 1.422,
+     "chunks": 1,
+     "lead_ms": 28.8,
+     "trail_ms": 86.1,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -16.0,
+     "peak_db": -3.31,
+     "true_peak_db": -3.17,
+     "clip_frac": 0.0,
+     "dc": 0.001459,
+     "edge_db": -80.8,
+     "seams": [],
+     "chunk_lufs": [
+      -16.0
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.129,
+       "guard_db": -4.02,
+       "pass_db": -0.0,
+       "fold_db": -24.25,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.9,
+       "trail_ms": 86.1,
+       "peak_db": -4.07,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.034,
+       "guard_db": -2.11,
+       "pass_db": -0.0,
+       "fold_db": -36.51,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.9,
+       "trail_ms": 86.1,
+       "peak_db": -3.12,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "yn-question",
+     "text": "क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 2.342,
+     "chunks": 1,
+     "lead_ms": 29.7,
+     "trail_ms": 135.1,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.92,
+     "peak_db": -1.32,
+     "true_peak_db": -1.32,
+     "clip_frac": 0.0,
+     "dc": 0.001228,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -15.92
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.009,
+       "guard_db": -2.73,
+       "pass_db": -0.0,
+       "fold_db": -20.36,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.8,
+       "trail_ms": 135.0,
+       "peak_db": -1.72,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.014,
+       "guard_db": -2.1,
+       "pass_db": -0.0,
+       "fold_db": -31.22,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.7,
+       "trail_ms": 148.0,
+       "peak_db": -1.29,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "wh-question",
+     "text": "आपका नाम क्या है?",
+     "pieces": [
+      "आपका नाम क्या है?"
+     ],
+     "dur_s": 1.642,
+     "chunks": 1,
+     "lead_ms": 27.8,
+     "trail_ms": 110.4,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.53,
+     "peak_db": -2.03,
+     "true_peak_db": -1.69,
+     "clip_frac": 0.0,
+     "dc": 0.001286,
+     "edge_db": -71.2,
+     "seams": [],
+     "chunk_lufs": [
+      -15.53
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.039,
+       "guard_db": -3.5,
+       "pass_db": 0.0,
+       "fold_db": -20.42,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.5,
+       "trail_ms": 110.4,
+       "peak_db": -2.5,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.022,
+       "guard_db": -3.21,
+       "pass_db": 0.0,
+       "fold_db": -40.1,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.8,
+       "trail_ms": 110.4,
+       "peak_db": -2.28,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "exclaim",
+     "text": "बहुत बढ़िया!",
+     "pieces": [
+      "बहुत बढ़िया!"
+     ],
+     "dur_s": 1.121,
+     "chunks": 1,
+     "lead_ms": 22.3,
+     "trail_ms": 239.1,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -16.5,
+     "peak_db": -4.05,
+     "true_peak_db": -3.83,
+     "clip_frac": 0.0,
+     "dc": 0.001309,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -16.5
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.084,
+       "guard_db": -4.08,
+       "pass_db": -0.0,
+       "fold_db": -24.98,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.4,
+       "trail_ms": 239.1,
+       "peak_db": -4.1,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.029,
+       "guard_db": -0.99,
+       "pass_db": 0.0,
+       "fold_db": -37.91,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.3,
+       "trail_ms": 239.1,
+       "peak_db": -3.92,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "apology",
+     "text": "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।",
+     "pieces": [
+      "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।"
+     ],
+     "dur_s": 3.198,
+     "chunks": 1,
+     "lead_ms": 23.3,
+     "trail_ms": 78.2,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.65,
+     "peak_db": -1.88,
+     "true_peak_db": -1.82,
+     "clip_frac": 0.0,
+     "dc": 0.001452,
+     "edge_db": -64.7,
+     "seams": [],
+     "chunk_lufs": [
+      -15.65
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.084,
+       "guard_db": -2.88,
+       "pass_db": -0.0,
+       "fold_db": -17.8,
+       "dur_ratio": 1.0,
+       "lead_ms": 23.4,
+       "trail_ms": 78.1,
+       "peak_db": -2.3,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.016,
+       "guard_db": -3.9,
+       "pass_db": 0.0,
+       "fold_db": -27.8,
+       "dur_ratio": 1.0,
+       "lead_ms": 23.4,
+       "trail_ms": 78.2,
+       "peak_db": -1.82,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "greeting",
+     "text": "नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "नमस्ते,",
+      "मैं श्रेया बोल रही हूँ",
+      "और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 7.823,
+     "chunks": 3,
+     "lead_ms": 22.4,
+     "trail_ms": 80.0,
+     "gaps_ms": [
+      118.0,
+      151.6
+     ],
+     "stall_ms": [
+      -809.1,
+      -2425.0
+     ],
+     "lufs": -15.0,
+     "peak_db": -1.6,
+     "true_peak_db": -1.5,
+     "clip_frac": 0.0,
+     "dc": 0.001553,
+     "edge_db": -84.3,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.16,
+      -15.9,
+      -14.56
+     ],
+     "chunk_lufs_spread_db": 1.6,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.038,
+       "guard_db": -2.94,
+       "pass_db": -0.0,
+       "fold_db": -25.24,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.5,
+       "trail_ms": 88.8,
+       "peak_db": -1.65,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.019,
+       "guard_db": -2.91,
+       "pass_db": 0.0,
+       "fold_db": -37.93,
+       "dur_ratio": 1.0,
+       "lead_ms": 22.5,
+       "trail_ms": 80.0,
+       "peak_db": -1.54,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "long-commas",
+     "text": "आपकी किस्त की तारीख पंद्रह अगस्त है, इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा, और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।",
+     "pieces": [
+      "आपकी किस्त की तारीख पंद्रह अगस्त है,",
+      "इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा,",
+      "और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।"
+     ],
+     "dur_s": 13.716,
+     "chunks": 3,
+     "lead_ms": 29.7,
+     "trail_ms": 166.1,
+     "gaps_ms": [
+      136.1,
+      159.8
+     ],
+     "stall_ms": [
+      -2891.8,
+      -9548.5
+     ],
+     "lufs": -16.12,
+     "peak_db": -1.4,
+     "true_peak_db": -1.26,
+     "clip_frac": 0.0,
+     "dc": 0.001371,
+     "edge_db": -84.3,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.84,
+      -15.71,
+      -16.15
+     ],
+     "chunk_lufs_spread_db": 1.14,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.023,
+       "guard_db": -2.46,
+       "pass_db": -0.0,
+       "fold_db": -20.26,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.5,
+       "trail_ms": 166.1,
+       "peak_db": -1.38,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.016,
+       "guard_db": -2.65,
+       "pass_db": -0.0,
+       "fold_db": -31.59,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.7,
+       "trail_ms": 166.2,
+       "peak_db": -1.51,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "hinglish",
+     "text": "आपका EMI ₹5,000 है, due date 5 तारीख को है, please payment time पर कर दीजिए।",
+     "pieces": [
+      "आपका ई एम आई पाँच हज़ार रुपये है, due date पाँच तारीख को है,",
+      "please payment time पर कर दीजिए।"
+     ],
+     "dur_s": 7.64,
+     "chunks": 2,
+     "lead_ms": 29.6,
+     "trail_ms": 89.0,
+     "gaps_ms": [
+      117.6
+     ],
+     "stall_ms": [
+      -5280.6
+     ],
+     "lufs": -15.88,
+     "peak_db": -1.38,
+     "true_peak_db": -1.37,
+     "clip_frac": 0.0,
+     "dc": 0.001413,
+     "edge_db": -68.0,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.02,
+      -15.43
+     ],
+     "chunk_lufs_spread_db": 0.59,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.002,
+       "guard_db": -2.82,
+       "pass_db": -0.0,
+       "fold_db": -19.78,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 89.0,
+       "peak_db": -1.41,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.021,
+       "guard_db": -2.39,
+       "pass_db": -0.0,
+       "fold_db": -31.02,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 89.1,
+       "peak_db": -1.4,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "three-sentences",
+     "text": "नमस्ते। मैं आपकी मदद के लिए यहाँ हूँ। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?",
+     "pieces": [
+      "नमस्ते।",
+      "मैं आपकी मदद के लिए यहाँ हूँ।",
+      "बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+     ],
+     "dur_s": 6.146,
+     "chunks": 3,
+     "lead_ms": 19.5,
+     "trail_ms": 144.1,
+     "gaps_ms": [
+      144.9,
+      112.0
+     ],
+     "stall_ms": [
+      -806.7,
+      -2928.4
+     ],
+     "lufs": -15.92,
+     "peak_db": -1.64,
+     "true_peak_db": -1.62,
+     "clip_frac": 0.0,
+     "dc": 0.001412,
+     "edge_db": -84.3,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.44,
+      -15.33,
+      -16.01
+     ],
+     "chunk_lufs_spread_db": 1.12,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.011,
+       "guard_db": -3.43,
+       "pass_db": -0.0,
+       "fold_db": -20.21,
+       "dur_ratio": 1.0,
+       "lead_ms": 19.6,
+       "trail_ms": 144.1,
+       "peak_db": -1.34,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.013,
+       "guard_db": -3.38,
+       "pass_db": 0.0,
+       "fold_db": -31.84,
+       "dur_ratio": 1.0,
+       "lead_ms": 19.5,
+       "trail_ms": 144.1,
+       "peak_db": -1.61,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "ellipsis-dash",
+     "text": "हम्म... मुझे सोचने दीजिए। शायद कल - या परसों - हो जाएगा।",
+     "pieces": [
+      "हम्म...",
+      "मुझे सोचने दीजिए।",
+      "शायद कल - या परसों - हो जाएगा।"
+     ],
+     "dur_s": 4.617,
+     "chunks": 3,
+     "lead_ms": 29.9,
+     "trail_ms": 98.2,
+     "gaps_ms": [
+      105.2,
+      94.0
+     ],
+     "stall_ms": [
+      -417.3,
+      -2057.6
+     ],
+     "lufs": -15.86,
+     "peak_db": -1.72,
+     "true_peak_db": -1.51,
+     "clip_frac": 0.0,
+     "dc": 0.001373,
+     "edge_db": -50.5,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      },
+      {
+       "jump": 0.00299,
+       "jump_ratio": 0.016,
+       "flux_spike": 0.144
+      }
+     ],
+     "chunk_lufs": [
+      -19.5,
+      -15.93,
+      -15.4
+     ],
+     "chunk_lufs_spread_db": 4.1,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.05,
+       "guard_db": -2.26,
+       "pass_db": -0.0,
+       "fold_db": -17.22,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.5,
+       "trail_ms": 98.2,
+       "peak_db": -1.84,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.008,
+       "guard_db": -2.25,
+       "pass_db": -0.0,
+       "fold_db": -29.74,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.9,
+       "trail_ms": 98.2,
+       "peak_db": -1.57,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-priyamvada-medium",
+     "id": "colon-semicolon",
+     "text": "ध्यान दीजिए: आपका OTP चार अंकों का है; इसे किसी से साझा न करें।",
+     "pieces": [
+      "ध्यान दीजिए: आपका ओ टी पी चार अंकों का है;",
+      "इसे किसी से साझा न करें।"
+     ],
+     "dur_s": 6.016,
+     "chunks": 2,
+     "lead_ms": 23.1,
+     "trail_ms": 80.0,
+     "gaps_ms": [
+      43.9
+     ],
+     "stall_ms": [
+      -3907.6
+     ],
+     "lufs": -15.62,
+     "peak_db": -1.95,
+     "true_peak_db": -1.85,
+     "clip_frac": 0.0,
+     "dc": 0.001413,
+     "edge_db": -62.7,
+     "seams": [
+      {
+       "jump": 0.00055,
+       "jump_ratio": 0.003,
+       "flux_spike": 0.002
+      }
+     ],
+     "chunk_lufs": [
+      -15.24,
+      -16.04
+     ],
+     "chunk_lufs_spread_db": 0.8,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": -0.034,
+       "guard_db": -3.36,
+       "pass_db": -0.0,
+       "fold_db": -18.59,
+       "dur_ratio": 1.0,
+       "lead_ms": 23.1,
+       "trail_ms": 79.9,
+       "peak_db": -2.32,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.003,
+       "guard_db": -3.48,
+       "pass_db": -0.0,
+       "fold_db": -26.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 23.1,
+       "trail_ms": 79.9,
+       "peak_db": -2.1,
+       "clip_frac": 0.0
+      }
+     }
+    }
+   ],
+   "ttfa_native": {
+    "n": 20,
+    "p50_ms": 34.1,
+    "p95_ms": 43.9,
+    "min_ms": 31.7,
+    "max_ms": 43.9
+   },
+   "ttfa_8k": {
+    "n": 20,
+    "p50_ms": 41.5,
+    "p95_ms": 64.2,
+    "min_ms": 33.8,
+    "max_ms": 64.2
+   }
+  },
+  "hi_IN-rohan-medium": {
+   "summary": {
+    "lead_ms": {
+     "min": 25.8,
+     "median": 27.05,
+     "max": 29.9
+    },
+    "trail_ms_sentence_end": {
+     "min": 177.2,
+     "median": 236.65,
+     "max": 267.2
+    },
+    "gap_ms": {
+     "min": 102.8,
+     "median": 158.4,
+     "max": 244.7
+    },
+    "stall_ms": {
+     "min": -8395.2,
+     "median": -2244.35,
+     "max": -503.5
+    },
+    "lufs": {
+     "min": -18.17,
+     "median": -16.17,
+     "max": -15.25
+    },
+    "lufs_std": 0.86,
+    "chunk_lufs_spread_db": {
+     "min": 0.3,
+     "median": 0.97,
+     "max": 2.45
+    },
+    "true_peak_db": {
+     "min": -3.54,
+     "median": -1.42,
+     "max": -0.78
+    },
+    "edge_db_max": -53.9,
+    "clip_frac_max": 0.0,
+    "dc_abs_max": 0.000408,
+    "seam_jump_ratio": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.01
+    },
+    "seam_flux_spike": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.01
+    },
+    "tel8000_level_change_db": {
+     "min": 0.03,
+     "median": 0.09,
+     "max": 0.14
+    },
+    "tel8000_guard_db": {
+     "min": -2.27,
+     "median": -0.98,
+     "max": -0.49
+    },
+    "tel8000_pass_db": {
+     "min": -0.0,
+     "median": -0.0,
+     "max": -0.0
+    },
+    "tel8000_fold_db": {
+     "min": -33.55,
+     "median": -25.97,
+     "max": -21.2
+    },
+    "tel16000_level_change_db": {
+     "min": -0.03,
+     "median": 0.02,
+     "max": 0.03
+    },
+    "tel16000_guard_db": {
+     "min": -4.77,
+     "median": -2.24,
+     "max": -1.72
+    },
+    "tel16000_pass_db": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.0
+    },
+    "tel16000_fold_db": {
+     "min": -38.48,
+     "median": -31.96,
+     "max": -24.03
+    }
+   },
+   "utterances": [
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "yes",
+     "text": "जी हाँ।",
+     "pieces": [
+      "जी हाँ।"
+     ],
+     "dur_s": 0.851,
+     "chunks": 1,
+     "lead_ms": 26.2,
+     "trail_ms": 196.0,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.25,
+     "peak_db": -2.59,
+     "true_peak_db": -2.51,
+     "clip_frac": 0.0,
+     "dc": 0.000363,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -15.25
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.096,
+       "guard_db": -0.49,
+       "pass_db": -0.0,
+       "fold_db": -26.82,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.2,
+       "trail_ms": 196.0,
+       "peak_db": -2.9,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.021,
+       "guard_db": -2.08,
+       "pass_db": 0.0,
+       "fold_db": -34.22,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.2,
+       "trail_ms": 195.9,
+       "peak_db": -2.33,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "no",
+     "text": "जी नहीं।",
+     "pieces": [
+      "जी नहीं।"
+     ],
+     "dur_s": 0.927,
+     "chunks": 1,
+     "lead_ms": 25.8,
+     "trail_ms": 251.7,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -17.15,
+     "peak_db": -2.28,
+     "true_peak_db": -2.1,
+     "clip_frac": 0.0,
+     "dc": 0.000191,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -17.15
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.115,
+       "guard_db": -0.71,
+       "pass_db": 0.0,
+       "fold_db": -24.06,
+       "dur_ratio": 1.0,
+       "lead_ms": 25.8,
+       "trail_ms": 251.6,
+       "peak_db": -2.81,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.022,
+       "guard_db": -1.87,
+       "pass_db": 0.0,
+       "fold_db": -30.04,
+       "dur_ratio": 1.0,
+       "lead_ms": 25.8,
+       "trail_ms": 251.7,
+       "peak_db": -2.17,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "ok",
+     "text": "ठीक है।",
+     "pieces": [
+      "ठीक है।"
+     ],
+     "dur_s": 0.759,
+     "chunks": 1,
+     "lead_ms": 27.3,
+     "trail_ms": 177.2,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -18.17,
+     "peak_db": -3.55,
+     "true_peak_db": -3.54,
+     "clip_frac": 0.0,
+     "dc": 6.5e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -18.17
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.136,
+       "guard_db": -0.9,
+       "pass_db": 0.0,
+       "fold_db": -24.05,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.4,
+       "trail_ms": 177.1,
+       "peak_db": -3.78,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.032,
+       "guard_db": -1.72,
+       "pass_db": 0.0,
+       "fold_db": -31.85,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.4,
+       "trail_ms": 177.2,
+       "peak_db": -3.49,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "wait",
+     "text": "एक मिनट रुकिए।",
+     "pieces": [
+      "एक मिनट रुकिए।"
+     ],
+     "dur_s": 1.351,
+     "chunks": 1,
+     "lead_ms": 29.3,
+     "trail_ms": 222.6,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.99,
+     "peak_db": -1.53,
+     "true_peak_db": -1.42,
+     "clip_frac": 0.0,
+     "dc": 0.000408,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -15.99
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.144,
+       "guard_db": -0.89,
+       "pass_db": -0.0,
+       "fold_db": -30.8,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.2,
+       "trail_ms": 222.6,
+       "peak_db": -1.76,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.032,
+       "guard_db": -3.34,
+       "pass_db": -0.0,
+       "fold_db": -37.63,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.2,
+       "trail_ms": 222.6,
+       "peak_db": -1.38,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "yn-question",
+     "text": "क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 2.07,
+     "chunks": 1,
+     "lead_ms": 29.9,
+     "trail_ms": 244.3,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -16.28,
+     "peak_db": -2.39,
+     "true_peak_db": -2.17,
+     "clip_frac": 0.0,
+     "dc": 0.000118,
+     "edge_db": -76.3,
+     "seams": [],
+     "chunk_lufs": [
+      -16.28
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.037,
+       "guard_db": -1.41,
+       "pass_db": 0.0,
+       "fold_db": -21.65,
+       "dur_ratio": 1.0,
+       "lead_ms": 30.1,
+       "trail_ms": 244.2,
+       "peak_db": -2.58,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.003,
+       "guard_db": -2.69,
+       "pass_db": -0.0,
+       "fold_db": -25.93,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.8,
+       "trail_ms": 244.3,
+       "peak_db": -2.12,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "wh-question",
+     "text": "आपका नाम क्या है?",
+     "pieces": [
+      "आपका नाम क्या है?"
+     ],
+     "dur_s": 1.304,
+     "chunks": 1,
+     "lead_ms": 29.6,
+     "trail_ms": 257.2,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -15.28,
+     "peak_db": -0.84,
+     "true_peak_db": -0.78,
+     "clip_frac": 0.0,
+     "dc": 0.00025,
+     "edge_db": -62.3,
+     "seams": [],
+     "chunk_lufs": [
+      -15.28
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.089,
+       "guard_db": -0.96,
+       "pass_db": 0.0,
+       "fold_db": -30.63,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 257.1,
+       "peak_db": -0.62,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.026,
+       "guard_db": -2.4,
+       "pass_db": -0.0,
+       "fold_db": -37.41,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 257.2,
+       "peak_db": -0.74,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "exclaim",
+     "text": "बहुत बढ़िया!",
+     "pieces": [
+      "बहुत बढ़िया!"
+     ],
+     "dur_s": 1.105,
+     "chunks": 1,
+     "lead_ms": 26.1,
+     "trail_ms": 267.1,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -17.88,
+     "peak_db": -2.71,
+     "true_peak_db": -2.65,
+     "clip_frac": 0.0,
+     "dc": 6.5e-05,
+     "edge_db": -72.2,
+     "seams": [],
+     "chunk_lufs": [
+      -17.88
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.127,
+       "guard_db": -1.82,
+       "pass_db": -0.0,
+       "fold_db": -33.55,
+       "dur_ratio": 1.0001,
+       "lead_ms": 26.1,
+       "trail_ms": 267.1,
+       "peak_db": -2.65,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.031,
+       "guard_db": -4.77,
+       "pass_db": 0.0,
+       "fold_db": -38.48,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.1,
+       "trail_ms": 267.1,
+       "peak_db": -2.62,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "apology",
+     "text": "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।",
+     "pieces": [
+      "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।"
+     ],
+     "dur_s": 3.363,
+     "chunks": 1,
+     "lead_ms": 26.3,
+     "trail_ms": 216.6,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -16.4,
+     "peak_db": -2.46,
+     "true_peak_db": -2.38,
+     "clip_frac": 0.0,
+     "dc": 0.000233,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -16.4
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.088,
+       "guard_db": -0.85,
+       "pass_db": -0.0,
+       "fold_db": -25.5,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.4,
+       "trail_ms": 216.6,
+       "peak_db": -2.74,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.018,
+       "guard_db": -2.01,
+       "pass_db": 0.0,
+       "fold_db": -31.26,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.4,
+       "trail_ms": 216.6,
+       "peak_db": -2.36,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "greeting",
+     "text": "नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "नमस्ते,",
+      "मैं श्रेया बोल रही हूँ",
+      "और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 7.533,
+     "chunks": 3,
+     "lead_ms": 26.8,
+     "trail_ms": 245.9,
+     "gaps_ms": [
+      104.9,
+      169.3
+     ],
+     "stall_ms": [
+      -761.4,
+      -2080.5
+     ],
+     "lufs": -15.71,
+     "peak_db": -1.38,
+     "true_peak_db": -1.3,
+     "clip_frac": 0.0,
+     "dc": 0.000177,
+     "edge_db": -54.7,
+     "seams": [
+      {
+       "jump": 0.0018,
+       "jump_ratio": 0.01,
+       "flux_spike": 0.007
+      },
+      {
+       "jump": 0.00043,
+       "jump_ratio": 0.002,
+       "flux_spike": 0.003
+      }
+     ],
+     "chunk_lufs": [
+      -15.98,
+      -13.74,
+      -16.2
+     ],
+     "chunk_lufs_spread_db": 2.45,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.077,
+       "guard_db": -1.68,
+       "pass_db": -0.0,
+       "fold_db": -26.87,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 247.4,
+       "peak_db": -1.49,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.018,
+       "guard_db": -3.09,
+       "pass_db": -0.0,
+       "fold_db": -34.27,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 245.9,
+       "peak_db": -1.34,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "long-commas",
+     "text": "आपकी किस्त की तारीख पंद्रह अगस्त है, इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा, और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।",
+     "pieces": [
+      "आपकी किस्त की तारीख पंद्रह अगस्त है,",
+      "इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा,",
+      "और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।"
+     ],
+     "dur_s": 12.327,
+     "chunks": 3,
+     "lead_ms": 29.6,
+     "trail_ms": 267.2,
+     "gaps_ms": [
+      141.8,
+      141.0
+     ],
+     "stall_ms": [
+      -2408.2,
+      -8395.2
+     ],
+     "lufs": -16.18,
+     "peak_db": -1.16,
+     "true_peak_db": -1.15,
+     "clip_frac": 0.0,
+     "dc": 0.000294,
+     "edge_db": -62.0,
+     "seams": [
+      {
+       "jump": 0.00012,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 0.00049,
+       "jump_ratio": 0.003,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.25,
+      -15.99,
+      -16.59
+     ],
+     "chunk_lufs_spread_db": 0.6,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.086,
+       "guard_db": -1.23,
+       "pass_db": -0.0,
+       "fold_db": -26.67,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.2,
+       "trail_ms": 267.2,
+       "peak_db": -1.31,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.011,
+       "guard_db": -2.21,
+       "pass_db": -0.0,
+       "fold_db": -32.0,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 267.2,
+       "peak_db": -1.28,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "hinglish",
+     "text": "आपका EMI ₹5,000 है, due date 5 तारीख को है, please payment time पर कर दीजिए।",
+     "pieces": [
+      "आपका ई एम आई पाँच हज़ार रुपये है, due date पाँच तारीख को है,",
+      "please payment time पर कर दीजिए।"
+     ],
+     "dur_s": 6.777,
+     "chunks": 2,
+     "lead_ms": 29.7,
+     "trail_ms": 229.0,
+     "gaps_ms": [
+      169.4
+     ],
+     "stall_ms": [
+      -4694.1
+     ],
+     "lufs": -16.16,
+     "peak_db": -1.44,
+     "true_peak_db": -1.32,
+     "clip_frac": 0.0,
+     "dc": 0.00019,
+     "edge_db": -69.5,
+     "seams": [
+      {
+       "jump": 0.00046,
+       "jump_ratio": 0.003,
+       "flux_spike": 0.002
+      }
+     ],
+     "chunk_lufs": [
+      -16.16,
+      -15.72
+     ],
+     "chunk_lufs_spread_db": 0.44,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.097,
+       "guard_db": -0.98,
+       "pass_db": -0.0,
+       "fold_db": -25.94,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 229.0,
+       "peak_db": -1.56,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.024,
+       "guard_db": -2.28,
+       "pass_db": -0.0,
+       "fold_db": -32.47,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 229.0,
+       "peak_db": -1.28,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "three-sentences",
+     "text": "नमस्ते। मैं आपकी मदद के लिए यहाँ हूँ। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?",
+     "pieces": [
+      "नमस्ते।",
+      "मैं आपकी मदद के लिए यहाँ हूँ।",
+      "बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+     ],
+     "dur_s": 6.821,
+     "chunks": 3,
+     "lead_ms": 26.7,
+     "trail_ms": 254.4,
+     "gaps_ms": [
+      232.2,
+      244.7
+     ],
+     "stall_ms": [
+      -801.2,
+      -3381.2
+     ],
+     "lufs": -15.79,
+     "peak_db": -1.42,
+     "true_peak_db": -1.29,
+     "clip_frac": 0.0,
+     "dc": 0.000352,
+     "edge_db": -66.2,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.001
+      },
+      {
+       "jump": 0.00046,
+       "jump_ratio": 0.002,
+       "flux_spike": 0.002
+      }
+     ],
+     "chunk_lufs": [
+      -16.53,
+      -16.5,
+      -15.02
+     ],
+     "chunk_lufs_spread_db": 1.51,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.085,
+       "guard_db": -1.59,
+       "pass_db": -0.0,
+       "fold_db": -26.0,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 254.4,
+       "peak_db": -1.54,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.011,
+       "guard_db": -2.06,
+       "pass_db": 0.0,
+       "fold_db": -31.93,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.8,
+       "trail_ms": 254.4,
+       "peak_db": -1.35,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "ellipsis-dash",
+     "text": "हम्म... मुझे सोचने दीजिए। शायद कल - या परसों - हो जाएगा।",
+     "pieces": [
+      "हम्म...",
+      "मुझे सोचने दीजिए।",
+      "शायद कल - या परसों - हो जाएगा।"
+     ],
+     "dur_s": 4.499,
+     "chunks": 3,
+     "lead_ms": 28.4,
+     "trail_ms": 209.7,
+     "gaps_ms": [
+      102.8,
+      237.9
+     ],
+     "stall_ms": [
+      -503.5,
+      -1978.8
+     ],
+     "lufs": -15.4,
+     "peak_db": -1.45,
+     "true_peak_db": -1.43,
+     "clip_frac": 0.0,
+     "dc": 0.000302,
+     "edge_db": -53.9,
+     "seams": [
+      {
+       "jump": 0.00119,
+       "jump_ratio": 0.006,
+       "flux_spike": 0.009
+      },
+      {
+       "jump": 0.00018,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.003
+      }
+     ],
+     "chunk_lufs": [
+      -16.34,
+      -15.68,
+      -15.01
+     ],
+     "chunk_lufs_spread_db": 1.33,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.027,
+       "guard_db": -2.27,
+       "pass_db": -0.0,
+       "fold_db": -21.2,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.5,
+       "trail_ms": 209.6,
+       "peak_db": -1.39,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.011,
+       "guard_db": -2.11,
+       "pass_db": -0.0,
+       "fold_db": -28.23,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.4,
+       "trail_ms": 209.7,
+       "peak_db": -1.38,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-rohan-medium",
+     "id": "colon-semicolon",
+     "text": "ध्यान दीजिए: आपका OTP चार अंकों का है; इसे किसी से साझा न करें।",
+     "pieces": [
+      "ध्यान दीजिए: आपका ओ टी पी चार अंकों का है;",
+      "इसे किसी से साझा न करें।"
+     ],
+     "dur_s": 5.596,
+     "chunks": 2,
+     "lead_ms": 26.0,
+     "trail_ms": 211.7,
+     "gaps_ms": [
+      147.5
+     ],
+     "stall_ms": [
+      -3625.7
+     ],
+     "lufs": -16.44,
+     "peak_db": -1.42,
+     "true_peak_db": -1.37,
+     "clip_frac": 0.0,
+     "dc": 0.000203,
+     "edge_db": -76.3,
+     "seams": [
+      {
+       "jump": 0.00015,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -16.55,
+      -16.25
+     ],
+     "chunk_lufs_spread_db": 0.3,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.035,
+       "guard_db": -0.98,
+       "pass_db": -0.0,
+       "fold_db": -21.73,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.0,
+       "trail_ms": 218.8,
+       "peak_db": -1.62,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.027,
+       "guard_db": -2.94,
+       "pass_db": 0.0,
+       "fold_db": -24.03,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.1,
+       "trail_ms": 211.6,
+       "peak_db": -1.37,
+       "clip_frac": 0.0
+      }
+     }
+    }
+   ],
+   "ttfa_native": {
+    "n": 20,
+    "p50_ms": 43.0,
+    "p95_ms": 59.4,
+    "min_ms": 37.7,
+    "max_ms": 59.4
+   },
+   "ttfa_8k": {
+    "n": 20,
+    "p50_ms": 41.9,
+    "p95_ms": 52.6,
+    "min_ms": 38.3,
+    "max_ms": 52.6
+   }
+  },
+  "hi_IN-custom-medium": {
+   "summary": {
+    "lead_ms": {
+     "min": 5.2,
+     "median": 27.6,
+     "max": 29.8
+    },
+    "trail_ms_sentence_end": {
+     "min": 139.0,
+     "median": 150.2,
+     "max": 160.4
+    },
+    "gap_ms": {
+     "min": 152.7,
+     "median": 168.75,
+     "max": 190.4
+    },
+    "stall_ms": {
+     "min": -8383.4,
+     "median": -2392.1,
+     "max": -475.8
+    },
+    "lufs": {
+     "min": -22.16,
+     "median": -20.66,
+     "max": -19.14
+    },
+    "lufs_std": 0.75,
+    "chunk_lufs_spread_db": {
+     "min": 0.19,
+     "median": 0.89,
+     "max": 1.46
+    },
+    "true_peak_db": {
+     "min": -8.04,
+     "median": -5.41,
+     "max": -3.55
+    },
+    "edge_db_max": -73.4,
+    "clip_frac_max": 0.0,
+    "dc_abs_max": 0.000124,
+    "seam_jump_ratio": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.0
+    },
+    "seam_flux_spike": {
+     "min": 0.0,
+     "median": 0.0,
+     "max": 0.0
+    },
+    "tel8000_level_change_db": {
+     "min": 0.06,
+     "median": 0.11,
+     "max": 0.68
+    },
+    "tel8000_guard_db": {
+     "min": -4.03,
+     "median": -3.01,
+     "max": -1.72
+    },
+    "tel8000_pass_db": {
+     "min": -0.0,
+     "median": 0.0,
+     "max": -0.0
+    },
+    "tel8000_fold_db": {
+     "min": -37.21,
+     "median": -26.64,
+     "max": -21.44
+    },
+    "tel16000_level_change_db": {
+     "min": -0.02,
+     "median": 0.02,
+     "max": 0.03
+    },
+    "tel16000_guard_db": {
+     "min": -5.93,
+     "median": -3.66,
+     "max": -1.85
+    },
+    "tel16000_pass_db": {
+     "min": -0.0,
+     "median": 0.0,
+     "max": -0.0
+    },
+    "tel16000_fold_db": {
+     "min": -45.91,
+     "median": -32.94,
+     "max": -23.4
+    }
+   },
+   "utterances": [
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "yes",
+     "text": "जी हाँ।",
+     "pieces": [
+      "जी हाँ।"
+     ],
+     "dur_s": 0.686,
+     "chunks": 1,
+     "lead_ms": 27.3,
+     "trail_ms": 141.6,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -21.0,
+     "peak_db": -8.04,
+     "true_peak_db": -8.04,
+     "clip_frac": 0.0,
+     "dc": 5.1e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -21.0
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.065,
+       "guard_db": -2.91,
+       "pass_db": -0.0,
+       "fold_db": -24.98,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.4,
+       "trail_ms": 141.6,
+       "peak_db": -8.78,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.013,
+       "guard_db": -3.18,
+       "pass_db": -0.0,
+       "fold_db": -33.9,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.3,
+       "trail_ms": 141.6,
+       "peak_db": -8.09,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "no",
+     "text": "जी नहीं।",
+     "pieces": [
+      "जी नहीं।"
+     ],
+     "dur_s": 0.745,
+     "chunks": 1,
+     "lead_ms": 27.3,
+     "trail_ms": 141.2,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -19.14,
+     "peak_db": -6.46,
+     "true_peak_db": -6.45,
+     "clip_frac": 0.0,
+     "dc": -5e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -19.14
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.127,
+       "guard_db": -2.78,
+       "pass_db": -0.0,
+       "fold_db": -27.87,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.4,
+       "trail_ms": 141.1,
+       "peak_db": -6.77,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.031,
+       "guard_db": -3.07,
+       "pass_db": 0.0,
+       "fold_db": -37.61,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.3,
+       "trail_ms": 141.2,
+       "peak_db": -6.53,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "ok",
+     "text": "ठीक है।",
+     "pieces": [
+      "ठीक है।"
+     ],
+     "dur_s": 0.675,
+     "chunks": 1,
+     "lead_ms": 29.8,
+     "trail_ms": 160.4,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -22.16,
+     "peak_db": -6.89,
+     "true_peak_db": -6.74,
+     "clip_frac": 0.0,
+     "dc": 8.2e-05,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -22.16
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.117,
+       "guard_db": -1.72,
+       "pass_db": -0.0,
+       "fold_db": -23.61,
+       "dur_ratio": 1.0001,
+       "lead_ms": 29.6,
+       "trail_ms": 160.8,
+       "peak_db": -7.68,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.03,
+       "guard_db": -5.93,
+       "pass_db": 0.0,
+       "fold_db": -31.98,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.9,
+       "trail_ms": 160.7,
+       "peak_db": -6.99,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "wait",
+     "text": "एक मिनट रुकिए।",
+     "pieces": [
+      "एक मिनट रुकिए।"
+     ],
+     "dur_s": 1.117,
+     "chunks": 1,
+     "lead_ms": 28.9,
+     "trail_ms": 151.3,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -19.91,
+     "peak_db": -5.56,
+     "true_peak_db": -5.56,
+     "clip_frac": 0.0,
+     "dc": 1.3e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -19.91
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.678,
+       "guard_db": -3.05,
+       "pass_db": -0.0,
+       "fold_db": -33.67,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.1,
+       "trail_ms": 151.4,
+       "peak_db": -5.62,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.033,
+       "guard_db": -3.4,
+       "pass_db": -0.0,
+       "fold_db": -42.58,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.8,
+       "trail_ms": 151.3,
+       "peak_db": -5.64,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "yn-question",
+     "text": "क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 1.685,
+     "chunks": 1,
+     "lead_ms": 29.1,
+     "trail_ms": 141.6,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -20.07,
+     "peak_db": -6.76,
+     "true_peak_db": -6.75,
+     "clip_frac": 0.0,
+     "dc": -2.5e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -20.07
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.095,
+       "guard_db": -3.69,
+       "pass_db": 0.0,
+       "fold_db": -28.58,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 141.5,
+       "peak_db": -6.74,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.02,
+       "guard_db": -3.98,
+       "pass_db": -0.0,
+       "fold_db": -31.04,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.1,
+       "trail_ms": 141.6,
+       "peak_db": -6.69,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "wh-question",
+     "text": "आपका नाम क्या है?",
+     "pieces": [
+      "आपका नाम क्या है?"
+     ],
+     "dur_s": 1.234,
+     "chunks": 1,
+     "lead_ms": 29.6,
+     "trail_ms": 152.6,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -20.36,
+     "peak_db": -6.81,
+     "true_peak_db": -6.76,
+     "clip_frac": 0.0,
+     "dc": -8e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -20.36
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.116,
+       "guard_db": -3.39,
+       "pass_db": 0.0,
+       "fold_db": -35.51,
+       "dur_ratio": 1.0,
+       "lead_ms": 28.9,
+       "trail_ms": 152.6,
+       "peak_db": -6.7,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.029,
+       "guard_db": -3.83,
+       "pass_db": 0.0,
+       "fold_db": -43.5,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.6,
+       "trail_ms": 152.6,
+       "peak_db": -6.86,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "exclaim",
+     "text": "बहुत बढ़िया!",
+     "pieces": [
+      "बहुत बढ़िया!"
+     ],
+     "dur_s": 1.005,
+     "chunks": 1,
+     "lead_ms": 27.0,
+     "trail_ms": 154.7,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -19.22,
+     "peak_db": -4.23,
+     "true_peak_db": -4.2,
+     "clip_frac": 0.0,
+     "dc": 7.3e-05,
+     "edge_db": -90.3,
+     "seams": [],
+     "chunk_lufs": [
+      -19.22
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.127,
+       "guard_db": -1.75,
+       "pass_db": 0.0,
+       "fold_db": -37.21,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.1,
+       "trail_ms": 154.6,
+       "peak_db": -4.62,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.03,
+       "guard_db": -5.07,
+       "pass_db": 0.0,
+       "fold_db": -45.91,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.1,
+       "trail_ms": 154.7,
+       "peak_db": -4.22,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "apology",
+     "text": "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।",
+     "pieces": [
+      "माफ़ कीजिए, मुझे आपकी बात समझ नहीं आई।"
+     ],
+     "dur_s": 3.018,
+     "chunks": 1,
+     "lead_ms": 27.5,
+     "trail_ms": 150.8,
+     "gaps_ms": [],
+     "stall_ms": [],
+     "lufs": -21.01,
+     "peak_db": -4.58,
+     "true_peak_db": -4.58,
+     "clip_frac": 0.0,
+     "dc": 9.9e-05,
+     "edge_db": -84.3,
+     "seams": [],
+     "chunk_lufs": [
+      -21.01
+     ],
+     "chunk_lufs_spread_db": 0.0,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.077,
+       "guard_db": -4.03,
+       "pass_db": -0.0,
+       "fold_db": -23.81,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.6,
+       "trail_ms": 150.8,
+       "peak_db": -4.74,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.016,
+       "guard_db": -3.71,
+       "pass_db": 0.0,
+       "fold_db": -29.41,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.6,
+       "trail_ms": 150.8,
+       "peak_db": -4.64,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "greeting",
+     "text": "नमस्ते, मैं श्रेया बोल रही हूँ और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?",
+     "pieces": [
+      "नमस्ते,",
+      "मैं श्रेया बोल रही हूँ",
+      "और आपके loan के बारे में बात करना चाहती हूँ, क्या आप अभी बात कर सकते हैं?"
+     ],
+     "dur_s": 6.641,
+     "chunks": 3,
+     "lead_ms": 26.9,
+     "trail_ms": 139.0,
+     "gaps_ms": [
+      167.7,
+      168.8
+     ],
+     "stall_ms": [
+      -726.5,
+      -2160.4
+     ],
+     "lufs": -20.48,
+     "peak_db": -3.57,
+     "true_peak_db": -3.55,
+     "clip_frac": 0.0,
+     "dc": -2.9e-05,
+     "edge_db": -90.3,
+     "seams": [
+      {
+       "jump": 0.0,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -19.86,
+      -19.75,
+      -20.93
+     ],
+     "chunk_lufs_spread_db": 1.17,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.104,
+       "guard_db": -3.15,
+       "pass_db": -0.0,
+       "fold_db": -31.17,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.0,
+       "trail_ms": 138.9,
+       "peak_db": -3.49,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.022,
+       "guard_db": -1.85,
+       "pass_db": -0.0,
+       "fold_db": -40.08,
+       "dur_ratio": 1.0,
+       "lead_ms": 26.9,
+       "trail_ms": 139.2,
+       "peak_db": -3.55,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "long-commas",
+     "text": "आपकी किस्त की तारीख पंद्रह अगस्त है, इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा, और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।",
+     "pieces": [
+      "आपकी किस्त की तारीख पंद्रह अगस्त है,",
+      "इसलिए कृपया उससे पहले भुगतान कर दीजिए, नहीं तो आपके खाते पर अतिरिक्त शुल्क लगेगा,",
+      "और यह आपकी क्रेडिट रेटिंग पर भी असर डाल सकता है।"
+     ],
+     "dur_s": 11.739,
+     "chunks": 3,
+     "lead_ms": 29.7,
+     "trail_ms": 159.7,
+     "gaps_ms": [
+      170.7,
+      152.7
+     ],
+     "stall_ms": [
+      -2623.8,
+      -8383.4
+     ],
+     "lufs": -20.66,
+     "peak_db": -4.43,
+     "true_peak_db": -4.42,
+     "clip_frac": 0.0,
+     "dc": 5.8e-05,
+     "edge_db": -84.3,
+     "seams": [
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.002
+      },
+      {
+       "jump": 0.0,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -19.84,
+      -20.66,
+      -21.3
+     ],
+     "chunk_lufs_spread_db": 1.46,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.108,
+       "guard_db": -3.63,
+       "pass_db": -0.0,
+       "fold_db": -25.69,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.1,
+       "trail_ms": 159.6,
+       "peak_db": -4.29,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.016,
+       "guard_db": -3.35,
+       "pass_db": 0.0,
+       "fold_db": -29.96,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.8,
+       "trail_ms": 159.7,
+       "peak_db": -4.47,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "hinglish",
+     "text": "आपका EMI ₹5,000 है, due date 5 तारीख को है, please payment time पर कर दीजिए।",
+     "pieces": [
+      "आपका ई एम आई पाँच हज़ार रुपये है, due date पाँच तारीख को है,",
+      "please payment time पर कर दीजिए।"
+     ],
+     "dur_s": 5.971,
+     "chunks": 2,
+     "lead_ms": 29.1,
+     "trail_ms": 158.3,
+     "gaps_ms": [
+      175.2
+     ],
+     "stall_ms": [
+      -4063.9
+     ],
+     "lufs": -20.66,
+     "peak_db": -5.78,
+     "true_peak_db": -5.73,
+     "clip_frac": 0.0,
+     "dc": 5.6e-05,
+     "edge_db": -73.4,
+     "seams": [
+      {
+       "jump": 0.0,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -20.46,
+      -20.89
+     ],
+     "chunk_lufs_spread_db": 0.43,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.112,
+       "guard_db": -3.83,
+       "pass_db": -0.0,
+       "fold_db": -25.39,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.1,
+       "trail_ms": 158.2,
+       "peak_db": -6.03,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.023,
+       "guard_db": -3.62,
+       "pass_db": -0.0,
+       "fold_db": -31.11,
+       "dur_ratio": 1.0,
+       "lead_ms": 29.1,
+       "trail_ms": 158.2,
+       "peak_db": -5.86,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "three-sentences",
+     "text": "नमस्ते। मैं आपकी मदद के लिए यहाँ हूँ। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?",
+     "pieces": [
+      "नमस्ते।",
+      "मैं आपकी मदद के लिए यहाँ हूँ।",
+      "बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+     ],
+     "dur_s": 5.71,
+     "chunks": 3,
+     "lead_ms": 27.7,
+     "trail_ms": 149.2,
+     "gaps_ms": [
+      189.5,
+      161.6
+     ],
+     "stall_ms": [
+      -799.2,
+      -2767.4
+     ],
+     "lufs": -20.81,
+     "peak_db": -4.01,
+     "true_peak_db": -3.99,
+     "clip_frac": 0.0,
+     "dc": -3.4e-05,
+     "edge_db": -90.3,
+     "seams": [
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -20.25,
+      -20.94,
+      -20.46
+     ],
+     "chunk_lufs_spread_db": 0.69,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.118,
+       "guard_db": -2.58,
+       "pass_db": -0.0,
+       "fold_db": -27.59,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.8,
+       "trail_ms": 149.1,
+       "peak_db": -3.97,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": 0.022,
+       "guard_db": -3.79,
+       "pass_db": -0.0,
+       "fold_db": -36.34,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.7,
+       "trail_ms": 149.1,
+       "peak_db": -4.02,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "ellipsis-dash",
+     "text": "हम्म... मुझे सोचने दीजिए। शायद कल - या परसों - हो जाएगा।",
+     "pieces": [
+      "हम्म...",
+      "मुझे सोचने दीजिए।",
+      "शायद कल - या परसों - हो जाएगा।"
+     ],
+     "dur_s": 3.557,
+     "chunks": 3,
+     "lead_ms": 5.2,
+     "trail_ms": 149.6,
+     "gaps_ms": [
+      168.7,
+      190.4
+     ],
+     "stall_ms": [
+      -475.8,
+      -1639.9
+     ],
+     "lufs": -21.2,
+     "peak_db": -5.32,
+     "true_peak_db": -5.27,
+     "clip_frac": 0.0,
+     "dc": 0.000124,
+     "edge_db": -78.3,
+     "seams": [
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      },
+      {
+       "jump": 3e-05,
+       "jump_ratio": 0.0,
+       "flux_spike": 0.0
+      }
+     ],
+     "chunk_lufs": [
+      -22.0,
+      -21.09,
+      -20.92
+     ],
+     "chunk_lufs_spread_db": 1.08,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.059,
+       "guard_db": -1.89,
+       "pass_db": -0.0,
+       "fold_db": -21.94,
+       "dur_ratio": 1.0,
+       "lead_ms": 6.8,
+       "trail_ms": 149.5,
+       "peak_db": -5.5,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.003,
+       "guard_db": -2.88,
+       "pass_db": -0.0,
+       "fold_db": -27.91,
+       "dur_ratio": 1.0,
+       "lead_ms": 5.2,
+       "trail_ms": 149.6,
+       "peak_db": -5.34,
+       "clip_frac": 0.0
+      }
+     }
+    },
+    {
+     "voice": "hi_IN-custom-medium",
+     "id": "colon-semicolon",
+     "text": "ध्यान दीजिए: आपका OTP चार अंकों का है; इसे किसी से साझा न करें।",
+     "pieces": [
+      "ध्यान दीजिए: आपका ओ टी पी चार अंकों का है;",
+      "इसे किसी से साझा न करें।"
+     ],
+     "dur_s": 4.388,
+     "chunks": 2,
+     "lead_ms": 27.3,
+     "trail_ms": 145.3,
+     "gaps_ms": [
+      155.2
+     ],
+     "stall_ms": [
+      -2653.2
+     ],
+     "lufs": -20.7,
+     "peak_db": -3.67,
+     "true_peak_db": -3.65,
+     "clip_frac": 0.0,
+     "dc": 2.1e-05,
+     "edge_db": -90.3,
+     "seams": [
+      {
+       "jump": 6e-05,
+       "jump_ratio": 0.001,
+       "flux_spike": 0.001
+      }
+     ],
+     "chunk_lufs": [
+      -20.71,
+      -20.51
+     ],
+     "chunk_lufs_spread_db": 0.19,
+     "synthesize_matches_stream": true,
+     "tel": {
+      "8000": {
+       "level_change_db": 0.068,
+       "guard_db": -2.97,
+       "pass_db": -0.0,
+       "fold_db": -21.44,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.2,
+       "trail_ms": 145.2,
+       "peak_db": -3.72,
+       "clip_frac": 0.0
+      },
+      "16000": {
+       "level_change_db": -0.016,
+       "guard_db": -4.74,
+       "pass_db": -0.0,
+       "fold_db": -23.4,
+       "dur_ratio": 1.0,
+       "lead_ms": 27.2,
+       "trail_ms": 145.2,
+       "peak_db": -3.64,
+       "clip_frac": 0.0
+      }
+     }
+    }
+   ],
+   "ttfa_native": {
+    "n": 20,
+    "p50_ms": 33.3,
+    "p95_ms": 43.6,
+    "min_ms": 30.9,
+    "max_ms": 43.6
+   },
+   "ttfa_8k": {
+    "n": 20,
+    "p50_ms": 36.4,
+    "p95_ms": 40.8,
+    "min_ms": 26.6,
+    "max_ms": 40.8
+   }
+  }
+ }
+}
