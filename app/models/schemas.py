@@ -8,6 +8,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from app.services.conditioning import VoiceCondition
+from app.services.persona_grammar import Persona
 
 VOICE_ID = r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}"
 SampleRate = Literal[8000, 16000, 22050, 24000, 44100, 48000]
@@ -23,6 +24,7 @@ class SpeechRequest(BaseModel):
     reference_text: str | None = None
     condition: VoiceCondition | None = None  # optional conditioning: emotion, style, role, ... (docs/voice-system.md)
     routing_policy: Literal["fast", "balanced", "expressive", "clone"] | None = None  # engine choice when voice is "default"
+    persona: Persona | None = None  # opt-in: rewrite first-person Hindi agreement (assistant-authored text ONLY)
 
 
 class WsSpeak(BaseModel):
@@ -35,3 +37,4 @@ class WsSpeak(BaseModel):
     frame_ms: int = Field(0, ge=0, le=1000)
     condition: VoiceCondition | None = None
     routing_policy: Literal["fast", "balanced", "expressive", "clone"] | None = None
+    persona: Persona | None = None
