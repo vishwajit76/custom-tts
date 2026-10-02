@@ -384,7 +384,8 @@ class EvalManager:
 
 MAX_H = float(os.environ.get("MAX_HOURS", "11"))
 REPO = "vishwajit76/custom-tts-hindi-train"
-NAME = "hi_f"
+NAME = os.environ.get("VOICE_NAME", "hi_f")  # V7: hi_v7 (multi-speaker Rasa data under data/hi_v7/)
+INIT_MODE = os.environ.get("INIT_MODE", "resume")  # resume = strict --ckpt_path; warmstart = copy same-shape weights, fresh optimizer, step 0 (single- to multi-speaker)
 W = pathlib.Path(os.environ.get("W_ROOT", "/tmp/w")); W.mkdir(parents=True, exist_ok=True)  # big files stay out of /kaggle/working (kernel output)
 BS = int(os.environ.get("BS", "24"))
 MS_EVERY = int(os.environ.get("MS_EVERY", "5000"))
@@ -481,7 +482,10 @@ else:
     DATA = W / "hf" / "data" / NAME
 RUN = W / "run"; CK = RUN / "lightning_logs" / "version_0" / "checkpoints"; CK.mkdir(parents=True, exist_ok=True)
 GUARD = ExperimentGuard(api, REPO, EXPERIMENT_ID, SID, read_text=_read)
-shutil.copy(_dl(f"runs/{NAME}/config.json"), RUN / "config.json")
+if NAME == "hi_f":  # other voices: piper writes config.json (with speaker_id_map) from the data
+    shutil.copy(_dl(f"runs/{NAME}/config.json"), RUN / "config.json")
+assert INIT_MODE in ("resume", "warmstart"), INIT_MODE
+NUM_SPEAKERS = len({r.split("|")[1] for r in (DATA / "metadata.csv").read_text("utf-8").splitlines() if r.count("|") == 2}) or 1
 
 # Resume point: explicit (RESUME_FROM=<hf path>) or the highest-step known checkpoint. Never an implicit "last.ckpt": that name was overwritten by whichever
 # session uploaded last (v5's 20-min upload replaced v4's final with the stale 310300 seed).
@@ -490,6 +494,7 @@ def _probe(path):
     m = ckpt_meta(_dl(path), check_finite=False)  # legacy runs/hi_f/last.ckpt has no step in its name: read global_step from the file
     return m["global_step"]
 if RESUME_FROM.lower() == "auto":
+    assert NAME == "hi_f" and INIT_MODE == "resume", "auto resume only knows the hi_f timeline: set RESUME_FROM explicitly"
     RESUME_PATH, RESUME_STEP_HINT, CONSIDERED = pick_resume(files, _probe)
     assert RESUME_PATH, f"no resumable checkpoint found: {CONSIDERED}"
 else:
@@ -501,7 +506,7 @@ assert REMOTE_SHA is None or REMOTE_SHA == RESUME_SHA, f"resume checkpoint sha25
 CK0 = ckpt_meta(SEED)
 assert CK0["finite"], f"resume checkpoint has non-finite weights: {CK0['nonfinite_tensors']}"
 assert RESUME_STEP_HINT is None or RESUME_STEP_HINT == CK0["global_step"], f"{RESUME_PATH}: name says step {RESUME_STEP_HINT}, file says {CK0['global_step']}"
-START_STEP, START_EPOCH = CK0["global_step"], CK0["epoch"] + 1
+START_STEP, START_EPOCH = (0, 0) if INIT_MODE == "warmstart" else (CK0["global_step"], CK0["epoch"] + 1)
 CK_LR = dict(lr_g=CK0["lr_g"], lr_d=CK0["lr_d"], sched=CK0["scheduler"], lr_ctl=CK0["lr_ctl"])
 # NEW checkpoints go to their own directory (the seed is never rewritten; Lightning would write version_1 next to it, see docs/training-progress.md).
 OUT_CK = W / "ckpt"; OUT_CK.mkdir(exist_ok=True)
@@ -594,10 +599,10 @@ if __name__ == "__main__": m.main()
 cmd = [sys.executable, str(W / "wrap.py"), "fit", "--seed_everything", str(SEED_VALUE),
        "--data.voice_name", NAME, "--data.csv_path", str(DATA / "metadata.csv"), "--data.audio_dir", str(DATA / "wavs"),
        "--data.espeak_voice", "hi", "--data.cache_dir", str(RUN / "cache"), "--data.config_path", str(RUN / "config.json"),
-       "--data.batch_size", str(BS), "--data.num_workers", "0" if SMOKE else "3", "--model.sample_rate", "22050", "--model.num_speakers", "1",
+       "--data.batch_size", str(BS), "--data.num_workers", "0" if SMOKE else "3", "--model.sample_rate", "22050", "--model.num_speakers", str(NUM_SPEAKERS),
        "--trainer.default_root_dir", str(RUN), "--trainer.accelerator", "cpu" if SMOKE else "gpu", "--trainer.devices", "1",
        "--trainer.precision", "32-true" if SMOKE else "16-mixed", "--trainer.max_epochs", str(START_EPOCH + (int(os.environ.get("SMOKE_EPOCHS", "1000")) if SMOKE else 100000)),
-       "--trainer.log_every_n_steps", "50", "--ckpt_path", str(SEED)]
+       "--trainer.log_every_n_steps", "50"] + (["--model.warmstart_ckpt", str(SEED)] if INIT_MODE == "warmstart" else ["--ckpt_path", str(SEED)])
 if SMOKE:
     cmd += ["--trainer.enable_progress_bar", "false"]
 env = dict(os.environ, DEADLINE=str(T0 + MAX_H * 3600), PYTHONUNBUFFERED="1", W_DIR=str(W), LAST_CKPT=str(LAST), CKPT_DIR=str(OUT_CK), MS_EVERY=str(MS_EVERY),
@@ -612,6 +617,7 @@ MANIFEST = {
     "experiment_id": EXPERIMENT_ID, "session": SID, "git_sha": GIT_SHA, "kernel_script_sha256": _script_sha(),
     "kernel": "vishwajit76/custom-tts-hindi-train", "started_utc": time.strftime("%FT%TZ", time.gmtime(T0)),
     "started_ist": time.strftime("%FT%T+05:30", time.gmtime(T0 + 19800)), "max_hours": MAX_H,
+    "voice_name": NAME, "init_mode": INIT_MODE, "num_speakers": NUM_SPEAKERS,
     "resume": {"requested": RESUME_FROM, "path": RESUME_PATH, "global_step": START_STEP, "epoch": CK0["epoch"], "sha256": RESUME_SHA,
                "remote_sha256": REMOTE_SHA, "considered": CONSIDERED},
     "dataset": {"repo_path": f"data/{NAME}", **FP}, "seed": SEED_VALUE, "batch_size": BS, "precision": "32-true" if SMOKE else "16-mixed",
@@ -671,8 +677,11 @@ def milestone(ckpt):
         (out / "session.json").write_text(json.dumps(dict(experiment_id=EXPERIMENT_ID, session=SID, git_sha=GIT_SHA, step=int(n), start_step=START_STEP, resume_from=RESUME_PATH,
                                                          lr_env=LR_ENV, lr_at_ckpt_start=CK_LR.get("lr_g"), t_utc=time.strftime("%FT%TZ", time.gmtime()))))
         smp = W / f"samples_{n}_{SID}"; smp.mkdir(exist_ok=True)
-        for i, t in enumerate(SENTS, 1):
-            subprocess.run([sys.executable, "-m", "piper", "-m", str(onnx), "-f", str(smp / f"sample_{i}.wav")], input=t.encode(), env=e)
+        spk = json.loads((RUN / "config.json").read_text("utf-8")).get("speaker_id_map") or {"": 0}
+        for name_, sid_ in spk.items():  # multi-speaker: every speaker/style says the sentences, so a collapsed speaker is audible
+            for i, t in enumerate(SENTS, 1):
+                f_ = smp / (f"sample_{i}.wav" if len(spk) == 1 else f"{name_}_{i}.wav")
+                subprocess.run([sys.executable, "-m", "piper", "-m", str(onnx), "-s", str(sid_), "-f", str(f_)], input=t.encode(), env=e)
         if GUARD.put_folder(out, f"milestones/step_{n}", f"milestone {n} {SID}") is None:
             print("milestone exists remotely, NOT overwritten:", n, flush=True)
         else:
