@@ -58,10 +58,10 @@ Each worker owns its files; shared files (`README.md`, `docs/PROGRESS.md`) are e
 
 | Track | Status | Notes |
 |---|---|---|
-| T1 | in progress | |
-| T2 | in progress | |
-| T3 | landed, untuned on real data | `training/ingest_hf.py`, `quality_gates.py`, gated `prepare_dataset`; docs/training.md section 2c. Thresholds need a first look at real Rasa audio |
-| T4 | in progress | |
-| T5 | in progress | |
-| T6 | in progress | |
-| T7 | blocked on dataset access | Rasa and IndicVoices-R are gated: the owner must accept the terms on Hugging Face |
+| T1 | landed, default off | probe 56 -> 4 wrong of 197 (espeak IPA); `PRONUNCIATION_RULES`, per voice via the catalog; V7 voices pin `all` |
+| T2 | landed | rule-based, clause-bounded; opt-in `persona` field on speech/stream/WS |
+| T3 | landed, run on real data | Rasa Hindi train: 38.2 of 44.8 h accepted (data/hi_v7/dataset_report.md on HF) |
+| T4 | landed | catalog with evidence rules; multi-speaker `sid`; V7 entries `planned` until the model exists |
+| T5 | landing | corpus v2 (258 rows), `bench/v7_eval.py`, listening kit; V6 quick baseline |
+| T6 | landed | loudness spread 4.8 -> 0.3 LU, pause plan, edge fades; TTFA p50 34-38 ms |
+| T7 | data prepared, upload to HF in progress; training waits for the GPU quota | Kaggle data kernel 2026-10-02; experiments A (medium) and B (high) launch after 2026-10-03 00:00 UTC |
