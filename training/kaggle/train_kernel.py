@@ -480,6 +480,11 @@ else:
     _read = lambda path: pathlib.Path(hf_hub_download(REPO, path, force_download=True)).read_text("utf-8")
     snapshot_download(REPO, allow_patterns=[f"data/{NAME}/*"], local_dir=str(W / "hf"))
     DATA = W / "hf" / "data" / NAME
+    import tarfile
+    for t_ in sorted(DATA.glob("wavs-*.tar")):  # V7 data ships as tar shards: a Hugging Face folder holds at most ~10k files
+        with tarfile.open(t_) as tf_:
+            tf_.extractall(DATA / "wavs", filter="data")
+        t_.unlink()
 RUN = W / "run"; CK = RUN / "lightning_logs" / "version_0" / "checkpoints"; CK.mkdir(parents=True, exist_ok=True)
 GUARD = ExperimentGuard(api, REPO, EXPERIMENT_ID, SID, read_text=_read)
 if NAME == "hi_f":  # other voices: piper writes config.json (with speaker_id_map) from the data

@@ -66,10 +66,22 @@ for f in ("style_hours.json", "ingest_info.json", "rights.jsonl"):
         (out / f"source_{f}").write_bytes((raw / f).read_bytes())
 print("prepared in", round((time.time() - T0) / 60, 1), "min:", (out / "report.json").read_text()[:2000], flush=True)
 
+import tarfile
+for folder in (out, test_out):  # tar shards: a Hugging Face folder holds at most ~10k files (the first upload stalled at 9983 wavs)
+    wavs = sorted((folder / "wavs").glob("*.wav"))
+    for i in range(0, len(wavs), 2500):
+        with tarfile.open(folder / f"wavs-{i // 2500:03d}.tar", "w") as tf:
+            for w in wavs[i:i + 2500]:
+                tf.add(w, arcname=w.name)
+    for w in wavs:
+        w.unlink()
+    (folder / "wavs").rmdir()
+    print(folder.name, len(wavs), "wavs in", len(list(folder.glob("wavs-*.tar"))), "shards", flush=True)
+
 if not LOCAL:
     from huggingface_hub import HfApi
     api = HfApi(token=env["HF_TOKEN"])
     assert not any(f.startswith(f"data/{VOICE_NAME}/") for f in api.list_repo_files(REPO)), f"data/{VOICE_NAME} exists on HF: refusing to overwrite"
-    for stage in (W / "stage", W / "stage_test"):
-        api.upload_large_folder(repo_id=REPO, repo_type="model", folder_path=str(stage), num_workers=8)
+    for stage in (W / "stage", W / "stage_test"):  # a few dozen files now: one plain commit each
+        api.upload_folder(repo_id=REPO, repo_type="model", folder_path=str(stage), commit_message=f"V7 data {stage.name} ({VOICE_NAME})")
     print("uploaded data/%s and data/%s_rasa_test in %.1f min" % (VOICE_NAME, VOICE_NAME, (time.time() - T0) / 60), flush=True)
