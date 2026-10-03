@@ -82,3 +82,15 @@ def test_prepare_refuses_without_rights(tmp_path, monkeypatch):
         pd.main()
     assert "refusing" in str(e.value)
     assert not (tmp_path / "o" / "metadata.csv").exists()
+
+
+def test_piper_text_is_safe_for_pipers_csv_reader():
+    import csv
+    import io
+
+    from training.prepare_dataset import piper_text
+
+    t = piper_text('"कोई तो जीतेगा ही|" मन में सोचा।')
+    assert t == "कोई तो जीतेगा ही। मन में सोचा।"
+    rows = list(csv.reader(io.StringIO(f"a.wav|f|{piper_text(chr(34) + 'x')}\nb.wav|f|y\n"), delimiter="|"))
+    assert rows == [["a.wav", "f", "x"], ["b.wav", "f", "y"]]

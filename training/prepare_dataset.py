@@ -182,6 +182,12 @@ def _progress(it, total: int):
         yield x
 
 
+def piper_text(text: str) -> str:
+    """Text safe for Piper's metadata reader: csv.reader(delimiter="|") with default quoting, so a '"' swallows the following
+    rows into one field and a '|' (used as a danda in some corpora, e.g. Rasa) splits the row. Quotes are not spoken."""
+    return text.replace("|", "।").replace('"', "")
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--input", type=Path, help="directory of raw recordings (or use --manifest)")
@@ -263,7 +269,8 @@ def main() -> None:
     splits, dropped = make_splits(rows, a.seed, a.val_fraction, a.test_fraction, a.speaker_disjoint_test)
 
     def line(r):
-        return f"{r['id']}.wav|{r['speaker_id']}|{r['text']}" if multi else f"{r['id']}.wav|{r['text']}"
+        t = piper_text(r["text"])
+        return f"{r['id']}.wav|{r['speaker_id']}|{t}" if multi else f"{r['id']}.wav|{t}"
 
     for name, fname in (("train", "metadata.csv"), ("val", "val.csv"), ("test", "test.csv")):
         if name == "val" and not splits["val"]:
