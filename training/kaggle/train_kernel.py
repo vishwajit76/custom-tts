@@ -607,10 +607,9 @@ cmd = [sys.executable, str(W / "wrap.py"), "fit", "--seed_everything", str(SEED_
        "--data.batch_size", str(BS), "--data.num_workers", "0" if SMOKE else "3", "--model.sample_rate", "22050", "--model.num_speakers", str(NUM_SPEAKERS),
        "--trainer.default_root_dir", str(RUN), "--trainer.accelerator", "cpu" if SMOKE else "gpu", "--trainer.devices", "1",
        "--trainer.precision", "32-true" if SMOKE else "16-mixed", "--trainer.max_epochs", str(START_EPOCH + (int(os.environ.get("SMOKE_EPOCHS", "1000")) if SMOKE else 100000)),
-       "--trainer.log_every_n_steps", "50"] + (["--model.warmstart_ckpt", str(SEED)] if INIT_MODE == "warmstart" else ["--ckpt_path", str(SEED)])
+       "--trainer.log_every_n_steps", "50"]  # start checkpoint flags: set_init() before each launch
 VOC = os.environ.get("VOCODER_WARMSTART")  # piper-checkpoints path, e.g. en/en_GB/cori/high/cori-high-500.ckpt (high decoder for the medium-vs-high experiment)
-if VOC and INIT_MODE == "warmstart":
-    cmd += ["--model.vocoder_warmstart_ckpt", hf_hub_download("rhasspy/piper-checkpoints", VOC, repo_type="dataset") if not SMOKE else VOC]
+VOC_PATH = (hf_hub_download("rhasspy/piper-checkpoints", VOC, repo_type="dataset") if not SMOKE else VOC) if VOC and INIT_MODE == "warmstart" else None
 cmd += os.environ.get("EXTRA_ARGS", "").split()  # e.g. high: --model.resblock 1 --model.upsample_initial_channel 512 ...
 if SMOKE:
     cmd += ["--trainer.enable_progress_bar", "false"]
@@ -815,6 +814,19 @@ def hb():  # heartbeat: small progress file on HF (Kaggle shows no live logs for
             print("hb fail", repr(e), flush=True)
 threading.Thread(target=hb, daemon=True).start()
 
+def set_init(c, ckpt):
+    """Point the trainer at its start checkpoint. warmstart: only the never-trained seed is loaded non-strictly; a checkpoint written
+    by this session (OOM retry) is a strict resume, and then the vocoder warm-start must not run again (it would overwrite the
+    trained decoder)."""
+    for flag in ("--ckpt_path", "--model.warmstart_ckpt", "--model.vocoder_warmstart_ckpt"):
+        while flag in c:
+            i = c.index(flag); del c[i:i + 2]
+    if INIT_MODE == "warmstart" and str(ckpt) == str(SEED):
+        c += ["--model.warmstart_ckpt", str(ckpt)] + (["--model.vocoder_warmstart_ckpt", VOC_PATH] if VOC_PATH else [])
+    else:
+        c += ["--ckpt_path", str(ckpt)]
+
+
 BSS = [BS] + [b for b in (24, 16, 12, 8) if b < BS]
 OOM_RETRIES = 0
 for BS_TRY in BSS:
@@ -824,7 +836,7 @@ for BS_TRY in BSS:
         try:
             if ckpt_meta(LAST, check_finite=False)["global_step"] > START_STEP: resume = LAST
         except Exception as e: print("last.ckpt unreadable, resuming from the seed:", repr(e), flush=True)
-    cmd[cmd.index("--ckpt_path") + 1] = str(resume)
+    set_init(cmd, resume)
     tail.clear(); tail.append(f"batch_size={BS_TRY}")
     p = subprocess.Popen(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     buf = b""; oom = False
