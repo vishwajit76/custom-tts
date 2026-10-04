@@ -1,0 +1,36 @@
+{
+ "engine": "indicf5_nfe16",
+ "load_s": 23.45,
+ "arrival_s": 0.25,
+ "utt_per_agent": 4,
+ "runs": [
+  {
+   "engine": "indicf5_nfe16",
+   "N": 1,
+   "wall_s": 88.0,
+   "utterances_ok": 4,
+   "utterances_failed": 0,
+   "fail_msgs": [],
+   "ttfa_p50": 13.9564,
+   "ttfa_p95": 15.9591,
+   "ttfa_p99": 16.1074,
+   "rtf_compute": 5.2488,
+   "rtf_e2e_mean": 5.1858,
+   "rtf_e2e_p95": 6.0905,
+   "queue_wait_mean": 0.0,
+   "queue_wait_p95": 0.0,
+   "gap_total_s": 27.24,
+   "utt_with_underrun": 3,
+   "audio_throughput_x": 0.19,
+   "nvml_vram_peak_mib": 1929.1,
+   "nvml_vram_mean_mib": 1832.0,
+   "torch_max_alloc_mib": 1460.6,
+   "gpu_util_mean": 99.1,
+   "gpu_util_max": 100,
+   "cpu_pct_machine_mean": 12.1,
+   "rss_peak_mib": 2267.9,
+   "spilled": false,
+   "REALTIME": false
+  }
+ ]
+}

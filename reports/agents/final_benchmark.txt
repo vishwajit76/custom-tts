@@ -1,0 +1,43 @@
+[gpu_lock] acquired after 0s
+goonj {"n": 615, "total": 0.9112, "pronunciation": 0.8749, "naturalness": 0.9969, "prosody": 0.7703, "audio_quality": 1.0, "consistency": 0.9641, "cer": 0.084, "text_exact": 0.948}
+  abbreviations    n=  8 total=0.949 pron=0.883 exact=0.88 cer=0.087
+  acronyms         n= 22 total=0.909 pron=0.884 exact=1.00 cer=0.118
+  basic_hindi      n= 40 total=0.898 pron=0.945 exact=1.00 cer=0.039
+  commands         n=  8 total=0.868 pron=0.785 exact=1.00 cer=0.163
+  conversational   n= 58 total=0.906 pron=0.944 exact=1.00 cer=0.043
+  currency         n= 29 total=0.947 pron=0.876 exact=0.97 cer=0.077
+  dates            n= 36 total=0.957 pron=0.901 exact=0.81 cer=0.063
+  difficult_hindi  n= 54 total=0.893 pron=0.844 exact=1.00 cer=0.097
+  edge_cases       n=  7 total=0.826 pron=0.718 exact=0.57 cer=0.158
+  english_words    n= 20 total=0.831 pron=0.811 exact=1.00 cer=0.097
+  hinglish         n= 58 total=0.872 pron=0.834 exact=0.81 cer=0.204
+  long_sentences   n= 20 total=0.898 pron=0.928 exact=0.95 cer=0.040
+  names            n= 60 total=0.901 pron=0.808 exact=0.90 cer=0.103
+  numbers          n= 50 total=0.945 pron=0.870 exact=0.98 cer=0.070
+  percent          n= 17 total=0.954 pron=0.891 exact=0.94 cer=0.084
+  phone_numbers    n= 24 total=0.911 pron=0.899 exact=1.00 cer=0.075
+  proper_nouns     n= 20 total=0.915 pron=0.796 exact=1.00 cer=0.022
+  punctuation      n=  8 total=0.945 pron=0.923 exact=1.00 cer=0.069
+  questions        n= 22 total=0.885 pron=0.946 exact=1.00 cer=0.067
+  time             n= 54 total=0.955 pron=0.895 exact=1.00 cer=0.041
+piper_v7a {"n": 615, "total": 0.8767, "pronunciation": 0.8293, "naturalness": 0.9986, "prosody": 0.6684, "audio_quality": 0.9996, "consistency": 0.9508, "cer": 0.1172, "text_exact": 0.948}
+  abbreviations    n=  8 total=0.884 pron=0.790 exact=0.88 cer=0.167
+  acronyms         n= 22 total=0.895 pron=0.872 exact=1.00 cer=0.115
+  basic_hindi      n= 40 total=0.859 pron=0.918 exact=1.00 cer=0.061
+  commands         n=  8 total=0.890 pron=0.829 exact=1.00 cer=0.146
+  conversational   n= 58 total=0.882 pron=0.909 exact=1.00 cer=0.068
+  currency         n= 29 total=0.926 pron=0.839 exact=0.97 cer=0.078
+  dates            n= 36 total=0.922 pron=0.871 exact=0.81 cer=0.091
+  difficult_hindi  n= 54 total=0.849 pron=0.793 exact=1.00 cer=0.119
+  edge_cases       n=  7 total=0.847 pron=0.681 exact=0.57 cer=0.180
+  english_words    n= 20 total=0.801 pron=0.706 exact=1.00 cer=0.172
+  hinglish         n= 58 total=0.850 pron=0.797 exact=0.81 cer=0.240
+  long_sentences   n= 20 total=0.843 pron=0.879 exact=0.95 cer=0.095
+  names            n= 60 total=0.864 pron=0.710 exact=0.90 cer=0.186
+  numbers          n= 50 total=0.886 pron=0.811 exact=0.98 cer=0.112
+  percent          n= 17 total=0.925 pron=0.832 exact=0.94 cer=0.100
+  phone_numbers    n= 24 total=0.821 pron=0.940 exact=1.00 cer=0.045
+  proper_nouns     n= 20 total=0.874 pron=0.719 exact=1.00 cer=0.103
+  punctuation      n=  8 total=0.951 pron=0.916 exact=1.00 cer=0.070
+  questions        n= 22 total=0.860 pron=0.930 exact=1.00 cer=0.058
+  time             n= 54 total=0.930 pron=0.837 exact=1.00 cer=0.088

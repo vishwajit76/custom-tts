@@ -1,0 +1,10 @@
+[gpu_lock] acquired after 994s
+base | numbers T0.8371 P0.706 | percent T0.8163 P0.635 | time T0.9374 P0.851 | currency T0.7067 P0.599 | dates T0.7544 P0.717 | phone_nu T0.7535 P0.770
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\modules\rnn.py:123: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  warnings.warn(
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\utils\weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights:   2%|▏         | 10/587 [00:00<00:11, 51.92it/s]Loading weights:   9%|▉         | 53/587 [00:00<00:03, 175.52it/s]Loading weights:  13%|█▎        | 74/587 [00:00<00:02, 178.22it/s]Loading weights:  16%|█▌        | 93/587 [00:00<00:04, 115.00it/s]Loading weights: 100%|██████████| 587/587 [00:00<00:00, 778.79it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'begin_suppress_tokens', 'suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+hajar | numbers T0.8365 P0.705 | percent T0.8163 P0.635 | time T0.9374 P0.851 | currency T0.7145 P0.605 | dates T0.7708 P0.726 | phone_nu T0.7535 P0.770

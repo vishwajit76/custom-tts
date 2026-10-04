@@ -1,0 +1,16 @@
+[gpu_lock] acquired after 4s
+punctuation {"n": 8, "total": 0.9451, "pronunciation": 0.9229, "naturalness": 0.9923, "prosody": 0.875, "audio_quality": 1.0, "consistency": 0.9662, "cer": 0.0692, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+questions {"n": 22, "total": 0.8855, "pronunciation": 0.9459, "naturalness": 1.0, "prosody": 0.4091, "audio_quality": 1.0, "consistency": 0.9574, "cer": 0.0666, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+commands {"n": 8, "total": 0.8684, "pronunciation": 0.7848, "naturalness": 0.9873, "prosody": 0.75, "audio_quality": 1.0, "consistency": 0.9516, "cer": 0.1631, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+conversational {"n": 58, "total": 0.9043, "pronunciation": 0.94, "naturalness": 0.9993, "prosody": 0.5414, "audio_quality": 1.0, "consistency": 0.972, "cer": 0.0492, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+long_sentences {"n": 20, "total": 0.8845, "pronunciation": 0.9164, "naturalness": 1.0, "prosody": 0.4737, "audio_quality": 1.0, "consistency": 0.9688, "cer": 0.0599, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+edge_cases {"n": 7, "total": 0.8259, "pronunciation": 0.7184, "naturalness": 0.866, "prosody": 0.8571, "audio_quality": 1.0, "consistency": 0.9339, "cer": 0.158, "text_exact": 0.5714}
+[gpu_lock] acquired after 0s
+basic_hindi {"n": 40, "total": 0.8951, "pronunciation": 0.9382, "naturalness": 1.0, "prosody": 0.4854, "audio_quality": 1.0, "consistency": 0.97, "cer": 0.0491, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+difficult_hindi {"n": 54, "total": 0.8926, "pronunciation": 0.8438, "naturalness": 1.0, "prosody": 0.729, "audio_quality": 1.0, "consistency": 0.9576, "cer": 0.0966, "text_exact": 1.0}

@@ -1,0 +1,23 @@
+[gpu_lock] acquired after 394s
+punctuation {"n": 8, "total": 0.9451, "pronunciation": 0.9229, "naturalness": 0.9923, "prosody": 0.875, "audio_quality": 1.0, "consistency": 0.9662, "cer": 0.0692, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+questions {"n": 22, "total": 0.9095, "pronunciation": 0.9712, "naturalness": 1.0, "prosody": 0.5, "audio_quality": 1.0, "consistency": 0.9606, "cer": 0.0205, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+commands {"n": 8, "total": 0.8684, "pronunciation": 0.7848, "naturalness": 0.9873, "prosody": 0.75, "audio_quality": 1.0, "consistency": 0.9516, "cer": 0.1631, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+conversational {"n": 58, "total": 0.9093, "pronunciation": 0.9419, "naturalness": 0.9999, "prosody": 0.5698, "audio_quality": 1.0, "consistency": 0.971, "cer": 0.0467, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\modules\rnn.py:123: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  warnings.warn(
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\utils\weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights:   2%|1         | 10/587 [00:00<00:07, 72.64it/s]Loading weights:   3%|3         | 18/587 [00:00<00:07, 72.03it/s]Loading weights:   4%|4         | 26/587 [00:00<00:09, 59.15it/s]Loading weights:   6%|5         | 33/587 [00:00<00:15, 35.24it/s]Loading weights:   7%|7         | 43/587 [00:00<00:12, 44.58it/s]Loading weights:   9%|9         | 53/587 [00:01<00:09, 56.01it/s]Loading weights:  10%|#         | 60/587 [00:01<00:09, 53.56it/s]Loading weights:  11%|#1        | 67/587 [00:01<00:12, 42.27it/s]Loading weights: 100%|##########| 587/587 [00:01<00:00, 412.49it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+long_sentences {"n": 20, "total": 0.8934, "pronunciation": 0.9171, "naturalness": 1.0, "prosody": 0.5307, "audio_quality": 1.0, "consistency": 0.9697, "cer": 0.0552, "text_exact": 0.95}
+[gpu_lock] acquired after 0s
+edge_cases {"n": 7, "total": 0.8259, "pronunciation": 0.7184, "naturalness": 0.866, "prosody": 0.8571, "audio_quality": 1.0, "consistency": 0.9339, "cer": 0.158, "text_exact": 0.5714}
+[gpu_lock] acquired after 0s
+basic_hindi {"n": 40, "total": 0.911, "pronunciation": 0.9501, "naturalness": 1.0, "prosody": 0.5604, "audio_quality": 1.0, "consistency": 0.9692, "cer": 0.0361, "text_exact": 1.0}
+[gpu_lock] acquired after 0s
+difficult_hindi {"n": 54, "total": 0.8926, "pronunciation": 0.8438, "naturalness": 1.0, "prosody": 0.729, "audio_quality": 1.0, "consistency": 0.9576, "cer": 0.0966, "text_exact": 1.0}

@@ -1,0 +1,562 @@
+[
+ {
+  "id": "num-000",
+  "category": "numbers",
+  "text": "मेरे पास 7 किताबें हैं।",
+  "expected_normalized": "मेरे पास सात किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात"
+  ]
+ },
+ {
+  "id": "num-001",
+  "category": "numbers",
+  "text": "कुल 12 लोग आए थे।",
+  "expected_normalized": "कुल बारह लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "बारह"
+  ]
+ },
+ {
+  "id": "num-002",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 19 है।",
+  "expected_normalized": "इस गाँव की आबादी उन्नीस है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "उन्नीस"
+  ]
+ },
+ {
+  "id": "num-003",
+  "category": "numbers",
+  "text": "मेरे पास 25 किताबें हैं।",
+  "expected_normalized": "मेरे पास पच्चीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "पच्चीस"
+  ]
+ },
+ {
+  "id": "num-004",
+  "category": "numbers",
+  "text": "कुल 38 लोग आए थे।",
+  "expected_normalized": "कुल अड़तीस लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "अड़तीस"
+  ]
+ },
+ {
+  "id": "num-005",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 47 है।",
+  "expected_normalized": "इस गाँव की आबादी सैंतालीस है।",
+  "priority": 1,
+  "alternatives": [],
+  "important": [
+   "सैंतालीस"
+  ]
+ },
+ {
+  "id": "num-006",
+  "category": "numbers",
+  "text": "मेरे पास 59 किताबें हैं।",
+  "expected_normalized": "मेरे पास उनसठ किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "उनसठ"
+  ]
+ },
+ {
+  "id": "num-007",
+  "category": "numbers",
+  "text": "कुल 66 लोग आए थे।",
+  "expected_normalized": "कुल छियासठ लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "छियासठ"
+  ]
+ },
+ {
+  "id": "num-008",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 79 है।",
+  "expected_normalized": "इस गाँव की आबादी उन्यासी है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "उन्यासी"
+  ]
+ },
+ {
+  "id": "num-009",
+  "category": "numbers",
+  "text": "मेरे पास 83 किताबें हैं।",
+  "expected_normalized": "मेरे पास तिरासी किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "तिरासी"
+  ]
+ },
+ {
+  "id": "num-010",
+  "category": "numbers",
+  "text": "कुल 99 लोग आए थे।",
+  "expected_normalized": "कुल निन्यानवे लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "निन्यानवे"
+  ]
+ },
+ {
+  "id": "num-011",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 100 है।",
+  "expected_normalized": "इस गाँव की आबादी एक सौ है।",
+  "priority": 2,
+  "alternatives": [
+   "इस गाँव की आबादी सौ है।"
+  ],
+  "important": [
+   "एक सौ"
+  ]
+ },
+ {
+  "id": "num-012",
+  "category": "numbers",
+  "text": "मेरे पास 101 किताबें हैं।",
+  "expected_normalized": "मेरे पास एक सौ एक किताबें हैं।",
+  "priority": 2,
+  "alternatives": [
+   "मेरे पास सौ एक किताबें हैं।"
+  ],
+  "important": [
+   "एक सौ एक"
+  ]
+ },
+ {
+  "id": "num-013",
+  "category": "numbers",
+  "text": "कुल 150 लोग आए थे।",
+  "expected_normalized": "कुल एक सौ पचास लोग आए थे।",
+  "priority": 2,
+  "alternatives": [
+   "कुल सौ पचास लोग आए थे।"
+  ],
+  "important": [
+   "एक सौ पचास"
+  ]
+ },
+ {
+  "id": "num-014",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 345 है।",
+  "expected_normalized": "इस गाँव की आबादी तीन सौ पैंतालीस है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "तीन सौ पैंतालीस"
+  ]
+ },
+ {
+  "id": "num-015",
+  "category": "numbers",
+  "text": "मेरे पास 999 किताबें हैं।",
+  "expected_normalized": "मेरे पास नौ सौ निन्यानवे किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "नौ सौ निन्यानवे"
+  ]
+ },
+ {
+  "id": "num-016",
+  "category": "numbers",
+  "text": "कुल 1000 लोग आए थे।",
+  "expected_normalized": "कुल एक हज़ार लोग आए थे।",
+  "priority": 2,
+  "alternatives": [
+   "कुल हज़ार लोग आए थे।"
+  ],
+  "important": [
+   "एक हज़ार"
+  ]
+ },
+ {
+  "id": "num-017",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 1,500 है।",
+  "expected_normalized": "इस गाँव की आबादी एक हज़ार पाँच सौ है।",
+  "priority": 1,
+  "alternatives": [
+   "इस गाँव की आबादी हज़ार पाँच सौ है।"
+  ],
+  "important": [
+   "एक हज़ार पाँच सौ"
+  ]
+ },
+ {
+  "id": "num-018",
+  "category": "numbers",
+  "text": "मेरे पास 2026 किताबें हैं।",
+  "expected_normalized": "मेरे पास दो हज़ार छब्बीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो हज़ार छब्बीस"
+  ]
+ },
+ {
+  "id": "num-019",
+  "category": "numbers",
+  "text": "कुल 4,567 लोग आए थे।",
+  "expected_normalized": "कुल चार हज़ार पाँच सौ सड़सठ लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "चार हज़ार पाँच सौ सड़सठ"
+  ]
+ },
+ {
+  "id": "num-020",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 10000 है।",
+  "expected_normalized": "इस गाँव की आबादी दस हज़ार है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दस हज़ार"
+  ]
+ },
+ {
+  "id": "num-021",
+  "category": "numbers",
+  "text": "मेरे पास 12,345 किताबें हैं।",
+  "expected_normalized": "मेरे पास बारह हज़ार तीन सौ पैंतालीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "बारह हज़ार तीन सौ पैंतालीस"
+  ]
+ },
+ {
+  "id": "num-022",
+  "category": "numbers",
+  "text": "कुल 99999 लोग आए थे।",
+  "expected_normalized": "कुल निन्यानवे हज़ार नौ सौ निन्यानवे लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "निन्यानवे हज़ार नौ सौ निन्यानवे"
+  ]
+ },
+ {
+  "id": "num-023",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 1,00,000 है।",
+  "expected_normalized": "इस गाँव की आबादी एक लाख है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख"
+  ]
+ },
+ {
+  "id": "num-024",
+  "category": "numbers",
+  "text": "मेरे पास 125000 किताबें हैं।",
+  "expected_normalized": "मेरे पास एक लाख पच्चीस हज़ार किताबें हैं।",
+  "priority": 1,
+  "alternatives": [],
+  "important": [
+   "एक लाख पच्चीस हज़ार"
+  ]
+ },
+ {
+  "id": "num-025",
+  "category": "numbers",
+  "text": "कुल 2,50,000 लोग आए थे।",
+  "expected_normalized": "कुल दो लाख पचास हज़ार लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख पचास हज़ार"
+  ]
+ },
+ {
+  "id": "num-026",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 512000 है।",
+  "expected_normalized": "इस गाँव की आबादी पाँच लाख बारह हज़ार है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "पाँच लाख बारह हज़ार"
+  ]
+ },
+ {
+  "id": "num-027",
+  "category": "numbers",
+  "text": "मेरे पास 9,99,999 किताबें हैं।",
+  "expected_normalized": "मेरे पास नौ लाख निन्यानवे हज़ार नौ सौ निन्यानवे किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "नौ लाख निन्यानवे हज़ार नौ सौ निन्यानवे"
+  ]
+ },
+ {
+  "id": "num-028",
+  "category": "numbers",
+  "text": "कुल 1000000 लोग आए थे।",
+  "expected_normalized": "कुल दस लाख लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दस लाख"
+  ]
+ },
+ {
+  "id": "num-029",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 1,83,091 है।",
+  "expected_normalized": "इस गाँव की आबादी एक लाख तिरासी हज़ार इक्यानवे है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख तिरासी हज़ार इक्यानवे"
+  ]
+ },
+ {
+  "id": "num-030",
+  "category": "numbers",
+  "text": "मेरे पास 56784 किताबें हैं।",
+  "expected_normalized": "मेरे पास छप्पन हज़ार सात सौ चौरासी किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "छप्पन हज़ार सात सौ चौरासी"
+  ]
+ },
+ {
+  "id": "num-031",
+  "category": "numbers",
+  "text": "कुल 7,91,228 लोग आए थे।",
+  "expected_normalized": "कुल सात लाख इक्यानवे हज़ार दो सौ अट्ठाईस लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात लाख इक्यानवे हज़ार दो सौ अट्ठाईस"
+  ]
+ },
+ {
+  "id": "num-032",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 317486 है।",
+  "expected_normalized": "इस गाँव की आबादी तीन लाख सत्रह हज़ार चार सौ छियासी है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "तीन लाख सत्रह हज़ार चार सौ छियासी"
+  ]
+ },
+ {
+  "id": "num-033",
+  "category": "numbers",
+  "text": "मेरे पास 4,11,935 किताबें हैं।",
+  "expected_normalized": "मेरे पास चार लाख ग्यारह हज़ार नौ सौ पैंतीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "चार लाख ग्यारह हज़ार नौ सौ पैंतीस"
+  ]
+ },
+ {
+  "id": "num-034",
+  "category": "numbers",
+  "text": "कुल 287756 लोग आए थे।",
+  "expected_normalized": "कुल दो लाख सत्तासी हज़ार सात सौ छप्पन लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख सत्तासी हज़ार सात सौ छप्पन"
+  ]
+ },
+ {
+  "id": "num-035",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 5,48,563 है।",
+  "expected_normalized": "इस गाँव की आबादी पाँच लाख अड़तालीस हज़ार पाँच सौ तिरेसठ है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "पाँच लाख अड़तालीस हज़ार पाँच सौ तिरेसठ"
+  ]
+ },
+ {
+  "id": "num-036",
+  "category": "numbers",
+  "text": "मेरे पास 199984 किताबें हैं।",
+  "expected_normalized": "मेरे पास एक लाख निन्यानवे हज़ार नौ सौ चौरासी किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख निन्यानवे हज़ार नौ सौ चौरासी"
+  ]
+ },
+ {
+  "id": "num-037",
+  "category": "numbers",
+  "text": "कुल 8,68,093 लोग आए थे।",
+  "expected_normalized": "कुल आठ लाख अड़सठ हज़ार तिरानवे लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "आठ लाख अड़सठ हज़ार तिरानवे"
+  ]
+ },
+ {
+  "id": "num-038",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 779368 है।",
+  "expected_normalized": "इस गाँव की आबादी सात लाख उन्यासी हज़ार तीन सौ अड़सठ है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात लाख उन्यासी हज़ार तीन सौ अड़सठ"
+  ]
+ },
+ {
+  "id": "num-039",
+  "category": "numbers",
+  "text": "मेरे पास 7,39,967 किताबें हैं।",
+  "expected_normalized": "मेरे पास सात लाख उनतालीस हज़ार नौ सौ सड़सठ किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात लाख उनतालीस हज़ार नौ सौ सड़सठ"
+  ]
+ },
+ {
+  "id": "num-040",
+  "category": "numbers",
+  "text": "कुल 704039 लोग आए थे।",
+  "expected_normalized": "कुल सात लाख चार हज़ार उनतालीस लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात लाख चार हज़ार उनतालीस"
+  ]
+ },
+ {
+  "id": "num-041",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 1,32,906 है।",
+  "expected_normalized": "इस गाँव की आबादी एक लाख बत्तीस हज़ार नौ सौ छह है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख बत्तीस हज़ार नौ सौ छह"
+  ]
+ },
+ {
+  "id": "num-042",
+  "category": "numbers",
+  "text": "मेरे पास 499130 किताबें हैं।",
+  "expected_normalized": "मेरे पास चार लाख निन्यानवे हज़ार एक सौ तीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "चार लाख निन्यानवे हज़ार एक सौ तीस"
+  ]
+ },
+ {
+  "id": "num-043",
+  "category": "numbers",
+  "text": "कुल 1,51,894 लोग आए थे।",
+  "expected_normalized": "कुल एक लाख इक्यावन हज़ार आठ सौ चौरानवे लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख इक्यावन हज़ार आठ सौ चौरानवे"
+  ]
+ },
+ {
+  "id": "num-044",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 991481 है।",
+  "expected_normalized": "इस गाँव की आबादी नौ लाख इक्यानवे हज़ार चार सौ इक्यासी है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "नौ लाख इक्यानवे हज़ार चार सौ इक्यासी"
+  ]
+ },
+ {
+  "id": "num-045",
+  "category": "numbers",
+  "text": "मेरे पास 4,12,646 किताबें हैं।",
+  "expected_normalized": "मेरे पास चार लाख बारह हज़ार छह सौ छियालीस किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "चार लाख बारह हज़ार छह सौ छियालीस"
+  ]
+ },
+ {
+  "id": "num-046",
+  "category": "numbers",
+  "text": "कुल 625935 लोग आए थे।",
+  "expected_normalized": "कुल छह लाख पच्चीस हज़ार नौ सौ पैंतीस लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "छह लाख पच्चीस हज़ार नौ सौ पैंतीस"
+  ]
+ },
+ {
+  "id": "num-047",
+  "category": "numbers",
+  "text": "इस गाँव की आबादी 3,76,937 है।",
+  "expected_normalized": "इस गाँव की आबादी तीन लाख छिहत्तर हज़ार नौ सौ सैंतीस है।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "तीन लाख छिहत्तर हज़ार नौ सौ सैंतीस"
+  ]
+ },
+ {
+  "id": "num-048",
+  "category": "numbers",
+  "text": "मेरे पास 218274 किताबें हैं।",
+  "expected_normalized": "मेरे पास दो लाख अठारह हज़ार दो सौ चौहत्तर किताबें हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख अठारह हज़ार दो सौ चौहत्तर"
+  ]
+ },
+ {
+  "id": "num-049",
+  "category": "numbers",
+  "text": "कुल 2,24,512 लोग आए थे।",
+  "expected_normalized": "कुल दो लाख चौबीस हज़ार पाँच सौ बारह लोग आए थे।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख चौबीस हज़ार पाँच सौ बारह"
+  ]
+ }
+]

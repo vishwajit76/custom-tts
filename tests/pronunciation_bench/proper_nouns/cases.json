@@ -1,0 +1,232 @@
+[
+ {
+  "id": "pn-000",
+  "category": "proper_nouns",
+  "text": "मैं Thiruvananthapuram से बोल रही हूँ।",
+  "expected_normalized": "मैं तिरुवनंतपुरम से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "तिरुवनंतपुरम"
+  ],
+  "terms": {
+   "Thiruvananthapuram": "तिरुवनंतपुरम"
+  }
+ },
+ {
+  "id": "pn-d000",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन तिरुवनंतपुरम जाएगी।",
+  "expected_normalized": "अगली ट्रेन तिरुवनंतपुरम जाएगी।",
+  "priority": 2,
+  "important": [
+   "तिरुवनंतपुरम"
+  ]
+ },
+ {
+  "id": "pn-001",
+  "category": "proper_nouns",
+  "text": "मैं Visakhapatnam से बोल रही हूँ।",
+  "expected_normalized": "मैं विशाखापत्तनम से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "विशाखापत्तनम"
+  ],
+  "terms": {
+   "Visakhapatnam": "विशाखापत्तनम"
+  }
+ },
+ {
+  "id": "pn-d001",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन विशाखापत्तनम जाएगी।",
+  "expected_normalized": "अगली ट्रेन विशाखापत्तनम जाएगी।",
+  "priority": 2,
+  "important": [
+   "विशाखापत्तनम"
+  ]
+ },
+ {
+  "id": "pn-002",
+  "category": "proper_nouns",
+  "text": "मैं Bhubaneswar से बोल रही हूँ।",
+  "expected_normalized": "मैं भुवनेश्वर से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "भुवनेश्वर"
+  ],
+  "terms": {
+   "Bhubaneswar": "भुवनेश्वर"
+  }
+ },
+ {
+  "id": "pn-d002",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन भुवनेश्वर जाएगी।",
+  "expected_normalized": "अगली ट्रेन भुवनेश्वर जाएगी।",
+  "priority": 2,
+  "important": [
+   "भुवनेश्वर"
+  ]
+ },
+ {
+  "id": "pn-003",
+  "category": "proper_nouns",
+  "text": "मैं Gandhinagar से बोल रही हूँ।",
+  "expected_normalized": "मैं गांधीनगर से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "गांधीनगर"
+  ],
+  "terms": {
+   "Gandhinagar": "गांधीनगर"
+  }
+ },
+ {
+  "id": "pn-d003",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन गांधीनगर जाएगी।",
+  "expected_normalized": "अगली ट्रेन गांधीनगर जाएगी।",
+  "priority": 2,
+  "important": [
+   "गांधीनगर"
+  ]
+ },
+ {
+  "id": "pn-004",
+  "category": "proper_nouns",
+  "text": "मैं Vadodara से बोल रही हूँ।",
+  "expected_normalized": "मैं वडोदरा से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "वडोदरा"
+  ],
+  "terms": {
+   "Vadodara": "वडोदरा"
+  }
+ },
+ {
+  "id": "pn-d004",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन वडोदरा जाएगी।",
+  "expected_normalized": "अगली ट्रेन वडोदरा जाएगी।",
+  "priority": 2,
+  "important": [
+   "वडोदरा"
+  ]
+ },
+ {
+  "id": "pn-005",
+  "category": "proper_nouns",
+  "text": "मैं Prayagraj से बोल रही हूँ।",
+  "expected_normalized": "मैं प्रयागराज से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "प्रयागराज"
+  ],
+  "terms": {
+   "Prayagraj": "प्रयागराज"
+  }
+ },
+ {
+  "id": "pn-d005",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन प्रयागराज जाएगी।",
+  "expected_normalized": "अगली ट्रेन प्रयागराज जाएगी।",
+  "priority": 2,
+  "important": [
+   "प्रयागराज"
+  ]
+ },
+ {
+  "id": "pn-006",
+  "category": "proper_nouns",
+  "text": "मैं Guwahati से बोल रही हूँ।",
+  "expected_normalized": "मैं गुवाहाटी से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "गुवाहाटी"
+  ],
+  "terms": {
+   "Guwahati": "गुवाहाटी"
+  }
+ },
+ {
+  "id": "pn-d006",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन गुवाहाटी जाएगी।",
+  "expected_normalized": "अगली ट्रेन गुवाहाटी जाएगी।",
+  "priority": 2,
+  "important": [
+   "गुवाहाटी"
+  ]
+ },
+ {
+  "id": "pn-007",
+  "category": "proper_nouns",
+  "text": "मैं Puducherry से बोल रही हूँ।",
+  "expected_normalized": "मैं पुडुचेरी से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "पुडुचेरी"
+  ],
+  "terms": {
+   "Puducherry": "पुडुचेरी"
+  }
+ },
+ {
+  "id": "pn-d007",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन पुडुचेरी जाएगी।",
+  "expected_normalized": "अगली ट्रेन पुडुचेरी जाएगी।",
+  "priority": 2,
+  "important": [
+   "पुडुचेरी"
+  ]
+ },
+ {
+  "id": "pn-008",
+  "category": "proper_nouns",
+  "text": "मैं Coimbatore से बोल रही हूँ।",
+  "expected_normalized": "मैं कोयंबटूर से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "कोयंबटूर"
+  ],
+  "terms": {
+   "Coimbatore": "कोयंबटूर"
+  }
+ },
+ {
+  "id": "pn-d008",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन कोयंबटूर जाएगी।",
+  "expected_normalized": "अगली ट्रेन कोयंबटूर जाएगी।",
+  "priority": 2,
+  "important": [
+   "कोयंबटूर"
+  ]
+ },
+ {
+  "id": "pn-009",
+  "category": "proper_nouns",
+  "text": "मैं Aurangabad से बोल रही हूँ।",
+  "expected_normalized": "मैं औरंगाबाद से बोल रही हूँ।",
+  "priority": 2,
+  "important": [
+   "औरंगाबाद"
+  ],
+  "terms": {
+   "Aurangabad": "औरंगाबाद"
+  }
+ },
+ {
+  "id": "pn-d009",
+  "category": "proper_nouns",
+  "text": "अगली ट्रेन औरंगाबाद जाएगी।",
+  "expected_normalized": "अगली ट्रेन औरंगाबाद जाएगी।",
+  "priority": 2,
+  "important": [
+   "औरंगाबाद"
+  ]
+ }
+]

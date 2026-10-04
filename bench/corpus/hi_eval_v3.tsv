@@ -1,0 +1,1130 @@
+id	category	subcategory	text	notes
+hi-001	hindi	statement	आपकी बुकिंग की पुष्टि हो गई है, टिकट आपके मोबाइल पर भेज दिया गया है।	domain=booking
+hi-002	hindi	statement	आपका सामान आज शाम छह बजे तक आपके पते पर पहुँच जाएगा।	domain=delivery
+hi-003	hindi	statement	मैं आपके खाते की जानकारी देख रही हूँ, कृपया थोड़ी देर लाइन पर बने रहिए।	domain=banking; speaker=f
+hi-004	hindi	statement	डॉक्टर साहब कल सुबह ग्यारह बजे से दोपहर एक बजे तक उपलब्ध रहेंगे।	domain=appointment
+hi-005	hindi	statement	आपकी समस्या हमारे तकनीकी विभाग को भेज दी गई है।	domain=support
+hi-006	hindi	statement	हमारी शाखा सोमवार से शनिवार तक सुबह दस बजे से शाम चार बजे तक खुली रहती है।	domain=banking
+hi-007	hindi	statement	आपका पार्सल अभी हमारे गोदाम में है और कल सुबह रवाना होगा।	domain=delivery
+hi-008	hindi	statement	मैंने आपकी शिकायत दर्ज कर ली है और जल्दी ही आपको जवाब मिल जाएगा।	domain=support
+hi-009	hindi	statement	इस होटल में नाश्ते के साथ दो लोगों के लिए कमरा उपलब्ध है।	domain=booking
+hi-010	hindi	statement	आपके क्रेडिट कार्ड की सीमा इस महीने पूरी तरह इस्तेमाल हो चुकी है।	domain=banking
+hi-011	hindi	statement	हमारे डिलीवरी एजेंट आपके मोहल्ले में पहुँच चुके हैं।	domain=delivery
+hi-012	hindi	statement	आपकी अगली किस्त अगले महीने की पाँच तारीख़ को कटेगी।	domain=banking
+hi-013	hindi	statement	मैं पिछले दस मिनट से आपकी रिपोर्ट देख रहा हूँ, सब कुछ ठीक दिख रहा है।	domain=support; speaker=m
+hi-014	hindi	statement	आपकी रिपोर्ट तैयार है, आप उसे कल दोपहर के बाद ले सकते हैं।	domain=appointment
+hi-015	hindi	statement	इस ट्रेन में वातानुकूलित डिब्बे की कुछ सीटें अभी ख़ाली हैं।	domain=booking
+hi-016	hindi	statement	आपके इंटरनेट कनेक्शन में कल रात से गड़बड़ी चल रही थी, अब उसे ठीक कर दिया गया है।	domain=support
+hi-017	hindi	statement	हमने आपके पुराने खाते को नए बचत खाते से जोड़ दिया है।	domain=banking
+hi-018	hindi	statement	बारिश की वजह से आज डिलीवरी में थोड़ी देर हो रही है।	domain=delivery
+hi-019	hindi	statement	आपके बच्चे का टीकाकरण अगले हफ़्ते मंगलवार को होना है।	domain=appointment
+hi-020	hindi	statement	यह उड़ान समय पर है और यात्री सात नंबर गेट पर पहुँच सकते हैं।	domain=booking
+hi-021	hindi	statement	आपके मोबाइल पर एक संदेश भेजा गया है, उसमें पूरा विवरण लिखा है।	domain=support
+hi-022	hindi	statement	मैं आपकी बात अच्छी तरह समझ रही हूँ, इसलिए आपको दोबारा कुछ बताने की ज़रूरत नहीं है।	domain=support; speaker=f
+hi-023	hindi	statement	पिछले महीने का विवरण हमारी वेबसाइट पर उपलब्ध है।	domain=banking
+hi-024	hindi	statement	कल की तुलना में आज आपके इलाक़े में ज़्यादा ऑर्डर आए हैं।	domain=delivery
+hi-025	hindi	statement	हमारे यहाँ हर मरीज़ के लिए अलग से समय तय किया जाता है।	domain=appointment
+hi-026	hindi	statement	आपने जो टिकट रद्द किया था, उसका पैसा तीन से पाँच कार्यदिवसों में वापस आ जाएगा।	domain=booking
+hi-027	hindi	statement	आपके खाते में अभी पर्याप्त राशि मौजूद नहीं है।	domain=banking
+hi-028	hindi	statement	मैं इस काम पर पिछले हफ़्ते से लगा हुआ हूँ और अब यह लगभग पूरा हो चुका है।	domain=support; speaker=m
+hi-029	hindi	statement	आपका अनुरोध हमारे सिस्टम में सफलतापूर्वक दर्ज हो गया है।	domain=support
+hi-030	hindi	statement	डिलीवरी के समय किसी बड़े व्यक्ति का घर पर होना ज़रूरी है।	domain=delivery
+hi-031	hindi	confirmation	जी हाँ, आपकी बुकिंग शुक्रवार की ही है और आपको खिड़की वाली सीट मिली है।	domain=booking
+hi-032	hindi	confirmation	बिल्कुल, आपका भुगतान सफल रहा और रसीद आपके ईमेल पर भेज दी गई है।	domain=banking
+hi-033	hindi	confirmation	ठीक है, मैंने आपका पता बदल दिया है, अब सामान नए पते पर जाएगा।	domain=delivery
+hi-034	hindi	confirmation	जी, आपका अपॉइंटमेंट शनिवार सुबह साढ़े नौ बजे के लिए पक्का हो गया है।	domain=appointment
+hi-035	hindi	confirmation	हाँ, आपकी शिकायत का नंबर आपको संदेश में भेज दिया गया है।	domain=support
+hi-036	hindi	confirmation	जी बिल्कुल, मैं अभी आपका कार्ड बंद कर देती हूँ।	domain=banking; speaker=f
+hi-037	hindi	confirmation	ठीक है सर, तो मैं कल दोपहर तीन बजे का समय आपके नाम से लिख लेता हूँ।	domain=appointment; speaker=m
+hi-038	hindi	confirmation	जी हाँ, आपका ऑर्डर रद्द हो चुका है और पैसे वापस भेज दिए गए हैं।	domain=delivery
+hi-039	hindi	confirmation	जी, मैं पुष्टि करती हूँ कि कमरा दो रातों के लिए आपके नाम पर सुरक्षित है।	domain=booking; speaker=f
+hi-040	hindi	confirmation	हाँ जी, आपका नंबर बदल दिया गया है, अब से संदेश नए नंबर पर आएँगे।	domain=support
+hi-041	hindi	confirmation	जी, मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है।	domain=support
+hi-042	hindi	confirmation	सही कह रहे हैं आप, मेरे रिकॉर्ड में भी यही तारीख़ दिख रही है।	domain=banking
+hi-043	hindi	uncertainty	शायद आपका पार्सल आज शाम तक पहुँच जाए, पर मैं पक्का नहीं कह सकती।	domain=delivery; speaker=f
+hi-044	hindi	uncertainty	मुझे ठीक से याद नहीं है, मैं एक बार रिकॉर्ड देखकर बताता हूँ।	domain=support; speaker=m
+hi-045	hindi	uncertainty	हो सकता है कि बारिश की वजह से उड़ान में देर हो जाए।	domain=booking
+hi-046	hindi	uncertainty	शायद डॉक्टर साहब अभी मरीज़ को देख रहे होंगे, मैं पता करके बताती हूँ।	domain=appointment; speaker=f
+hi-047	hindi	uncertainty	मुझे लगता है कि आपका पैसा कल तक वापस आ जाएगा, लेकिन बैंक से पूछना पड़ेगा।	domain=banking
+hi-048	hindi	uncertainty	पक्का तो नहीं कह सकता, पर शायद यह समस्या सर्वर की वजह से है।	domain=support; speaker=m
+hi-049	hindi	uncertainty	मेरे ख़याल से आपका ऑर्डर आज ही निकल गया होगा, फिर भी मैं जाँच लेती हूँ।	domain=delivery; speaker=f
+hi-050	hindi	uncertainty	शायद सीट मिल जाए, लेकिन अभी इंतज़ार सूची में काफ़ी नाम हैं।	domain=booking
+hi-051	hindi	uncertainty	यह तो मुझे भी नहीं पता कि इसमें कितना समय लगेगा, शायद एक या दो दिन।	domain=support
+hi-052	hindi	uncertainty	हो सकता है आपके खाते में कोई पुरानी बकाया राशि बची हो, मैं देख लेती हूँ।	domain=banking; speaker=f
+hi-053	hindi	apology	असुविधा के लिए हमें बहुत खेद है, हम इसे जल्द से जल्द ठीक करेंगे।	domain=support
+hi-054	hindi	apology	माफ़ कीजिए, आपका ऑर्डर देर से पहुँचा, इसके लिए मैं सचमुच शर्मिंदा हूँ।	domain=delivery
+hi-055	hindi	apology	मुझे बहुत अफ़सोस है कि आपको इतनी बार फ़ोन करना पड़ा।	domain=support
+hi-056	hindi	apology	क्षमा कीजिए, हमारी तरफ़ से आपका नाम ग़लत लिख दिया गया था।	domain=booking
+hi-057	hindi	apology	आपको जो परेशानी हुई, उसके लिए मैं दिल से माफ़ी माँगता हूँ।	domain=support; speaker=m
+hi-058	hindi	apology	माफ़ कीजिएगा, लाइन में कुछ आवाज़ आ रही थी, इसलिए मैं आपकी बात पूरी तरह नहीं सुन पाई।	domain=support; speaker=f
+hi-059	hindi	apology	देरी के लिए क्षमा चाहती हूँ, आपका फ़ोन उठाने में कुछ समय लग गया।	domain=appointment; speaker=f
+hi-060	hindi	apology	हमें खेद है कि आपके खाते से ग़लत राशि कट गई, उसे आज ही वापस कर दिया जाएगा।	domain=banking
+hi-061	hindi	apology	माफ़ कीजिए, डॉक्टर साहब को एक आपातकालीन मरीज़ देखना पड़ा, इसलिए आपका समय आगे बढ़ गया है।	domain=appointment
+hi-062	hindi	apology	ग़लती हमारी थी, और मैं आपसे वादा करता हूँ कि दोबारा ऐसा नहीं होगा।	domain=support; speaker=m
+hi-063	hindi	request	कृपया अपना बुकिंग नंबर बताइए।	domain=booking
+hi-064	hindi	request	कृपया अपना पूरा नाम और जन्म की तारीख़ बता दीजिए।	domain=booking
+hi-065	hindi	request	आपसे निवेदन है कि आप डिलीवरी के समय अपना फ़ोन पास रखें।	domain=delivery
+hi-066	hindi	request	ज़रा एक बार अपना पता दोहरा दीजिए।	domain=delivery
+hi-067	hindi	request	कृपया लाइन पर बने रहिए, मैं आपको विशेषज्ञ से जोड़ रही हूँ।	domain=support; speaker=f
+hi-068	hindi	request	अगर आपको कोई आपत्ति न हो, तो कृपया अपना वैकल्पिक नंबर भी दे दीजिए।	domain=support
+hi-069	hindi	request	मुझे थोड़ा समय दीजिए, मैं आपका खाता जाँच लेती हूँ।	domain=banking; speaker=f
+hi-070	hindi	request	कृपया ध्यान दें कि बैंक कभी आपसे आपका पिन नहीं माँगता।	domain=banking
+hi-071	hindi	request	आप चाहें तो मैं आपको दोपहर बाद दोबारा फ़ोन कर सकता हूँ, बस आप समय बता दीजिए।	domain=appointment; speaker=m
+hi-072	hindi	request	कृपया अपने साथ पुरानी रिपोर्ट और पहचान पत्र ज़रूर लाइएगा।	domain=appointment
+hi-073	hindi	request	कृपया इस बातचीत के बाद हमारी सेवा को रेटिंग ज़रूर दीजिएगा।	domain=support
+hi-074	hindi	request	ज़रा धीरे बोलिए, मैं सब कुछ लिख रही हूँ।	domain=support; speaker=f
+hi-075	hindi	request	कृपया यात्रा से एक घंटा पहले हवाई अड्डे पर पहुँचने की कोशिश कीजिए।	domain=booking
+hi-076	hindi	request	मेरी बात ध्यान से सुन लीजिए, यह आपके पैसों की सुरक्षा का मामला है।	domain=banking
+hi-077	hindi	instruction	सबसे पहले अपना मोबाइल ऐप खोलिए और मेन्यू में जाकर बुकिंग का विकल्प चुनिए।	domain=booking
+hi-078	hindi	instruction	अब स्क्रीन पर दिख रहे हरे बटन को दबाइए।	domain=support
+hi-079	hindi	instruction	पैकेट खोलने से पहले उसकी तस्वीर ज़रूर खींच लीजिए।	domain=delivery
+hi-080	hindi	instruction	दवा सुबह ख़ाली पेट लीजिए और उसके आधे घंटे बाद नाश्ता कीजिए।	domain=appointment
+hi-081	hindi	instruction	अपना पिन किसी के साथ साझा मत कीजिए, चाहे फ़ोन करने वाला ख़ुद को बैंक कर्मचारी ही क्यों न बताए।	domain=banking
+hi-082	hindi	instruction	राउटर का प्लग निकालिए, एक मिनट रुकिए और फिर उसे दोबारा लगा दीजिए।	domain=support
+hi-083	hindi	instruction	डिलीवरी बॉय को ओटीपी तभी बताइए जब सामान आपके हाथ में आ जाए।	domain=delivery
+hi-084	hindi	instruction	फ़ॉर्म में अपना नाम वैसे ही लिखिए जैसे वह पहचान पत्र पर छपा है।	domain=booking
+hi-085	hindi	instruction	सीधे जाइए, फिर दूसरे मोड़ से दाईं ओर मुड़ जाइए, क्लिनिक आपको बाईं तरफ़ दिखेगा।	domain=appointment
+hi-086	hindi	instruction	पहले पुराना पासवर्ड डालिए, फिर नीचे दो बार नया पासवर्ड लिखकर पुष्टि दबाइए।	domain=support
+hi-087	hindi	instruction	चेक पर तारीख़ और हस्ताक्षर करना मत भूलिएगा।	domain=banking
+hi-088	hindi	instruction	बिल जमा करने के बाद रसीद का स्क्रीनशॉट अपने पास सुरक्षित रख लीजिए।	domain=banking
+hi-089	hindi	instruction	जाँच से दो घंटे पहले कुछ भी मत खाइए, सिर्फ़ पानी पी सकते हैं।	domain=appointment
+hi-090	hindi	instruction	पार्सल लौटाने के लिए उसे उसी डिब्बे में पैक कीजिए और एजेंट के आने तक सँभालकर रखिए।	domain=delivery
+hi-091	hindi	exclamation	वाह, आपकी सीट तो बिज़नेस क्लास में अपग्रेड हो गई है!	domain=booking
+hi-092	hindi	exclamation	अरे वाह, आपका पार्सल तो समय से पहले ही पहुँच गया!	domain=delivery
+hi-093	hindi	exclamation	बधाई हो, आपका लोन मंज़ूर हो गया है!	domain=banking
+hi-094	hindi	exclamation	शाबाश, आपने सारे चरण सही सही पूरे कर लिए!	domain=support
+hi-095	hindi	exclamation	ओह, यह तो बहुत बुरा हुआ, आपका सामान रास्ते में ही ख़राब हो गया!	domain=delivery
+hi-096	hindi	exclamation	हे भगवान, आपका फ़ोन तो पानी में गिर गया था!	domain=support
+hi-097	hindi	exclamation	कमाल है, इतनी जल्दी आपका पैसा वापस भी आ गया!	domain=banking
+hi-098	hindi	exclamation	मुबारक हो, आपके बेटे का नाम स्कूल की सूची में आ गया है!	domain=appointment
+hi-099	hindi	exclamation	अरे, आज तो सच में बहुत भीड़ है, मैंने ऐसा पहले कभी नहीं देखा!	domain=booking
+hi-100	hindi	exclamation	बहुत बढ़िया, अब सब कुछ बिल्कुल ठीक चल रहा है!	domain=support
+hg-001	hinglish	statement	आपका order आज शाम तक deliver हो जाएगा।	domain=delivery; script=mixed
+hg-002	hinglish	statement	मैंने आपका ticket book कर दिया है, confirmation आपके email पर आएगा।	domain=booking; script=mixed
+hg-003	hinglish	statement	आपके account में अभी balance कम है, इसलिए payment fail हो गया।	domain=banking; script=mixed
+hg-004	hinglish	statement	Doctor की availability कल सुबह की है, afternoon में slot नहीं बचा।	domain=appointment; script=mixed
+hg-005	hinglish	statement	आपकी EMI हर महीने की दस तारीख़ को auto debit होती है।	domain=banking; script=mixed
+hg-006	hinglish	statement	आपका refund process हो चुका है, पाँच working days में account में आ जाएगा।	domain=banking; script=mixed
+hg-007	hinglish	statement	हमारे delivery partner ने तीन बार कोशिश की, लेकिन आप घर पर available नहीं थे।	domain=delivery; script=mixed
+hg-008	hinglish	statement	आपका flight गेट नंबर बारह से depart होगा और boarding पौन घंटे पहले शुरू होगी।	domain=booking; script=mixed
+hg-009	hinglish	statement	Hotel का check-in दोपहर दो बजे से है और check-out सुबह ग्यारह बजे तक।	domain=booking; script=mixed
+hg-010	hinglish	statement	आपके phone पर एक link भेजा गया है, उसी से आप video call join कर सकते हैं।	domain=appointment; script=mixed
+hg-011	hinglish	statement	आपके area में आज network की problem चल रही है, engineer मौके पर पहुँच चुके हैं।	domain=support; script=mixed
+hg-012	hinglish	statement	aapka order kal subah tak aapke ghar pahunch jayega.	domain=delivery; script=roman
+hg-013	hinglish	statement	main aapki details check kar rahi hoon, bas ek minute lagega.	domain=support; script=roman; speaker=f
+hg-014	hinglish	statement	aapka appointment Tuesday ko shaam paanch baje ka fix ho gaya hai.	domain=appointment; script=roman
+hg-015	hinglish	request	Please अपना booking ID बता दीजिए।	domain=booking; script=mixed
+hg-016	hinglish	request	कृपया थोड़ा wait कीजिए, मैं system में check कर रही हूँ।	domain=support; script=mixed; speaker=f
+hg-017	hinglish	request	आप अपना registered mobile number confirm कर दीजिए।	domain=banking; script=mixed
+hg-018	hinglish	request	Please delivery के समय अपना phone on रखिएगा।	domain=delivery; script=mixed
+hg-019	hinglish	request	एक बार अपनी date of birth बता दीजिए, उसके बाद मैं request submit कर दूँगा।	domain=banking; script=mixed; speaker=m
+hg-020	hinglish	request	kripya apna email ID bataiye, main confirmation wahin bhej deti hoon.	domain=booking; script=roman; speaker=f
+hg-021	hinglish	request	thoda sa wait kijiye, main manager se baat karke aapko batati hoon.	domain=support; script=roman; speaker=f
+hg-022	hinglish	request	aap please apna order number dobara bol dijiye.	domain=delivery; script=roman
+hg-023	hinglish	instruction	App खोलिए, Settings में जाइए और Notifications को off कर दीजिए।	domain=support; script=mixed
+hg-024	hinglish	instruction	पहले अपना username डालिए, फिर Next पर click कीजिए।	domain=support; script=mixed
+hg-025	hinglish	instruction	Payment करने के बाद screenshot ज़रूर save कर लीजिए।	domain=banking; script=mixed
+hg-026	hinglish	instruction	Package को open करने से पहले seal check कर लीजिए।	domain=delivery; script=mixed
+hg-027	hinglish	instruction	Form में date of birth वही लिखिए जो Aadhaar card पर है।	domain=booking; script=mixed
+hg-028	hinglish	instruction	Reports अपलोड करने के लिए नीचे वाले Upload बटन पर tap कीजिए।	domain=appointment; script=mixed
+hg-029	hinglish	instruction	phone ko restart kijiye aur phir se login karke dekhiye.	domain=support; script=roman
+hg-030	hinglish	instruction	link par click karne se pehle check kar lijiye ki website ka address sahi hai.	domain=banking; script=roman
+hg-031	hinglish	confirmation	Yes, आपकी booking confirm है और seat भी allot हो गई है।	domain=booking; script=mixed
+hg-032	hinglish	confirmation	जी हाँ, आपका payment successfully हो गया है।	domain=banking; script=mixed
+hg-033	hinglish	confirmation	ठीक है, मैं address update कर देती हूँ, अब parcel नए address पर जाएगा।	domain=delivery; script=mixed; speaker=f
+hg-034	hinglish	confirmation	जी, आपका appointment reschedule हो गया है, new time शुक्रवार शाम पाँच बजे है।	domain=appointment; script=mixed
+hg-035	hinglish	confirmation	ji haan, aapka ticket cancel ho gaya hai aur refund bhi start ho gaya hai.	domain=booking; script=roman
+hg-036	hinglish	confirmation	bilkul sir, main abhi aapki request escalate kar deta hoon.	domain=support; script=roman; speaker=m
+hg-037	hinglish	yes_no_question	क्या आपको confirmation message मिल गया?	domain=booking; script=mixed
+hg-038	hinglish	yes_no_question	क्या आप अभी free हैं, या मैं आपको थोड़ी देर बाद call करूँ?	domain=appointment; script=mixed
+hg-039	hinglish	yes_no_question	क्या आपने app में दोबारा login करके देखा?	domain=support; script=mixed
+hg-040	hinglish	yes_no_question	क्या मैं आपका address एक बार verify कर सकती हूँ?	domain=delivery; script=mixed; speaker=f
+hg-041	hinglish	yes_no_question	kya aapko OTP mil gaya?	domain=banking; script=roman
+hg-042	hinglish	yes_no_question	kya aap card ko abhi block karna chahenge?	domain=banking; script=roman
+hg-043	hinglish	wh_question	आपका delivery address कौन सा है?	domain=delivery; script=mixed
+hg-044	hinglish	wh_question	आपको कितने बजे का slot चाहिए?	domain=appointment; script=mixed
+hg-045	hinglish	wh_question	aapne payment kis card se kiya tha?	domain=banking; script=roman
+hg-046	hinglish	wh_question	aapko yeh problem kab se aa rahi hai?	domain=support; script=roman
+hg-047	hinglish	apology	Sorry, आपको wait करना पड़ा, system में थोड़ी problem थी।	domain=support; script=mixed
+hg-048	hinglish	apology	हमें बहुत खेद है कि आपका order late हो गया, हम इसके लिए माफ़ी चाहते हैं।	domain=delivery; script=mixed
+hg-049	hinglish	apology	माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।	domain=booking; script=mixed
+hg-050	hinglish	apology	sorry sir, aapko dobara call karna pada, main is baat ke liye maafi chahti hoon.	domain=support; script=roman; speaker=f
+num-001	numbers	currency	आपके खाते से ₹1,250 कट गए हैं।	domain=banking
+num-002	numbers	currency	आपका बकाया बिल ₹2,499.50 है, जिसे आप आज ही जमा कर सकते हैं।	domain=banking
+num-003	numbers	currency	कुल राशि Rs. 15,000 होगी, जिसमें जीएसटी शामिल है।	domain=booking
+num-004	numbers	currency	आपकी EMI ₹8,750 प्रति माह है और अभी 15 किस्तें बाक़ी हैं।	domain=banking
+num-005	numbers	currency	आपके खाते में ₹1,00,000 से ज़्यादा की राशि जमा हुई है।	domain=banking
+num-006	numbers	currency	इस टिकट का किराया 450 रुपये है।	domain=booking
+num-007	numbers	currency	आपका लोन ₹5 लाख का है और ब्याज दर 9.5% सालाना है।	domain=banking
+num-008	numbers	currency	वापसी की राशि ₹349 आपके खाते में आ गई है।	domain=delivery
+num-009	numbers	date	आपका ऑर्डर 15 अक्टूबर को पहुँचेगा।	domain=delivery
+num-010	numbers	date	आपकी अपॉइंटमेंट 03/11/2026 को है।	domain=appointment
+num-011	numbers	date	आपकी बुकिंग 3 नवंबर 2026 से 6 नवंबर 2026 तक है।	domain=booking
+num-012	numbers	date	आपकी पॉलिसी 31 मार्च 2027 को समाप्त हो जाएगी।	domain=banking
+num-013	numbers	date	आपकी जन्मतिथि 12-08-1994 के रूप में दर्ज है।	domain=banking
+num-014	numbers	date	बैंक 26 जनवरी और 15 अगस्त को बंद रहेगा।	domain=banking
+num-015	numbers	time	बैंक शाम 4 बजे बंद हो जाता है।	domain=banking
+num-016	numbers	time	ट्रेन रात 11:45 बजे रवाना होगी।	domain=booking
+num-017	numbers	time	आपकी अपॉइंटमेंट सुबह 10:30 बजे है।	domain=appointment
+num-018	numbers	time	कृपया 7:15 बजे तक स्टेशन पहुँच जाइए।	domain=booking
+num-019	numbers	time	हमारी हेल्पलाइन सुबह 9 बजे से रात 9 बजे तक चालू रहती है।	domain=support
+num-020	numbers	time	फ़्लाइट की बोर्डिंग दोपहर 2:50 बजे शुरू होगी।	domain=booking
+num-021	numbers	phone_otp	मेरा नंबर 98765 43210 है।	domain=support
+num-022	numbers	phone_otp	आपका OTP 482915 है, इसे किसी को न बताएँ।	domain=banking
+num-023	numbers	phone_otp	हमारा टोल फ़्री नंबर 1800 123 4567 है।	domain=support
+num-024	numbers	phone_otp	आपके कार्ड के आख़िरी चार अंक 4821 हैं।	domain=banking; known_gap=ideal reading is digit by digit
+num-025	numbers	percent_quantity	इस ऑफ़र पर 25% की छूट मिलेगी।	domain=booking
+num-026	numbers	percent_quantity	आपके पैकेट का वज़न 2.5 किलो है।	domain=delivery
+num-027	numbers	percent_quantity	दूरी लगभग 12 किमी है और पहुँचने में 40 मिनट लगेंगे।	domain=delivery
+num-028	numbers	percent_quantity	आज का तापमान 38 डिग्री है और नमी 65% है।	domain=booking
+num-029	numbers	ordinal_id	आपकी सीट नंबर 14A है।	domain=booking
+num-030	numbers	ordinal_id	आपका कमरा तीसरी मंज़िल पर है, कमरा नंबर 305।	domain=booking
+num-031	numbers	ordinal_id	आपका शिकायत नंबर SR-48213 है।	domain=support
+num-032	numbers	ordinal_id	आपका PNR नंबर 2845671930 है।	domain=booking
+pron-001	pronunciation	schwa_deletion	आपका कमरा तैयार है, चाबी रिसेप्शन से मिल जाएगी।	focus=कमरा, चाबी
+pron-002	pronunciation	schwa_deletion	समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।	focus=समझना, बोल
+pron-003	pronunciation	schwa_deletion	मैं आपके सवाल का जवाब ज़रूर दूँगी, बस थोड़ा सब्र कीजिए।	focus=जवाब, सब्र; speaker=f
+pron-004	pronunciation	schwa_deletion	बरसात के मौसम में सड़कें अक्सर फिसलन भरी हो जाती हैं।	focus=बरसात, सड़कें, फिसलन, अक्सर
+pron-005	pronunciation	conjunct	कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।	focus=कृपया, प्रमाणपत्र, प्रति, त्र
+pron-006	pronunciation	conjunct	श्रीमान, आपकी प्रार्थना स्वीकार कर ली गई है, शुल्क में छूट मिलेगी।	focus=श्रीमान, प्रार्थना, स्वीकार, शुल्क
+pron-007	pronunciation	conjunct	मुख्य अध्यापक ने कक्षा के सभी विद्यार्थियों को क्षमा कर दिया।	focus=क्ष, ध्य, र्थ, ख्य
+pron-008	pronunciation	conjunct	उनका स्वास्थ्य अब बेहतर है और वे अस्पताल से छुट्टी लेकर घर जा सकते हैं।	focus=स्वास्थ्य, अस्पताल, छुट्टी
+pron-009	pronunciation	nukta	ज़रूरी काग़ज़ात फ़ोन पर भेजने की ज़रूरत नहीं है, हम ख़ुद ले लेंगे।	focus=ज़रूरी, काग़ज़ात, ख़ुद
+pron-010	pronunciation	nukta	आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।	focus=फ़ाइल, ग़लतियाँ
+pron-011	pronunciation	nukta	ज़िंदगी भर की बचत को सुरक्षित रखने के लिए बीमा ज़रूर कराइए।	focus=ज़िंदगी, बीमा, ज़रूर
+pron-012	pronunciation	nukta	आज की ख़बर में बिजली के बिल में राहत का ज़िक्र है।	focus=ख़बर, ज़िक्र, राहत
+pron-013	pronunciation	anusvara_chandrabindu	माँ ने कहा कि वहाँ जाँच के लिए पाँच लोग आँगन में खड़े हैं।	focus=माँ, वहाँ, जाँच, पाँच, आँगन
+pron-014	pronunciation	anusvara_chandrabindu	आपका संदेश मिल गया है, हम संपर्क करके आपको सूचना दे देंगे।	focus=संदेश, संपर्क, सूचना
+pron-015	pronunciation	anusvara_chandrabindu	यहाँ से सीधे जाइए, वहाँ दाएँ और बाएँ दोनों तरफ़ दुकानें हैं, कहीं भी पूछ लीजिए।	focus=यहाँ, दाएँ, बाएँ, कहीं
+pron-016	pronunciation	ri_vowel	आपकी माता जी का ऋण चुका दिया गया है, अब कोई बकाया नहीं है।	focus=ऋण
+pron-017	pronunciation	ri_vowel	हम ऋषिकेश के लिए बस का टिकट देख रहे हैं, कृपया बताइए कौन सी बस ठीक रहेगी।	focus=ऋषिकेश, कृपया
+pron-018	pronunciation	ri_vowel	गृह प्रवेश की पूजा के लिए पंडित जी ने मृदुल जी की कुंडली देखकर शुभ मुहूर्त निकाला है।	focus=गृह, मृदुल, कुंडली
+pron-019	pronunciation	perso_arabic	जनाब, आपकी ख़्वाहिश के मुताबिक़ हमने सारा इंतज़ाम कर दिया है।	focus=ख़्वाहिश, मुताबिक़, इंतज़ाम
+pron-020	pronunciation	perso_arabic	मुझे अफ़सोस है, यह मामला हमारे इख़्तियार से बाहर है।	focus=अफ़सोस, इख़्तियार
+pron-021	pronunciation	perso_arabic	आपकी दरख़्वास्त मंज़ूर हो गई है, अब कोई और क़ानूनी कार्रवाई नहीं होगी।	focus=दरख़्वास्त, मंज़ूर, क़ानूनी
+pron-022	pronunciation	english_loan	मेरा स्मार्टफ़ोन हैंग हो गया है, कृपया इंटरनेट बंद करके दोबारा चालू कीजिए।	focus=स्मार्टफ़ोन, हैंग, इंटरनेट
+pron-023	pronunciation	english_loan	कॉलेज की फ़ीस ऑनलाइन जमा करने के लिए आपको वेबसाइट पर रजिस्टर करना होगा।	focus=ऑनलाइन, रजिस्टर, वेबसाइट
+pron-024	pronunciation	english_loan	डॉक्टर ने ऑपरेशन के बाद कुछ दिन हॉस्पिटल में रहने की सलाह दी है।	focus=ऑपरेशन, हॉस्पिटल
+pron-025	pronunciation	indian_name	नमस्ते, मैं प्रियंका शर्मा बोल रही हूँ, क्या मेरी बात श्रीमान विवेक अग्रवाल से हो रही है?	focus=प्रियंका, श्रीमान, अग्रवाल
+pron-026	pronunciation	indian_name	आपका ऑर्डर श्रीमती ज्ञानवती देवी और श्री गजेंद्र सिंह के नाम से बुक हुआ है।	focus=ज्ञानवती, गजेंद्र
+pron-027	pronunciation	indian_name	मेरा नाम अभिषेक चतुर्वेदी है और मेरी बहन का नाम ऐश्वर्या है।	focus=अभिषेक, चतुर्वेदी, ऐश्वर्या
+pron-028	pronunciation	brand	आपका पेमेंट PhonePe और Google Pay दोनों से हो सकता है।	focus=PhonePe, Google Pay
+pron-029	pronunciation	brand	आप अपना सामान Flipkart या Amazon से मँगवा सकते हैं, दोनों जगह डिलीवरी मुफ़्त है।	focus=Flipkart, Amazon
+pron-030	pronunciation	brand	आपका खाता HDFC बैंक में है और कार्ड Paytm से जुड़ा है।	focus=HDFC, Paytm
+pron-031	pronunciation	city	आपकी ट्रेन अहमदाबाद से जयपुर होते हुए चंडीगढ़ जाएगी।	focus=अहमदाबाद, जयपुर, चंडीगढ़
+pron-032	pronunciation	city	मेरी फ़्लाइट बेंगलुरु से लखनऊ की है, और वापसी तिरुवनंतपुरम से है।	focus=बेंगलुरु, लखनऊ, तिरुवनंतपुरम
+q-001	questions	yes_no_question	क्या आपको अपना ऑर्डर समय पर मिल गया था?	domain=delivery
+q-002	questions	yes_no_question	क्या मैं आपका नाम और मोबाइल नंबर एक बार दोहरा सकती हूँ?	domain=support; speaker=f
+q-003	questions	yes_no_question	क्या आप इसी नंबर पर दोबारा बात करना चाहेंगे?	domain=appointment
+q-004	questions	yes_no_question	क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?	domain=booking
+q-005	questions	yes_no_question	क्या आपके पास पुरानी रिपोर्ट मौजूद है?	domain=appointment
+q-006	questions	yes_no_question	क्या आपका इंटरनेट अब ठीक से चल रहा है?	domain=support
+q-007	questions	yes_no_question	क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?	domain=support
+q-008	questions	yes_no_question	क्या आपको नाश्ते के साथ चाय भी चाहिए या सिर्फ़ कॉफ़ी?	domain=booking
+q-009	questions	yes_no_question	क्या डिलीवरी के वक़्त घर पर कोई मौजूद रहेगा?	domain=delivery
+q-010	questions	yes_no_question	क्या आप बता सकते हैं कि आपने आख़िरी बार कार्ड कब इस्तेमाल किया था?	domain=banking
+q-011	questions	yes_no_question	ठीक है न, तो मैं इसे आज ही भेज दूँ?	domain=delivery
+q-012	questions	wh_question	आपका अपॉइंटमेंट किस दिन और किस समय का रखें?	domain=appointment
+q-013	questions	wh_question	आपने यह टिकट कहाँ से बुक किया था?	domain=booking
+q-014	questions	wh_question	आपका बैंक खाता किस शहर की शाखा में है?	domain=banking
+q-015	questions	wh_question	आपको यह परेशानी कब से हो रही है?	domain=support
+q-016	questions	wh_question	आप कितने लोगों के लिए कमरा लेना चाहते हैं?	domain=booking
+q-017	questions	wh_question	डिलीवरी के लिए आपका पूरा पता क्या है?	domain=delivery
+q-018	questions	wh_question	आपका ऑर्डर किस पते पर भेजा जाना चाहिए था?	domain=delivery
+q-019	questions	wh_question	इस महीने आपके कार्ड से इतने ज़्यादा पैसे कैसे कट गए?	domain=banking
+q-020	questions	wh_question	मैं आपकी क्या मदद कर सकती हूँ?	domain=support; speaker=f
+q-021	questions	wh_question	आपने कितने बजे फ़ोन किया था और किससे बात हुई थी?	domain=support
+q-022	questions	wh_question	आप किस वजह से अपनी बुकिंग रद्द करना चाहते हैं?	domain=booking
+exp-001	expressive	joy	बहुत बहुत बधाई! आप हमारे दस लाखवें ग्राहक बने हैं, आपको एक शानदार तोहफ़ा मिलेगा!	domain=banking
+exp-002	expressive	joy	यह तो सचमुच बहुत ख़ुशी की बात है, आपके घर नया मेहमान आया है, ढेर सारी शुभकामनाएँ!	domain=appointment
+exp-003	expressive	joy	आख़िरकार आपकी मेहनत रंग लाई, और मुझे आपके लिए बेहद ख़ुशी हो रही है!	domain=banking
+exp-004	expressive	joy	वाह, क्या ख़बर सुनाई है आपने, मेरा तो दिन बन गया!	domain=support
+exp-005	expressive	joy	बिल्कुल बढ़िया! आपकी छुट्टियाँ अब पक्की हैं, बहुत मज़ा आएगा!	domain=booking
+exp-006	expressive	sympathy	यह सुनकर मुझे बहुत दुख हुआ, भगवान आपके परिवार को हिम्मत दे।	domain=support
+exp-007	expressive	sympathy	मैं समझ सकती हूँ कि यह समय आपके लिए कितना कठिन है, आप अकेले नहीं हैं।	domain=support; speaker=f
+exp-008	expressive	sympathy	आपके साथ जो हुआ, उसके बारे में सुनकर सचमुच बहुत बुरा लगा।	domain=delivery
+exp-009	expressive	sympathy	आप चिंता मत कीजिए, हम सब आपके साथ हैं और हर संभव मदद करेंगे।	domain=banking
+exp-010	expressive	sympathy	आपकी तकलीफ़ मैं महसूस कर सकता हूँ, इसलिए आज यह काम मैं ख़ुद देखूँगा।	domain=support; speaker=m
+exp-011	expressive	urgency	जल्दी कीजिए, आपके कार्ड से अभी पैसे निकल रहे हैं, तुरंत उसे ब्लॉक करवाइए!	domain=banking
+exp-012	expressive	urgency	कृपया अभी घर से बाहर निकल जाइए, इमारत में आग लग गई है!	domain=support
+exp-013	expressive	urgency	ध्यान दीजिए, आपकी उड़ान का गेट पाँच मिनट में बंद होने वाला है, फ़ौरन पहुँचिए!	domain=booking
+exp-014	expressive	urgency	रुकिए, यह रक़म मत भेजिए, यह बहुत बड़ी धोखाधड़ी हो सकती है!	domain=banking
+exp-015	expressive	surprise	क्या बात कर रहे हैं आप, इतनी जल्दी आपका ऑर्डर पहुँच भी गया?	domain=delivery
+exp-016	expressive	surprise	अरे, मुझे तो यक़ीन ही नहीं हो रहा कि आप आज ही आ गए!	domain=appointment
+exp-017	expressive	surprise	सच में? मैंने तो सोचा भी नहीं था कि यह इतना सस्ता होगा!	domain=booking
+exp-018	expressive	surprise	हैरानी की बात है, पूरे साल में पहली बार आपके खाते में गड़बड़ी हुई है!	domain=banking
+exp-019	expressive	reassurance	घबराइए मत, आपका सारा पैसा बिल्कुल सुरक्षित है।	domain=banking
+exp-020	expressive	reassurance	आप बिल्कुल निश्चिंत रहिए, मैं यह काम अपनी ज़िम्मेदारी पर पूरा करवाऊँगी।	domain=support; speaker=f
+exp-021	expressive	reassurance	कोई बात नहीं, ग़लती किसी से भी हो सकती है, हम इसे अभी ठीक कर देते हैं।	domain=support
+exp-022	expressive	reassurance	सब ठीक हो जाएगा, बस कुछ मिनट इंतज़ार कीजिए, मैं यहीं आपके साथ हूँ।	domain=support
+hi3-001	hindi	statement	आपके क्रेडिट कार्ड का न्यूनतम देय शुल्क कल तक जमा होना अनिवार्य है।	domain=banking
+hi3-002	hindi	statement	आपके वर्तमान डेटा प्लान की वैधता अगले तीन दिनों में समाप्त होने वाली है।	domain=telecom
+hi3-003	hindi	statement	आपका पार्सल हमारे मुख्य वितरण केंद्र पर पहुंच चुका है और जल्द ही डिलीवर होगा।	domain=delivery
+hi3-004	hindi	statement	डॉक्टर शर्मा आज शाम पांच बजे से आठ बजे तक ओपीडी में उपलब्ध रहेंगे।	domain=health
+hi3-005	hindi	statement	इस महीने का बिजली बिल पिछले महीने की तुलना में दस प्रतिशत कम आया है।	domain=utilities
+hi3-006	hindi	request	क्या आप कृपया अपनी यात्रा की तारीख और पसंदीदा सीट नंबर बता सकते हैं?	domain=booking
+hi3-007	hindi	request	कृपया अपने पंजीकृत मोबाइल नंबर पर भेजा गया छह अंकों का ओटीपी दर्ज करें।	domain=banking
+hi3-008	hindi	request	कृपया छात्रवृत्ति आवेदन के लिए अपने बारहवीं कक्षा के अंकपत्र की प्रति अपलोड करें।	domain=education
+hi3-009	hindi	request	नेटवर्क की समस्या को ठीक करने के लिए कृपया अपना मोबाइल फोन रीस्टार्ट करें।	domain=telecom
+hi3-010	hindi	request	कृपया अपनी पिछली मेडिकल रिपोर्ट और डॉक्टर का पर्चा व्हाट्सएप पर साझा करें।	domain=health
+hi3-011	hindi	instruction	नया गैस कनेक्शन सक्रिय करने के लिए सबसे पहले अपने पते का प्रमाण पत्र जमा करें।	domain=utilities
+hi3-012	hindi	instruction	ऑनलाइन परीक्षा शुरू करने से पहले अपने वेबकैम और माइक्रोफोन की जांच अवश्य कर लें।	domain=education
+hi3-013	hindi	instruction	टिकट रद्द करने के लिए मोबाइल ऐप के बुकिंग इतिहास में जाकर कैंसिल बटन दबाएं।	domain=booking
+hi3-014	hindi	instruction	यदि आप घर पर नहीं हैं, तो कृपया डिलीवरी एजेंट को पार्सल पड़ोसी को देने का निर्देश दें।	domain=delivery
+hi3-015	hindi	instruction	अपना एटीएम पिन बदलने के लिए नजदीकी मशीन में कार्ड डालकर पिन जनरेशन विकल्प चुनें।	domain=banking
+hi3-016	hindi	confirmation	बधाई हो, होटल ताज में आपका दो रातों का कमरा सफलतापूर्वक बुक हो गया है।	domain=booking
+hi3-017	hindi	confirmation	हमें आपका भुगतान प्राप्त हो गया है और आपका ऑर्डर आज शाम तक भेज दिया जाएगा।	domain=delivery
+hi3-018	hindi	confirmation	आपका नया सिम कार्ड सक्रिय कर दिया गया है और सेवाएं तुरंत शुरू हो गई हैं।	domain=telecom
+hi3-019	hindi	confirmation	कल सुबह दस बजे के लिए डॉक्टर वर्मा के साथ आपका अपॉइंटमेंट पक्का हो गया है।	domain=health
+hi3-020	hindi	confirmation	विश्वविद्यालय के पोर्टल पर आपका नामांकन फॉर्म और शुल्क सफलतापूर्वक स्वीकार कर लिया गया है।	domain=education
+hi3-021	hindi	apology	खराब मौसम के कारण आपके पार्सल की डिलीवरी में देरी के लिए हम क्षमा चाहते हैं।	domain=delivery
+hi3-022	hindi	apology	सर्वर में तकनीकी खराबी के कारण आपको हुई असुविधा के लिए हमें गहरा खेद है।	domain=telecom
+hi3-023	hindi	apology	बैंक की वेबसाइट डाउन होने के कारण आपके लेनदेन में हुई देरी के लिए हम माफी चाहते हैं।	domain=banking
+hi3-024	hindi	apology	आपके क्षेत्र में अचानक बिजली कटौती के लिए हमें खेद है, हमारी टीम काम कर रही है।	domain=utilities
+hi3-025	hindi	apology	तकनीकी त्रुटि के कारण आपकी टिकट बुकिंग रद्द होने के लिए हम अत्यंत क्षमाप्रार्थी हैं।	domain=booking
+hi3-026	hindi	statement	आपके बचत खाते में न्यूनतम मासिक शेष राशि बनाए रखना अनिवार्य है अन्यथा जुर्माना लगाया जा सकता है।	domain=banking
+hi3-027	hindi	request	कृपया सत्यापन के लिए अपने पंजीकृत मोबाइल नंबर पर भेजा गया छह अंकों का ओटीपी दर्ज करें।	domain=banking
+hi3-028	hindi	instruction	नया एटीएम पिन बनाने के लिए मशीन में अपना कार्ड डालें और 'पिन जनरेट' विकल्प का चयन करें।	domain=banking
+hi3-029	hindi	confirmation	आपके क्रेडिट कार्ड का बकाया भुगतान सफलतापूर्वक प्राप्त हो गया है और आपकी क्रेडिट सीमा बहाल कर दी गई है।	domain=banking
+hi3-030	hindi	apology	तकनीकी खराबी के कारण आपकी टिकट बुकिंग प्रक्रिया पूरी नहीं हो सकी, इस असुविधा के लिए हमें बेहद खेद है।	domain=booking
+hi3-031	hindi	statement	आगामी त्योहारों के कारण इस मार्ग पर चलने वाली सभी ट्रेनें पहले से ही पूरी तरह से आरक्षित हो चुकी हैं।	domain=booking
+hi3-032	hindi	request	कृपया अपनी यात्रा की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करके भुगतान प्रक्रिया पूरी करें।	domain=booking
+hi3-033	hindi	instruction	होटल में प्रवेश के समय कृपया अपना मूल पहचान पत्र और बुकिंग पुष्टिकरण का संदेश काउंटर पर दिखाएं।	domain=booking
+hi3-034	hindi	confirmation	आपका पार्सल आज शाम पांच बजे तक आपके पंजीकृत पते पर सफलतापूर्वक डिलीवर कर दिया गया है।	domain=delivery
+hi3-035	hindi	apology	खराब मौसम और भारी ट्रैफिक के कारण आपके ऑर्डर की डिलीवरी में कुछ समय की देरी हो सकती है, कृपया प्रतीक्षा करें।	domain=delivery
+hi3-036	hindi	statement	आपका ऑर्डर हमारे नजदीकी वितरण केंद्र पर पहुंच चुका है और जल्द ही डिलीवरी के लिए बाहर भेजा जाएगा।	domain=delivery
+hi3-037	hindi	request	कृपया अपने वर्तमान कॉलिंग प्लान को बदलने या नया पैक चुनने के लिए हमारी आधिकारिक वेबसाइट पर जाएं।	domain=telecom
+hi3-038	hindi	instruction	इंटरनेट सेवा दोबारा शुरू करने के लिए अपने फोन की नेटवर्क सेटिंग्स में जाकर मोबाइल डेटा विकल्प को सक्रिय करें।	domain=telecom
+hi3-039	hindi	confirmation	आपका असीमित कॉलिंग और डेटा पैक सफलतापूर्वक सक्रिय कर दिया गया है, जिसकी वैधता पूरे अठासी दिनों की है।	domain=telecom
+hi3-040	hindi	apology	आपके क्षेत्र में नेटवर्क अपग्रेड का काम चलने के कारण कॉलिंग में आ रही अस्थाई बाधा के लिए हमें खेद है।	domain=telecom
+hi3-041	hindi	statement	डॉक्टर से परामर्श करने का समय केवल सुबह नौ बजे से दोपहर दो बजे तक ही उपलब्ध रहता है।	domain=health
+hi3-042	hindi	request	कृपया डॉक्टर से मिलने से पहले अपनी पिछली सभी मेडिकल रिपोर्ट और दवाओं के पर्चे काउंटर पर जमा करें।	domain=health
+hi3-043	hindi	confirmation	डॉक्टर शर्मा के साथ कल सुबह ग्यारह बजे का आपका अपॉइंटमेंट सफलतापूर्वक बुक कर लिया गया है।	domain=health
+hi3-044	hindi	instruction	गैस रिसाव की स्थिति में तुरंत मुख्य वाल्व बंद करें और खिड़कियां खोलकर हमारे आपातकालीन नंबर पर संपर्क करें।	domain=utilities
+hi3-045	hindi	confirmation	आपके नए बिजली कनेक्शन का आवेदन स्वीकार कर लिया गया है और जल्द ही हमारी टीम आपके घर आएगी।	domain=utilities
+hi3-046	hindi	apology	मुख्य लाइन में रखरखाव कार्य के कारण आज दोपहर दो बजे तक बिजली आपूर्ति बाधित रहने के लिए हमें खेद है।	domain=utilities
+hi3-047	hindi	statement	इस महीने का पानी का बिल आपके पंजीकृत मोबाइल नंबर पर एसएमएस के माध्यम से भेज दिया गया है।	domain=utilities
+hi3-048	hindi	request	कृपया छात्रवृत्ति योजना का लाभ उठाने के लिए अपना आय प्रमाण पत्र और अंतिम वर्ष की अंकतालिका अपलोड करें।	domain=education
+hi3-049	hindi	instruction	ऑनलाइन परीक्षा में शामिल होने के लिए छात्र अपने लॉगिन क्रेडेंशियल का उपयोग करके पोर्टल पर समय से लॉग इन करें।	domain=education
+hi3-050	hindi	apology	विश्वविद्यालय की वेबसाइट पर अत्यधिक ट्रैफिक होने के कारण परिणाम देखने में आ रही परेशानी के लिए हम क्षमाप्रार्थी हैं।	domain=education
+hi3-051	hindi	statement	आपके बचत खाते में इस समय कुल पांच हजार चार सौ रुपये शेष हैं।	domain=banking
+hi3-052	hindi	statement	आपकी मुंबई की उड़ान कल सुबह नौ बजकर पंद्रह मिनट पर प्रस्थान करेगी।	domain=booking
+hi3-053	hindi	statement	आपका पार्सल इस समय हमारे नजदीकी वितरण केंद्र पर पहुंच चुका है।	domain=delivery
+hi3-054	hindi	statement	आपके मोबाइल नंबर पर दैनिक इंटरनेट डेटा सीमा का अस्सी प्रतिशत समाप्त हो गया है।	domain=telecom
+hi3-055	hindi	statement	डॉक्टर शर्मा आज शाम पांच बजे से अस्पताल के ओपीडी विभाग में उपलब्ध रहेंगे।	domain=health
+hi3-056	hindi	request	क्या आप अपनी यात्रा के लिए खिड़की वाली सीट चुनना पसंद करेंगे?	domain=booking
+hi3-057	hindi	request	कृपया अपने पते की पुष्टि के लिए कोई नजदीकी प्रसिद्ध स्थान या लैंडमार्क बताएं।	domain=delivery
+hi3-058	hindi	request	इस कॉल के समाप्त होने के बाद कृपया हमारे प्रतिनिधि को रेटिंग अवश्य दें।	domain=telecom
+hi3-059	hindi	request	क्या आप परामर्श के समय अपनी पुरानी मेडिकल रिपोर्ट और पर्चा साथ ला सकते हैं?	domain=health
+hi3-060	hindi	instruction	नया पिन बनाने के लिए पहले एटीएम कार्ड डालें और फिर ग्रीन पिन विकल्प का चयन करें।	domain=banking
+hi3-061	hindi	instruction	अपना टिकट डाउनलोड करने के लिए नीचे दिए गए लिंक पर क्लिक करें और पीएनआर नंबर दर्ज करें।	domain=booking
+hi3-062	hindi	instruction	अवांछित कॉल्स को रोकने के लिए अपने फोन से एक नौ शून्य शून्य पर संदेश भेजें।	domain=telecom
+hi3-063	hindi	instruction	बिजली बिल का भुगतान करने के लिए अपनी उपभोक्ता संख्या दर्ज करें और आगे बढ़ें।	domain=utilities
+hi3-064	hindi	instruction	प्रवेश परीक्षा के लिए आवेदन करने हेतु अपने सभी शैक्षणिक दस्तावेज पीडीएफ प्रारूप में अपलोड करें।	domain=education
+hi3-065	hindi	confirmation	बधाई हो, आपके क्रेडिट कार्ड के माध्यम से दस हजार रुपये का भुगतान सफलतापूर्वक पूरा हो गया है।	domain=banking
+hi3-066	hindi	confirmation	आपका होटल कमरा नंबर तीन सौ दो में दो रातों के लिए सफलतापूर्वक बुक हो गया है।	domain=booking
+hi3-067	hindi	confirmation	पुष्टि की जाती है कि आपका ऑर्डर आज दोपहर दो बजे से पहले डिलीवर कर दिया जाएगा।	domain=delivery
+hi3-068	hindi	confirmation	आपके नंबर पर तीन सौ निन्यानवे रुपये का अनलिमिटेड पैक सफलतापूर्वक सक्रिय कर दिया गया है।	domain=telecom
+hi3-069	hindi	confirmation	आपके गैस सिलेंडर की बुकिंग स्वीकार कर ली गई है और रसीद नंबर भेज दिया गया है।	domain=utilities
+hi3-070	hindi	apology	सर्वर में तकनीकी खराबी के कारण आपको हुई असुविधा के लिए हम अत्यंत क्षमाप्रार्थी हैं।	domain=banking
+hi3-071	hindi	apology	खराब मौसम के कारण आपके ऑर्डर की डिलीवरी में देरी के लिए हम माफी चाहते हैं।	domain=delivery
+hi3-072	hindi	apology	आपातकालीन स्थिति के कारण डॉक्टर साहब के आने में हुई देरी के लिए हम क्षमा चाहते हैं।	domain=health
+hi3-073	hindi	apology	अत्यधिक ट्रैफिक के कारण हमारी वेबसाइट धीमी चलने के लिए हम आपसे क्षमा मांगते हैं।	domain=education
+hi3-074	hindi	statement	आपके बचत खाते में न्यूनतम शेष राशि बनाए रखना अनिवार्य है, अन्यथा शुल्क लागू हो सकता है।	domain=banking
+hi3-075	hindi	statement	आपकी शिमला की होटल बुकिंग सफलतापूर्वक पूरी हो चुकी है और विवरण आपके ईमेल पर भेज दिया गया है।	domain=booking
+hi3-076	hindi	statement	आपका पार्सल आज शाम पांच बजे तक आपके दिए गए पते पर पहुंचा दिया जाएगा।	domain=delivery
+hi3-077	hindi	statement	आपके इस नंबर पर वर्तमान डेटा प्लान की वैधता कल समाप्त होने वाली है।	domain=telecom
+hi3-078	hindi	statement	इस महीने का बिजली बिल पिछले महीने की तुलना में थोड़ा अधिक आया है।	domain=utilities
+hi3-079	hindi	request	कृपया अपनी पिछली मेडिकल रिपोर्ट और डॉक्टर का पर्चा हमारे व्हाट्सएप नंबर पर साझा करें।	domain=health
+hi3-080	hindi	request	क्या आप मुझे अपना रोल नंबर और जन्म तिथि बता सकते हैं ताकि मैं परिणाम देख सकूं?	domain=education
+hi3-081	hindi	request	क्या आप अपने क्रेडिट कार्ड का पिन बदलने के लिए पंजीकृत मोबाइल नंबर पर आया ओटीपी बताएंगे?	domain=banking
+hi3-082	hindi	request	कृपया अपनी यात्रा की तारीख और यात्रियों की कुल संख्या का चयन करें ताकि मैं टिकट खोज सकूं।	domain=booking
+hi3-083	hindi	request	क्या आप डिलीवरी पार्टनर को अपना सही पता समझाने के लिए कोई नजदीकी लैंडमार्क बता सकते हैं?	domain=delivery
+hi3-084	hindi	instruction	अपना नया सिम कार्ड सक्रिय करने के लिए, कृपया पांच नौ शून्य पांच नौ पर कॉल करें।	domain=telecom
+hi3-085	hindi	instruction	गैस कनेक्शन के ऑनलाइन भुगतान के लिए हमारी वेबसाइट पर जाकर 'क्विक पे' विकल्प पर क्लिक करें।	domain=utilities
+hi3-086	hindi	instruction	ऑनलाइन परीक्षा शुरू करने से पहले अपने कंप्यूटर का वेबकैम और इंटरनेट कनेक्शन अच्छी तरह जांच लें।	domain=education
+hi3-087	hindi	instruction	डॉक्टर द्वारा बताई गई यह लाल वाली गोली आपको रोज रात को खाना खाने के बाद लेनी है।	domain=health
+hi3-088	hindi	instruction	अपने मोबाइल बैंकिंग ऐप में लॉग इन करें और 'फंड ट्रांसफर' विकल्प चुनकर नया लाभार्थी जोड़ें।	domain=banking
+hi3-089	hindi	confirmation	मैं पुष्टि करता हूं कि आपकी दिल्ली से मुंबई की उड़ान का टिकट बुक हो गया है।	domain=booking
+hi3-090	hindi	confirmation	आपका ऑर्डर नंबर चार पांच छह सात आठ अब हमारे वेयरहाउस से डिस्पैच हो चुका है।	domain=delivery
+hi3-091	hindi	confirmation	बधाई हो, आपका नया अनलिमिटेड कॉलिंग पैक आपके नंबर पर सफलतापूर्वक सक्रिय कर दिया गया है।	domain=telecom
+hi3-092	hindi	confirmation	हमें आपका पानी के बिल का भुगतान प्राप्त हो गया है, आपकी रसीद जल्द ही भेजी जाएगी।	domain=utilities
+hi3-093	hindi	confirmation	की आपकी इस पाठ्यक्रम में प्रवेश की पुष्टि हो गई है, आपकी कक्षाएं अगले सोमवार से शुरू होंगी।	domain=education
+hi3-094	hindi	apology	डॉक्टर की आपातकालीन बैठक के कारण आपकी आज की अपॉइंटमेंट रद्द करने के लिए हमें बेहद खेद है।	domain=health
+hi3-095	hindi	apology	तकनीकी खराबी के कारण आपके ऑर्डर की डिलीवरी में हो रही देरी के लिए हम क्षमा चाहते हैं।	domain=delivery
+hi3-096	hindi	apology	सर्वर डाउन होने की वजह से आपको हुई असुविधा के लिए बैंक प्रशासन आपसे माफी मांगता है।	domain=banking
+hi3-097	hindi	apology	नेटवर्क में आ रही रुकावट के लिए हमें खेद है, हमारी टीम इसे जल्द ठीक करने का प्रयास कर रही है।	domain=telecom
+hi3-098	hindi	apology	तकनीकी समस्या के कारण आपकी टिकट बुकिंग रद्द होने के लिए हम आपसे तहे दिल से माफी मांगते हैं।	domain=booking
+hg3-001	hinglish	statement	आपका account balance update हो गया है और current status active है।	domain=banking script=mixed
+hg3-002	hinglish	instruction	Apna seat number select karne ke liye link par click karein.	domain=booking script=roman
+hg3-003	hinglish	confirmation	आपका order successfully deliver हो चुका है, feedback share करें।	domain=delivery script=mixed
+hg3-004	hinglish	apology	Technical issue ki wajah se delay ke liye hum extremely sorry hain.	domain=support script=roman
+hg3-005	hinglish	statement	Aapka doctor ke saath appointment kal subah ten AM ko scheduled hai.	domain=appointment script=roman
+hg3-006	hinglish	instruction	Data pack activate करने के लिए, dial करें star one two one hash.	domain=telecom script=mixed
+hg3-007	hinglish	confirmation	Aapka electricity bill payment successfully receive ho gaya hai.	domain=utilities script=roman
+hg3-008	hinglish	apology	Server down होने के कारण class reschedule करनी पड़ी, extremely sorry.	domain=education script=mixed
+hg3-009	hinglish	statement	आपका package dispatch हो गया है और tracking details SMS कर दी गई हैं।	domain=delivery script=mixed
+hg3-010	hinglish	instruction	Transaction complete karne ke liye apna six digit OTP enter karein.	domain=banking script=roman
+hg3-011	hinglish	confirmation	आपकी flight booking confirm हो गई है, ticket details check करें।	domain=booking script=mixed
+hg3-012	hinglish	apology	Network outage ke liye hum maafi chahte hain, team resolve kar rahi hai.	domain=telecom script=roman
+hg3-013	hinglish	statement	Online course ka syllabus website par upload kar diya gaya hai.	domain=education script=roman
+hg3-014	hinglish	instruction	Password reset करने के लिए security questions का answer दें।	domain=support script=mixed
+hg3-015	hinglish	confirmation	Aapki dental checkup ki booking confirm ho gayi hai.	domain=appointment script=roman
+hg3-016	hinglish	apology	Bad weather की वजह से delivery delay हो सकती है, inconvenience के लिए sorry.	domain=delivery script=mixed
+hg3-017	hinglish	statement	आपका monthly postpaid bill generate हो गया है, due date check करें।	domain=telecom script=mixed
+hg3-018	hinglish	instruction	Water bill online pay karne ke liye quick pay option select karein.	domain=utilities script=roman
+hg3-019	hinglish	confirmation	आपका credit card application approve हो गया है, dispatch process start है।	domain=banking script=mixed
+hg3-020	hinglish	apology	Hotel room availability na hone ke karan hume booking cancel karni padi, sorry.	domain=booking script=roman
+hg3-021	hinglish	statement	Aapki query register ho gayi hai, ticket number double zero seven hai.	domain=support script=roman
+hg3-022	hinglish	instruction	Assignment submit करने के लिए portal पर login करें।	domain=education script=mixed
+hg3-023	hinglish	confirmation	Aapka mobile number successfully port-in ho chuka hai.	domain=telecom script=roman
+hg3-024	hinglish	apology	Doctor emergency surgery में busy हैं, appointment delay के लिए sorry।	domain=appointment script=mixed
+hg3-025	hinglish	instruction	Delivery agent ko contact karne ke liye call button press karein.	domain=delivery script=roman
+hg3-026	hinglish	statement	आपका credit card bill generate हो गया है और payment की last date 15th है।	domain=banking, script=mixed
+hg3-027	hinglish	instruction	Apne registered mobile number par aaya hua OTP enter karke transaction complete karein.	domain=banking, script=roman
+hg3-028	hinglish	confirmation	आपकी flight ticket successfully book हो गई है, details आपके email पर भेज दी गई हैं।	domain=booking, script=mixed
+hg3-029	hinglish	apology	Hum extremely sorry hain ki aapka parcel delay ho gaya, heavy rain ki wajah se delivery late ho rahi hai.	domain=delivery, script=roman
+hg3-030	hinglish	statement	हमारे customer care executive अभी busy हैं, कृपया line पर बने रहें।	domain=support, script=mixed
+hg3-031	hinglish	instruction	Doctor se consultation ke liye please appointment time se 10 minutes pehle clinic pahunchein.	domain=appointment, script=roman
+hg3-032	hinglish	confirmation	आपका unlimited data pack active कर दिया गया है, validity 28 days की है।	domain=telecom, script=mixed
+hg3-033	hinglish	apology	Technical maintenance ki wajah se aaj electricity supply temporary suspend rahegi, asuvidha ke liye khed hai.	domain=utilities, script=roman
+hg3-034	hinglish	statement	Online classes का schedule update हो गया है, portal पर check कर लें।	domain=education, script=mixed
+hg3-035	hinglish	instruction	Delivery partner को address ढूंढने में help करने के लिए landmark add करें।	domain=delivery, script=mixed
+hg3-036	hinglish	confirmation	Aapke account se five thousand rupees successfully transfer ho gaye hain.	domain=banking, script=roman
+hg3-037	hinglish	apology	We are sorry, technical error की वजह से आपकी hotel booking cancel हो गई है, refund process कर दिया गया है।	domain=booking, script=mixed
+hg3-038	hinglish	statement	Aapka daily data limit exhaust ho gaya hai, speed reduce hokar 64 kbps ho jayegi.	domain=telecom, script=roman
+hg3-039	hinglish	instruction	Water bill online pay करने के लिए official website पर log in करें।	domain=utilities, script=mixed
+hg3-040	hinglish	confirmation	Aapka dentist appointment tomorrow morning 11:00 AM par schedule ho gaya hai.	domain=appointment, script=roman
+hg3-041	hinglish	apology	Server down होने के कारण service temporary unavailable है, हुई inconvenience के लिए हमें खेद है।	domain=support, script=mixed
+hg3-042	hinglish	statement	Final exams ke admit card college website par download ke liye available hain.	domain=education, script=roman
+hg3-043	hinglish	instruction	Train ticket cancel करने के लिए 'My Bookings' section में जाकर cancel button पर click करें।	domain=booking, script=mixed
+hg3-044	hinglish	confirmation	Aapka order ship ho chuka hai aur tracking link SMS ke zariye bhej diya gaya hai.	domain=delivery, script=roman
+hg3-045	hinglish	apology	हम apologetic हैं कि server issue की वजह से ATM transaction fail हो गया, amount 24 hours में reverse हो जाएगा।	domain=banking, script=mixed
+hg3-046	hinglish	statement	आपकी visa interview appointment successfully schedule हो चुकी है।	domain=appointment, script=mixed
+hg3-047	hinglish	instruction	Sim card activate karne ke liye please apna identity proof verify karein.	domain=telecom, script=roman
+hg3-048	hinglish	confirmation	आपका smart meter recharge successfully complete हो गया है, current balance update हो चुका है।	domain=utilities, script=mixed
+hg3-049	hinglish	apology	Technical glitch ke karan aaj ki live class postpone karni padi, hum iske liye sorry hain.	domain=education, script=roman
+hg3-050	hinglish	statement	आपका package dispatch हो चुका है और आज evening तक deliver हो जाएगा।	domain=delivery, script=mixed
+hg3-051	hinglish	statement	आपका credit card payment अभी process हो रहा है।	script=mixed, domain=banking
+hg3-052	hinglish	instruction	Apna booking ID confirm karne ke liye screen par diye gaye link par click karein.	script=roman, domain=booking
+hg3-053	hinglish	confirmation	आपका order successfully dispatch कर दिया गया है।	script=mixed, domain=delivery
+hg3-054	hinglish	apology	Technical issue ki wajah se humari services temporarily down hain, hume khed hai.	script=roman, domain=support
+hg3-055	hinglish	statement	डॉक्टर के साथ आपका appointment कल सुबह 10:00 AM बजे scheduled है।	script=mixed, domain=appointment
+hg3-056	hinglish	instruction	Apna data pack recharge karne ke liye dial karein star ek do teen hash.	script=roman, domain=telecom
+hg3-057	hinglish	confirmation	आपका electricity bill payment successfully receive हो गया है।	script=mixed, domain=utilities
+hg3-058	hinglish	apology	Server error ke karan aapka assignment upload nahi ho paya, iske liye hum maafi chahte hain.	script=roman, domain=education
+hg3-059	hinglish	statement	Aapke account mein minimum balance maintain karna mandatory hai.	script=roman, domain=banking
+hg3-060	hinglish	instruction	Flight ticket cancel करने के लिए 'Cancel Booking' option पर जाएँ।	script=mixed, domain=booking
+hg3-061	hinglish	confirmation	Aapka package delivery agent ke paas hai aur shaam tak deliver ho jayega.	script=roman, domain=delivery
+hg3-062	hinglish	apology	हम आपकी call connect नहीं कर पा रहे हैं, inconvenience के लिए हमें खेद है।	script=mixed, domain=support
+hg3-063	hinglish	statement	आपका daily high-speed internet quota समाप्त हो गया है।	script=mixed, domain=telecom
+hg3-064	hinglish	instruction	Consultation shuru hone se pehle kripya apna registration form fill karein.	script=roman, domain=appointment
+hg3-065	hinglish	confirmation	आपका online course registration confirm हो चुका है।	script=mixed, domain=education
+hg3-066	hinglish	apology	Humare banking app mein maintenance chal raha hai, is asuvidha ke liye hume khed hai.	script=roman, domain=banking
+hg3-067	hinglish	statement	Aapka gas connection safety inspection agle hafte scheduled hai.	script=roman, domain=utilities
+hg3-068	hinglish	instruction	Delivery address update करने के लिए profile settings में जाएँ।	script=mixed, domain=delivery
+hg3-069	hinglish	confirmation	Aapka hotel room check-in details confirm ho gaya hai.	script=roman, domain=booking
+hg3-070	hinglish	apology	Network congestion की वजह से call drop होने के लिए हम क्षमा चाहते हैं।	script=mixed, domain=telecom
+hg3-071	hinglish	statement	इस semester की final exam date sheet website पर available है।	script=mixed, domain=education
+hg3-072	hinglish	instruction	Password reset karne ke liye register mobile number par bheja gaya OTP enter karein.	script=roman, domain=support
+hg3-073	hinglish	confirmation	आपका dental check-up slot confirm कर दिया गया है।	script=mixed, domain=appointment
+hg3-074	hinglish	apology	Heavy rain ki wajah se aapka order delay ho gaya hai, hume behad khed hai.	script=roman, domain=delivery
+hg3-075	hinglish	statement	Water supply maintenance work कल दोपहर 2:00 PM तक पूरा हो जाएगा।	script=mixed, domain=utilities
+hg3-076	hinglish	statement	आपके credit card का bill payment अभी pending है।	domain=banking, script=mixed
+hg3-077	hinglish	instruction	Apna registered mobile number enter karke OTP verify karein.	domain=banking, script=roman
+hg3-078	hinglish	confirmation	आपका flight ticket successfully book हो गया है।	domain=booking, script=mixed
+hg3-079	hinglish	apology	We are sorry, heavy rain ki wajah se aapka order delay ho gaya hai.	domain=delivery, script=roman
+hg3-080	hinglish	statement	Aapki query hamari customer support team ko forward kar di gayi hai.	domain=support, script=roman
+hg3-081	hinglish	instruction	Doctor से consult करने के लिए कृपया slot select करें।	domain=appointment, script=mixed
+hg3-082	hinglish	confirmation	Aapka unlimited data pack activate ho chuka hai.	domain=telecom, script=roman
+hg3-083	hinglish	apology	Technical maintenance की वजह से power outage के लिए हमें खेद है।	domain=utilities, script=mixed
+hg3-084	hinglish	statement	Naya batch agle Monday se start hone wala hai.	domain=education, script=roman
+hg3-085	hinglish	instruction	Delivery partner को call करने के लिए इस button पर click करें।	domain=delivery, script=mixed
+hg3-086	hinglish	confirmation	Aapke account se five thousand rupees debit ho gaye hain.	domain=banking, script=roman
+hg3-087	hinglish	apology	System error के कारण आपकी seat reservation cancel हो गई है, we apologize.	domain=booking, script=mixed
+hg3-088	hinglish	statement	आपका daily data limit 90% exhaust हो चुका है।	domain=telecom, script=mixed
+hg3-089	hinglish	instruction	Apna water bill pay karne ke liye quick link par click karein.	domain=utilities, script=roman
+hg3-090	hinglish	confirmation	आपका dentist appointment कल सुबह 10:00 AM को confirm हो गया है।	domain=appointment, script=mixed
+hg3-091	hinglish	apology	Inconvenience ke liye sorry, hamara server abhi down hai.	domain=support, script=roman
+hg3-092	hinglish	statement	आपका package आज evening तक deliver हो जाएगा।	domain=delivery, script=mixed
+hg3-093	hinglish	instruction	Online class join karne ke liye zoom link par click karein.	domain=education, script=roman
+hg3-094	hinglish	confirmation	आपकी ticket number 4052 successfully resolve हो गई है।	domain=support, script=mixed
+hg3-095	hinglish	apology	Server issue ki wajah se transaction fail hone ke liye hum maafi chahte hain.	domain=banking, script=roman
+hg3-096	hinglish	statement	Hotel check-in ka time dopahar do baje se shuru hota hai.	domain=booking, script=roman
+hg3-097	hinglish	instruction	SIM card activate करने के लिए 1977 पर call करें।	domain=telecom, script=mixed
+hg3-098	hinglish	confirmation	Aapka gas cylinder booking request register ho gaya hai.	domain=utilities, script=roman
+hg3-099	hinglish	apology	We are extremely sorry, doctor की unavailability के कारण appointment reschedule करना होगा।	domain=appointment, script=mixed
+hg3-100	hinglish	statement	इस course का syllabus complete करने में 3 months लगेंगे।	domain=education, script=mixed
+num3-001	numbers	phone_otp	आपके बैंक खाते के लिए ओटीपी 482019 है, इसे किसी के साथ साझा न करें।	domain=banking
+num3-002	numbers	phone_otp	नया कनेक्शन एक्टिवेट करने के लिए अपने मोबाइल पर प्राप्त 6-अंकीय कोड 903145 दर्ज करें।	domain=telecom
+num3-003	numbers	phone_otp	आपकी टिकट बुकिंग की पुष्टि के लिए सत्यापन कोड 5512 है।	domain=booking
+num3-004	numbers	phone_otp	पार्सल डिलीवरी के समय डिलीवरी पार्टनर को ओटीपी 7304 बताएं।	domain=delivery
+num3-005	numbers	phone_otp	पासवर्ड रीसेट करने के लिए आपका वन-टाइम पासवर्ड 381902 है।	domain=support
+num3-006	numbers	phone_otp	डॉक्टर से अपॉइंटमेंट की पुष्टि के लिए कृपया 8821 दर्ज करें।	domain=appointment
+num3-007	numbers	quantity	आपके ऑर्डर में कुल 15 आइटम हैं, जिन्हें 2 अलग-अलग पैकेटों में भेजा गया है।	domain=delivery
+num3-008	numbers	quantity	इस महीने आपने 342 यूनिट बिजली की खपत की है।	domain=utilities
+num3-009	numbers	quantity	इस कोर्स में कुल 45 वीडियो लेक्चर और 12 असाइनमेंट शामिल हैं।	domain=education
+num3-010	numbers	quantity	होटल में आपके लिए 3 कमरे 4 रातों के लिए बुक किए गए हैं।	domain=booking
+num3-011	numbers	quantity	आपके खाते से आज 12500 रुपये का ट्रांसफर सफल रहा।	domain=banking
+num3-012	numbers	quantity	हमारे ग्राहक सेवा केंद्र पर अभी 18 ग्राहक प्रतीक्षा सूची में हैं।	domain=support
+num3-013	numbers	ordinal_id	आपकी ट्रेन सीट संख्या 42 है और यह कोच बी-3 में स्थित है।	domain=booking
+num3-014	numbers	ordinal_id	कृपया ध्यान दें कि आपका अपॉइंटमेंट टोकन नंबर 105 है।	domain=appointment
+num3-015	numbers	ordinal_id	रोल नंबर 20451 को परीक्षा हॉल नंबर 4 में बैठना है।	domain=education
+num3-016	numbers	ordinal_id	आपका ऑर्डर ट्रैकिंग आईडी 9876543210 है, जो अभी रास्ते में है।	domain=delivery
+num3-017	numbers	ordinal_id	आपकी शिकायत संख्या 883012 है और इस पर कार्रवाई की जा रही है।	domain=telecom
+num3-018	numbers	ordinal_id	ग्राहक आईडी 509281 के लिए केवाईसी प्रक्रिया पूरी हो चुकी है।	domain=banking
+num3-019	numbers	percent_quantity	होम लोन पर ब्याज दर घटकर 8.45% हो गई है।	domain=banking
+num3-020	numbers	percent_quantity	पानी के बिल पर समय से भुगतान करने पर 2.5% की छूट मिलेगी।	domain=utilities
+num3-021	numbers	percent_quantity	इस सेमेस्टर में उत्तीर्ण होने के लिए न्यूनतम 40% अंक आवश्यक हैं।	domain=education
+num3-022	numbers	percent_quantity	आपके डेटा पैक का 90% हिस्सा इस्तेमाल हो चुका है।	domain=telecom
+num3-023	numbers	percent_quantity	त्योहारों के सीजन में उड़ानों की बुकिंग पर 15.5% तक की बचत करें।	domain=booking
+num3-024	numbers	percent_quantity	आपके पार्सल का वजन 3.75 किलोग्राम है, जिसके लिए अतिरिक्त शुल्क लागू हो सकता है।	domain=delivery
+num3-025	numbers	percent_quantity	पिछले महीने के मुकाबले ग्राहक संतुष्टि दर में 12.8% का सुधार हुआ है।	domain=support
+num3-026	numbers	phone_otp	आपका नया मोबाइल नंबर चालू करने के लिए OTP 8492 है।	domain=telecom
+num3-027	numbers	quantity	इस पार्सल का कुल वजन 3.5 किलोग्राम है, कृपया जांच लें।	domain=delivery
+num3-028	numbers	percent_quantity	होम लोन पर ब्याज दर अब घटकर 7.25% हो गई है।	domain=banking
+num3-029	numbers	ordinal_id	आपकी ट्रेन टिकट का पीएनआर नंबर 423-8901234 है।	domain=booking
+num3-030	numbers	phone_otp	सहायता के लिए हमारे टोल-फ्री नंबर 1800-200-3456 पर कॉल करें।	domain=support
+num3-031	numbers	quantity	डॉक्टर वर्मा से मिलने के लिए आपको 45 मिनट इंतजार करना होगा।	domain=appointment
+num3-032	numbers	percent_quantity	इस साल बोर्ड परीक्षा में 92.4% छात्रों ने सफलता हासिल की है।	domain=education
+num3-033	numbers	ordinal_id	आपका बिजली उपभोक्ता खाता संख्या 908123456 है।	domain=utilities
+num3-034	numbers	phone_otp	लेनदेन पूरा करने के लिए अपने पंजीकृत मोबाइल पर भेजा गया 6-अंकीय कोड 501928 दर्ज करें।	domain=banking
+num3-035	numbers	quantity	होटल में आपके लिए 2 कमरे बुक किए गए हैं, जिनका कुल किराया 4500 रुपये है।	domain=booking
+num3-036	numbers	percent_quantity	आज के ऑर्डर पर आपको 15% की अतिरिक्त छूट मिल रही है।	domain=delivery
+num3-037	numbers	ordinal_id	रोल नंबर 10524 को परीक्षा हॉल नंबर 3 में बैठना है।	domain=education
+num3-038	numbers	phone_otp	डिलीवरी पार्टनर को अपना वेरिफिकेशन कोड 7391 बताएं।	domain=delivery
+num3-039	numbers	quantity	इस महीने आपका पानी का बिल 780 रुपये आया है।	domain=utilities
+num3-040	numbers	percent_quantity	आपके डेटा पैक का 80% हिस्सा इस्तेमाल हो चुका है।	domain=telecom
+num3-041	numbers	ordinal_id	आपकी अपॉइंटमेंट आईडी 88392 है, कृपया इसे संभाल कर रखें।	domain=appointment
+num3-042	numbers	phone_otp	टिकट कैंसिलेशन की पुष्टि के लिए आपके नंबर 9876543210 पर एक मैसेज भेजा गया है।	domain=booking
+num3-043	numbers	quantity	आपके खाते से 12500.50 रुपये का भुगतान सफलतापूर्वक हो गया है।	domain=banking
+num3-044	numbers	percent_quantity	यदि आप समय पर बिल भरते हैं, तो आपको 2.5% की छूट मिलेगी।	domain=utilities
+num3-045	numbers	ordinal_id	आपकी शिकायत दर्ज कर ली गई है, संदर्भ संख्या 49201 है।	domain=banking
+num3-046	numbers	phone_otp	डॉक्टर से वीडियो कंसल्टेशन शुरू करने के लिए 6204 डायल करें।	domain=appointment
+num3-047	numbers	quantity	इस कोर्स में कुल 12 मॉड्यूल और 48 वीडियो लेक्चर शामिल हैं।	domain=education
+num3-048	numbers	percent_quantity	अस्पताल के नए नियमों के अनुसार, वरिष्ठ नागरिकों को ओपीडी में 50% की छूट मिलेगी।	domain=appointment
+num3-049	numbers	ordinal_id	आपका ऑर्डर नंबर 77392109 आज शाम तक डिलीवर हो जाएगा।	domain=delivery
+num3-050	numbers	phone_otp	गैस सिलेंडर बुक करने के लिए अपने रजिस्टर्ड नंबर से 9812345678 पर मिस्ड कॉल दें।	domain=utilities
+num3-051	numbers	phone_otp	आपका वन-टाइम पासवर्ड 482019 है, इसे किसी के साथ साझा न करें।	domain=banking
+num3-052	numbers	phone_otp	डिलीवरी पार्टनर से संपर्क करने के लिए 9876543210 पर कॉल करें।	domain=delivery
+num3-053	numbers	phone_otp	आपका नया सिम एक्टिवेट करने के लिए 1900 पर SMS भेजें।	domain=telecom
+num3-054	numbers	phone_otp	टिकट कन्फर्मेशन के लिए कृपया अपने रजिस्टर्ड मोबाइल नंबर 9123456789 पर ध्यान दें।	domain=booking
+num3-055	numbers	phone_otp	सहायता के लिए हमारे टोल-फ्री नंबर 1800-123-4567 पर संपर्क करें।	domain=support
+num3-056	numbers	phone_otp	डॉक्टर से अपॉइंटमेंट बुक करने के लिए अपने फोन से 14479 पर डायल करें।	domain=appointment
+num3-057	numbers	quantity	आपके पार्सल का कुल वजन 3.5 किलोग्राम है।	domain=delivery
+num3-058	numbers	quantity	इस महीने आपने 245 यूनिट बिजली की खपत की है।	domain=utilities
+num3-059	numbers	quantity	होटल में आपके लिए 2 कमरे 3 रातों के लिए बुक किए गए हैं।	domain=booking
+num3-060	numbers	quantity	आपके खाते से 15,450 रुपये की राशि डेबिट की गई है।	domain=banking
+num3-061	numbers	quantity	कृपया ध्यान दें कि इस पैकेज में केवल 5 आइटम शामिल हैं।	domain=support
+num3-062	numbers	ordinal_id	रोल नंबर 204519 को परीक्षा हॉल नंबर 3 में बैठना है।	domain=education
+num3-063	numbers	ordinal_id	आपकी ट्रेन का पीएनआर नंबर 423-8901234 है।	domain=booking
+num3-064	numbers	ordinal_id	ऑर्डर आईडी OD987654321 कल सुबह तक डिलीवर हो जाएगा।	domain=delivery
+num3-065	numbers	ordinal_id	आपका टोकन नंबर 45 है, कृपया अपनी बारी का इंतजार करें।	domain=appointment
+num3-066	numbers	ordinal_id	आपकी शिकायत संख्या 889021 दर्ज कर ली गई है।	domain=banking
+num3-067	numbers	ordinal_id	कृपया अपने बिल का भुगतान करने के लिए उपभोक्ता आईडी 55432190 का उपयोग करें।	domain=utilities
+num3-068	numbers	percent_quantity	इस फिक्स्ड डिपॉजिट पर आपको सालाना 7.5% ब्याज मिलेगा।	domain=banking
+num3-069	numbers	percent_quantity	परीक्षा में उत्तीर्ण होने के लिए न्यूनतम 40% अंक आवश्यक हैं।	domain=education
+num3-070	numbers	percent_quantity	आज बुकिंग करने पर आपको होटल किराए पर 15% की छूट मिलेगी।	domain=booking
+num3-071	numbers	percent_quantity	त्योहारों के सीजन में डिलीवरी शुल्क पर 50% तक की छूट दी जा रही है।	domain=delivery
+num3-072	numbers	percent_quantity	सौर ऊर्जा अपनाने से आपके बिजली बिल में 30% की कमी आ सकती है।	domain=utilities
+num3-073	numbers	percent_quantity	ग्राहक संतुष्टि दर इस तिमाही में बढ़कर 94.2% हो गई है।	domain=support
+cur3-001	currency	currency	आपके खाते में ₹15,000 जमा किए गए हैं।	domain=banking
+cur3-002	currency	currency	होम लोन की न्यूनतम राशि Rs. 20 lakh से शुरू होती है।	domain=banking
+cur3-003	currency	currency	इस योजना में निवेश करने पर आपको 1.5 crore का रिटर्न मिल सकता है।	domain=banking
+cur3-004	currency	currency	बचत खाते पर प्रति तिमाही ₹250.50 का ब्याज मिला है।	domain=banking
+cur3-005	currency	currency	लेनदेन शुल्क के रूप में 75 paise काटे गए हैं।	domain=banking
+cur3-006	currency	currency	होटल के कमरे का किराया ₹3,500 प्रति रात है।	domain=booking
+cur3-007	currency	currency	फ्लाइट टिकट बुक करने के लिए आपको Rs. 8,450 का भुगतान करना होगा।	domain=booking
+cur3-008	currency	currency	कैब बुकिंग का अनुमानित किराया ₹450 से ₹500 के बीच है।	domain=booking
+cur3-009	currency	currency	कैश ऑन डिलीवरी के लिए कृपया ₹1,249 तैयार रखें।	domain=delivery
+cur3-010	currency	currency	यदि आपका ऑर्डर Rs. 499 से कम है, तो ₹40 डिलीवरी शुल्क लगेगा।	domain=delivery
+cur3-011	currency	currency	इस पार्सल को भेजने का कूरियर चार्ज ₹150.75 है।	domain=delivery
+cur3-012	currency	currency	हमारे ग्राहक सेवा अधिकारी ने आपके खाते में ₹200 का रिफंड जारी कर दिया है।	domain=support
+cur3-013	currency	currency	गलत ट्रांजैक्शन के कारण कटे हुए Rs. 5,000 वापस आने में 3-5 दिन लगेंगे।	domain=support
+cur3-014	currency	currency	क्या मैं जान सकता हूँ कि आपके वॉलेट से ₹50 क्यों काटे गए?	domain=support
+cur3-015	currency	currency	डॉक्टर की परामर्श फीस ₹800 है, जिसे आपको क्लिनिक पर देना होगा।	domain=appointment
+cur3-016	currency	currency	थेरेपी सेशन बुक करने के लिए Rs. 1,500 का एडवांस पेमेंट करना होगा।	domain=appointment
+cur3-017	currency	currency	इस कंसल्टेशन के लिए आपको केवल ₹350 और 50 paise का भुगतान करना है।	domain=appointment
+cur3-018	currency	currency	आपके मोबाइल नंबर पर ₹299 का रिचार्ज सफलतापूर्वक हो गया है।	domain=telecom
+cur3-019	currency	currency	इस महीने का आपका ब्रॉडबैंड बिल Rs. 799 है, जिसकी देय तिथि 15 तारीख है।	domain=telecom
+cur3-020	currency	currency	इंटरनेशनल रोमिंग पैक एक्टिवेट करने के लिए ₹3,999 का भुगतान करें।	domain=telecom
+cur3-021	currency	currency	इस महीने का बिजली बिल ₹2,450 आया है, कृपया समय पर भुगतान करें।	domain=utilities
+cur3-022	currency	currency	पानी के बिल का भुगतान न करने पर Rs. 150 का जुर्माना लगाया जाएगा।	domain=utilities
+cur3-023	currency	currency	गैस सिलेंडर की वर्तमान कीमत ₹1,053 है।	domain=utilities
+cur3-024	currency	currency	इस सेमेस्टर की ट्यूशन फीस ₹45,000 है, जो अगले सप्ताह तक देय है।	domain=education
+cur3-025	currency	currency	नए कोर्स के रजिस्ट्रेशन के लिए आपको Rs. 5,000 का शुल्क देना होगा।	domain=education
+cur3-026	currency	currency	होम लोन की मासिक किस्त Rs 25,500 है।	domain=banking
+cur3-027	currency	currency	दिल्ली से मुंबई की फ्लाइट का टिकट ₹4,500 का है।	domain=booking
+cur3-028	currency	currency	होटल बुकिंग के लिए आपको Rs 1,200 का एडवांस देना होगा।	domain=booking
+cur3-029	currency	currency	आपका डिलीवरी चार्ज ₹50 और 50 paise है।	domain=delivery
+cur3-030	currency	currency	इस पार्सल का कैश ऑन डिलीवरी अमाउंट Rs 999 है।	domain=delivery
+cur3-031	currency	currency	सर, आपके रिफंड का ₹350 आपके वॉलेट में भेज दिया गया है।	domain=support
+cur3-032	currency	currency	इस सर्विस चार्ज के लिए आपको Rs 150 अतिरिक्त देना होगा।	domain=support
+cur3-033	currency	currency	डॉक्टर की कंसल्टेशन फीस ₹800 है।	domain=appointment
+cur3-034	currency	currency	थेरेपी सेशन के लिए Rs 1,500 का भुगतान करें।	domain=appointment
+cur3-035	currency	currency	आपका ₹399 का रिचार्ज कल समाप्त हो रहा है।	domain=telecom
+cur3-036	currency	currency	इस पोस्टपेड प्लान का मासिक रेंटल Rs 499 है।	domain=telecom
+cur3-037	currency	currency	इस महीने का बिजली बिल ₹2,450 आया है।	domain=utilities
+cur3-038	currency	currency	पानी के बिल का भुगतान न करने पर Rs 100 का जुर्माना लगेगा।	domain=utilities
+cur3-039	currency	currency	इस कोर्स की सालाना फीस ₹1.2 lakh है।	domain=education
+cur3-040	currency	currency	एडमिशन फॉर्म की कीमत Rs 500 है।	domain=education
+cur3-041	currency	currency	इस योजना में निवेश करने पर आपको ₹5 crore का रिटर्न मिल सकता है।	domain=banking
+cur3-042	currency	currency	आपके क्रेडिट कार्ड की बकाया राशि Rs 12,450.75 paise है।	domain=banking
+cur3-043	currency	currency	ट्रेन टिकट का किराया ₹650 है।	domain=booking
+cur3-044	currency	currency	₹2,000 से अधिक के ऑर्डर पर डिलीवरी मुफ्त है।	domain=delivery
+cur3-045	currency	currency	हमने आपके खाते में Rs 45.50 paise का कैशबैक क्रेडिट किया है।	domain=support
+cur3-046	currency	currency	इंटरनेशनल रोमिंग पैक की कीमत ₹3,499 है।	domain=telecom
+cur3-047	currency	currency	गैस सब्सिडी के ₹235 आपके बैंक खाते में ट्रांसफर कर दिए गए हैं।	domain=utilities
+cur3-048	currency	currency	स्कॉलरशिप के तहत छात्र को Rs 50,000 की मदद मिलेगी।	domain=education
+cur3-049	currency	currency	इस स्टार्टअप ने हाल ही में ₹10 crore की फंडिंग जुटाई है।	domain=banking
+dt3-001	dates	date	आपका क्रेडिट कार्ड बिल भुगतान 25/11/2024 तक लंबित है।	domain=banking
+dt3-002	dates	time	बैंक लॉकर की समय सीमा आज 4:00 PM पर समाप्त हो जाएगी।	domain=banking
+dt3-003	dates	date time	कृपया ध्यान दें कि हमारी नेट बैंकिंग सेवा 12 Jan को सुबह 2:00 AM से 5:00 AM तक बंद रहेगी।	domain=banking
+dt3-004	dates	date	आपकी ट्रेन टिकट 18/09/2025 के लिए कन्फर्म हो गई है।	domain=booking
+dt3-005	dates	time	होटल चेक-इन का समय कल 12:30 PM निर्धारित किया गया है।	domain=booking
+dt3-006	dates	date time	आपकी उड़ान संख्या AI-101 दिनांक 5 Feb को 6:15 AM पर प्रस्थान करेगी।	domain=booking
+dt3-007	dates	date	आपका पार्सल 22/10/2024 को शाम तक डिलीवर कर दिया जाएगा।	domain=delivery
+dt3-008	dates	time	डिलीवरी एजेंट आज 1:15 PM पर आपके पते पर पहुंचेगा।	domain=delivery
+dt3-009	dates	date time	आपका ऑर्डर 30 Dec को दोपहर 2:45 PM तक आपके पास पहुंच जाएगा।	domain=delivery
+dt3-010	dates	date	हमारी तकनीकी टीम आपकी शिकायत का समाधान 15/08/2024 तक कर देगी।	domain=support
+dt3-011	dates	time	कृपया सहायता के लिए हमें 9:30 AM के बाद कॉल करें।	domain=support
+dt3-012	dates	date time	आपका टिकट नंबर 40592 दिनांक 14 Jan को 11:00 AM पर बंद कर दिया गया था।	domain=support
+dt3-013	dates	date	डॉक्टर के साथ आपका अपॉइंटमेंट 10/11/2024 को तय किया गया है।	domain=appointment
+dt3-014	dates	time	कृपया साक्षात्कार के लिए कल सुबह 10:45 AM पर उपस्थित रहें।	domain=appointment
+dt3-015	dates	date time	आपकी डेंटिस्ट मीटिंग 5 Mar को दोपहर 3:30 PM पर निर्धारित है।	domain=appointment
+dt3-016	dates	date	आपका डेटा पैक 28/12/2024 को समाप्त होने वाला है।	domain=telecom
+dt3-017	dates	time	सिस्टम अपग्रेड के कारण आज रात 11:59 PM पर नेटवर्क बाधित रह सकता है।	domain=telecom
+dt3-018	dates	date time	आपकी नई सिम एक्टिवेशन प्रक्रिया 18 Jan को सुबह 9:00 AM पर शुरू होगी।	domain=telecom
+dt3-019	dates	date	बिजली बिल का भुगतान करने की अंतिम तिथि 05/10/2024 है।	domain=utilities
+dt3-020	dates	time	सोसाइटी में पानी की आपूर्ति आज शाम 6:30 PM पर बंद रहेगी।	domain=utilities
+dt3-021	dates	date time	गैस कनेक्शन का निरीक्षण 22 Feb को दोपहर 1:00 PM पर किया जाएगा।	domain=utilities
+dt3-022	dates	date	बोर्ड परीक्षाओं के परिणाम 20/05/2025 को घोषित किए जाएंगे।	domain=education
+dt3-023	dates	time	ऑनलाइन वेबिनार कल दोपहर 12:00 PM पर शुरू होगा।	domain=education
+dt3-024	dates	date time	प्रवेश परीक्षा के लिए पंजीकरण 15 Jan को शाम 5:00 PM पर बंद हो जाएगा।	domain=education
+dt3-025	dates	date time	आपका रिफंड 10/09/2024 को दोपहर 3:15 PM पर आपके खाते में जमा कर दिया गया है।	domain=banking
+dt3-026	dates	date	आपका क्रेडिट कार्ड बिल भुगतान 25/11/2024 तक देय है।	domain=banking
+dt3-027	dates	time	हमारे बैंक की नेट बैंकिंग सेवा आज 11:30 PM से 2:00 AM तक बंद रहेगी।	domain=banking
+dt3-028	dates	date	आपकी होटल बुकिंग 15 Dec से शुरू होकर 18 Dec तक वैध है।	domain=booking
+dt3-029	dates	time	आपकी ट्रेन संख्या 12018 कल सुबह 6:15 AM पर प्रस्थान करेगी।	domain=booking
+dt3-030	dates	date	आपका अमेज़न पार्सल 05/09/2024 को डिलीवर होने की उम्मीद है।	domain=delivery
+dt3-031	dates	time	डिलीवरी एजेंट आज 4:30 PM तक आपके पते पर पहुंच जाएगा।	domain=delivery
+dt3-032	dates	date	आपकी शिकायत दर्ज कर ली गई है और इसका समाधान 28 Oct तक कर दिया जाएगा।	domain=support
+dt3-033	dates	time	हमारे ग्राहक सेवा अधिकारी आपसे आज 2:15 PM पर संपर्क करेंगे।	domain=support
+dt3-034	dates	date	डॉक्टर के साथ आपकी अपॉइंटमेंट 12/08/2024 के लिए तय की गई है।	domain=appointment
+dt3-035	dates	time	कृपया ध्यान दें कि आपका इंटरव्यू कल ठीक 10:00 AM पर शुरू होगा।	domain=appointment
+dt3-036	dates	date	आपका वर्तमान रिचार्ज प्लान 18/07/2025 को समाप्त हो जाएगा।	domain=telecom
+dt3-037	dates	time	आपके क्षेत्र में इंटरनेट रखरखाव का काम आज 3:00 AM से 5:30 AM तक चलेगा।	domain=telecom
+dt3-038	dates	date	बिजली बिल जमा करने की अंतिम तिथि 30 Sep है, कृपया समय पर भुगतान करें।	domain=utilities
+dt3-039	dates	time	आपके क्षेत्र में पानी की आपूर्ति कल सुबह 7:45 AM पर शुरू होगी।	domain=utilities
+dt3-040	dates	date	बोर्ड परीक्षाओं के लिए पंजीकरण की अंतिम तिथि 15/01/2025 है।	domain=education
+dt3-041	dates	time	आपकी ऑनलाइन गणित की कक्षा आज दोपहर 1:30 PM पर आयोजित की जाएगी।	domain=education
+dt3-042	dates	date	फिक्स्ड डिपॉजिट की परिपक्वता तिथि 10/12/2026 है।	domain=banking
+dt3-043	dates	time	आपकी फ्लाइट का बोर्डिंग समय 8:20 PM है, कृपया समय पर पहुंचें।	domain=booking
+dt3-044	dates	date	आपका कूरियर 22 Jan को डिस्पैच किया जाएगा।	domain=delivery
+dt3-045	dates	time	तकनीकी सहायता टीम केवल सुबह 9:00 AM से शाम 6:00 PM तक उपलब्ध है।	domain=support
+dt3-046	dates	date	दंत चिकित्सक के साथ आपका परामर्श 04/11/2024 को निर्धारित है।	domain=appointment
+dt3-047	dates	time	आपका दैनिक डेटा कोटा हर रात 12:00 AM पर रीसेट हो जाता है।	domain=telecom
+dt3-048	dates	date	गैस सिलेंडर की डिलीवरी 14 Oct को निर्धारित की गई है।	domain=utilities
+dt3-049	dates	time	स्कूल का वार्षिक समारोह कल शाम 5:15 PM पर शुरू होगा।	domain=education
+dt3-050	dates	date	आपकी बस यात्रा की तारीख बदलकर 08/06/2025 कर दी गई है।	domain=booking
+nm3-001	names	indian_name	नमस्ते राहुल शर्मा जी, आपके एचडीएफसी बैंक खाते में ₹5000 जमा किए गए हैं।	domain=banking
+nm3-002	names	indian_name	डॉक्टर प्रिया पटेल के साथ आपका अपॉइंटमेंट कल सुबह 10 बजे तय हुआ है।	domain=appointment
+nm3-003	names	indian_name	अमित वर्मा जी, आपका पार्सल आज शाम 6 बजे तक डिलीवर हो जाएगा।	domain=delivery
+nm3-004	names	indian_name	सुनीता राव जी, आपकी बेटी की ऑनलाइन कोडिंग क्लास का लिंक भेज दिया गया है।	domain=education
+nm3-005	names	indian_name	नमस्कार विक्रम सिंह जी, मैं कस्टमर केयर से बात कर रहा हूँ, क्या मैं आपकी मदद कर सकता हूँ?	domain=support
+nm3-006	names	indian_name	नेहा गुप्ता जी, आपकी दिल्ली से मुंबई की फ्लाइट टिकट कन्फर्म हो गई है।	domain=booking
+nm3-007	names	indian_name	राजेश कुमार जी, आपका जियो प्रीपेड प्लान कल समाप्त होने वाला है, कृपया रिचार्ज करें।	domain=telecom
+nm3-008	names	indian_name	प्रिय संजय जोशी जी, आपके बिजली बिल का भुगतान सफलतापूर्वक हो गया है।	domain=utilities
+nm3-009	names	city	बेंगलुरु से चेन्नई जाने वाली बस रात 9 बजे प्रस्थान करेगी।	domain=booking
+nm3-010	names	city	पुणे विश्वविद्यालय में नए सत्र के लिए प्रवेश प्रक्रिया शुरू हो चुकी है।	domain=education
+nm3-011	names	city	आपका ऑर्डर जयपुर हब से निकल चुका है और जल्द ही आपके पास पहुँचेगा।	domain=delivery
+nm3-012	names	city	हैदराबाद की बंजारा हिल्स शाखा में आपका नया लॉकर आवंटित कर दिया गया है।	domain=banking
+nm3-013	names	city	कोलकाता क्षेत्र में इंटरनेट सेवा में आ रही रुकावट को ठीक करने के लिए हमारी टीम काम कर रही है।	domain=support
+nm3-014	names	city	लखनऊ के सहारा अस्पताल में डॉ. मिश्रा से मिलने का समय दोपहर 3 बजे का है।	domain=appointment
+nm3-015	names	city	मुंबई के अंधेरी इलाके में कल सुबह पानी की आपूर्ति बाधित रहेगी।	domain=utilities
+nm3-016	names	city	पटना शहर में हमारी 5G सेवाएं अब पूरी तरह से चालू हो गई हैं।	domain=telecom
+nm3-017	names	brand	आपका अमेज़न ऑर्डर आज दोपहर तक आपके घर के पते पर पहुँचा दिया जाएगा।	domain=delivery
+nm3-018	names	brand	जोमैटो सपोर्ट में आपका स्वागत है, आपके रिफंड की स्थिति जानने के लिए 1 दबाएं।	domain=support
+nm3-019	names	brand	एसबीआई योनो ऐप में लॉग इन करने के लिए कृपया अपना नया पिन दर्ज करें।	domain=banking
+nm3-020	names	brand	मेकमायट्रिप के माध्यम से होटल बुक करने पर आपको 20% की छूट मिलेगी।	domain=booking
+nm3-021	names	brand	बायजूस के नए गणित कोर्स में दाखिला लेने के लिए इस लिंक पर क्लिक करें।	domain=education
+nm3-022	names	brand	एयरटेल थैंक्स ऐप का उपयोग करके अपने ब्रॉडबैंड बिल का भुगतान तुरंत करें।	domain=telecom
+nm3-023	names	brand	टाटा पावर के ग्राहकों के लिए इस महीने का बिजली बिल जनरेट हो गया है।	domain=utilities
+nm3-024	names	brand	कल्टफिट सेंटर पर आपका आज शाम का योग सेशन शाम 6:30 बजे निर्धारित है।	domain=appointment
+nm3-025	names	brand	अनएकेडमी पर यूपीएससी की लाइव क्लास आज रात 8 बजे शुरू होगी।	domain=education
+nm3-026	names	indian_name	नमस्ते राहुल शर्मा जी, आपके बैंक खाते में दस हजार रुपये जमा कर दिए गए हैं।	domain=banking
+nm3-027	names	indian_name	प्रिया पटेल जी, डॉक्टर मेहता के साथ आपका अपॉइंटमेंट कल सुबह दस बजे तय हुआ है।	domain=appointment
+nm3-028	names	indian_name	अमित वर्मा जी, आपका पार्सल आज शाम पांच बजे तक आपके पते पर पहुंच जाएगा।	domain=delivery
+nm3-029	names	indian_name	सुनीता राव जी, आपकी शिकायत दर्ज कर ली गई है और हमारी टीम इस पर काम कर रही है।	domain=support
+nm3-030	names	indian_name	विक्रम सिंह जी, आपकी दिल्ली से मुंबई की फ्लाइट टिकट सफलतापूर्वक बुक हो गई है।	domain=booking
+nm3-031	names	indian_name	नेहा गुप्ता जी, आपकी ऑनलाइन कोडिंग क्लास का समय बदलकर दोपहर तीन बजे कर दिया गया है।	domain=education
+nm3-032	names	indian_name	राजेश कुमार जी, आपका मोबाइल रिचार्ज कल समाप्त हो रहा है, कृपया समय पर रिचार्ज करें।	domain=telecom
+nm3-033	names	indian_name	अंजली जोशी जी, आपके इस महीने का बिजली बिल भुगतान के लिए तैयार है।	domain=utilities
+nm3-034	names	city	क्या आप बेंगलुरु से चेन्नई के लिए बस टिकट बुक करना चाहते हैं?	domain=booking
+nm3-035	names	city	आपका ऑर्डर जयपुर से भेज दिया गया है और जल्द ही आपके पास पहुंचेगा।	domain=delivery
+nm3-036	names	city	हमारी मुंबई शाखा में आपका स्वागत है, हम आपकी क्या सहायता कर सकते हैं?	domain=banking
+nm3-037	names	city	पटना विश्वविद्यालय में नए सत्र के लिए प्रवेश प्रक्रिया शुरू हो चुकी है।	domain=education
+nm3-038	names	city	हैदराबाद के अपोलो अस्पताल में आपका हृदय रोग विशेषज्ञ के साथ अपॉइंटमेंट बुक हो गया है।	domain=appointment
+nm3-039	names	city	लखनऊ क्षेत्र में कल सुबह नौ बजे से दोपहर दो बजे तक पानी की आपूर्ति बाधित रहेगी।	domain=utilities
+nm3-040	names	city	पुणे के ग्राहकों के लिए हमारी तकनीकी सहायता टीम अब चौबीसों घंटे उपलब्ध है।	domain=support
+nm3-041	names	city	कोलकाता में हमारे नए 5G नेटवर्क का अनुभव करने के लिए अपना सिम अपग्रेड करें।	domain=telecom
+nm3-042	names	brand	जियो के नए प्रीपेड प्लान्स के साथ आपको मिलेगा असीमित डेटा और कॉलिंग की सुविधा।	domain=telecom
+nm3-043	names	brand	एसबीआई योनो ऐप का उपयोग करके आप घर बैठे सुरक्षित रूप से पैसे ट्रांसफर कर सकते हैं।	domain=banking
+nm3-044	names	brand	अमेज़न से आपका पार्सल आज दोपहर तक डिलीवर होने की उम्मीद है।	domain=delivery
+nm3-045	names	brand	मेकमायट्रिप पर होटल बुक करने के लिए धन्यवाद, आपका बुकिंग विवरण भेज दिया गया है।	domain=booking
+nm3-046	names	brand	फ्लिपकार्ट कस्टमर केयर में कॉल करने के लिए धन्यवाद, हम आपकी क्या मदद कर सकते हैं?	domain=support
+nm3-047	names	brand	एयरटेल थैंक्स ऐप डाउनलोड करें और अपने ब्रॉडबैंड बिल पर विशेष छूट पाएं।	domain=telecom
+nm3-048	names	brand	प्रैक्टो के माध्यम से आपका वीडियो कंसल्टेशन आज शाम छह बजे निर्धारित किया गया है।	domain=appointment
+nm3-049	names	brand	टाटा पावर के ग्राहकों के लिए बिजली बिल भुगतान की अंतिम तिथि तीस नवंबर है।	domain=utilities
+ad3-001	addresses	address	आपका पार्सल मकान नंबर 24, ब्लॉक सी, सेक्टर 62, नोएडा, उत्तर प्रदेश, पिन कोड 201301 पर भेज दिया गया है।	domain=delivery
+ad3-002	addresses	address	नया क्रेडिट कार्ड भेजने के लिए कृपया अपना पता: फ्लैट नंबर 402, साई रेसीडेंसी, मेट्रो स्टेशन के पास, कल्याणी नगर, पुणे, 411014 दर्ज करें।	domain=banking
+ad3-003	addresses	address	होटल का पता है: कमरा नंबर 105, रॉयल इन, मॉल रोड, शिमला पब्लिक स्कूल के पास, शिमला, हिमाचल प्रदेश, 171001।	domain=booking
+ad3-004	addresses	address	कृपया खाना इस पते पर पहुंचाएं: मकान नंबर 12बी, गली नंबर 3, राजा गार्डन, हनुमान मंदिर के सामने, नई दिल्ली, 110015।	domain=delivery
+ad3-005	addresses	address	डॉक्टर से मिलने का पता है: क्लिनिक नंबर 3, दूसरी मंजिल, मेदांता मेडिसिटी, सेक्टर 38, गुरुग्राम, हरियाणा, 122001।	domain=appointment
+ad3-006	addresses	address	नया सिम कार्ड इस पते पर डिलीवर होगा: फ्लैट नंबर 501, विनायक हाइट्स, डी-मार्ट के पीछे, बानेर, पुणे, 411045।	domain=telecom
+ad3-007	addresses	address	नया गैस कनेक्शन इस पते पर पंजीकृत है: मकान नंबर 88, पॉकेट ए-3, मयूर विहार फेज 3, दिल्ली, 110096।	domain=utilities
+ad3-008	addresses	address	परीक्षा केंद्र का पता है: ब्लॉक बी, ज्ञान मंदिर हाई स्कूल, रेलवे स्टेशन के पास, साकेत, नई दिल्ली, 110017।	domain=education
+ad3-009	addresses	address	बैंक पासबुक में अपना पता बदलें: मकान नंबर 15, शांति नगर, सिविल लाइंस, एसबीआई बैंक के पास, जयपुर, राजस्थान, 302006।	domain=banking
+ad3-010	addresses	address	कूरियर के लिए पता नोट करें: फ्लैट नंबर 304, नीलगिरी अपार्टमेंट, ओमेक्स सिटी, बाईपास रोड, इंदौर, मध्य प्रदेश, 452016।	domain=delivery
+ad3-011	addresses	address	सत्यापन के लिए क्या आप अपना पता: मकान नंबर 7, गोकुल धाम, फिल्म सिटी रोड, गोरेगांव ईस्ट, मुंबई, 400063 की पुष्टि कर सकते हैं?	domain=support
+ad3-012	addresses	address	कार्यक्रम का आयोजन स्थल है: प्लॉट नंबर 45, उद्योग विहार फेज 4, मारुति सुजुकी गेट नंबर 2 के सामने, गुरुग्राम, हरियाणा, 122015।	domain=booking
+ad3-013	addresses	address	इंटरव्यू के लिए आपको इस पते पर आना होगा: चौथी मंजिल, टेक पार्क, ब्लॉक सी, व्हाइटफील्ड, बेंगलुरु, कर्नाटक, 560066।	domain=appointment
+ad3-014	addresses	address	ब्रॉडबैंड इंस्टॉलेशन के लिए तकनीशियन इस पते पर आएगा: मकान नंबर 232, सेक्टर 15-ए, चंडीगढ़, 160015।	domain=telecom
+ad3-015	addresses	address	बिजली बिल सुधार के लिए पंजीकृत पता है: फ्लैट नंबर 102, सनशाइन सोसाइटी, तालाब के पास, हुबली, कर्नाटक, 580021।	domain=utilities
+ad3-016	addresses	address	विश्वविद्यालय का डाक पता है: प्रशासनिक भवन, गेट नंबर 1, लखनऊ विश्वविद्यालय, लखनऊ, उत्तर प्रदेश, 226007।	domain=education
+ad3-017	addresses	address	आपका अमेज़न पार्सल मकान नंबर 64, गली नंबर 5, विकास नगर, शिव मंदिर के पास, देहरादून, उत्तराखंड, 248001 पर डिलीवर होना है।	domain=delivery
+ad3-018	addresses	address	चेकबुक इस पते पर भेजी जाएगी: फ्लैट नंबर 805, ए-विंग, रहेजा टावर्स, सेनापति बापट मार्ग, दादर, मुंबई, 400028।	domain=banking
+ad3-019	addresses	address	आपकी बस का बोर्डिंग पॉइंट है: दुकान नंबर 12, ट्रैवल एजेंसी, सिंधी कैंप बस स्टैंड के पास, जयपुर, राजस्थान, 302001।	domain=booking
+ad3-020	addresses	address	ग्राहक सहायता टीम ने आपका पता: मकान नंबर 9, सेक्टर 4, विकास नगर, पानी की टंकी के पास, शिमला, 171009 दर्ज कर लिया है।	domain=support
+ad3-021	addresses	address	पासपोर्ट सेवा केंद्र का पता है: ग्राउंड फ्लोर, शालीमार टाइटेनियम, विभूति खंड, गोमती नगर, लखनऊ, 226010।	domain=appointment
+ad3-022	addresses	address	नया वाईफाई राउटर इस पते पर भेजा जा रहा है: फ्लैट नंबर 4बी, ग्रीन वैली अपार्टमेंट, कंचनबाग, हैदराबाद, तेलंगाना, 500058।	domain=telecom
+ad3-023	addresses	address	पानी के कनेक्शन का आवेदन इस पते के लिए है: मकान नंबर 302, वार्ड नंबर 15, नगर निगम कार्यालय के पीछे, रायपुर, छत्तीसगढ़, 492001।	domain=utilities
+ad3-024	addresses	address	कोचिंग सेंटर का पता है: तीसरी मंजिल, करियर हाइट्स, मेट्रो पिलर नंबर 150 के पास, लक्ष्मी नगर, दिल्ली, 110092।	domain=education
+ad3-025	addresses	address	दवाइयां इस पते पर भेजें: फ्लैट नंबर 12, साईं दर्शन सोसाइटी, गणेश मंदिर के पास, ठाणे वेस्ट, महाराष्ट्र, 400602।	domain=delivery
+ad3-026	addresses	address	कृपया मेरा पार्सल मकान नंबर २४, सेक्टर १५, मेट्रो स्टेशन के पास, रोहिणी, नई दिल्ली, पिन कोड ११००८९ पर भेज दीजिए।	domain=delivery
+ad3-027	addresses	address	आपका नया डेबिट कार्ड फ्लैट नंबर ४०२, साईं रेजीडेंसी, डी-मार्ट के पीछे, कल्याणी नगर, पुणे, ४११०१४ पर भेज दिया गया है।	domain=banking
+ad3-028	addresses	address	शादी का वेन्यू है: प्लॉट नंबर १२, सेक्टर ४, स्वर्ण जयंती पार्क के सामने, इंदिरापुरम, गाजियाबाद, २०१०१४।	domain=booking
+ad3-029	addresses	address	हमारे सर्विस सेंटर का पता है: दुकान नंबर ८, ग्राउंड फ्लोर, रीगल सिनेमा के बगल में, कनाट प्लेस, नई दिल्ली, ११०००१।	domain=support
+ad3-030	addresses	address	डॉक्टर से अपॉइंटमेंट के लिए आपको क्लिनिक नंबर १०५, प्रथम तल, अपोलो फार्मेसी के ऊपर, जेपी नगर फेज ३, बेंगलुरु, ५६००७८ पर आना होगा।	domain=appointment
+ad3-031	addresses	address	बिजली बिल सुधारने के लिए मुख्य कार्यालय, कमरा नंबर ३, बिजली बोर्ड भवन, सिविल लाइंस, हनुमान मंदिर के पास, जयपुर, ३०२००१ पर संपर्क करें।	domain=utilities
+ad3-032	addresses	address	नया सिम कार्ड आपके पते: मकान नंबर सी-५८, गली नंबर ३, शिव मंदिर के पास, लक्ष्मी नगर, दिल्ली, ११००९२ पर डिलीवर किया जाएगा।	domain=telecom
+ad3-033	addresses	address	कोचिंग इंस्टीट्यूट का पता है: ब्लॉक बी, तीसरी मंजिल, ज्ञान मंदिर स्कूल के पास, सेक्टर ६२, नोएडा, २०१३०१।	domain=education
+ad3-034	addresses	address	आपका खाना डिलीवर करने के लिए राइडर फ्लैट नंबर ९०३, टावर सी, एल्डिको ग्रीन, गोमती नगर, लखनऊ, २२६०१० की तरफ आ रहा है।	domain=delivery
+ad3-035	addresses	address	गृह ऋण के दस्तावेजों के सत्यापन के लिए आपको शाखा कार्यालय: प्लॉट नंबर ४५, सेक्टर १८, एचडीएफसी बैंक के पास, गुरुग्राम, १२२००१ पर जाना होगा।	domain=banking
+ad3-036	addresses	address	होटल बुकिंग की पुष्टि हो गई है, पता है: विला नंबर ७, सनसेट बुलेवार्ड, अंजुना बीच के पास, गोवा, ४०३५०९।	domain=booking
+ad3-037	addresses	address	यदि आपका फोन ठीक नहीं हुआ है, तो उसे दुकान नंबर १५, बेसमेंट, नेहरू प्लेस मार्केट, नई दिल्ली, ११००१९ पर लाएं।	domain=support
+ad3-038	addresses	address	दंत चिकित्सक का क्लिनिक फ्लैट नंबर १२, साईं दर्शन सोसाइटी, रेलवे स्टेशन के पास, ठाणे वेस्ट, मुंबई, ४००६०१ पर स्थित है।	domain=appointment
+ad3-039	addresses	address	नया गैस कनेक्शन लेने के लिए आपको एजेंसी के पते: दुकान नंबर ४, सेक्टर ९, रामलीला मैदान के पास, फरीदाबाद, १२१००६ पर जाना होगा।	domain=utilities
+ad3-040	addresses	address	ब्रॉडबैंड कनेक्शन लगाने के लिए हमारी टीम मकान नंबर ए-१२, पॉकेट ४, मयूर विहार फेज ३, दिल्ली, ११००९६ पर आ रही है।	domain=telecom
+ad3-041	addresses	address	विश्वविद्यालय का प्रशासनिक भवन: गेट नंबर २, कैंपस एरिया, मालवीय नगर, जयपुर, राजस्थान, ३०२०१७ पर स्थित है।	domain=education
+ad3-042	addresses	address	कूरियर भेजने के लिए कृपया इस पते का उपयोग करें: फ्लैट नंबर ५०१, नीलगिरी अपार्टमेंट, कंचनजंगा स्कूल के पास, साकेत, नई दिल्ली, ११००१७।	domain=delivery
+ad3-043	addresses	address	चेकबुक कूरियर करने का पता है: मकान नंबर ८९, सेक्टर २, हुडा पार्क के सामने, पंचकुला, हरियाणा, १३४१०९।	domain=banking
+ad3-044	addresses	address	रिसॉर्ट का सही पता है: सर्वे नंबर २४/२, चामंडी हिल्स रोड, मैसूर, कर्नाटक, ५७००१०।	domain=booking
+ad3-045	addresses	address	लैपटॉप की मरम्मत के लिए अधिकृत केंद्र का पता: शॉप नंबर १०२, प्रथम तल, कंप्यूटर मार्केट, एसपी रोड, बेंगलुरु, ५६०००२ है।	domain=support
+ad3-046	addresses	address	थेरेपी सेशन के लिए आपको रूम नंबर ५, हीलिंग टच सेंटर, सेंट मैरी स्कूल के बगल में, बांद्रा वेस्ट, मुंबई, ४०००५० पर पहुंचना है।	domain=appointment
+ad3-047	addresses	address	पानी के नए कनेक्शन के आवेदन के लिए जल बोर्ड कार्यालय: कमरा नंबर ७, सेक्टर ५, कम्युनिटी सेंटर के पास, चंडीगढ़, १६००१७ पर जाएं।	domain=utilities
+ad3-048	addresses	address	वाई-फाई राउटर बदलने के लिए हमारा प्रतिनिधि मकान नंबर डी-४, सेक्टर ४४, नोएडा, २०१३०३ पर आएगा।	domain=telecom
+ad3-049	addresses	address	परीक्षा केंद्र का पता है: हॉल नंबर ३, सरस्वती विद्या मंदिर, रेलवे फाटक के पास, दानापुर, पटना, ८०१५०३।	domain=education
+ad3-050	addresses	address	अमेज़न पार्सल की डिलीवरी के लिए कृपया मकान नंबर १५४, गली नंबर ७, गुरुद्वारा के पास, राजा गार्डन, नई दिल्ली, ११००१५ पर आएं।	domain=delivery
+q3-001	questions	yes_no_question	क्या मैं अपने क्रेडिट कार्ड की सीमा बढ़ा सकता हूँ?	domain=banking
+q3-002	questions	wh_question	मेरे बचत खाते में न्यूनतम शेष राशि कितनी होनी चाहिए?	domain=banking
+q3-003	questions	yes_no_question	क्या इस ऋण पर कोई अतिरिक्त शुल्क लागू है?	domain=banking
+q3-004	questions	wh_question	मैं अपने नए एटीएम पिन को कैसे सक्रिय करूँ?	domain=banking
+q3-005	questions	yes_no_question	क्या मेरी ट्रेन टिकट की बुकिंग पक्की हो गई है?	domain=booking
+q3-006	questions	wh_question	होटल में चेक-इन करने का सही समय क्या है?	domain=booking
+q3-007	questions	yes_no_question	क्या मैं अपनी उड़ान की तारीख बदल सकता हूँ?	domain=booking
+q3-008	questions	wh_question	इस पैकेज टूर में कौन-कौन से दर्शनीय स्थल शामिल हैं?	domain=booking
+q3-009	questions	yes_no_question	क्या मेरा पार्सल आज शाम तक डिलीवर हो जाएगा?	domain=delivery
+q3-010	questions	wh_question	मेरा ऑर्डर अभी कहाँ पहुँचा है?	domain=delivery
+q3-011	questions	yes_no_question	क्या डिलीवरी के समय नकद भुगतान करने का विकल्प है?	domain=delivery
+q3-012	questions	wh_question	अगर मुझे पार्सल वापस करना हो तो उसकी क्या प्रक्रिया है?	domain=delivery
+q3-013	questions	yes_no_question	क्या आप मेरी इस तकनीकी समस्या को हल करने में मदद कर सकते हैं?	domain=support
+q3-014	questions	wh_question	आपकी ग्राहक सेवा टीम से संपर्क करने का सबसे तेज़ तरीका क्या है?	domain=support
+q3-015	questions	yes_no_question	क्या मेरी शिकायत पर कोई कार्रवाई की गई है?	domain=support
+q3-016	questions	yes_no_question	क्या डॉक्टर साहब कल सुबह उपलब्ध हैं?	domain=appointment
+q3-017	questions	wh_question	मुझे डेंटिस्ट के साथ अपॉइंटमेंट बुक करने के लिए क्या करना होगा?	domain=appointment
+q3-018	questions	yes_no_question	क्या मैं अपनी अपॉइंटमेंट को अगले हफ्ते के लिए रीशेड्यूल कर सकता हूँ?	domain=appointment
+q3-019	questions	wh_question	मेरे मोबाइल नंबर पर सबसे अच्छा रिचार्ज प्लान कौन सा है?	domain=telecom
+q3-020	questions	yes_no_question	क्या इस प्लान में अनलिमिटेड कॉलिंग की सुविधा है?	domain=telecom
+q3-021	questions	wh_question	मेरा इंटरनेट डेटा इतनी जल्दी क्यों खत्म हो गया?	domain=telecom
+q3-022	questions	yes_no_question	क्या मैं अपने बिजली के बिल का भुगतान ऑनलाइन कर सकता हूँ?	domain=utilities
+q3-023	questions	wh_question	इस महीने पानी का बिल इतना अधिक क्यों आया है?	domain=utilities
+q3-024	questions	yes_no_question	क्या इस कोर्स को पूरा करने के बाद मुझे सर्टिफिकेट मिलेगा?	domain=education
+q3-025	questions	wh_question	इस विश्वविद्यालय में प्रवेश लेने की अंतिम तिथि क्या है?	domain=education
+q3-026	questions	yes_no_question	क्या मेरा क्रेडिट कार्ड एक्टिवेट हो गया है?	domain=banking
+q3-027	questions	wh_question	मैं अपने होम लोन की ब्याज दर कैसे कम कर सकता हूँ?	domain=banking
+q3-028	questions	yes_no_question	क्या नेट बैंकिंग के लिए कोई अतिरिक्त शुल्क है?	domain=banking
+q3-029	questions	wh_question	मेरे खाते से यह पैसे किस वजह से कटे हैं?	domain=banking
+q3-030	questions	yes_no_question	क्या मैं अपनी टिकट की तारीख बदल सकता हूँ?	domain=booking
+q3-031	questions	wh_question	शिमला के लिए सबसे सस्ती होटल बुकिंग कौन सी है?	domain=booking
+q3-032	questions	yes_no_question	क्या इस बुकिंग में सुबह का नाश्ता शामिल है?	domain=booking
+q3-033	questions	wh_question	मेरा पार्सल कब तक डिलीवर होने की उम्मीद है?	domain=delivery
+q3-034	questions	yes_no_question	क्या मैं डिलीवरी का पता बदल सकता हूँ?	domain=delivery
+q3-035	questions	wh_question	अगर मैं घर पर नहीं हूँ, तो मेरा पार्सल किसे मिलेगा?	domain=delivery
+q3-036	questions	yes_no_question	क्या आप मेरी शिकायत का स्टेटस चेक कर सकते हैं?	domain=support
+q3-037	questions	wh_question	रिफंड मिलने में आमतौर पर कितने दिन लगते हैं?	domain=support
+q3-038	questions	yes_no_question	क्या मुझे इस समस्या के लिए कोई नया टिकट जनरेट करना होगा?	domain=support
+q3-039	questions	wh_question	डॉक्टर साहब से मिलने का सबसे पहला स्लॉट कब खाली है?	domain=appointment
+q3-040	questions	yes_no_question	क्या मुझे अपॉइंटमेंट रीशेड्यूल करने के लिए कोई फीस देनी होगी?	domain=appointment
+q3-041	questions	wh_question	डेंटिस्ट के पास जाने के लिए मुझे कौन से दस्तावेज़ लाने होंगे?	domain=appointment
+q3-042	questions	yes_no_question	क्या मेरे इस नंबर पर अंतर्राष्ट्रीय रोमिंग चालू है?	domain=telecom
+q3-043	questions	wh_question	इस नए प्रीपेड प्लान में मुझे रोज़ कितना डेटा मिलेगा?	domain=telecom
+q3-044	questions	yes_no_question	क्या मैं अपना पोस्टपेड कनेक्शन प्रीपेड में बदलवा सकता हूँ?	domain=telecom
+q3-045	questions	wh_question	इस महीने का बिजली का बिल इतना ज़्यादा क्यों आया है?	domain=utilities
+q3-046	questions	yes_no_question	क्या मैं गैस सिलेंडर की बुकिंग ऑनलाइन कर सकता हूँ?	domain=utilities
+q3-047	questions	wh_question	पानी का नया कनेक्शन लेने के लिए मुझे कहाँ आवेदन करना होगा?	domain=utilities
+q3-048	questions	yes_no_question	क्या इस कोर्स को पूरा करने के बाद सर्टिफिकेट मिलेगा?	domain=education
+q3-049	questions	wh_question	स्कॉलरशिप के लिए आवेदन करने की आखिरी तारीख क्या है?	domain=education
+q3-050	questions	yes_no_question	क्या मैं इस सेमेस्टर में अपने विषय बदल सकता हूँ?	domain=education
+q3-051	questions	wh_question	मेरे बचत खाते पर ब्याज दर कितनी है?	domain=banking
+q3-052	questions	yes_no_question	क्या इस लेन-देन के लिए कोई अतिरिक्त शुल्क लगेगा?	domain=banking
+q3-053	questions	wh_question	मैं अपना नया एटीएम पिन कैसे जनरेट करूँ?	domain=banking
+q3-054	questions	yes_no_question	क्या इस होटल बुकिंग में नाश्ता शामिल है?	domain=booking
+q3-055	questions	wh_question	मैं अपनी टिकट का पीएनआर स्टेटस कैसे चेक करूँ?	domain=booking
+q3-056	questions	yes_no_question	क्या मैं अपनी फ्लाइट की तारीख बदल सकता हूँ?	domain=booking
+q3-057	questions	wh_question	इस टूर पैकेज की कुल कीमत क्या है?	domain=booking
+q3-058	questions	wh_question	डिलीवरी बॉय का संपर्क नंबर क्या है?	domain=delivery
+q3-059	questions	yes_no_question	क्या आप मेरी शिकायत दर्ज करने में मदद कर सकते हैं?	domain=support
+q3-060	questions	wh_question	इस समस्या को ठीक होने में कितना समय लगेगा?	domain=support
+q3-061	questions	yes_no_question	क्या मेरा रिफंड प्रोसेस हो गया है?	domain=support
+q3-062	questions	wh_question	डॉक्टर साहब आज ओपीडी में कब उपलब्ध होंगे?	domain=appointment
+q3-063	questions	yes_no_question	क्या मुझे कल सुबह का अपॉइंटमेंट मिल सकता है?	domain=appointment
+q3-064	questions	wh_question	अपॉइंटमेंट कैंसिल करने की क्या प्रक्रिया है?	domain=appointment
+q3-065	questions	wh_question	मेरा वर्तमान डेटा बैलेंस कितना बचा है?	domain=telecom
+q3-066	questions	yes_no_question	क्या मैं अपना नंबर पोस्टपेड से प्रीपेड में बदल सकता हूँ?	domain=telecom
+q3-067	questions	wh_question	बिजली का बिल जमा करने की आखिरी तारीख क्या है?	domain=utilities
+q3-068	questions	wh_question	इस कोर्स में एडमिशन लेने के लिए क्या योग्यता चाहिए?	domain=education
+q3-069	questions	yes_no_question	क्या इस सेमेस्टर की परीक्षाओं का टाइम टेबल आ गया है?	domain=education
+long3-001	long	paragraph	यदि आप अपने बैंक खाते का केवाईसी विवरण ऑनलाइन अपडेट करना चाहते हैं, तो कृपया हमारे मोबाइल बैंकिंग ऐप में लॉग इन करें, फिर प्रोफाइल सेक्शन में जाकर 'री-केवाईसी' विकल्प चुनें, जहाँ आपको अपना आधार कार्ड और पैन कार्ड अपलोड करना होगा, और प्रक्रिया पूरी होने के बाद आपको चौबीस घंटे के भीतर एक पुष्टिकरण एसएमएस प्राप्त हो जाएगा।	domain=banking
+long3-002	long	paragraph	आपका शिमला का होटल बुकिंग अनुरोध सफलतापूर्वक स्वीकार कर लिया गया है, और आपके पंजीकृत ईमेल पर एक पुष्टिकरण वाउचर भेज दिया गया है, लेकिन कृपया ध्यान दें कि यदि आप यात्रा की तारीख से अड़तालीस घंटे पहले बुकिंग रद्द करते हैं, तो आपको पूरा रिफंड मिलेगा, अन्यथा नियमों के अनुसार एक रात का किराया काट लिया जाएगा।	domain=booking
+long3-003	long	paragraph	भारी बारिश और खराब मौसम के कारण आपके पार्सल की डिलीवरी में कुछ देरी हो सकती है, जिसके लिए हमें बेहद खेद है, लेकिन आप हमारी वेबसाइट पर जाकर या दिए गए लिंक पर क्लिक करके अपने ऑर्डर की लाइव लोकेशन ट्रैक कर सकते हैं, और जैसे ही डिलीवरी पार्टनर आपके क्षेत्र में पहुंचेगा, आपको एक नया अपडेट भेजा जाएगा।	domain=delivery
+long3-004	long	paragraph	यदि आपका इंटरनेट कनेक्शन काम नहीं कर रहा है, तो कृपया पहले अपने वाई-फाई राउटर को बंद करें, फिर लगभग तीस सेकंड प्रतीक्षा करने के बाद उसे दोबारा चालू करें, और यदि इसके बाद भी लाल बत्ती जलती रहती है, तो हमारे कस्टमर केयर नंबर पर कॉल करें ताकि हमारे तकनीकी विशेषज्ञ आपकी समस्या का तुरंत समाधान कर सकें।	domain=support
+long3-005	long	paragraph	डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट कल सुबह दस बजे के लिए तय किया गया है, इसलिए कृपया समय से पंद्रह मिनट पहले क्लिनिक पहुंचें ताकि शुरुआती कागजी कार्रवाई पूरी की जा सके, और यदि आपको किसी कारणवश इस अपॉइंटमेंट को रद्द या पुनर्निर्धारित करना हो, तो कृपया हमें आज शाम पांच बजे से पहले सूचित करें।	domain=appointment
+long3-006	long	paragraph	आपका वर्तमान प्रीपेड प्लान अगले तीन दिनों में समाप्त होने वाला है, और यदि आप बिना किसी रुकावट के असीमित कॉलिंग और हाई-स्पीड डेटा का आनंद लेना जारी रखना चाहते हैं, तो कृपया हमारे आधिकारिक मोबाइल ऐप के माध्यम से तुरंत रिचार्ज करें, जहाँ आपको कई विशेष कैशबैक ऑफर और अतिरिक्त डेटा कूपन भी मिल सकते हैं।	domain=telecom
+long3-007	long	paragraph	आपके बिजली बिल का भुगतान करने की अंतिम तिथि इस महीने की पच्चीस तारीख है, और यदि आप अंतिम समय की भीड़ और विलंब शुल्क से बचना चाहते हैं, तो कृपया हमारी वेबसाइट पर जाकर नेट बैंकिंग, यूपीआई या क्रेडिट कार्ड के माध्यम से तुरंत भुगतान करें, जिससे आपका भुगतान तुरंत अपडेट हो जाएगा और रसीद मिल जाएगी।	domain=utilities
+long3-008	long	paragraph	नए शैक्षणिक सत्र के लिए ऑनलाइन कोर्सेज में पंजीकरण की प्रक्रिया शुरू हो चुकी है, और सभी इच्छुक छात्रों को सूचित किया जाता है कि वे पंद्रह जुलाई से पहले अपना आवेदन पत्र और आवश्यक दस्तावेज पोर्टल पर अपलोड कर दें, क्योंकि इस तिथि के बाद किसी भी विलंब आवेदन पर विचार नहीं किया जाएगा और सीटें सीमित हैं।	domain=education
+long3-009	long	paragraph	बैंक कभी भी अपने ग्राहकों से फोन कॉल, एसएमएस या ईमेल के माध्यम से उनका गोपनीय पिन, पासवर्ड या ओटीपी नहीं मांगता है, इसलिए यदि आपको ऐसा कोई संदिग्ध संदेश या कॉल प्राप्त होता है, तो कृपया अपनी कोई भी व्यक्तिगत जानकारी साझा न करें और तुरंत इसकी रिपोर्ट हमारी नजदीकी शाखा या हेल्पलाइन नंबर पर करें।	domain=banking
+long3-010	long	paragraph	दिल्ली से मुंबई की आपकी उड़ान का टिकट सफलतापूर्वक बुक हो गया है, और आपका पीएनआर नंबर आपके पंजीकृत मोबाइल नंबर पर भेज दिया गया है, लेकिन कृपया प्रस्थान समय से दो घंटे पहले हवाई अड्डे पर पहुंचें और सुनिश्चित करें कि आपका केबिन सामान सात किलोग्राम और चेक-इन सामान पंद्रह किलोग्राम से अधिक न हो।	domain=booking
+long3-011	long	paragraph	यदि आप अपने ऑर्डर का डिलीवरी पता बदलना चाहते हैं, तो कृपया ध्यान दें कि यह केवल तभी संभव है जब तक आपका पार्सल हमारे गोदाम से बाहर नहीं भेजा गया है, और इसके लिए आपको तुरंत हमारे ग्राहक सेवा प्रतिनिधि से संपर्क करना होगा या ऐप में जाकर 'ऑर्डर विवरण' के तहत नया पता अपडेट करना होगा।	domain=delivery
+long3-012	long	paragraph	आपके द्वारा रद्द किए गए ऑर्डर के रिफंड की प्रक्रिया हमारे सिस्टम से शुरू कर दी गई है, और यह राशि आमतौर पर आपके मूल भुगतान मोड में पांच से सात कार्य दिवसों के भीतर वापस आ जाती है, लेकिन यदि इस अवधि के बाद भी आपको पैसे नहीं मिलते हैं, तो कृपया अपने बैंक स्टेटमेंट के साथ हमसे दोबारा संपर्क करें।	domain=support
+long3-013	long	paragraph	की कार की नियमित सर्विसिंग के लिए अपॉइंटमेंट आगामी शनिवार को सुबह नौ बजे बुक हो गया है, और हमारे सर्विस सेंटर पर आपके आगमन पर एक समर्पित मैकेनिक आपकी गाड़ी की जांच करेगा, और यदि किसी अतिरिक्त मरम्मत या पुर्जे को बदलने की आवश्यकता होगी, तो काम शुरू करने से पहले आपको इसकी अनुमानित लागत बताई जाएगी।	domain=appointment
+long3-014	long	paragraph	प्रिय ग्राहक, आपके खाते से जुड़ी सुरक्षा को ध्यान में रखते हुए, हमने आपके डेबिट कार्ड पर अस्थायी रोक लगा दी है, क्योंकि हमें कुछ संदिग्ध लेन-देन दिखाई दिए थे। कृपया अपने पंजीकृत मोबाइल नंबर पर भेजे गए लिंक पर क्लिक करके अपना पिन बदलें, या फिर सहायता के लिए हमारे नजदीकी बैंक शाखा में जाकर संपर्क करें ताकि हम इसे तुरंत सक्रिय कर सकें।	domain=banking
+long3-015	long	paragraph	नमस्ते, आपके गृह ऋण आवेदन की समीक्षा पूरी हो चुकी है, लेकिन हमें आपके आय प्रमाण पत्र और पिछले तीन महीनों के बैंक स्टेटमेंट की अतिरिक्त प्रतियों की आवश्यकता है। कृपया इन दस्तावेजों को हमारे आधिकारिक ईमेल पते पर जल्द से जल्द भेजें, ताकि हम आपके ऋण की स्वीकृति प्रक्रिया को बिना किसी देरी के आगे बढ़ा सकें और राशि आपके खाते में स्थानांतरित कर सकें।	domain=banking
+long3-016	long	paragraph	आपका गोवा का उड़ान और होटल पैकेज सफलतापूर्वक बुक हो गया है, जिसका विवरण आपके ईमेल पर भेज दिया गया है। कृपया ध्यान दें कि उड़ान के प्रस्थान समय से कम से कम तीन घंटे पहले हवाई अड्डे पर पहुंचें, और होटल में चेक-इन करते समय अपना वैध पहचान पत्र जैसे आधार कार्ड या पासपोर्ट दिखाना न भूलें, अन्यथा प्रवेश में असुविधा हो सकती है।	domain=booking
+long3-017	long	paragraph	की आगामी ट्रेन यात्रा के लिए टिकट की पुष्टि हो गई है, लेकिन चार्ट तैयार होने के बाद ही आपको अंतिम कोच और सीट संख्या आवंटित की जाएगी। यदि आप अपनी यात्रा की तारीख में कोई बदलाव करना चाहते हैं, तो कृपया प्रस्थान से अड़तालीस घंटे पहले हमारी वेबसाइट पर जाकर 'टिकट संशोधित करें' विकल्प का चयन करें, जहां कुछ अतिरिक्त शुल्क लागू हो सकते हैं।	domain=booking
+long3-018	long	paragraph	आपका ऑर्डर हमारे मुख्य वितरण केंद्र से निकल चुका है और आज शाम छह बजे तक आपके पते पर पहुंचा दिया जाएगा। हमारे कूरियर पार्टनर आपके घर के पास पहुंचने पर आपको फोन करेंगे, इसलिए कृपया अपना फोन चालू रखें और यदि आप घर पर उपलब्ध नहीं हैं, तो आप अपने पड़ोसी को इसे प्राप्त करने के लिए अधिकृत कर सकते हैं।	domain=delivery
+long3-019	long	paragraph	हमें आपको यह सूचित करते हुए खेद है कि भारी बारिश और यातायात जाम के कारण आपके पार्सल की डिलीवरी में कुछ घंटों की देरी हो सकती है। हमारी टीम इस समस्या को जल्द से जल्द हल करने का प्रयास कर रही है, और जैसे ही डिलीवरी पार्टनर आपके क्षेत्र में पहुंचेगा, आपको लाइव ट्रैकिंग लिंक के साथ एक नया संदेश प्राप्त होगा।	domain=delivery
+long3-020	long	paragraph	आपकी शिकायत दर्ज कर ली गई है और हमारी तकनीकी टीम वर्तमान में आपके वाई-फाई राउटर के कनेक्शन की जांच कर रही है, जिसमें कुछ समय लग सकता है। हम आपसे अनुरोध करते हैं कि कृपया अगले चौबीस घंटों तक धैर्य बनाए रखें, और यदि इस दौरान आपकी इंटरनेट सेवा बहाल नहीं होती है, तो आप इसी टिकट नंबर का उपयोग करके हमसे दोबारा संपर्क कर सकते हैं।	domain=support
+long3-021	long	paragraph	नमस्ते, आपके रिफंड के अनुरोध को स्वीकार कर लिया गया है, लेकिन बैंक की आंतरिक प्रक्रियाओं के कारण इस राशि को आपके मूल भुगतान स्रोत में वापस आने में पांच से सात कार्यदिवस लग सकते हैं। यदि इस अवधि के बाद भी आपको पैसे प्राप्त नहीं होते हैं, तो कृपया अपने बैंक का ट्रांजैक्शन स्टेटमेंट लेकर हमारे ग्राहक सेवा अधिकारी से संपर्क करें।	domain=support
+long3-022	long	paragraph	डॉक्टर शर्मा के साथ आपका परामर्श कल सुबह दस बजे के लिए निर्धारित किया गया है, और हम आपसे अनुरोध करते हैं कि आप समय से पंद्रह मिनट पहले क्लिनिक पहुंचें। यदि आपको अपनी पुरानी मेडिकल रिपोर्ट या पर्चे दिखाने हैं, तो उन्हें अपने साथ लाना न भूलें, और यदि आप किसी कारणवश नहीं आ पा रहे हैं, तो कृपया हमें पहले ही सूचित कर दें।	domain=appointment
+long3-023	long	paragraph	आपकी कार की सर्विसिंग के लिए अपॉइंटमेंट कल दोपहर दो बजे हमारे अधिकृत सर्विस सेंटर पर बुक हो गया है। कृपया अपने वाहन के सभी महत्वपूर्ण दस्तावेज और सर्विस बुक साथ लाएं, और यदि आप पिक-अप और ड्रॉप सेवा का लाभ उठाना चाहते हैं, तो कृपया हमारे प्रतिनिधि को सुबह नौ बजे से पहले कॉल करके इसकी पुष्टि कर दें।	domain=appointment
+long3-024	long	paragraph	आपका वर्तमान प्रीपेड प्लान अगले दो दिनों में समाप्त होने वाला है, और निर्बाध सेवाओं का आनंद लेने के लिए हम आपको सलाह देते हैं कि आप आज ही रिचार्ज करें। यदि आप हमारे नए असीमित डेटा और कॉलिंग प्लान को चुनते हैं, तो आपको मानार्थ ओटीटी सब्सक्रिप्शन भी मिलेगा, जिसे आप हमारे मोबाइल ऐप के माध्यम से आसानी से सक्रिय कर सकते हैं।	domain=telecom
+long3-025	long	paragraph	प्रिय ग्राहक, आपके क्षेत्र में नेटवर्क अपग्रेड का काम चल रहा है, जिसके कारण आज दोपहर दो बजे से शाम चार बजे तक आपको वॉयस कॉलिंग और इंटरनेट सेवाओं में कुछ रुकावटों का सामना करना पड़ सकता है। इस असुविधा के लिए हमें बेहद खेद है, और हम आपकी सेवाओं को बेहतर बनाने के लिए इस कार्य को जल्द से जल्द पूरा करने का प्रयास कर रहे हैं।	domain=telecom
+long3-026	long	paragraph	आपके इस महीने का बिजली बिल तैयार हो चुका है और भुगतान की अंतिम तिथि पंद्रह तारीख है, जिसके बाद विलंब शुल्क लागू किया जाएगा। आप हमारी वेबसाइट या मोबाइल ऐप के माध्यम से बिना किसी अतिरिक्त शुल्क के ऑनलाइन भुगतान कर सकते हैं, और यदि आपको मीटर रीडिंग में कोई विसंगति दिखाई देती है, तो कृपया तुरंत हमारे हेल्पलाइन नंबर पर संपर्क करें।	domain=utilities
+long3-027	long	paragraph	आपके क्षेत्र में पाइपलाइन की वार्षिक मरम्मत और रखरखाव के कार्य के कारण, कल सुबह आठ बजे से दोपहर दो बजे तक पानी की आपूर्ति बाधित रहेगी। हम सभी निवासियों से अनुरोध करते हैं कि वे अपनी दैनिक आवश्यकताओं के लिए पर्याप्त पानी पहले से ही संचित करके रख लें, और इस दौरान पानी की बर्बादी को रोकने में हमारा सहयोग करें।	domain=utilities
+long3-028	long	paragraph	आगामी सेमेस्टर परीक्षाओं के लिए पंजीकरण प्रक्रिया शुरू हो चुकी है, और सभी छात्रों को सलाह दी जाती है कि वे तीस तारीख से पहले अपना ऑनलाइन फॉर्म भर लें। कृपया सुनिश्चित करें कि आपने अपने सभी बकाया शुल्कों का भुगतान कर दिया है, क्योंकि बिना नो-ड्यूज प्रमाण पत्र के आपका एडमिट कार्ड जारी नहीं किया जाएगा और आप परीक्षा में बैठने से वंचित रह सकते हैं।	domain=education
+long3-029	long	paragraph	नमस्ते, आपके गृह ऋण आवेदन की समीक्षा पूरी हो चुकी है, लेकिन हमें आपके पिछले तीन महीनों के बैंक स्टेटमेंट और वेतन पर्ची की अतिरिक्त प्रतियों की आवश्यकता है, ताकि हम ब्याज दरों को अंतिम रूप दे सकें, इसलिए कृपया इन्हें जल्द से जल्द हमारे नजदीकी शाखा में जमा करें या सीधे ईमेल द्वारा भेजें।	domain=banking
+long3-030	long	paragraph	प्रिय ग्राहक, सुरक्षा कारणों से आपके क्रेडिट कार्ड को अस्थायी रूप से ब्लॉक कर दिया गया है, क्योंकि हमें आपके खाते में कुछ संदिग्ध लेनदेन दिखाई दिए हैं, इसलिए यदि आपने यह लेनदेन नहीं किए हैं, तो तुरंत हमारे टोल-फ्री नंबर पर कॉल करें और अपने कार्ड को सुरक्षित करने के लिए हमारी ग्राहक सेवा टीम की मदद लें।	domain=banking
+long3-031	long	paragraph	आपकी आगामी गोवा यात्रा के लिए होटल की बुकिंग सफलतापूर्वक पूरी हो गई है, जिसमें डीलक्स कमरा, मुफ्त नाश्ता और वाई-फाई की सुविधा शामिल है, लेकिन कृपया ध्यान दें कि चेक-इन के समय आपको अपना मूल पहचान पत्र दिखाना होगा, और यदि आप बुकिंग रद्द करना चाहते हैं, तो नीति के अनुसार चौबीस घंटे पहले सूचित करें।	domain=booking
+long3-032	long	paragraph	आपकी मुंबई से दिल्ली की उड़ान संख्या एआई-302 के प्रस्थान समय में बदलाव किया गया है, अब यह विमान अपने निर्धारित समय से दो घंटे देरी से यानी शाम छह बजे उड़ान भरेगा, इसलिए हम आपको सलाह देते हैं कि आप हवाई अड्डे पर समय से पहुंचे ताकि आपको सुरक्षा जांच और बोर्डिंग में किसी परेशानी का सामना न करना पड़े।	domain=booking
+long3-033	long	paragraph	आपका पार्सल आज दोपहर दो बजे से शाम पांच बजे के बीच आपके दिए गए पते पर डिलीवर होने की उम्मीद है, हमारे डिलीवरी पार्टनर आपसे संपर्क करेंगे, इसलिए कृपया अपना फोन चालू रखें और यदि आप घर पर उपलब्ध नहीं हैं, तो आप अपने पड़ोसी को पार्सल प्राप्त करने के लिए कह सकते हैं या डिलीवरी का समय बदल सकते हैं।	domain=delivery
+long3-034	long	paragraph	हमें आपको यह सूचित करते हुए खेद हो रहा है कि खराब मौसम और भारी ट्रैफिक के कारण आपके भोजन के ऑर्डर में थोड़ी देरी हो रही है, हमारा डिलीवरी बॉय जल्द से जल्द आप तक पहुँचने की पूरी कोशिश कर रहा है, इस असुविधा के लिए हम आपसे क्षमा चाहते हैं और आपके धैर्य की सराहना करते हैं।	domain=delivery
+long3-035	long	paragraph	आपके द्वारा दर्ज की गई शिकायत के संबंध में, हमारी तकनीकी टीम ने आपके इंटरनेट राउटर की जांच की है और पाया है कि मुख्य लाइन में कुछ खराबी थी, जिसे अब ठीक कर दिया गया है, कृपया अपने राउटर को एक बार रीस्टार्ट करें और यदि समस्या फिर भी बनी रहती है, तो हमें तुरंत सूचित करें।	domain=support
+long3-036	long	paragraph	हमारे ग्राहक सहायता केंद्र में कॉल करने के लिए धन्यवाद, वर्तमान में हमारे सभी प्रतिनिधि अन्य ग्राहकों की सहायता करने में व्यस्त हैं, इसलिए आपका प्रतीक्षा समय लगभग पांच मिनट हो सकता है, कृपया लाइन पर बने रहें या आप हमारी वेबसाइट पर जाकर लाइव चैट के माध्यम से भी हमसे तुरंत संपर्क कर सकते हैं।	domain=support
+long3-037	long	paragraph	डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट कल सुबह दस बजे के लिए निर्धारित किया गया है, कृपया ध्यान रखें कि आपको क्लिनिक पर समय से पंद्रह मिनट पहले पहुंचना होगा ताकि शुरुआती कागजी कार्रवाई पूरी की जा सके, और यदि आपको कोई बदलाव करना हो, तो कृपया हमें आज शाम तक सूचित करने का कष्ट करें।	domain=appointment
+long3-038	long	paragraph	की कार की सर्विसिंग के लिए जो अपॉइंटमेंट आपने बुक किया था, उसे हमारे सर्विस सेंटर द्वारा स्वीकार कर लिया गया है, कृपया अपनी गाड़ी को शनिवार सुबह नौ बजे हमारे वर्कशॉप पर छोड़ दें, और हमारे मैकेनिक गाड़ी की पूरी जांच करने के बाद आपको आवश्यक मरम्मत और अनुमानित खर्च के बारे में फोन पर सूचित करेंगे।	domain=appointment
+long3-039	long	paragraph	आपके मोबाइल नंबर पर सक्रिय वर्तमान डेटा प्लान अगले तीन दिनों में समाप्त होने वाला है, निर्बाध इंटरनेट सेवाओं का आनंद लेते रहने के लिए, हम आपको सलाह देते हैं कि आप हमारे लोकप्रिय अनलिमिटेड पैक से तुरंत रिचार्ज करें, जिसमें आपको रोजाना दो जीबी डेटा और असीमित कॉलिंग की सुविधा मिलेगी, अधिक जानकारी के लिए हमारे ऐप पर जाएं।	domain=telecom
+long3-040	long	paragraph	प्रिय उपभोक्ता, आपके क्षेत्र में नेटवर्क अपग्रेड का काम चल रहा है, जिसके कारण आज रात बारह बजे से सुबह चार बजे के बीच आपको वॉयस कॉल और डेटा सेवाओं में कुछ रुकावट का सामना करना पड़ सकता है, इस अस्थायी असुविधा के लिए हमें बेहद खेद है और हम आपकी सेवाओं को बेहतर बनाने के लिए लगातार प्रयासरत हैं।	domain=telecom
+long3-041	long	paragraph	आपके बिजली बिल का भुगतान करने की अंतिम तिथि कल है, यदि आपने अभी तक भुगतान नहीं किया है, तो कृपया किसी भी विलंब शुल्क से बचने के लिए आज ही हमारी वेबसाइट या मोबाइल ऐप के माध्यम से ऑनलाइन भुगतान करें, और यदि आप पहले ही भुगतान कर चुके हैं, तो कृपया इस संदेश को अनदेखा करें और सहयोग के लिए धन्यवाद।	domain=utilities
+long3-042	long	paragraph	आपके क्षेत्र में पानी की मुख्य पाइपलाइन की मरम्मत के कारण कल सुबह नौ बजे से दोपहर दो बजे तक पानी की आपूर्ति बाधित रहेगी, हम आपसे अनुरोध करते हैं कि आप अपनी दैनिक आवश्यकताओं के लिए पर्याप्त पानी पहले से ही जमा करके रख लें, ताकि इस अवधि के दौरान आपको किसी भी प्रकार की असुविधा का सामना न करना पड़े।	domain=utilities
+long3-043	long	paragraph	नए शैक्षणिक सत्र के लिए ऑनलाइन पंजीकरण की प्रक्रिया अब शुरू हो चुकी है, सभी इच्छुक छात्रों को सलाह दी जाती है कि वे अंतिम तिथि से पहले विश्वविद्यालय के पोर्टल पर जाकर अपने आवश्यक दस्तावेज अपलोड करें और पंजीकरण शुल्क का भुगतान करें, किसी भी तकनीकी समस्या के समाधान के लिए आप हमारे हेल्पलाइन नंबर पर संपर्क कर सकते हैं।	domain=education
+short3-001	short	backchannel confirmation	हाँ जी, समझ गया।	domain=banking
+short3-002	short	backchannel confirmation	ठीक है, धन्यवाद।	domain=banking
+short3-003	short	backchannel confirmation	जी, बिल्कुल।	domain=banking
+short3-004	short	backchannel confirmation	हाँ, वही तारीख।	domain=booking
+short3-005	short	backchannel confirmation	टिकट पक्का समझें?	domain=booking
+short3-006	short	backchannel confirmation	जी, ठीक है।	domain=booking
+short3-007	short	backchannel confirmation	हाँ, घर पर हूँ।	domain=delivery
+short3-008	short	backchannel confirmation	एक मिनट रुकिए।	domain=delivery
+short3-009	short	backchannel confirmation	हाँ, नीचे हूँ।	domain=delivery
+short3-010	short	backchannel confirmation	अच्छा, ऐसा है?	domain=support
+short3-011	short	backchannel confirmation	जी, सुन रहा हूँ।	domain=support
+short3-012	short	backchannel confirmation	समझ गया, शुक्रिया।	domain=support
+short3-013	short	backchannel confirmation	हाँ, वही समय।	domain=appointment
+short3-014	short	backchannel confirmation	ठीक है, आऊँगा।	domain=appointment
+short3-015	short	backchannel confirmation	जी, नोट कर लिया।	domain=appointment
+short3-016	short	backchannel confirmation	हाँ, नेट चल गया।	domain=telecom
+short3-017	short	backchannel confirmation	जी, आवाज़ आ रही।	domain=telecom
+short3-018	short	backchannel confirmation	ठीक है, रिचार्ज करूँगा।	domain=telecom
+short3-019	short	backchannel confirmation	हाँ, बिल मिल गया।	domain=utilities
+short3-020	short	backchannel confirmation	जी, लाइट आ गई।	domain=utilities
+short3-021	short	backchannel confirmation	अच्छा, ठीक है।	domain=utilities
+short3-022	short	backchannel confirmation	हाँ, क्लास शुरू।	domain=education
+short3-023	short	backchannel confirmation	जी, समझ आ गया।	domain=education
+short3-024	short	backchannel confirmation	ठीक है मैम।	domain=education
+short3-025	short	backchannel confirmation	हाँ, होमवर्क कर लिया।	domain=education
+short3-026	short	backchannel confirmation	हाँ जी, बिल्कुल।	domain=banking
+short3-027	short	backchannel confirmation	ठीक है, समझ गया।	domain=banking
+short3-028	short	backchannel confirmation	जी, एक मिनट।	domain=banking
+short3-029	short	backchannel confirmation	हाँ, वही खाता।	domain=banking
+short3-030	short	backchannel confirmation	हाँ, टिकट बुक करो।	domain=booking
+short3-031	short	backchannel confirmation	जी हाँ, दो लोग।	domain=booking
+short3-032	short	backchannel confirmation	हाँ, कन्फर्म है।	domain=booking
+short3-033	short	backchannel confirmation	जी, गेट पर।	domain=delivery
+short3-034	short	backchannel confirmation	ठीक है, आ जाओ।	domain=delivery
+short3-035	short	backchannel confirmation	हाँ, यही समस्या है।	domain=support
+short3-036	short	backchannel confirmation	जी, बिल्कुल सही।	domain=support
+short3-037	short	backchannel confirmation	हाँ, कल शाम को।	domain=appointment
+short3-038	short	backchannel confirmation	जी, पाँच बजे।	domain=appointment
+short3-039	short	backchannel confirmation	ठीक है, मैं आऊँगा।	domain=appointment
+short3-040	short	backchannel confirmation	हाँ, नेट बंद है।	domain=telecom
+short3-041	short	backchannel confirmation	जी, रिचार्ज करना है।	domain=telecom
+short3-042	short	backchannel confirmation	हाँ, बिजली का बिल।	domain=utilities
+short3-043	short	backchannel confirmation	जी, पानी का कनेक्शन।	domain=utilities
+short3-044	short	backchannel confirmation	ठीक है, कल भेजना।	domain=utilities
+short3-045	short	backchannel confirmation	हाँ, क्लास शुरू करो।	domain=education
+abbr3-001	abbreviations	abbreviation	आपके रजिस्टर्ड मोबाइल नंबर पर एक OTP भेजा गया है, कृपया किसी के साथ साझा न करें।	domain=banking
+abbr3-002	abbreviations	abbreviation	खाता सक्रिय रखने के लिए आपको नजदीकी शाखा में जाकर KYC दस्तावेज जमा करने होंगे।	domain=banking
+abbr3-003	abbreviations	abbreviation	आपके होम लोन की मासिक EMI हर महीने की 5 तारीख को आपके खाते से काट ली जाएगी।	domain=banking
+abbr3-004	abbreviations	abbreviation	कृपया अपना PNR नंबर संभाल कर रखें, टिकट की स्थिति जांचने के लिए इसकी आवश्यकता होगी।	domain=booking
+abbr3-005	abbreviations	abbreviation	सुरक्षा कारणों से अपना ATM पिन किसी को न बताएं, चाहे वह बैंक कर्मचारी ही क्यों न हो।	domain=banking
+abbr3-006	abbreviations	abbreviation	इस महीने के बिजली बिल में सरकार द्वारा निर्धारित GST भी शामिल किया गया है।	domain=utilities
+abbr3-007	abbreviations	abbreviation	कल सुबह 10 बजे Dr. शर्मा के साथ आपकी अपॉइंटमेंट तय की गई है।	domain=appointment
+abbr3-008	abbreviations	abbreviation	नमस्ते Mr. वर्मा, आपकी शिकायत दर्ज कर ली गई है और हमारी टीम इस पर काम कर रही है।	domain=support
+abbr3-009	abbreviations	abbreviation	पार्सल प्राप्त करते समय डिलीवरी पार्टनर को चार अंकों का OTP जरूर बताएं।	domain=delivery
+abbr3-010	abbreviations	abbreviation	नया सिम कार्ड चालू करने के लिए आपका e-KYC वेरिफिकेशन पूरा होना अनिवार्य है।	domain=telecom
+abbr3-011	abbreviations	abbreviation	आप इस प्रोफेशनल कोर्स की फीस आसान EMI विकल्पों के जरिए भी चुका सकते हैं।	domain=education
+abbr3-012	abbreviations	abbreviation	आपकी फ्लाइट का PNR जनरेट हो गया है, विवरण आपके ईमेल पर भेज दिया गया है।	domain=booking
+abbr3-013	abbreviations	abbreviation	यदि आपके पास डेबिट कार्ड नहीं है, तो आप ATM से बिना कार्ड के भी पैसे निकाल सकते हैं।	domain=banking
+abbr3-014	abbreviations	abbreviation	बैंक द्वारा ली जाने वाली प्रोसेसिंग फीस पर 18 प्रतिशत GST लागू होगा।	domain=banking
+abbr3-015	abbreviations	abbreviation	कृपया ध्यान दें कि Dr. पाटिल आज अस्पताल में उपलब्ध नहीं रहेंगे।	domain=appointment
+abbr3-016	abbreviations	abbreviation	Mr. मेहता, आपका इंटरव्यू कल दोपहर 3 बजे शिक्षा विभाग के कार्यालय में निर्धारित है।	domain=appointment
+abbr3-017	abbreviations	abbreviation	पोर्टिंग प्रक्रिया शुरू करने के लिए आपके फोन पर एक वन-टाइम पासवर्ड यानी OTP भेजा गया है।	domain=telecom
+abbr3-018	abbreviations	abbreviation	वीडियो KYC के दौरान कृपया अपना ओरिजिनल पैन कार्ड और आधार कार्ड अपने पास रखें।	domain=banking
+abbr3-019	abbreviations	abbreviation	क्या आप इस क्रेडिट कार्ड बिल को 6 महीने की EMI में बदलना चाहते हैं?	domain=banking
+abbr3-020	abbreviations	abbreviation	ट्रेन का चार्ट तैयार होने के बाद ही आपके PNR का वेटिंग स्टेटस कन्फर्म होगा।	domain=booking
+abbr3-021	abbreviations	abbreviation	नजदीकी ATM मशीन खराब होने के कारण आप हमारी ऑनलाइन सेवाओं का उपयोग कर सकते हैं।	domain=banking
+abbr3-022	abbreviations	abbreviation	गैस कनेक्शन के नए रेगुलेटर के शुल्क में GST अलग से जोड़ा जाएगा।	domain=utilities
+abbr3-023	abbreviations	abbreviation	इस विषय पर अधिक जानकारी के लिए आप Dr. सेनगुप्ता की लिखी हुई किताब पढ़ सकते हैं।	domain=education
+abbr3-024	abbreviations	abbreviation	Mr. सिंह, आपका ऑर्डर आज शाम 6 बजे तक आपके पते पर डिलीवर कर दिया जाएगा।	domain=delivery
+abbr3-025	abbreviations	abbreviation	पासवर्ड रीसेट करने के लिए आपके रजिस्टर्ड ईमेल पर एक OTP भेजा गया है।	domain=support
+abbr3-026	abbreviations	abbreviation	खाता सक्रिय करने के लिए आपको अपने नजदीकी बैंक शाखा में जाकर KYC दस्तावेज जमा करने होंगे।	domain=banking
+abbr3-027	abbreviations	abbreviation	इस होम लोन की मासिक EMI हर महीने की 5 तारीख को आपके खाते से काट ली जाएगी।	domain=banking
+abbr3-028	abbreviations	abbreviation	कृपया ध्यान दें कि इस ATM से पैसे निकालने पर कोई अतिरिक्त शुल्क नहीं लगेगा।	domain=banking
+abbr3-029	abbreviations	abbreviation	इस सेवा शुल्क पर 18% GST लागू होगा, जो आपके अंतिम बिल में जोड़ दिया गया है।	domain=banking
+abbr3-030	abbreviations	abbreviation	आपका टिकट बुक हो गया है, आपका PNR नंबर आपके पंजीकृत मोबाइल पर भेज दिया गया है।	domain=booking
+abbr3-031	abbreviations	abbreviation	Mr. शर्मा, आपकी होटल बुकिंग की पुष्टि हो गई है और चेक-इन का समय दोपहर 12 बजे है।	domain=booking
+abbr3-032	abbreviations	abbreviation	डिलीवरी पार्टनर को पार्सल सौंपने से पहले कृपया अपने फोन पर आया OTP बताएं।	domain=delivery
+abbr3-033	abbreviations	abbreviation	Mr. वर्मा, आपका पार्सल आज शाम 5 बजे तक आपके पते पर डिलीवर कर दिया जाएगा।	domain=delivery
+abbr3-034	abbreviations	abbreviation	यदि आपको KYC प्रक्रिया पूरी करने में कोई समस्या आ रही है, तो हमारे ग्राहक सहायता से संपर्क करें।	domain=support
+abbr3-035	abbreviations	abbreviation	क्रेडिट कार्ड की EMI बाउंस होने पर लगने वाले शुल्क की जानकारी के लिए कृपया हमारी हेल्पलाइन पर कॉल करें।	domain=support
+abbr3-036	abbreviations	abbreviation	यदि आपका ATM कार्ड खो गया है, तो तुरंत सहायता टीम को कॉल करके इसे ब्लॉक करवाएं।	domain=support
+abbr3-037	abbreviations	abbreviation	Dr. गुप्ता के साथ आपका अपॉइंटमेंट कल सुबह 10:30 बजे के लिए तय किया गया है।	domain=appointment
+abbr3-038	abbreviations	abbreviation	Mr. मेहता, डेंटिस्ट के साथ आपका अपॉइंटमेंट अगले मंगलवार को दोपहर 3 बजे सुनिश्चित हुआ है।	domain=appointment
+abbr3-039	abbreviations	abbreviation	नया सिम कार्ड एक्टिवेट करने के लिए आपके वैकल्पिक नंबर पर एक OTP भेजा गया है।	domain=telecom
+abbr3-040	abbreviations	abbreviation	आपके इस महीने के ब्रॉडबैंड बिल में GST के साथ कुल देय राशि ₹799 है।	domain=telecom
+abbr3-041	abbreviations	abbreviation	नए बिजली कनेक्शन के आवेदन शुल्क पर नियमानुसार GST लागू होगा।	domain=utilities
+abbr3-042	abbreviations	abbreviation	अब आप अपने पानी के गीजर की खरीद पर आसान EMI विकल्पों का लाभ उठा सकते हैं।	domain=utilities
+abbr3-043	abbreviations	abbreviation	इस विषय पर अधिक जानकारी के लिए आप कल दोपहर Dr. सेन के विशेष व्याख्यान में शामिल हो सकते हैं।	domain=education
+abbr3-044	abbreviations	abbreviation	Mr. राव कल सुबह 9 बजे कॉलेज के सभागार में नए छात्रों को संबोधित करेंगे।	domain=education
+abbr3-045	abbreviations	abbreviation	रेलवे स्टेशन के पास एक ATM उपलब्ध है, जहाँ से आप यात्रा से पहले नगद निकाल सकते हैं।	domain=booking
+abbr3-046	abbreviations	abbreviation	कृपया अपनी यात्रा के दौरान टिकट चेकर को अपना PNR और मूल पहचान पत्र अवश्य दिखाएं।	domain=booking
+abbr3-047	abbreviations	abbreviation	कूरियर कंपनी के नियमों के अनुसार, अंतरराष्ट्रीय पार्सल प्राप्त करने के लिए KYC अनिवार्य है।	domain=delivery
+abbr3-048	abbreviations	abbreviation	Dr. रेड्डी की क्लिनिक में अपॉइंटमेंट बुक करने के लिए कृपया हमारी वेबसाइट पर जाएं।	domain=appointment
+abbr3-049	abbreviations	abbreviation	अपने वाई-फाई राउटर का पासवर्ड बदलने के लिए प्राप्त OTP को स्क्रीन पर दर्ज करें।	domain=telecom
+call3-001	calling_agent	turn	मैं समझ सकता हूँ कि इंटरनेट न चलने से आपको परेशानी हो रही है, मैं इसे अभी ठीक करने की कोशिश करता हूँ।	domain=telecom, emotion=empathetic
+call3-002	calling_agent	turn	सर, आपके लिए एक बहुत ही शानदार क्रेडिट कार्ड ऑफर है जिसमें आपको लाइफटाइम फ्री मेंबरशिप मिल रही है!	domain=banking, emotion=excited
+call3-003	calling_agent	turn	नमस्कार, यह आपके बकाया लोन की किस्त के संबंध में है। कृपया आज ही भुगतान करें ताकि कोई अतिरिक्त शुल्क न लगे।	domain=banking, emotion=serious
+call3-004	calling_agent	turn	नमस्ते, आपको याद दिलाना चाहेंगे कि कल सुबह ग्यारह बजे डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट तय है।	domain=appointment, emotion=professional
+call3-005	calling_agent	turn	हमें बेहद खेद है कि आपका पार्सल रास्ते में क्षतिग्रस्त हो गया। हम तुरंत आपके लिए रिफंड की प्रक्रिया शुरू कर रहे हैं।	domain=delivery, emotion=sad
+call3-006	calling_agent	turn	मैंने तीन बार शिकायत दर्ज की है, लेकिन अभी तक कोई सुनवाई नहीं हुई! मुझे अभी सुपरवाइजर से बात करनी है।	domain=support, emotion=angry
+call3-007	calling_agent	turn	बधाई हो! आपकी गोवा की फ्लाइट टिकट सफलतापूर्वक बुक हो गई है। आपके ईमेल पर टिकट भेज दी गई है।	domain=booking, emotion=happy
+call3-008	calling_agent	turn	हाँ जी, मैं समझ गया। तो क्या आप अपना प्लान बदलना चाहते हैं या बस डेटा लिमिट बढ़ाना चाहते हैं?	domain=telecom, emotion=conversational
+call3-009	calling_agent	turn	कृपया ध्यान दें, आपके बिजली बिल के भुगतान की अंतिम तिथि कल है। विलंब शुल्क से बचने के लिए जल्द भुगतान करें।	domain=utilities, emotion=neutral
+call3-010	calling_agent	turn	इस कोर्स को पूरा करने के बाद आपको सीधे बड़ी कंपनियों में इंटरव्यू का मौका मिलेगा, यह आपके करियर के लिए बहुत बड़ा अवसर है!	domain=education, emotion=excited
+call3-011	calling_agent	turn	मैं आपकी परेशानी समझ सकता हूँ। आपके खाते से जो पैसे कटे हैं, वे अगले तीन कार्यदिवसों में वापस आ जाएँगे।	domain=banking, emotion=empathetic
+call3-012	calling_agent	turn	यह आपके क्रेडिट कार्ड के बकाया भुगतान के लिए अंतिम अनुस्मारक है। कृपया कानूनी कार्रवाई से बचने के लिए तुरंत भुगतान करें।	domain=banking, emotion=serious
+call3-013	calling_agent	turn	अरे हाँ, कल दोपहर दो बजे आपकी डेंटिस्ट के साथ मीटिंग है। क्या आप समय पर पहुँच पाएँगे या इसे रीशेड्यूल करना है?	domain=appointment, emotion=conversational
+call3-014	calling_agent	turn	आपका पार्सल अभी कूरियर पार्टनर के पास है और आज शाम पांच बजे तक आपके पते पर डिलीवर हो जाएगा।	domain=delivery, emotion=neutral
+call3-015	calling_agent	turn	हमारे नए ब्रॉडबैंड प्लान में आपको असीमित डेटा के साथ सभी प्रमुख ओटीटी ऐप्स का सब्सक्रिप्शन भी मुफ्त मिलेगा।	domain=telecom, emotion=professional
+call3-016	calling_agent	turn	मुझे यह जानकर बहुत दुख हुआ कि बीमारी के कारण आप अपनी परीक्षा नहीं दे पाए। हम आपकी फीस वापसी की नीति की जांच कर रहे हैं।	domain=education, emotion=sad
+call3-017	calling_agent	turn	नमस्कार, मैं होटल ताज से बात कर रहा हूँ। आपके अनुरोध के अनुसार हमने आपके कमरे में अतिरिक्त बेड की व्यवस्था कर दी है।	domain=booking, emotion=professional
+call3-018	calling_agent	turn	आपके क्षेत्र में तकनीकी खराबी के कारण पानी की आपूर्ति बाधित हुई है। हमारी टीम इसे ठीक करने में लगी है।	domain=utilities, emotion=neutral
+call3-019	calling_agent	turn	वैसे अगर आप अभी होम लोन लेते हैं, तो आपको प्रोसेसिंग फीस पर पूरी छूट मिल सकती है। क्या आप इसके बारे में जानना चाहेंगे?	domain=banking, emotion=conversational
+call3-020	calling_agent	turn	मैंने एक हफ्ते पहले रिफंड के लिए अप्लाई किया था, लेकिन अभी तक पैसे नहीं आए! आप लोग हर बार यही बहाना बनाते हैं।	domain=booking, emotion=angry
+call3-021	calling_agent	turn	प्रिय छात्र, कृपया ध्यान दें कि आगामी सेमेस्टर परीक्षा के लिए पंजीकरण फॉर्म जमा करने की अंतिम तिथि कल शाम पांच बजे तक है।	domain=education, emotion=professional
+call3-022	calling_agent	turn	मैं समझ सकता हूँ कि शादी के फंक्शन के लिए यह ड्रेस कितनी ज़रूरी थी। मैं खुद कूरियर टीम से बात करके इसे जल्द से जल्द डिलीवर करवाता हूँ।	domain=delivery, emotion=empathetic
+call3-023	calling_agent	turn	सर, आपके लिए खुशखबरी है! हमारे नए सोलर पैनल स्कीम के तहत आपको सरकार की तरफ से चालीस प्रतिशत की सब्सिडी मिलेगी।	domain=utilities, emotion=happy
+call3-024	calling_agent	turn	सुरक्षा कारणों से आपका सिम कार्ड ब्लॉक कर दिया गया है। इसे दोबारा चालू करने के लिए आपको नजदीकी स्टोर पर जाना होगा।	domain=telecom, emotion=serious
+call3-025	calling_agent	turn	बहुत बढ़िया! आपका स्लॉट कल सुबह दस बजे के लिए बुक हो गया है। हमारे एक्सपर्ट समय पर आपके घर पहुँच जाएँगे।	domain=appointment, emotion=happy
+call3-026	calling_agent	turn	बधाई हो! आपके क्रेडिट कार्ड पर एक विशेष लाइफटाइम फ्री ऑफर आया है, क्या आप इसे एक्टिवेट करना चाहेंगे?	domain=banking, emotion=excited
+call3-027	calling_agent	turn	नमस्कार, मैं एबीसी बैंक से बोल रहा हूँ। आपके लोन की ईएमआई का भुगतान अभी तक नहीं हुआ है, कृपया इसे आज ही जमा करें।	domain=banking, emotion=serious
+call3-028	calling_agent	turn	नमस्ते, यह डेंटाकेयर क्लिनिक से एक रिमाइंडर है। कल दोपहर तीन बजे डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट तय है।	domain=appointment, emotion=professional
+call3-029	calling_agent	turn	नहीं, मुझे कोई और बहाना नहीं सुनना है! मेरा रिफंड अभी तक क्यों नहीं आया?	domain=delivery, emotion=angry
+call3-030	calling_agent	turn	कृपया अपना उपभोक्ता नंबर दर्ज करें ताकि मैं आपके बिजली बिल की स्थिति की जांच कर सकूं।	domain=utilities, emotion=neutral
+call3-031	calling_agent	turn	नमस्ते! हमारे नए कोडिंग कोर्स पर इस हफ्ते पचास प्रतिशत की छूट चल रही है, क्या आप इसके बारे में जानना चाहेंगे?	domain=education, emotion=happy
+call3-032	calling_agent	turn	हेलो, बस याद दिलाने के लिए फोन किया था कि आपकी गोवा की फ्लाइट कल सुबह छह बजे की है। वेब चेक-इन कर लिया आपने?	domain=booking, emotion=conversational
+call3-033	calling_agent	turn	मुझे यह बताते हुए बहुत खेद हो रहा है कि आपके क्षेत्र में नेटवर्क टावर खराब होने के कारण आज सेवा बाधित रहेगी।	domain=telecom, emotion=sad
+call3-034	calling_agent	turn	नमस्कार, हमारे पास शिमला के लिए एक बेहतरीन हॉलिडे पैकेज उपलब्ध है। क्या मैं आपको इसकी पूरी जानकारी भेज दूँ?	domain=booking, emotion=professional
+call3-035	calling_agent	turn	मैं आपकी परेशानी समझ सकता हूँ। आपके खाते से जो अतिरिक्त पैसे कटे हैं, वे अगले दो कार्यदिवसों में वापस आ जाएंगे।	domain=banking, emotion=empathetic
+call3-036	calling_agent	turn	कृपया ध्यान दें, यदि आज शाम तक आपके पानी के बिल का भुगतान नहीं हुआ, तो कनेक्शन अस्थायी रूप से काट दिया जाएगा।	domain=utilities, emotion=serious
+call3-037	calling_agent	turn	अरे सुनो, आज शाम पांच बजे तुम्हारी गणित की एक्स्ट्रा क्लास है, समय पर जॉइन कर लेना भूलना मत।	domain=education, emotion=conversational
+call3-038	calling_agent	turn	खुशखबरी! आपका पार्सल हमारे डिलीवरी पार्टनर के पास पहुंच चुका है और आज दोपहर तक आपको मिल जाएगा।	domain=delivery, emotion=happy
+call3-039	calling_agent	turn	सर, आपके लिए एक शानदार ऑफर है! अब आप सिर्फ 399 रुपये में अनलिमिटेड 5G डेटा का आनंद ले सकते हैं!	domain=telecom, emotion=excited
+call3-040	calling_agent	turn	डॉक्टर से परामर्श करने के लिए कृपया अपना नाम और उम्र बताएं ताकि मैं अपॉइंटमेंट बुक कर सकूं।	domain=appointment, emotion=neutral
+call3-041	calling_agent	turn	देखिए, मैंने आपसे कई बार कहा है कि मुझे बार-बार फोन मत कीजिए! मैं अपना बकाया समय पर चुका दूंगा।	domain=banking, emotion=angry
+call3-042	calling_agent	turn	नमस्कार, आपका कूरियर आज डिलीवर होने वाला है। कृपया डिलीवरी के समय अपना ओटीपी तैयार रखें।	domain=delivery, emotion=professional
+call3-043	calling_agent	turn	तकनीकी खराबी के कारण आज पूरे शहर में गैस आपूर्ति बाधित रहेगी, हमें इस असुविधा के लिए बेहद खेद है।	domain=utilities, emotion=sad
+call3-044	calling_agent	turn	क्या आप इस वीकेंड हमारे नए स्पा सेंटर में एक फ्री थेरेपी सेशन बुक करना चाहेंगे? बहुत ही रिलैक्सिंग होगा।	domain=appointment, emotion=conversational
+call3-045	calling_agent	turn	चिंता मत कीजिए, आपकी फ्लाइट कैंसिल होने के कारण आपको पूरा रिफंड मिलेगा। मैं अभी आपकी रिक्वेस्ट प्रोसेस कर रहा हूँ।	domain=booking, emotion=empathetic
+call3-046	calling_agent	turn	सुरक्षा कारणों से, कृपया अपना बैंक पिन या पासवर्ड किसी के साथ साझा न करें। बैंक कभी भी ऐसी जानकारी नहीं मांगता।	domain=banking, emotion=serious
+call3-047	calling_agent	turn	यह आपके करियर को बदलने का मौका है! आज ही हमारे डेटा साइंस कोर्स में एडमिशन लें और पाएं शत-प्रतिशत प्लेसमेंट सहायता!	domain=education, emotion=excited
+call3-048	calling_agent	turn	कृपया अपने फोन को एक बार रीस्टार्ट करें और देखें कि क्या नेटवर्क सिग्नल वापस आ गए हैं।	domain=telecom, emotion=neutral
+call3-049	calling_agent	turn	आपका होटल रूम सफलतापूर्वक अपग्रेड कर दिया गया है! अब आप बिना किसी अतिरिक्त शुल्क के डीलक्स सुइट का आनंद ले सकते हैं।	domain=booking, emotion=happy
+call3-050	calling_agent	turn	नमस्ते, मैं एयरटेल सपोर्ट से बात कर रहा हूँ। क्या मैं आपका शुभ नाम जान सकता हूँ?	domain=telecom, emotion=professional
+call3-051	calling_agent	turn	नमस्कार, यह आपके क्रेडिट कार्ड बिल के भुगतान के लिए एक सौम्य अनुस्मारक है जो कल देय है।	domain=banking, emotion=serious
+call3-052	calling_agent	turn	सर, हमारे पास अभी गोवा ट्रिप के लिए एक बहुत ही शानदार ऑफर है, क्या आप सुनना चाहेंगे?	domain=booking, emotion=excited
+call3-053	calling_agent	turn	देखिए, अगर आपने आज बिजली का बिल नहीं भरा, तो कनेक्शन काटने की कार्रवाई की जा सकती है।	domain=utilities, emotion=serious
+call3-054	calling_agent	turn	मुझे बहुत खेद है कि आपका पार्सल समय पर नहीं पहुँच पाया। मैं तुरंत इसकी जाँच करता हूँ।	domain=delivery, emotion=empathetic
+call3-055	calling_agent	turn	नमस्ते! क्या हम कल दोपहर तीन बजे आपकी काउंसलिंग क्लास के लिए समय तय कर सकते हैं?	domain=education, emotion=conversational
+call3-056	calling_agent	turn	बधाई हो! आपके नंबर पर अनलिमिटेड 5G डेटा प्लान बिल्कुल मुफ्त एक्टिवेट कर दिया गया है!	domain=telecom, emotion=happy
+call3-057	calling_agent	turn	सर, सुरक्षा कारणों से हम आपका पिन फोन पर नहीं पूछ सकते। कृपया इसे किसी के साथ साझा न करें।	domain=banking, emotion=serious
+call3-058	calling_agent	turn	याद दिला दें कि कल सुबह दस बजे डेंटिस्ट के साथ आपका अपॉइंटमेंट शेड्यूल है।	domain=appointment, emotion=neutral
+call3-059	calling_agent	turn	आपकी ईएमआई पिछले तीन महीनों से पेंडिंग है। कृपया कानूनी कार्रवाई से बचने के लिए तुरंत भुगतान करें।	domain=banking, emotion=angry
+call3-060	calling_agent	turn	हैलो, क्या आपके इलाके में भी पानी की सप्लाई बंद है? मैं आपकी शिकायत दर्ज कर रहा हूँ।	domain=utilities, emotion=conversational
+call3-061	calling_agent	turn	इस कोर्स को पूरा करने के बाद आपको सीधे प्लेसमेंट असिस्टेंस मिलेगा। क्या आप आज ही रजिस्टर करना चाहेंगे?	domain=education, emotion=professional
+call3-062	calling_agent	turn	मैं समझ सकता हूँ कि फ्लाइट कैंसिल होने से आपको परेशानी हुई। मैं रिफंड प्रोसेस शुरू कर रहा हूँ।	domain=booking, emotion=empathetic
+call3-063	calling_agent	turn	आपका अमेज़न पार्सल आज शाम पांच बजे तक डिलीवर हो जाएगा। कृपया घर पर उपलब्ध रहें।	domain=delivery, emotion=neutral
+call3-064	calling_agent	turn	अरे वाह! आप हमारे प्री-अप्रूव्ड पर्सनल लोन के लिए एलिजिबल हैं, वो भी बिना किसी पेपरवर्क के!	domain=banking, emotion=excited
+call3-065	calling_agent	turn	क्या आपका इंटरनेट अभी भी धीमा चल रहा है? कृपया अपने राउटर को एक बार रीस्टार्ट करके देखें।	domain=telecom, emotion=conversational
+call3-066	calling_agent	turn	नमस्कार, आपके गैस बिल का भुगतान अभी तक बकाया है। कृपया लेट फीस से बचने के लिए आज ही भुगतान करें।	domain=utilities, emotion=professional
+call3-067	calling_agent	turn	सर, होटल चेक-इन का समय दोपहर 12 बजे का है। क्या आप जल्दी आना चाहेंगे?	domain=booking, emotion=conversational
+call3-068	calling_agent	turn	चिंता मत कीजिए, अगर आप लाइव क्लास नहीं देख पाए, तो आपको इसकी रिकॉर्डिंग मिल जाएगी।	domain=education, emotion=empathetic
+call3-069	calling_agent	turn	अगर आप आज ही हमारा नया सोलर कनेक्शन लेते हैं, तो आपको इंस्टॉलेशन पर 20% की छूट मिलेगी!	domain=utilities, emotion=happy
+call3-070	calling_agent	turn	कृपया ध्यान दें, आपके खाते में न्यूनतम बैलेंस बनाए रखना अनिवार्य है, अन्यथा चार्ज लग सकता है।	domain=banking, emotion=serious
+call3-071	calling_agent	turn	क्या डिलीवरी बॉय ने आपसे अतिरिक्त पैसे मांगे? यह हमारी पॉलिसी के खिलाफ है, मैं तुरंत एक्शन लेता हूँ।	domain=delivery, emotion=angry
+call3-072	calling_agent	turn	हमारे तकनीशियन कल सुबह 11 बजे ब्रॉडबैंड ठीक करने आपके घर आएंगे। क्या आप उपलब्ध रहेंगे?	domain=telecom, emotion=professional
+call3-073	calling_agent	turn	सर, इस वीकेंड के लिए हमारे सारे रिसॉर्ट्स बुक हो चुके हैं, मुझे बहुत खेद है कि मैं आपकी मदद नहीं कर पाया।	domain=booking, emotion=sad
+call3-074	calling_agent	turn	आपका कार्ड ब्लॉक कर दिया गया है ताकि कोई इसका गलत इस्तेमाल न कर सके। नया कार्ड जल्द ही भेज दिया जाएगा।	domain=banking, emotion=professional
+call3-075	calling_agent	turn	नमस्ते, मैं एयरटेल कस्टमर केयर से बात कर रहा हूँ। क्या मैं आपका शुभ नाम जान सकता हूँ?	domain=telecom, emotion=professional
+call3-076	calling_agent	turn	सर, आपके क्रेडिट कार्ड का भुगतान पिछले दो महीनों से लंबित है। कृपया आज ही इसका भुगतान करें।	domain=banking, emotion=serious
+call3-077	calling_agent	turn	बधाई हो! आपके लिए हमारे पास एक विशेष हॉलिडे पैकेज है, जिसमें आपको ५०% की छूट मिल रही है!	domain=booking, emotion=excited
+call3-078	calling_agent	turn	नमस्कार, यह डेंटाकेयर क्लिनिक से एक रिमाइंडर है। कल दोपहर ३ बजे डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट है।	domain=appointment, emotion=neutral
+call3-079	calling_agent	turn	मैं समझ सकता हूँ कि बिना बिजली के आपको कितनी परेशानी हो रही होगी। हमारी टीम इसे ठीक करने की पूरी कोशिश कर रही है।	domain=utilities, emotion=empathetic
+call3-080	calling_agent	turn	सर, क्या आप अपने वर्तमान प्लान को अनलिमिटेड ५जी डेटा प्लान में अपग्रेड करना चाहेंगे? इसमें आपको एक्स्ट्रा बेनिफिट्स मिलेंगे।	domain=telecom, emotion=conversational
+call3-081	calling_agent	turn	अरे वाह! आपका पार्सल डिलीवर हो चुका है। क्या आपको आपका ऑर्डर सही स्थिति में मिला?	domain=delivery, emotion=happy
+call3-082	calling_agent	turn	मैंने पिछले हफ्ते ही बिल भर दिया था, फिर भी आप लोग बार-बार फोन क्यों कर रहे हैं? बंद करो ये!	domain=utilities, emotion=angry
+call3-083	calling_agent	turn	मुझे यह बताते हुए बहुत खेद हो रहा है कि तकनीकी खराबी के कारण आपकी आज की फ्लाइट टिकट रद्द कर दी गई है।	domain=booking, emotion=sad
+call3-084	calling_agent	turn	नमस्ते, एडुस्मार्ट से बात कर रहा हूँ। याद दिला दें कि आपकी कोडिंग क्लास आज शाम ६ बजे शुरू होने वाली है।	domain=education, emotion=conversational
+call3-085	calling_agent	turn	सुरक्षा कारणों से हम आपका पिन फोन पर नहीं पूछ सकते। कृपया अपना पिन किसी के साथ साझा न करें।	domain=banking, emotion=professional
+call3-086	calling_agent	turn	नमस्ते, मैं डिलीवरी बॉय बोल रहा हूँ। मैं आपके घर के बाहर खड़ा हूँ, कृपया गेट पर आ जाइए।	domain=delivery, emotion=neutral
+call3-087	calling_agent	turn	क्या आप अपने बच्चे के लिए गणित का फ्री डेमो क्लास बुक करना चाहेंगे? यह बिल्कुल मुफ्त है!	domain=education, emotion=excited
+call3-088	calling_agent	turn	सर, आपके फीडबैक के लिए बहुत-बहुत धन्यवाद! हमें खुशी है कि हम आपकी समस्या का समाधान कर पाए।	domain=telecom, emotion=happy
+call3-089	calling_agent	turn	मैं आपकी चिंता पूरी तरह समझता हूँ। आपके खाते से कटे हुए पैसे अगले २४ घंटों में वापस आ जाएंगे।	domain=banking, emotion=empathetic
+call3-090	calling_agent	turn	नमस्ते, क्या हम आपकी कल की डॉक्टर की अपॉइंटमेंट को अगले सोमवार के लिए रीशेड्यूल कर सकते हैं?	domain=appointment, emotion=conversational
+call3-091	calling_agent	turn	नमस्कार, गैस सब्सिडी से जुड़ी जानकारी के लिए कृपया १ दबाएं, नए कनेक्शन के लिए २ दबाएं।	domain=utilities, emotion=professional
+call3-092	calling_agent	turn	नमस्ते, यह आपके पर्सनल लोन की ईएमआई के भुगतान के लिए एक रिमाइंडर कॉल है। कृपया आज ही भुगतान करें।	domain=banking, emotion=serious
+call3-093	calling_agent	turn	असुविधा के लिए हमें खेद है। भारी बारिश के कारण आपकी डिलीवरी में थोड़ी देरी हो सकती है।	domain=delivery, emotion=sad
+call3-094	calling_agent	turn	सर, हमारे नए सोलर पैनल स्कीम पर अभी भारी छूट चल रही है। क्या आप इसके बारे में जानना चाहेंगे?	domain=utilities, emotion=excited
+call3-095	calling_agent	turn	नमस्ते, क्या आपको ऑनलाइन पोर्टल पर असाइनमेंट अपलोड करने में कोई परेशानी आ रही है? मैं आपकी मदद कर सकता हूँ।	domain=education, emotion=empathetic
+call3-096	calling_agent	turn	सर, आपका होटल रूम कन्फर्म हो गया है! आपकी यात्रा मंगलमय हो, हम आपका स्वागत करने के लिए उत्सुक हैं।	domain=booking, emotion=happy
+call3-097	calling_agent	turn	नमस्ते, आपके इंटरनेट कनेक्शन की स्पीड को रीसेट कर दिया गया है। क्या आप अब चेक करके बता सकते हैं?	domain=telecom, emotion=neutral
+call3-098	calling_agent	turn	यह क्या बकवास है! मेरे खाते से बिना बताए पैसे कैसे कट गए? मुझे अभी मैनेजर से बात करनी है!	domain=banking, emotion=angry
+call3-099	calling_agent	turn	नमस्ते, पासपोर्ट सेवा केंद्र से बात कर रहा हूँ। कल सुबह १० बजे आपके दस्तावेजों का सत्यापन होना तय हुआ है।	domain=appointment, emotion=professional
+call3-100	calling_agent	turn	नमस्कार, मैं एचडीएफसी बैंक से बात कर रहा हूँ। क्या मेरी बात अमित जी से हो सकती है?	domain=banking, emotion=professional
+call3-101	calling_agent	turn	देखिए सर, आपके क्रेडिट कार्ड का भुगतान पिछले तीन महीनों से बकाया है। कृपया इसे आज ही जमा करें।	domain=banking, emotion=serious
+call3-102	calling_agent	turn	बधाई हो! आपकी गोवा की फ्लाइट टिकटें सफलतापूर्वक बुक हो गई हैं। आपकी यात्रा मंगलमय हो!	domain=booking, emotion=happy
+call3-103	calling_agent	turn	हाँ जी, मैं देख पा रहा हूँ कि आपने होटल रूम के लिए रिक्वेस्ट भेजी थी। क्या आप डबल बेड रूम पसंद करेंगे?	domain=booking, emotion=conversational
+call3-104	calling_agent	turn	नमस्ते, मैं कूरियर सर्विस से बोल रहा हूँ। आपका पार्सल लेकर मैं आपके घर के बाहर खड़ा हूँ।	domain=delivery, emotion=neutral
+call3-105	calling_agent	turn	अरे, बहुत खेद है कि आपका पार्सल बारिश की वजह से भीग गया। मैं तुरंत इसके रिप्लेसमेंट की रिक्वेस्ट डालता हूँ।	domain=delivery, emotion=empathetic
+call3-106	calling_agent	turn	मुझे अभी के अभी अपने पैसे वापस चाहिए, वरना मैं आपके खिलाफ शिकायत दर्ज कराऊँगा!	domain=support, emotion=angry
+call3-107	calling_agent	turn	मैं आपकी परेशानी पूरी तरह समझ सकता हूँ। कृपया परेशान न हों, मैं इसे अभी ठीक कर देता हूँ।	domain=support, emotion=empathetic
+call3-108	calling_agent	turn	डॉक्टर वर्मा कल शाम को उपलब्ध हैं। क्या मैं आपके लिए शाम 6 बजे का समय तय कर दूँ?	domain=appointment, emotion=conversational
+call3-109	calling_agent	turn	यह कॉल डेंटिस्ट क्लिनिक से है। हम बस आपके कल सुबह 10 बजे के अपॉइंटमेंट की पुष्टि करना चाहते हैं।	domain=appointment, emotion=professional
+call3-110	calling_agent	turn	सर, आपके लिए एक बेहतरीन ऑफर है! अब आपको अनलिमिटेड कॉलिंग के साथ रोज़ 3 जीबी डेटा बिल्कुल मुफ्त मिलेगा!	domain=telecom, emotion=excited
+call3-111	calling_agent	turn	आपका मौजूदा प्रीपेड प्लान कल समाप्त हो रहा है। सेवाओं को जारी रखने के लिए कृपया रिचार्ज करें।	domain=telecom, emotion=neutral
+call3-112	calling_agent	turn	कृपया ध्यान दें, यदि आज शाम तक बिजली बिल का भुगतान नहीं हुआ, तो कनेक्शन काट दिया जाएगा।	domain=utilities, emotion=serious
+call3-113	calling_agent	turn	नमस्कार, गैस पाइपलाइन मेंटेनेंस के कारण कल सुबह 9 से 12 बजे तक गैस की आपूर्ति बाधित रहेगी।	domain=utilities, emotion=professional
+call3-114	calling_agent	turn	अरे वाह! मुझे आपको बताते हुए बहुत खुशी हो रही है कि आपके बेटे ने स्कॉलरशिप टेस्ट पास कर लिया है!	domain=education, emotion=happy
+call3-115	calling_agent	turn	क्या आप ऑनलाइन कोडिंग क्लासेस के बारे में कुछ और जानकारी चाहते हैं, या मैं डेमो क्लास बुक करूँ?	domain=education, emotion=conversational
+call3-116	calling_agent	turn	आपके खाते से जो गलत ट्रांजैक्शन हुआ था, उसके लिए हमें खेद है। हम इसे वापस पाने में आपकी पूरी मदद करेंगे।	domain=banking, emotion=empathetic
+call3-117	calling_agent	turn	मुझे बहुत दुख के साथ कहना पड़ रहा है कि खराब मौसम के कारण आपकी आज की सभी उड़ानें रद्द कर दी गई हैं।	domain=booking, emotion=sad
+call3-118	calling_agent	turn	सर, आपका सरप्राइज गिफ्ट डिलीवर हो चुका है! आपके चेहरे की खुशी देखकर हमें बहुत अच्छा लगा।	domain=delivery, emotion=excited
+call3-119	calling_agent	turn	कृपया अपना रजिस्टर्ड मोबाइल नंबर बताएं ताकि मैं आपके अकाउंट की डिटेल्स चेक कर सकूँ।	domain=support, emotion=neutral
+call3-120	calling_agent	turn	अत्यंत खेद के साथ सूचित करना पड़ रहा है कि डॉक्टर की तबीयत खराब होने के कारण आज की सभी अपॉइंटमेंट्स रद्द कर दी गई हैं।	domain=appointment, emotion=sad
+call3-121	calling_agent	turn	आपके नंबर पर संदिग्ध गतिविधियों के कारण आपकी आउटगोइंग सेवाएं अस्थाई रूप से रोक दी गई हैं।	domain=telecom, emotion=serious
+call3-122	calling_agent	turn	क्या आपके इलाके में भी पानी की सप्लाई नहीं आ रही है? मैं अभी कंप्लेंट दर्ज कर लेता हूँ।	domain=utilities, emotion=conversational
+call3-123	calling_agent	turn	नया बैच अगले सोमवार से शुरू हो रहा है। कृपया समय पर अपनी फीस जमा करके रजिस्ट्रेशन पूरा कर लें।	domain=education, emotion=professional
+call3-124	calling_agent	turn	बधाई हो! आपका होम लोन बिना किसी अतिरिक्त शुल्क के स्वीकृत हो गया है!	domain=banking, emotion=excited
+call3-125	calling_agent	turn	नमस्कार, मैं बैंक से बोल रहा हूँ। आपके क्रेडिट कार्ड का भुगतान पिछले दो महीनों से बकाया है।	domain=banking, emotion=serious
+call3-126	calling_agent	turn	बधाई हो! आपके लिए हमारे पास गोवा ट्रिप पैकेज पर पूरे पचास प्रतिशत की भारी छूट है!	domain=booking, emotion=excited
+call3-127	calling_agent	turn	नमस्ते, यह आपको याद दिलाने के लिए है कि कल सुबह ग्यारह बजे डॉक्टर के साथ आपका अपॉइंटमेंट है।	domain=appointment, emotion=professional
+call3-128	calling_agent	turn	क्या आप मुझे अपना बारह अंकों का बिजली उपभोक्ता नंबर बता सकते हैं ताकि मैं बिल चेक कर सकूं?	domain=utilities, emotion=professional
+call3-129	calling_agent	turn	नमस्ते, क्या आप अपने बच्चे के लिए कोडिंग क्लासेस ढूंढ रहे हैं? हमारे पास एक बेहतरीन ट्रायल क्लास है।	domain=education, emotion=conversational
+call3-130	calling_agent	turn	मुझे बहुत खेद है कि आपका पार्सल रास्ते में खो गया है, हम आपको पूरा रिफंड जारी कर रहे हैं।	domain=delivery, emotion=sad
+call3-131	calling_agent	turn	आपका प्रीपेड रिचार्ज कल समाप्त होने वाला है, बिना किसी रुकावट के सेवाओं का आनंद लेने के लिए आज ही रिचार्ज करें।	domain=telecom, emotion=conversational
+call3-132	calling_agent	turn	सर, आपके अच्छे क्रेडिट स्कोर की वजह से आपको बिना किसी दस्तावेज़ के तुरंत पर्सनल लोन मिल रहा है!	domain=banking, emotion=happy
+call3-133	calling_agent	turn	मैं आपकी चिंता समझ सकता हूँ, फ्लाइट कैंसिल होने के कारण हम आपका पूरा पैसा वापस कर रहे हैं।	domain=booking, emotion=empathetic
+call3-134	calling_agent	turn	कृपया ध्यान दें, यदि आज शाम तक पानी का बिल जमा नहीं किया गया, तो कनेक्शन काट दिया जाएगा।	domain=utilities, emotion=serious
+call3-135	calling_agent	turn	याद दिला दें कि आपके एमबीए कोर्स की सेमेस्टर फीस जमा करने की आखिरी तारीख परसों है।	domain=education, emotion=professional
+call3-136	calling_agent	turn	आपका ऑर्डर आज शाम पांच बजे तक आपके दिए गए पते पर डिलीवर कर दिया जाएगा।	domain=delivery, emotion=neutral
+call3-137	calling_agent	turn	सर, सिर्फ आज के लिए हमारे पास अनलिमिटेड डेटा प्लान पर एक बहुत ही शानदार ऑफर है!	domain=telecom, emotion=excited
+call3-138	calling_agent	turn	मैंने तीन बार कॉल किया है, लेकिन अभी तक मेरा रिफंड क्यों नहीं आया? मुझे तुरंत मैनेजर से बात करनी है!	domain=banking, emotion=angry
+call3-139	calling_agent	turn	हेलो, क्या हम आपकी कल की डॉक्टर की अपॉइंटमेंट को शाम चार बजे के लिए रीशेड्यूल कर सकते हैं?	domain=appointment, emotion=conversational
+call3-140	calling_agent	turn	बधाई हो, आपके क्षेत्र में अब हमारी हाई-स्पीड ब्रॉडबैंड सेवा शुरू हो गई है और पहले महीने का रेंटल बिल्कुल फ्री है!	domain=utilities, emotion=happy
+call3-141	calling_agent	turn	मैं समझ सकता हूँ कि परीक्षा के समय ऐप काम नहीं कर रहा है, आप परेशान न हों, मैं इसे तुरंत रीसेट कर रहा हूँ।	domain=education, emotion=empathetic
+call3-142	calling_agent	turn	होटल बुकिंग को कन्फर्म रखने के लिए आपको बची हुई राशि का भुगतान आज रात बारह बजे से पहले करना होगा।	domain=booking, emotion=serious
+call3-143	calling_agent	turn	क्या आप कल हमारे रियल एस्टेट एक्सपर्ट के साथ एक मुफ्त साइट विजिट प्लान करना चाहेंगे?	domain=appointment, emotion=conversational
+call3-144	calling_agent	turn	कृपया ध्यान दें, आपका कूरियर आज डिलीवर होने वाला है, कृपया डिलीवरी के समय ओटीपी साझा करने के लिए तैयार रहें।	domain=delivery, emotion=professional
+call3-145	calling_agent	turn	मुझे यह बताते हुए बहुत दुख हो रहा है कि तकनीकी खराबी के कारण आपका ट्रांजेक्शन फेल हो गया और पैसे कट गए।	domain=banking, emotion=sad
+call3-146	calling_agent	turn	सर, आपके पास इस वीकेंड पर शिमला की वादियों में घूमने का एक बहुत ही शानदार मौका है, बुकिंग तुरंत करें!	domain=booking, emotion=excited
+call3-147	calling_agent	turn	आपके पोस्टपेड बिल का भुगतान न होने के कारण आपकी आउटगोइंग सेवाएं अस्थायी रूप से बंद कर दी गई हैं।	domain=telecom, emotion=serious
+call3-148	calling_agent	turn	मैं आपकी परेशानी समझ सकता हूँ, सर। चिंता मत कीजिए, मैं अभी आपका इंटरनेट कनेक्शन चेक करता हूँ।	domain=telecom, emotion=empathetic
+call3-149	calling_agent	turn	नमस्कार, मैं आपके बैंक से बोल रहा हूँ। आपके क्रेडिट कार्ड का भुगतान पिछले तीन दिनों से लंबित है।	domain=banking, emotion=serious
+call3-150	calling_agent	turn	बधाई हो! आपके लिए हमारे पास गोवा ट्रिप पर पूरे पचास प्रतिशत की छूट का एक शानदार ऑफर है!	domain=booking, emotion=excited
+call3-151	calling_agent	turn	यह एक रिमाइंडर है कि कल दोपहर दो बजे डेंटिस्ट के साथ आपका अपॉइंटमेंट शेड्यूल किया गया है।	domain=appointment, emotion=professional
+call3-152	calling_agent	turn	अरेरे, बिजली कटौती की वजह से आपको इतनी असुविधा हुई, इसके लिए हमें बेहद खेद है।	domain=utilities, emotion=sad
+call3-153	calling_agent	turn	सर, आपके लिए एक बहुत ही बढ़िया प्लान आया है जिसमें आपको अनलिमिटेड कॉलिंग के साथ रोज़ाना तीन जीबी डेटा मिलेगा!	domain=telecom, emotion=happy
+call3-154	calling_agent	turn	हाँ जी, मैं देख पा रहा हूँ कि आपका पार्सल डिलीवरी पार्टनर के पास है और आज शाम तक आपके घर पहुँच जाएगा।	domain=delivery, emotion=conversational
+call3-155	calling_agent	turn	कृपया ध्यान दें, यदि आज शाम तक बिजली बिल का भुगतान नहीं किया गया, तो कनेक्शन काट दिया जाएगा।	domain=utilities, emotion=serious
+call3-156	calling_agent	turn	नमस्ते, एडुटेक सपोर्ट में आपका स्वागत है। क्या आप ऑनलाइन पोर्टल पर लॉगिन करने में आ रही समस्या के बारे में बता सकते हैं?	domain=education, emotion=professional
+call3-157	calling_agent	turn	प्रिय ग्राहक, आपके बचत खाते का मासिक स्टेटमेंट आपके रजिस्टर्ड ईमेल आईडी पर भेज दिया गया है।	domain=banking, emotion=neutral
+call3-158	calling_agent	turn	क्या आप इस वीकेंड के लिए रिसॉर्ट में रूम बुक करना चाहेंगे? हमारे पास कुछ अच्छे विकल्प खाली हैं।	domain=booking, emotion=conversational
+call3-159	calling_agent	turn	देखिए सर, अगर आप इस तरह की अभद्र भाषा का प्रयोग करेंगे, तो मुझे यह कॉल यहीं समाप्त करनी पड़ेगी।	domain=support, emotion=angry
+call3-160	calling_agent	turn	नमस्ते, आपका पार्सल डिलीवर करने के लिए हमारा एजेंट आपके पते के पास पहुँच चुका है।	domain=delivery, emotion=conversational
+call3-161	calling_agent	turn	सुनिए! अगर आप आज इस कोडिंग कोर्स में एडमिशन लेते हैं, तो आपको सीधे दस हज़ार रुपये की छूट मिलेगी!	domain=education, emotion=excited
+call3-162	calling_agent	turn	मुझे बहुत खेद है कि आपके खाते से पैसे कट गए और ट्रांजेक्शन फेल हो गया। आप बिल्कुल चिंता न करें, यह राशि सुरक्षित है।	domain=banking, emotion=empathetic
+call3-163	calling_agent	turn	कृपया ध्यान दें कि डॉ. वर्मा के साथ आपका अपॉइंटमेंट आज शाम ठीक पांच बजे तय है।	domain=appointment, emotion=neutral
+call3-164	calling_agent	turn	यह आपकी ईएमआई भुगतान के लिए अंतिम चेतावनी है। कृपया कानूनी कार्रवाई से बचने के लिए तुरंत भुगतान करें।	domain=banking, emotion=serious
+call3-165	calling_agent	turn	सर, हमारे नए स्मार्ट सोलर प्लान के साथ आप अपने घर का बिजली बिल आधा कर सकते हैं! क्या मैं इसकी जानकारी दूँ?	domain=utilities, emotion=happy
+call3-166	calling_agent	turn	सर, खराब मौसम के कारण आपकी फ्लाइट रद्द कर दी गई है। हमें आपको यह बताते हुए बेहद दुख हो रहा है।	domain=booking, emotion=sad
+call3-167	calling_agent	turn	आपका प्रीपेड रिचार्ज कल समाप्त होने वाला है। निर्बाध सेवाओं के लिए कृपया आज ही रिचार्ज करें।	domain=telecom, emotion=neutral
+call3-168	calling_agent	turn	मैं समझ सकता हूँ कि परीक्षा के समय पोर्टल न चलने से आपको कितनी परेशानी हो रही है। मैं इसे तुरंत ठीक करवाता हूँ।	domain=education, emotion=empathetic
+call3-169	calling_agent	turn	नमस्कार, क्या आप आगामी छुट्टियों के लिए किसी कस्टमाइज्ड टूर पैकेज की तलाश कर रहे हैं?	domain=booking, emotion=professional
+call3-170	calling_agent	turn	बस एक छोटा सा रिमाइंडर, आपके गैस सिलेंडर की डिलीवरी कल सुबह दस से बारह बजे के बीच होगी।	domain=utilities, emotion=conversational
+call3-171	calling_agent	turn	खुशखबरी सर! आपका ऑर्डर हमारे वेयरहाउस से निकल चुका है और यह उम्मीद से दो दिन पहले ही डिलीवर हो जाएगा।	domain=delivery, emotion=happy
+call3-172	calling_agent	turn	नमस्ते, मैं समझ सकता हूँ कि आपके खाते से पैसे कटने पर आपको परेशानी हो रही है। चिंता न करें, मैं अभी इसकी जाँच करता हूँ।	domain=banking, emotion=empathetic
+call3-173	calling_agent	turn	बधाई हो! आपके नंबर पर एक विशेष ऑफर आया है, जिसमें आपको दोगुना डेटा और अनलिमिटेड कॉलिंग मिल रही है!	domain=telecom, emotion=excited
+call3-174	calling_agent	turn	कृपया ध्यान दें कि आपके बिजली बिल का भुगतान अभी तक नहीं हुआ है। आज ही भुगतान करें ताकि आपकी सेवा बाधित न हो।	domain=utilities, emotion=serious
+call3-175	calling_agent	turn	नमस्कार, यह डेंटिस्ट क्लिनिक से एक रिमाइंडर है। कल दोपहर तीन बजे डॉक्टर शर्मा के साथ आपका अपॉइंटमेंट तय है।	domain=appointment, emotion=professional
+call3-176	calling_agent	turn	देखिए, मैं आपकी मदद करने की कोशिश कर रहा हूँ, लेकिन अगर आप चिल्लाएंगे तो मुझे यह कॉल काटनी पड़ेगी।	domain=support, emotion=angry
+call3-177	calling_agent	turn	नमस्ते! हमारे नए कोडिंग कोर्स में एडमिशन लेने के लिए आपका बहुत-बहुत धन्यवाद। हम आपकी सीखने की यात्रा को बेहतरीन बनाएंगे!	domain=education, emotion=happy
+call3-178	calling_agent	turn	अरे हाँ, मैं बस आपको याद दिलाना चाहता था कि आपकी गोवा की फ्लाइट कल सुबह छह बजे की है। वेब चेक-इन करना मत भूलिएगा!	domain=booking, emotion=conversational
+call3-179	calling_agent	turn	मुझे यह सुनकर बहुत दुख हुआ कि आपके कार्ड से धोखाधड़ी हुई है। मैं तुरंत आपका कार्ड ब्लॉक कर रहा हूँ।	domain=banking, emotion=sad
+call3-180	calling_agent	turn	यह आपके क्रेडिट कार्ड की बकाया राशि के संबंध में एक महत्वपूर्ण कॉल है। आपका भुगतान पिछले बीस दिनों से लंबित है।	domain=banking, emotion=serious
+call3-181	calling_agent	turn	कृपया अपना पंजीकृत मोबाइल नंबर बताएं ताकि मैं आपके एक्टिव प्लान की डिटेल्स चेक कर सकूं।	domain=telecom, emotion=neutral
+call3-182	calling_agent	turn	सर, आपके लिए एक शानदार डील है! अगर आप आज ही होटल बुक करते हैं, तो आपको फ्लैट पचास प्रतिशत की छूट मिलेगी!	domain=booking, emotion=excited
+call3-183	calling_agent	turn	नमस्कार, यह आपके गैस कनेक्शन के वार्षिक निरीक्षण का रिमाइंडर है। हमारे तकनीशियन कल सुबह आपके पते पर आएंगे।	domain=utilities, emotion=professional
+call3-184	calling_agent	turn	मैं पूरी तरह समझ सकता हूँ कि डिलीवरी में देरी के कारण आपको असुविधा हुई है। मैं खुद इस मामले को देख रहा हूँ।	domain=delivery, emotion=empathetic
+call3-185	calling_agent	turn	क्या आप भी अपने बच्चे के लिए एक अच्छा मैथ्स ट्यूटर ढूंढ रहे हैं? हमारे पास कुछ बेहतरीन ऑनलाइन क्लासेस उपलब्ध हैं।	domain=education, emotion=conversational
+call3-186	calling_agent	turn	आपकी टिकट सफलतापूर्वक कैंसिल कर दी गई है। रिफंड राशि आपके बैंक खाते में तीन से पांच दिनों में आ जाएगी।	domain=booking, emotion=neutral
+call3-187	calling_agent	turn	यदि आप आज शाम तक अपने पोस्टपेड बिल का भुगतान नहीं करते हैं, तो आपकी आउटगोइंग सेवाएं बंद कर दी जाएंगी।	domain=telecom, emotion=serious
+call3-188	calling_agent	turn	हेलो, बस याद दिलाने के लिए फोन किया था कि शाम को पांच बजे आपकी डॉक्टर के साथ वीडियो कंसल्टेशन है।	domain=appointment, emotion=conversational
+call3-189	calling_agent	turn	बधाई हो! आप हमारे प्रीमियम लाइफटाइम फ्री क्रेडिट कार्ड के लिए योग्य पाए गए हैं। क्या मैं इसके फायदे बता सकता हूँ?	domain=banking, emotion=happy
+call3-190	calling_agent	turn	हमें बेहद खेद है कि आपका पार्सल रास्ते में क्षतिग्रस्त हो गया। हम इसके लिए आपसे क्षमा चाहते हैं।	domain=delivery, emotion=sad
+call3-191	calling_agent	turn	आपके क्षेत्र में बिजली कटौती ग्रिड में खराबी के कारण हुई है। हमारी टीम इसे ठीक करने के लिए काम कर रही है।	domain=utilities, emotion=professional
+call3-192	calling_agent	turn	नमस्ते, क्या आप अभी जो इंटरनेट प्लान इस्तेमाल कर रहे हैं, उससे खुश हैं? हमारे पास आपके लिए कुछ बेहतर विकल्प हैं।	domain=telecom, emotion=conversational
+call3-193	calling_agent	turn	प्रिय अभिभावक, कृपया ध्यान दें कि कल स्कूल में पैरेंट-टीचर मीटिंग है। आपकी उपस्थिति अत्यंत महत्वपूर्ण है।	domain=education, emotion=professional
+call3-194	calling_agent	turn	मुझे खेद है कि डॉक्टर आज उपलब्ध नहीं हैं। क्या मैं आपका अपॉइंटमेंट कल सुबह के लिए रीशेड्यूल कर दूँ?	domain=appointment, emotion=empathetic
+call3-195	calling_agent	turn	बार-बार चेतावनी देने के बाद भी आपने बिल नहीं भरा है। अब हमारे पास आपका कनेक्शन काटने के अलावा कोई विकल्प नहीं है।	domain=utilities, emotion=angry
+call3-196	calling_agent	turn	आपका वीकेंड ट्रिप प्लान करने के लिए धन्यवाद! हमें खुशी है कि हम आपकी यात्रा को यादगार बनाने में मदद कर पा रहे हैं।	domain=booking, emotion=happy

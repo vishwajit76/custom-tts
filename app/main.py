@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.api import demo, health, speakers, speech, voices, ws
+from app.api import demo, health, lab, speakers, speech, voices, ws
 from app.core.config import settings
 from app.core.limits import BodyLimitMiddleware
 from app.core.logging import setup_logging
@@ -54,7 +54,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="Hindi TTS", version="2.0.0", lifespan=lifespan)
-for r in (health.router, speech.router, voices.router, voices.capabilities_router, speakers.router, ws.router, demo.router):
+for r in (health.router, speech.router, voices.router, voices.capabilities_router, speakers.router, ws.router, demo.router, lab.router):
     app.include_router(r)
 
 

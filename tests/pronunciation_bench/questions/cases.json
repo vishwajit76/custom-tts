@@ -1,0 +1,178 @@
+[
+ {
+  "id": "q-001",
+  "category": "questions",
+  "text": "क्या आपको अपना ऑर्डर समय पर मिल गया था?",
+  "expected_normalized": "क्या आपको अपना ऑर्डर समय पर मिल गया था?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-002",
+  "category": "questions",
+  "text": "क्या मैं आपका नाम और मोबाइल नंबर एक बार दोहरा सकती हूँ?",
+  "expected_normalized": "क्या मैं आपका नाम और मोबाइल नंबर एक बार दोहरा सकती हूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-003",
+  "category": "questions",
+  "text": "क्या आप इसी नंबर पर दोबारा बात करना चाहेंगे?",
+  "expected_normalized": "क्या आप इसी नंबर पर दोबारा बात करना चाहेंगे?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-004",
+  "category": "questions",
+  "text": "क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?",
+  "expected_normalized": "क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-005",
+  "category": "questions",
+  "text": "क्या आपके पास पुरानी रिपोर्ट मौजूद है?",
+  "expected_normalized": "क्या आपके पास पुरानी रिपोर्ट मौजूद है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-006",
+  "category": "questions",
+  "text": "क्या आपका इंटरनेट अब ठीक से चल रहा है?",
+  "expected_normalized": "क्या आपका इंटरनेट अब ठीक से चल रहा है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-007",
+  "category": "questions",
+  "text": "क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?",
+  "expected_normalized": "क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-008",
+  "category": "questions",
+  "text": "क्या आपको नाश्ते के साथ चाय भी चाहिए या सिर्फ़ कॉफ़ी?",
+  "expected_normalized": "क्या आपको नाश्ते के साथ चाय भी चाहिए या सिर्फ़ कॉफ़ी?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-009",
+  "category": "questions",
+  "text": "क्या डिलीवरी के वक़्त घर पर कोई मौजूद रहेगा?",
+  "expected_normalized": "क्या डिलीवरी के वक़्त घर पर कोई मौजूद रहेगा?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-010",
+  "category": "questions",
+  "text": "क्या आप बता सकते हैं कि आपने आख़िरी बार कार्ड कब इस्तेमाल किया था?",
+  "expected_normalized": "क्या आप बता सकते हैं कि आपने आख़िरी बार कार्ड कब इस्तेमाल किया था?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-011",
+  "category": "questions",
+  "text": "ठीक है न, तो मैं इसे आज ही भेज दूँ?",
+  "expected_normalized": "ठीक है न, तो मैं इसे आज ही भेज दूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-012",
+  "category": "questions",
+  "text": "आपका अपॉइंटमेंट किस दिन और किस समय का रखें?",
+  "expected_normalized": "आपका अपॉइंटमेंट किस दिन और किस समय का रखें?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-013",
+  "category": "questions",
+  "text": "आपने यह टिकट कहाँ से बुक किया था?",
+  "expected_normalized": "आपने यह टिकट कहाँ से बुक किया था?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-014",
+  "category": "questions",
+  "text": "आपका बैंक खाता किस शहर की शाखा में है?",
+  "expected_normalized": "आपका बैंक खाता किस शहर की शाखा में है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-015",
+  "category": "questions",
+  "text": "आपको यह परेशानी कब से हो रही है?",
+  "expected_normalized": "आपको यह परेशानी कब से हो रही है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-016",
+  "category": "questions",
+  "text": "आप कितने लोगों के लिए कमरा लेना चाहते हैं?",
+  "expected_normalized": "आप कितने लोगों के लिए कमरा लेना चाहते हैं?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-017",
+  "category": "questions",
+  "text": "डिलीवरी के लिए आपका पूरा पता क्या है?",
+  "expected_normalized": "डिलीवरी के लिए आपका पूरा पता क्या है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-018",
+  "category": "questions",
+  "text": "आपका ऑर्डर किस पते पर भेजा जाना चाहिए था?",
+  "expected_normalized": "आपका ऑर्डर किस पते पर भेजा जाना चाहिए था?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-019",
+  "category": "questions",
+  "text": "इस महीने आपके कार्ड से इतने ज़्यादा पैसे कैसे कट गए?",
+  "expected_normalized": "इस महीने आपके कार्ड से इतने ज़्यादा पैसे कैसे कट गए?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-020",
+  "category": "questions",
+  "text": "मैं आपकी क्या मदद कर सकती हूँ?",
+  "expected_normalized": "मैं आपकी क्या मदद कर सकती हूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-021",
+  "category": "questions",
+  "text": "आपने कितने बजे फ़ोन किया था और किससे बात हुई थी?",
+  "expected_normalized": "आपने कितने बजे फ़ोन किया था और किससे बात हुई थी?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "q-022",
+  "category": "questions",
+  "text": "आप किस वजह से अपनी बुकिंग रद्द करना चाहते हैं?",
+  "expected_normalized": "आप किस वजह से अपनी बुकिंग रद्द करना चाहते हैं?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ }
+]

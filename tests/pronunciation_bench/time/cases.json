@@ -1,0 +1,542 @@
+[
+ {
+  "id": "time-000",
+  "category": "time",
+  "text": "मीटिंग का समय 1:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा एक बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-001",
+  "category": "time",
+  "text": "मीटिंग का समय 1:30 है।",
+  "expected_normalized": "मीटिंग का समय डेढ़ बजे है।",
+  "priority": 1,
+  "important": [
+   "डेढ़"
+  ]
+ },
+ {
+  "id": "time-002",
+  "category": "time",
+  "text": "मीटिंग का समय 1:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने दो बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-003",
+  "category": "time",
+  "text": "मीटिंग का समय 2:00 है।",
+  "expected_normalized": "मीटिंग का समय दो बजे है।",
+  "priority": 2,
+  "important": [
+   "दो"
+  ]
+ },
+ {
+  "id": "time-004",
+  "category": "time",
+  "text": "मीटिंग का समय 2:30 है।",
+  "expected_normalized": "मीटिंग का समय ढाई बजे है।",
+  "priority": 1,
+  "important": [
+   "ढाई"
+  ]
+ },
+ {
+  "id": "time-005",
+  "category": "time",
+  "text": "मीटिंग का समय 2:20 है।",
+  "expected_normalized": "मीटिंग का समय दो बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "दो"
+  ]
+ },
+ {
+  "id": "time-006",
+  "category": "time",
+  "text": "मीटिंग का समय 3:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा तीन बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-007",
+  "category": "time",
+  "text": "मीटिंग का समय 3:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े तीन बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-008",
+  "category": "time",
+  "text": "मीटिंग का समय 3:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने चार बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-009",
+  "category": "time",
+  "text": "मीटिंग का समय 4:00 है।",
+  "expected_normalized": "मीटिंग का समय चार बजे है।",
+  "priority": 2,
+  "important": [
+   "चार"
+  ]
+ },
+ {
+  "id": "time-010",
+  "category": "time",
+  "text": "मीटिंग का समय 4:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े चार बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-011",
+  "category": "time",
+  "text": "मीटिंग का समय 4:20 है।",
+  "expected_normalized": "मीटिंग का समय चार बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "चार"
+  ]
+ },
+ {
+  "id": "time-012",
+  "category": "time",
+  "text": "मीटिंग का समय 5:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा पाँच बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-013",
+  "category": "time",
+  "text": "मीटिंग का समय 5:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े पाँच बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-014",
+  "category": "time",
+  "text": "मीटिंग का समय 5:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने छह बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-015",
+  "category": "time",
+  "text": "मीटिंग का समय 6:00 है।",
+  "expected_normalized": "मीटिंग का समय छह बजे है।",
+  "priority": 2,
+  "important": [
+   "छह"
+  ]
+ },
+ {
+  "id": "time-016",
+  "category": "time",
+  "text": "मीटिंग का समय 6:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े छह बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-017",
+  "category": "time",
+  "text": "मीटिंग का समय 6:20 है।",
+  "expected_normalized": "मीटिंग का समय छह बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "छह"
+  ]
+ },
+ {
+  "id": "time-018",
+  "category": "time",
+  "text": "मीटिंग का समय 7:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा सात बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-019",
+  "category": "time",
+  "text": "मीटिंग का समय 7:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े सात बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-020",
+  "category": "time",
+  "text": "मीटिंग का समय 7:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने आठ बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-021",
+  "category": "time",
+  "text": "मीटिंग का समय 8:00 है।",
+  "expected_normalized": "मीटिंग का समय आठ बजे है।",
+  "priority": 2,
+  "important": [
+   "आठ"
+  ]
+ },
+ {
+  "id": "time-022",
+  "category": "time",
+  "text": "मीटिंग का समय 8:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े आठ बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-023",
+  "category": "time",
+  "text": "मीटिंग का समय 8:20 है।",
+  "expected_normalized": "मीटिंग का समय आठ बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "आठ"
+  ]
+ },
+ {
+  "id": "time-024",
+  "category": "time",
+  "text": "मीटिंग का समय 9:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा नौ बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-025",
+  "category": "time",
+  "text": "मीटिंग का समय 9:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े नौ बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-026",
+  "category": "time",
+  "text": "मीटिंग का समय 9:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने दस बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-027",
+  "category": "time",
+  "text": "मीटिंग का समय 10:00 है।",
+  "expected_normalized": "मीटिंग का समय दस बजे है।",
+  "priority": 2,
+  "important": [
+   "दस"
+  ]
+ },
+ {
+  "id": "time-028",
+  "category": "time",
+  "text": "मीटिंग का समय 10:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े दस बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-029",
+  "category": "time",
+  "text": "मीटिंग का समय 10:20 है।",
+  "expected_normalized": "मीटिंग का समय दस बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "दस"
+  ]
+ },
+ {
+  "id": "time-030",
+  "category": "time",
+  "text": "मीटिंग का समय 11:15 है।",
+  "expected_normalized": "मीटिंग का समय सवा ग्यारह बजे है।",
+  "priority": 2,
+  "important": [
+   "सवा"
+  ]
+ },
+ {
+  "id": "time-031",
+  "category": "time",
+  "text": "मीटिंग का समय 11:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े ग्यारह बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-032",
+  "category": "time",
+  "text": "मीटिंग का समय 11:45 है।",
+  "expected_normalized": "मीटिंग का समय पौने बारह बजे है।",
+  "priority": 2,
+  "important": [
+   "पौने"
+  ]
+ },
+ {
+  "id": "time-033",
+  "category": "time",
+  "text": "मीटिंग का समय 12:00 है।",
+  "expected_normalized": "मीटिंग का समय बारह बजे है।",
+  "priority": 2,
+  "important": [
+   "बारह"
+  ]
+ },
+ {
+  "id": "time-034",
+  "category": "time",
+  "text": "मीटिंग का समय 12:30 है।",
+  "expected_normalized": "मीटिंग का समय साढ़े बारह बजे है।",
+  "priority": 1,
+  "important": [
+   "साढ़े"
+  ]
+ },
+ {
+  "id": "time-035",
+  "category": "time",
+  "text": "मीटिंग का समय 12:20 है।",
+  "expected_normalized": "मीटिंग का समय बारह बजकर बीस मिनट है।",
+  "priority": 2,
+  "important": [
+   "बारह"
+  ]
+ },
+ {
+  "id": "time-036",
+  "category": "time",
+  "text": "कॉल 7:00 AM पर करें।",
+  "expected_normalized": "कॉल सुबह सात बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-037",
+  "category": "time",
+  "text": "कॉल 7:30 AM पर करें।",
+  "expected_normalized": "कॉल सुबह साढ़े सात बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-038",
+  "category": "time",
+  "text": "कॉल 9:00 AM पर करें।",
+  "expected_normalized": "कॉल सुबह नौ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-039",
+  "category": "time",
+  "text": "कॉल 9:30 AM पर करें।",
+  "expected_normalized": "कॉल सुबह साढ़े नौ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-040",
+  "category": "time",
+  "text": "कॉल 10:00 AM पर करें।",
+  "expected_normalized": "कॉल सुबह दस बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-041",
+  "category": "time",
+  "text": "कॉल 10:30 AM पर करें।",
+  "expected_normalized": "कॉल सुबह साढ़े दस बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-042",
+  "category": "time",
+  "text": "कॉल 11:00 AM पर करें।",
+  "expected_normalized": "कॉल सुबह ग्यारह बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-043",
+  "category": "time",
+  "text": "कॉल 11:30 AM पर करें।",
+  "expected_normalized": "कॉल सुबह साढ़े ग्यारह बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "सुबह"
+  ]
+ },
+ {
+  "id": "time-044",
+  "category": "time",
+  "text": "कॉल 5:00 PM पर करें।",
+  "expected_normalized": "कॉल शाम पाँच बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "शाम"
+  ]
+ },
+ {
+  "id": "time-045",
+  "category": "time",
+  "text": "कॉल 5:30 PM पर करें।",
+  "expected_normalized": "कॉल शाम साढ़े पाँच बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "शाम"
+  ]
+ },
+ {
+  "id": "time-046",
+  "category": "time",
+  "text": "कॉल 6:00 PM पर करें।",
+  "expected_normalized": "कॉल शाम छह बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "शाम"
+  ]
+ },
+ {
+  "id": "time-047",
+  "category": "time",
+  "text": "कॉल 6:30 PM पर करें।",
+  "expected_normalized": "कॉल शाम साढ़े छह बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "शाम"
+  ]
+ },
+ {
+  "id": "time-048",
+  "category": "time",
+  "text": "कॉल 8:00 PM पर करें।",
+  "expected_normalized": "कॉल रात आठ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ },
+ {
+  "id": "time-049",
+  "category": "time",
+  "text": "कॉल 8:30 PM पर करें।",
+  "expected_normalized": "कॉल रात साढ़े आठ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ },
+ {
+  "id": "time-050",
+  "category": "time",
+  "text": "कॉल 9:00 PM पर करें।",
+  "expected_normalized": "कॉल रात नौ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ },
+ {
+  "id": "time-051",
+  "category": "time",
+  "text": "कॉल 9:30 PM पर करें।",
+  "expected_normalized": "कॉल रात साढ़े नौ बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ },
+ {
+  "id": "time-052",
+  "category": "time",
+  "text": "कॉल 10:00 PM पर करें।",
+  "expected_normalized": "कॉल रात दस बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ },
+ {
+  "id": "time-053",
+  "category": "time",
+  "text": "कॉल 10:30 PM पर करें।",
+  "expected_normalized": "कॉल रात साढ़े दस बजे पर करें।",
+  "priority": 2,
+  "important": [
+   "रात"
+  ]
+ }
+]

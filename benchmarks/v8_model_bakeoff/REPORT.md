@@ -1,0 +1,147 @@
+# V8 model bake-off: measured results
+
+Host: RTX 3060 Laptop 6 GB (desktop baseline 254.7 MiB VRAM used), i5-11300H, torch 2.6.0+cu124, onnxruntime-gpu 1.23.2 (CUDA EP; 1.30 needs CUDA 13, so pinned). Every torch process calls `set_per_process_memory_fraction(0.95)`; VRAM is NVML (= nvidia-smi) peak, plus torch max_memory_allocated. Spill flag threshold 5.8 GB: **no run spilled** (largest NVML peak 1353 MiB).
+
+Harness: `common.py` (engines, sampler), `single.py`, `concurrency.py`, `asr_cer.py`, `make_report.py`, `run_all.sh`; raw data in `results/*.json`; 10 wavs/engine in `samples/<engine>/`.
+
+## Engines and caveats
+- Piper: `voices/hi_IN-custom-medium.onnx`, `exp/v7/v7a.onnx`, `exp/v7/v7b.onnx` (16-speaker models, speaker id 0 used), via the app's `PiperEngine._run` (same Indian-English marking). CPU (2 threads, 2 parallel slots) and CUDA EP (1 slot).
+- Kokoro: goonj fine-tune `exp/goonj/kokoro_hindi_final.pth`, voice `hi_meera`, fp32 on GPU, app's Hindi espeak phonemizer.
+- **IndicF5** (`ai4bharat/IndicF5`, F5TTS_Base DiT, ~336M; added later, HF token): weights = repo `model.safetensors` with the torch.compile `_orig_mod.` prefix stripped (`exp/indicf5/`), loaded by the same `f5_tts` API, same Hindi ref clip as F5-Hindi. **Must run fp32**: f5_tts's default fp16 produces clipped noise (Whisper hears "झाल" / "कर दो कर दो..."), bf16 crashes the ODE solver (`t must be strictly increasing`). fp32 is ~4x slower, so to keep it quick: `indicf5_nfe16` full 50 rows + concurrency N=1 only (already NOT realtime), `indicf5` (nfe 32) only 10 rows (CER on 2 samples, noisy).
+- F5-Hindi substitute: **SPRINGLab/F5-Hindi-24KHz** (F5TTS_Small arch, 151M, CC-BY-4.0), fp32, nfe_step 32 (and 16 as a variant). Reference clip = that repo's `samples/output1.wav` with its published text (synthetic reference). IndicF5 itself is untested; it is a larger model than this Small checkpoint, so its numbers would be same or slower.
+- MMS (`facebook/mms-tts-hin`, VITS) included as the optional cheap baseline.
+- Corpus: first 50 rows of `bench/corpus/hi_eval_v2.tsv`, all category=hindi (no Hinglish/numbers rows in the speed runs). Text pipeline for all engines: `text_normalizer.normalize` then `split_for_stream`; chunks synthesized sequentially. None of these engines stream audio inside a chunk, so TTFA = time to first finished chunk (first chunk <= 60 chars).
+- Cold = first utterance after load (includes warm-up of kernels). Warm = remaining 49.
+- Not measured: cancellation latency (no cancel path in the harness; with non-preemptive chunks it is bounded by one chunk synth time).
+- CER: Whisper large-v3-turbo fp16 on 10 samples/engine vs corpus text (punctuation and spaces stripped). Rough proxy only: n=10 and VITS sampling noise make +/-0.03 differences meaningless (the same Piper model gives 0.093 to 0.132 between CPU and CUDA runs). MMS is the only clearly worse engine.
+- Concurrency: N agents start simultaneously (worst-case burst), each speaks 4 sentences; a chunk is submitted when it has arrived (0.25 s apart) and the previous chunk is done; one loaded model behind a FIFO queue. TTFA includes queue wait. Underrun = playback clock: next chunk ready after the previous chunk's audio finished. REALTIME = mean end-to-end RTF < 0.80 and no failures. Ladder stopped early when saturated (F5 stopped at N=4/6).
+
+## Single-stream (first 50 rows of hi_eval_v2, all category=hindi; sentence chunks synthesized sequentially)
+
+| engine | provider | load s | cold TTFA s | warm TTFA p50/p95 s | warm RTF | audio s/utt | peak VRAM nvml MiB (torch MiB) | GPU util mean% | CPU% | RSS MiB | errors | spilled | CER (10 samples) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| f5_hindi_nfe16 | torch | 13.31 | 1.68 | 1.8439/2.3806 | 0.6992 | 4.039 | 1308.7 (995.4) | 88.3 | 16.3 | 2541.8 | 0 | no | 0.1097 |
+| f5_hindi_springlab | torch | 12.11 | 1.89 | 1.8376/4.4818 | 0.8952 | 4.039 | 1353.4 (995.4) | 86.9 | 15.0 | 2552.4 | 0 | no | 0.106 |
+| indicf5 | torch | 21.28 | 11.11 | 23.6618/25.6401 | 8.4959 | 4.052 | 2272.7 (1990.2) | 93.9 | 11.9 | 3496.2 | 0 | no | 0.2496 |
+| indicf5_nfe16 | torch | 15.6 | 4.19 | 11.6727/18.3927 | 4.4915 | 4.039 | 2329.4 (1990.2) | 97.9 | 12.3 | 3628.2 | 0 | no | 0.1524 |
+| kokoro_goonj | torch | 6.36 | 0.99 | 0.1322/0.1674 | 0.0365 | 5.605 | 1036.7 (665.1) | 27.0 | 13.9 | 2319.0 | 0 | no | 0.1087 |
+| mms_hin | torch | 7.94 | 0.74 | 0.1089/0.1523 | 0.0341 | 5.346 | 560.7 (221.5) | 21.4 | 12.1 | 1676.6 | 0 | no | 0.1957 |
+| piper_base_cpu | CPU | 1.79 | 0.21 | 0.2495/0.3322 | 0.0751 | 4.46 | 468.0 (0.0) | 0.2 | 24.7 | 747.1 | 0 | no | 0.1007 |
+| piper_base_cuda | CUDA | 2.95 | 0.49 | 0.1665/0.2605 | 0.0631 | 4.453 | 790.7 (0.0) | 17.1 | 12.0 | 1157.6 | 0 | no | 0.1316 |
+| piper_v7a_cpu | CPU | 1.4 | 0.15 | 0.2147/0.305 | 0.061 | 4.617 | 254.7 (0.0) | 0.0 | 24.7 | 778.5 | 0 | no | 0.1141 |
+| piper_v7a_cuda | CUDA | 2.27 | 0.47 | 0.1721/0.2372 | 0.0639 | 4.615 | 1006.0 (0.0) | 16.0 | 12.0 | 1174.0 | 0 | no | 0.0926 |
+| piper_v7b_cpu | CPU | 1.64 | 0.73 | 1.1675/1.5853 | 0.3309 | 4.576 | 254.7 (0.0) | 0.0 | 25.0 | 833.0 | 0 | no | 0.147 |
+| piper_v7b_cuda | CUDA | 2.12 | 0.53 | 0.2016/0.2301 | 0.0726 | 4.56 | 790.7 (0.0) | 25.5 | 12.0 | 1215.0 | 0 | no | 0.1257 |
+
+VRAM baseline with desktop only: 254.7 MiB (nvml total used includes it).
+
+## Concurrency (N agents, 4 sentences each, simultaneous start, one shared model, FIFO queue; text arrives every 0.25 s per chunk)
+
+REALTIME = mean end-to-end RTF < 0.80 and no failed utterance. Gaps = playback-clock underruns.
+
+| engine | N | TTFA p50 | p95 | p99 | RTF compute | RTF e2e mean | queue wait mean/p95 s | underrun utt / total gap s | failed | peak VRAM nvml MiB | GPU% | spilled | REALTIME |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| f5_hindi_nfe16 | 1 | 0.9928 | 1.1058 | 1.11 | 0.3955 | 0.392 | 0.0/0.0 | 0/4 / 0.0 | 0 | 918.7 | 92.8 | no | YES |
+| f5_hindi_nfe16 | 2 | 2.4462 | 2.8285 | 2.8811 | 0.4922 | 0.9386 | 1.1591/1.4659 | 3/8 / 1.16 | 0 | 918.7 | 95.0 | no | NO |
+| f5_hindi_nfe16 | 4 | 6.3607 | 7.2194 | 7.3306 | 0.5781 | 2.098 | 4.2683/5.4505 | 8/16 / 22.71 | 0 | 918.7 | 96.4 | no | NO |
+| f5_hindi_nfe16 | 6 | 9.7165 | 11.2711 | 11.3572 | 0.5987 | 3.0868 | 7.2841/9.5863 | 10/24 / 63.47 | 0 | 918.7 | 96.7 | no | NO |
+| f5_hindi_springlab | 1 | 1.568 | 1.8486 | 1.8722 | 0.6522 | 0.644 | 0.0/0.0 | 0/4 / 0.0 | 0 | 918.7 | 92.7 | no | YES |
+| f5_hindi_springlab | 2 | 3.8908 | 4.2545 | 4.361 | 0.7568 | 1.4433 | 1.782/2.2068 | 4/8 / 5.46 | 0 | 918.7 | 94.6 | no | NO |
+| f5_hindi_springlab | 4 | 10.0634 | 11.3481 | 11.4493 | 0.9323 | 3.3276 | 6.7513/8.7874 | 8/16 / 51.45 | 0 | 918.7 | 96.0 | no | NO |
+| indicf5_nfe16 | 1 | 13.9564 | 15.9591 | 16.1074 | 5.2488 | 5.1858 | 0.0/0.0 | 3/4 / 27.24 | 0 | 1929.1 | 99.1 | no | NO |
+| kokoro_goonj | 1 | 0.121 | 0.143 | 0.145 | 0.036 | 0.0518 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 1034.7 | 30.6 | no | YES |
+| kokoro_goonj | 2 | 0.2321 | 0.2618 | 0.2651 | 0.0307 | 0.0596 | 0.0809/0.1364 | 0/8 / 0.0 | 0 | 1062.7 | 50.9 | no | YES |
+| kokoro_goonj | 4 | 0.4153 | 0.4781 | 0.4812 | 0.0283 | 0.1016 | 0.271/0.3634 | 0/16 / 0.0 | 0 | 1062.7 | 59.3 | no | YES |
+| kokoro_goonj | 6 | 0.5872 | 0.6401 | 0.643 | 0.0265 | 0.1366 | 0.4255/0.539 | 0/24 / 0.0 | 0 | 1064.7 | 65.6 | no | YES |
+| kokoro_goonj | 8 | 0.777 | 0.83 | 0.8653 | 0.0274 | 0.1832 | 0.5807/0.75 | 0/32 / 0.0 | 0 | 1064.7 | 64.1 | no | YES |
+| kokoro_goonj | 12 | 1.1738 | 1.2344 | 1.2536 | 0.0288 | 0.2748 | 0.8796/1.1397 | 1/48 / 0.28 | 0 | 1082.7 | 65 | no | YES |
+| kokoro_goonj | 16 | 1.4555 | 1.6308 | 1.6594 | 0.0275 | 0.3596 | 1.2029/1.533 | 4/64 / 1.17 | 0 | 1082.7 | 72.0 | no | YES |
+| mms_hin | 1 | 0.1052 | 0.1478 | 0.1533 | 0.0406 | 0.0579 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 574.7 | 21.4 | no | YES |
+| mms_hin | 2 | 0.1838 | 0.2119 | 0.2162 | 0.0276 | 0.0532 | 0.051/0.0997 | 0/8 / 0.0 | 0 | 574.7 | 38 | no | YES |
+| mms_hin | 4 | 0.3821 | 0.4102 | 0.4102 | 0.026 | 0.0932 | 0.243/0.3077 | 0/16 / 0.0 | 0 | 576.7 | 54.1 | no | YES |
+| mms_hin | 6 | 0.5392 | 0.5817 | 0.5888 | 0.024 | 0.1238 | 0.3891/0.4878 | 0/24 / 0.0 | 0 | 576.7 | 54.8 | no | YES |
+| mms_hin | 8 | 0.7395 | 0.8194 | 0.8248 | 0.0261 | 0.1757 | 0.5404/0.7239 | 0/32 / 0.0 | 0 | 576.7 | 55.5 | no | YES |
+| mms_hin | 12 | 1.0327 | 1.1359 | 1.1677 | 0.0265 | 0.2556 | 0.7901/1.0487 | 2/48 / 0.97 | 0 | 576.7 | 54.2 | no | YES |
+| mms_hin | 16 | 1.2805 | 1.4554 | 1.5053 | 0.0248 | 0.3255 | 1.0605/1.3711 | 3/64 / 1.69 | 0 | 644.7 | 55.6 | no | YES |
+| piper_base_cpu | 1 | 0.199 | 0.2708 | 0.2767 | 0.0622 | 0.0739 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 2 | 0.2769 | 0.3715 | 0.3803 | 0.0819 | 0.0849 | 0.0001/0.0001 | 0/8 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 4 | 0.5211 | 0.7532 | 0.7762 | 0.089 | 0.1691 | 0.2329/0.4114 | 0/16 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 6 | 0.8234 | 1.0179 | 1.0339 | 0.0881 | 0.2362 | 0.4632/0.677 | 0/24 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 8 | 1.0192 | 1.2298 | 1.2804 | 0.0855 | 0.3027 | 0.6494/0.9315 | 1/32 / 0.26 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 12 | 1.2916 | 1.6332 | 1.6624 | 0.0826 | 0.4185 | 0.9402/1.3406 | 5/48 / 2.75 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cpu | 16 | 1.855 | 2.2913 | 2.3816 | 0.0851 | 0.587 | 1.4296/2.0183 | 7/64 / 6.03 | 0 | 254.7 | 0 | no | YES |
+| piper_base_cuda | 1 | 0.1383 | 0.1419 | 0.1421 | 0.0504 | 0.0683 | 0.0001/0.0002 | 0/4 / 0.0 | 0 | 534.7 | 8.6 | no | YES |
+| piper_base_cuda | 2 | 0.2861 | 0.3396 | 0.342 | 0.0524 | 0.0996 | 0.1299/0.1902 | 0/8 / 0.0 | 0 | 790.7 | 10.7 | no | YES |
+| piper_base_cuda | 4 | 0.5528 | 0.5587 | 0.561 | 0.0464 | 0.166 | 0.3568/0.4201 | 0/16 / 0.0 | 0 | 790.7 | 12 | no | YES |
+| piper_base_cuda | 6 | 0.8718 | 0.9888 | 1.0256 | 0.0506 | 0.2603 | 0.6555/0.8543 | 0/24 / 0.0 | 0 | 790.7 | 22.5 | no | YES |
+| piper_base_cuda | 8 | 1.2259 | 1.362 | 1.3735 | 0.0527 | 0.3536 | 0.9064/1.197 | 1/32 / 0.4 | 0 | 790.7 | 32.3 | no | YES |
+| piper_base_cuda | 12 | 1.6366 | 1.9767 | 1.9837 | 0.0549 | 0.5313 | 1.3361/1.8122 | 6/48 / 4.31 | 0 | 790.7 | 28.9 | no | YES |
+| piper_base_cuda | 16 | 2.2693 | 2.4629 | 2.4763 | 0.0532 | 0.7055 | 1.8643/2.3034 | 10/64 / 9.22 | 0 | 790.7 | 28.5 | no | YES |
+| piper_v7a_cpu | 1 | 0.182 | 0.2598 | 0.2651 | 0.0571 | 0.0703 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 2 | 0.2989 | 0.3782 | 0.3864 | 0.0798 | 0.0841 | 0.0001/0.0001 | 0/8 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 4 | 0.5279 | 0.6407 | 0.6763 | 0.0786 | 0.1465 | 0.2047/0.3852 | 0/16 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 6 | 0.8244 | 0.9137 | 0.9321 | 0.08 | 0.2162 | 0.4433/0.6472 | 0/24 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 8 | 1.001 | 1.21 | 1.2349 | 0.0794 | 0.2871 | 0.6428/0.9306 | 1/32 / 0.32 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 12 | 1.2438 | 1.6109 | 1.6529 | 0.0791 | 0.3985 | 0.9179/1.3375 | 5/48 / 2.68 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cpu | 16 | 1.8421 | 2.2129 | 2.2494 | 0.0836 | 0.5701 | 1.4309/1.9013 | 6/64 / 5.51 | 0 | 254.7 | 0 | no | YES |
+| piper_v7a_cuda | 1 | 0.1494 | 0.1578 | 0.158 | 0.0495 | 0.0672 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 536.7 | 8.9 | no | YES |
+| piper_v7a_cuda | 2 | 0.286 | 0.3308 | 0.3398 | 0.0508 | 0.0971 | 0.1294/0.1758 | 0/8 / 0.0 | 0 | 792.7 | 10.9 | no | YES |
+| piper_v7a_cuda | 4 | 0.5479 | 0.5734 | 0.5834 | 0.0444 | 0.159 | 0.3615/0.4262 | 0/16 / 0.0 | 0 | 792.7 | 12.1 | no | YES |
+| piper_v7a_cuda | 6 | 0.8977 | 0.957 | 0.974 | 0.0479 | 0.2474 | 0.6451/0.8089 | 0/24 / 0.0 | 0 | 792.7 | 27.7 | no | YES |
+| piper_v7a_cuda | 8 | 1.1193 | 1.2833 | 1.3049 | 0.0489 | 0.3276 | 0.8647/1.1215 | 1/32 / 0.13 | 0 | 792.7 | 28.1 | no | YES |
+| piper_v7a_cuda | 12 | 1.6995 | 1.9567 | 1.9708 | 0.0541 | 0.5209 | 1.3692/1.7926 | 6/48 / 4.35 | 0 | 792.7 | 30.6 | no | YES |
+| piper_v7a_cuda | 16 | 2.2987 | 2.5712 | 2.5937 | 0.0531 | 0.7021 | 1.9227/2.4097 | 11/64 / 10.07 | 0 | 792.7 | 32.1 | no | YES |
+| piper_v7b_cpu | 1 | 1.1059 | 1.4797 | 1.4981 | 0.3354 | 0.3358 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7b_cpu | 2 | 1.7681 | 2.2933 | 2.3406 | 0.483 | 0.4834 | 0.0001/0.0002 | 0/8 / 0.0 | 0 | 254.7 | 0 | no | YES |
+| piper_v7b_cpu | 4 | 3.1843 | 3.8899 | 3.9482 | 0.487 | 0.9195 | 1.3555/2.0064 | 4/16 / 2.9 | 0 | 254.7 | 0 | no | NO |
+| piper_v7b_cpu | 6 | 4.9386 | 5.6831 | 5.7137 | 0.5099 | 1.3664 | 2.7377/3.8671 | 6/24 / 14.89 | 0 | 254.7 | 0 | no | NO |
+| piper_v7b_cpu | 8 | 6.445 | 7.9609 | 8.2969 | 0.542 | 1.9149 | 4.1333/5.8389 | 13/32 / 43.96 | 0 | 254.7 | 0 | no | NO |
+| piper_v7b_cpu | 12 | 8.2966 | 10.9982 | 11.4456 | 0.5213 | 2.6422 | 6.0675/9.0249 | 23/48 / 147.93 | 0 | 254.7 | 0 | no | NO |
+| piper_v7b_cpu | 16 | 11.3605 | 13.552 | 14.046 | 0.5081 | 3.4618 | 8.6578/11.9611 | 30/64 / 278.72 | 0 | 254.7 | 0 | no | NO |
+| piper_v7b_cuda | 1 | 0.1925 | 0.2071 | 0.2085 | 0.0696 | 0.08 | 0.0001/0.0001 | 0/4 / 0.0 | 0 | 790.7 | 19.6 | no | YES |
+| piper_v7b_cuda | 2 | 0.3875 | 0.4065 | 0.4088 | 0.0671 | 0.1279 | 0.1767/0.2086 | 0/8 / 0.0 | 0 | 790.7 | 23.5 | no | YES |
+| piper_v7b_cuda | 4 | 0.7587 | 0.7876 | 0.7971 | 0.0626 | 0.2246 | 0.506/0.6005 | 0/16 / 0.0 | 0 | 790.7 | 26.0 | no | YES |
+| piper_v7b_cuda | 6 | 1.1472 | 1.233 | 1.2367 | 0.063 | 0.3275 | 0.8427/1.0191 | 0/24 / 0.0 | 0 | 790.7 | 30.9 | no | YES |
+| piper_v7b_cuda | 8 | 1.5061 | 1.5725 | 1.5798 | 0.0648 | 0.4306 | 1.1331/1.3815 | 1/32 / 0.7 | 0 | 790.7 | 29.5 | no | YES |
+| piper_v7b_cuda | 12 | 2.3312 | 2.4129 | 2.4264 | 0.0694 | 0.6744 | 1.7563/2.2133 | 8/48 / 7.69 | 0 | 790.7 | 29.4 | no | YES |
+| piper_v7b_cuda | 16 | 3.0505 | 3.1787 | 3.2034 | 0.0684 | 0.9015 | 2.4402/2.9724 | 19/64 / 21.83 | 0 | 790.7 | 29.4 | no | NO |
+
+## Scoring (PHASE 4) and recommendation
+
+| criterion | Piper V7 (a / base) | Kokoro goonj | F5-Hindi (SPRINGLab) | IndicF5 (fp32) | MMS |
+|---|---|---|---|---|---|
+| Latency (warm TTFA p50, single) | 0.17-0.21 s | 0.13 s | 1.8 s (nfe32), 1.8 s (nfe16) | 23.7 s (nfe32), 11.7 s (nfe16) | 0.11 s |
+| Concurrency (REALTIME N, no meaningful gaps) | 16 (CPU or CUDA, a few underruns at 12-16) | 16 (4/64 underruns at N=16, TTFA p95 1.6 s) | 1 only (N=2 RTF 0.94-1.44, 3-4/8 utt underrun) | 0 (N=1 RTF 5.2, 3/4 utt underrun) | 16 |
+| VRAM | 0 (CPU) to ~0.8 GB | ~1.06 GB | ~0.92-1.35 GB | ~2.3 GB | ~0.6 GB |
+| Pronunciation CER proxy | 0.09-0.15 (noise) | 0.109 | 0.106-0.110 | 0.152 (nfe16, n=10), 0.25 (nfe32, n=2) | 0.196 |
+| Real-time at N>=2 | yes | yes | no | no | yes |
+
+Findings
+1. F5-Hindi runs on the 3060 with no VRAM problem (about 1 GB) but is compute-bound: warm RTF 0.70 (nfe16) to 0.90 (nfe32) single stream, so one stream only. It fails the PHASE 21 targets (TTFA p50 < 300 ms, RTF < 0.5, 4 streams). Its CER proxy is no better than Piper/Kokoro on these 10 samples; no quality advantage was measured here (MOS/listening not done).
+2. Kokoro goonj is the best fast engine: RTF compute ~0.028 under load, 16 concurrent streams with 0 failures, TTFA p50 0.12 s at N=1, 0.42 s at N=4 (p95 0.48), 0.78 s at N=8 (p95 0.83). The queue is the limiter under a simultaneous burst, not the model. Meets the 4-stream target for p95 < 500 ms; p50 < 300 ms holds up to N=2.
+3. Piper V7 (a, and base) matches Kokoro on throughput. On CPU it needs no GPU at all and is the cheapest fallback; CUDA EP gave no gain over CPU for these small VITS models (CUDA N=4 p50 0.55 s vs CPU 0.52 s). V7b CPU is anomalously slow (RTF 0.33, saturates at N=4); on CUDA it is fine.
+4. Per PHASE 4 ("keep Kokoro as the fast engine if it has significantly better real-time concurrency with acceptable Hindi quality; support both"): **recommended V8 stack = Kokoro (goonj) as the primary real-time engine, Piper V7a as CPU fallback, F5-Hindi as an optional offline/non-real-time quality engine only if a listening test shows a clear naturalness gain.** The data does not support F5 as the real-time base. A decision to make F5/IndicF5 the quality base needs a listening test (MOS) that this bake-off did not run, 
+
+5. IndicF5 (real, now accessible) is strictly worse here than the SPRINGLab F5-Hindi substitute on this GPU: fp16 is broken in the f5_tts loader path, fp32 warm RTF 4.5 (nfe16) to 8.5 (nfe32), TTFA p50 11.7-23.7 s, CER 0.15 vs 0.11. It is an offline-only option at best; it does not change the recommendation.
+
+Failures and limits: IndicF5 needs fp32 (fp16 noise, bf16 crash) and was run on a reduced set; no run errors in any engine; ort-gpu >=1.24 incompatible with torch cu124 (pinned 1.23.2); f5-tts install pulled transformers 5.18 and torchcodec (torchcodec removed again because it broke the transformers ASR pipeline import); no GPU spill observed.
+
+## Gemini judge (automated proxy, not human MOS)
+
+Judge: `gemini-3.1-pro-preview`, scores 1-5 on the bake-off sample wavs. LLM-judge proxy; a listening test (Phase 19) is still required.
+
+| engine | n | naturalness | pronunciation | prosody | tone_match | conversational |
+|---|---|---|---|---|---|---|
+| indicf5_nfe16 | 10 | 4.7 | 5.0 | 4.8 | 5.0 | 4.5 |
+| indicf5 | 2 | 4.0 | 5.0 | 4.5 | 5.0 | 4.0 |
+| f5_hindi_nfe16 | 10 | 4.4 | 4.4 | 4.4 | 4.8 | 4.3 |
+| f5_hindi_springlab | 10 | 4.2 | 4.4 | 4.2 | 4.8 | 4.0 |
+| piper_base_cpu | 7 | 3.86 | 5.0 | 3.86 | 5.0 | 3.86 |
+| piper_base_cuda | 10 | 3.9 | 5.0 | 3.9 | 4.8 | 3.9 |
+| piper_v7b_cuda | 10 | 3.6 | 4.9 | 3.6 | 4.8 | 3.5 |
+| kokoro_goonj | 5 | 3.6 | 5.0 | 3.6 | 4.8 | 3.2 |
+| piper_v7a_cpu | 10 | 3.5 | 5.0 | 3.5 | 4.7 | 3.5 |
+| piper_v7b_cpu | 10 | 3.3 | 5.0 | 3.4 | 4.9 | 3.3 |
+| piper_v7a_cuda | 10 | 3.4 | 5.0 | 3.5 | 4.6 | 3.3 |
+
+Blind pairwise (randomized order) piper_v7a_cpu vs kokoro_goonj: piper_v7a_cpu 3, kokoro_goonj 7, tie 0

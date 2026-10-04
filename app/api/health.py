@@ -1,5 +1,9 @@
-import resource
 import sys
+
+try:
+    import resource
+except ImportError:  # Windows
+    resource = None
 
 import numpy as np
 from fastapi import APIRouter, Depends
@@ -13,6 +17,8 @@ router = APIRouter()
 
 
 def _rss_bytes() -> int:
+    if resource is None:
+        return 0
     try:  # Linux: current RSS
         with open("/proc/self/statm") as f:
             return int(f.read().split()[1]) * resource.getpagesize()

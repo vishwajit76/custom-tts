@@ -204,6 +204,27 @@ details details summary { font-weight: 500; font-size: 13px; color: var(--muted)
     </details>
   </details>
 
+  <section class="card" id="lab" aria-labelledby="hLab">
+    <h2 id="hLab">Pronunciation lab (local)</h2>
+    <label class="field">Preset <select id="labPreset"></select></label>
+    <label class="field">Text <textarea id="labText" lang="hi" rows="3">आज ₹2,500 का पेमेंट 15/08/2025 तक करें।</textarea></label>
+    <div class="row">
+      <label>Voice A <select id="labVoiceA"></select></label>
+      <label>Pipeline A <select id="labModeA"><option value="baseline">baseline (V7)</option><option value="v8">current V8</option></select></label>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="labAB" checked> Compare with B</label>
+      <label>Voice B <select id="labVoiceB"></select></label>
+      <label>Pipeline B <select id="labModeB"><option value="v8" selected>current V8</option><option value="baseline">baseline (V7)</option></select></label>
+      <label>Speed <input type="number" id="labSpeed" value="1" min="0.5" max="2" step="0.1" style="width:4.5em"></label>
+      <button class="btn primary" id="labGo" type="button">Generate</button>
+    </div>
+    <p class="ttsstatus" id="labStatus" role="status"></p>
+    <div id="labOut"></div>
+    <h3>What improved <small id="impStamp"></small></h3>
+    <div id="imp">Loading…</div>
+  </section>
+
   <section class="card tts" aria-labelledby="hTts">
     <h2 id="hTts">TTS only</h2>
     <label class="field">Text to speak (uses the voice, speed and sample rate from Settings)
@@ -959,6 +980,55 @@ document.querySelector('input[name=mode][value=' + S.mode + ']').checked = true;
 showSpeed();
 render();
 boot();
+</script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const j = async (u, o) => { const r = await fetch(u, o); if (!r.ok) throw new Error(r.status + ' ' + await r.text()); return r; };
+  async function init() {
+    try {
+      const d = await (await j('/demo/lab/info')).json();
+      const vo = d.voices.map((v) => `<option value="${esc(v.id)}">${esc(v.name)} (${esc(v.engine)})</option>`).join('');
+      $('labVoiceA').innerHTML = vo; $('labVoiceB').innerHTML = vo;
+      if (d.voices[1]) $('labVoiceB').selectedIndex = 1;
+      $('labPreset').innerHTML = '<option value="">- choose -</option>' + Object.entries(d.presets).map(([c, t]) =>
+        `<optgroup label="${esc(c)}">` + t.map((x) => `<option>${esc(x)}</option>`).join('') + '</optgroup>').join('');
+    } catch (e) { $('labStatus').textContent = 'lab unavailable (loopback only): ' + e.message; }
+  }
+  $('labPreset').onchange = (e) => { if (e.target.value) $('labText').value = e.target.value; };
+  async function one(side) {
+    const mode = $('labMode' + side).value, voice = $('labVoice' + side).value;
+    const r = await j('/demo/lab/speak', {method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({text: $('labText').value, voice, speed: +$('labSpeed').value, mode})});
+    const norm = decodeURIComponent(r.headers.get('X-Normalized') || '');
+    return `<div class="card"><b>${side}: ${esc(voice)} / ${mode}</b><br><code lang="hi">${esc(norm)}</code><br><audio controls autoplay src="${URL.createObjectURL(await r.blob())}"></audio></div>`;
+  }
+  $('labGo').onclick = async () => {
+    $('labStatus').textContent = 'synthesizing...'; $('labOut').innerHTML = '';
+    try {
+      const a = await one('A'); $('labOut').innerHTML = a;
+      if ($('labAB').checked) $('labOut').innerHTML += await one('B');
+      $('labStatus').textContent = '';
+    } catch (e) { $('labStatus').textContent = 'error: ' + e.message; }
+  };
+  const aud = (a) => ['before', 'after'].filter((n) => a[n]).map((n) => `${n} <audio controls preload="none" src="${a[n]}"></audio>`).join(' ');
+  async function improved() {
+    try {
+      const d = await (await j('/demo/lab/improved')).json();
+      $('impStamp').textContent = d.generated ? '(report ' + d.generated + ')' : '';
+      let h = '';
+      for (const [e, v] of Object.entries(d.engines)) if (v.baseline && v.current)
+        h += `<p>${esc(e)}: total ${v.baseline.total} → ${v.current.total}, pronunciation ${v.baseline.pronunciation} → ${v.current.pronunciation}</p>`;
+      const acc = d.experiments.filter((x) => x.decision === 'accepted');
+      h += acc.length ? '<ul>' + acc.map((x) => `<li>#${x.iteration} ${esc(x.test_id)}: ${esc(x.change)} — ${(+x.before).toFixed(3)} → ${(+x.after).toFixed(3)} ${aud(x.audio)}</li>`).join('') + '</ul>'
+        : '<p>No accepted changes yet. The optimizer has not produced anything, or nothing passed its gates.</p>';
+      if (d.commits.length) h += '<details><summary>v8-optimizer commits</summary><pre>' + esc(d.commits.join('\n')) + '</pre></details>';
+      if (d.docs.length) h += '<details><summary>recent docs changes</summary><pre>' + esc(d.docs.join('\n')) + '</pre></details>';
+      $('imp').innerHTML = h;
+    } catch (e) { $('imp').textContent = 'unavailable: ' + e.message; }
+  }
+  init(); improved(); setInterval(improved, 60000);
+})();
 </script>
 </body>
 </html>

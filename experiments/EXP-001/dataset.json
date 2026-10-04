@@ -1,0 +1,18 @@
+{
+ "manifest": "D:\\Github\\custom-tts\\datasets\\manifest",
+ "max_sec": 10.0,
+ "speakers": {
+  "rasa_hi_female": 0,
+  "rasa_hi_male": 1
+ },
+ "sr": 24000,
+ "g2p": "app.services.kokoro_engine.phonemes",
+ "train": {
+  "clips": 84,
+  "hours": 0.1284
+ },
+ "val": {
+  "clips": 4,
+  "hours": 0.0049
+ }
+}

@@ -81,6 +81,8 @@ _NEG_RE = re.compile(r"(?<![\w\d)])-(?=\d)")
 _FRACTION_RE = re.compile(r"(?<![\d/.])(\d{1,2})/(\d{1,2})(?![\d/])")
 _FRACTIONS = {(1, 2): "आधा", (1, 4): "एक चौथाई", (3, 4): "तीन चौथाई"}
 _YEAR_RE = re.compile(r"(?i)((?:सन्|सन|साल|year|since|till|until|in|from)\s+)(1[1-9]\d\d)(?!\d)")
+_HI_MONTH_YEAR_RE = re.compile(  # "26 दिसंबर 1995": a year after a Hindi month is spoken in hundreds
+    r"((?:जनवरी|फ़?रवरी|मार्च|अप्रै?ल|मई|जून|जुलाई|अगस्त|सितंबर|अक्टूबर|नवंबर|दिसंबर)\s+)(1[1-9]\d\d)(?!\d)")
 _EN_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
               "november", "december"]
 _MONTH_ALT = "|".join(_EN_MONTHS) + "|" + "|".join(m[:3] for m in _EN_MONTHS if m != "may") + "|sept"
@@ -106,6 +108,7 @@ _UNIT_RE = re.compile(
     re.IGNORECASE,
 )
 
+_ISO_DATE_RE = re.compile(r"(?<![\d-])(\d{4})-(\d{2})-(\d{2})(?![\d-])")
 _DATE_RE = re.compile(r"\b(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{2,4})\b")
 # Optional trailing am/pm/PM/बजे is consumed so "10:30 बजे" does not double "बजे".
 # 10:30 [pm|बजे], or Indian-style 5.30 only when followed by pm/बजे (else it is a decimal)
@@ -178,6 +181,11 @@ def _date(m: re.Match) -> str:
         return m[0]
     y = int(y) + 2000 if len(y) == 2 else int(y)
     return f"{num_to_words(d)} {_MONTHS[mo - 1]} {_year_words(y)}"
+
+
+def _iso_date(m: re.Match) -> str:
+    out = _date(_DATE_RE.match(f"{m[3]}/{m[2]}/{m[1]}"))
+    return m[0] if "/" in out else out
 
 
 def _currency(m: re.Match) -> str:
@@ -447,6 +455,7 @@ def normalize(text: str, rules: str | None = None) -> str:
     text = _EN_DATE_RE.sub(_en_date, text)
     text = _EN_DATE_US_RE.sub(_en_date_us, text)
     text = _YEAR_RE.sub(_year, text)
+    text = _HI_MONTH_YEAR_RE.sub(_year, text)
     text = _RUPEE_RANGE_RE.sub(_rupee_range, text)
 
     # Currency / amount expressions (before ABBR so "Rs 500" reads the amount first).
@@ -474,6 +483,7 @@ def normalize(text: str, rules: str | None = None) -> str:
         text = re.sub(rf"(?<![\w{_DEV}]){re.escape(k)}(?![\w{_DEV}])", v, text)
 
     # Dates, times, phone numbers, ranges (specific patterns before the generic number pass).
+    text = _ISO_DATE_RE.sub(_iso_date, text)
     text = _DATE_RE.sub(_date, text)
     text = _TIME_RE.sub(_time, text)
     text = _HOUR_AMPM_RE.sub(_hour_ampm, text)

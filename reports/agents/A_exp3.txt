@@ -1,0 +1,6 @@
+[gpu_lock] acquired after 0s
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights:   7%|▋         | 41/587 [00:00<00:01, 282.06it/s]Loading weights:  12%|█▏        | 70/587 [00:00<00:07, 65.64it/s] Loading weights: 100%|██████████| 587/587 [00:00<00:00, 614.09it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'begin_suppress_tokens', 'suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+base | numbers T0.7716 P0.653 | percent T0.8146 P0.644 | time T0.8530 P0.784 | currency T0.7102 P0.622 | dates T0.7256 P0.681 | phone_nu T0.7389 P0.736
+hajar | numbers T0.7649 P0.666 | percent T0.8146 P0.644 | time T0.8530 P0.784 | currency T0.7210 P0.637 | dates T0.7272 P0.695 | phone_nu T0.7389 P0.736

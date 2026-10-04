@@ -1,0 +1,224 @@
+[
+ {
+  "id": "pct-000",
+  "category": "percent",
+  "text": "ब्याज दर 1% है।",
+  "expected_normalized": "ब्याज दर एक प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर एक परसेंट है।"
+  ],
+  "important": [
+   "एक"
+  ]
+ },
+ {
+  "id": "pct-001",
+  "category": "percent",
+  "text": "ब्याज दर 5% है।",
+  "expected_normalized": "ब्याज दर पाँच प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर पाँच परसेंट है।"
+  ],
+  "important": [
+   "पाँच"
+  ]
+ },
+ {
+  "id": "pct-002",
+  "category": "percent",
+  "text": "ब्याज दर 10% है।",
+  "expected_normalized": "ब्याज दर दस प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर दस परसेंट है।"
+  ],
+  "important": [
+   "दस"
+  ]
+ },
+ {
+  "id": "pct-003",
+  "category": "percent",
+  "text": "ब्याज दर 12% है।",
+  "expected_normalized": "ब्याज दर बारह प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर बारह परसेंट है।"
+  ],
+  "important": [
+   "बारह"
+  ]
+ },
+ {
+  "id": "pct-004",
+  "category": "percent",
+  "text": "ब्याज दर 18% है।",
+  "expected_normalized": "ब्याज दर अठारह प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर अठारह परसेंट है।"
+  ],
+  "important": [
+   "अठारह"
+  ]
+ },
+ {
+  "id": "pct-005",
+  "category": "percent",
+  "text": "ब्याज दर 25% है।",
+  "expected_normalized": "ब्याज दर पच्चीस प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर पच्चीस परसेंट है।"
+  ],
+  "important": [
+   "पच्चीस"
+  ]
+ },
+ {
+  "id": "pct-006",
+  "category": "percent",
+  "text": "ब्याज दर 33% है।",
+  "expected_normalized": "ब्याज दर तैंतीस प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर तैंतीस परसेंट है।"
+  ],
+  "important": [
+   "तैंतीस"
+  ]
+ },
+ {
+  "id": "pct-007",
+  "category": "percent",
+  "text": "ब्याज दर 45% है।",
+  "expected_normalized": "ब्याज दर पैंतालीस प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर पैंतालीस परसेंट है।"
+  ],
+  "important": [
+   "पैंतालीस"
+  ]
+ },
+ {
+  "id": "pct-008",
+  "category": "percent",
+  "text": "ब्याज दर 50% है।",
+  "expected_normalized": "ब्याज दर पचास प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर पचास परसेंट है।"
+  ],
+  "important": [
+   "पचास"
+  ]
+ },
+ {
+  "id": "pct-009",
+  "category": "percent",
+  "text": "ब्याज दर 67% है।",
+  "expected_normalized": "ब्याज दर सड़सठ प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर सड़सठ परसेंट है।"
+  ],
+  "important": [
+   "सड़सठ"
+  ]
+ },
+ {
+  "id": "pct-010",
+  "category": "percent",
+  "text": "ब्याज दर 75% है।",
+  "expected_normalized": "ब्याज दर पचहत्तर प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर पचहत्तर परसेंट है।"
+  ],
+  "important": [
+   "पचहत्तर"
+  ]
+ },
+ {
+  "id": "pct-011",
+  "category": "percent",
+  "text": "ब्याज दर 90% है।",
+  "expected_normalized": "ब्याज दर नब्बे प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर नब्बे परसेंट है।"
+  ],
+  "important": [
+   "नब्बे"
+  ]
+ },
+ {
+  "id": "pct-012",
+  "category": "percent",
+  "text": "ब्याज दर 99% है।",
+  "expected_normalized": "ब्याज दर निन्यानवे प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर निन्यानवे परसेंट है।"
+  ],
+  "important": [
+   "निन्यानवे"
+  ]
+ },
+ {
+  "id": "pct-013",
+  "category": "percent",
+  "text": "ब्याज दर 100% है।",
+  "expected_normalized": "ब्याज दर एक सौ प्रतिशत है।",
+  "priority": 2,
+  "alternatives": [
+   "ब्याज दर सौ प्रतिशत है।",
+   "ब्याज दर एक सौ परसेंट है।"
+  ],
+  "important": [
+   "एक सौ"
+  ]
+ },
+ {
+  "id": "pct-014",
+  "category": "percent",
+  "text": "बढ़त 12.5% रही।",
+  "expected_normalized": "बढ़त साढ़े बारह प्रतिशत रही।",
+  "priority": 2,
+  "alternatives": [
+   "बढ़त बारह दशमलव पाँच प्रतिशत रही।"
+  ],
+  "important": [
+   "बारह"
+  ]
+ },
+ {
+  "id": "pct-015",
+  "category": "percent",
+  "text": "बढ़त 7.5% रही।",
+  "expected_normalized": "बढ़त साढ़े सात प्रतिशत रही।",
+  "priority": 2,
+  "alternatives": [
+   "बढ़त सात दशमलव पाँच प्रतिशत रही।"
+  ],
+  "important": [
+   "सात"
+  ]
+ },
+ {
+  "id": "pct-016",
+  "category": "percent",
+  "text": "बढ़त 2.5% रही।",
+  "expected_normalized": "बढ़त साढ़े दो प्रतिशत रही।",
+  "priority": 2,
+  "alternatives": [
+   "बढ़त दो दशमलव पाँच प्रतिशत रही।"
+  ],
+  "important": [
+   "दो"
+  ]
+ }
+]

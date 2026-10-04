@@ -1,0 +1,16 @@
+[gpu_lock] acquired after 2s
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\modules\rnn.py:123: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  warnings.warn(
+D:\Github\custom-tts\.venv-v8\Lib\site-packages\torch\nn\utils\weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights:   2%|▏         | 11/587 [00:00<00:07, 81.02it/s]Loading weights:   3%|▎         | 20/587 [00:00<00:14, 39.77it/s]Loading weights:   5%|▌         | 30/587 [00:00<00:13, 40.84it/s]Loading weights:   7%|▋         | 41/587 [00:00<00:10, 52.01it/s]Loading weights:  57%|█████▋    | 337/587 [00:00<00:00, 681.82it/s]Loading weights: 100%|██████████| 587/587 [00:00<00:00, 620.69it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+base | phone_nu T0.7535 P0.770 | currency T0.7067 P0.599 | dates T0.7576 P0.725
+ph_nocomma | phone_nu T0.8028 P0.752 | currency T0.7067 P0.599 | dates T0.7576 P0.725
+ph_3 | phone_nu T0.7515 P0.768 | currency T0.7067 P0.599 | dates T0.7576 P0.725
+ph_2 | phone_nu T0.7565 P0.786 | currency T0.7067 P0.599 | dates T0.7576 P0.725
+ph_4 | phone_nu T0.7440 P0.747 | currency T0.7067 P0.599 | dates T0.7576 P0.725
+hajar | phone_nu T0.7535 P0.770 | currency T0.7145 P0.605 | dates T0.7740 P0.734
+rupe | phone_nu T0.7535 P0.770 | currency T0.7024 P0.588 | dates T0.7576 P0.725
+date_comma | phone_nu T0.7535 P0.770 | currency T0.7067 P0.599 | dates T0.7345 P0.719

@@ -1,0 +1,1092 @@
+{
+ "label": "automated proxy, not human MOS",
+ "judge_model": "gemini-3.1-pro-preview",
+ "per_engine": {
+  "f5_hindi_nfe16": {
+   "naturalness": 4.4,
+   "pronunciation": 4.4,
+   "prosody": 4.4,
+   "tone_match": 4.8,
+   "conversational": 4.3,
+   "n": 10
+  },
+  "f5_hindi_springlab": {
+   "naturalness": 4.2,
+   "pronunciation": 4.4,
+   "prosody": 4.2,
+   "tone_match": 4.8,
+   "conversational": 4.0,
+   "n": 10
+  },
+  "indicf5": {
+   "naturalness": 4.0,
+   "pronunciation": 5.0,
+   "prosody": 4.5,
+   "tone_match": 5.0,
+   "conversational": 4.0,
+   "n": 2
+  },
+  "indicf5_nfe16": {
+   "naturalness": 4.7,
+   "pronunciation": 5.0,
+   "prosody": 4.8,
+   "tone_match": 5.0,
+   "conversational": 4.5,
+   "n": 10
+  },
+  "kokoro_goonj": {
+   "naturalness": 3.6,
+   "pronunciation": 5.0,
+   "prosody": 3.6,
+   "tone_match": 4.8,
+   "conversational": 3.2,
+   "n": 5
+  },
+  "piper_base_cpu": {
+   "naturalness": 3.86,
+   "pronunciation": 5.0,
+   "prosody": 3.86,
+   "tone_match": 5.0,
+   "conversational": 3.86,
+   "n": 7
+  },
+  "piper_base_cuda": {
+   "naturalness": 3.9,
+   "pronunciation": 5.0,
+   "prosody": 3.9,
+   "tone_match": 4.8,
+   "conversational": 3.9,
+   "n": 10
+  },
+  "piper_v7a_cpu": {
+   "naturalness": 3.5,
+   "pronunciation": 5.0,
+   "prosody": 3.5,
+   "tone_match": 4.7,
+   "conversational": 3.5,
+   "n": 10
+  },
+  "piper_v7a_cuda": {
+   "naturalness": 3.4,
+   "pronunciation": 5.0,
+   "prosody": 3.5,
+   "tone_match": 4.6,
+   "conversational": 3.3,
+   "n": 10
+  },
+  "piper_v7b_cpu": {
+   "naturalness": 3.3,
+   "pronunciation": 5.0,
+   "prosody": 3.4,
+   "tone_match": 4.9,
+   "conversational": 3.3,
+   "n": 10
+  },
+  "piper_v7b_cuda": {
+   "naturalness": 3.6,
+   "pronunciation": 4.9,
+   "prosody": 3.6,
+   "tone_match": 4.8,
+   "conversational": 3.5,
+   "n": 10
+  }
+ },
+ "per_clip": {
+  "f5_hindi_nfe16": {
+   "hi-001": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-006": {
+    "naturalness": 2.0,
+    "pronunciation": 1.0,
+    "prosody": 2.0,
+    "tone_match": 3.0,
+    "conversational": 2.0,
+    "issues": [
+     "missing word 'शाखा'",
+     "missing word 'है'",
+     "audio cut off"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-016": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-026": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-031": {
+    "naturalness": 4.0,
+    "pronunciation": 3.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "Missing words 'जी हाँ'"
+    ]
+   },
+   "hi-036": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   }
+  },
+  "f5_hindi_springlab": {
+   "hi-001": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "flat intonation"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 3.0,
+    "pronunciation": 2.0,
+    "prosody": 3.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "Truncated word 'शाखा' to 'शा'"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-016": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-026": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "unnatural phrasing"
+    ]
+   },
+   "hi-031": {
+    "naturalness": 4.0,
+    "pronunciation": 2.0,
+    "prosody": 4.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "Missing 'जी हाँ' at the beginning"
+    ]
+   },
+   "hi-036": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-046": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   }
+  },
+  "indicf5": {
+   "hi-001": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-006": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   }
+  },
+  "indicf5_nfe16": {
+   "hi-001": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-006": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "slightly robotic",
+     "monotone"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-016": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-026": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-031": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-036": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-046": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   }
+  },
+  "kokoro_goonj": {
+   "hi-001": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic",
+     "unnatural pauses",
+     "stiff prosody"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-016": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic sounding",
+     "unnatural pauses"
+    ]
+   },
+   "hi-021": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   }
+  },
+  "piper_base_cpu": {
+   "hi-016": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic cadence",
+     "slightly synthetic voice"
+    ]
+   },
+   "hi-026": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "unnatural pacing"
+    ]
+   },
+   "hi-031": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-036": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-041": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-046": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   }
+  },
+  "piper_base_cuda": {
+   "hi-001": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-006": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-011": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-016": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "flat intonation"
+    ]
+   },
+   "hi-021": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-026": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-031": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic",
+     "flat intonation"
+    ]
+   },
+   "hi-036": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic",
+     "unnatural pauses"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slight robotic tone",
+     "abrupt ending"
+    ]
+   }
+  },
+  "piper_v7a_cpu": {
+   "hi-001": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "mechanical prosody"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-016": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 5.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "mechanical transitions",
+     "flat intonation"
+    ]
+   },
+   "hi-026": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic",
+     "unnatural pauses"
+    ]
+   },
+   "hi-031": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-036": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "flat intonation",
+     "unnatural pauses"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic timbre",
+     "stiff phrasing"
+    ]
+   }
+  },
+  "piper_v7a_cuda": {
+   "hi-001": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "unnatural prosody"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 4.0,
+    "conversational": 3.0,
+    "issues": [
+     "synthetic voice",
+     "flat intonation"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice"
+    ]
+   },
+   "hi-016": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-026": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "lacks natural inflection"
+    ]
+   },
+   "hi-031": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic prosody"
+    ]
+   },
+   "hi-036": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic",
+     "flat prosody"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slight roboticness"
+    ]
+   }
+  },
+  "piper_v7b_cpu": {
+   "hi-001": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic",
+     "flat intonation"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "unnatural phrasing"
+    ]
+   },
+   "hi-011": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly synthetic"
+    ]
+   },
+   "hi-016": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic",
+     "flat intonation"
+    ]
+   },
+   "hi-026": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-031": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic",
+     "stiff prosody"
+    ]
+   },
+   "hi-036": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   },
+   "hi-041": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "slightly robotic",
+     "flat intonation"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "rushed pacing",
+     "flat intonation"
+    ]
+   }
+  },
+  "piper_v7b_cuda": {
+   "hi-001": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "slightly robotic",
+     "sounds like an automated system"
+    ]
+   },
+   "hi-006": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-011": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly synthetic"
+    ]
+   },
+   "hi-016": {
+    "naturalness": 5.0,
+    "pronunciation": 5.0,
+    "prosody": 5.0,
+    "tone_match": 5.0,
+    "conversational": 5.0,
+    "issues": []
+   },
+   "hi-021": {
+    "naturalness": 3.0,
+    "pronunciation": 5.0,
+    "prosody": 3.0,
+    "tone_match": 5.0,
+    "conversational": 3.0,
+    "issues": [
+     "robotic voice",
+     "stiff prosody"
+    ]
+   },
+   "hi-026": {
+    "naturalness": 2.0,
+    "pronunciation": 4.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "choppy prosody",
+     "unnatural phrasing"
+    ]
+   },
+   "hi-031": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-036": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": []
+   },
+   "hi-041": {
+    "naturalness": 2.0,
+    "pronunciation": 5.0,
+    "prosody": 2.0,
+    "tone_match": 4.0,
+    "conversational": 2.0,
+    "issues": [
+     "robotic voice",
+     "unnatural pauses",
+     "flat intonation"
+    ]
+   },
+   "hi-046": {
+    "naturalness": 4.0,
+    "pronunciation": 5.0,
+    "prosody": 4.0,
+    "tone_match": 5.0,
+    "conversational": 4.0,
+    "issues": [
+     "slightly robotic"
+    ]
+   }
+  }
+ },
+ "pairwise": {
+  "A": "piper_v7a_cpu",
+  "B": "kokoro_goonj",
+  "results": {
+   "hi-001": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 1 sounds much more natural and human-like with better prosody and intonation. Clip 2 has a slightly robotic and flat quality to it.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-006": {
+    "winner": "piper_v7a_cpu",
+    "reason": "Clip 2 sounds much more natural and has better prosody, whereas Clip 1 sounds robotic and choppy.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-011": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 2 sounds much more natural and human-like. The prosody and intonation are appropriate for a neutral statement, whereas Clip 1 sounds very robotic and synthesized with flat intonation.",
+    "order": [
+     "piper_v7a_cpu",
+     "kokoro_goonj"
+    ]
+   },
+   "hi-016": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 2 sounds much more natural and has better prosody. Clip 1 sounds robotic and mispronounces 'में' (mein) as 'ने' (ne), which makes the grammar incorrect.",
+    "order": [
+     "piper_v7a_cpu",
+     "kokoro_goonj"
+    ]
+   },
+   "hi-021": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 1 sounds much more natural and human-like, with better prosody and a clear, pleasant tone. Clip 2 sounds robotic and flat.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-026": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 2 sounds much more natural and fluent. Clip 1 has a robotic and choppy quality, with slightly unnatural pronunciation of some words.",
+    "order": [
+     "piper_v7a_cpu",
+     "kokoro_goonj"
+    ]
+   },
+   "hi-031": {
+    "winner": "piper_v7a_cpu",
+    "reason": "Clip 2 sounds significantly more natural and human-like, with better prosody and flow. Clip 1 sounds very robotic and disjointed.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-036": {
+    "winner": "piper_v7a_cpu",
+    "reason": "Clip 2 has much better prosody and sounds significantly more natural and conversational than Clip 1, which sounds robotic and choppy.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-041": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 1 sounds much more natural and has better prosody. Clip 2 has a very robotic, choppy voice quality that sounds like an older generation TTS system.",
+    "order": [
+     "kokoro_goonj",
+     "piper_v7a_cpu"
+    ]
+   },
+   "hi-046": {
+    "winner": "kokoro_goonj",
+    "reason": "Clip 2 sounds much more natural and human-like, with better prosody and intonation compared to the robotic and synthetic sound of Clip 1.",
+    "order": [
+     "piper_v7a_cpu",
+     "kokoro_goonj"
+    ]
+   }
+  }
+ },
+ "usage": {
+  "in": 25345,
+  "out": 33075,
+  "usd": 0.4475899999999998,
+  "calls": 104
+ }
+}

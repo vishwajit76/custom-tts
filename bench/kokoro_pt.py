@@ -5,6 +5,7 @@ path (tts.stream: normalize, chunking, trim, PCM16) is identical; only the acous
 config.json and voices/*.pt ([510, 1, 256] packs). Needs the `kokoro` package (installed --no-deps: its pipeline imports misaki,
 which we don't use, so the package __init__ is bypassed).
 """
+from optimizer import g2p
 import pathlib
 import sys
 import types
@@ -45,7 +46,7 @@ class KokoroPTEngine(kokoro_engine.KokoroEngine):
                  "gender": "male" if v.split("_")[-1] in {"atul", "ravi", "aman", "arjun", "dev", "kabir", "sameer"} else "female", "name": f"goonj {v.split(':')[1]}"} for v in self._styles]
 
     def synth(self, text: str, voice: str, speed: float, ref=None, ref_text=None) -> np.ndarray:
-        ps = kokoro_engine.phonemes(text)
+        ps = g2p.fix(text, kokoro_engine.phonemes(text))  # measured goonj G2P fixes (optimizer/g2p_fixes.json)
         n = sum(c in self.model.vocab for c in ps)
         if not n:
             return np.zeros(0, np.float32)

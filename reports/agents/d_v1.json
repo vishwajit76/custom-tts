@@ -1,0 +1,146 @@
+{
+"kripaya_a": {
+"words": {
+"कृपया": "kɾˈɪpəjaː"
+}
+},
+"kripaya_b": {
+"words": {
+"कृपया": "kɾˈɪpˌʌjaː"
+}
+},
+"kripaya_c": {
+"words": {
+"कृपया": "kɾˈɪpaːjaː"
+}
+},
+"sadhe_a": {
+"patterns": [
+[
+"r\\.h",
+"ɽ"
+]
+]
+},
+"sadhe_b": {
+"patterns": [
+[
+"r\\.h",
+"ɖʰ"
+]
+]
+},
+"final_ii": {
+"patterns": [
+[
+"(?<=ə)ˌi(?=[ ,.?!;:]|$)",
+"ˌiː"
+]
+]
+},
+"mumbai_a": {
+"words": {
+"मुंबई": "mˈʊmbəiː"
+}
+},
+"mumbai_b": {
+"words": {
+"मुंबई": "mˈũbəˌiː"
+}
+},
+"lakhnau_a": {
+"words": {
+"लखनऊ": "lˈʌkʰnəuː"
+}
+},
+"lakhnau_b": {
+"words": {
+"लखनऊ": "lˈʌkʰnˈʌʊ"
+}
+},
+"jaipur_a": {
+"words": {
+"जयपुर": "ɟəjpˈʊɾ"
+}
+},
+"jaipur_b": {
+"words": {
+"जयपुर": "ɟˈʌjəpʊɾ"
+}
+},
+"indore_a": {
+"words": {
+"इंदौर": "ˈɪndɔːɾ"
+}
+},
+"indore_b": {
+"words": {
+"इंदौर": "ɪndˈəuɾ"
+}
+},
+"chennai_a": {
+"words": {
+"चेन्नई": "cˈeːnnəiː"
+}
+},
+"chennai_b": {
+"words": {
+"चेन्नई": "cˈeːnəˌiː"
+}
+},
+"patna": {
+"words": {
+"पटना": "pəʈˈnaː"
+}
+},
+"ahmedabad": {
+"words": {
+"अहमदाबाद": "ˌʌhməˈdaːbaːd"
+}
+},
+"haan_a": {
+"words": {
+"हाँ": "hˈãː"
+}
+},
+"haan_b": {
+"words": {
+"हाँ": "hˈaːũ"
+}
+},
+"batti": {
+"words": {
+"बत्ती": "bˈʌttiː"
+}
+},
+"saat": {
+"words": {
+"सात": "sˈaːtə"
+}
+},
+"nau_a": {
+"words": {
+"नौ": "nˈɔu"
+}
+},
+"nau_b": {
+"words": {
+"नौ": "nˈəu"
+}
+},
+"kshitij": {
+"words": {
+"क्षितिज": "kʂˈɪtɪɟ"
+}
+},
+"drishti": {
+"words": {
+"दृष्टिकोण": "dɾˈɪʂʈɪkoːɳ"
+}
+},
+"jyotsna": {
+"words": {
+"ज्योत्स्ना": "ɟjˈoːtsˈnaː"
+}
+}
+}

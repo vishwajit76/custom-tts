@@ -1,0 +1,17 @@
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights:   3%|▎         | 17/587 [00:00<00:04, 140.16it/s]Loading weights:   5%|▌         | 32/587 [00:00<00:05, 103.56it/s]Loading weights:   8%|▊         | 47/587 [00:00<00:04, 119.23it/s]Loading weights:  10%|█         | 60/587 [00:00<00:06, 85.23it/s] Loading weights:  12%|█▏        | 70/587 [00:00<00:05, 87.61it/s]Loading weights:  16%|█▋        | 96/587 [00:00<00:05, 97.22it/s]Loading weights:  18%|█▊        | 107/587 [00:01<00:05, 91.79it/s]Loading weights:  20%|█▉        | 117/587 [00:01<00:05, 82.86it/s]Loading weights:  21%|██▏       | 126/587 [00:01<00:06, 67.69it/s]Loading weights: 100%|██████████| 587/587 [00:01<00:00, 383.28it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'begin_suppress_tokens', 'suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+f5_hindi_nfe16 0.1097 10
+[transformers] You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+f5_hindi_springlab 0.106 10
+indicf5 0.2496 2
+indicf5_nfe16 0.1524 10
+kokoro_goonj 0.1087 10
+mms_hin 0.1957 10
+piper_base_cpu 0.1007 10
+piper_base_cuda 0.1316 10
+piper_v7a_cpu 0.1141 10
+piper_v7a_cuda 0.0926 10
+piper_v7b_cpu 0.147 10
+piper_v7b_cuda 0.1257 10
+max_alloc_mib 1755.5009765625

@@ -1,0 +1,84 @@
+f000.wav|ˈʌɾeː, tˌʊm ˈaː ɡˈʌeː, mɛ̃ tˈoː kˈʌb seː ˌĩtzˈaːɾ kˈʌɾ ɾˌəhi tʰi|0
+f001.wav|ˈaːɟ mˈɛ̃neː sˈʊbəh ɟˈʌldi ˈʊʈʰəkˌəɾ tʰˈoːr.i dˈeːɾ ʈˈʌhəlnaː ʃˈʊɾuː kˈɪjaː hɛː|0
+f002.wav|cˈʌloː, pˈʌhəlˌeː cˈaːj pˈi lˈeːteː hɛ̃, pʰˈɪɾ bˈaːt kəɾˈẽːɡeː|0
+f003.wav|mˌʊɟʰeː lˈʌɡtˌaː hɛː kˈɪ hˈʌmẽː tʰˈoːr.aː ɔːɾ sˈʌbɾə ɾˈʌkʰnˌaː cˈaːhɪˌeː|0
+f004.wav|ʈʰˈiːk hɛː, mɛ̃ kˈʌl ʃˈaːm tˌək ˌaːpkˌoː ɟəʋˈaːb dˈeː dˈũnɡi|0
+f005.wav|mˈã nˈeː ɾəsˈoːi mẽː ɡˈʌɾəm ɡˈʌɾəm pəɾˈaːʈʰeː bənˈaːeː hɛ̃|0
+f006.wav|bˈaːhəɾ bˈʌhʊt tˈeːz bˈaːɾɪʃ hoː ɾˌəhi hɛː, cʰˈaːtaː zəɾˈuːɾ lˈeː ɟˈaːnaː|0
+f007.wav|ˌaːpkˌi mˈʌdəd keː lˈɪeː bˈʌhʊt bˈʌhʊt ʃˈʊkɾɪjˌaː|0
+f008.wav|kˈʌl ɾˈaːt mˌʊɟʰeː bˈɪlkʊl nˈĩd nˈʌhĩ ˈaːi|0
+f010.wav|ˈʌbʰi tʰˈoːr.i dˈeːɾ pˈʌhəlˌeː hˈi mˌeːɾi ˈʊnsˌeː fˈoːn pˈʌɾ bˈaːt hˈʊi tʰi|0
+f011.wav|dˈaːdi hˈʌɾ ʃˈaːm ˈaːnɡən mẽː bˈɛːʈʰəkˌəɾ kəhˈaːnɪjˌã sʊnˈaːjaː kˈʌɾtˌi tʰĩ|0
+f012.wav|mˌʊɟʰeː jˌəh ɡˈaːnaː bˈʌcəpˌən seː hˈi bˈʌhʊt pəsˈʌnd hɛː|0
+f013.wav|ɡˈãnʋ keː kɪnˈaːɾeː ˈeːk pʊɾˈaːni nˈʌdi bˈʌhətˌi tʰi, ɟˈɪskˌeː pˈaːs hˈʌɾ sˈʊbəh bˈʌcːeː kʰˈeːlnˌeː ˈaːjaː kˈʌɾtˌeː tʰeː, ɔːɾ ʃˈaːm hˈoːteː hˈi pˈuːɾaː ɪlˈaːkaː pˈʌkʃɪjˌõ ki aːʋˈaːz seː ɡˈũnɟ ˈʊʈʰtˌaː tʰaː|0
+f014.wav|ɟˈʌb ʋˌəh pˈʌhəlˌi bˈaːɾ ʃˈʌhəɾ ˈaːjaː, tˈoː ˈunci ɪmˈaːɾtˌõ ɔːɾ bʰˈaːɡtˌi hˈʊi ɡˈaːr.ɪjˌõ koː dˈeːkʰəkˌəɾ hɛːɾˈaːn ɾˈʌh ɡˈʌjaː, lˈeːkɪn dʰˈiːɾeː dʰˈiːɾeː ˈʊseː jˈʌhã ki zˈĩdɡˌi ki ˈaːdət hoː ɡˈʌi|0
+f015.wav|bˈʌɾsˌõ pˈʌhəlˌeː ˈɪs mˈʌndɪɾ keː ˌaːspˈaːs sˈɪrf kʰˈeːt hˈʊaː kˈʌɾtˌeː tʰeː, ˈaːɟ jˈʌhã hˈʌɾ ɾˌəʋɪʋˈaːɾ dˈuːɾ dˈuːɾ seː ˈaːeː hˈʊeː lˈoːɡõ ki bʰˈiːr. lˈʌɡi ɾˈʌhətˌi hɛː|0
+f016.wav|kˈɪsi bʰˈi bʰˈaːʂaː koː sˈiːkʰnˌeː keː lˈɪeː sˈʌbsˌeː zəɾˈuːɾi cˈiːz hɛː ɾˈoːz tʰˈoːr.aː tʰˈoːr.aː ʌbʰjˈaːs kˈʌɾnˌaː, kːjˈõkɪ ˈeːk dˈɪn mẽː sˈʌb kˈʊcʰ nˈʌhĩ sˈiːkʰaː ɟˈaː sˈʌktˌaː|0
+f017.wav|sˈʌɾdɪjˌõ ki ˈʊs sˈʊbəh ɟˈʌb hˌəm pəhˈaːr. ki cˈoːʈi pˈʌɾ pəhˈũnceː, tˈoː sˈaːmnˌeː pʰˈɛːli bˈʌrf ki cˈaːdəɾ sˈuːɾəɟ ki ɾˈoːʃnˌi mẽː sˈoːneː ki tˈʌɾəh cˈʌmək ɾˌəhi tʰi|0
+f018.wav|ˈʊsnˌeː ˈʌpnˌi pˈuːɾi zˈĩdɡˌi dˈuːsɾˌõ ki sˈeːʋaː mẽː lˈʌɡaː dˈi, pʰˈɪɾ bʰˈi kˈʌbʰi kˈɪsi seː kˈʊcʰ pˈaːneː ki ʊmmˈiːd nˈʌhĩ ki|0
+f019.wav|həmˌaːɾeː dˈeːʃ mẽː tːjoːhˈaːɾõ kaː bˈʌhʊt məhˈʌtːʋ hɛː, kːjˈõkɪ jeː nˈə sˈɪrf kʰˈʊʃɪjˌã lˈaːteː hɛ̃ bˈʌlkɪ sˈʌb lˈoːɡõ koː ˈeːk dˈuːsɾˌeː keː qəɾˈiːb bʰˈi lˈaːteː hɛ̃|0
+f021.wav|ˌʌɡəɾ hˌəm sˈʌb mˈɪləkˌəɾ tʰˈoːr.i tʰˈoːr.i kˈoːʃɪʃ kˈʌɾẽː, tˈoː ˈʌpnˌeː moːhˈʌlleː koː sˈaːf ɔːɾ sˈũdəɾ bənˈaːnaː kˈoːi mˈʊʃkɪl kˈaːm nˈʌhĩ hɛː|0
+f022.wav|kɪsˈaːn sˈʊbəh seː ʃˈaːm tˌək kʰˈeːt mẽː pəsˈiːnaː bəhˈaːtaː hɛː, tˈʌb ɟˈaːkəɾ kˈʌhĩ həmˌaːɾi tʰˈaːli mẽː ɾˈoːʈi pəhˈũncətˌi hɛː|0
+f023.wav|ɾˈaːt keː sənnˈaːʈeː mẽː dˈuːɾ kˈʌhĩ seː ˈaːti hˈʊi bˈãnsʊɾˌi ki mˈʌdʰʊɾ dʰˈʊn mˈʌn koː ʌɟˈiːb sˈi ʃˈãtɪ dˈeː ɾˌəhi tʰi|0
+f024.wav|sˈʌmˌɛj keː sˈaːtʰ bˈʌhʊt kˈʊcʰ bˈʌdəl ɟˈaːtaː hɛː, pˈʌɾ mˈã ki mˈʌmtˌaː ɔːɾ ɡʰˈʌɾ ki mˈɪʈʈi ki mˈʌhək həmˈeːʃaː ʋˈɛːsi hˈi ɾˈʌhətˌi hɛː|0
+f025.wav|bˈʌcːõ koː sˈɪrf kɪtˈaːbẽː ɾəʈˈaːneː keː bəɟˈaːj ˌʌɡəɾ ˈʊnhẽː səʋˈaːl pˈuːcʰnˌaː sɪkʰˈaːjaː ɟˈaːeː, tˈoː ˌʊnkˌi sˈoːcnˌeː ki tˈaːqət kˈʌhĩ zjˈaːdaː bˈʌr.h ɟˈaːti hɛː|0
+f026.wav|mˌeːɾi bˈʌhən ki ʃˈaːdi pˈʌndɾəh fˈʌɾəʋɾi koː hɛː, ɔːɾ ˌʊskˌeː lˈɪeː hˈʌmẽː tˈiːn dˈɪn pˈʌhəlˌeː hˈi ɡʰˈʌɾ pəhˈũncənˌaː hˈoːɡaː|0
+f027.wav|ˈɪs kɪtˈaːb ki qˈiːmət dˈoː sˈɔː pəcˈaːs ɾˈʊpjˌeː hɛː, lˈeːkɪn dˌʊkaːndˈaːɾ nˈeː mˌʊɟʰeː ˈɪseː ˈeːk sˈɔː ˈʌssi ɾˈʊpjˌeː mẽː dˈeː dˈɪjaː|0
+f028.wav|həmˌaːɾi ʈɾˈeːn sˈʊbəh pˈãnc bˈʌɟəkˌəɾ caːlˈiːs mˈɪnəʈ pˈʌɾ cəlˈeːɡi, ˈɪslˌɪeː hˈʌmẽː cˈaːɾ bˈʌɟeː tˌək sʈˈeːʃən pəhˈũncənˌaː hˈoːɡaː|0
+f029.wav|ˌʊskˌaː ɟˈʌnm ʊnnˈiːs sˈɔː ʌʈʰˈaːsi mẽː ˈeːk cʰˈoːʈeː seː ɡˈãnʋ mẽː hˈʊaː tʰaː|0
+f030.wav|ˈaːɟ kaː tˌaːpmˈaːn ˌʌʈʰʈʰaːˈiːs ɖˈɪɡɾi hɛː, ɔːɾ ʃˈaːm tˌək bˈaːɾɪʃ hˈoːneː ki səmbʰˈaːʋnˌaː sˈʌtːəɾ pɾˈʌtɪʃˌət hɛː|0
+f031.wav|ˈɪs kˈʌmɾˌeː kaː kɪɾˈaːjaː hˈʌɾ məhˈiːneː ˈaːʈʰ həzˈaːɾ pˈãnc sˈɔː ɾˈʊpjˌeː hɛː, ɔːɾ bˈɪɟlˌi kaː bˈɪl ˈʌləɡ seː dˈeːnaː hˈoːɡaː|0
+f032.wav|mɛːɾˈaːtʰən mẽː kˈʊl tˈiːn həzˈaːɾ dˈoː sˈɔː dʰˈaːʋkˌõ nˈeː hˈɪssaː lˈɪjaː, ɟˈɪnmˌẽː seː sˈɪrf cˈɔːdəh nˈeː cˈaːɾ ɡʰˈʌɳʈeː seː pˈʌhəlˌeː dˈɔːr. pˈuːɾi ki|0
+f033.wav|ˌaːpkˌaː ˌʌpɔˌĩʈmˈẽːʈ sˌoːmʋˈaːɾ, baːˈiːs sɪtˈʌmbəɾ koː dˈoːpəhˌəɾ dˈoː bˈʌɟeː kaː tˈʌɛj hˈʊaː hɛː|0
+f034.wav|pˈʌhəlˌi kˈʌkʃaː mẽː ˌɪktaːlˈiːs bˈʌcːeː hɛ̃, ɟˈʌbkˌɪ dˈuːsɾˌi kˈʌkʃaː mẽː sˈɪrf ˌʊntˈiːs|0
+f035.wav|mˌeːɾaː moːbˈaːɪl fˈoːn kˈʌl seː bˈʌnd pˈʌr.aː hɛː, ʃˈaːjəd ˌʊskˌi bˈɛːʈɾˌi xəɾˈaːb hoː ɡˈʌi hɛː|0
+f036.wav|kɾˈɪpjˌaː ˈʌpnˌaː pˌaːsəʋˈʌɾɖ kˈɪsi keː sˈaːtʰ ʃˈeːjəɾ mˈʌt kˈiːɟɪˌeː, ʋˈʌɾnˌaː ˌaːpkˌaː ˌʌkaːˈʊɳʈ xˈʌtɾˌeː mẽː pˈʌr. sˈʌktˌaː hɛː|0
+f037.wav|mˈɛ̃neː ˌɔnlˈaːɪn ˈɔɾɖəɾ kˈɪjaː tʰaː, lˈeːkɪn ɖɪlˈiːʋɾˌi mẽː ˈʌbʰi tˌək kˈoːi ˌʌpɖˈeːʈ nˈʌhĩ ˈaːjaː hɛː|0
+f039.wav|ˈɪs ˈɛːp mẽː ˌaːp ˈʌpnˌi fˈoːʈoː ˈeːɖɪʈ kˈʌɾkˌeː sˈiːdʰeː sˈoːʃəl mˈiːɖɪjˌaː pˈʌɾ pˈoːsʈ kˈʌɾ sˈʌktˌeː hɛ̃|0
+f040.wav|ɖˈɔkʈəɾ nˈeː mˌʊɟʰeː ɾˈoːz sˈʊbəh ˈaːdʰaː ɡʰˈʌɳʈaː ˈeːksəɾsaːˌɪz kˈʌɾnˌeː ɔːɾ ɟˈʌŋk fˈuːɖ seː dˈuːɾ ɾˈʌhənˌeː ki səlˈaːh dˈi hɛː|0
+f041.wav|sʈˈeːʃən keː pˈaːs ʋˈaːlaː ɾˈeːsʈoːɾˌẽːʈ bˈʌhʊt mˌəʃhˈuːɾ hɛː, ʋˈʌhã kaː pənˈiːɾ ʈˈɪkːaː ɔːɾ kˈɔfi dˈoːnõ lˌaːɟʋˈaːb hˈoːteː hɛ̃|0
+f042.wav|bˈɛ̃k ki ʋˌeːbsˈaːɪʈ pˈʌɾ lˈɔɡ ˈɪn kˈʌɾnˌeː keː bˈaːd ˌaːp ˈʌpnˌaː bɛːlˈẽːs ɔːɾ ʈɾãzˈɛːkʃən hˈɪsʈɾi dˈeːkʰ sˈʌktˌeː hɛ̃|0
+f043.wav|mˌeːɾaː lˈɛːpʈˌɔp bˈʌhʊt dʰˈiːɾeː cˈʌl ɾˌəhaː hɛː, ʃˈaːjəd ˈʊsmˌẽː nˈʌjaː sˌɔfʈəʋˈeːjəɾ ˈĩsʈɔl kˈʌɾnˌaː pər.ˈeːɡaː|0
+f044.wav|kːjaː tˌʊmhẽː sˈʌc mẽː lˈʌɡtˌaː hɛː kˈɪ ʋˌəh ˈʌpnˌaː ʋˈaːdaː nˌɪbʰaːˈeːɡaː?|0
+f045.wav|ˌaːp ˈɪtnˌi dˈeːɾ seː kˈʌhã tʰeː, ɔːɾ fˈoːn kːjˈõ bˈʌnd kˈʌɾ ɾˈʌkʰaː tʰaː?|0
+f046.wav|ʋˈaːh, kˈɪtnˌaː sˈũdəɾ nəzˈaːɾaː hɛː, mˈɛ̃neː ˈɛːsaː kˈʌbʰi nˈʌhĩ dˈeːkʰaː!|0
+f047.wav|ˈʌɾeː bˈaːp ɾˈeː, ˈɪtnˌi sˈaːɾi bˈaːɾɪʃ mẽː tˌʊm bʰˈiːɡtˌeː hˈʊeː ɡʰˈʌɾ kˈɛːseː pəhˈũnceː?|0
+f048.wav|ˈaːxɪɾ hˌəm kˈʌb tˌək jˈũ hˈi hˈaːtʰ pˈʌɾ hˈaːtʰ dʰˈʌɾeː bˈɛːʈʰeː ɾəhˈẽːɡeː?|0
+f049.wav|bədʰˈaːi hoː, ˌaːxɪɾkˈaːɾ tʊmhˌaːɾi mˈeːhənˌət ɾˈʌŋɡ lˈaːi ɔːɾ tˌʊm pˈaːs hoː ɡˈʌeː!|0
+m000.wav|ˈʌɾeː, tˌʊm ˈaː ɡˈʌeː, mɛ̃ tˈoː kˈʌb seː ˌĩtzˈaːɾ kˈʌɾ ɾˌəhi tʰi|1
+m001.wav|ˈaːɟ mˈɛ̃neː sˈʊbəh ɟˈʌldi ˈʊʈʰəkˌəɾ tʰˈoːr.i dˈeːɾ ʈˈʌhəlnaː ʃˈʊɾuː kˈɪjaː hɛː|1
+m003.wav|mˌʊɟʰeː lˈʌɡtˌaː hɛː kˈɪ hˈʌmẽː tʰˈoːr.aː ɔːɾ sˈʌbɾə ɾˈʌkʰnˌaː cˈaːhɪˌeː|1
+m004.wav|ʈʰˈiːk hɛː, mɛ̃ kˈʌl ʃˈaːm tˌək ˌaːpkˌoː ɟəʋˈaːb dˈeː dˈũnɡi|1
+m005.wav|mˈã nˈeː ɾəsˈoːi mẽː ɡˈʌɾəm ɡˈʌɾəm pəɾˈaːʈʰeː bənˈaːeː hɛ̃|1
+m006.wav|bˈaːhəɾ bˈʌhʊt tˈeːz bˈaːɾɪʃ hoː ɾˌəhi hɛː, cʰˈaːtaː zəɾˈuːɾ lˈeː ɟˈaːnaː|1
+m007.wav|ˌaːpkˌi mˈʌdəd keː lˈɪeː bˈʌhʊt bˈʌhʊt ʃˈʊkɾɪjˌaː|1
+m008.wav|kˈʌl ɾˈaːt mˌʊɟʰeː bˈɪlkʊl nˈĩd nˈʌhĩ ˈaːi|1
+m009.wav|jˌəh bˈaːt tˌʊm kˈɪsi koː mˈʌt bətˈaːnaː, ʈʰˈiːk hɛː?|1
+m010.wav|ˈʌbʰi tʰˈoːr.i dˈeːɾ pˈʌhəlˌeː hˈi mˌeːɾi ˈʊnsˌeː fˈoːn pˈʌɾ bˈaːt hˈʊi tʰi|1
+m011.wav|dˈaːdi hˈʌɾ ʃˈaːm ˈaːnɡən mẽː bˈɛːʈʰəkˌəɾ kəhˈaːnɪjˌã sʊnˈaːjaː kˈʌɾtˌi tʰĩ|1
+m012.wav|mˌʊɟʰeː jˌəh ɡˈaːnaː bˈʌcəpˌən seː hˈi bˈʌhʊt pəsˈʌnd hɛː|1
+m015.wav|bˈʌɾsˌõ pˈʌhəlˌeː ˈɪs mˈʌndɪɾ keː ˌaːspˈaːs sˈɪrf kʰˈeːt hˈʊaː kˈʌɾtˌeː tʰeː, ˈaːɟ jˈʌhã hˈʌɾ ɾˌəʋɪʋˈaːɾ dˈuːɾ dˈuːɾ seː ˈaːeː hˈʊeː lˈoːɡõ ki bʰˈiːr. lˈʌɡi ɾˈʌhətˌi hɛː|1
+m016.wav|kˈɪsi bʰˈi bʰˈaːʂaː koː sˈiːkʰnˌeː keː lˈɪeː sˈʌbsˌeː zəɾˈuːɾi cˈiːz hɛː ɾˈoːz tʰˈoːr.aː tʰˈoːr.aː ʌbʰjˈaːs kˈʌɾnˌaː, kːjˈõkɪ ˈeːk dˈɪn mẽː sˈʌb kˈʊcʰ nˈʌhĩ sˈiːkʰaː ɟˈaː sˈʌktˌaː|1
+m017.wav|sˈʌɾdɪjˌõ ki ˈʊs sˈʊbəh ɟˈʌb hˌəm pəhˈaːr. ki cˈoːʈi pˈʌɾ pəhˈũnceː, tˈoː sˈaːmnˌeː pʰˈɛːli bˈʌrf ki cˈaːdəɾ sˈuːɾəɟ ki ɾˈoːʃnˌi mẽː sˈoːneː ki tˈʌɾəh cˈʌmək ɾˌəhi tʰi|1
+m018.wav|ˈʊsnˌeː ˈʌpnˌi pˈuːɾi zˈĩdɡˌi dˈuːsɾˌõ ki sˈeːʋaː mẽː lˈʌɡaː dˈi, pʰˈɪɾ bʰˈi kˈʌbʰi kˈɪsi seː kˈʊcʰ pˈaːneː ki ʊmmˈiːd nˈʌhĩ ki|1
+m019.wav|həmˌaːɾeː dˈeːʃ mẽː tːjoːhˈaːɾõ kaː bˈʌhʊt məhˈʌtːʋ hɛː, kːjˈõkɪ jeː nˈə sˈɪrf kʰˈʊʃɪjˌã lˈaːteː hɛ̃ bˈʌlkɪ sˈʌb lˈoːɡõ koː ˈeːk dˈuːsɾˌeː keː qəɾˈiːb bʰˈi lˈaːteː hɛ̃|1
+m020.wav|pʊɾˈaːneː baːzˈaːɾ ki tˈʌŋɡ ɡˈʌlɪjˌõ mẽː ɡʰˈuːmtˌeː hˈʊeː mˌʊɟʰeː ˈʌpnˌeː bˈʌcəpˌən ki ʋeː sˈaːɾi jˈaːdẽː pʰˈɪɾ seː tˈaːzaː hoː ɡəˈiːn|1
+m021.wav|ˌʌɡəɾ hˌəm sˈʌb mˈɪləkˌəɾ tʰˈoːr.i tʰˈoːr.i kˈoːʃɪʃ kˈʌɾẽː, tˈoː ˈʌpnˌeː moːhˈʌlleː koː sˈaːf ɔːɾ sˈũdəɾ bənˈaːnaː kˈoːi mˈʊʃkɪl kˈaːm nˈʌhĩ hɛː|1
+m022.wav|kɪsˈaːn sˈʊbəh seː ʃˈaːm tˌək kʰˈeːt mẽː pəsˈiːnaː bəhˈaːtaː hɛː, tˈʌb ɟˈaːkəɾ kˈʌhĩ həmˌaːɾi tʰˈaːli mẽː ɾˈoːʈi pəhˈũncətˌi hɛː|1
+m023.wav|ɾˈaːt keː sənnˈaːʈeː mẽː dˈuːɾ kˈʌhĩ seː ˈaːti hˈʊi bˈãnsʊɾˌi ki mˈʌdʰʊɾ dʰˈʊn mˈʌn koː ʌɟˈiːb sˈi ʃˈãtɪ dˈeː ɾˌəhi tʰi|1
+m024.wav|sˈʌmˌɛj keː sˈaːtʰ bˈʌhʊt kˈʊcʰ bˈʌdəl ɟˈaːtaː hɛː, pˈʌɾ mˈã ki mˈʌmtˌaː ɔːɾ ɡʰˈʌɾ ki mˈɪʈʈi ki mˈʌhək həmˈeːʃaː ʋˈɛːsi hˈi ɾˈʌhətˌi hɛː|1
+m025.wav|bˈʌcːõ koː sˈɪrf kɪtˈaːbẽː ɾəʈˈaːneː keː bəɟˈaːj ˌʌɡəɾ ˈʊnhẽː səʋˈaːl pˈuːcʰnˌaː sɪkʰˈaːjaː ɟˈaːeː, tˈoː ˌʊnkˌi sˈoːcnˌeː ki tˈaːqət kˈʌhĩ zjˈaːdaː bˈʌr.h ɟˈaːti hɛː|1
+m026.wav|mˌeːɾi bˈʌhən ki ʃˈaːdi pˈʌndɾəh fˈʌɾəʋɾi koː hɛː, ɔːɾ ˌʊskˌeː lˈɪeː hˈʌmẽː tˈiːn dˈɪn pˈʌhəlˌeː hˈi ɡʰˈʌɾ pəhˈũncənˌaː hˈoːɡaː|1
+m027.wav|ˈɪs kɪtˈaːb ki qˈiːmət dˈoː sˈɔː pəcˈaːs ɾˈʊpjˌeː hɛː, lˈeːkɪn dˌʊkaːndˈaːɾ nˈeː mˌʊɟʰeː ˈɪseː ˈeːk sˈɔː ˈʌssi ɾˈʊpjˌeː mẽː dˈeː dˈɪjaː|1
+m028.wav|həmˌaːɾi ʈɾˈeːn sˈʊbəh pˈãnc bˈʌɟəkˌəɾ caːlˈiːs mˈɪnəʈ pˈʌɾ cəlˈeːɡi, ˈɪslˌɪeː hˈʌmẽː cˈaːɾ bˈʌɟeː tˌək sʈˈeːʃən pəhˈũncənˌaː hˈoːɡaː|1
+m029.wav|ˌʊskˌaː ɟˈʌnm ʊnnˈiːs sˈɔː ʌʈʰˈaːsi mẽː ˈeːk cʰˈoːʈeː seː ɡˈãnʋ mẽː hˈʊaː tʰaː|1
+m030.wav|ˈaːɟ kaː tˌaːpmˈaːn ˌʌʈʰʈʰaːˈiːs ɖˈɪɡɾi hɛː, ɔːɾ ʃˈaːm tˌək bˈaːɾɪʃ hˈoːneː ki səmbʰˈaːʋnˌaː sˈʌtːəɾ pɾˈʌtɪʃˌət hɛː|1
+m031.wav|ˈɪs kˈʌmɾˌeː kaː kɪɾˈaːjaː hˈʌɾ məhˈiːneː ˈaːʈʰ həzˈaːɾ pˈãnc sˈɔː ɾˈʊpjˌeː hɛː, ɔːɾ bˈɪɟlˌi kaː bˈɪl ˈʌləɡ seː dˈeːnaː hˈoːɡaː|1
+m032.wav|mɛːɾˈaːtʰən mẽː kˈʊl tˈiːn həzˈaːɾ dˈoː sˈɔː dʰˈaːʋkˌõ nˈeː hˈɪssaː lˈɪjaː, ɟˈɪnmˌẽː seː sˈɪrf cˈɔːdəh nˈeː cˈaːɾ ɡʰˈʌɳʈeː seː pˈʌhəlˌeː dˈɔːr. pˈuːɾi ki|1
+m033.wav|ˌaːpkˌaː ˌʌpɔˌĩʈmˈẽːʈ sˌoːmʋˈaːɾ, baːˈiːs sɪtˈʌmbəɾ koː dˈoːpəhˌəɾ dˈoː bˈʌɟeː kaː tˈʌɛj hˈʊaː hɛː|1
+m034.wav|pˈʌhəlˌi kˈʌkʃaː mẽː ˌɪktaːlˈiːs bˈʌcːeː hɛ̃, ɟˈʌbkˌɪ dˈuːsɾˌi kˈʌkʃaː mẽː sˈɪrf ˌʊntˈiːs|1
+m035.wav|mˌeːɾaː moːbˈaːɪl fˈoːn kˈʌl seː bˈʌnd pˈʌr.aː hɛː, ʃˈaːjəd ˌʊskˌi bˈɛːʈɾˌi xəɾˈaːb hoː ɡˈʌi hɛː|1
+m036.wav|kɾˈɪpjˌaː ˈʌpnˌaː pˌaːsəʋˈʌɾɖ kˈɪsi keː sˈaːtʰ ʃˈeːjəɾ mˈʌt kˈiːɟɪˌeː, ʋˈʌɾnˌaː ˌaːpkˌaː ˌʌkaːˈʊɳʈ xˈʌtɾˌeː mẽː pˈʌr. sˈʌktˌaː hɛː|1
+m037.wav|mˈɛ̃neː ˌɔnlˈaːɪn ˈɔɾɖəɾ kˈɪjaː tʰaː, lˈeːkɪn ɖɪlˈiːʋɾˌi mẽː ˈʌbʰi tˌək kˈoːi ˌʌpɖˈeːʈ nˈʌhĩ ˈaːjaː hɛː|1
+m038.wav|həmˌaːɾi ʈˈiːm kˈʌl dˈʌftəɾ mẽː miʈˈĩɡ kəɾˈeːɡi, ˈɪslˌɪeː sˈaːɾi ɾɪpˈoːɾʈ ˈaːɟ ɾˈaːt tˌək imˈeːl kˈʌɾ dˈeːnaː|1
+m039.wav|ˈɪs ˈɛːp mẽː ˌaːp ˈʌpnˌi fˈoːʈoː ˈeːɖɪʈ kˈʌɾkˌeː sˈiːdʰeː sˈoːʃəl mˈiːɖɪjˌaː pˈʌɾ pˈoːsʈ kˈʌɾ sˈʌktˌeː hɛ̃|1
