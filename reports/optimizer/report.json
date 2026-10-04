@@ -9,7 +9,20 @@
   "pron_rules": "off",
   "rules": []
  },
- "dictionary": {},
+ "dictionary": {
+  "WhatsApp": {
+   "affected_tests": [
+    "en-000"
+   ],
+   "confidence": 0.372,
+   "iteration": 2,
+   "reason": "normalization on en-000",
+   "score_after": 0.6952,
+   "score_before": 0.6341,
+   "spoken": "व्हाट्सऐप",
+   "timestamp": "2026-10-04T19:19:29"
+  }
+ },
  "engines": {
   "goonj": {
    "baseline": {
@@ -232,11 +245,11 @@
       "total": 0.8259
      },
      "english_words": {
-      "cer": 0.1085,
+      "cer": 0.1014,
       "n": 20,
-      "pronunciation": 0.7202,
-      "text_exact": 0.35,
-      "total": 0.8101
+      "pronunciation": 0.7279,
+      "text_exact": 0.4,
+      "total": 0.8132
      },
      "hinglish": {
       "cer": 0.2137,
@@ -309,14 +322,14 @@
       "total": 0.9374
      }
     },
-    "cer": 0.1262,
+    "cer": 0.126,
     "consistency": 0.9642,
     "n": 615,
     "naturalness": 0.9968,
-    "pronunciation": 0.7982,
+    "pronunciation": 0.7984,
     "prosody": 0.6154,
-    "text_exact": 0.922,
-    "total": 0.8572
+    "text_exact": 0.9236,
+    "total": 0.8573
    },
    "split_words": {
     "अंतिम": 1,
@@ -414,14 +427,6 @@
      "total": 0.612
     },
     {
-     "category": "english_words",
-     "failure_type": "normalization",
-     "hyp": " क्रिपिया वर्ट्स एप की जानकारी दीजिये.",
-     "id": "en-000",
-     "normalized": "कृपया WhatsApp की जानकारी दीजिए।",
-     "total": 0.6341
-    },
-    {
      "category": "hinglish",
      "failure_type": "pronunciation",
      "hyp": " फॉर्म में डेट अव बर्थ वही लिखिये जो अधार कार्ट पर है।",
@@ -468,6 +473,14 @@
      "id": "cur-048",
      "normalized": "आपको दो लाख अस्सी हज़ार एक सौ उनतालीस रुपये देने हैं।",
      "total": 0.663
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 2,69,722 रुपिये देने हैं।",
+     "id": "cur-066",
+     "normalized": "आपको दो लाख उनसठ हज़ार सात सौ बाईस रुपये देने हैं।",
+     "total": 0.6638
     }
    ]
   },
@@ -948,7 +961,32 @@
    ]
   }
  },
- "experiments": [],
- "generated": "2026-10-04T19:18:37",
+ "experiments": [
+  {
+   "after": 0.6952,
+   "before": 0.6341,
+   "change": "{\"type\": \"dict\", \"source\": \"WhatsApp\", \"spoken\": \"व्हाट्सऐप\"}",
+   "confidence": 0.372,
+   "decision": "accepted",
+   "failure_type": "normalization",
+   "iteration": 2,
+   "reason": "gates passed",
+   "regression": 0.0,
+   "test_id": "en-000"
+  },
+  {
+   "after": 0.7503,
+   "before": 0.5736,
+   "change": "{\"type\": \"rule\", \"name\": \"iso_date\"}",
+   "confidence": 1.0,
+   "decision": "rejected",
+   "failure_type": "normalization",
+   "iteration": 1,
+   "reason": "rtf 0.034->0.374",
+   "regression": 0.0,
+   "test_id": "date-002"
+  }
+ ],
+ "generated": "2026-10-04T19:19:29",
  "repeat_failing_tests": []
 }

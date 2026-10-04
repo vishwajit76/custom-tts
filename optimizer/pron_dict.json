@@ -1,1 +1,14 @@
-{}
+{
+ "WhatsApp": {
+  "affected_tests": [
+   "en-000"
+  ],
+  "confidence": 0.372,
+  "iteration": 2,
+  "reason": "normalization on en-000",
+  "score_after": 0.6952,
+  "score_before": 0.6341,
+  "spoken": "व्हाट्सऐप",
+  "timestamp": "2026-10-04T19:19:29"
+ }
+}

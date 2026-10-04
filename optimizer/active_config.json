@@ -1,0 +1,10 @@
+{
+ "category": {},
+ "default": {
+  "pause_ms": 120,
+  "punct": null,
+  "speed": 1.0
+ },
+ "pron_rules": "off",
+ "rules": []
+}
