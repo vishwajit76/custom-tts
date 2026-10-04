@@ -11,7 +11,9 @@
    "speed": 1.0
   },
   "pron_rules": "off",
-  "rules": []
+  "rules": [
+   "iso_date"
+  ]
  },
  "dictionary": {
   "Vishvajeet": {
@@ -240,11 +242,11 @@
       "total": 0.7067
      },
      "dates": {
-      "cer": 0.3201,
+      "cer": 0.207,
       "n": 36,
-      "pronunciation": 0.6141,
-      "text_exact": 0.6111,
-      "total": 0.7179
+      "pronunciation": 0.7116,
+      "text_exact": 0.8056,
+      "total": 0.7523
      },
      "difficult_hindi": {
       "cer": 0.0966,
@@ -338,14 +340,14 @@
       "total": 0.9374
      }
     },
-    "cer": 0.1266,
-    "consistency": 0.9643,
+    "cer": 0.12,
+    "consistency": 0.964,
     "n": 615,
     "naturalness": 0.9967,
-    "pronunciation": 0.7998,
-    "prosody": 0.6154,
-    "text_exact": 0.9252,
-    "total": 0.8578
+    "pronunciation": 0.8055,
+    "prosody": 0.6138,
+    "text_exact": 0.9366,
+    "total": 0.8598
    },
    "split_words": {
     "अंतिम": 1,
@@ -368,7 +370,6 @@
     "प्राप्त": 1,
     "प्रिय": 1,
     "फाई": 1,
-    "बीस": 1,
     "मुख्य": 1,
     "लाइफटाइम": 1,
     "वातानुकूलित": 1,
@@ -378,70 +379,6 @@
     "हम्म": 1
    },
    "top_failures": [
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी appointment दो हजार पचीस से शून्य तीन शून्य छे को है।",
-     "id": "date-022",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार पच्चीस से शून्य तीन-शून्य छह को है।",
-     "total": 0.5122
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी appointment एक हजार नो सो पचानवे से शून्य नौ माइनस शून्य दो को है।",
-     "id": "date-018",
-     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य नौमाइनस शून्य दो को है।",
-     "total": 0.5156
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी अपॉइंट्मेंट दो हजार एक से शून्य दो माइनस शून्य साथ को है",
-     "id": "date-030",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य दोमाइनस शून्य सात को है।",
-     "total": 0.5413
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी अपॉइंटमेंट दो हजार चब्वीस से शून्य चहसत्रा को है।",
-     "id": "date-014",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य छह-सत्रह को है।",
-     "total": 0.5575
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी अपॉइंट्मेंट एक हजार नो सो पचानवे से शून्य तीन बारा को है।",
-     "id": "date-034",
-     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य तीन-बारह को है।",
-     "total": 0.5575
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी अपॉइंट्मेंट दो हजार चब्वीस से शून्य पांच शून्य आठ को है।",
-     "id": "date-002",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य पाँच-शून्य आठ को है।",
-     "total": 0.5736
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी appointment दो हजार दस से शून्य चार चौबीस को है।",
-     "id": "date-026",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार दस से शून्य चार-चौबीस को है।",
-     "total": 0.611
-    },
-    {
-     "category": "dates",
-     "failure_type": "normalization",
-     "hyp": " आपकी अपॉइंटमेंट दो हजार एक से शून्य चेहबीस को है।",
-     "id": "date-006",
-     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य छह-बीस को है।",
-     "total": 0.612
-    },
     {
      "category": "hinglish",
      "failure_type": "pronunciation",
@@ -465,6 +402,14 @@
      "id": "cur-009",
      "normalized": "आपको निन्यानवे रुपये देने हैं।",
      "total": 0.6582
+    },
+    {
+     "category": "dates",
+     "failure_type": "pronunciation",
+     "hyp": " आपकी अपोइंटमेंट 24 अप्रेल 2010 को है।",
+     "id": "date-026",
+     "normalized": "आपकी अपॉइंटमेंट चौबीस अप्रैल दो हज़ार दस को है।",
+     "total": 0.6615
     },
     {
      "category": "currency",
@@ -497,6 +442,62 @@
      "id": "cur-066",
      "normalized": "आपको दो लाख उनसठ हज़ार सात सौ बाईस रुपये देने हैं।",
      "total": 0.6638
+    },
+    {
+     "category": "hinglish",
+     "failure_type": "pronunciation",
+     "hyp": " प्लीज डिलिवरी के समय अपना फोन आउन रखेगा।",
+     "id": "hg-018",
+     "normalized": "Please delivery के समय अपना phone on रखिएगा।",
+     "total": 0.6638
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 999 रुपिय देने हैं।",
+     "id": "cur-018",
+     "normalized": "आपको नौ सौ निन्यानवे रुपये देने हैं।",
+     "total": 0.6644
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 1200 रुपिये देने हैं।",
+     "id": "cur-021",
+     "normalized": "आपको एक हज़ार दो सौ रुपये देने हैं।",
+     "total": 0.6656
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 8,73,200 रुपिये देने हैं।",
+     "id": "cur-069",
+     "normalized": "आपको आठ लाख तिहत्तर हज़ार दो सौ रुपये देने हैं।",
+     "total": 0.6672
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 25,000 रुपिये देने हैं,",
+     "id": "cur-027",
+     "normalized": "आपको पच्चीस हज़ार रुपये देने हैं।",
+     "total": 0.668
+    },
+    {
+     "category": "english_words",
+     "failure_type": "normalization",
+     "hyp": " लेपटोप से जोड़ी समस्या बताईए।",
+     "id": "en-008",
+     "normalized": "laptop से जुड़ी समस्या बताइए।",
+     "total": 0.6693
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 6,72,503 रुपिये देने हैं।",
+     "id": "cur-063",
+     "normalized": "आपको छह लाख बहत्तर हज़ार पाँच सौ तीन रुपये देने हैं।",
+     "total": 0.6695
     }
    ]
   },
@@ -979,6 +980,18 @@
  },
  "experiments": [
   {
+   "after": 0.7512,
+   "before": 0.5122,
+   "change": "{\"type\": \"rule\", \"name\": \"iso_date\"}",
+   "confidence": 1.0,
+   "decision": "accepted",
+   "failure_type": "normalization",
+   "iteration": 31,
+   "reason": "gates passed",
+   "regression": 0.0,
+   "test_id": "date-022"
+  },
+  {
    "after": 0.9999,
    "before": 0.9289,
    "change": "{\"type\": \"dict\", \"source\": \"Vishvajeet\", \"spoken\": \"विश्वजीत\"}",
@@ -1315,6 +1328,6 @@
    "test_id": "en-000"
   }
  ],
- "generated": "2026-10-04T19:40:05",
+ "generated": "2026-10-04T19:40:12",
  "repeat_failing_tests": []
 }
