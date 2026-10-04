@@ -1,4 +1,1572 @@
 {
+ "AI": {
+  "affected_tests": [
+   "acr-001"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-002",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.841,
+  "score_before": 0.841,
+  "spoken": "ए आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "AIIMS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-085",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एम्स",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "AMC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-092",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ए एम सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "API": {
+  "affected_tests": [
+   "acr-000"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-001",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9471,
+  "score_before": 0.8228,
+  "spoken": "ए पी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "APK": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-101",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ए पी के",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ASR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-054",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ए एस आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ATM": {
+  "affected_tests": [
+   "acr-009"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-011",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8308,
+  "score_before": 0.8308,
+  "spoken": "ए टी एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Account": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-122",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "अकाउंट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Application": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-166",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एप्लिकेशन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "B2B": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-050",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "बी टू बी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "B2C": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-051",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "बी टू सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "BSNL": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-086",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "बी एस एन एल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Battery": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-154",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "बैटरी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Browser": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-146",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ब्राउज़र",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CBI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-074",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी बी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CEO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-027",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी ई ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CFO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-029",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी एफ ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CPU": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-038",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी पी यू",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CRM": {
+  "affected_tests": [
+   "acr-002"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-003",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9812,
+  "score_before": 0.8591,
+  "spoken": "सी आर एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CSS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-046",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी एस एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "CTO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-028",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सी टी ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Camera": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-152",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कैमरा",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Charger": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-156",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "चार्जर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Chatbot": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-206",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "चैटबॉट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Chauhan": {
+  "affected_tests": [
+   "name-010"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-304",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.982,
+  "score_before": 0.941,
+  "spoken": "चौहाण",
+  "timestamp": "2026-10-04T21:06:36"
+ },
+ "Cloud": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-194",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "क्लाउड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Computer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-148",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कंप्यूटर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Customer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-168",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कस्टमर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "DNS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-057",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डी एन एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "DOB": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-076",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डी ओ बी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "DTH": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-096",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डी टी एच",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Dashboard": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-210",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डैशबोर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Data": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-196",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डेटा",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Database": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-192",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डेटाबेस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Download": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-118",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डाउनलोड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "EMI": {
+  "affected_tests": [
+   "acr-012"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-013",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8357,
+  "score_before": 0.8357,
+  "spoken": "ई एम आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "EPF": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-065",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ई पी एफ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ERP": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-049",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ई आर पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "EVM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-079",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ई वी एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Email": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-112",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ईमेल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "FAQ": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-047",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एफ ए क्यू",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "FD": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-094",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एफ डी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "FIR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-075",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एफ आई आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Feedback": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-214",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फीडबैक",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "File": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-198",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फ़ाइल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Folder": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-200",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फ़ोल्डर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "GPS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-062",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "जी पी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "GPU": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-039",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "जी पी यू",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "GST": {
+  "affected_tests": [
+   "acr-013"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-014",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.7013,
+  "score_before": 0.7013,
+  "spoken": "जी एस टी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "HDFC": {
+  "affected_tests": [
+   "acr-018"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-019",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.824,
+  "score_before": 0.824,
+  "spoken": "एच डी एफ सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "HR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-030",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एच आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "HTML": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-045",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एच टी एम एल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "HTTP": {
+  "affected_tests": [
+   "acr-007"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-008",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8462,
+  "score_before": 0.6833,
+  "spoken": "एच टी टी पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "HTTPS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-009",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एच टी टी पी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Hardware": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-108",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "हार्डवेयर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IAS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-081",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई ए एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ICICI": {
+  "affected_tests": [
+   "acr-020"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-021",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.989,
+  "score_before": 0.8676,
+  "spoken": "आई सी आई सी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ID": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-077",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई डी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IFSC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-026",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई एफ एस सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IIM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-084",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई आई एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IIT": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-083",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई आई टी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IMPS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-024",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई एम पी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IP": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-058",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IPS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-082",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई पी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IRCTC": {
+  "affected_tests": [
+   "acr-021"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-022",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9818,
+  "score_before": 0.8584,
+  "spoken": "आई आर सी टी सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IT": {
+  "affected_tests": [
+   "acr-017"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-018",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9843,
+  "score_before": 0.8343,
+  "spoken": "आई टी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ITR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-068",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई टी आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "IVR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-053",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आई वी आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Internet": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-142",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "इंटरनेट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Invoice": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-188",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "इनवॉइस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "JSON": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-044",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "जे सन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "KYC": {
+  "affected_tests": [
+   "acr-011"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-012",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8451,
+  "score_before": 0.8451,
+  "spoken": "के वाई सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Keyboard": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-160",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कीबोर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "LAN": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-060",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एल ए एन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "LCD": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-035",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एल सी डी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "LED": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-034",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एल ई डी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "LIC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-064",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एल आई सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "LLM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-055",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एल एल एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Laptop": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-104",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "लैपटॉप",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Link": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-202",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "लिंक",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Logout": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-138",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "लॉगआउट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Manager": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-174",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "मैनेजर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Meeting": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-124",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "मीटिंग",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Mobile": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-132",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "मोबाइल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Mumbai": {
+  "affected_tests": [
+   "pc062"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-300",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.987,
+  "score_before": 0.944,
+  "spoken": "मुम्बई",
+  "timestamp": "2026-10-04T21:06:36"
+ },
+ "NAV": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-093",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एन ए वी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "NEFT": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-023",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नेफ़्ट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "NGO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-073",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एन जी ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "NPCI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-090",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एनपीसीआई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "NRI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-072",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एन आर आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Network": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-144",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नेटवर्क",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Notification": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-164",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नोटिफिकेशन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Number": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-176",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नंबर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "OBC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-069",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ओ बी सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "OK": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-032",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ओके",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "OTP": {
+  "affected_tests": [
+   "acr-005"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-006",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9849,
+  "score_before": 0.8635,
+  "spoken": "ओ टी पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "OTT": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-097",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ओ टी टी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Offline": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-128",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ऑफलाइन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Online": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-126",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ऑनलाइन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PAYTM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-091",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "पेटीएम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-037",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "पी सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PDF": {
+  "affected_tests": [
+   "acr-016"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-017",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9915,
+  "score_before": 0.8715,
+  "spoken": "पी डी एफ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PF": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-066",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "पी एफ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PNR": {
+  "affected_tests": [
+   "acr-008"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-010",
+  "reason": "acronym: word-like/irregular",
+  "score_after": 0.9858,
+  "score_before": 0.8321,
+  "spoken": "पी एन आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "PR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-031",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "पी आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Password": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-110",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "पासवर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Printer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-150",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "प्रिंटर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "QR": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-052",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "क्यू आर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "RAM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-040",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर ए एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "RBI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-089",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर बी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "RD": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-095",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर डी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ROM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-041",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर ओ एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "RTGS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-025",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर टी जी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "RTO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-063",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "आर टी ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Receipt": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-190",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रसीद",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Recharge": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-184",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रिचार्ज",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Report": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-212",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रिपोर्ट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SBI": {
+  "affected_tests": [
+   "acr-019"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-020",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8459,
+  "score_before": 0.7259,
+  "spoken": "एस बी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-070",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SDK": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-100",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस डी के",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SEBI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-088",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सेबी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SEO": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-048",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस ई ओ",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SIM": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-078",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस आई एम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SIP": {
+  "affected_tests": [
+   "acr-003"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-004",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9768,
+  "score_before": 0.9768,
+  "spoken": "एस आई पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SMS": {
+  "affected_tests": [
+   "acr-015"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-016",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9803,
+  "score_before": 0.9803,
+  "spoken": "एस एम एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SQL": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-042",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस क्यू एल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ST": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-071",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एस टी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "SaaS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-102",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सास",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Screen": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-158",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "स्क्रीन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Server": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-114",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सर्वर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Service": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-170",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सर्विस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Shreya": {
+  "affected_tests": [
+   "name-005"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-302",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.98,
+  "score_before": 0.944,
+  "spoken": "श्रेय्या",
+  "timestamp": "2026-10-04T21:06:36"
+ },
+ "Software": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-106",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सॉफ्टवेयर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Subscription": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-182",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सब्सक्रिप्शन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Support": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-172",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सपोर्ट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "TCP": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-059",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "टी सी पी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "TDS": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-067",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "टी डी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "TRAI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-087",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ट्राई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "TTS": {
+  "affected_tests": [
+   "acr-004"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-005",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.8448,
+  "score_before": 0.7248,
+  "spoken": "टी टी एस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "TV": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-036",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "टी वी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Ticket": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-216",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "टिकट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Transaction": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-180",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ट्रांज़ैक्शन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "UI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-098",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यू आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "UPI": {
+  "affected_tests": [
+   "acr-014"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-015",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9858,
+  "score_before": 0.8638,
+  "spoken": "यू पी आई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "UPSC": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-080",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यू पी एस सी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "URL": {
+  "affected_tests": [
+   "acr-006"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-007",
+  "reason": "acronym: letter-by-letter",
+  "score_after": 0.9565,
+  "score_before": 0.8313,
+  "spoken": "यू आर एल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "USB": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-033",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यू एस बी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "UX": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-099",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यू एक्स",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Update": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-116",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "अपडेट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Upload": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-120",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "अपलोड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Username": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-140",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यूज़रनेम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "VPN": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-056",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "वी पी एन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
  "Vishvajeet": {
   "affected_tests": [
    "name-000"
@@ -11,6 +1579,36 @@
   "spoken": "विश्वजीत",
   "timestamp": "2026-10-04T19:40:05"
  },
+ "Voicebot": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-208",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "वॉइसबॉट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "WIFI": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-061",
+  "reason": "acronym: word-like/irregular",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "वाई-फ़ाई",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "Website": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-130",
+  "reason": "english loanword (capitalised)",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "वेबसाइट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
  "WhatsApp": {
   "affected_tests": [
    "en-000"
@@ -22,5 +1620,585 @@
   "score_before": 0.6341,
   "spoken": "व्हाट्सऐप",
   "timestamp": "2026-10-04T19:19:29"
+ },
+ "XML": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-043",
+  "reason": "acronym: letter-by-letter",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एक्स एम एल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "account": {
+  "affected_tests": [
+   "en-015"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-121",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8067,
+  "score_before": 0.9265,
+  "spoken": "अकाउंट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "application": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-165",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "एप्लिकेशन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "battery": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-153",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "बैटरी",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "browser": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-145",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ब्राउज़र",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "camera": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-151",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कैमरा",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "charger": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-155",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "चार्जर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "chatbot": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-205",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "चैटबॉट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "cloud": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-193",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "क्लाउड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "computer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-147",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कंप्यूटर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "customer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-167",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कस्टमर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "dashboard": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-209",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डैशबोर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "data": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-195",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डेटा",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "database": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-191",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "डेटाबेस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "download": {
+  "affected_tests": [
+   "en-014"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-117",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.9852,
+  "score_before": 0.9439,
+  "spoken": "डाउनलोड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "email": {
+  "affected_tests": [
+   "en-011"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-111",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8544,
+  "score_before": 0.8274,
+  "spoken": "ईमेल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "feedback": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-213",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फीडबैक",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "file": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-197",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फ़ाइल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "folder": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-199",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "फ़ोल्डर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "hardware": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-107",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "हार्डवेयर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "internet": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-141",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "इंटरनेट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "invoice": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-187",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "इनवॉइस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "keyboard": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-159",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "कीबोर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "laptop": {
+  "affected_tests": [
+   "en-008"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-103",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.7,
+  "score_before": 0.6693,
+  "spoken": "लैपटॉप",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "link": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-201",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "लिंक",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "logout": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-137",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "लॉगआउट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "manager": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-173",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "मैनेजर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "meeting": {
+  "affected_tests": [
+   "en-016"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-123",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8399,
+  "score_before": 0.8014,
+  "spoken": "मीटिंग",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "mobile": {
+  "affected_tests": [
+   "en-019"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-131",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8419,
+  "score_before": 0.6732,
+  "spoken": "मोबाइल",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "network": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-143",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नेटवर्क",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "notification": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-163",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नोटिफिकेशन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "number": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-175",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "नंबर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "offline": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-127",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ऑफलाइन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "online": {
+  "affected_tests": [
+   "en-017"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-125",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8587,
+  "score_before": 0.8276,
+  "spoken": "ऑनलाइन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "password": {
+  "affected_tests": [
+   "en-010"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-109",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.9966,
+  "score_before": 0.8368,
+  "spoken": "पासवर्ड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "printer": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-149",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "प्रिंटर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "receipt": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-189",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रसीद",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "recharge": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-183",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रिचार्ज",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "report": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-211",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "रिपोर्ट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "screen": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-157",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "स्क्रीन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "server": {
+  "affected_tests": [
+   "en-012"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-113",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.9723,
+  "score_before": 0.9425,
+  "spoken": "सर्वर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "service": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-169",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सर्विस",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "software": {
+  "affected_tests": [
+   "en-009"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-105",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.6948,
+  "score_before": 0.8069,
+  "spoken": "सॉफ्टवेयर",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "subscription": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-181",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सब्सक्रिप्शन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "support": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-171",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "सपोर्ट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "ticket": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-215",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "टिकट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "transaction": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-179",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "ट्रांज़ैक्शन",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "update": {
+  "affected_tests": [
+   "en-013"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-115",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.8437,
+  "score_before": 0.8107,
+  "spoken": "अपडेट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "upload": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-119",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "अपलोड",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "username": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-139",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "यूज़रनेम",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "voicebot": {
+  "affected_tests": [],
+  "confidence": 0.9,
+  "iteration": "agentB-207",
+  "reason": "english loanword -> Devanagari",
+  "score_after": null,
+  "score_before": null,
+  "spoken": "वॉइसबॉट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "website": {
+  "affected_tests": [
+   "en-018"
+  ],
+  "confidence": 0.9,
+  "iteration": "agentB-129",
+  "reason": "english loanword -> Devanagari",
+  "score_after": 0.7101,
+  "score_before": 0.6787,
+  "spoken": "वेबसाइट",
+  "timestamp": "2026-10-04T20:39:56"
+ },
+ "चौहान": {
+  "affected_tests": [
+   "name-d010"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-305",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.982,
+  "score_before": 0.941,
+  "spoken": "चौहाण",
+  "timestamp": "2026-10-04T21:06:36"
+ },
+ "मुंबई": {
+  "affected_tests": [
+   "pc062"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-301",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.987,
+  "score_before": 0.944,
+  "spoken": "मुम्बई",
+  "timestamp": "2026-10-04T21:06:36"
+ },
+ "श्रेया": {
+  "affected_tests": [
+   "name-d005"
+  ],
+  "confidence": 0.8,
+  "iteration": "agentB-303",
+  "reason": "vt variant sweep: ASR hears the correct name",
+  "score_after": 0.98,
+  "score_before": 0.944,
+  "spoken": "श्रेय्या",
+  "timestamp": "2026-10-04T21:06:36"
  }
 }

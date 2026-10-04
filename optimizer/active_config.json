@@ -3,6 +3,9 @@
   "hinglish": {
    "speed": 1.1
   },
+  "long_sentences": {
+   "speed": 1.05
+  },
   "phone_numbers": {
    "speed": 0.9
   }

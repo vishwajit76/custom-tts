@@ -63,8 +63,8 @@ def test_db_cache_state_results(tmp_path):
 
 def test_cache_key_and_frontend_dictionary():
     a = core.DEFAULT_ACTIVE
-    n1, ch1, p1 = core.frontend("WhatsApp पर भेजिए।", "x", a, {})
-    n2, ch2, p2 = core.frontend("WhatsApp पर भेजिए।", "x", a, {"WhatsApp": {"spoken": "व्हाट्सऐप"}})
+    n1, ch1, p1 = core.frontend("Zorblax पर भेजिए।", "x", a, {})
+    n2, ch2, p2 = core.frontend("Zorblax पर भेजिए।", "x", a, {"Zorblax": {"spoken": "व्हाट्सऐप"}})
     assert "व्हाट्सऐप" in n2 and core.key_of("m", ch1, p1) != core.key_of("m", ch2, p2)
     assert core.key_of("m", ch1, p1) == core.key_of("m", list(ch1), dict(p1)) != core.key_of("m2", ch1, p1)
     assert core.apply_rules("तारीख 2026-10-04 है", ["iso_date"]) == "तारीख 4/10/2026 है"

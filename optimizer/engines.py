@@ -4,6 +4,7 @@ import threading
 
 import numpy as np
 
+from optimizer import g2p
 from optimizer.bench import ROOT
 
 
@@ -29,7 +30,7 @@ class Goonj:
     def chunk(self, text, speed):
         import torch
         from app.services import kokoro_engine
-        ps = kokoro_engine.phonemes(text)
+        ps = g2p.fix(text, kokoro_engine.phonemes(text))
         n = sum(c in self.model.vocab for c in ps)
         if not n:
             return np.zeros(0, np.float32)

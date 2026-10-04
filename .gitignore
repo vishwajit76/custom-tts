@@ -23,3 +23,14 @@ work/
 .gstack/
 .claude/worktrees/
 !voices/catalog.json
+
+# V8 datasets (audio stays out of git; manifests under datasets/manifest are small and tracked)
+datasets/raw/
+datasets/processed/
+datasets/train/
+datasets/validation/
+datasets/test/
+datasets/ingest.log
+training/v8/gemini/.cache/
+models/
+.gpu.lock

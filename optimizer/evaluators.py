@@ -44,11 +44,26 @@ class TextEvaluator(PronunciationEvaluator):
         return {"text_score": round(1 - e, 4), "text_exact": float(got in refs)}
 
 
+def latin_to_dev(hyp: str) -> str:
+    """Whisper writes API/Google in Latin even when the audio says ए पी आई/गूगल: map Latin tokens through pron_dict.json."""
+    import json
+    import re
+    from pathlib import Path
+    d = json.loads((Path(__file__).parent / "pron_dict.json").read_text("utf-8"))
+    return re.sub(r"[A-Za-z0-9]+", lambda m: d[m[0]]["spoken"] if m[0] in d else m[0], hyp or "")
+
+
+def digits_to_words(hyp: str) -> str:
+    """Whisper writes '500 रुपये'/'24 अप्रैल'; the reference is spoken words, so run the transcript through the app normalizer."""
+    from app.services import text_normalizer
+    return text_normalizer.normalize(hyp or "") if re.search(r"\d", hyp or "") else hyp
+
+
 def asr_metrics(hyp: str, reference: dict) -> dict:
     """CER/WER vs the best of (expected spoken form, alternatives, raw text: Whisper may write English words in Latin)."""
     refs = [reference["expected_normalized"], *reference.get("alternatives", []), reference["text"]]
-    h = canon(hyp)
-    best = min((canon(r) for r in refs), key=lambda r: err(r.replace(" ", ""), h.replace(" ", "")))
+    hs = list(dict.fromkeys(canon(x) for x in (hyp, latin_to_dev(hyp), digits_to_words(hyp), digits_to_words(latin_to_dev(hyp)))))
+    best, h = min(((canon(r), x) for r in refs for x in hs), key=lambda p: err(p[0].replace(" ", ""), p[1].replace(" ", "")))
     rw, hw = best.split(), h.split()
     wer = min(1.0, lev(rw, hw) / max(1, len(rw)))
     important = [canon(w) for w in reference.get("important") or [w for w in rw if w not in STOP and len(w) > 2]]
@@ -146,6 +161,8 @@ def proxies(case, text_m, asr_m, aud_m, cfg) -> dict:
     natural = 0.6 * rate_ok + 0.4 * (0.0 if "abnormal_silence" in aud_m["issues"] or "repetition" in aud_m["issues"] else 1.0)
     want = len(re.findall(r"[,;।.?!—]+\s+\S", case["text"]))  # pause points inside the utterance
     got = aud_m.get("pauses", 0)
+    if got > want:  # a pause between number groups (phone, date, currency) is natural, not a prosody fault
+        got = max(want, got - len(re.findall(r"\d+", case["text"])))
     prosody = 1.0 if want == got == 0 else max(0.0, 1 - abs(got - want) / max(want, got, 1))
     consistency = max(0.0, 1 - abs(aud_m.get("rms_db", -20) - cfg["target_rms_db"]) / 20)
     pron = 0.3 * text_m["text_score"] + 0.4 * (1 - asr_m["cer"]) + 0.3 * asr_m["important_acc"]
