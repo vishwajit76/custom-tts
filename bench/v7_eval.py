@@ -34,7 +34,10 @@ import importlib.metadata as md
 import json
 import os
 import platform
-import resource
+try:
+    import resource
+except ImportError:  # Windows
+    resource = None
 import subprocess
 import sys
 import tempfile
@@ -71,7 +74,7 @@ def pct(xs, q):
 
 def rss_mb() -> dict:
     """current RSS (ps) and the process high-water mark (ru_maxrss: bytes on macOS, KiB on Linux)."""
-    peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1 << 20 if sys.platform == "darwin" else 1 << 10)
+    peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1 << 20 if sys.platform == "darwin" else 1 << 10) if resource else __import__("psutil").Process().memory_info().peak_wset / (1 << 20)
     try:
         cur = int(subprocess.run(["ps", "-o", "rss=", "-p", str(os.getpid())], capture_output=True, text=True).stdout.strip()) / 1024
     except (OSError, ValueError):
