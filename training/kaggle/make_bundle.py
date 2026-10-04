@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 FILES = ["app/services/hinglish.py", "app/services/text_normalizer.py", "app/services/speaker_encoder.py", "app/services/indian_english.py", "app/services/lexicon_hi.tsv",
+         *(f"app/services/pronunciation/{n}" for n in ("__init__.py", "detect.py", "lexical.py", "phonological.py", "data/lexical.tsv", "data/names.tsv", "data/english.tsv")),
          "training/asr.py", "bench/compare_checkpoints.py", "bench/milestone_eval.py", "bench/kernel_eval.py", "bench/check_eval_overlap.py", "bench/hi_eval_50.txt"]
 
 

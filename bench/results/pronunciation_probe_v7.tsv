@@ -1,0 +1,198 @@
+text	category	espeak_before	espeak_after	expected	fixed_by	wrong_before	wrong_after
+है	grammar	hɛː	hɛː	hɛː		0	0
+हैं	grammar	hɛ̃	hɛ̃	hɛ̃ː		0	0
+हूँ	grammar	hũ	hũ	hũː		0	0
+हो	grammar	hoː	hoː	hoː		0	0
+था	grammar	tʰaː	tʰaː	t̪ʰaː		0	0
+थी	grammar	tʰi	tʰi	t̪ʰiː		0	0
+थे	grammar	tʰeː	tʰeː	t̪ʰeː		0	0
+थीं	grammar	tʰĩ	tʰĩ	t̪ʰĩː		0	0
+करता	grammar	kˈʌɾtˌaː	kˈʌɾtˌaː	kərt̪aː		0	0
+करती	grammar	kˈʌɾtˌi	kˈʌɾtˌi	kərt̪iː		0	0
+करते	grammar	kˈʌɾtˌeː	kˈʌɾtˌeː	kərt̪eː		0	0
+रहा	grammar	ɾˌəhaː	ɾˌəhaː	rəɦaː		0	0
+रही	grammar	ɾˌəhi	ɾˌəhi	rəɦiː		0	0
+रहे	grammar	ɾˌəheː	ɾˌəheː	rəɦeː		0	0
+गया	grammar	ɡˈʌjaː	ɡˈʌjaː	ɡəjaː		0	0
+गई	grammar	ɡˈʌi	ɡˈʌi	ɡəiː		0	0
+गए	grammar	ɡˈʌeː	ɡˈʌeː	ɡəeː		0	0
+चाहता	grammar	cˈaːhətˌaː	cˈaːhtaː	tʃaːɦt̪aː	phonological:schwa	1	0
+चाहती	grammar	cˈaːhətˌi	cˈaːhti	tʃaːɦt̪iː	phonological:schwa	1	0
+सकता	grammar	sˈʌktˌaː	sˈʌktˌaː	səkt̪aː		0	0
+सकती	grammar	sˈʌktˌi	sˈʌktˌi	səkt̪iː		0	0
+जाएगा	grammar	ɟaːˈeːɡaː	ɟaːˈeːɡaː	dʒaːeːɡaː		0	0
+जाएगी	grammar	ɟaːˈeːɡi	ɟaːˈeːɡi	dʒaːeːɡiː		0	0
+करेगा	grammar	kəɾˈeːɡaː	kəɾˈeːɡaː	kəreːɡaː		0	0
+करेगी	grammar	kəɾˈeːɡi	kəɾˈeːɡi	kəreːɡiː		0	0
+मिलेगा	grammar	mɪlˈeːɡaː	mɪlˈeːɡaː	mɪleːɡaː		0	0
+मिलेगी	grammar	mɪlˈeːɡi	mɪlˈeːɡi	mɪleːɡiː		0	0
+देगा	grammar	dˈeːɡaː	dˈeːɡaː	d̪eːɡaː		0	0
+देगी	grammar	dˈeːɡi	dˈeːɡi	d̪eːɡiː		0	0
+ने	grammar	nˈeː	nˈeː	neː		0	0
+को	grammar	koː	koː	koː		0	0
+से	grammar	seː	seː	seː		0	0
+में	grammar	mˈẽː	mˈẽː	mẽː		0	0
+पर	grammar	pˈʌɾ	pˈʌɾ	pər		0	0
+यह	grammar	jˌəh	jeː	jeː	lexical:grammar	1	0
+ये	grammar	jeː	jeː	jeː		0	0
+वह	grammar	ʋˌəh	ʋoː	ʋoː	lexical:grammar	1	0
+वे	grammar	ʋeː	ʋeː	ʋeː		0	0
+मेरा	grammar	mˌeːɾaː	mˌeːɾaː	meːraː		0	0
+मेरी	grammar	mˌeːɾi	mˌeːɾi	meːriː		0	0
+मेरे	grammar	mˌeːɾeː	mˌeːɾeː	meːreː		0	0
+आपका	grammar	ˌaːpkˌaː	ˌaːpkˌaː	aːpkaː		0	0
+आपकी	grammar	ˌaːpkˌi	ˌaːpkˌi	aːpkiː		0	0
+आपके	grammar	ˌaːpkˌeː	ˌaːpkˌeː	aːpkeː		0	0
+इसका	grammar	ˌɪskˌaː	ˌɪskˌaː	ɪskaː		0	0
+इसकी	grammar	ˈɪskˌi	ˈɪskˌi	ɪskiː		0	0
+इसके	grammar	ˈɪskˌeː	ˈɪskˌeː	ɪskeː		0	0
+कमला	schwa	kˈʌmlˌaː	kˈʌmlˌaː	kəmlaː		0	0
+समझना	schwa	sˈʌməɟʰnaː	sˈʌməɟʰnaː	səmədʒʰnaː		0	0
+करवट	schwa	kˈʌɾəʋˌəʈ	kˈʌrʋəʈ	kərʋəʈ	lexical:schwa	1	0
+अपना	schwa	ˈʌpnˌaː	ˈʌpnˌaː	əpnaː		0	0
+सरकार	schwa	sˌəɾkˈaːɾ	sˌəɾkˈaːɾ	sərkaːr		0	0
+नमकीन	schwa	nˌəmkˈiːn	nˌəmkˈiːn	nəmkiːn		0	0
+बदलना	schwa	bˈʌdəlnaː	bˈʌdəlnaː	bəd̪əlnaː		0	0
+हलचल	schwa	halcˈal	hˈʌlcəl	ɦəlt͡ʃəl	lexical:schwa	1	0
+रामचरित	schwa	ɾˈaːməcɾɪt	ɾˈaːmcəɾˌɪt	raːmtʃərɪt̪	lexical:schwa	1	0
+धनवान	schwa	dʰˌənʋˈaːn	dʰˌənʋˈaːn	d̪ʰənʋaːn		0	0
+राम	schwa	ɾˈaːm	ɾˈaːm	raːm		0	0
+कमल	schwa	kˈʌməl	kˈʌməl	kəməl		0	0
+कर	schwa	kˈʌɾ	kˈʌɾ	kər		0	0
+रहता	schwa	ɾˈʌhətˌaː	ɾˈʌhtaː	rəɦt̪aː	phonological:schwa	1	0
+पहला	schwa	pˈʌhəlˌaː	pˈʌhlaː	pəɦlaː	phonological:schwa	1	0
+पहचान	schwa	pˌəhəcˈaːn	pəhcˈaːn	pəɦtʃaːn	phonological:schwa	1	0
+मेहनत	schwa	mˈeːhənˌət	mˈeːhnət	meːɦnət̪	phonological:schwa	1	0
+देखकर	schwa	dˈeːkʰəkˌəɾ	dˈeːkʰkəɾ	d̪eːkʰkər	phonological:schwa	1	0
+बजकर	schwa	bˈʌɟəkˌəɾ	bˈʌɟkəɾ	bədʒkər	phonological:schwa	1	0
+मतलब	schwa	mˈʌtəlˌəb	mˈʌtləb	mət̪ləb	lexical:schwa	1	0
+बचपन	schwa	bˈʌcəpˌən	bˈʌcpən	bətʃpən	lexical:schwa	1	0
+एकदम	schwa	ˈeːkədˌəm	ˈeːkdəm	eːkd̪əm	lexical:schwa	1	0
+जनवरी	schwa-number	ɟˈʌnəʋɾi	ɟˈʌnʋəɾˌi	dʒənʋəriː	lexical:schwa	1	0
+फ़रवरी	schwa-number	fˈʌɾəʋɾi	fˈʌrʋəɾˌi	fərʋəriː	lexical:schwa	1	0
+दशमलव	schwa-number	dˈʌʃəmˌələʋ	dˈʌʃməlˌəʋ	d̪əʃmələʋ	lexical:schwa	1	0
+उनसठ	schwa-number	ˈʊnəsˌəʈʰ	ˈʊnsəʈʰ	ʊnsəʈʰ	lexical:schwa	1	0
+पचपन	schwa-number	pˈʌcəpˌən	pˈʌcpən	pətʃpən	lexical:schwa	1	0
+नमस्कार	schwa	nˌəmskˈaːɾ	nˌəməskˈaːɾ	nəməskaːr	lexical:schwa	1	0
+राजस्थान	schwa	ɾˌaːɟstʰˈaːn	ɾˌaːɟəstʰˈaːn	raːdʒəst̪ʰaːn	lexical:schwa	1	0
+सैमसंग	schwa	sˌɛːməsˈʌŋɡ	sˈɛːmsəŋɡ	sɛːmsəŋɡ	lexical:schwa	1	0
+अमृतसर	schwa	ˈʌmɾɪtˌəsəɾ	ʌmɾˈɪtsəɾ	əmrɪt̪sər	lexical:schwa	1	0
+हँसना	schwa	hˈʌnsənˌaː	hˈʌnsnaː	ɦə̃snaː	lexical:schwa	1	0
+दिल्ली	conjunct	dˈɪlli	dˈɪlli	d̪ɪlliː		0	0
+उत्तर	conjunct	ˈʊtːəɾ	ˈʊtːəɾ	ʊt̪t̪ər		0	0
+प्रदेश	conjunct	pɾədˈeːʃ	pɾədˈeːʃ	prəd̪eːʃ		0	0
+प्रश्न	conjunct	pɾˈʌʃnə	pɾˈʌʃn	prəʃn	phonological:schwa	1	0
+कृष्ण	conjunct	kɾˈɪʂɳə	kɾˈɪʂɳ	kr̩ɪʂn	phonological:schwa	1	0
+फ़िल्म	conjunct	fˈɪlmə	fˈɪlm	fɪlm	phonological:schwa	1	0
+ब्रह्म	conjunct	bɾˈʌhmə	bɾˈʌhm	brəɦm	phonological:schwa	1	0
+स्वप्न	conjunct	sʋˈʌpnə	sʋˈʌpn	sʋəpn	phonological:schwa	1	0
+कर्म	conjunct	kˈʌrm	kˈʌrm	kərm		0	0
+धर्म	conjunct	dʰˈʌrm	dʰˈʌrm	d̪ʰərm		0	0
+शब्द	conjunct	ʃˈʌbd	ʃˈʌbd	ʃəbd̪		0	0
+सत्य	conjunct	sˈʌtːjə	sˈʌtːjə	sət̪jə		0	0
+सम्बन्ध	halant	səmbˈʌndʰ	səmbˈʌndʰ	səmbənd̪ʰ		0	0
+हिन्दी	halant	hˈɪndi	hˈɪndi	hɪnd̪iː		0	0
+अन्त	halant	ˈʌnt	ˈʌnt	ənt̪		0	0
+गङ्गा	halant	ɡˈʌŋɡaː	ɡˈʌŋɡaː	ɡəŋɡaː		0	0
+ज़रा	nukta	zˈʌɾaː	zˈʌɾaː	zəraː		0	0
+फ़ोन	nukta	fˈoːn	fˈoːn	foːn		0	0
+क़ीमत	nukta	qˈiːmət	qˈiːmət	qiːmət̪		0	0
+ख़बर	nukta	xˈʌbəɾ	xˈʌbəɾ	xəbər		0	0
+ग़लत	nukta	ɣˈʌlət	ɣˈʌlət	ɣələt̪		0	0
+लड़का	nukta	lˈʌr.kˌaː	lˈʌr.kˌaː	ləɽkaː		0	0
+पढ़ना	nukta	pˈʌr.hənˌaː	pˈʌr.hnaː	pəɽʰnaː	phonological:schwa	1	0
+बड़ा	nukta	bˈʌr.aː	bˈʌr.aː	bəɽaː		0	0
+ज़रा	nukta-nfd	zˈʌɾaː	zˈʌɾaː	zəraː	phonological:schwa	0	0
+ख़बर	nukta-nfd	xˈʌbəɾ	xˈʌbəɾ	xəbər	phonological:schwa	0	0
+लड़का	nukta-nfd	lˈʌr.kˌaː	lˈʌr.kˌaː	ləɽkaː	phonological:schwa	0	0
+पढ़ना	nukta-nfd	pˈʌr.hənˌaː	pˈʌr.hnaː	pəɽʰnaː	phonological:schwa	1	0
+संबंध	anusvara	səmbˈʌndʰ	səmbˈʌndʰ	səmbənd̪ʰ		0	0
+अंत	anusvara	ˈʌnt	ˈʌnt	ənt̪		0	0
+हिंदी	anusvara	hˈĩdi	hˈĩdi	hɪnd̪iː		0	0
+गंगा	anusvara	ɡˈʌŋɡaː	ɡˈʌŋɡaː	ɡəŋɡaː		0	0
+संपर्क	anusvara	səmpˈʌɾk	səmpˈʌɾk	səmpərk		0	0
+सुंदर	anusvara	sˈũdəɾ	sˈũdəɾ	sʊnd̪ər		0	0
+पंच	anusvara	pˈʌɲc	pˈʌɲc	pəntʃ		0	0
+हाँ	chandrabindu	hˈã	hˈã	ɦãː		0	0
+माँ	chandrabindu	mˈã	mˈã	mãː		0	0
+आँख	chandrabindu	ˈaːnkʰ	ˈaːnkʰ	aːnkʰ		0	0
+पाँच	chandrabindu	pˈãnc	pˈãnc	pãːntʃ		0	0
+चाँद	chandrabindu	cˈãnd	cˈãnd	tʃaːnd̪		0	0
+कृपया	rii	kɾˈɪpjˌaː	kɾˈɪpjˌaː	krɪpəjaː		1	1
+ऋषि	rii	ɾˈɪʂɪ	ɾˈɪʂɪ	rɪʃɪ		0	0
+गृह	rii	ɡɾˈɪh	ɡɾˈɪh	grɪɦ		0	0
+मृत्यु	rii	mɾˈɪtːjʊ	mɾˈɪtːjʊ	mrɪt̪jʊ		0	0
+ज़रूर	perso-arabic	zəɾˈuːɾ	zəɾˈuːɾ	zərurː		0	0
+ख़ुश	perso-arabic	xˈʊʃ	xˈʊʃ	xʊʃ		0	0
+वक़्त	perso-arabic	ʋˈʌqt	ʋˈʌqt	vəqt̪		0	0
+क़ानून	perso-arabic	qaːnˈuːn	qaːnˈuːn	qaːnuːn		0	0
+मुश्किल	perso-arabic	mˈʊʃkɪl	mˈʊʃkɪl	mʊʃkɪl		0	0
+ज़िंदगी	perso-arabic	zˈĩdɡˌi	zˈɪndəɡˌi	zɪnd̪əɡiː	lexical:schwa	1	0
+इज़्ज़त	perso-arabic	ˈɪzzət	ˈɪzzət	ɪzzət̪		0	0
+मदद	perso-arabic	mˈʌdəd	mˈʌdəd	mədəd̪		0	0
+क़िस्मत	perso-arabic	qˈɪsmət	qˈɪsmət	qɪsmət̪		0	0
+इंतज़ार	perso-arabic	ˌĩtzˈaːɾ	ˌĩtɪzˈaːɾ	ɪnt̪ɪzaːr	lexical:schwa	1	0
+शुक्रिया	perso-arabic	ʃˈʊkɾɪjˌaː	ʃˈʊkɾɪjˌaː	ʃʊkrɪjaː		0	0
+अख़बार	perso-arabic	ˌʌxbˈaːɾ	ˌʌxbˈaːɾ	əxbaːr		0	0
+कंप्यूटर	loanword-dev	kəmpːjˈuːʈəɾ	kəmpːjˈuːʈəɾ	kəmpjuːʈər		0	0
+मोबाइल	loanword-dev	moːbˈaːɪl	moːbˈaːɪl	moːbaːɪl		0	0
+ऑफ़िस	loanword-dev	ˈɔfɪs	ˈɔfɪs	ɔfɪs		0	0
+बैंक	loanword-dev	bˈɛ̃k	bˈɛ̃k	bɛŋk		0	0
+टिकट	loanword-dev	ʈˈɪkəʈ	ʈˈɪkəʈ	ʈɪkəʈ		0	0
+अकाउंट	loanword-dev	ˌʌkaːˈʊɳʈ	ˌʌkaːˈʊɳʈ	əkaʊnʈ		0	0
+ऑर्डर	loanword-dev	ˈɔɾɖəɾ	ˈɔɾɖəɾ	ɔrɖər		0	0
+डिलीवरी	loanword-dev	ɖɪlˈiːʋɾˌi	ɖɪlˈiːʋɾˌi	ɖɪliːʋəriː		1	1
+अपडेट	loanword-dev	ˌʌpɖˈeːʈ	ˌʌpɖˈeːʈ	əpɖeːʈ		0	0
+राहुल	name-dev	ɾˈaːhʊl	ɾˈaːhʊl	raːɦʊl		0	0
+प्रिया	name-dev	pɾˈɪjaː	pɾˈɪjaː	prɪjaː		0	0
+अर्जुन	name-dev	ˈʌɾɟʊn	ˈʌɾɟʊn	ərdʒʊn		0	0
+श्रेया	name-dev	ʃɾˈeːjaː	ʃɾˈeːjaː	ʃreːjaː		0	0
+मेहता	name-dev	mˈeːhətˌaː	mˈeːhtaː	meːɦt̪aː	phonological:schwa	1	0
+कोहली	name-dev	kˈoːhəlˌi	kˈoːhli	koːɦliː	phonological:schwa	1	0
+नेहरू	name-dev	nˈeːhəɾˌuː	nˈeːhɾuː	neːɦruː	phonological:schwa	1	0
+शाहरुख़	name-dev	ʃˈaːhəɾˌʊx	ʃˈaːhɾʊx	ʃaːɦrʊx	phonological:schwa	1	0
+तेंदुलकर	name-dev	tˈẽːdʊlˌəkəɾ	tẽːdˈʊlkəɾ	t̪eːnd̪ʊlkər	phonological:schwa	1	0
+अंबेडकर	name-dev	ʌmbˈeːɖəkˌəɾ	ʌmbˈeːɖkəɾ	əmbeːɖkər	phonological:schwa	1	0
+Rahul	name-latin	ɾˈaːhʊl	ɾˈaːhʊl	raːɦʊl		0	0
+Priya	name-latin	pɾˈɪjaː	pɾˈɪjaː	prɪjaː		0	0
+Arjun	name-latin	ˈʌɾɟʊn	ˈʌɾɟʊn	ərdʒʊn		0	0
+Shreya	name-latin	ʃɾˈeːjaː	ʃɾˈeːjaː	ʃreːjaː		0	0
+Priyanka	name-latin	pɾɪjˈɛŋkə	pɾɪjˈʌŋkaː	prɪjəŋkaː	lexical:names	1	0
+Vishwajit	name-latin	ʋˈɪʃʋʌɟˌɪʈ	ʋˌɪʃʋəɟˈiːt	ʋɪʃʋədʒiːt	lexical:names	0	0
+Flipkart	brand	flˌɪpkˈaːɾʈ	flˌɪpkˈaːɾʈ	flɪpkaːrʈ		0	0
+Paytm	brand	pˌeːʈiʲˈeːm	pˌeːʈiʲˈeːm	peːʈiːɛm		0	0
+Zomato	brand	zoːmˈɛːʈoː	zoːmˈɛːʈoː	zoːmɛːʈoː		0	0
+Swiggy	brand	sʋˈɪɡi	sʋˈɪɡi	sʋɪɡiː		0	0
+Jio	brand	ɟˈɪjoː	ɟˈɪjoː	dʒɪjoː		0	0
+Airtel	brand	ˌeːjəɾʈˈeːl	ˌeːjəɾʈˈeːl	eːjərʈeːl		0	0
+Infosys	brand	ĩfˈoːsɪs	ĩfˈoːsɪs	ɪnfoːsɪs		0	0
+WhatsApp	brand	ʋˌʌʈs ˈɛp	ʋˈaːʈsɛːp	ʋaːʈsɛp	lexical:names	1	0
+Google Pay	brand	ɡˈuːɡəl pˈeː	ɡˈuːɡəl pˈeː	ɡuːɡəl peː		0	0
+PhonePe	brand	fˈoːnpˌeː	fˈoːnpˌeː	foːnpeː		0	0
+UPI	brand	jˈuː pˈiʲ ˈaːi	jˈuː pˈiʲ ˈaːi	juːpiːaːi		0	0
+Zerodha	brand	zˈiəɾɔɖhə	zeːɾˈoːdʰaː	zeːroːd̪ʰaː	lexical:names	1	0
+Groww	brand	ɡɾˈoːʋə	ɡɾˈoː	ɡroː	lexical:names	1	0
+Aadhaar	brand	ɔɖhˈaːɾ	aːdʰˈaːɾ	aːd̪ʰaːr	lexical:names	1	0
+बेंगलुरु	city	bˈẽːɡlˌʊɾʊ	bˈẽːɡlˌʊɾʊ	beːŋɡəluːru		1	1
+Bengaluru	city	bˈẽːɡlˌʊɾʊ	bˈẽːɡlˌʊɾʊ	beːŋɡəluːru		1	1
+Chennai	city	cˈeːnnəˌi	cˈeːnnəˌi	tʃeːnnəiː		0	0
+Hyderabad	city	hˌɛːdɾaːbˈaːd	hˌɛːdɾaːbˈaːd	ɦɛːd̪rabaːd̪		0	0
+Pune	city	pˈʊɳeː	pˈʊɳeː	puɳeː		0	0
+Gurugram	city	ɡˌʊɾʊɡɾˈaːm	ɡˌʊɾʊɡɾˈaːm	ɡʊrʊɡraːm		0	0
+Noida	city	noːˈeːɖaː	noːˈeːɖaː	noːeːɖaː		0	0
+Kolkata	city	kˌoːlkˈaːtaː	kˌoːlkˈaːtaː	koːlkaːt̪aː		0	0
+Thiruvananthapuram	city	ʈˈɪɾuːʋənənʈəpˌʊɾɾəm	tˌɪɾʊʋənˈʌntəpˌʊɾəm	t̪ɪrʊʋənənt̪əpʊrəm	lexical:names	0	0
+Mysuru	city	mˈaːɪsəɾˌuː	mɛːsˈuːɾʊ	mɛːsuːrʊ	lexical:names	1	0
+Tiruchirappalli	city	ʈˈəɾɾəkˌaːɪɾʌpˌɛli	tˌɪɾʊcˌɪɾaːpˈʌlli	t̪ɪrʊtʃɪraːpəlliː	lexical:names	1	0
+OTP	abbreviation	ˈoː ʈˈi pˈi	ˈoː ʈˈi pˈi	oː tiː piː		0	0
+KYC	abbreviation	keː ʋˈaːi sˈi	keː ʋˈaːi sˈi	keː ʋaːi siː		0	0
+EMI	abbreviation	ˈiʲ ˈeːm ˈaːi	ˈiʲ ˈeːm ˈaːi	iː ɛm aːi		0	0
+GST	abbreviation	ɟˈiʲ ˈeːs ʈˈi	ɟˈiʲ ˈeːs ʈˈi	dʒiː ɛs tiː		0	0
+PAN	abbreviation	pˈɛːn	pˈɛːn	pɛn		0	0
+ATM	abbreviation	ˈeː ʈˈiʲ ˈeːm	ˈeː ʈˈiʲ ˈeːm	eː tiː ɛm		0	0
+SMS	abbreviation	ˈeːs ˈeːm ˈeːs	ˈeːs ˈeːm ˈeːs	ɛs ɛm ɛs		0	0
+ID	abbreviation	ˈaːi ɖˈi	ˈaːi ɖˈi	aːi diː		0	0
+PDF	abbreviation	pˈi ɖˈiʲ ˈeːpʰ	pˈi ɖˈiʲ ˈeːf	piː diː ɛf	lexical:english	1	0
+sorry	english	sˈaːɾi	sˈɔɾi	sɔri	lexical:english	1	0
+password	english	pˈɛsʋəɾɖ	pˈaːsʋəɾɖ	paːsʋərɖ	lexical:english	1	0
+insurance	english	ɪnʃˈʊɾɾəns	ˈĩʃjoːɾˌẽːs	ɪnʃjoːrens	lexical:english	1	0

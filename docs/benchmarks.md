@@ -396,3 +396,76 @@ Section 9's uncontended rohan rows on this box (119 / 274 ms p50 at 1 / 5 stream
 ### Not measured here
 
 Any uncontended run of the above; concurrency above 5 for the custom voice; Kokoro/Supertonic/Qwen; GPU; real G.711/network codec; listening tests (brand spellings, infer-grid settings, 8 kHz naturalness); `--call-sim` at 10+ calls.
+
+## 11. Audio quality and prosody, T6 (2026-10-02)
+
+`python -m bench.audio_quality --out bench/results/audio_quality_{before,after}.json` renders 14 fixed sentences (one-word replies,
+questions, long comma sentences, Hinglish, every punctuation class) through `tts.stream`/`tts.synthesize` for each Piper voice
+(M4, idle apart from other agents' jobs; VITS is stochastic, so rows move a little run to run). Methods are in the script's
+docstring: loudness = BS.1770-4 K-weighted gated LUFS (validated on a 997 Hz sine, -3.01 +-0.04), true peak = 4x oversampled,
+silence threshold -50 dBFS, telephony compared against an FFT-resampled ideal of the same cached audio.
+"Before" = the code at de40845; "after" = defaults below (`PAUSE_PLAN=""`, `FADE_MS=0`, `VOICE_GAIN_DB=""` reproduce "before").
+
+What the measurement showed, and what was changed:
+
+| | before | after |
+|---|---|---|
+| Median speech level per voice (custom / pratham / rohan / priyamvada), LUFS | -20.5 / -18.4 / -16.3 / -15.7 (4.8 LU apart) | -20.0 / -19.7 / -19.8 / -19.9 (0.3 LU apart) |
+| True peak, worst utterance per voice, dBTP | -3.6 / -1.9 / -0.8 / -1.3 | -2.9 / -3.2 / -4.9 / -5.6 |
+| Lead silence min across utterances, ms (target 30) | custom 5, pratham 0 (onset at sample 0) | custom 9, pratham 16: onset-in-first-ms remains where the model starts voiced, but never 0 for a padded chunk |
+| Chunk edge, loudest first/last sample, dBFS | custom -73, pratham -43, rohan -54, priyamvada -51 | -84, -67, -65, -64 |
+| Gap at a sentence seam, min / median / max ms (12 seams, 4 voices) | 94 / 190 / 245 | 287 / 310 / 319 |
+| Gap at a colon/semicolon seam | 44 / 150 / 155 | 231 / 232 / 234 |
+| Gap at an ellipsis seam | 103 / 110 / 169 | 388 / 409 / 415 |
+| Gap at a mid-sentence phrase cut | 152 / 160 / 169 | 117 / 120 / 129 |
+| Gap at a comma seam | 92 / 152 / 175 | 62 / 163 / 178 (see note) |
+| Clipped samples, seam jump, seam spectral-flux spike, DC | 0, 0, 0, < 0.002 | unchanged |
+| Chunk loudness spread inside one utterance, median | 0.7-1.5 dB | unchanged (a per-chunk gain would pump; not done) |
+| 8 / 16 kHz: length ratio, passband error, level change | 1.000, 0.0 dB, +0.1 / 0.0 dB median | unchanged |
+| 8 / 16 kHz: top-10 % band vs ideal (negative = rolled off, no aliasing) | -1 to -4 dB | unchanged |
+
+Notes. Nothing needed fixing in telephony resampling (soxr HQ is transparent: passband 0.0 dB, no energy added near Nyquist),
+in clipping (the existing soft limiter never engaged on Piper) or in seams (every seam sits in silence, so no clicks existed to
+remove; the edge fade only matters for chunks cut while audible, seen on pratham). Gaps are measured at -50 dBFS while the plan is
+applied at -40 dBFS (the trim threshold), so measured values sit slightly under the plan (sentence 320 -> 287-319); the spread
+inside a class dropping from ~150 ms to ~30 ms is the gain. The comma row did not improve: the spread comes from soft onsets
+between -50 and -40 dBFS in the next piece. The plan values are defaults chosen to keep the old median where it was reasonable
+(comma, phrase) and to lengthen between-sentence gaps from the engines' 100-250 ms to ~320 ms; the length is a listening
+decision, not something these metrics can confirm. No listening test was run.
+
+Time to first audio (`tts.stream`, first byte, 20 warm repeats after 3 warm-ups, cache off, custom voice, native rate):
+
+| | p50 | p95 |
+|---|---|---|
+| before | 33.3 ms | 43.6 ms |
+| after (run 1, concurrent load from other jobs: load average 4.7) | 47.1 ms | 146.0 ms |
+| after (runs 2 and 3, repeated) | 37.8 / 34.1 ms | 48.3 / 37.8 ms |
+
+Target p50 < 100 ms holds. The added work per chunk is a few numpy passes over milliseconds of audio.
+
+## 12. V7 evaluation (2026-10-02)
+
+Harness `python -m bench.v7_eval` (docstring has the full contract), corpus `bench/corpus/hi_eval_v2.tsv` (258 rows, sha256 `814850bf...2f601`, [bench/corpus/README.md](../bench/corpus/README.md), not native-reviewed),
+human test protocol [listening-test/v7/README.md](listening-test/v7/README.md). One JSON per run in `bench/results/v7_eval/`: CER/PER overall and per category with bootstrap CIs and the ASR model name, UTMOS as *predicted* MOS,
+speaker similarity, TTFA/RTF p50/p95, RSS, audio duration, clipping, 8 and 16 kHz variants, environment, corpus and model sha256, git commit, seed; paired deltas when two systems are given (medium vs high: same corpus, same params, `--system med=...onnx --system high=...onnx`).
+Synthesis goes through `app.services.tts.stream` on a real `PiperEngine` (voice-catalog pronunciation rules applied to text and reference); Piper's graph noise is seeded so reruns reproduce the audio. `--quick` = 32 stratified rows.
+
+**V6 quick baseline** (`bench/results/v7_eval/v6_baseline_quick_small.json`, `hi_IN-custom-medium.onnx` sha256 e18a819a...6596e, Apple M4, seed 0):
+ASR **faster-whisper small** (int8 CPU, beam 5, hi), **n = 32 rows**, 95% bootstrap CIs over rows.
+
+| metric | mean [95% CI] |
+|---|---|
+| CER (vowel-aware) | 0.206 [0.160, 0.254] |
+| PER | 0.168 [0.144, 0.191] |
+| CER after 8 kHz / 16 kHz server resampler | 0.220 [0.174, 0.271] / 0.209 [0.162, 0.260] |
+| UTMOS22 **predicted** MOS (English-trained, not a MOS) | 4.04 [3.93, 4.13] |
+| speaker self-consistency (Resemblyzer, leave-one-out; no real reference clips were available, so NOT similarity to the target speaker) | 0.944 [0.937, 0.950] |
+| TTFA p50 / p95 (64 warm streams, 1 worker x 4 threads, cache off) | 113 / 166 ms |
+| RTF p50 / p95 | 0.036 / 0.041 |
+| RSS after synthesis phase / process peak | 684 / 926 MB |
+| clipping | 0 of 32 clips; 119 s audio, 0.087 s per character |
+
+Per category CER (n tiny, indicative only): hindi 0.151 (12), questions 0.102 (3), expressive 0.133 (3), numbers 0.183 (4), pronunciation 0.198 (4), hinglish 0.429 (6; romanized rows and Latin words inflate CER, PER 0.211).
+Wall time: quick run 259 s (whisper small, 3 ASR passes per row). The full corpus is ~8x the rows, so roughly 35 min with small and longer with large-v3-turbo (not measured).
+The corpus is new, so these numbers are not comparable with section 10 (50-sentence v1).
+Not claimed: naturalness (no listening test); overlap of v2 with the real IndicTTS training text (not present on this machine).

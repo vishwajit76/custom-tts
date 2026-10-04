@@ -27,11 +27,25 @@ curl localhost:8000/health
 Local (Python 3.12):
 
 ```bash
-uv venv && uv pip install -r requirements-dev.txt
-python scripts/download_voices.py          # hi_IN-rohan-medium -> models/piper/
-uvicorn app.main:app --port 8000
-python scripts/ws_client.py "नमस्ते, मैं आपकी कैसे मदद कर सकती हूँ?" --sample-rate 8000 --key $KEY
+uv venv --clear --python 3.12 && source .venv/bin/activate   # --clear: replaces an existing .venv; must be 3.12, not 3.13
+uv pip install -r requirements-dev.txt
+python scripts/download_voices.py          # hi_IN-rohan-medium -> models/piper/ (PermissionError on an existing read-only .onnx is harmless)
+uvicorn app.main:app --port 8000           # "address already in use": stop the old one, `lsof -tiTCP:8000 -sTCP:LISTEN | xargs kill`
+python scripts/ws_client.py "नमस्ते, मैं आपकी कैसे मदद कर सकती हूँ?" --sample-rate 8000 --key $KEY --out reply.wav && afplay reply.wav
 ```
+
+`$KEY` is one value from `API_KEYS` in `.env`. Default is piper only (3 voices). To test every engine:
+
+```bash
+uv pip install -r requirements-engines.txt
+python scripts/download_voices.py supertonic kokoro
+ENGINES=piper,supertonic,kokoro MODELS_EXTRA=voices uvicorn app.main:app --port 8000   # or set both in .env
+curl -H "Authorization: Bearer $KEY" localhost:8000/v1/voices        # lists every voice id
+python scripts/ws_client.py "नमस्ते" --voice supertonic:F1 --key $KEY   # also kokoro:hf_alpha, hi_IN-custom-medium (non-commercial), ...
+```
+
+If `uv pip install -r requirements-dev.txt` fails building `tokenizers` (resolver picked `transformers==4.12.2`), run
+`uv pip install -r requirements.txt` then `uv pip install pytest websockets onnx torch "transformers>=5" pyarrow`.
 
 ## API
 

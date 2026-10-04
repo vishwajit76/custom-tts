@@ -4,7 +4,13 @@ Latin-script (Hinglish) words are left untouched; the model reads them as Englis
 """
 import re
 
-from app.services import hinglish
+from app.services import hinglish, pronunciation
+from app.services.pronunciation import lexical as _pron_lexical
+
+try:
+    from app.core.config import settings as _settings
+except ModuleNotFoundError:  # the vendored Kaggle eval bundle ships no app config: no pronunciation rules there
+    _settings = None
 
 _UNITS = (
     "शून्य एक दो तीन चार पाँच छह सात आठ नौ दस ग्यारह बारह तेरह चौदह पंद्रह सोलह सत्रह अठारह उन्नीस "
@@ -421,7 +427,8 @@ def _stash_web(text: str, stash: list[str]) -> str:
     return _URL_RE.sub(put, _EMAIL_RE.sub(put, text))
 
 
-def normalize(text: str) -> str:
+def normalize(text: str, rules: str | None = None) -> str:
+    """`rules` overrides settings.pronunciation_rules (e.g. "all", "off"); see app/services/pronunciation."""
     text = text.translate(_DEVANAGARI_DIGITS)
     text = re.sub(r"[\ue000-\uf8ff]", "", text)  # private-use characters are our placeholder alphabet
     web: list[str] = []
@@ -489,6 +496,7 @@ def normalize(text: str) -> str:
     # Generic numbers last (a Latin word glued to digits, "iPhone15", is split first: no token mixes scripts).
     text = re.sub(r"(?<=[A-Za-z])(?=\d)", " ", text)
     text = _NUM_RE.sub(lambda m: _number(m[0]), text)
+    text = pronunciation.apply(text, _pron_lexical.parse(rules if rules is not None else _settings.pronunciation_rules if _settings else "off"))
     text = re.sub(_PUA_OPEN + "(.)" + _PUA_CLOSE, lambda m: web[ord(m[1]) - _PUA_BASE], text)
     text = re.sub(r"\s+([,.?!।])", r"\1", text)  # no space before punctuation created by the rules above
     return re.sub(r"\s+", " ", text).strip()

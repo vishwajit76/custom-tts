@@ -1,0 +1,16 @@
+# Latin-script names and brands that the Indian-English path (indian_english.py) or the hinglish lexicon leaves wrong.
+# Keys are lowercase Latin. Add a row only when espeak's reading of the Latin word is audibly wrong (docs/pronunciation.md);
+# the 400+ names already in app/services/lexicon_hi.tsv stay there and win on conflict.
+word	respelling	category	reason
+zerodha	ज़ेरोधा	company	en-us reads "zeero-dha" (zˈiəɾɔɖhə); Indian pronunciation is ze-ro-dhaa
+groww	ग्रो	company	en-us adds a final schwa (ɡɾˈoːʋə, "grow-wuh"); the brand is spoken "grow"
+whatsapp	वाट्सैप	product	en-us "what" is wˈʌt, giving ʋˌʌʈs ˈɛp ("vut-sep"); Indian pronunciation is vaats-ap; वाट्सऐप would add a hiatus schwa (ʈsəˈɛːp)
+aadhaar	आधार	product	en-us spells it out as ɔɖhˈaːɾ; the word is आधार (aa-dhaar)
+aadhar	आधार	product	same word, common spelling
+priyanka	प्रियंका	person	en-us gives pɾɪjˈɛŋkə (ɛ, final schwa); Hindi is pri-yan-kaa
+vishwajit	विश्वजीत	person	en-us gives ʋˈɪʃʋʌɟˌɪʈ (short i, retroflex t); Hindi is vish-va-jeet
+ajio	अजियो	product	en-us gives ˈɛɟɪʲˌoː; the brand is a-ji-o
+mysuru	मैसूरु	city	en-us reads "mice-uru" (mˈaːɪsəɾˌuː); Hindi is mai-soo-ru
+tiruchirappalli	तिरुचिरापल्ली	city	en-us garbles the long word (ʈˈəɾɾəkˌaːɪɾʌpˌɛli); Hindi is ti-ru-chi-raa-pal-lee
+thiruvananthapuram	तिरुवनंतपुरम	city	en-us gives a doubled trill (pˌʊɾɾəm) and retroflex ʈ for dental th; Hindi is ti-ru-va-nan-ta-pu-ram
+ernakulam	एर्नाकुलम	city	en-us reads ˈəɾnʌkjˌʊlɛm ("er-na-kyu-lem"); Hindi is er-naa-ku-lam

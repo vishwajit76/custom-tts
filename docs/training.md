@@ -113,6 +113,138 @@ synthetic data only; the annotation UI was not exercised in a browser. The one r
 `file|text` layout, via `prepare_dataset`) is the custom voice in the runbook; the manifest/rights path was not used for it, and no
 expressive/multi-speaker model exists yet.
 
+## 2c. V7 dataset pipeline (ingest, quality gates, review, report)
+
+Code: `training/ingest_hf.py` (Hugging Face parquet to wavs + manifest + rights), `training/quality_gates.py` (measurements and
+decisions), `training/prepare_dataset.py` (runs the gates, writes Piper metadata and reports), `training/audio_report.py` (dataset
+report). Plumbing is tested on synthetic audio only (`tests/test_quality_gates.py`); the **default thresholds are untuned** and must
+be checked against the first real report (listen to a sample of what was rejected and what was kept).
+
+### Ingest a Hugging Face dataset
+
+```bash
+export HF_TOKEN=...      # gated datasets: accept the terms on huggingface.co with the account behind this token first
+.venv-train/bin/python -m training.ingest_hf --preset rasa --out data/rasa_hi --gender female --split train
+.venv-train/bin/python -m training.ingest_hf --preset rasa --out data/rasa_hi --gender male   --split train   # same --out: extends it
+```
+
+Output in `--out`: `wavs/<id>.wav` (22.05 kHz mono 16-bit, soxr HQ resample), `metadata.csv` (manifest: `id, audio, text, speaker_id,
+language, gender, style, age_group, duration, source_row_id, source_duration, license, source_repo, source_revision, label_source,
+rights_id` + every extra mapped field), `rights.jsonl`, `ingest_info.json` (pinned revision sha, filters, counts, hours).
+
+- **Column mapping** instead of hard-coding: `--map FIELD=SOURCE`, SOURCE = parquet column, a template over columns (`rasa_hi_{gender}`) or
+  `=literal`. Presets (`--preset rasa|indicvoices-r`) are just default mappings, overridable. Rasa has no speaker column (one female and one
+  male speaker per language), so the preset derives `speaker_id` from `gender`. For one Piper speaker id per voice x style, override with
+  `--map speaker_id='rasa_hi_{gender}_{style}'` (style values must be filename-safe; check them once the data is visible).
+- Filters: `--gender`, `--style` (repeatable), `--split` (shard-name match), `--max-hours`. Shards are read one at a time from the HF cache
+  (`hf_hub_download`, revision pinned to the resolved sha), 32 rows per batch, so memory stays small. **Resumable**: a clip whose wav and
+  `metadata.csv` row exist is skipped, `--max-hours` counts what is already there.
+- Rasa layout seen on the Hub (listing only; the files are gated for us and were never downloaded): `Hindi/train-0000N-of-00025.parquet`
+  (0.2 to 1.1 GB each) and `Hindi/test-0000N-of-00003.parquet`. The expected columns (filename, text, language, gender, style, duration,
+  wav_path, audio) come from the task brief and are **unverified against real rows**.
+- **Rights**: every run creates or extends `rights.jsonl` (schema of `training/data_rights.py` plus `attribution`, `source_url`, `revision`,
+  `revisions`): licence CC-BY-4.0 (presets), `permitted_uses` `tts_training, research, commercial_use` (attribution required),
+  `consent_record_id = dataset-licence:<repo>@<sha>`, speakers = the ones ingested. Presets assert `speaker_authorization`
+  (the corpora are published for TTS under the licence); a bare repo needs `--licence` and `--speaker-authorization`, otherwise
+  `prepare_dataset` refuses. `prepare_dataset --manifest` uses the `rights.jsonl` next to the manifest when `--rights` is omitted and
+  still aborts (as before) on a missing file, an uncovered speaker, no `tts_training` permission or no speaker authorization.
+- Dataset labels (style, emotion) are written with `label_source=human_verified` by default (`--label-source`): they are the
+  dataset authors' labels, not model guesses. Change it if you do not trust them; `prepare_dataset` then drops them.
+- IndicVoices-R Hindi (`SPRINGLab/IndicVoices-R_Hindi`, 368 speakers, 71.9 h) has at most 0.37 h per speaker: **unsuitable for a single
+  production voice**. Preset kept for completeness and for speaker-diversity experiments only. Not smoke-tested: its shards are about
+  4.6 GB; the ingest path is tested on synthetic parquet that mimics both layouts.
+
+### Prepare with gates
+
+```bash
+.venv-train/bin/python -m training.prepare_dataset --manifest data/rasa_hi/metadata.csv --output data/rasa_hi_prepared \
+    [--review data/rasa_hi/review.jsonl] [--workers 8] [--speaker-disjoint-test] [--min-snr-db 20 --max-s 20 ...]
+```
+
+Per clip (measured on the raw 22.05 kHz audio, before denoise/trim/normalise; implemented in `quality_gates.measure`):
+
+| reason | rule (default) | method |
+|---|---|---|
+| `unreadable`, `no_transcript`, `empty_transcript` | file cannot be decoded / no transcript (and no `--asr`) / transcript has no letters | |
+| `too_short` / `too_long` | duration outside 1.0 to 15.0 s (`--min-s/--max-s`) | after trim + 100 ms pads, what training sees |
+| `rms_low` / `rms_high` | RMS outside -45 to -6 dBFS | whole-clip RMS |
+| `loudness_low` / `loudness_high` | LUFS-like outside -48 to -8 | BS.1770 K-weighting, 400 ms blocks, -70 absolute / -10 LU relative gate; mono, approximate |
+| `clipping` | samples with abs >= 0.99 above 0.1%, or a run of >= 6 | fraction and longest run |
+| `low_snr` | SNR below 15 dB | speech-frame power minus noise power over noise power; noise = quietest 10% of 23 ms frames; speech = VAD frames |
+| `silence_ratio` | non-speech frames above 60% | energy VAD: frame dB > max(p10 + 10 dB, p95 - 30 dB) |
+| `too_little_speech` | under 0.5 s of speech | same VAD |
+| `speech_rate_low` / `speech_rate_high` | letters+digits+matras per second of speech outside 4 to 30 | catches transcripts that do not match the audio |
+| `asr_mismatch` | Whisper CER above 0.35 (`--asr-validate`, off by default, slow, single process) | `training/asr.py` |
+
+Dataset level (`quality_gates.dataset_reasons`; first clip by id of a cluster is kept, later ones rejected):
+
+| reason | rule |
+|---|---|
+| `duplicate_audio` / `speaker_leak_audio` | identical audio (sha256 of the written wav) under one speaker / under two speakers |
+| `duplicate_text` | same normalised transcript twice for one speaker |
+| `speaker_leak_text` | same transcript under two speakers; **off by default** (reported as `shared_text_across_speakers`; multi-speaker corpora legitimately share prompts), `--reject-cross-speaker-text` |
+| `near_duplicate_text` | same speaker, char-trigram cosine >= 0.8 then difflib ratio >= 0.92 (`--text-near-sim`), durations within 10% |
+| `near_duplicate_audio` / `speaker_leak_audio` | 16 x 32 log-mel signature, dataset-centred cosine >= 0.97 (`--audio-near-cos`), durations within 10%; across speakers it is leakage. Whole pass is a blocked matrix product (30k clips: seconds) |
+| `condition_outlier_<noise_db\|centroid_hz\|bandwidth_hz\|lufs>` | per speaker (>= 20 clips), robust z = (x - median) / (1.4826 MAD) beyond 4.0 (`--condition-z`), with a minimum scale per feature; `--condition-by-style` judges each style separately (expressive styles are legitimately louder/brighter) |
+| `no_near_duplicates` flag | `--no-near-duplicates` skips both near-duplicate passes |
+
+Train/val/test overlap is prevented by `training/split.py` (groups by transcript and audio hash) and re-measured into the report
+(`leakage.split_overlap` must be 0 for text and audio). Every threshold is a flag generated from `quality_gates.Thresholds`
+(`prepare_dataset --help`).
+
+### Human review sidecar
+
+`--review review.jsonl` (JSON object `{id: entry}`, JSON list, or JSONL). One entry per clip id (manifest `id`; for directory input the
+generated id, the path, file name or stem also work):
+
+```json
+{"id": "clip123", "quality": "approved", "naturalness": 4, "pronunciation": 5, "noise": 4}
+```
+
+`quality` is required (`approved | rejected | review`); scores are optional integers 1 to 5 (5 = best, noise 5 = cleanest). Unknown
+fields, bad values and duplicate ids abort the run. `rejected` is excluded (`review_rejected`); `review` (undecided) is excluded
+(`review_pending`) unless `--allow-review`; scores below `--min-naturalness / --min-pronunciation / --min-noise` (default 0 = off) are excluded
+(`review_low_<score>`). A clip without an entry or without that score is not filtered. Review ids that match no clip print a warning.
+
+### Outputs and report
+
+`metadata.csv` / `test.csv` (`id.wav|text`, or `id.wav|speaker|text` when more than one speaker; unchanged), `manifest.jsonl`
+(accepted clips with gender, style, source repo/revision), `rejected.jsonl` (id, file, speaker, `reasons`, measured values),
+`report.json` (short summary), `dataset_report.json` + `dataset_report.md`: clips and hours (total / accepted / rejected), rejection
+reasons with clips and hours (a clip with several reasons counts under each), hours per speaker, hours per category (style, else emotion,
+else a `category` column, else `(none)`), average duration, SNR mean / median / p10 / p90, loudness percentiles and a 2 LU histogram, the
+leakage numbers and the thresholds used. Rejected clips leave no wav behind. Throughput: the per-clip stage is a process pool
+(`--workers`, forced to 1 with ASR); about 35 ms of measurement per 10 s clip plus load/trim/write, so 30k clips are a matter of minutes on an M4
+(not timed end to end on real data).
+
+### V7 dataset target
+
+- **At least 10 h of clean Hindi per production voice after the gates; 15 to 20 h preferred for the primary voice.** Count accepted hours
+  in `dataset_report.md`, per speaker (and per speaker id if styles become speakers). One speaker, one room, one mic per voice.
+- **Prefer conversational over literary read speech.** Rasa is the target corpus (`ai4bharat/Rasa`, Hindi female 27.05 h, male 23.78 h,
+  CC-BY-4.0, studio, labelled styles); it is gated for us until the owner accepts the terms. SYSPIN (read speech) stays the fallback.
+- Sentence categories and target share of accepted hours (share by primary category; a sentence can belong to several, structured
+  categories usually need a short targeted recording or scripted supplement because corpora rarely contain them):
+
+| category | target share | category | target share |
+|---|---|---|---|
+| conversational | 20% | emotional phrases | 6% |
+| questions | 8% | confirmations | 4% |
+| answers | 8% | apologies | 2% |
+| greetings | 3% | interruptions | 2% |
+| numbers | 4% | short responses | 8% |
+| currency | 4% | long responses | 7% |
+| dates | 4% | Hindi-English code switching | 8% |
+| times | 3% | names | 5% |
+| addresses | 4% | | |
+
+(sums to 100%). Short = under about 3 s, long = over about 8 s; measure from the report's duration, not by guesswork.
+
+- **Rasa styles to categories.** The per-category table in the report uses the corpus's own `style` values. **TODO (advisor): list the
+  real Rasa style values once the data is visible (`--style` takes them verbatim, case-insensitive) and fill in the mapping from each
+  style to the categories above; do not guess.** Categories no style covers (numbers, currency, dates, times, addresses, names,
+  confirmations, apologies, interruptions) must be tagged by transcript rules or a small supplementary recording set.
+
 ## 3. Train
 
 ```bash

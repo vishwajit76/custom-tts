@@ -13,12 +13,13 @@ training/runs/
 bench/results/**/*.wav
 logs/
 speakers/
-data/
+/data/
 training/runs/
 *.ckpt
 voices/*.onnx*
-
 # large experiment/work artifacts (never commit)
 exp/
 work/
 .gstack/
+.claude/worktrees/
+!voices/catalog.json
