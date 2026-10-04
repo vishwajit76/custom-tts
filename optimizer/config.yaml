@@ -17,7 +17,8 @@ gates:                          # §23
   min_target_improvement: 0.05
   critical_regression: 0.05     # any priority-1 case losing more pronunciation than this -> reject
   max_category_regression: 0.01 # mean total drop per category
-  max_rtf_degradation: 0.10     # relative
+  max_rtf_degradation: 0.10     # relative ...
+  min_rtf_delta: 0.02           # ... and absolute (timing noise on short clips)
 
 concurrency:                    # §22 (16 GB RAM, 6 GB GPU)
   max_candidates: 12

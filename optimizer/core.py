@@ -161,7 +161,7 @@ def gates(target_before, target_after, old: dict, new: dict, cases: dict, g: dic
         worst = max(worst, o - m)
         if o - m > g["max_category_regression"]:
             why.append(f"category {cat} {o:.3f}->{m:.3f}")
-    if rtf_old and rtf_new and (rtf_new - rtf_old) / rtf_old > g["max_rtf_degradation"]:
+    if rtf_old and rtf_new and (rtf_new - rtf_old) / rtf_old > g["max_rtf_degradation"] and rtf_new - rtf_old > g.get("min_rtf_delta", 0.02):
         why.append(f"rtf {rtf_old:.3f}->{rtf_new:.3f}")
     return not why, why, round(float(worst), 4)
 
@@ -184,6 +184,8 @@ class Evaluator:
             if k not in todo and self.db.get(k) is None:
                 todo[k] = (norm, ch, p)
         new = []
+        if todo and hasattr(eng, "ensure"):
+            eng.ensure()
         for k, (norm, ch, p) in todo.items():  # synth serially per engine (one GPU model)
             t = time.perf_counter()
             wav, sr = eng.synth(ch, p["speed"], p["pause_ms"])

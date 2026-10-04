@@ -39,6 +39,7 @@ class Session:
     def targets(self, cur, category=None, test=None):
         lc = self.cfg["loop"]
         tried = dict(self.db.q("SELECT test_id, COUNT(*) FROM experiments WHERE decision IN ('accepted','rejected') GROUP BY test_id"))
+        tried.update({t: 99 for (t,) in self.db.q("SELECT DISTINCT test_id FROM experiments WHERE decision='exhausted'")})
         ts = [r for r in cur.values() if (test and r["id"] == test) or (not test and core.failing(r, lc["fail_threshold"])
               and tried.get(r["id"], 0) < lc["max_attempts_per_case"] and (not category or r["category"] == category))]
         return sorted(ts, key=lambda r: (r["priority"], r["total"], r["id"]))
@@ -46,14 +47,17 @@ class Session:
     def iterate(self, it, category=None, test=None) -> dict | None:
         e = self.cfg["primary_engine"]
         cur = self.current(e)
-        ts = self.targets(cur, category, test)
-        if not ts:
+        for before in self.targets(cur, category, test):  # first target with untried candidates
+            case = self.cases[before["id"]]
+            tried = {c for (c,) in self.db.q("SELECT change FROM experiments WHERE test_id=?", case["id"])}
+            cands = core.candidates(case, before, self.active, self.pron, self.cfg["loop"], self.cfg["concurrency"]["max_candidates"])
+            cands = [c for c in cands if core.json.dumps(c, ensure_ascii=False) not in tried]  # dedupe (§21)
+            if cands:
+                break
+            self.db.log(iteration=it, test_id=case["id"], engine=e, change={"type": "none"}, decision="exhausted",
+                        reason="all candidates already tried")  # not an attempt: next target, same iteration
+        else:
             return None
-        before = ts[0]
-        case = self.cases[before["id"]]
-        tried = {c for (c,) in self.db.q("SELECT change FROM experiments WHERE test_id=?", case["id"])}
-        cands = [c for c in core.candidates(case, before, self.active, self.pron, self.cfg["loop"], self.cfg["concurrency"]["max_candidates"])]
-        cands = [c for c in cands if core.json.dumps(c, ensure_ascii=False) not in tried]  # dedupe (§21)
         evald = [{"change": {"type": "none"}, "scores": before, "metrics": before["metrics"], "text": case["text"], "expected": case["expected_normalized"], "wav": before["wav"],
                   "wav_hash": before["key"]}]
         for ch in cands:

@@ -71,11 +71,16 @@ class Engine:
     def version(self):
         return self.impl.version
 
-    def synth(self, chunks, speed=1.0, pause_ms=120):
+    def ensure(self):
         with self.lock:
             if not self.loaded:
                 self.impl.load()
+                self.impl.chunk("नमस्ते।", 1.0)  # warm-up outside any timing
                 self.loaded = True
+
+    def synth(self, chunks, speed=1.0, pause_ms=120):
+        self.ensure()
+        with self.lock:
             gap = np.zeros(int(self.impl.sr * pause_ms / 1000), np.float32)
             parts = []
             for c in chunks:
