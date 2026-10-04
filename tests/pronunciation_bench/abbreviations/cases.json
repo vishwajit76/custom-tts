@@ -1,0 +1,58 @@
+[
+ {
+  "id": "abbr-000",
+  "category": "abbreviations",
+  "text": "डॉ. मेहता आज नहीं आएँगे।",
+  "expected_normalized": "डॉक्टर मेहता आज नहीं आएँगे।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-001",
+  "category": "abbreviations",
+  "text": "Dr. Sharma से मिलिए।",
+  "expected_normalized": "डॉक्टर शर्मा से मिलिए।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-002",
+  "category": "abbreviations",
+  "text": "Mr. Gupta लाइन पर हैं।",
+  "expected_normalized": "मिस्टर गुप्ता लाइन पर हैं।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-003",
+  "category": "abbreviations",
+  "text": "5 kg चावल भेजिए।",
+  "expected_normalized": "पाँच किलो चावल भेजिए।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-004",
+  "category": "abbreviations",
+  "text": "दूरी 12 km है।",
+  "expected_normalized": "दूरी बारह किलोमीटर है।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-005",
+  "category": "abbreviations",
+  "text": "कृपया आदि बातें नोट करें, जैसे नाम, पता इत्यादि।",
+  "expected_normalized": "कृपया आदि बातें नोट करें, जैसे नाम, पता इत्यादि।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-006",
+  "category": "abbreviations",
+  "text": "नं. 45 वाली फ़ाइल दीजिए।",
+  "expected_normalized": "नंबर पैंतालीस वाली फ़ाइल दीजिए।",
+  "priority": 2
+ },
+ {
+  "id": "abbr-007",
+  "category": "abbreviations",
+  "text": "लगभग 2 km दूर है।",
+  "expected_normalized": "लगभग दो किलोमीटर दूर है।",
+  "priority": 2
+ }
+]

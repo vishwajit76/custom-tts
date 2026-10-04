@@ -1,0 +1,362 @@
+[
+ {
+  "id": "phone-000",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 9224491505 है।",
+  "expected_normalized": "मेरा नंबर नौ दो दो चार चार नौ एक पाँच शून्य पाँच है।",
+  "priority": 1,
+  "alternatives": [
+   "मेरा नंबर नौ दो दो चार चार नौ एक पाँच ज़ीरो पाँच है।"
+  ],
+  "important": [
+   "नौ",
+   "दो",
+   "दो"
+  ]
+ },
+ {
+  "id": "phone-001",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 69983 92161 है।",
+  "expected_normalized": "मेरा नंबर छह नौ नौ आठ तीन नौ दो एक छह एक है।",
+  "priority": 1,
+  "alternatives": [
+   "मेरा नंबर छह नौ नौ आठ तीन नौ दो एक छह एक है।"
+  ],
+  "important": [
+   "छह",
+   "नौ",
+   "नौ"
+  ]
+ },
+ {
+  "id": "phone-002",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 67448-49435 है।",
+  "expected_normalized": "मेरा नंबर छह सात चार चार आठ चार नौ चार तीन पाँच है।",
+  "priority": 1,
+  "alternatives": [
+   "मेरा नंबर छह सात चार चार आठ चार नौ चार तीन पाँच है।"
+  ],
+  "important": [
+   "छह",
+   "सात",
+   "चार"
+  ]
+ },
+ {
+  "id": "phone-003",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 9877656170 है।",
+  "expected_normalized": "मेरा नंबर नौ आठ सात सात छह पाँच छह एक सात शून्य है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर नौ आठ सात सात छह पाँच छह एक सात ज़ीरो है।"
+  ],
+  "important": [
+   "नौ",
+   "आठ",
+   "सात"
+  ]
+ },
+ {
+  "id": "phone-004",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 90353 23924 है।",
+  "expected_normalized": "मेरा नंबर नौ शून्य तीन पाँच तीन दो तीन नौ दो चार है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर नौ ज़ीरो तीन पाँच तीन दो तीन नौ दो चार है।"
+  ],
+  "important": [
+   "नौ",
+   "शून्य",
+   "तीन"
+  ]
+ },
+ {
+  "id": "phone-005",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 98150-66462 है।",
+  "expected_normalized": "मेरा नंबर नौ आठ एक पाँच शून्य छह छह चार छह दो है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर नौ आठ एक पाँच ज़ीरो छह छह चार छह दो है।"
+  ],
+  "important": [
+   "नौ",
+   "आठ",
+   "एक"
+  ]
+ },
+ {
+  "id": "phone-006",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 6211550889 है।",
+  "expected_normalized": "मेरा नंबर छह दो एक एक पाँच पाँच शून्य आठ आठ नौ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर छह दो एक एक पाँच पाँच ज़ीरो आठ आठ नौ है।"
+  ],
+  "important": [
+   "छह",
+   "दो",
+   "एक"
+  ]
+ },
+ {
+  "id": "phone-007",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 85719 58837 है।",
+  "expected_normalized": "मेरा नंबर आठ पाँच सात एक नौ पाँच आठ आठ तीन सात है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ पाँच सात एक नौ पाँच आठ आठ तीन सात है।"
+  ],
+  "important": [
+   "आठ",
+   "पाँच",
+   "सात"
+  ]
+ },
+ {
+  "id": "phone-008",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 87432-11763 है।",
+  "expected_normalized": "मेरा नंबर आठ सात चार तीन दो एक एक सात छह तीन है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ सात चार तीन दो एक एक सात छह तीन है।"
+  ],
+  "important": [
+   "आठ",
+   "सात",
+   "चार"
+  ]
+ },
+ {
+  "id": "phone-009",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 8730874046 है।",
+  "expected_normalized": "मेरा नंबर आठ सात तीन शून्य आठ सात चार शून्य चार छह है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ सात तीन ज़ीरो आठ सात चार ज़ीरो चार छह है।"
+  ],
+  "important": [
+   "आठ",
+   "सात",
+   "तीन"
+  ]
+ },
+ {
+  "id": "phone-010",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 81523 19722 है।",
+  "expected_normalized": "मेरा नंबर आठ एक पाँच दो तीन एक नौ सात दो दो है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ एक पाँच दो तीन एक नौ सात दो दो है।"
+  ],
+  "important": [
+   "आठ",
+   "एक",
+   "पाँच"
+  ]
+ },
+ {
+  "id": "phone-011",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 61207-19298 है।",
+  "expected_normalized": "मेरा नंबर छह एक दो शून्य सात एक नौ दो नौ आठ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर छह एक दो ज़ीरो सात एक नौ दो नौ आठ है।"
+  ],
+  "important": [
+   "छह",
+   "एक",
+   "दो"
+  ]
+ },
+ {
+  "id": "phone-012",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 8648532542 है।",
+  "expected_normalized": "मेरा नंबर आठ छह चार आठ पाँच तीन दो पाँच चार दो है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ छह चार आठ पाँच तीन दो पाँच चार दो है।"
+  ],
+  "important": [
+   "आठ",
+   "छह",
+   "चार"
+  ]
+ },
+ {
+  "id": "phone-013",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 75485 97261 है।",
+  "expected_normalized": "मेरा नंबर सात पाँच चार आठ पाँच नौ सात दो छह एक है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर सात पाँच चार आठ पाँच नौ सात दो छह एक है।"
+  ],
+  "important": [
+   "सात",
+   "पाँच",
+   "चार"
+  ]
+ },
+ {
+  "id": "phone-014",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 88841-91639 है।",
+  "expected_normalized": "मेरा नंबर आठ आठ आठ चार एक नौ एक छह तीन नौ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ आठ आठ चार एक नौ एक छह तीन नौ है।"
+  ],
+  "important": [
+   "आठ",
+   "आठ",
+   "आठ"
+  ]
+ },
+ {
+  "id": "phone-015",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 9710679404 है।",
+  "expected_normalized": "मेरा नंबर नौ सात एक शून्य छह सात नौ चार शून्य चार है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर नौ सात एक ज़ीरो छह सात नौ चार ज़ीरो चार है।"
+  ],
+  "important": [
+   "नौ",
+   "सात",
+   "एक"
+  ]
+ },
+ {
+  "id": "phone-016",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 88508 55049 है।",
+  "expected_normalized": "मेरा नंबर आठ आठ पाँच शून्य आठ पाँच पाँच शून्य चार नौ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ आठ पाँच ज़ीरो आठ पाँच पाँच ज़ीरो चार नौ है।"
+  ],
+  "important": [
+   "आठ",
+   "आठ",
+   "पाँच"
+  ]
+ },
+ {
+  "id": "phone-017",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 73675-72518 है।",
+  "expected_normalized": "मेरा नंबर सात तीन छह सात पाँच सात दो पाँच एक आठ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर सात तीन छह सात पाँच सात दो पाँच एक आठ है।"
+  ],
+  "important": [
+   "सात",
+   "तीन",
+   "छह"
+  ]
+ },
+ {
+  "id": "phone-018",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 6230750152 है।",
+  "expected_normalized": "मेरा नंबर छह दो तीन शून्य सात पाँच शून्य एक पाँच दो है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर छह दो तीन ज़ीरो सात पाँच ज़ीरो एक पाँच दो है।"
+  ],
+  "important": [
+   "छह",
+   "दो",
+   "तीन"
+  ]
+ },
+ {
+  "id": "phone-019",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 84266 99397 है।",
+  "expected_normalized": "मेरा नंबर आठ चार दो छह छह नौ नौ तीन नौ सात है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर आठ चार दो छह छह नौ नौ तीन नौ सात है।"
+  ],
+  "important": [
+   "आठ",
+   "चार",
+   "दो"
+  ]
+ },
+ {
+  "id": "phone-020",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 78650-89439 है।",
+  "expected_normalized": "मेरा नंबर सात आठ छह पाँच शून्य आठ नौ चार तीन नौ है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर सात आठ छह पाँच ज़ीरो आठ नौ चार तीन नौ है।"
+  ],
+  "important": [
+   "सात",
+   "आठ",
+   "छह"
+  ]
+ },
+ {
+  "id": "phone-021",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 7349520533 है।",
+  "expected_normalized": "मेरा नंबर सात तीन चार नौ पाँच दो शून्य पाँच तीन तीन है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर सात तीन चार नौ पाँच दो ज़ीरो पाँच तीन तीन है।"
+  ],
+  "important": [
+   "सात",
+   "तीन",
+   "चार"
+  ]
+ },
+ {
+  "id": "phone-022",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 90284 76974 है।",
+  "expected_normalized": "मेरा नंबर नौ शून्य दो आठ चार सात छह नौ सात चार है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर नौ ज़ीरो दो आठ चार सात छह नौ सात चार है।"
+  ],
+  "important": [
+   "नौ",
+   "शून्य",
+   "दो"
+  ]
+ },
+ {
+  "id": "phone-023",
+  "category": "phone_numbers",
+  "text": "मेरा नंबर 60551-71176 है।",
+  "expected_normalized": "मेरा नंबर छह शून्य पाँच पाँच एक सात एक एक सात छह है।",
+  "priority": 2,
+  "alternatives": [
+   "मेरा नंबर छह ज़ीरो पाँच पाँच एक सात एक एक सात छह है।"
+  ],
+  "important": [
+   "छह",
+   "शून्य",
+   "पाँच"
+  ]
+ }
+]

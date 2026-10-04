@@ -1,0 +1,466 @@
+[
+ {
+  "id": "hg-001",
+  "category": "hinglish",
+  "text": "आपका order आज शाम तक deliver हो जाएगा।",
+  "expected_normalized": "आपका order आज शाम तक deliver हो जाएगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-002",
+  "category": "hinglish",
+  "text": "मैंने आपका ticket book कर दिया है, confirmation आपके email पर आएगा।",
+  "expected_normalized": "मैंने आपका ticket book कर दिया है, confirmation आपके email पर आएगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-003",
+  "category": "hinglish",
+  "text": "आपके account में अभी balance कम है, इसलिए payment fail हो गया।",
+  "expected_normalized": "आपके account में अभी balance कम है, इसलिए payment fail हो गया।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-004",
+  "category": "hinglish",
+  "text": "Doctor की availability कल सुबह की है, afternoon में slot नहीं बचा।",
+  "expected_normalized": "Doctor की availability कल सुबह की है, afternoon में slot नहीं बचा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-005",
+  "category": "hinglish",
+  "text": "आपकी EMI हर महीने की दस तारीख़ को auto debit होती है।",
+  "expected_normalized": "आपकी EMI हर महीने की दस तारीख़ को auto debit होती है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-006",
+  "category": "hinglish",
+  "text": "आपका refund process हो चुका है, पाँच working days में account में आ जाएगा।",
+  "expected_normalized": "आपका refund process हो चुका है, पाँच working days में account में आ जाएगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-007",
+  "category": "hinglish",
+  "text": "हमारे delivery partner ने तीन बार कोशिश की, लेकिन आप घर पर available नहीं थे।",
+  "expected_normalized": "हमारे delivery partner ने तीन बार कोशिश की, लेकिन आप घर पर available नहीं थे।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-008",
+  "category": "hinglish",
+  "text": "आपका flight गेट नंबर बारह से depart होगा और boarding पौन घंटे पहले शुरू होगी।",
+  "expected_normalized": "आपका flight गेट नंबर बारह से depart होगा और boarding पौन घंटे पहले शुरू होगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-009",
+  "category": "hinglish",
+  "text": "Hotel का check-in दोपहर दो बजे से है और check-out सुबह ग्यारह बजे तक।",
+  "expected_normalized": "Hotel का check-in दोपहर दो बजे से है और check-out सुबह ग्यारह बजे तक।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-010",
+  "category": "hinglish",
+  "text": "आपके phone पर एक link भेजा गया है, उसी से आप video call join कर सकते हैं।",
+  "expected_normalized": "आपके phone पर एक link भेजा गया है, उसी से आप video call join कर सकते हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-011",
+  "category": "hinglish",
+  "text": "आपके area में आज network की problem चल रही है, engineer मौके पर पहुँच चुके हैं।",
+  "expected_normalized": "आपके area में आज network की problem चल रही है, engineer मौके पर पहुँच चुके हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-015",
+  "category": "hinglish",
+  "text": "Please अपना booking ID बता दीजिए।",
+  "expected_normalized": "Please अपना booking ID बता दीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-016",
+  "category": "hinglish",
+  "text": "कृपया थोड़ा wait कीजिए, मैं system में check कर रही हूँ।",
+  "expected_normalized": "कृपया थोड़ा wait कीजिए, मैं system में check कर रही हूँ।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-017",
+  "category": "hinglish",
+  "text": "आप अपना registered mobile number confirm कर दीजिए।",
+  "expected_normalized": "आप अपना registered mobile number confirm कर दीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-018",
+  "category": "hinglish",
+  "text": "Please delivery के समय अपना phone on रखिएगा।",
+  "expected_normalized": "Please delivery के समय अपना phone on रखिएगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-019",
+  "category": "hinglish",
+  "text": "एक बार अपनी date of birth बता दीजिए, उसके बाद मैं request submit कर दूँगा।",
+  "expected_normalized": "एक बार अपनी date of birth बता दीजिए, उसके बाद मैं request submit कर दूँगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-023",
+  "category": "hinglish",
+  "text": "App खोलिए, Settings में जाइए और Notifications को off कर दीजिए।",
+  "expected_normalized": "App खोलिए, Settings में जाइए और Notifications को off कर दीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-024",
+  "category": "hinglish",
+  "text": "पहले अपना username डालिए, फिर Next पर click कीजिए।",
+  "expected_normalized": "पहले अपना username डालिए, फिर Next पर click कीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-025",
+  "category": "hinglish",
+  "text": "Payment करने के बाद screenshot ज़रूर save कर लीजिए।",
+  "expected_normalized": "Payment करने के बाद screenshot ज़रूर save कर लीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-026",
+  "category": "hinglish",
+  "text": "Package को open करने से पहले seal check कर लीजिए।",
+  "expected_normalized": "Package को open करने से पहले seal check कर लीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-027",
+  "category": "hinglish",
+  "text": "Form में date of birth वही लिखिए जो Aadhaar card पर है।",
+  "expected_normalized": "Form में date of birth वही लिखिए जो Aadhaar card पर है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-028",
+  "category": "hinglish",
+  "text": "Reports अपलोड करने के लिए नीचे वाले Upload बटन पर tap कीजिए।",
+  "expected_normalized": "Reports अपलोड करने के लिए नीचे वाले Upload बटन पर tap कीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-031",
+  "category": "hinglish",
+  "text": "Yes, आपकी booking confirm है और seat भी allot हो गई है।",
+  "expected_normalized": "Yes, आपकी booking confirm है और seat भी allot हो गई है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-032",
+  "category": "hinglish",
+  "text": "जी हाँ, आपका payment successfully हो गया है।",
+  "expected_normalized": "जी हाँ, आपका payment successfully हो गया है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-033",
+  "category": "hinglish",
+  "text": "ठीक है, मैं address update कर देती हूँ, अब parcel नए address पर जाएगा।",
+  "expected_normalized": "ठीक है, मैं address update कर देती हूँ, अब parcel नए address पर जाएगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-034",
+  "category": "hinglish",
+  "text": "जी, आपका appointment reschedule हो गया है, new time शुक्रवार शाम पाँच बजे है।",
+  "expected_normalized": "जी, आपका appointment reschedule हो गया है, new time शुक्रवार शाम पाँच बजे है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-037",
+  "category": "hinglish",
+  "text": "क्या आपको confirmation message मिल गया?",
+  "expected_normalized": "क्या आपको confirmation message मिल गया?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-038",
+  "category": "hinglish",
+  "text": "क्या आप अभी free हैं, या मैं आपको थोड़ी देर बाद call करूँ?",
+  "expected_normalized": "क्या आप अभी free हैं, या मैं आपको थोड़ी देर बाद call करूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-039",
+  "category": "hinglish",
+  "text": "क्या आपने app में दोबारा login करके देखा?",
+  "expected_normalized": "क्या आपने app में दोबारा login करके देखा?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-040",
+  "category": "hinglish",
+  "text": "क्या मैं आपका address एक बार verify कर सकती हूँ?",
+  "expected_normalized": "क्या मैं आपका address एक बार verify कर सकती हूँ?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-043",
+  "category": "hinglish",
+  "text": "आपका delivery address कौन सा है?",
+  "expected_normalized": "आपका delivery address कौन सा है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-044",
+  "category": "hinglish",
+  "text": "आपको कितने बजे का slot चाहिए?",
+  "expected_normalized": "आपको कितने बजे का slot चाहिए?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-047",
+  "category": "hinglish",
+  "text": "Sorry, आपको wait करना पड़ा, system में थोड़ी problem थी।",
+  "expected_normalized": "Sorry, आपको wait करना पड़ा, system में थोड़ी problem थी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-048",
+  "category": "hinglish",
+  "text": "हमें बहुत खेद है कि आपका order late हो गया, हम इसके लिए माफ़ी चाहते हैं।",
+  "expected_normalized": "हमें बहुत खेद है कि आपका order late हो गया, हम इसके लिए माफ़ी चाहते हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "hg-049",
+  "category": "hinglish",
+  "text": "माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।",
+  "expected_normalized": "माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pc016",
+  "category": "hinglish",
+  "text": "kya aap baat kar sakte hain?",
+  "expected_normalized": "क्या आप बात कर सकते हैं?",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc017",
+  "category": "hinglish",
+  "text": "aap kaise hain?",
+  "expected_normalized": "आप कैसे हैं?",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc018",
+  "category": "hinglish",
+  "text": "main theek hoon",
+  "expected_normalized": "मैं ठीक हूँ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc019",
+  "category": "hinglish",
+  "text": "mujhe aapki madad chahiye",
+  "expected_normalized": "मुझे आपकी मदद चाहिए",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc020",
+  "category": "hinglish",
+  "text": "aapka naam kya hai",
+  "expected_normalized": "आपका नाम क्या है",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc021",
+  "category": "hinglish",
+  "text": "kal subah main aapko phone karungi",
+  "expected_normalized": "कल सुबह मैं आपको phone करूँगी",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc022",
+  "category": "hinglish",
+  "text": "dhanyavaad",
+  "expected_normalized": "धन्यवाद",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc023",
+  "category": "hinglish",
+  "text": "shukriya",
+  "expected_normalized": "शुक्रिया",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc024",
+  "category": "hinglish",
+  "text": "namaste",
+  "expected_normalized": "नमस्ते",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc025",
+  "category": "hinglish",
+  "text": "koi baat nahin",
+  "expected_normalized": "कोई बात नहीं",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc026",
+  "category": "hinglish",
+  "text": "abhi thoda busy hoon",
+  "expected_normalized": "अभी थोड़ा busy हूँ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc027",
+  "category": "hinglish",
+  "text": "aap kahan se bol rahe hain?",
+  "expected_normalized": "आप कहाँ से बोल रहे हैं?",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc028",
+  "category": "hinglish",
+  "text": "main samajh sakta hoon",
+  "expected_normalized": "मैं समझ सकता हूँ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc029",
+  "category": "hinglish",
+  "text": "theek hai, main dekh leta hoon",
+  "expected_normalized": "ठीक है, मैं देख लेता हूँ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc030",
+  "category": "hinglish",
+  "text": "hum aapki puri madad karenge",
+  "expected_normalized": "हम आपकी पूरी मदद करेंगे",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc031",
+  "category": "hinglish",
+  "text": "aapko kal aana hoga",
+  "expected_normalized": "आपको कल आना होगा",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc032",
+  "category": "hinglish",
+  "text": "yeh kaam bahut zaroori hai",
+  "expected_normalized": "ये काम बहुत ज़रूरी है",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc033",
+  "category": "hinglish",
+  "text": "ji haan, bilkul",
+  "expected_normalized": "जी हाँ, बिल्कुल",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc034",
+  "category": "hinglish",
+  "text": "bataiye, main kya kar sakti hoon?",
+  "expected_normalized": "बताइए, मैं क्या कर सकती हूँ?",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc035",
+  "category": "hinglish",
+  "text": "kripya thoda intezaar kijiye",
+  "expected_normalized": "कृपया थोड़ा इंतज़ार कीजिए",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc376",
+  "category": "hinglish",
+  "text": "saadhe teen baje",
+  "expected_normalized": "साढ़े तीन बजे",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc377",
+  "category": "hinglish",
+  "text": "aap kya bolna chahte hain",
+  "expected_normalized": "आप क्या बोलना चाहते हैं",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc378",
+  "category": "hinglish",
+  "text": "abhi vapas call karunga",
+  "expected_normalized": "अभी वापस call करूँगा",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ }
+]

@@ -1,0 +1,323 @@
+[
+ {
+  "id": "cur-000",
+  "category": "currency",
+  "text": "आपको ₹5 देने हैं।",
+  "expected_normalized": "आपको पाँच रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "पाँच"
+  ]
+ },
+ {
+  "id": "cur-003",
+  "category": "currency",
+  "text": "आपको ₹10 देने हैं।",
+  "expected_normalized": "आपको दस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दस"
+  ]
+ },
+ {
+  "id": "cur-006",
+  "category": "currency",
+  "text": "आपको ₹49 देने हैं।",
+  "expected_normalized": "आपको उनचास रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "उनचास"
+  ]
+ },
+ {
+  "id": "cur-009",
+  "category": "currency",
+  "text": "आपको ₹99 देने हैं।",
+  "expected_normalized": "आपको निन्यानवे रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "निन्यानवे"
+  ]
+ },
+ {
+  "id": "cur-012",
+  "category": "currency",
+  "text": "आपको ₹250 देने हैं।",
+  "expected_normalized": "आपको दो सौ पचास रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो सौ पचास"
+  ]
+ },
+ {
+  "id": "cur-015",
+  "category": "currency",
+  "text": "आपको ₹500 देने हैं।",
+  "expected_normalized": "आपको पाँच सौ रुपये देने हैं।",
+  "priority": 1,
+  "alternatives": [],
+  "important": [
+   "पाँच सौ"
+  ]
+ },
+ {
+  "id": "cur-018",
+  "category": "currency",
+  "text": "आपको ₹999 देने हैं।",
+  "expected_normalized": "आपको नौ सौ निन्यानवे रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "नौ सौ निन्यानवे"
+  ]
+ },
+ {
+  "id": "cur-021",
+  "category": "currency",
+  "text": "आपको ₹1,200 देने हैं।",
+  "expected_normalized": "आपको एक हज़ार दो सौ रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [
+   "आपको हज़ार दो सौ रुपये देने हैं।"
+  ],
+  "important": [
+   "एक हज़ार दो सौ"
+  ]
+ },
+ {
+  "id": "cur-024",
+  "category": "currency",
+  "text": "आपको ₹2,499 देने हैं।",
+  "expected_normalized": "आपको दो हज़ार चार सौ निन्यानवे रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो हज़ार चार सौ निन्यानवे"
+  ]
+ },
+ {
+  "id": "cur-027",
+  "category": "currency",
+  "text": "आपको ₹25,000 देने हैं।",
+  "expected_normalized": "आपको पच्चीस हज़ार रुपये देने हैं।",
+  "priority": 1,
+  "alternatives": [],
+  "important": [
+   "पच्चीस हज़ार"
+  ]
+ },
+ {
+  "id": "cur-030",
+  "category": "currency",
+  "text": "आपको ₹1,25,000 देने हैं।",
+  "expected_normalized": "आपको एक लाख पच्चीस हज़ार रुपये देने हैं।",
+  "priority": 1,
+  "alternatives": [],
+  "important": [
+   "एक लाख पच्चीस हज़ार"
+  ]
+ },
+ {
+  "id": "cur-033",
+  "category": "currency",
+  "text": "आपको ₹3,00,000 देने हैं।",
+  "expected_normalized": "आपको तीन लाख रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "तीन लाख"
+  ]
+ },
+ {
+  "id": "cur-036",
+  "category": "currency",
+  "text": "आपको ₹7,50,000 देने हैं।",
+  "expected_normalized": "आपको सात लाख पचास हज़ार रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सात लाख पचास हज़ार"
+  ]
+ },
+ {
+  "id": "cur-039",
+  "category": "currency",
+  "text": "आपको ₹99,153 देने हैं।",
+  "expected_normalized": "आपको निन्यानवे हज़ार एक सौ तिरेपन रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "निन्यानवे हज़ार एक सौ तिरेपन"
+  ]
+ },
+ {
+  "id": "cur-042",
+  "category": "currency",
+  "text": "आपको ₹2,61,034 देने हैं।",
+  "expected_normalized": "आपको दो लाख इकसठ हज़ार चौंतीस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख इकसठ हज़ार चौंतीस"
+  ]
+ },
+ {
+  "id": "cur-045",
+  "category": "currency",
+  "text": "आपको ₹1,88,047 देने हैं।",
+  "expected_normalized": "आपको एक लाख अट्ठासी हज़ार सैंतालीस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख अट्ठासी हज़ार सैंतालीस"
+  ]
+ },
+ {
+  "id": "cur-048",
+  "category": "currency",
+  "text": "आपको ₹2,80,139 देने हैं।",
+  "expected_normalized": "आपको दो लाख अस्सी हज़ार एक सौ उनतालीस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख अस्सी हज़ार एक सौ उनतालीस"
+  ]
+ },
+ {
+  "id": "cur-051",
+  "category": "currency",
+  "text": "आपको ₹4,16,877 देने हैं।",
+  "expected_normalized": "आपको चार लाख सोलह हज़ार आठ सौ सतहत्तर रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "चार लाख सोलह हज़ार आठ सौ सतहत्तर"
+  ]
+ },
+ {
+  "id": "cur-054",
+  "category": "currency",
+  "text": "आपको ₹2,73,704 देने हैं।",
+  "expected_normalized": "आपको दो लाख तिहत्तर हज़ार सात सौ चार रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख तिहत्तर हज़ार सात सौ चार"
+  ]
+ },
+ {
+  "id": "cur-057",
+  "category": "currency",
+  "text": "आपको ₹1,98,846 देने हैं।",
+  "expected_normalized": "आपको एक लाख अट्ठानवे हज़ार आठ सौ छियालीस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख अट्ठानवे हज़ार आठ सौ छियालीस"
+  ]
+ },
+ {
+  "id": "cur-060",
+  "category": "currency",
+  "text": "आपको ₹1,62,620 देने हैं।",
+  "expected_normalized": "आपको एक लाख बासठ हज़ार छह सौ बीस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "एक लाख बासठ हज़ार छह सौ बीस"
+  ]
+ },
+ {
+  "id": "cur-063",
+  "category": "currency",
+  "text": "आपको ₹6,72,503 देने हैं।",
+  "expected_normalized": "आपको छह लाख बहत्तर हज़ार पाँच सौ तीन रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "छह लाख बहत्तर हज़ार पाँच सौ तीन"
+  ]
+ },
+ {
+  "id": "cur-066",
+  "category": "currency",
+  "text": "आपको ₹2,59,722 देने हैं।",
+  "expected_normalized": "आपको दो लाख उनसठ हज़ार सात सौ बाईस रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "दो लाख उनसठ हज़ार सात सौ बाईस"
+  ]
+ },
+ {
+  "id": "cur-069",
+  "category": "currency",
+  "text": "आपको ₹8,73,200 देने हैं।",
+  "expected_normalized": "आपको आठ लाख तिहत्तर हज़ार दो सौ रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "आठ लाख तिहत्तर हज़ार दो सौ"
+  ]
+ },
+ {
+  "id": "cur-072",
+  "category": "currency",
+  "text": "आपको ₹77,388 देने हैं।",
+  "expected_normalized": "आपको सतहत्तर हज़ार तीन सौ अट्ठासी रुपये देने हैं।",
+  "priority": 2,
+  "alternatives": [],
+  "important": [
+   "सतहत्तर हज़ार तीन सौ अट्ठासी"
+  ]
+ },
+ {
+  "id": "cur-075",
+  "category": "currency",
+  "text": "बिल ₹12.50 है।",
+  "expected_normalized": "बिल बारह रुपये पचास पैसे है।",
+  "priority": 2,
+  "important": [
+   "बारह",
+   "पचास"
+  ]
+ },
+ {
+  "id": "cur-076",
+  "category": "currency",
+  "text": "बिल ₹2,499.50 है।",
+  "expected_normalized": "बिल दो हज़ार चार सौ निन्यानवे रुपये पचास पैसे है।",
+  "priority": 2,
+  "important": [
+   "दो हज़ार चार सौ निन्यानवे",
+   "पचास"
+  ]
+ },
+ {
+  "id": "cur-077",
+  "category": "currency",
+  "text": "बिल ₹99.75 है।",
+  "expected_normalized": "बिल निन्यानवे रुपये पचहत्तर पैसे है।",
+  "priority": 2,
+  "important": [
+   "निन्यानवे",
+   "पचहत्तर"
+  ]
+ },
+ {
+  "id": "cur-078",
+  "category": "currency",
+  "text": "बिल ₹349.25 है।",
+  "expected_normalized": "बिल तीन सौ उनचास रुपये पच्चीस पैसे है।",
+  "priority": 2,
+  "important": [
+   "तीन सौ उनचास",
+   "पच्चीस"
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "id": "pun-000",
+  "category": "punctuation",
+  "text": "रुकिए... मैं देखती हूँ।",
+  "expected_normalized": "रुकिए... मैं देखती हूँ।",
+  "priority": 2
+ },
+ {
+  "id": "pun-001",
+  "category": "punctuation",
+  "text": "हाँ, बिल्कुल; आप सही हैं।",
+  "expected_normalized": "हाँ, बिल्कुल; आप सही हैं।",
+  "priority": 2
+ },
+ {
+  "id": "pun-002",
+  "category": "punctuation",
+  "text": "अरे वाह! यह तो बहुत अच्छा है!",
+  "expected_normalized": "अरे वाह! यह तो बहुत अच्छा है!",
+  "priority": 2
+ },
+ {
+  "id": "pun-003",
+  "category": "punctuation",
+  "text": "पहला, दूसरा, और तीसरा विकल्प देखिए।",
+  "expected_normalized": "पहला, दूसरा, और तीसरा विकल्प देखिए।",
+  "priority": 2
+ },
+ {
+  "id": "pun-004",
+  "category": "punctuation",
+  "text": "उसने कहा, \"मैं कल आऊँगा।\"",
+  "expected_normalized": "उसने कहा, \"मैं कल आऊँगा।\"",
+  "priority": 2
+ },
+ {
+  "id": "pun-005",
+  "category": "punctuation",
+  "text": "नाम (पूरा) लिखिए।",
+  "expected_normalized": "नाम (पूरा) लिखिए।",
+  "priority": 2
+ },
+ {
+  "id": "pun-006",
+  "category": "punctuation",
+  "text": "हाँ — बिल्कुल सही।",
+  "expected_normalized": "हाँ — बिल्कुल सही।",
+  "priority": 2
+ },
+ {
+  "id": "pun-007",
+  "category": "punctuation",
+  "text": "ठीक है, ठीक है, मैं समझ गई।",
+  "expected_normalized": "ठीक है, ठीक है, मैं समझ गई।",
+  "priority": 2
+ }
+]

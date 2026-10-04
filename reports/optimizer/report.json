@@ -1,0 +1,954 @@
+{
+ "active_config": {
+  "category": {},
+  "default": {
+   "pause_ms": 120,
+   "punct": null,
+   "speed": 1.0
+  },
+  "pron_rules": "off",
+  "rules": []
+ },
+ "dictionary": {},
+ "engines": {
+  "goonj": {
+   "baseline": {
+    "audio_quality": 1.0,
+    "categories": {
+     "abbreviations": {
+      "cer": 0.1293,
+      "n": 8,
+      "pronunciation": 0.8568,
+      "text_exact": 0.875,
+      "total": 0.9383
+     },
+     "acronyms": {
+      "cer": 0.1247,
+      "n": 22,
+      "pronunciation": 0.6939,
+      "text_exact": 0.8636,
+      "total": 0.8325
+     },
+     "basic_hindi": {
+      "cer": 0.0491,
+      "n": 40,
+      "pronunciation": 0.9382,
+      "text_exact": 1.0,
+      "total": 0.8951
+     },
+     "commands": {
+      "cer": 0.1631,
+      "n": 8,
+      "pronunciation": 0.7848,
+      "text_exact": 1.0,
+      "total": 0.8684
+     },
+     "conversational": {
+      "cer": 0.0492,
+      "n": 58,
+      "pronunciation": 0.94,
+      "text_exact": 1.0,
+      "total": 0.9043
+     },
+     "currency": {
+      "cer": 0.3039,
+      "n": 29,
+      "pronunciation": 0.5989,
+      "text_exact": 0.9655,
+      "total": 0.7067
+     },
+     "dates": {
+      "cer": 0.3201,
+      "n": 36,
+      "pronunciation": 0.6141,
+      "text_exact": 0.6111,
+      "total": 0.7179
+     },
+     "difficult_hindi": {
+      "cer": 0.0966,
+      "n": 54,
+      "pronunciation": 0.8438,
+      "text_exact": 1.0,
+      "total": 0.8926
+     },
+     "edge_cases": {
+      "cer": 0.158,
+      "n": 7,
+      "pronunciation": 0.7184,
+      "text_exact": 0.5714,
+      "total": 0.8259
+     },
+     "english_words": {
+      "cer": 0.1085,
+      "n": 20,
+      "pronunciation": 0.7202,
+      "text_exact": 0.35,
+      "total": 0.8101
+     },
+     "hinglish": {
+      "cer": 0.2137,
+      "n": 58,
+      "pronunciation": 0.8384,
+      "text_exact": 0.9655,
+      "total": 0.8555
+     },
+     "long_sentences": {
+      "cer": 0.0599,
+      "n": 20,
+      "pronunciation": 0.9164,
+      "text_exact": 1.0,
+      "total": 0.8845
+     },
+     "names": {
+      "cer": 0.1331,
+      "n": 60,
+      "pronunciation": 0.7599,
+      "text_exact": 0.9,
+      "total": 0.884
+     },
+     "numbers": {
+      "cer": 0.0899,
+      "n": 50,
+      "pronunciation": 0.7059,
+      "text_exact": 0.98,
+      "total": 0.8371
+     },
+     "percent": {
+      "cer": 0.2395,
+      "n": 17,
+      "pronunciation": 0.6348,
+      "text_exact": 0.9412,
+      "total": 0.8163
+     },
+     "phone_numbers": {
+      "cer": 0.0689,
+      "n": 24,
+      "pronunciation": 0.7433,
+      "text_exact": 1.0,
+      "total": 0.7433
+     },
+     "proper_nouns": {
+      "cer": 0.0337,
+      "n": 20,
+      "pronunciation": 0.7668,
+      "text_exact": 0.85,
+      "total": 0.9026
+     },
+     "punctuation": {
+      "cer": 0.0692,
+      "n": 8,
+      "pronunciation": 0.9229,
+      "text_exact": 1.0,
+      "total": 0.9451
+     },
+     "questions": {
+      "cer": 0.0666,
+      "n": 22,
+      "pronunciation": 0.9459,
+      "text_exact": 1.0,
+      "total": 0.8855
+     },
+     "time": {
+      "cer": 0.0817,
+      "n": 54,
+      "pronunciation": 0.8506,
+      "text_exact": 1.0,
+      "total": 0.9374
+     }
+    },
+    "cer": 0.1262,
+    "consistency": 0.9642,
+    "n": 615,
+    "naturalness": 0.9968,
+    "pronunciation": 0.7982,
+    "prosody": 0.6154,
+    "text_exact": 0.922,
+    "total": 0.8572
+   },
+   "current": {
+    "audio_quality": 1.0,
+    "categories": {
+     "abbreviations": {
+      "cer": 0.1293,
+      "n": 8,
+      "pronunciation": 0.8568,
+      "text_exact": 0.875,
+      "total": 0.9383
+     },
+     "acronyms": {
+      "cer": 0.1247,
+      "n": 22,
+      "pronunciation": 0.6939,
+      "text_exact": 0.8636,
+      "total": 0.8325
+     },
+     "basic_hindi": {
+      "cer": 0.0491,
+      "n": 40,
+      "pronunciation": 0.9382,
+      "text_exact": 1.0,
+      "total": 0.8951
+     },
+     "commands": {
+      "cer": 0.1631,
+      "n": 8,
+      "pronunciation": 0.7848,
+      "text_exact": 1.0,
+      "total": 0.8684
+     },
+     "conversational": {
+      "cer": 0.0492,
+      "n": 58,
+      "pronunciation": 0.94,
+      "text_exact": 1.0,
+      "total": 0.9043
+     },
+     "currency": {
+      "cer": 0.3039,
+      "n": 29,
+      "pronunciation": 0.5989,
+      "text_exact": 0.9655,
+      "total": 0.7067
+     },
+     "dates": {
+      "cer": 0.3201,
+      "n": 36,
+      "pronunciation": 0.6141,
+      "text_exact": 0.6111,
+      "total": 0.7179
+     },
+     "difficult_hindi": {
+      "cer": 0.0966,
+      "n": 54,
+      "pronunciation": 0.8438,
+      "text_exact": 1.0,
+      "total": 0.8926
+     },
+     "edge_cases": {
+      "cer": 0.158,
+      "n": 7,
+      "pronunciation": 0.7184,
+      "text_exact": 0.5714,
+      "total": 0.8259
+     },
+     "english_words": {
+      "cer": 0.1085,
+      "n": 20,
+      "pronunciation": 0.7202,
+      "text_exact": 0.35,
+      "total": 0.8101
+     },
+     "hinglish": {
+      "cer": 0.2137,
+      "n": 58,
+      "pronunciation": 0.8384,
+      "text_exact": 0.9655,
+      "total": 0.8555
+     },
+     "long_sentences": {
+      "cer": 0.0599,
+      "n": 20,
+      "pronunciation": 0.9164,
+      "text_exact": 1.0,
+      "total": 0.8845
+     },
+     "names": {
+      "cer": 0.1331,
+      "n": 60,
+      "pronunciation": 0.7599,
+      "text_exact": 0.9,
+      "total": 0.884
+     },
+     "numbers": {
+      "cer": 0.0899,
+      "n": 50,
+      "pronunciation": 0.7059,
+      "text_exact": 0.98,
+      "total": 0.8371
+     },
+     "percent": {
+      "cer": 0.2395,
+      "n": 17,
+      "pronunciation": 0.6348,
+      "text_exact": 0.9412,
+      "total": 0.8163
+     },
+     "phone_numbers": {
+      "cer": 0.0689,
+      "n": 24,
+      "pronunciation": 0.7433,
+      "text_exact": 1.0,
+      "total": 0.7433
+     },
+     "proper_nouns": {
+      "cer": 0.0337,
+      "n": 20,
+      "pronunciation": 0.7668,
+      "text_exact": 0.85,
+      "total": 0.9026
+     },
+     "punctuation": {
+      "cer": 0.0692,
+      "n": 8,
+      "pronunciation": 0.9229,
+      "text_exact": 1.0,
+      "total": 0.9451
+     },
+     "questions": {
+      "cer": 0.0666,
+      "n": 22,
+      "pronunciation": 0.9459,
+      "text_exact": 1.0,
+      "total": 0.8855
+     },
+     "time": {
+      "cer": 0.0817,
+      "n": 54,
+      "pronunciation": 0.8506,
+      "text_exact": 1.0,
+      "total": 0.9374
+     }
+    },
+    "cer": 0.1262,
+    "consistency": 0.9642,
+    "n": 615,
+    "naturalness": 0.9968,
+    "pronunciation": 0.7982,
+    "prosody": 0.6154,
+    "text_exact": 0.922,
+    "total": 0.8572
+   },
+   "split_words": {
+    "अंतिम": 1,
+    "किलोमीटर": 1,
+    "किससे": 1,
+    "केवाईसी": 2,
+    "कैशबैक": 1,
+    "कोलकाता": 1,
+    "खिडकी": 1,
+    "खुशखबरी": 1,
+    "गांधीनगर": 1,
+    "चेक": 3,
+    "जिक्र": 1,
+    "डेंटाकेयर": 1,
+    "तिरुवनंतपुरम": 2,
+    "दोपहर": 1,
+    "नजदीकी": 3,
+    "पंजीकृत": 1,
+    "प्रयागराज": 1,
+    "प्राप्त": 1,
+    "प्रिय": 1,
+    "फाई": 1,
+    "बीस": 1,
+    "मुख्य": 1,
+    "लाइफटाइम": 1,
+    "वातानुकूलित": 1,
+    "वेबसाइट": 1,
+    "सफलतापूर्वक": 4,
+    "स्मार्टफोन": 1,
+    "हम्म": 1
+   },
+   "top_failures": [
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी appointment दो हजार पचीस से शून्य तीन शून्य छे को है।",
+     "id": "date-022",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार पच्चीस से शून्य तीन-शून्य छह को है।",
+     "total": 0.5122
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी appointment एक हजार नो सो पचानवे से शून्य नौ माइनस शून्य दो को है।",
+     "id": "date-018",
+     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य नौमाइनस शून्य दो को है।",
+     "total": 0.5156
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंट्मेंट दो हजार एक से शून्य दो माइनस शून्य साथ को है",
+     "id": "date-030",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य दोमाइनस शून्य सात को है।",
+     "total": 0.5413
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट दो हजार चब्वीस से शून्य चहसत्रा को है।",
+     "id": "date-014",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य छह-सत्रह को है।",
+     "total": 0.5575
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंट्मेंट एक हजार नो सो पचानवे से शून्य तीन बारा को है।",
+     "id": "date-034",
+     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य तीन-बारह को है।",
+     "total": 0.5575
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंट्मेंट दो हजार चब्वीस से शून्य पांच शून्य आठ को है।",
+     "id": "date-002",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य पाँच-शून्य आठ को है।",
+     "total": 0.5736
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी appointment दो हजार दस से शून्य चार चौबीस को है।",
+     "id": "date-026",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार दस से शून्य चार-चौबीस को है।",
+     "total": 0.611
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट दो हजार एक से शून्य चेहबीस को है।",
+     "id": "date-006",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य छह-बीस को है।",
+     "total": 0.612
+    },
+    {
+     "category": "english_words",
+     "failure_type": "normalization",
+     "hyp": " क्रिपिया वर्ट्स एप की जानकारी दीजिये.",
+     "id": "en-000",
+     "normalized": "कृपया WhatsApp की जानकारी दीजिए।",
+     "total": 0.6341
+    },
+    {
+     "category": "hinglish",
+     "failure_type": "pronunciation",
+     "hyp": " फॉर्म में डेट अव बर्थ वही लिखिये जो अधार कार्ट पर है।",
+     "id": "hg-027",
+     "normalized": "Form में date of birth वही लिखिए जो Aadhaar card पर है।",
+     "total": 0.6341
+    },
+    {
+     "category": "edge_cases",
+     "failure_type": "pronunciation",
+     "hyp": " हाई",
+     "id": "edge-004",
+     "normalized": "हाँ",
+     "total": 0.6417
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 99 रुपिय देने हैं।",
+     "id": "cur-009",
+     "normalized": "आपको निन्यानवे रुपये देने हैं।",
+     "total": 0.6582
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 99,153 रुपिये देने हैं",
+     "id": "cur-039",
+     "normalized": "आपको निन्यानवे हज़ार एक सौ तिरपन रुपये देने हैं।",
+     "total": 0.6621
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 2,061,034 रुपिये देने हैं।",
+     "id": "cur-042",
+     "normalized": "आपको दो लाख इकसठ हज़ार चौंतीस रुपये देने हैं।",
+     "total": 0.6627
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " आपको 2,80,149 रुपिये देने हैं।",
+     "id": "cur-048",
+     "normalized": "आपको दो लाख अस्सी हज़ार एक सौ उनतालीस रुपये देने हैं।",
+     "total": 0.663
+    }
+   ]
+  },
+  "piper_v7a": {
+   "baseline": {
+    "audio_quality": 0.9992,
+    "categories": {
+     "abbreviations": {
+      "cer": 0.2075,
+      "n": 8,
+      "pronunciation": 0.7611,
+      "text_exact": 0.875,
+      "total": 0.8535
+     },
+     "acronyms": {
+      "cer": 0.1132,
+      "n": 22,
+      "pronunciation": 0.6849,
+      "text_exact": 0.8636,
+      "total": 0.8198
+     },
+     "basic_hindi": {
+      "cer": 0.0682,
+      "n": 40,
+      "pronunciation": 0.9134,
+      "text_exact": 1.0,
+      "total": 0.8575
+     },
+     "commands": {
+      "cer": 0.1465,
+      "n": 8,
+      "pronunciation": 0.8289,
+      "text_exact": 1.0,
+      "total": 0.8901
+     },
+     "conversational": {
+      "cer": 0.0755,
+      "n": 58,
+      "pronunciation": 0.9046,
+      "text_exact": 1.0,
+      "total": 0.88
+     },
+     "currency": {
+      "cer": 0.2592,
+      "n": 29,
+      "pronunciation": 0.6219,
+      "text_exact": 0.9655,
+      "total": 0.7102
+     },
+     "dates": {
+      "cer": 0.3057,
+      "n": 36,
+      "pronunciation": 0.5921,
+      "text_exact": 0.6111,
+      "total": 0.6893
+     },
+     "difficult_hindi": {
+      "cer": 0.1233,
+      "n": 54,
+      "pronunciation": 0.7903,
+      "text_exact": 1.0,
+      "total": 0.8475
+     },
+     "edge_cases": {
+      "cer": 0.1796,
+      "n": 7,
+      "pronunciation": 0.6812,
+      "text_exact": 0.5714,
+      "total": 0.8466
+     },
+     "english_words": {
+      "cer": 0.1943,
+      "n": 20,
+      "pronunciation": 0.6109,
+      "text_exact": 0.35,
+      "total": 0.7781
+     },
+     "hinglish": {
+      "cer": 0.2271,
+      "n": 58,
+      "pronunciation": 0.8233,
+      "text_exact": 0.9655,
+      "total": 0.8556
+     },
+     "long_sentences": {
+      "cer": 0.0886,
+      "n": 20,
+      "pronunciation": 0.8771,
+      "text_exact": 1.0,
+      "total": 0.8363
+     },
+     "names": {
+      "cer": 0.1913,
+      "n": 60,
+      "pronunciation": 0.6979,
+      "text_exact": 0.9,
+      "total": 0.8605
+     },
+     "numbers": {
+      "cer": 0.1482,
+      "n": 50,
+      "pronunciation": 0.6526,
+      "text_exact": 0.98,
+      "total": 0.7716
+     },
+     "percent": {
+      "cer": 0.2155,
+      "n": 17,
+      "pronunciation": 0.6445,
+      "text_exact": 0.9412,
+      "total": 0.8146
+     },
+     "phone_numbers": {
+      "cer": 0.0912,
+      "n": 24,
+      "pronunciation": 0.7218,
+      "text_exact": 1.0,
+      "total": 0.7349
+     },
+     "proper_nouns": {
+      "cer": 0.101,
+      "n": 20,
+      "pronunciation": 0.6949,
+      "text_exact": 0.85,
+      "total": 0.8486
+     },
+     "punctuation": {
+      "cer": 0.0705,
+      "n": 8,
+      "pronunciation": 0.9156,
+      "text_exact": 1.0,
+      "total": 0.9509
+     },
+     "questions": {
+      "cer": 0.0582,
+      "n": 22,
+      "pronunciation": 0.9304,
+      "text_exact": 1.0,
+      "total": 0.8597
+     },
+     "time": {
+      "cer": 0.1381,
+      "n": 54,
+      "pronunciation": 0.7836,
+      "text_exact": 1.0,
+      "total": 0.853
+     }
+    },
+    "cer": 0.1525,
+    "consistency": 0.95,
+    "n": 615,
+    "naturalness": 0.9988,
+    "pronunciation": 0.7608,
+    "prosody": 0.5094,
+    "text_exact": 0.922,
+    "total": 0.8254
+   },
+   "current": {
+    "audio_quality": 0.9992,
+    "categories": {
+     "abbreviations": {
+      "cer": 0.2075,
+      "n": 8,
+      "pronunciation": 0.7611,
+      "text_exact": 0.875,
+      "total": 0.8535
+     },
+     "acronyms": {
+      "cer": 0.1132,
+      "n": 22,
+      "pronunciation": 0.6849,
+      "text_exact": 0.8636,
+      "total": 0.8198
+     },
+     "basic_hindi": {
+      "cer": 0.0682,
+      "n": 40,
+      "pronunciation": 0.9134,
+      "text_exact": 1.0,
+      "total": 0.8575
+     },
+     "commands": {
+      "cer": 0.1465,
+      "n": 8,
+      "pronunciation": 0.8289,
+      "text_exact": 1.0,
+      "total": 0.8901
+     },
+     "conversational": {
+      "cer": 0.0755,
+      "n": 58,
+      "pronunciation": 0.9046,
+      "text_exact": 1.0,
+      "total": 0.88
+     },
+     "currency": {
+      "cer": 0.2592,
+      "n": 29,
+      "pronunciation": 0.6219,
+      "text_exact": 0.9655,
+      "total": 0.7102
+     },
+     "dates": {
+      "cer": 0.3057,
+      "n": 36,
+      "pronunciation": 0.5921,
+      "text_exact": 0.6111,
+      "total": 0.6893
+     },
+     "difficult_hindi": {
+      "cer": 0.1233,
+      "n": 54,
+      "pronunciation": 0.7903,
+      "text_exact": 1.0,
+      "total": 0.8475
+     },
+     "edge_cases": {
+      "cer": 0.1796,
+      "n": 7,
+      "pronunciation": 0.6812,
+      "text_exact": 0.5714,
+      "total": 0.8466
+     },
+     "english_words": {
+      "cer": 0.1943,
+      "n": 20,
+      "pronunciation": 0.6109,
+      "text_exact": 0.35,
+      "total": 0.7781
+     },
+     "hinglish": {
+      "cer": 0.2271,
+      "n": 58,
+      "pronunciation": 0.8233,
+      "text_exact": 0.9655,
+      "total": 0.8556
+     },
+     "long_sentences": {
+      "cer": 0.0886,
+      "n": 20,
+      "pronunciation": 0.8771,
+      "text_exact": 1.0,
+      "total": 0.8363
+     },
+     "names": {
+      "cer": 0.1913,
+      "n": 60,
+      "pronunciation": 0.6979,
+      "text_exact": 0.9,
+      "total": 0.8605
+     },
+     "numbers": {
+      "cer": 0.1482,
+      "n": 50,
+      "pronunciation": 0.6526,
+      "text_exact": 0.98,
+      "total": 0.7716
+     },
+     "percent": {
+      "cer": 0.2155,
+      "n": 17,
+      "pronunciation": 0.6445,
+      "text_exact": 0.9412,
+      "total": 0.8146
+     },
+     "phone_numbers": {
+      "cer": 0.0912,
+      "n": 24,
+      "pronunciation": 0.7218,
+      "text_exact": 1.0,
+      "total": 0.7349
+     },
+     "proper_nouns": {
+      "cer": 0.101,
+      "n": 20,
+      "pronunciation": 0.6949,
+      "text_exact": 0.85,
+      "total": 0.8486
+     },
+     "punctuation": {
+      "cer": 0.0705,
+      "n": 8,
+      "pronunciation": 0.9156,
+      "text_exact": 1.0,
+      "total": 0.9509
+     },
+     "questions": {
+      "cer": 0.0582,
+      "n": 22,
+      "pronunciation": 0.9304,
+      "text_exact": 1.0,
+      "total": 0.8597
+     },
+     "time": {
+      "cer": 0.1381,
+      "n": 54,
+      "pronunciation": 0.7836,
+      "text_exact": 1.0,
+      "total": 0.853
+     }
+    },
+    "cer": 0.1525,
+    "consistency": 0.95,
+    "n": 615,
+    "naturalness": 0.9988,
+    "pronunciation": 0.7608,
+    "prosody": 0.5094,
+    "text_exact": 0.922,
+    "total": 0.8254
+   },
+   "split_words": {
+    "अंतिम": 1,
+    "अन्यथा": 2,
+    "आपके": 2,
+    "इसकी": 1,
+    "कारण": 1,
+    "किलोमीटर": 1,
+    "किससे": 1,
+    "कृपया": 1,
+    "कैशबैक": 1,
+    "क्या": 1,
+    "खुशखबरी": 2,
+    "चिंता": 1,
+    "चेक": 1,
+    "जानकर": 1,
+    "जिससे": 1,
+    "तकनीकी": 3,
+    "तिथि": 1,
+    "तुरंत": 1,
+    "देखकर": 1,
+    "दोपहर": 5,
+    "ध्यान": 1,
+    "नजदीकी": 2,
+    "निन्यानवे": 1,
+    "पंजीकरण": 1,
+    "पता": 1,
+    "पते": 1,
+    "प्रिय": 2,
+    "फाई": 1,
+    "बत्ती": 1,
+    "मई": 1,
+    "मुख्य": 1,
+    "मुख्यमंत्री": 1,
+    "यूपीआई": 1,
+    "लगभग": 1,
+    "लाइफटाइम": 1,
+    "लाल": 1,
+    "वर्मा": 1,
+    "वाली": 1,
+    "विशाखापत्तनम": 1,
+    "सत्र": 1,
+    "सफलतापूर्वक": 3,
+    "सलाह": 1,
+    "सेवा": 1,
+    "हेल्पलाइन": 1
+   },
+   "top_failures": [
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंटीक हजार नौसो पचानवे से शून्य नौ माइनस शून्य दो को है",
+     "id": "date-018",
+     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य नौमाइनस शून्य दो को है।",
+     "total": 0.5444
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपाइंटमेंट दो हजार चब्वीस से शून्य चैसत्रा को है",
+     "id": "date-014",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य छह-सत्रह को है।",
+     "total": 0.5457
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी रपॉइंटमेंट एक हजार नौ सौ पचानवे से शून ने तीन बारा को है",
+     "id": "date-034",
+     "normalized": "आपकी अपॉइंटमेंट एक हज़ार नौ सौ पचानवे से शून्य तीन-बारह को है।",
+     "total": 0.5535
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट दो हजार पचीस से शूने तीन शूने छे को है",
+     "id": "date-022",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार पच्चीस से शून्य तीन-शून्य छह को है।",
+     "total": 0.5585
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट दो हसार चब्वीस से शून्य पांच शूनी आठ को है।",
+     "id": "date-002",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार छब्बीस से शून्य पाँच-शून्य आठ को है।",
+     "total": 0.5706
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपाइंटमेंट दो हजार पच्चीज से बारे पंद्रा को है।",
+     "id": "date-010",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार पच्चीस से बारह-पंद्रह को है।",
+     "total": 0.5717
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट दो हजार दस से शून ये चार चोबीस को है।",
+     "id": "date-026",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार दस से शून्य चार-चौबीस को है।",
+     "total": 0.6108
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंटमेंट 2001 से 02-07 को है",
+     "id": "date-030",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य दोमाइनस शून्य सात को है।",
+     "total": 0.6158
+    },
+    {
+     "category": "proper_nouns",
+     "failure_type": "normalization",
+     "hyp": " मैं तिरुवनन पुर्रम से बोल रही हूँ",
+     "id": "pn-000",
+     "normalized": "मैं Thiruvananthapuram से बोल रही हूँ।",
+     "total": 0.6176
+    },
+    {
+     "category": "currency",
+     "failure_type": "pronunciation",
+     "hyp": " बिल 2499 रुपे 50 पैसे है",
+     "id": "cur-076",
+     "normalized": "बिल दो हज़ार चार सौ निन्यानवे रुपये पचास पैसे है।",
+     "total": 0.6177
+    },
+    {
+     "category": "english_words",
+     "failure_type": "normalization",
+     "hyp": " क्रिप्या वट्स रपकी जानकारी दीजे",
+     "id": "en-000",
+     "normalized": "कृपया WhatsApp की जानकारी दीजिए।",
+     "total": 0.6243
+    },
+    {
+     "category": "dates",
+     "failure_type": "normalization",
+     "hyp": " आपकी अपॉइंट्मेंट दो हजार एक सिच्शूने च्छे बीस को है।",
+     "id": "date-006",
+     "normalized": "आपकी अपॉइंटमेंट दो हज़ार एक से शून्य छह-बीस को है।",
+     "total": 0.63
+    },
+    {
+     "category": "hinglish",
+     "failure_type": "pronunciation",
+     "hyp": " फॉर्म में डेट अफ बर्थ वही लिखिये जो अधार कार्ड पर है",
+     "id": "hg-027",
+     "normalized": "Form में date of birth वही लिखिए जो Aadhaar card पर है।",
+     "total": 0.633
+    },
+    {
+     "category": "percent",
+     "failure_type": "pronunciation",
+     "hyp": " 22 तर 5 प्रतिशत है",
+     "id": "pct-001",
+     "normalized": "ब्याज दर पाँच प्रतिशत है।",
+     "total": 0.6423
+    },
+    {
+     "category": "names",
+     "failure_type": "word_boundary",
+     "hyp": " मिस्सर स्वर्मा",
+     "id": "pc072",
+     "normalized": "मिसेज़ वर्मा",
+     "total": 0.6426
+    }
+   ]
+  }
+ },
+ "experiments": [],
+ "generated": "2026-10-04T19:11:08",
+ "repeat_failing_tests": []
+}

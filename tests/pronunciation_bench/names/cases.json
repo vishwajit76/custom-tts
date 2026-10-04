@@ -1,0 +1,587 @@
+[
+ {
+  "id": "name-000",
+  "category": "names",
+  "text": "मेरा नाम Vishvajeet है।",
+  "expected_normalized": "मेरा नाम विश्वजीत है।",
+  "priority": 1,
+  "important": [
+   "विश्वजीत"
+  ],
+  "terms": {
+   "Vishvajeet": "विश्वजीत"
+  }
+ },
+ {
+  "id": "name-d000",
+  "category": "names",
+  "text": "विश्वजीत जी, आपका स्वागत है।",
+  "expected_normalized": "विश्वजीत जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "विश्वजीत"
+  ]
+ },
+ {
+  "id": "name-001",
+  "category": "names",
+  "text": "मेरा नाम Rahul है।",
+  "expected_normalized": "मेरा नाम राहुल है।",
+  "priority": 1,
+  "important": [
+   "राहुल"
+  ],
+  "terms": {
+   "Rahul": "राहुल"
+  }
+ },
+ {
+  "id": "name-d001",
+  "category": "names",
+  "text": "राहुल जी, आपका स्वागत है।",
+  "expected_normalized": "राहुल जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "राहुल"
+  ]
+ },
+ {
+  "id": "name-002",
+  "category": "names",
+  "text": "मेरा नाम Priya है।",
+  "expected_normalized": "मेरा नाम प्रिया है।",
+  "priority": 2,
+  "important": [
+   "प्रिया"
+  ],
+  "terms": {
+   "Priya": "प्रिया"
+  }
+ },
+ {
+  "id": "name-d002",
+  "category": "names",
+  "text": "प्रिया जी, आपका स्वागत है।",
+  "expected_normalized": "प्रिया जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "प्रिया"
+  ]
+ },
+ {
+  "id": "name-003",
+  "category": "names",
+  "text": "मेरा नाम Aishwarya है।",
+  "expected_normalized": "मेरा नाम ऐश्वर्या है।",
+  "priority": 2,
+  "important": [
+   "ऐश्वर्या"
+  ],
+  "terms": {
+   "Aishwarya": "ऐश्वर्या"
+  }
+ },
+ {
+  "id": "name-d003",
+  "category": "names",
+  "text": "ऐश्वर्या जी, आपका स्वागत है।",
+  "expected_normalized": "ऐश्वर्या जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "ऐश्वर्या"
+  ]
+ },
+ {
+  "id": "name-004",
+  "category": "names",
+  "text": "मेरा नाम Siddharth है।",
+  "expected_normalized": "मेरा नाम सिद्धार्थ है।",
+  "priority": 2,
+  "important": [
+   "सिद्धार्थ"
+  ],
+  "terms": {
+   "Siddharth": "सिद्धार्थ"
+  }
+ },
+ {
+  "id": "name-d004",
+  "category": "names",
+  "text": "सिद्धार्थ जी, आपका स्वागत है।",
+  "expected_normalized": "सिद्धार्थ जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "सिद्धार्थ"
+  ]
+ },
+ {
+  "id": "name-005",
+  "category": "names",
+  "text": "मेरा नाम Shreya है।",
+  "expected_normalized": "मेरा नाम श्रेया है।",
+  "priority": 2,
+  "important": [
+   "श्रेया"
+  ],
+  "terms": {
+   "Shreya": "श्रेया"
+  }
+ },
+ {
+  "id": "name-d005",
+  "category": "names",
+  "text": "श्रेया जी, आपका स्वागत है।",
+  "expected_normalized": "श्रेया जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "श्रेया"
+  ]
+ },
+ {
+  "id": "name-006",
+  "category": "names",
+  "text": "मेरा नाम Abhishek है।",
+  "expected_normalized": "मेरा नाम अभिषेक है।",
+  "priority": 2,
+  "important": [
+   "अभिषेक"
+  ],
+  "terms": {
+   "Abhishek": "अभिषेक"
+  }
+ },
+ {
+  "id": "name-d006",
+  "category": "names",
+  "text": "अभिषेक जी, आपका स्वागत है।",
+  "expected_normalized": "अभिषेक जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "अभिषेक"
+  ]
+ },
+ {
+  "id": "name-007",
+  "category": "names",
+  "text": "मेरा नाम Kshitij है।",
+  "expected_normalized": "मेरा नाम क्षितिज है।",
+  "priority": 2,
+  "important": [
+   "क्षितिज"
+  ],
+  "terms": {
+   "Kshitij": "क्षितिज"
+  }
+ },
+ {
+  "id": "name-d007",
+  "category": "names",
+  "text": "क्षितिज जी, आपका स्वागत है।",
+  "expected_normalized": "क्षितिज जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "क्षितिज"
+  ]
+ },
+ {
+  "id": "name-008",
+  "category": "names",
+  "text": "मेरा नाम Gyanendra है।",
+  "expected_normalized": "मेरा नाम ज्ञानेंद्र है।",
+  "priority": 2,
+  "important": [
+   "ज्ञानेंद्र"
+  ],
+  "terms": {
+   "Gyanendra": "ज्ञानेंद्र"
+  }
+ },
+ {
+  "id": "name-d008",
+  "category": "names",
+  "text": "ज्ञानेंद्र जी, आपका स्वागत है।",
+  "expected_normalized": "ज्ञानेंद्र जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "ज्ञानेंद्र"
+  ]
+ },
+ {
+  "id": "name-009",
+  "category": "names",
+  "text": "मेरा नाम Pradyumn है।",
+  "expected_normalized": "मेरा नाम प्रद्युम्न है।",
+  "priority": 2,
+  "important": [
+   "प्रद्युम्न"
+  ],
+  "terms": {
+   "Pradyumn": "प्रद्युम्न"
+  }
+ },
+ {
+  "id": "name-d009",
+  "category": "names",
+  "text": "प्रद्युम्न जी, आपका स्वागत है।",
+  "expected_normalized": "प्रद्युम्न जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "प्रद्युम्न"
+  ]
+ },
+ {
+  "id": "name-010",
+  "category": "names",
+  "text": "मेरा नाम Chauhan है।",
+  "expected_normalized": "मेरा नाम चौहान है।",
+  "priority": 2,
+  "important": [
+   "चौहान"
+  ],
+  "terms": {
+   "Chauhan": "चौहान"
+  }
+ },
+ {
+  "id": "name-d010",
+  "category": "names",
+  "text": "चौहान जी, आपका स्वागत है।",
+  "expected_normalized": "चौहान जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "चौहान"
+  ]
+ },
+ {
+  "id": "name-011",
+  "category": "names",
+  "text": "मेरा नाम Chaturvedi है।",
+  "expected_normalized": "मेरा नाम चतुर्वेदी है।",
+  "priority": 2,
+  "important": [
+   "चतुर्वेदी"
+  ],
+  "terms": {
+   "Chaturvedi": "चतुर्वेदी"
+  }
+ },
+ {
+  "id": "name-d011",
+  "category": "names",
+  "text": "चतुर्वेदी जी, आपका स्वागत है।",
+  "expected_normalized": "चतुर्वेदी जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "चतुर्वेदी"
+  ]
+ },
+ {
+  "id": "name-012",
+  "category": "names",
+  "text": "मेरा नाम Tripathi है।",
+  "expected_normalized": "मेरा नाम त्रिपाठी है।",
+  "priority": 2,
+  "important": [
+   "त्रिपाठी"
+  ],
+  "terms": {
+   "Tripathi": "त्रिपाठी"
+  }
+ },
+ {
+  "id": "name-d012",
+  "category": "names",
+  "text": "त्रिपाठी जी, आपका स्वागत है।",
+  "expected_normalized": "त्रिपाठी जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "त्रिपाठी"
+  ]
+ },
+ {
+  "id": "name-013",
+  "category": "names",
+  "text": "मेरा नाम Bhattacharya है।",
+  "expected_normalized": "मेरा नाम भट्टाचार्य है।",
+  "priority": 2,
+  "important": [
+   "भट्टाचार्य"
+  ],
+  "terms": {
+   "Bhattacharya": "भट्टाचार्य"
+  }
+ },
+ {
+  "id": "name-d013",
+  "category": "names",
+  "text": "भट्टाचार्य जी, आपका स्वागत है।",
+  "expected_normalized": "भट्टाचार्य जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "भट्टाचार्य"
+  ]
+ },
+ {
+  "id": "name-014",
+  "category": "names",
+  "text": "मेरा नाम Ananya है।",
+  "expected_normalized": "मेरा नाम अनन्या है।",
+  "priority": 2,
+  "important": [
+   "अनन्या"
+  ],
+  "terms": {
+   "Ananya": "अनन्या"
+  }
+ },
+ {
+  "id": "name-d014",
+  "category": "names",
+  "text": "अनन्या जी, आपका स्वागत है।",
+  "expected_normalized": "अनन्या जी, आपका स्वागत है।",
+  "priority": 2,
+  "important": [
+   "अनन्या"
+  ]
+ },
+ {
+  "id": "pc058",
+  "category": "names",
+  "text": "Rahul",
+  "expected_normalized": "राहुल",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc059",
+  "category": "names",
+  "text": "Priya",
+  "expected_normalized": "प्रिया",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc060",
+  "category": "names",
+  "text": "Amitabh Bachchan",
+  "expected_normalized": "अमिताभ बच्चन",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc061",
+  "category": "names",
+  "text": "Delhi",
+  "expected_normalized": "दिल्ली",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc062",
+  "category": "names",
+  "text": "Mumbai",
+  "expected_normalized": "मुंबई",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc063",
+  "category": "names",
+  "text": "Kolkata",
+  "expected_normalized": "कोलकाता",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc064",
+  "category": "names",
+  "text": "Bengaluru",
+  "expected_normalized": "बेंगलुरु",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc065",
+  "category": "names",
+  "text": "Hyderabad",
+  "expected_normalized": "हैदराबाद",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc066",
+  "category": "names",
+  "text": "Lucknow",
+  "expected_normalized": "लखनऊ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc067",
+  "category": "names",
+  "text": "Jaipur",
+  "expected_normalized": "जयपुर",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc068",
+  "category": "names",
+  "text": "Chennai",
+  "expected_normalized": "चेन्नई",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc069",
+  "category": "names",
+  "text": "Pune",
+  "expected_normalized": "पुणे",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc070",
+  "category": "names",
+  "text": "Sharma ji",
+  "expected_normalized": "शर्मा जी",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc071",
+  "category": "names",
+  "text": "Mr. Gupta",
+  "expected_normalized": "मिस्टर गुप्ता",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc072",
+  "category": "names",
+  "text": "Mrs. Verma",
+  "expected_normalized": "मिसेज़ वर्मा",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc073",
+  "category": "names",
+  "text": "Dr. Sharma",
+  "expected_normalized": "डॉक्टर शर्मा",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc074",
+  "category": "names",
+  "text": "डॉ. मेहता",
+  "expected_normalized": "डॉक्टर मेहता",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc075",
+  "category": "names",
+  "text": "Narendra Modi",
+  "expected_normalized": "नरेंद्र मोदी",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc076",
+  "category": "names",
+  "text": "Sachin Tendulkar",
+  "expected_normalized": "सचिन तेंदुलकर",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc077",
+  "category": "names",
+  "text": "mera naam Priya hai",
+  "expected_normalized": "मेरा नाम प्रिया है",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc078",
+  "category": "names",
+  "text": "main Mumbai se bol rahi hoon",
+  "expected_normalized": "मैं मुंबई से बोल रही हूँ",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc079",
+  "category": "names",
+  "text": "Uttar Pradesh",
+  "expected_normalized": "उत्तर प्रदेश",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc080",
+  "category": "names",
+  "text": "Madhya Pradesh",
+  "expected_normalized": "मध्य प्रदेश",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc081",
+  "category": "names",
+  "text": "Rahul ji, aapka swagat hai",
+  "expected_normalized": "राहुल जी, आपका स्वागत है",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc082",
+  "category": "names",
+  "text": "Sunita Devi",
+  "expected_normalized": "सुनीता देवी",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc083",
+  "category": "names",
+  "text": "Chandigarh se Amit",
+  "expected_normalized": "चंडीगढ़ से अमित",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc084",
+  "category": "names",
+  "text": "Ahmedabad",
+  "expected_normalized": "अहमदाबाद",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc085",
+  "category": "names",
+  "text": "Bhopal",
+  "expected_normalized": "भोपाल",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc086",
+  "category": "names",
+  "text": "Patna",
+  "expected_normalized": "पटना",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ },
+ {
+  "id": "pc087",
+  "category": "names",
+  "text": "Indore",
+  "expected_normalized": "इंदौर",
+  "priority": 3,
+  "source": "pronunciation_corpus"
+ }
+]

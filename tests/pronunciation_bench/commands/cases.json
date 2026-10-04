@@ -1,0 +1,58 @@
+[
+ {
+  "id": "cmd-000",
+  "category": "commands",
+  "text": "कृपया अपना पासवर्ड बदलिए।",
+  "expected_normalized": "कृपया अपना पासवर्ड बदलिए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-001",
+  "category": "commands",
+  "text": "दरवाज़ा बंद कर दीजिए।",
+  "expected_normalized": "दरवाज़ा बंद कर दीजिए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-002",
+  "category": "commands",
+  "text": "अभी लाइन पर बने रहिए।",
+  "expected_normalized": "अभी लाइन पर बने रहिए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-003",
+  "category": "commands",
+  "text": "एक दबाइए।",
+  "expected_normalized": "एक दबाइए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-004",
+  "category": "commands",
+  "text": "अपना नाम बोलिए।",
+  "expected_normalized": "अपना नाम बोलिए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-005",
+  "category": "commands",
+  "text": "बीप के बाद संदेश छोड़िए।",
+  "expected_normalized": "बीप के बाद संदेश छोड़िए।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-006",
+  "category": "commands",
+  "text": "बत्ती बुझा दो।",
+  "expected_normalized": "बत्ती बुझा दो।",
+  "priority": 2
+ },
+ {
+  "id": "cmd-007",
+  "category": "commands",
+  "text": "यहाँ हस्ताक्षर कीजिए।",
+  "expected_normalized": "यहाँ हस्ताक्षर कीजिए।",
+  "priority": 2
+ }
+]

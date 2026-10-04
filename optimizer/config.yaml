@@ -1,0 +1,40 @@
+# V8 optimizer config (docs/V8-OPTIMIZER-SPEC.md)
+engines: [goonj, piper_v7a]     # benchmark.py runs all; names in optimizer/engines.py::make
+primary_engine: goonj           # optimize.py searches/regresses on this one
+
+weights:                        # §12, extensible: add a key here and in evaluators.proxies
+  pronunciation: 0.40
+  naturalness: 0.25
+  prosody: 0.15
+  audio_quality: 0.10
+  consistency: 0.10
+
+proxy:
+  rate_cps: [9, 18]             # plausible Devanagari chars/second of speech (naturalness proxy)
+  target_rms_db: -22
+
+gates:                          # §23
+  min_target_improvement: 0.05
+  critical_regression: 0.05     # any priority-1 case losing more pronunciation than this -> reject
+  max_category_regression: 0.01 # mean total drop per category
+  max_rtf_degradation: 0.10     # relative
+
+concurrency:                    # §22 (16 GB RAM, 6 GB GPU)
+  max_candidates: 12
+  inference_workers: 2          # ponytail: one lock per engine today, so effectively 1 per engine
+  evaluation_workers: 4
+  asr_batch: 8
+
+loop:
+  fail_threshold: 0.85          # case total below this, or any text/asr failure, is a target
+  max_attempts_per_case: 2
+  pause_ms: [60, 120, 250]
+  speed: [0.9, 1.0, 1.1]
+
+laya:
+  backend: deterministic        # deterministic | gemini  (TODO: confirm what "Laya" is)
+  gemini_weight: 0.1
+  gemini_top_k: 3
+
+git:
+  branch: v8-optimizer          # commits via a private index; main and the working tree are never touched

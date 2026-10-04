@@ -1,0 +1,262 @@
+[
+ {
+  "id": "en-000",
+  "category": "english_words",
+  "text": "कृपया WhatsApp की जानकारी दीजिए।",
+  "expected_normalized": "कृपया व्हाट्सऐप की जानकारी दीजिए।",
+  "priority": 1,
+  "important": [
+   "व्हाट्सऐप"
+  ],
+  "terms": {
+   "WhatsApp": "व्हाट्सऐप"
+  }
+ },
+ {
+  "id": "en-001",
+  "category": "english_words",
+  "text": "आपका Google अपडेट हो गया है।",
+  "expected_normalized": "आपका गूगल अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "गूगल"
+  ],
+  "terms": {
+   "Google": "गूगल"
+  }
+ },
+ {
+  "id": "en-002",
+  "category": "english_words",
+  "text": "Paytm से जुड़ी समस्या बताइए।",
+  "expected_normalized": "पेटीएम से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "पेटीएम"
+  ],
+  "terms": {
+   "Paytm": "पेटीएम"
+  }
+ },
+ {
+  "id": "en-003",
+  "category": "english_words",
+  "text": "कृपया Amazon की जानकारी दीजिए।",
+  "expected_normalized": "कृपया अमेज़न की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "अमेज़न"
+  ],
+  "terms": {
+   "Amazon": "अमेज़न"
+  }
+ },
+ {
+  "id": "en-004",
+  "category": "english_words",
+  "text": "आपका Flipkart अपडेट हो गया है।",
+  "expected_normalized": "आपका फ्लिपकार्ट अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "फ्लिपकार्ट"
+  ],
+  "terms": {
+   "Flipkart": "फ्लिपकार्ट"
+  }
+ },
+ {
+  "id": "en-005",
+  "category": "english_words",
+  "text": "YouTube से जुड़ी समस्या बताइए।",
+  "expected_normalized": "यूट्यूब से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "यूट्यूब"
+  ],
+  "terms": {
+   "YouTube": "यूट्यूब"
+  }
+ },
+ {
+  "id": "en-006",
+  "category": "english_words",
+  "text": "कृपया Facebook की जानकारी दीजिए।",
+  "expected_normalized": "कृपया फेसबुक की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "फेसबुक"
+  ],
+  "terms": {
+   "Facebook": "फेसबुक"
+  }
+ },
+ {
+  "id": "en-007",
+  "category": "english_words",
+  "text": "आपका Instagram अपडेट हो गया है।",
+  "expected_normalized": "आपका इंस्टाग्राम अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "इंस्टाग्राम"
+  ],
+  "terms": {
+   "Instagram": "इंस्टाग्राम"
+  }
+ },
+ {
+  "id": "en-008",
+  "category": "english_words",
+  "text": "laptop से जुड़ी समस्या बताइए।",
+  "expected_normalized": "लैपटॉप से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "लैपटॉप"
+  ],
+  "terms": {
+   "laptop": "लैपटॉप"
+  }
+ },
+ {
+  "id": "en-009",
+  "category": "english_words",
+  "text": "कृपया software की जानकारी दीजिए।",
+  "expected_normalized": "कृपया सॉफ्टवेयर की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "सॉफ्टवेयर"
+  ],
+  "terms": {
+   "software": "सॉफ्टवेयर"
+  }
+ },
+ {
+  "id": "en-010",
+  "category": "english_words",
+  "text": "आपका password अपडेट हो गया है।",
+  "expected_normalized": "आपका पासवर्ड अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "पासवर्ड"
+  ],
+  "terms": {
+   "password": "पासवर्ड"
+  }
+ },
+ {
+  "id": "en-011",
+  "category": "english_words",
+  "text": "email से जुड़ी समस्या बताइए।",
+  "expected_normalized": "ईमेल से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "ईमेल"
+  ],
+  "terms": {
+   "email": "ईमेल"
+  }
+ },
+ {
+  "id": "en-012",
+  "category": "english_words",
+  "text": "कृपया server की जानकारी दीजिए।",
+  "expected_normalized": "कृपया सर्वर की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "सर्वर"
+  ],
+  "terms": {
+   "server": "सर्वर"
+  }
+ },
+ {
+  "id": "en-013",
+  "category": "english_words",
+  "text": "आपका update अपडेट हो गया है।",
+  "expected_normalized": "आपका अपडेट अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "अपडेट"
+  ],
+  "terms": {
+   "update": "अपडेट"
+  }
+ },
+ {
+  "id": "en-014",
+  "category": "english_words",
+  "text": "download से जुड़ी समस्या बताइए।",
+  "expected_normalized": "डाउनलोड से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "डाउनलोड"
+  ],
+  "terms": {
+   "download": "डाउनलोड"
+  }
+ },
+ {
+  "id": "en-015",
+  "category": "english_words",
+  "text": "कृपया account की जानकारी दीजिए।",
+  "expected_normalized": "कृपया अकाउंट की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "अकाउंट"
+  ],
+  "terms": {
+   "account": "अकाउंट"
+  }
+ },
+ {
+  "id": "en-016",
+  "category": "english_words",
+  "text": "आपका meeting अपडेट हो गया है।",
+  "expected_normalized": "आपका मीटिंग अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "मीटिंग"
+  ],
+  "terms": {
+   "meeting": "मीटिंग"
+  }
+ },
+ {
+  "id": "en-017",
+  "category": "english_words",
+  "text": "online से जुड़ी समस्या बताइए।",
+  "expected_normalized": "ऑनलाइन से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "ऑनलाइन"
+  ],
+  "terms": {
+   "online": "ऑनलाइन"
+  }
+ },
+ {
+  "id": "en-018",
+  "category": "english_words",
+  "text": "कृपया website की जानकारी दीजिए।",
+  "expected_normalized": "कृपया वेबसाइट की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "वेबसाइट"
+  ],
+  "terms": {
+   "website": "वेबसाइट"
+  }
+ },
+ {
+  "id": "en-019",
+  "category": "english_words",
+  "text": "आपका mobile अपडेट हो गया है।",
+  "expected_normalized": "आपका मोबाइल अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "मोबाइल"
+  ],
+  "terms": {
+   "mobile": "मोबाइल"
+  }
+ }
+]

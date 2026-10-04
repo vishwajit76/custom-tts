@@ -1,0 +1,60 @@
+[
+ {
+  "id": "edge-002",
+  "category": "edge_cases",
+  "text": "A",
+  "expected_normalized": "ए",
+  "priority": 2,
+  "alternatives": []
+ },
+ {
+  "id": "edge-003",
+  "category": "edge_cases",
+  "text": "ok",
+  "expected_normalized": "ओके",
+  "priority": 2,
+  "alternatives": []
+ },
+ {
+  "id": "edge-004",
+  "category": "edge_cases",
+  "text": "हाँ",
+  "expected_normalized": "हाँ",
+  "priority": 2,
+  "alternatives": []
+ },
+ {
+  "id": "edge-005",
+  "category": "edge_cases",
+  "text": "100%",
+  "expected_normalized": "सौ प्रतिशत",
+  "priority": 2,
+  "alternatives": [
+   "एक सौ प्रतिशत"
+  ]
+ },
+ {
+  "id": "edge-006",
+  "category": "edge_cases",
+  "text": "1",
+  "expected_normalized": "एक",
+  "priority": 2,
+  "alternatives": []
+ },
+ {
+  "id": "edge-007",
+  "category": "edge_cases",
+  "text": "नमस्ते!!!",
+  "expected_normalized": "नमस्ते!!!",
+  "priority": 2,
+  "alternatives": []
+ },
+ {
+  "id": "edge-008",
+  "category": "edge_cases",
+  "text": "call करें ASAP",
+  "expected_normalized": "call करें ए एस ए पी",
+  "priority": 2,
+  "alternatives": []
+ }
+]

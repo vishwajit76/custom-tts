@@ -1,0 +1,484 @@
+[
+ {
+  "id": "dif-000",
+  "category": "difficult_hindi",
+  "text": "विश्वजीत शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "विश्वजीत शब्द को ध्यान से पढ़िए।",
+  "priority": 1,
+  "important": [
+   "विश्वजीत"
+  ]
+ },
+ {
+  "id": "dif-001",
+  "category": "difficult_hindi",
+  "text": "प्रतिष्ठा शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "प्रतिष्ठा शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "प्रतिष्ठा"
+  ]
+ },
+ {
+  "id": "dif-002",
+  "category": "difficult_hindi",
+  "text": "उज्ज्वल शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "उज्ज्वल शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "उज्ज्वल"
+  ]
+ },
+ {
+  "id": "dif-003",
+  "category": "difficult_hindi",
+  "text": "क्षत्रिय शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "क्षत्रिय शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "क्षत्रिय"
+  ]
+ },
+ {
+  "id": "dif-004",
+  "category": "difficult_hindi",
+  "text": "स्वास्थ्य शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "स्वास्थ्य शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "स्वास्थ्य"
+  ]
+ },
+ {
+  "id": "dif-005",
+  "category": "difficult_hindi",
+  "text": "संक्षिप्त शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "संक्षिप्त शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "संक्षिप्त"
+  ]
+ },
+ {
+  "id": "dif-006",
+  "category": "difficult_hindi",
+  "text": "द्वारा शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "द्वारा शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "द्वारा"
+  ]
+ },
+ {
+  "id": "dif-007",
+  "category": "difficult_hindi",
+  "text": "श्रृंखला शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "श्रृंखला शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "श्रृंखला"
+  ]
+ },
+ {
+  "id": "dif-008",
+  "category": "difficult_hindi",
+  "text": "ऋषिकेश शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "ऋषिकेश शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "ऋषिकेश"
+  ]
+ },
+ {
+  "id": "dif-009",
+  "category": "difficult_hindi",
+  "text": "कृतज्ञता शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "कृतज्ञता शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "कृतज्ञता"
+  ]
+ },
+ {
+  "id": "dif-010",
+  "category": "difficult_hindi",
+  "text": "अर्थव्यवस्था शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "अर्थव्यवस्था शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "अर्थव्यवस्था"
+  ]
+ },
+ {
+  "id": "dif-011",
+  "category": "difficult_hindi",
+  "text": "सम्प्रेषण शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "सम्प्रेषण शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "सम्प्रेषण"
+  ]
+ },
+ {
+  "id": "dif-012",
+  "category": "difficult_hindi",
+  "text": "विद्यार्थी शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "विद्यार्थी शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "विद्यार्थी"
+  ]
+ },
+ {
+  "id": "dif-013",
+  "category": "difficult_hindi",
+  "text": "आत्मनिर्भर शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "आत्मनिर्भर शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "आत्मनिर्भर"
+  ]
+ },
+ {
+  "id": "dif-014",
+  "category": "difficult_hindi",
+  "text": "प्रज्ज्वलित शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "प्रज्ज्वलित शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "प्रज्ज्वलित"
+  ]
+ },
+ {
+  "id": "dif-015",
+  "category": "difficult_hindi",
+  "text": "ज्योत्स्ना शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "ज्योत्स्ना शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "ज्योत्स्ना"
+  ]
+ },
+ {
+  "id": "dif-016",
+  "category": "difficult_hindi",
+  "text": "उत्कृष्ट शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "उत्कृष्ट शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "उत्कृष्ट"
+  ]
+ },
+ {
+  "id": "dif-017",
+  "category": "difficult_hindi",
+  "text": "वृद्धि शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "वृद्धि शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "वृद्धि"
+  ]
+ },
+ {
+  "id": "dif-018",
+  "category": "difficult_hindi",
+  "text": "स्पष्टीकरण शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "स्पष्टीकरण शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "स्पष्टीकरण"
+  ]
+ },
+ {
+  "id": "dif-019",
+  "category": "difficult_hindi",
+  "text": "मुख्यमंत्री शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "मुख्यमंत्री शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "मुख्यमंत्री"
+  ]
+ },
+ {
+  "id": "dif-020",
+  "category": "difficult_hindi",
+  "text": "आश्चर्य शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "आश्चर्य शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "आश्चर्य"
+  ]
+ },
+ {
+  "id": "dif-021",
+  "category": "difficult_hindi",
+  "text": "दृष्टिकोण शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "दृष्टिकोण शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "दृष्टिकोण"
+  ]
+ },
+ {
+  "id": "dif-022",
+  "category": "difficult_hindi",
+  "text": "त्र्यंबकेश्वर शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "त्र्यंबकेश्वर शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "त्र्यंबकेश्वर"
+  ]
+ },
+ {
+  "id": "dif-023",
+  "category": "difficult_hindi",
+  "text": "स्वतंत्रता शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "स्वतंत्रता शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "स्वतंत्रता"
+  ]
+ },
+ {
+  "id": "dif-024",
+  "category": "difficult_hindi",
+  "text": "धृतराष्ट्र शब्द को ध्यान से पढ़िए।",
+  "expected_normalized": "धृतराष्ट्र शब्द को ध्यान से पढ़िए।",
+  "priority": 2,
+  "important": [
+   "धृतराष्ट्र"
+  ]
+ },
+ {
+  "id": "pron-001",
+  "category": "difficult_hindi",
+  "text": "आपका कमरा तैयार है, चाबी रिसेप्शन से मिल जाएगी।",
+  "expected_normalized": "आपका कमरा तैयार है, चाबी रिसेप्शन से मिल जाएगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-002",
+  "category": "difficult_hindi",
+  "text": "समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।",
+  "expected_normalized": "समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-003",
+  "category": "difficult_hindi",
+  "text": "मैं आपके सवाल का जवाब ज़रूर दूँगी, बस थोड़ा सब्र कीजिए।",
+  "expected_normalized": "मैं आपके सवाल का जवाब ज़रूर दूँगी, बस थोड़ा सब्र कीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-004",
+  "category": "difficult_hindi",
+  "text": "बरसात के मौसम में सड़कें अक्सर फिसलन भरी हो जाती हैं।",
+  "expected_normalized": "बरसात के मौसम में सड़कें अक्सर फिसलन भरी हो जाती हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-005",
+  "category": "difficult_hindi",
+  "text": "कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।",
+  "expected_normalized": "कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-006",
+  "category": "difficult_hindi",
+  "text": "श्रीमान, आपकी प्रार्थना स्वीकार कर ली गई है, शुल्क में छूट मिलेगी।",
+  "expected_normalized": "श्रीमान, आपकी प्रार्थना स्वीकार कर ली गई है, शुल्क में छूट मिलेगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-007",
+  "category": "difficult_hindi",
+  "text": "मुख्य अध्यापक ने कक्षा के सभी विद्यार्थियों को क्षमा कर दिया।",
+  "expected_normalized": "मुख्य अध्यापक ने कक्षा के सभी विद्यार्थियों को क्षमा कर दिया।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-008",
+  "category": "difficult_hindi",
+  "text": "उनका स्वास्थ्य अब बेहतर है और वे अस्पताल से छुट्टी लेकर घर जा सकते हैं।",
+  "expected_normalized": "उनका स्वास्थ्य अब बेहतर है और वे अस्पताल से छुट्टी लेकर घर जा सकते हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-009",
+  "category": "difficult_hindi",
+  "text": "ज़रूरी काग़ज़ात फ़ोन पर भेजने की ज़रूरत नहीं है, हम ख़ुद ले लेंगे।",
+  "expected_normalized": "ज़रूरी काग़ज़ात फ़ोन पर भेजने की ज़रूरत नहीं है, हम ख़ुद ले लेंगे।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-010",
+  "category": "difficult_hindi",
+  "text": "आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।",
+  "expected_normalized": "आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-011",
+  "category": "difficult_hindi",
+  "text": "ज़िंदगी भर की बचत को सुरक्षित रखने के लिए बीमा ज़रूर कराइए।",
+  "expected_normalized": "ज़िंदगी भर की बचत को सुरक्षित रखने के लिए बीमा ज़रूर कराइए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-012",
+  "category": "difficult_hindi",
+  "text": "आज की ख़बर में बिजली के बिल में राहत का ज़िक्र है।",
+  "expected_normalized": "आज की ख़बर में बिजली के बिल में राहत का ज़िक्र है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-013",
+  "category": "difficult_hindi",
+  "text": "माँ ने कहा कि वहाँ जाँच के लिए पाँच लोग आँगन में खड़े हैं।",
+  "expected_normalized": "माँ ने कहा कि वहाँ जाँच के लिए पाँच लोग आँगन में खड़े हैं।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-014",
+  "category": "difficult_hindi",
+  "text": "आपका संदेश मिल गया है, हम संपर्क करके आपको सूचना दे देंगे।",
+  "expected_normalized": "आपका संदेश मिल गया है, हम संपर्क करके आपको सूचना दे देंगे।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-015",
+  "category": "difficult_hindi",
+  "text": "यहाँ से सीधे जाइए, वहाँ दाएँ और बाएँ दोनों तरफ़ दुकानें हैं, कहीं भी पूछ लीजिए।",
+  "expected_normalized": "यहाँ से सीधे जाइए, वहाँ दाएँ और बाएँ दोनों तरफ़ दुकानें हैं, कहीं भी पूछ लीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-016",
+  "category": "difficult_hindi",
+  "text": "आपकी माता जी का ऋण चुका दिया गया है, अब कोई बकाया नहीं है।",
+  "expected_normalized": "आपकी माता जी का ऋण चुका दिया गया है, अब कोई बकाया नहीं है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-017",
+  "category": "difficult_hindi",
+  "text": "हम ऋषिकेश के लिए बस का टिकट देख रहे हैं, कृपया बताइए कौन सी बस ठीक रहेगी।",
+  "expected_normalized": "हम ऋषिकेश के लिए बस का टिकट देख रहे हैं, कृपया बताइए कौन सी बस ठीक रहेगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-018",
+  "category": "difficult_hindi",
+  "text": "गृह प्रवेश की पूजा के लिए पंडित जी ने मृदुल जी की कुंडली देखकर शुभ मुहूर्त निकाला है।",
+  "expected_normalized": "गृह प्रवेश की पूजा के लिए पंडित जी ने मृदुल जी की कुंडली देखकर शुभ मुहूर्त निकाला है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-019",
+  "category": "difficult_hindi",
+  "text": "जनाब, आपकी ख़्वाहिश के मुताबिक़ हमने सारा इंतज़ाम कर दिया है।",
+  "expected_normalized": "जनाब, आपकी ख़्वाहिश के मुताबिक़ हमने सारा इंतज़ाम कर दिया है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-020",
+  "category": "difficult_hindi",
+  "text": "मुझे अफ़सोस है, यह मामला हमारे इख़्तियार से बाहर है।",
+  "expected_normalized": "मुझे अफ़सोस है, यह मामला हमारे इख़्तियार से बाहर है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-021",
+  "category": "difficult_hindi",
+  "text": "आपकी दरख़्वास्त मंज़ूर हो गई है, अब कोई और क़ानूनी कार्रवाई नहीं होगी।",
+  "expected_normalized": "आपकी दरख़्वास्त मंज़ूर हो गई है, अब कोई और क़ानूनी कार्रवाई नहीं होगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-022",
+  "category": "difficult_hindi",
+  "text": "मेरा स्मार्टफ़ोन हैंग हो गया है, कृपया इंटरनेट बंद करके दोबारा चालू कीजिए।",
+  "expected_normalized": "मेरा स्मार्टफ़ोन हैंग हो गया है, कृपया इंटरनेट बंद करके दोबारा चालू कीजिए।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-023",
+  "category": "difficult_hindi",
+  "text": "कॉलेज की फ़ीस ऑनलाइन जमा करने के लिए आपको वेबसाइट पर रजिस्टर करना होगा।",
+  "expected_normalized": "कॉलेज की फ़ीस ऑनलाइन जमा करने के लिए आपको वेबसाइट पर रजिस्टर करना होगा।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-024",
+  "category": "difficult_hindi",
+  "text": "डॉक्टर ने ऑपरेशन के बाद कुछ दिन हॉस्पिटल में रहने की सलाह दी है।",
+  "expected_normalized": "डॉक्टर ने ऑपरेशन के बाद कुछ दिन हॉस्पिटल में रहने की सलाह दी है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-025",
+  "category": "difficult_hindi",
+  "text": "नमस्ते, मैं प्रियंका शर्मा बोल रही हूँ, क्या मेरी बात श्रीमान विवेक अग्रवाल से हो रही है?",
+  "expected_normalized": "नमस्ते, मैं प्रियंका शर्मा बोल रही हूँ, क्या मेरी बात श्रीमान विवेक अग्रवाल से हो रही है?",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-026",
+  "category": "difficult_hindi",
+  "text": "आपका ऑर्डर श्रीमती ज्ञानवती देवी और श्री गजेंद्र सिंह के नाम से बुक हुआ है।",
+  "expected_normalized": "आपका ऑर्डर श्रीमती ज्ञानवती देवी और श्री गजेंद्र सिंह के नाम से बुक हुआ है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-027",
+  "category": "difficult_hindi",
+  "text": "मेरा नाम अभिषेक चतुर्वेदी है और मेरी बहन का नाम ऐश्वर्या है।",
+  "expected_normalized": "मेरा नाम अभिषेक चतुर्वेदी है और मेरी बहन का नाम ऐश्वर्या है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-031",
+  "category": "difficult_hindi",
+  "text": "आपकी ट्रेन अहमदाबाद से जयपुर होते हुए चंडीगढ़ जाएगी।",
+  "expected_normalized": "आपकी ट्रेन अहमदाबाद से जयपुर होते हुए चंडीगढ़ जाएगी।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ },
+ {
+  "id": "pron-032",
+  "category": "difficult_hindi",
+  "text": "मेरी फ़्लाइट बेंगलुरु से लखनऊ की है, और वापसी तिरुवनंतपुरम से है।",
+  "expected_normalized": "मेरी फ़्लाइट बेंगलुरु से लखनऊ की है, और वापसी तिरुवनंतपुरम से है।",
+  "priority": 2,
+  "source": "hi_eval_v2"
+ }
+]

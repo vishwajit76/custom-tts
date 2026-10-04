@@ -1,0 +1,354 @@
+[
+ {
+  "id": "acr-000",
+  "category": "acronyms",
+  "text": "कृपया API की जानकारी दीजिए।",
+  "expected_normalized": "कृपया ए पी आई की जानकारी दीजिए।",
+  "priority": 1,
+  "important": [
+   "ए पी आई"
+  ],
+  "terms": {
+   "API": "ए पी आई"
+  },
+  "alternatives": [
+   "कृपया एपीआई की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-001",
+  "category": "acronyms",
+  "text": "आपका AI अपडेट हो गया है।",
+  "expected_normalized": "आपका ए आई अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "ए आई"
+  ],
+  "terms": {
+   "AI": "ए आई"
+  },
+  "alternatives": [
+   "आपका एआई अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-002",
+  "category": "acronyms",
+  "text": "CRM से जुड़ी समस्या बताइए।",
+  "expected_normalized": "सी आर एम से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "सी आर एम"
+  ],
+  "terms": {
+   "CRM": "सी आर एम"
+  },
+  "alternatives": [
+   "सीआरएम से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-003",
+  "category": "acronyms",
+  "text": "कृपया SIP की जानकारी दीजिए।",
+  "expected_normalized": "कृपया एस आई पी की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "एस आई पी"
+  ],
+  "terms": {
+   "SIP": "एस आई पी"
+  },
+  "alternatives": [
+   "कृपया एसआईपी की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-004",
+  "category": "acronyms",
+  "text": "आपका TTS अपडेट हो गया है।",
+  "expected_normalized": "आपका टी टी एस अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "टी टी एस"
+  ],
+  "terms": {
+   "TTS": "टी टी एस"
+  },
+  "alternatives": [
+   "आपका टीटीएस अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-005",
+  "category": "acronyms",
+  "text": "OTP से जुड़ी समस्या बताइए।",
+  "expected_normalized": "ओ टी पी से जुड़ी समस्या बताइए।",
+  "priority": 1,
+  "important": [
+   "ओ टी पी"
+  ],
+  "terms": {
+   "OTP": "ओ टी पी"
+  },
+  "alternatives": [
+   "ओटीपी से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-006",
+  "category": "acronyms",
+  "text": "कृपया URL की जानकारी दीजिए।",
+  "expected_normalized": "कृपया यू आर एल की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "यू आर एल"
+  ],
+  "terms": {
+   "URL": "यू आर एल"
+  },
+  "alternatives": [
+   "कृपया यूआरएल की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-007",
+  "category": "acronyms",
+  "text": "आपका HTTP अपडेट हो गया है।",
+  "expected_normalized": "आपका एच टी टी पी अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "एच टी टी पी"
+  ],
+  "terms": {
+   "HTTP": "एच टी टी पी"
+  },
+  "alternatives": [
+   "आपका एचटीटीपी अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-008",
+  "category": "acronyms",
+  "text": "PNR से जुड़ी समस्या बताइए।",
+  "expected_normalized": "पी एन आर से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "पी एन आर"
+  ],
+  "terms": {
+   "PNR": "पी एन आर"
+  },
+  "alternatives": [
+   "पीएनआर से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-009",
+  "category": "acronyms",
+  "text": "कृपया ATM की जानकारी दीजिए।",
+  "expected_normalized": "कृपया ए टी एम की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "ए टी एम"
+  ],
+  "terms": {
+   "ATM": "ए टी एम"
+  },
+  "alternatives": [
+   "कृपया एटीएम की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-010",
+  "category": "acronyms",
+  "text": "आपका PAN अपडेट हो गया है।",
+  "expected_normalized": "आपका पैन अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "पैन"
+  ],
+  "terms": {
+   "PAN": "पैन"
+  },
+  "alternatives": [
+   "आपका पैन अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-011",
+  "category": "acronyms",
+  "text": "KYC से जुड़ी समस्या बताइए।",
+  "expected_normalized": "के वाई सी से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "के वाई सी"
+  ],
+  "terms": {
+   "KYC": "के वाई सी"
+  },
+  "alternatives": [
+   "केवाईसी से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-012",
+  "category": "acronyms",
+  "text": "कृपया EMI की जानकारी दीजिए।",
+  "expected_normalized": "कृपया ई एम आई की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "ई एम आई"
+  ],
+  "terms": {
+   "EMI": "ई एम आई"
+  },
+  "alternatives": [
+   "कृपया ईएमआई की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-013",
+  "category": "acronyms",
+  "text": "आपका GST अपडेट हो गया है।",
+  "expected_normalized": "आपका जी एस टी अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "जी एस टी"
+  ],
+  "terms": {
+   "GST": "जी एस टी"
+  },
+  "alternatives": [
+   "आपका जीएसटी अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-014",
+  "category": "acronyms",
+  "text": "UPI से जुड़ी समस्या बताइए।",
+  "expected_normalized": "यू पी आई से जुड़ी समस्या बताइए।",
+  "priority": 1,
+  "important": [
+   "यू पी आई"
+  ],
+  "terms": {
+   "UPI": "यू पी आई"
+  },
+  "alternatives": [
+   "यूपीआई से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-015",
+  "category": "acronyms",
+  "text": "कृपया SMS की जानकारी दीजिए।",
+  "expected_normalized": "कृपया एस एम एस की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "एस एम एस"
+  ],
+  "terms": {
+   "SMS": "एस एम एस"
+  },
+  "alternatives": [
+   "कृपया एसएमएस की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-016",
+  "category": "acronyms",
+  "text": "आपका PDF अपडेट हो गया है।",
+  "expected_normalized": "आपका पी डी एफ अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "पी डी एफ"
+  ],
+  "terms": {
+   "PDF": "पी डी एफ"
+  },
+  "alternatives": [
+   "आपका पीडीएफ अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-017",
+  "category": "acronyms",
+  "text": "IT से जुड़ी समस्या बताइए।",
+  "expected_normalized": "आई टी से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "आई टी"
+  ],
+  "terms": {
+   "IT": "आई टी"
+  },
+  "alternatives": [
+   "आईटी से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-018",
+  "category": "acronyms",
+  "text": "कृपया HDFC की जानकारी दीजिए।",
+  "expected_normalized": "कृपया एच डी एफ सी की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "एच डी एफ सी"
+  ],
+  "terms": {
+   "HDFC": "एच डी एफ सी"
+  },
+  "alternatives": [
+   "कृपया एचडीएफसी की जानकारी दीजिए।"
+  ]
+ },
+ {
+  "id": "acr-019",
+  "category": "acronyms",
+  "text": "आपका SBI अपडेट हो गया है।",
+  "expected_normalized": "आपका एस बी आई अपडेट हो गया है।",
+  "priority": 2,
+  "important": [
+   "एस बी आई"
+  ],
+  "terms": {
+   "SBI": "एस बी आई"
+  },
+  "alternatives": [
+   "आपका एसबीआई अपडेट हो गया है।"
+  ]
+ },
+ {
+  "id": "acr-020",
+  "category": "acronyms",
+  "text": "ICICI से जुड़ी समस्या बताइए।",
+  "expected_normalized": "आई सी आई सी आई से जुड़ी समस्या बताइए।",
+  "priority": 2,
+  "important": [
+   "आई सी आई सी आई"
+  ],
+  "terms": {
+   "ICICI": "आई सी आई सी आई"
+  },
+  "alternatives": [
+   "आईसीआईसीआई से जुड़ी समस्या बताइए।"
+  ]
+ },
+ {
+  "id": "acr-021",
+  "category": "acronyms",
+  "text": "कृपया IRCTC की जानकारी दीजिए।",
+  "expected_normalized": "कृपया आई आर सी टी सी की जानकारी दीजिए।",
+  "priority": 2,
+  "important": [
+   "आई आर सी टी सी"
+  ],
+  "terms": {
+   "IRCTC": "आई आर सी टी सी"
+  },
+  "alternatives": [
+   "कृपया आईआरसीटीसी की जानकारी दीजिए।"
+  ]
+ }
+]
