@@ -178,6 +178,7 @@ def build_piper_systems(specs: list[str], seed_noise: bool, seed: int, noise_sca
         settings.noise_scale = noise_scale
     if noise_w is not None:
         settings.noise_w = noise_w
+    plain_session = piper_engine.make_session
     if seed_noise:
         piper_engine.make_session = seeded_make_session(seed)
     engines: dict[Path, tuple] = {}
@@ -186,6 +187,25 @@ def build_piper_systems(specs: list[str], seed_noise: bool, seed: int, noise_sca
         name, _, rest = spec.partition("=")
         if not rest:
             raise SystemExit(f"--system {spec!r}: expected NAME=PATH[@SPEAKER] or NAME=voice:ID")
+        if rest.startswith(("kokoro:", "kokoro-pt:")):  # kokoro:VOICE = bundled Kokoro ONNX; kokoro-pt:DIR@VOICE = Kokoro-format .pth dir (bench.kokoro_pt)
+            kind, _, arg = rest.partition(":")
+            key = arg.partition("@")[0] if kind == "kokoro-pt" else kind
+            if key not in engines:
+                if kind == "kokoro":
+                    from app.services import kokoro_engine
+                    kokoro_engine.make_session = plain_session  # kokoro-onnx needs a file-backed session; Kokoro has no noise to seed
+                    eng = kokoro_engine.KokoroEngine()
+                else:
+                    from bench.kokoro_pt import KokoroPTEngine
+                    eng = KokoroPTEngine(key)
+                eng.load()
+                engines[key] = (eng, {})
+            eng = engines[key][0]
+            voice = f"kokoro:{arg}" if kind == "kokoro" else f"{eng.prefix}{arg.partition('@')[2]}"
+            if not eng.has_voice(voice):
+                raise SystemExit(f"{name}: no voice {voice!r}; have {[v['voice_id'] for v in eng.voices()]}")
+            out.append(System(name, eng, voice, None, {"engine": kind, "deterministic": True}))
+            continue
         path, spk = resolve_model(rest)
         path = path.resolve()
         if path not in engines:

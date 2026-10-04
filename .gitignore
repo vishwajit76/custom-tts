@@ -20,3 +20,4 @@ voices/*.onnx*
 work/
 .claude/worktrees/
 !voices/catalog.json
+.gstack/

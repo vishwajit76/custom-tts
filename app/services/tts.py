@@ -77,7 +77,7 @@ class MultiEngine:
 
 _ENGINES = {"piper": "piper_engine.PiperEngine", "supertonic": "supertonic_engine.SupertonicEngine",
             "kokoro": "kokoro_engine.KokoroEngine", "qwen3": "qwen_engine.QwenEngine",
-            "expressive": "expressive_engine.ExpressiveEngine"}  # "expressive": class taken from EXPRESSIVE_ENGINE, off by default
+            "expressive": "expressive_engine.ExpressiveEngine", "goonj": None}  # "expressive": class taken from EXPRESSIVE_ENGINE, off by default
 
 
 def _make_engine(names: str):
@@ -89,6 +89,10 @@ def _make_engine(names: str):
         raise ValueError("qwen3 (voice cloning) runs alone: ENGINES=qwen3")
     engines = []
     for n in names:
+        if n == "goonj":  # ponytail: experiment only (BH-Builds/goonj-1-82M PyTorch weights in exp/goonj, via bench.kokoro_pt); not for production
+            from bench.kokoro_pt import KokoroPTEngine
+            engines.append(KokoroPTEngine("exp/goonj"))
+            continue
         if n == "expressive":
             engines.append(expressive_engine.build_configured(settings.expressive_engine))
             continue
