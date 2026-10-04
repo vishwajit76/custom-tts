@@ -1,5 +1,9 @@
 {
- "category": {},
+ "category": {
+  "phone_numbers": {
+   "speed": 0.9
+  }
+ },
  "default": {
   "pause_ms": 120,
   "punct": null,
