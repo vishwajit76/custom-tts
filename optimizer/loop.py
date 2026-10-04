@@ -80,7 +80,7 @@ class Session:
                     if core.key_of(eng.version, *core.frontend(c["text"], c["category"], a, p)[1:]) != cur[c["id"]]["key"]]
         new = {r["id"]: r for r in self.ev.run(affected, e, a, p)}
         ok, why, regr = core.gates(before["total"], best["scores"]["total"], cur, new, self.cases, self.cfg["gates"],
-                                   _mean([cur[c]["rtf"] for c in new]), _mean([new[c]["rtf"] for c in new]))
+                                   self.ev.time_rtf(affected, e, self.active, self.pron), self.ev.time_rtf(affected, e, a, p))
         rec["affected"] = sorted(new)
         return self._decide(rec, ok, why, regr, (a, p, new, cur))
 

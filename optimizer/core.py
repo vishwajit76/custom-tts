@@ -202,6 +202,16 @@ class Evaluator:
                                 "rtf": round(dt_s / max(a["duration"], 1e-3), 4)})
         return [self.score(c, norm, k, self.db.get(k)) for c, (norm, _, _), k in zip(cases, fronts, keys)]
 
+    def time_rtf(self, cases, engine, active, pron, n=5):
+        """Uncached mean RTF over up to n cases: old and new configs are timed back to back, so GPU state is comparable."""
+        eng, rs = self.engines[engine], []
+        for c in cases[:n]:
+            _, ch, p = frontend(c["text"], c["category"], active, pron)
+            t = time.perf_counter()
+            wav, sr = eng.synth(ch, p["speed"], p["pause_ms"])
+            rs.append((time.perf_counter() - t) / max(len(wav) / sr, 1e-3))
+        return float(np.mean(rs)) if rs else None
+
     def score(self, case, norm, key, cached):
         t = self.text.evaluate({"normalized": norm}, case)
         a = ev.asr_metrics(cached["hyp"], case)

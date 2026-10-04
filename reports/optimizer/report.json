@@ -14,6 +14,18 @@
   "rules": []
  },
  "dictionary": {
+  "Vishvajeet": {
+   "affected_tests": [
+    "name-000"
+   ],
+   "confidence": 0.855,
+   "iteration": 30,
+   "reason": "normalization on name-000",
+   "score_after": 0.9999,
+   "score_before": 0.9289,
+   "spoken": "विश्वजीत",
+   "timestamp": "2026-10-04T19:40:05"
+  },
   "WhatsApp": {
    "affected_tests": [
     "en-000"
@@ -272,9 +284,9 @@
      "names": {
       "cer": 0.1331,
       "n": 60,
-      "pronunciation": 0.7599,
-      "text_exact": 0.9,
-      "total": 0.884
+      "pronunciation": 0.7629,
+      "text_exact": 0.9167,
+      "total": 0.8852
      },
      "numbers": {
       "cer": 0.0899,
@@ -330,10 +342,10 @@
     "consistency": 0.9643,
     "n": 615,
     "naturalness": 0.9967,
-    "pronunciation": 0.7995,
+    "pronunciation": 0.7998,
     "prosody": 0.6154,
-    "text_exact": 0.9236,
-    "total": 0.8577
+    "text_exact": 0.9252,
+    "total": 0.8578
    },
    "split_words": {
     "अंतिम": 1,
@@ -967,6 +979,258 @@
  },
  "experiments": [
   {
+   "after": 0.9999,
+   "before": 0.9289,
+   "change": "{\"type\": \"dict\", \"source\": \"Vishvajeet\", \"spoken\": \"विश्वजीत\"}",
+   "confidence": 0.855,
+   "decision": "accepted",
+   "failure_type": "normalization",
+   "iteration": 30,
+   "reason": "gates passed",
+   "regression": 0.0,
+   "test_id": "name-000"
+  },
+  {
+   "after": 0.9118,
+   "before": 0.9118,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 29,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "date-003"
+  },
+  {
+   "after": 0.8838,
+   "before": 0.8838,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 28,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "date-001"
+  },
+  {
+   "after": 0.8778,
+   "before": 0.8778,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 27,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "num-005"
+  },
+  {
+   "after": 0.8728,
+   "before": 0.8728,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 26,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "time-007"
+  },
+  {
+   "after": 0.8711,
+   "before": 0.8711,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 25,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "time-001"
+  },
+  {
+   "after": 0.8725,
+   "before": 0.8706,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.51,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 24,
+   "reason": "target +0.002 < 0.05",
+   "regression": 0.0058,
+   "test_id": "time-013"
+  },
+  {
+   "after": 0.8706,
+   "before": 0.8706,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 23,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "time-004"
+  },
+  {
+   "after": 0.8697,
+   "before": 0.8697,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.499,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 22,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "time-022"
+  },
+  {
+   "after": 0.8659,
+   "before": 0.8653,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.503,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 21,
+   "reason": "target +0.001 < 0.05; rtf 0.059->0.080",
+   "regression": 0.0058,
+   "test_id": "time-034"
+  },
+  {
+   "after": 0.8714,
+   "before": 0.8638,
+   "change": "{\"type\": \"setting\", \"category\": \"acronyms\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.538,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 20,
+   "reason": "target +0.008 < 0.05",
+   "regression": 0.0001,
+   "test_id": "acr-014"
+  },
+  {
+   "after": 0.8635,
+   "before": 0.8635,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 19,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "acr-005"
+  },
+  {
+   "after": 0.8728,
+   "before": 0.8581,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.574,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 18,
+   "reason": "target +0.015 < 0.05; rtf 0.037->0.101",
+   "regression": 0.0058,
+   "test_id": "time-010"
+  },
+  {
+   "after": 0.8699,
+   "before": 0.8538,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.581,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 17,
+   "reason": "target +0.016 < 0.05; rtf 0.037->0.101",
+   "regression": 0.0058,
+   "test_id": "time-028"
+  },
+  {
+   "after": 0.8607,
+   "before": 0.8533,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.536,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 16,
+   "reason": "target +0.007 < 0.05; rtf 0.037->0.101",
+   "regression": 0.0058,
+   "test_id": "time-031"
+  },
+  {
+   "after": 0.8645,
+   "before": 0.8503,
+   "change": "{\"type\": \"setting\", \"category\": \"time\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.571,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 15,
+   "reason": "target +0.014 < 0.05; rtf 0.037->0.101",
+   "regression": 0.0058,
+   "test_id": "time-025"
+  },
+  {
+   "after": 0.8312,
+   "before": 0.8228,
+   "change": "{\"type\": \"setting\", \"category\": \"acronyms\", \"key\": \"speed\", \"value\": 1.1}",
+   "confidence": 0.542,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 13,
+   "reason": "target +0.008 < 0.05",
+   "regression": 0.0001,
+   "test_id": "acr-000"
+  },
+  {
+   "after": 0.793,
+   "before": 0.793,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.614,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 12,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "phone-000"
+  },
+  {
+   "after": 0.7529,
+   "before": 0.749,
+   "change": "{\"type\": \"setting\", \"category\": \"phone_numbers\", \"key\": \"speed\", \"value\": 1.0}",
+   "confidence": 0.497,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 11,
+   "reason": "target +0.004 < 0.05; critical regression phone-000 pron 0.869->0.680; category phone_numbers 0.754->0.743",
+   "regression": 0.0102,
+   "test_id": "phone-002"
+  },
+  {
+   "after": 0.7296,
+   "before": 0.7296,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.5,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 10,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "num-017"
+  },
+  {
+   "after": 0.7236,
+   "before": 0.7236,
+   "change": "{\"type\": \"none\"}",
+   "confidence": 0.498,
+   "decision": "rejected",
+   "failure_type": "pronunciation",
+   "iteration": 9,
+   "reason": "no candidate beat the current config",
+   "regression": 0.0,
+   "test_id": "date-000"
+  },
+  {
    "after": 0.793,
    "before": 0.7176,
    "change": "{\"type\": \"setting\", \"category\": \"phone_numbers\", \"key\": \"speed\", \"value\": 0.9}",
@@ -1049,20 +1313,8 @@
    "reason": "gates passed",
    "regression": 0.0,
    "test_id": "en-000"
-  },
-  {
-   "after": 0.7503,
-   "before": 0.5736,
-   "change": "{\"type\": \"rule\", \"name\": \"iso_date\"}",
-   "confidence": 1.0,
-   "decision": "rejected",
-   "failure_type": "normalization",
-   "iteration": 1,
-   "reason": "rtf 0.034->0.374",
-   "regression": 0.0,
-   "test_id": "date-002"
   }
  ],
- "generated": "2026-10-04T19:19:31",
+ "generated": "2026-10-04T19:40:05",
  "repeat_failing_tests": []
 }
