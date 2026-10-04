@@ -1,5 +1,8 @@
 {
  "category": {
+  "hinglish": {
+   "speed": 1.1
+  },
   "phone_numbers": {
    "speed": 0.9
   }
