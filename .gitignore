@@ -21,3 +21,4 @@ work/
 .claude/worktrees/
 !voices/catalog.json
 .gstack/
+exp/
