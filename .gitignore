@@ -17,3 +17,8 @@ data/
 training/runs/
 *.ckpt
 voices/*.onnx*
+
+# large experiment/work artifacts (never commit)
+exp/
+work/
+.gstack/
