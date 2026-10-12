@@ -6,6 +6,7 @@ voice's MODEL_CARD license before commercial use (docs/research.md): the hi_IN p
 CC BY-NC-SA (non-commercial).
   supertonic: Supertone/supertonic-3 at the revision the installed package pins, ~400 MB -> SUPERTONIC_DIR
   kokoro:     kokoro-onnx v1.0 release files (fp32 model 326 MB + all voices 28 MB) -> KOKORO_DIR
+  kokoro-pt:  hexgrad/Kokoro-82M PyTorch weights (327 MB) -> KOKORO_DIR/pt, for KOKORO_TORCH=1 (needs `kokoro` too)
 """
 import shutil
 import sys
@@ -35,6 +36,12 @@ for name in sys.argv[1:] or DEFAULT:
                 urllib.request.urlretrieve(KOKORO + f, settings.kokoro_dir / f"{f}.part")
                 (settings.kokoro_dir / f"{f}.part").rename(settings.kokoro_dir / f)
         print(f"{name} -> {settings.kokoro_dir}")
+        continue
+    if name == "kokoro-pt":
+        (settings.kokoro_dir / "pt").mkdir(parents=True, exist_ok=True)
+        for f in ("config.json", "kokoro-v1_0.pth"):
+            shutil.copy(hf_hub_download("hexgrad/Kokoro-82M", f), settings.kokoro_dir / "pt" / f)
+        print(f"{name} -> {settings.kokoro_dir / 'pt'}")
         continue
     lang, speaker, quality = name.split("-")
     base = f"{lang.split('_')[0]}/{lang}/{speaker}/{quality}"

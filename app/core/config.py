@@ -56,6 +56,10 @@ class Settings(BaseSettings):
     supertonic_dir: Path = Path("models/supertonic3")
     supertonic_steps: int = 8  # flow-matching denoising steps: fewer = faster and rougher (package default 8)
     kokoro_dir: Path = Path("models/kokoro")
+    # Same Kokoro weights in PyTorch on CPU (kokoro_dir/pt/kokoro-v1_0.pth; torch + kokoro, requirements-engines.txt) instead of
+    # the ONNX export. M4, 2x4 threads: TTFA p50 1091 -> 671 ms at 1 call, 3209 -> 1364 ms and 8 -> 0 underruns at 4 burst calls,
+    # CER/UTMOS within noise (docs/benchmarks.md 13). ORT CoreML, fp16, int8 and torch MPS were slower or worse. Off: weights are optional.
+    kokoro_torch: bool = False
 
     # --- qwen3 (optional, see requirements-qwen.txt) ---
     model_path: str = "Qwen/Qwen3-TTS-12Hz-1.7B-Base"  # HF repo id or local dir

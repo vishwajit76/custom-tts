@@ -469,3 +469,59 @@ Per category CER (n tiny, indicative only): hindi 0.151 (12), questions 0.102 (3
 Wall time: quick run 259 s (whisper small, 3 ASR passes per row). The full corpus is ~8x the rows, so roughly 35 min with small and longer with large-v3-turbo (not measured).
 The corpus is new, so these numbers are not comparable with section 10 (50-sentence v1).
 Not claimed: naturalness (no listening test); overlap of v2 with the real IndicTTS training text (not present on this machine).
+
+## 13. Kokoro speed for live calls (2026-10-12)
+
+Apple M4 (10 cores), idle apart from a VM and editors (load average ~4 before any run). Two harnesses: an engine-level loop (the app's
+`split_for_stream` chunks of `bench/sentences.txt`, 19 chunks, warm, `hf_alpha`, worker threads calling `KokoroEngine.synth` directly) and
+the live server (`bench/matrix.sh ... -- --voice kokoro:hf_alpha --concurrency 1,4`, burst, `CACHE_SIZE=0`, 13 requests per client).
+Single runs; the same config measured twice moved TTFA p50 by up to ~25% (671 vs 840 ms), so read differences under that as noise.
+
+Engine level, per chunk, ms (2x4 = 4 intra-op threads; 4 calls = 4 threads on one session):
+
+| variant | 1 call: first chunk p50 / p95 | RTF | 4 calls: chunk p50 / p95 | x real time |
+|---|---|---|---|---|
+| ONNX fp32, ORT CPU (baseline) | 813 / 1696 | 0.21 | 3101 / 4973 | 5.5 |
+| ONNX fp32, CoreML EP MLProgram ALL / CPUAndGPU | crashes: 1363 of 2256 nodes in 43 partitions; the iSTFT partition gets a zero-element tensor at run time | | | |
+| ONNX fp32, CoreML static shapes (559 nodes) / NeuralNetwork (1038 nodes) | 966 / 1732, 1049 / 1923 | 0.23 / 0.27 | not run | |
+| ONNX fp16 (kokoro-onnx release), CPU | 1042 / 1997 | 0.25 | 2772 / 3922 | 6.4 |
+| ONNX fp16, CoreML static shapes | 952 / 1887 | 0.23 | not run | |
+| ONNX int8 (kokoro-onnx release), CPU | 2089 / 3684 | 0.51 | 3671 / 6152 | 4.5 |
+| ONNX fp32, 2 / 3 / 6 / 8 threads | 1442 / 1263 / 1018 / 1060 | 0.36 / 0.31 / 0.25 / 0.24 | | |
+| **PyTorch fp32 CPU** (same weights, `kokoro` KModel), 4 threads | **459 / 772** | **0.11** | **1970 / 3425** | **8.3** |
+| PyTorch MPS (GPU, one stream) | 563 / 1013 | 0.10 | 1788 / 2563 | 9.6 |
+
+Where the time goes (ORT profiler, fp32 CPU): 75% Conv and 10% Sin, all in the iSTFTNet decoder. Kokoro cost is ~linear in audio
+length with a ~150 ms floor (ONNX: 8 chars 325 ms, 30 chars 1016 ms, 60 chars 1430 ms, 120 chars 2633 ms).
+
+Live server, TTFA p50 / p95 ms (`bench/results/ENGINES-kokoro_*-kokoro-oct1{1,2}.json`):
+
+| config | 1 call | RTF | 4 burst calls | RTF | underruns / 52 | RSS MB |
+|---|---|---|---|---|---|---|
+| ONNX, 2x4 (default) | 1091 / 2185 (earlier run 1187 / 1937) | 0.23 | 3209 / 4664 | 0.88 | 8 (6) | 830 |
+| ONNX, 1x8 | 761 / 1319 | 0.27 | 5324 / 6943 | 1.17 | 2 | 712 |
+| ONNX, 3x3 | 1254 / 2160 | 0.26 | 3090 / 4906 | 0.88 | 12 | 924 |
+| ONNX, 5x2 | 1697 / 2784 | 0.34 | 3906 / 6326 | 0.89 | 5 | 1136 |
+| **PyTorch CPU, 2x4** (`KOKORO_TORCH=1`) | **671 / 1124**, rerun 840 / 1198 | 0.15-0.17 | **1364 / 2205**, rerun 1488 / 2146 | 0.49-0.50 | **0, 0** | 1750-1965 |
+| PyTorch CPU, 2x4, `FIRST_CHUNK_CHARS=30` | 503 / 888 | 0.13 | 1394 / 2535 | 0.54 | 8 | 1662 |
+| PyTorch CPU, 3x3 | 995 / 2249 | 0.19 | 2222 / 5204 | 0.63 | 4 | 2174 |
+| PyTorch MPS, 2x4 | 907 / 1367 | 0.23 | 1166 / 2229 | 0.45 | 2 | 1160 |
+
+Quality guard: `bench.v7_eval --system alpha=kokoro:hf_alpha --system omega=kokoro:hm_omega --quick --asr small` (32 rows, faster-whisper
+small), once per backend; paired bootstrap 95% CI of the per-row delta vs ONNX (`bench/results/v7_eval/kokoro_speed_{onnx,cpu,mps}.json`).
+
+| backend | CER alpha / omega | delta CER | UTMOS (pred) alpha / omega | delta UTMOS |
+|---|---|---|---|---|
+| ONNX fp32 | 0.199 / 0.174 | | 4.32 / 4.01 | |
+| PyTorch CPU | 0.199 / 0.182 | +0.000 [-0.008, 0.008] / +0.008 [-0.007, 0.027] | 4.34 / 4.05 | +0.02 [0.01, 0.03] / +0.05 [0.03, 0.06] |
+| PyTorch MPS | 0.195 / 0.187 | -0.004 [-0.025, 0.011] / +0.013 [-0.005, 0.034] | 4.22 / 3.52 | **-0.10 [-0.13, -0.09] / -0.49 [-0.56, -0.42]** |
+
+Decision:
+- **PyTorch on CPU** is the change: same weights, ~1.7x the throughput of the ONNX export, CER within noise and UTMOS slightly up.
+  At 4 burst calls TTFA p50 drops 3.2 s -> 1.4 s with 0 underruns (ONNX: 6-8). It is opt-in (`KOKORO_TORCH=1`, weights via
+  `scripts/download_voices.py kokoro-pt`, torch + `kokoro` per requirements-engines.txt) and falls back to ONNX when the weights are
+  missing. Cost: RSS ~1.75 GB vs ~0.8 GB.
+- Rejected: CoreML (crashes or slower: the conv-heavy decoder is split into dozens of partitions), fp16 and int8 (slower on CPU),
+  MPS (UTMOS -0.49 on hm_omega), other thread layouts (2x4 stays best at 4 calls).
+- `FIRST_CHUNK_CHARS=30` cuts single-call TTFA (503 ms) but brings 8 underruns at 4 calls, so the default stays 60.
+- Single-call TTFA is still ~0.5-0.8 s, against 68 ms for Piper: Kokoro has no streaming inside a chunk.

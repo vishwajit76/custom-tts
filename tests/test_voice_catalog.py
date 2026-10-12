@@ -149,9 +149,10 @@ def test_shipped_catalog_is_valid_and_has_evidence_for_every_age_label():
     assert len(c.voices) == len({v.voice_id for v in c.voices})
     for v in c.voices:
         assert v.age_group == "unspecified" or v.age_evidence
-        if v.status == "planned":
-            assert v.age_group == "unspecified"  # no age claim before a trained voice and its evidence exist
-    assert {v.voice_id for v in c.voices if v.status == "planned"} == {"hi-IN-young-female", "hi-IN-young-male"}
+        if v.status in ("planned", "experimental"):
+            assert v.age_group == "unspecified"  # no age claim before a shipped voice and its evidence exist
+    # V7 young voices: planned -> experimental in 97363a3 (trained, eval worse than V6, not shipped)
+    assert {v.voice_id for v in c.voices if v.status == "experimental"} >= {"hi-IN-young-female", "hi-IN-young-male"}
 
 
 # ---------- legacy ids unchanged ----------

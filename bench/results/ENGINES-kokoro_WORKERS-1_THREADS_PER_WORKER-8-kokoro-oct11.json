@@ -1,0 +1,41 @@
+{
+  "label": "ENGINES-kokoro_WORKERS-1_THREADS_PER_WORKER-8-kokoro-oct11",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 620.3,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 761.0401669953717,
+      "ttfa_ms_p95": 1319.2704579996644,
+      "ttfa_ms_p99": 1319.2704579996644,
+      "rtf_p50": 0.2734144484207655,
+      "rtf_p95": 0.3308128555066925,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 73.0431875,
+      "wall_s": 19.591821958994842,
+      "rss_mb": 712.4
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 5324.304249996203,
+      "ttfa_ms_p95": 6942.6272500058985,
+      "ttfa_ms_p99": 7667.212957996526,
+      "rtf_p50": 1.168506102675099,
+      "rtf_p95": 2.356368185017643,
+      "underrun_requests": 2,
+      "underrun_ms_max": 214.7699580018525,
+      "audio_s_total": 292.17275,
+      "wall_s": 86.00835270799871,
+      "rss_mb": 712.4
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 0.5170830045244657,
+    "cancel_ack_ms_max": 5.201250001846347,
+    "buffered_ahead_ms_max": 0.0
+  }
+}

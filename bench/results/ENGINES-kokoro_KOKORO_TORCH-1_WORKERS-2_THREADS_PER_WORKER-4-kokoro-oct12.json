@@ -1,0 +1,41 @@
+{
+  "label": "ENGINES-kokoro_KOKORO_TORCH-1_WORKERS-2_THREADS_PER_WORKER-4-kokoro-oct12",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1189.1,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 840.0758749994566,
+      "ttfa_ms_p95": 1198.4947090022615,
+      "ttfa_ms_p99": 1198.4947090022615,
+      "rtf_p50": 0.16688829542308614,
+      "rtf_p95": 0.2281789938023498,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 72.7255,
+      "wall_s": 11.401656041998649,
+      "rss_mb": 1749.5
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 1488.3974170006695,
+      "ttfa_ms_p95": 2146.1494579998543,
+      "ttfa_ms_p99": 2370.1047919967095,
+      "rtf_p50": 0.5039671623908678,
+      "rtf_p95": 0.6472873117832365,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 290.952375,
+      "wall_s": 36.812229000002844,
+      "rss_mb": 1749.5
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 2.8947920000064187,
+    "cancel_ack_ms_max": 7.640750001883134,
+    "buffered_ahead_ms_max": 4740.375
+  }
+}

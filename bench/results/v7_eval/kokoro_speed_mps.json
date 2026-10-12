@@ -1,0 +1,2115 @@
+{
+ "schema": "v7_eval/v1",
+ "created_utc": "2026-10-11T19:25:03Z",
+ "elapsed_s": 851.7,
+ "mode": "quick",
+ "seed": 0,
+ "environment": {
+  "cpu": "Apple M4",
+  "cpu_count": 10,
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.13",
+  "git_commit": "a4631de95633357a363b27bd1aec61a1a092aea3",
+  "git_dirty_tracked": true,
+  "packages": {
+   "numpy": "2.5.3",
+   "onnxruntime": "1.30.0",
+   "piper-tts": "1.8.0",
+   "soxr": "1.1.0",
+   "faster-whisper": "1.2.1",
+   "ctranslate2": "4.8.2",
+   "resemblyzer": "0.1.4",
+   "onnx": "1.23.1"
+  }
+ },
+ "corpus": {
+  "version": "v2",
+  "sha256": "814850bf4e71617f28355c4898ea54c6832246b68de9164944e77363bfb2f601",
+  "n_rows": 32,
+  "row_ids": [
+   "hi-011",
+   "hi-024",
+   "hi-041",
+   "hi-046",
+   "hi-047",
+   "hi-054",
+   "hi-059",
+   "hi-074",
+   "hi-075",
+   "hi-079",
+   "hi-087",
+   "hi-095",
+   "hg-012",
+   "hg-022",
+   "hg-026",
+   "hg-032",
+   "hg-044",
+   "hg-049",
+   "num-020",
+   "num-022",
+   "num-025",
+   "num-029",
+   "pron-002",
+   "pron-005",
+   "pron-010",
+   "pron-030",
+   "q-004",
+   "q-007",
+   "q-017",
+   "exp-003",
+   "exp-009",
+   "exp-019"
+  ],
+  "counts": {
+   "expressive": 3,
+   "hindi": 12,
+   "hinglish": 6,
+   "numbers": 4,
+   "pronunciation": 4,
+   "questions": 3
+  }
+ },
+ "asr": {
+  "model": "small",
+  "engine": "faster-whisper int8 cpu beam 5 language hi",
+  "skipped": null
+ },
+ "cer": {
+  "definition": "training.asr.cer (Levenshtein/len(ref), punctuation/space/nukta dropped, Devanagari vowel signs counted); ref = text_normalizer.normalize(text), hyp normalized the same way"
+ },
+ "per": {
+  "definition": "training.asr.per (espeak-ng phoneme error rate, English runs in English IPA), script-neutral"
+ },
+ "utmos": {
+  "label": "UTMOS22 PREDICTED MOS (English-trained); ranking aid, NOT a human MOS",
+  "backend": "utmos22_strong via TigreGotico/utmos-onnx (onnxruntime)",
+  "skipped": null
+ },
+ "speaker_similarity": {
+  "encoder": null,
+  "reference": null,
+  "self_consistency": "spk_self: leave-one-out cosine to the centroid of the system's other utterances (drift check, not similarity to a person)",
+  "skipped": "no neural encoder available"
+ },
+ "telephony": {
+  "variants_hz": [
+   8000,
+   16000
+  ],
+  "method": "same waveform -> soxr ResampleStream HQ -> to_pcm16 (server path); ASR on the result; no codec"
+ },
+ "latency": {
+  "repeats_per_row": 2
+ },
+ "paired_vs_first": [
+  {
+   "baseline": "alpha",
+   "candidate": "omega",
+   "note": "candidate minus baseline on the same corpus rows; excludes_zero = 95% paired-bootstrap CI excludes 0",
+   "cer": {
+    "delta_mean": -0.0076,
+    "ci95": [
+     -0.0231,
+     0.0134
+    ],
+    "excludes_zero": false
+   },
+   "per": {
+    "delta_mean": -0.0005,
+    "ci95": [
+     -0.0153,
+     0.0199
+    ],
+    "excludes_zero": false
+   },
+   "cer_8k": {
+    "delta_mean": -0.012,
+    "ci95": [
+     -0.0268,
+     0.0021
+    ],
+    "excludes_zero": false
+   },
+   "cer_16k": {
+    "delta_mean": -0.0072,
+    "ci95": [
+     -0.0283,
+     0.0104
+    ],
+    "excludes_zero": false
+   },
+   "utmos": {
+    "delta_mean": -0.701,
+    "ci95": [
+     -0.7833,
+     -0.6231
+    ],
+    "excludes_zero": true
+   }
+  }
+ ],
+ "ci": {
+  "method": "percentile bootstrap over corpus rows, 95%",
+  "resamples": 2000,
+  "seed": 0
+ },
+ "systems": {
+  "alpha": {
+   "system": {
+    "name": "alpha",
+    "pronunciation_rules": null,
+    "voice_id": "kokoro:hf_alpha",
+    "sample_rate": 24000,
+    "model_file": null,
+    "model_sha256": null,
+    "inference_params": {
+     "engine": "kokoro",
+     "deterministic": true
+    }
+   },
+   "aggregate": {
+    "overall": {
+     "cer": {
+      "n": 32,
+      "mean": 0.1945,
+      "ci95": [
+       0.1532,
+       0.2409
+      ],
+      "median": 0.1647,
+      "p90": 0.3042
+     },
+     "per": {
+      "n": 32,
+      "mean": 0.139,
+      "ci95": [
+       0.1208,
+       0.1571
+      ],
+      "median": 0.1416,
+      "p90": 0.2113
+     },
+     "cer_8k": {
+      "n": 32,
+      "mean": 0.1922,
+      "ci95": [
+       0.1459,
+       0.2438
+      ],
+      "median": 0.1502,
+      "p90": 0.3047
+     },
+     "cer_16k": {
+      "n": 32,
+      "mean": 0.1967,
+      "ci95": [
+       0.1544,
+       0.2426
+      ],
+      "median": 0.1703,
+      "p90": 0.3136
+     },
+     "utmos": {
+      "n": 32,
+      "mean": 4.2166,
+      "ci95": [
+       4.1703,
+       4.2586
+      ],
+      "median": 4.2452,
+      "p90": 4.3391
+     }
+    },
+    "per_category": {
+     "expressive": {
+      "cer": {
+       "n": 3,
+       "mean": 0.1459,
+       "ci95": [
+        0.12,
+        0.1622
+       ],
+       "median": 0.1556,
+       "p90": 0.1608
+      },
+      "per": {
+       "n": 3,
+       "mean": 0.1235,
+       "ci95": [
+        0.1053,
+        0.1404
+       ],
+       "median": 0.125,
+       "p90": 0.1373
+      },
+      "cer_8k": {
+       "n": 3,
+       "mean": 0.1392,
+       "ci95": [
+        0.1,
+        0.1622
+       ],
+       "median": 0.1556,
+       "p90": 0.1608
+      },
+      "cer_16k": {
+       "n": 3,
+       "mean": 0.1533,
+       "ci95": [
+        0.12,
+        0.1778
+       ],
+       "median": 0.1622,
+       "p90": 0.1747
+      },
+      "utmos": {
+       "n": 3,
+       "mean": 4.1461,
+       "ci95": [
+        4.1235,
+        4.1855
+       ],
+       "median": 4.1294,
+       "p90": 4.1743
+      },
+      "n": 3
+     },
+     "hindi": {
+      "cer": {
+       "n": 12,
+       "mean": 0.1342,
+       "ci95": [
+        0.0978,
+        0.168
+       ],
+       "median": 0.1549,
+       "p90": 0.1888
+      },
+      "per": {
+       "n": 12,
+       "mean": 0.1226,
+       "ci95": [
+        0.0852,
+        0.1563
+       ],
+       "median": 0.1477,
+       "p90": 0.2003
+      },
+      "cer_8k": {
+       "n": 12,
+       "mean": 0.1329,
+       "ci95": [
+        0.096,
+        0.1675
+       ],
+       "median": 0.136,
+       "p90": 0.2115
+      },
+      "cer_16k": {
+       "n": 12,
+       "mean": 0.1297,
+       "ci95": [
+        0.0892,
+        0.1652
+       ],
+       "median": 0.1549,
+       "p90": 0.1861
+      },
+      "utmos": {
+       "n": 12,
+       "mean": 4.2394,
+       "ci95": [
+        4.1523,
+        4.311
+       ],
+       "median": 4.305,
+       "p90": 4.3414
+      },
+      "n": 12
+     },
+     "hinglish": {
+      "cer": {
+       "n": 6,
+       "mean": 0.4193,
+       "ci95": [
+        0.3147,
+        0.53
+       ],
+       "median": 0.4106,
+       "p90": 0.5806
+      },
+      "per": {
+       "n": 6,
+       "mean": 0.1685,
+       "ci95": [
+        0.1401,
+        0.1991
+       ],
+       "median": 0.1603,
+       "p90": 0.2186
+      },
+      "cer_8k": {
+       "n": 6,
+       "mean": 0.4381,
+       "ci95": [
+        0.3102,
+        0.5778
+       ],
+       "median": 0.3971,
+       "p90": 0.6505
+      },
+      "cer_16k": {
+       "n": 6,
+       "mean": 0.4103,
+       "ci95": [
+        0.3057,
+        0.521
+       ],
+       "median": 0.3836,
+       "p90": 0.5806
+      },
+      "utmos": {
+       "n": 6,
+       "mean": 4.1788,
+       "ci95": [
+        4.0341,
+        4.3026
+       ],
+       "median": 4.2689,
+       "p90": 4.3222
+      },
+      "n": 6
+     },
+     "numbers": {
+      "cer": {
+       "n": 4,
+       "mean": 0.1657,
+       "ci95": [
+        0.1227,
+        0.2087
+       ],
+       "median": 0.1621,
+       "p90": 0.2141
+      },
+      "per": {
+       "n": 4,
+       "mean": 0.1684,
+       "ci95": [
+        0.1392,
+        0.187
+       ],
+       "median": 0.1791,
+       "p90": 0.1879
+      },
+      "cer_8k": {
+       "n": 4,
+       "mean": 0.1488,
+       "ci95": [
+        0.0715,
+        0.2406
+       ],
+       "median": 0.1343,
+       "p90": 0.2363
+      },
+      "cer_16k": {
+       "n": 4,
+       "mean": 0.1634,
+       "ci95": [
+        0.1182,
+        0.2087
+       ],
+       "median": 0.1673,
+       "p90": 0.2141
+      },
+      "utmos": {
+       "n": 4,
+       "mean": 4.2689,
+       "ci95": [
+        4.1931,
+        4.3446
+       ],
+       "median": 4.2586,
+       "p90": 4.3554
+      },
+      "n": 4
+     },
+     "pronunciation": {
+      "cer": {
+       "n": 4,
+       "mean": 0.1662,
+       "ci95": [
+        0.1448,
+        0.1798
+       ],
+       "median": 0.1739,
+       "p90": 0.1794
+      },
+      "per": {
+       "n": 4,
+       "mean": 0.1472,
+       "ci95": [
+        0.0948,
+        0.1997
+       ],
+       "median": 0.1395,
+       "p90": 0.2061
+      },
+      "cer_8k": {
+       "n": 4,
+       "mean": 0.1662,
+       "ci95": [
+        0.1437,
+        0.1887
+       ],
+       "median": 0.167,
+       "p90": 0.1915
+      },
+      "cer_16k": {
+       "n": 4,
+       "mean": 0.1716,
+       "ci95": [
+        0.1468,
+        0.1902
+       ],
+       "median": 0.1779,
+       "p90": 0.1915
+      },
+      "utmos": {
+       "n": 4,
+       "mean": 4.185,
+       "ci95": [
+        4.0928,
+        4.2458
+       ],
+       "median": 4.2163,
+       "p90": 4.2447
+      },
+      "n": 4
+     },
+     "questions": {
+      "cer": {
+       "n": 3,
+       "mean": 0.1103,
+       "ci95": [
+        0.1034,
+        0.1143
+       ],
+       "median": 0.1132,
+       "p90": 0.1141
+      },
+      "per": {
+       "n": 3,
+       "mean": 0.1111,
+       "ci95": [
+        0.1,
+        0.1316
+       ],
+       "median": 0.1017,
+       "p90": 0.1256
+      },
+      "cer_8k": {
+       "n": 3,
+       "mean": 0.083,
+       "ci95": [
+        0.069,
+        0.0943
+       ],
+       "median": 0.0857,
+       "p90": 0.0926
+      },
+      "cer_16k": {
+       "n": 3,
+       "mean": 0.1592,
+       "ci95": [
+        0.069,
+        0.3143
+       ],
+       "median": 0.0943,
+       "p90": 0.2703
+      },
+      "utmos": {
+       "n": 3,
+       "mean": 4.2439,
+       "ci95": [
+        4.1505,
+        4.329
+       ],
+       "median": 4.2523,
+       "p90": 4.3136
+      },
+      "n": 3
+     }
+    },
+    "audio": {
+     "total_s": 144.56,
+     "seconds_per_char": 0.1057,
+     "chars_per_s": 9.46,
+     "silent_outputs": 0,
+     "clipping_fraction_mean": 0.0,
+     "clipping_fraction_max": 0.0,
+     "rows_with_clipping": 0
+    },
+    "timing": {
+     "ttfa_ms": {
+      "p50": 430.998,
+      "p95": 1321.494,
+      "n_streams": 64
+     },
+     "rtf": {
+      "p50": 0.121,
+      "p95": 0.385
+     },
+     "synth_wall_s": 52.1,
+     "note": "warm (2 warm-up streams), single stream at a time, phrase cache off, through app.services.tts.stream on this machine; localhost-free, no network",
+     "workers": 1,
+     "threads_per_worker": 4
+    }
+   },
+   "timing": {
+    "ttfa_ms": {
+     "p50": 430.998,
+     "p95": 1321.494,
+     "n_streams": 64
+    },
+    "rtf": {
+     "p50": 0.121,
+     "p95": 0.385
+    },
+    "synth_wall_s": 52.1,
+    "note": "warm (2 warm-up streams), single stream at a time, phrase cache off, through app.services.tts.stream on this machine; localhost-free, no network",
+    "workers": 1,
+    "threads_per_worker": 4
+   },
+   "rss": {
+    "current_mb": 438.8,
+    "process_peak_mb": 933.0,
+    "note": "after this system's synthesis phase, before ASR/UTMOS load; ru_maxrss is process-wide so exact per-voice peak needs one --system per process"
+   },
+   "rows": [
+    {
+     "id": "hi-011",
+     "category": "hindi",
+     "subcategory": "statement",
+     "ref": "हमारे डिलीवरी एजेंट आपके मोहल्ले में पहुँच चुके हैं।",
+     "dur_s": 4.216,
+     "audio_sha256": "498835cf9cc288f7",
+     "s_per_char": 0.0958,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "हमारे दिलीवरी एजिंट आपके मोहले में पहुट चुके है",
+     "cer": 0.16279069767441862,
+     "per": 0.2127659574468085,
+     "cer_8k": 0.18604651162790697,
+     "cer_16k": 0.16279069767441862,
+     "utmos": 4.283599853515625
+    },
+    {
+     "id": "hi-024",
+     "category": "hindi",
+     "subcategory": "statement",
+     "ref": "कल की तुलना में आज आपके इलाक़े में ज़्यादा ऑर्डर आए हैं।",
+     "dur_s": 4.439,
+     "audio_sha256": "9dc9ab603f0625c1",
+     "s_per_char": 0.0987,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "कल की तुल्ना में आज आपके अलाके में स्यादा अडर आई है",
+     "cer": 0.19047619047619047,
+     "per": 0.16666666666666666,
+     "cer_8k": 0.21428571428571427,
+     "cer_16k": 0.16666666666666666,
+     "utmos": 4.164907932281494
+    },
+    {
+     "id": "hi-041",
+     "category": "hindi",
+     "subcategory": "confirmation",
+     "ref": "जी, मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है।",
+     "dur_s": 4.678,
+     "audio_sha256": "cb06241e66471500",
+     "s_per_char": 0.104,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जी मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है.",
+     "cer": 0.0,
+     "per": 0.0,
+     "cer_8k": 0.0,
+     "cer_16k": 0.0,
+     "utmos": 4.3300042152404785
+    },
+    {
+     "id": "hi-046",
+     "category": "hindi",
+     "subcategory": "uncertainty",
+     "ref": "शायद डॉक्टर साहब अभी मरीज़ को देख रहे होंगे, मैं पता करके बताती हूँ।",
+     "dur_s": 5.901,
+     "audio_sha256": "e000be21421670e4",
+     "s_per_char": 0.1073,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "शायत दोक्तर साहब अभी मरीज को देख रहे होंगे, मैं पता कर के बताती हूँ।",
+     "cer": 0.07692307692307693,
+     "per": 0.08196721311475409,
+     "cer_8k": 0.09615384615384616,
+     "cer_16k": 0.07692307692307693,
+     "utmos": 4.3264641761779785
+    },
+    {
+     "id": "hi-047",
+     "category": "hindi",
+     "subcategory": "uncertainty",
+     "ref": "मुझे लगता है कि आपका पैसा कल तक वापस आ जाएगा, लेकिन बैंक से पूछना पड़ेगा।",
+     "dur_s": 6.793,
+     "audio_sha256": "e2d6f95ccca30c1e",
+     "s_per_char": 0.1171,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "मुझी लगता है, की आपका पेसा कल तक वापस आजाएगा. लेकिन बैंक से पुचना परेगा.",
+     "cer": 0.10909090909090909,
+     "per": 0.09523809523809523,
+     "cer_8k": 0.10909090909090909,
+     "cer_16k": 0.10909090909090909,
+     "utmos": 4.34160852432251
+    },
+    {
+     "id": "hi-054",
+     "category": "hindi",
+     "subcategory": "apology",
+     "ref": "माफ़ कीजिए, आपका ऑर्डर देर से पहुँचा, इसके लिए मैं सचमुच शर्मिंदा हूँ।",
+     "dur_s": 5.745,
+     "audio_sha256": "fb56f1feed7ae3d6",
+     "s_per_char": 0.0991,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "माव की जीए आपका अड़र देर से पहुंचा इसके लिए मैं सच्मुथ शर्मीदा हूँ",
+     "cer": 0.16666666666666666,
+     "per": 0.15254237288135594,
+     "cer_8k": 0.14814814814814814,
+     "cer_16k": 0.16666666666666666,
+     "utmos": 4.3391852378845215
+    },
+    {
+     "id": "hi-059",
+     "category": "hindi",
+     "subcategory": "apology",
+     "ref": "देरी के लिए क्षमा चाहती हूँ, आपका फ़ोन उठाने में कुछ समय लग गया।",
+     "dur_s": 5.481,
+     "audio_sha256": "8a79c712e7c58738",
+     "s_per_char": 0.1075,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "देरी के लिए ख्शमा चाहती हो, आपका फून उठानी में कुछ समें लग गया.",
+     "cer": 0.16666666666666666,
+     "per": 0.16071428571428573,
+     "cer_8k": 0.125,
+     "cer_16k": 0.1875,
+     "utmos": 4.385344505310059
+    },
+    {
+     "id": "hi-074",
+     "category": "hindi",
+     "subcategory": "request",
+     "ref": "ज़रा धीरे बोलिए, मैं सब कुछ लिख रही हूँ।",
+     "dur_s": 3.368,
+     "audio_sha256": "4a8c5790cce518e8",
+     "s_per_char": 0.1052,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "ज़रा दीरे बोलिए मैं सब कुछ लिक रही हूँ",
+     "cer": 0.06896551724137931,
+     "per": 0.05555555555555555,
+     "cer_8k": 0.06896551724137931,
+     "cer_16k": 0.06896551724137931,
+     "utmos": 4.333577632904053
+    },
+    {
+     "id": "hi-075",
+     "category": "hindi",
+     "subcategory": "request",
+     "ref": "कृपया यात्रा से एक घंटा पहले हवाई अड्डे पर पहुँचने की कोशिश कीजिए।",
+     "dur_s": 5.923,
+     "audio_sha256": "e65ec3e0e08b3dd4",
+     "s_per_char": 0.1097,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्रिप्या यात्रा से एक गन्ता पहले हवाई अद्दिपर, पहाँचने की कोशिष कीजिए.",
+     "cer": 0.24528301886792453,
+     "per": 0.14285714285714285,
+     "cer_8k": 0.24528301886792453,
+     "cer_16k": 0.24528301886792453,
+     "utmos": 4.074480056762695
+    },
+    {
+     "id": "hi-079",
+     "category": "hindi",
+     "subcategory": "instruction",
+     "ref": "पैकेट खोलने से पहले उसकी तस्वीर ज़रूर खींच लीजिए।",
+     "dur_s": 4.304,
+     "audio_sha256": "996d2c9d0dd97757",
+     "s_per_char": 0.105,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "पैकेट खोलने से पहले उसकी तस्वीर ज़रूर खिंच लिजिये",
+     "cer": 0.10256410256410256,
+     "per": 0.044444444444444446,
+     "cer_8k": 0.10256410256410256,
+     "cer_16k": 0.05128205128205128,
+     "utmos": 4.177716255187988
+    },
+    {
+     "id": "hi-087",
+     "category": "hindi",
+     "subcategory": "instruction",
+     "ref": "चेक पर तारीख़ और हस्ताक्षर करना मत भूलिएगा।",
+     "dur_s": 3.834,
+     "audio_sha256": "6f9d079932c92434",
+     "s_per_char": 0.1065,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "चेख पर तारी होर हस्ताक्षर करना मत भूलीगा",
+     "cer": 0.14705882352941177,
+     "per": 0.15384615384615385,
+     "cer_8k": 0.14705882352941177,
+     "cer_16k": 0.14705882352941177,
+     "utmos": 4.238157272338867
+    },
+    {
+     "id": "hi-095",
+     "category": "hindi",
+     "subcategory": "exclamation",
+     "ref": "ओह, यह तो बहुत बुरा हुआ, आपका सामान रास्ते में ही ख़राब हो गया!",
+     "dur_s": 5.303,
+     "audio_sha256": "174c2019db8281f9",
+     "s_per_char": 0.1061,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "औहे यह तो बहुत प्राहुवा, आपका सामान रास्ति मेही खराब होगया",
+     "cer": 0.17391304347826086,
+     "per": 0.20408163265306123,
+     "cer_8k": 0.15217391304347827,
+     "cer_16k": 0.17391304347826086,
+     "utmos": 3.877988815307617
+    },
+    {
+     "id": "hg-012",
+     "category": "hinglish",
+     "subcategory": "statement",
+     "ref": "आपका order कल सुबह तक आपके घर पहुँच जाएगा.",
+     "dur_s": 3.867,
+     "audio_sha256": "b78392af590315fd",
+     "s_per_char": 0.1137,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपका और कल सुबहतेक आपकी गर पहुंचाएगा",
+     "cer": 0.2727272727272727,
+     "per": 0.225,
+     "cer_8k": 0.2727272727272727,
+     "cer_16k": 0.2727272727272727,
+     "utmos": 3.8826584815979004
+    },
+    {
+     "id": "hg-022",
+     "category": "hinglish",
+     "subcategory": "request",
+     "ref": "आप please अपना order number दोबारा बोल दीजिए.",
+     "dur_s": 3.831,
+     "audio_sha256": "437b246f5f7f024b",
+     "s_per_char": 0.1008,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आप प्लीस अपना अर्टर नमवर दोबारा बोल दीजिये",
+     "cer": 0.5135135135135135,
+     "per": 0.16666666666666666,
+     "cer_8k": 0.4864864864864865,
+     "cer_16k": 0.4594594594594595,
+     "utmos": 4.007753849029541
+    },
+    {
+     "id": "hg-026",
+     "category": "hinglish",
+     "subcategory": "instruction",
+     "ref": "Package को open करने से पहले seal check कर लीजिए।",
+     "dur_s": 3.874,
+     "audio_sha256": "0db1b9e237f4f4d4",
+     "s_per_char": 0.0969,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "पकेच को अपन करने से पहले सील चैक कर लिजिये.",
+     "cer": 0.5897435897435898,
+     "per": 0.15384615384615385,
+     "cer_8k": 0.6153846153846154,
+     "cer_16k": 0.5897435897435898,
+     "utmos": 4.263433456420898
+    },
+    {
+     "id": "hg-032",
+     "category": "hinglish",
+     "subcategory": "confirmation",
+     "ref": "जी हाँ, आपका payment successfully हो गया है।",
+     "dur_s": 3.19,
+     "audio_sha256": "6bcd70bfef3d9da4",
+     "s_per_char": 0.0862,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जिहां, आपका पीमिन्त सक्सेस्विली हो गया है",
+     "cer": 0.5714285714285714,
+     "per": 0.21212121212121213,
+     "cer_8k": 0.6857142857142857,
+     "cer_16k": 0.5714285714285714,
+     "utmos": 4.3387861251831055
+    },
+    {
+     "id": "hg-044",
+     "category": "hinglish",
+     "subcategory": "wh_question",
+     "ref": "आपको कितने बजे का slot चाहिए?",
+     "dur_s": 2.829,
+     "audio_sha256": "f9f3e7e690cb3b85",
+     "s_per_char": 0.1179,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपको कितने बजे का सलोट चाहिये",
+     "cer": 0.2608695652173913,
+     "per": 0.12,
+     "cer_8k": 0.2608695652173913,
+     "cer_16k": 0.2608695652173913,
+     "utmos": 4.305612087249756
+    },
+    {
+     "id": "hg-049",
+     "category": "hinglish",
+     "subcategory": "apology",
+     "ref": "माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।",
+     "dur_s": 4.49,
+     "audio_sha256": "39774426e4695f10",
+     "s_per_char": 0.1021,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "माव की जे मेरी तरव से आपका नेम गलत टाइप होगया था",
+     "cer": 0.3076923076923077,
+     "per": 0.13333333333333333,
+     "cer_8k": 0.3076923076923077,
+     "cer_16k": 0.3076923076923077,
+     "utmos": 4.274340629577637
+    },
+    {
+     "id": "num-020",
+     "category": "numbers",
+     "subcategory": "time",
+     "ref": "फ़्लाइट की बोर्डिंग दोपहर दो बजकर पचास मिनट शुरू होगी।",
+     "dur_s": 4.495,
+     "audio_sha256": "0dacf400cf8e9ce7",
+     "s_per_char": 0.0999,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "प्लाइत की बोर्रिंग दोपहर दो बजकर पचास मिनत शुरो होगी",
+     "cer": 0.11627906976744186,
+     "per": 0.125,
+     "cer_8k": 0.13953488372093023,
+     "cer_16k": 0.13953488372093023,
+     "utmos": 4.186716556549072
+    },
+    {
+     "id": "num-022",
+     "category": "numbers",
+     "subcategory": "phone_otp",
+     "ref": "आपका ओ टी पी चार आठ दो नौ एक पाँच है, इसे किसी को न बताएँ।",
+     "dur_s": 4.979,
+     "audio_sha256": "d910b2b0eb2455da",
+     "s_per_char": 0.1158,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपका OTP-4-8-2-9-1-5 है, इसे किसी को न बताए.",
+     "cer": 0.1951219512195122,
+     "per": 0.18181818181818182,
+     "cer_8k": 0.04878048780487805,
+     "cer_16k": 0.1951219512195122,
+     "utmos": 4.199488162994385
+    },
+    {
+     "id": "num-025",
+     "category": "numbers",
+     "subcategory": "percent_quantity",
+     "ref": "इस ऑफ़र पर पच्चीस प्रतिशत की छूट मिलेगी।",
+     "dur_s": 3.609,
+     "audio_sha256": "c9d732acaca5e8a2",
+     "s_per_char": 0.1094,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "इस अफर पर 25 प्रतिषत की चुट मिलेगी",
+     "cer": 0.12903225806451613,
+     "per": 0.17647058823529413,
+     "cer_8k": 0.12903225806451613,
+     "cer_16k": 0.0967741935483871,
+     "utmos": 4.317720890045166
+    },
+    {
+     "id": "num-029",
+     "category": "numbers",
+     "subcategory": "ordinal_id",
+     "ref": "आपकी सीट नंबर चौदह ए है।",
+     "dur_s": 2.573,
+     "audio_sha256": "acde2ff6fe205156",
+     "s_per_char": 0.1354,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपकी सीट नमबर चोदह एह है",
+     "cer": 0.2222222222222222,
+     "per": 0.19047619047619047,
+     "cer_8k": 0.2777777777777778,
+     "cer_16k": 0.2222222222222222,
+     "utmos": 4.371513366699219
+    },
+    {
+     "id": "pron-002",
+     "category": "pronunciation",
+     "subcategory": "schwa_deletion",
+     "ref": "समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।",
+     "dur_s": 4.034,
+     "audio_sha256": "47736e0b16008b0f",
+     "s_per_char": 0.1034,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "समजना मुषकिल नहीं है, आप बस अपना नाम बोल दीजे.",
+     "cer": 0.13513513513513514,
+     "per": 0.09523809523809523,
+     "cer_8k": 0.13513513513513514,
+     "cer_16k": 0.13513513513513514,
+     "utmos": 4.218013763427734
+    },
+    {
+     "id": "pron-005",
+     "category": "pronunciation",
+     "subcategory": "conjunct",
+     "ref": "कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।",
+     "dur_s": 4.826,
+     "audio_sha256": "3280ff8f179594e6",
+     "s_per_char": 0.1072,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्रिप्या अपने पत्रके साथ प्रमान पत्रकी एक प्रती भी लगाये.",
+     "cer": 0.18181818181818182,
+     "per": 0.09433962264150944,
+     "cer_8k": 0.18181818181818182,
+     "cer_16k": 0.18181818181818182,
+     "utmos": 4.051124095916748
+    },
+    {
+     "id": "pron-010",
+     "category": "pronunciation",
+     "subcategory": "nukta",
+     "ref": "आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।",
+     "dur_s": 4.671,
+     "audio_sha256": "73e1af0517928dea",
+     "s_per_char": 0.0934,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपकी फायल में कुछ गल्तिया थी, जिन है हम ने ठीक कर दिया है",
+     "cer": 0.17391304347826086,
+     "per": 0.21568627450980393,
+     "cer_8k": 0.1956521739130435,
+     "cer_16k": 0.1956521739130435,
+     "utmos": 4.21461296081543
+    },
+    {
+     "id": "pron-030",
+     "category": "pronunciation",
+     "subcategory": "brand",
+     "ref": "आपका खाता एच डी एफ सी बैंक में है और कार्ड पेटीएम से जुड़ा है।",
+     "dur_s": 5.09,
+     "audio_sha256": "3a3e885bb562f914",
+     "s_per_char": 0.106,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपका खाता इज्टी एपसी बैंक में है और कार्ट पेटीम से जुडा है",
+     "cer": 0.17391304347826086,
+     "per": 0.1836734693877551,
+     "cer_8k": 0.15217391304347827,
+     "cer_16k": 0.17391304347826086,
+     "utmos": 4.256161689758301
+    },
+    {
+     "id": "q-004",
+     "category": "questions",
+     "subcategory": "yes_no_question",
+     "ref": "क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?",
+     "dur_s": 4.011,
+     "audio_sha256": "20d48ee99261564b",
+     "s_per_char": 0.1114,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्या यहर टिकट आपके अपनी नाम पर बुक होना चाहिये?",
+     "cer": 0.11428571428571428,
+     "per": 0.13157894736842105,
+     "cer_8k": 0.08571428571428572,
+     "cer_16k": 0.3142857142857143,
+     "utmos": 4.328984260559082
+    },
+    {
+     "id": "q-007",
+     "category": "questions",
+     "subcategory": "yes_no_question",
+     "ref": "क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?",
+     "dur_s": 5.735,
+     "audio_sha256": "ec3e9427813b65dc",
+     "s_per_char": 0.1062,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्या आप चाहते है कि में आपकी शिकायत वरिष्ट अदिकारी तक बहूंचा दूं",
+     "cer": 0.11320754716981132,
+     "per": 0.1016949152542373,
+     "cer_8k": 0.09433962264150944,
+     "cer_16k": 0.09433962264150944,
+     "utmos": 4.150527000427246
+    },
+    {
+     "id": "q-017",
+     "category": "questions",
+     "subcategory": "wh_question",
+     "ref": "डिलीवरी के लिए आपका पूरा पता क्या है?",
+     "dur_s": 3.089,
+     "audio_sha256": "34b20b8bb46d86e5",
+     "s_per_char": 0.103,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जलीवरी के लिए आपका पुरा पता क्या है",
+     "cer": 0.10344827586206896,
+     "per": 0.1,
+     "cer_8k": 0.06896551724137931,
+     "cer_16k": 0.06896551724137931,
+     "utmos": 4.252285480499268
+    },
+    {
+     "id": "exp-003",
+     "category": "expressive",
+     "subcategory": "joy",
+     "ref": "आख़िरकार आपकी मेहनत रंग लाई, और मुझे आपके लिए बेहद ख़ुशी हो रही है!",
+     "dur_s": 5.99,
+     "audio_sha256": "9eda62ecacbf80b3",
+     "s_per_char": 0.1109,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अखिर कार आपकी महनत रंग लाई और मुझे आपके लिए बहध हुषी हो रही है",
+     "cer": 0.12,
+     "per": 0.14035087719298245,
+     "cer_8k": 0.1,
+     "cer_16k": 0.12,
+     "utmos": 4.12345027923584
+    },
+    {
+     "id": "exp-009",
+     "category": "expressive",
+     "subcategory": "sympathy",
+     "ref": "आप चिंता मत कीजिए, हम सब आपके साथ हैं और हर संभव मदद करेंगे।",
+     "dur_s": 5.429,
+     "audio_sha256": "0ea4e7d3d5fe992b",
+     "s_per_char": 0.1155,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अप चींता मत कीजीए, हम सब आपके साथ है, और हर समबहव मदद करेंगे.",
+     "cer": 0.15555555555555556,
+     "per": 0.10526315789473684,
+     "cer_8k": 0.15555555555555556,
+     "cer_16k": 0.17777777777777778,
+     "utmos": 4.129415988922119
+    },
+    {
+     "id": "exp-019",
+     "category": "expressive",
+     "subcategory": "reassurance",
+     "ref": "घबराइए मत, आपका सारा पैसा बिल्कुल सुरक्षित है।",
+     "dur_s": 3.961,
+     "audio_sha256": "f500a0e709c37bd0",
+     "s_per_char": 0.1016,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "गब्रायी मत आपका सारा पेसा बिलकुल सुरक्षित है",
+     "cer": 0.16216216216216217,
+     "per": 0.125,
+     "cer_8k": 0.16216216216216217,
+     "cer_16k": 0.16216216216216217,
+     "utmos": 4.185522079467773
+    }
+   ]
+  },
+  "omega": {
+   "system": {
+    "name": "omega",
+    "pronunciation_rules": null,
+    "voice_id": "kokoro:hm_omega",
+    "sample_rate": 24000,
+    "model_file": null,
+    "model_sha256": null,
+    "inference_params": {
+     "engine": "kokoro",
+     "deterministic": true
+    }
+   },
+   "aggregate": {
+    "overall": {
+     "cer": {
+      "n": 32,
+      "mean": 0.1869,
+      "ci95": [
+       0.1398,
+       0.2392
+      ],
+      "median": 0.1395,
+      "p90": 0.4221
+     },
+     "per": {
+      "n": 32,
+      "mean": 0.1385,
+      "ci95": [
+       0.1122,
+       0.1701
+      ],
+      "median": 0.1156,
+      "p90": 0.2037
+     },
+     "cer_8k": {
+      "n": 32,
+      "mean": 0.1802,
+      "ci95": [
+       0.1372,
+       0.2278
+      ],
+      "median": 0.1539,
+      "p90": 0.3042
+     },
+     "cer_16k": {
+      "n": 32,
+      "mean": 0.1895,
+      "ci95": [
+       0.145,
+       0.2378
+      ],
+      "median": 0.1538,
+      "p90": 0.3074
+     },
+     "utmos": {
+      "n": 32,
+      "mean": 3.5156,
+      "ci95": [
+       3.4376,
+       3.595
+      ],
+      "median": 3.511,
+      "p90": 3.7764
+     }
+    },
+    "per_category": {
+     "expressive": {
+      "cer": {
+       "n": 3,
+       "mean": 0.1138,
+       "ci95": [
+        0.1,
+        0.1333
+       ],
+       "median": 0.1081,
+       "p90": 0.1283
+      },
+      "per": {
+       "n": 3,
+       "mean": 0.1094,
+       "ci95": [
+        0.1,
+        0.1228
+       ],
+       "median": 0.1053,
+       "p90": 0.1193
+      },
+      "cer_8k": {
+       "n": 3,
+       "mean": 0.1212,
+       "ci95": [
+        0.1,
+        0.1556
+       ],
+       "median": 0.1081,
+       "p90": 0.1461
+      },
+      "cer_16k": {
+       "n": 3,
+       "mean": 0.1427,
+       "ci95": [
+        0.1081,
+        0.2
+       ],
+       "median": 0.12,
+       "p90": 0.184
+      },
+      "utmos": {
+       "n": 3,
+       "mean": 3.5808,
+       "ci95": [
+        3.3094,
+        3.8358
+       ],
+       "median": 3.5972,
+       "p90": 3.7881
+      },
+      "n": 3
+     },
+     "hindi": {
+      "cer": {
+       "n": 12,
+       "mean": 0.1275,
+       "ci95": [
+        0.0773,
+        0.1942
+       ],
+       "median": 0.0962,
+       "p90": 0.2035
+      },
+      "per": {
+       "n": 12,
+       "mean": 0.13,
+       "ci95": [
+        0.0774,
+        0.1976
+       ],
+       "median": 0.1028,
+       "p90": 0.189
+      },
+      "cer_8k": {
+       "n": 12,
+       "mean": 0.1312,
+       "ci95": [
+        0.0932,
+        0.1687
+       ],
+       "median": 0.1387,
+       "p90": 0.2035
+      },
+      "cer_16k": {
+       "n": 12,
+       "mean": 0.1252,
+       "ci95": [
+        0.0901,
+        0.158
+       ],
+       "median": 0.1346,
+       "p90": 0.2035
+      },
+      "utmos": {
+       "n": 12,
+       "mean": 3.4641,
+       "ci95": [
+        3.3743,
+        3.5584
+       ],
+       "median": 3.4523,
+       "p90": 3.7113
+      },
+      "n": 12
+     },
+     "hinglish": {
+      "cer": {
+       "n": 6,
+       "mean": 0.4241,
+       "ci95": [
+        0.3227,
+        0.5267
+       ],
+       "median": 0.4241,
+       "p90": 0.5663
+      },
+      "per": {
+       "n": 6,
+       "mean": 0.1726,
+       "ci95": [
+        0.1287,
+        0.2276
+       ],
+       "median": 0.155,
+       "p90": 0.2472
+      },
+      "cer_8k": {
+       "n": 6,
+       "mean": 0.4103,
+       "ci95": [
+        0.3128,
+        0.5094
+       ],
+       "median": 0.4106,
+       "p90": 0.5535
+      },
+      "cer_16k": {
+       "n": 6,
+       "mean": 0.4314,
+       "ci95": [
+        0.3438,
+        0.5267
+       ],
+       "median": 0.4241,
+       "p90": 0.5663
+      },
+      "utmos": {
+       "n": 6,
+       "mean": 3.6583,
+       "ci95": [
+        3.4792,
+        3.8768
+       ],
+       "median": 3.6357,
+       "p90": 3.9523
+      },
+      "n": 6
+     },
+     "numbers": {
+      "cer": {
+       "n": 4,
+       "mean": 0.1734,
+       "ci95": [
+        0.1473,
+        0.207
+       ],
+       "median": 0.166,
+       "p90": 0.2068
+      },
+      "per": {
+       "n": 4,
+       "mean": 0.1808,
+       "ci95": [
+        0.1293,
+        0.2227
+       ],
+       "median": 0.1905,
+       "p90": 0.228
+      },
+      "cer_8k": {
+       "n": 4,
+       "mean": 0.1369,
+       "ci95": [
+        0.0586,
+        0.2016
+       ],
+       "median": 0.1504,
+       "p90": 0.2039
+      },
+      "cer_16k": {
+       "n": 4,
+       "mean": 0.1676,
+       "ci95": [
+        0.1299,
+        0.207
+       ],
+       "median": 0.166,
+       "p90": 0.2068
+      },
+      "utmos": {
+       "n": 4,
+       "mean": 3.7128,
+       "ci95": [
+        3.5811,
+        3.8324
+       ],
+       "median": 3.7248,
+       "p90": 3.8534
+      },
+      "n": 4
+     },
+     "pronunciation": {
+      "cer": {
+       "n": 4,
+       "mean": 0.1649,
+       "ci95": [
+        0.1265,
+        0.1902
+       ],
+       "median": 0.1779,
+       "p90": 0.1915
+      },
+      "per": {
+       "n": 4,
+       "mean": 0.1364,
+       "ci95": [
+        0.0829,
+        0.1899
+       ],
+       "median": 0.139,
+       "p90": 0.1924
+      },
+      "cer_8k": {
+       "n": 4,
+       "mean": 0.1472,
+       "ci95": [
+        0.1043,
+        0.1779
+       ],
+       "median": 0.163,
+       "p90": 0.1794
+      },
+      "cer_16k": {
+       "n": 4,
+       "mean": 0.1662,
+       "ci95": [
+        0.1437,
+        0.1887
+       ],
+       "median": 0.167,
+       "p90": 0.1915
+      },
+      "utmos": {
+       "n": 4,
+       "mean": 3.3746,
+       "ci95": [
+        3.1997,
+        3.5597
+       ],
+       "median": 3.3472,
+       "p90": 3.594
+      },
+      "n": 4
+     },
+     "questions": {
+      "cer": {
+       "n": 3,
+       "mean": 0.0704,
+       "ci95": [
+        0.0566,
+        0.0857
+       ],
+       "median": 0.069,
+       "p90": 0.0824
+      },
+      "per": {
+       "n": 3,
+       "mean": 0.0799,
+       "ci95": [
+        0.0667,
+        0.1053
+       ],
+       "median": 0.0678,
+       "p90": 0.0978
+      },
+      "cer_8k": {
+       "n": 3,
+       "mean": 0.0767,
+       "ci95": [
+        0.069,
+        0.0857
+       ],
+       "median": 0.0755,
+       "p90": 0.0837
+      },
+      "cer_16k": {
+       "n": 3,
+       "mean": 0.0704,
+       "ci95": [
+        0.0566,
+        0.0857
+       ],
+       "median": 0.069,
+       "p90": 0.0824
+      },
+      "utmos": {
+       "n": 3,
+       "mean": 3.2965,
+       "ci95": [
+        3.0401,
+        3.5311
+       ],
+       "median": 3.3182,
+       "p90": 3.4886
+      },
+      "n": 3
+     }
+    },
+    "audio": {
+     "total_s": 145.19,
+     "seconds_per_char": 0.1061,
+     "chars_per_s": 9.42,
+     "silent_outputs": 0,
+     "clipping_fraction_mean": 0.0,
+     "clipping_fraction_max": 0.0,
+     "rows_with_clipping": 0
+    },
+    "timing": {
+     "ttfa_ms": {
+      "p50": 487.454,
+      "p95": 1533.442,
+      "n_streams": 64
+     },
+     "rtf": {
+      "p50": 0.127,
+      "p95": 0.354
+     },
+     "synth_wall_s": 48.8,
+     "note": "warm (2 warm-up streams), single stream at a time, phrase cache off, through app.services.tts.stream on this machine; localhost-free, no network",
+     "workers": 1,
+     "threads_per_worker": 4
+    }
+   },
+   "timing": {
+    "ttfa_ms": {
+     "p50": 487.454,
+     "p95": 1533.442,
+     "n_streams": 64
+    },
+    "rtf": {
+     "p50": 0.127,
+     "p95": 0.354
+    },
+    "synth_wall_s": 48.8,
+    "note": "warm (2 warm-up streams), single stream at a time, phrase cache off, through app.services.tts.stream on this machine; localhost-free, no network",
+    "workers": 1,
+    "threads_per_worker": 4
+   },
+   "rss": {
+    "current_mb": 297.9,
+    "process_peak_mb": 933.0,
+    "note": "after this system's synthesis phase, before ASR/UTMOS load; ru_maxrss is process-wide so exact per-voice peak needs one --system per process"
+   },
+   "rows": [
+    {
+     "id": "hi-011",
+     "category": "hindi",
+     "subcategory": "statement",
+     "ref": "हमारे डिलीवरी एजेंट आपके मोहल्ले में पहुँच चुके हैं।",
+     "dur_s": 4.109,
+     "audio_sha256": "1dc89a147c02006d",
+     "s_per_char": 0.0934,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "हमारे दिलीवरी एजेंट आपके महले में पहुट चुके हैं",
+     "cer": 0.13953488372093023,
+     "per": 0.19148936170212766,
+     "cer_8k": 0.16279069767441862,
+     "cer_16k": 0.13953488372093023,
+     "utmos": 3.3273563385009766
+    },
+    {
+     "id": "hi-024",
+     "category": "hindi",
+     "subcategory": "statement",
+     "ref": "कल की तुलना में आज आपके इलाक़े में ज़्यादा ऑर्डर आए हैं।",
+     "dur_s": 4.591,
+     "audio_sha256": "8a9fabb178d0ce1c",
+     "s_per_char": 0.102,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "कल की तुलना में आज आपके इलाके में जियादा अड़र आई हैं",
+     "cer": 0.11904761904761904,
+     "per": 0.16666666666666666,
+     "cer_8k": 0.14285714285714285,
+     "cer_16k": 0.16666666666666666,
+     "utmos": 3.7301647663116455
+    },
+    {
+     "id": "hi-041",
+     "category": "hindi",
+     "subcategory": "confirmation",
+     "ref": "जी, मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है।",
+     "dur_s": 4.861,
+     "audio_sha256": "0660084ad8750775",
+     "s_per_char": 0.108,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जी मैंने सब कुछ नोट कर लिया है, आपको कुछ और नहीं करना है.",
+     "cer": 0.0,
+     "per": 0.0,
+     "cer_8k": 0.0,
+     "cer_16k": 0.0,
+     "utmos": 3.555767774581909
+    },
+    {
+     "id": "hi-046",
+     "category": "hindi",
+     "subcategory": "uncertainty",
+     "ref": "शायद डॉक्टर साहब अभी मरीज़ को देख रहे होंगे, मैं पता करके बताती हूँ।",
+     "dur_s": 5.92,
+     "audio_sha256": "575c95c334943d5d",
+     "s_per_char": 0.1076,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "शाएद दोक्तर साहब अभी मरीज को देख रहे होंगे मैं पता करके बताती हूँ",
+     "cer": 0.07692307692307693,
+     "per": 0.09836065573770492,
+     "cer_8k": 0.1346153846153846,
+     "cer_16k": 0.15384615384615385,
+     "utmos": 3.5527682304382324
+    },
+    {
+     "id": "hi-047",
+     "category": "hindi",
+     "subcategory": "uncertainty",
+     "ref": "मुझे लगता है कि आपका पैसा कल तक वापस आ जाएगा, लेकिन बैंक से पूछना पड़ेगा।",
+     "dur_s": 6.8,
+     "audio_sha256": "44742c8f16079be5",
+     "s_per_char": 0.1172,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "मुझे लगता है की आपका पैसा कल तक वापस आजाएगा लेकिन बैंक से पुचना परेगा",
+     "cer": 0.07272727272727272,
+     "per": 0.06349206349206349,
+     "cer_8k": 0.07272727272727272,
+     "cer_16k": 0.07272727272727272,
+     "utmos": 3.5062897205352783
+    },
+    {
+     "id": "hi-054",
+     "category": "hindi",
+     "subcategory": "apology",
+     "ref": "माफ़ कीजिए, आपका ऑर्डर देर से पहुँचा, इसके लिए मैं सचमुच शर्मिंदा हूँ।",
+     "dur_s": 5.722,
+     "audio_sha256": "ceb97488357d9528",
+     "s_per_char": 0.0987,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "माझकीजीए आपका और देर से पहुंचा इसके लिए मैं सच्मुच शर्मिन्दा हूँ",
+     "cer": 0.16666666666666666,
+     "per": 0.15254237288135594,
+     "cer_8k": 0.16666666666666666,
+     "cer_16k": 0.12962962962962962,
+     "utmos": 3.4206860065460205
+    },
+    {
+     "id": "hi-059",
+     "category": "hindi",
+     "subcategory": "apology",
+     "ref": "देरी के लिए क्षमा चाहती हूँ, आपका फ़ोन उठाने में कुछ समय लग गया।",
+     "dur_s": 5.426,
+     "audio_sha256": "f755ff9ec4e60f9a",
+     "s_per_char": 0.1064,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "देरी के लिए ख्शमा चाहती हूँ आपका फून उठाने में कुछ समें लग गया",
+     "cer": 0.10416666666666667,
+     "per": 0.10714285714285714,
+     "cer_8k": 0.16666666666666666,
+     "cer_16k": 0.10416666666666667,
+     "utmos": 3.7285284996032715
+    },
+    {
+     "id": "hi-074",
+     "category": "hindi",
+     "subcategory": "request",
+     "ref": "ज़रा धीरे बोलिए, मैं सब कुछ लिख रही हूँ।",
+     "dur_s": 3.3,
+     "audio_sha256": "525756024c62dc4d",
+     "s_per_char": 0.1031,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जरा दीरे बोलिए मैं सब कुछ लिक रही हूँ",
+     "cer": 0.06896551724137931,
+     "per": 0.08333333333333333,
+     "cer_8k": 0.06896551724137931,
+     "cer_16k": 0.06896551724137931,
+     "utmos": 3.4630484580993652
+    },
+    {
+     "id": "hi-075",
+     "category": "hindi",
+     "subcategory": "request",
+     "ref": "कृपया यात्रा से एक घंटा पहले हवाई अड्डे पर पहुँचने की कोशिश कीजिए।",
+     "dur_s": 5.901,
+     "audio_sha256": "a89cce8a5126bc16",
+     "s_per_char": 0.1093,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्रिप्या यात्रा से एक गन्ता पहले हवाई अद्दे पर, पहुंचने की कोशिष कीजिए.",
+     "cer": 0.20754716981132076,
+     "per": 0.12698412698412698,
+     "cer_8k": 0.20754716981132076,
+     "cer_16k": 0.20754716981132076,
+     "utmos": 3.4416089057922363
+    },
+    {
+     "id": "hi-079",
+     "category": "hindi",
+     "subcategory": "instruction",
+     "ref": "पैकेट खोलने से पहले उसकी तस्वीर ज़रूर खींच लीजिए।",
+     "dur_s": 4.291,
+     "audio_sha256": "c31937b4b32a1cc0",
+     "s_per_char": 0.1047,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "पैकेट खोलने से पहले उसकी तस्वीर जरूर खिंच लिजिए",
+     "cer": 0.05128205128205128,
+     "per": 0.044444444444444446,
+     "cer_8k": 0.10256410256410256,
+     "cer_16k": 0.15384615384615385,
+     "utmos": 3.3510546684265137
+    },
+    {
+     "id": "hi-087",
+     "category": "hindi",
+     "subcategory": "instruction",
+     "ref": "चेक पर तारीख़ और हस्ताक्षर करना मत भूलिएगा।",
+     "dur_s": 3.806,
+     "audio_sha256": "26aa7457a52f6f70",
+     "s_per_char": 0.1057,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "चेख पर तारी और हस ताक्षर करना मत भूलिएगा",
+     "cer": 0.08823529411764706,
+     "per": 0.07692307692307693,
+     "cer_8k": 0.08823529411764706,
+     "cer_16k": 0.08823529411764706,
+     "utmos": 3.1372568607330322
+    },
+    {
+     "id": "hi-095",
+     "category": "hindi",
+     "subcategory": "exclamation",
+     "ref": "ओह, यह तो बहुत बुरा हुआ, आपका सामान रास्ते में ही ख़राब हो गया!",
+     "dur_s": 5.519,
+     "audio_sha256": "983ed434316bbef2",
+     "s_per_char": 0.1104,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अःई यह तो बहत बुरा हूँर, आपका समान रास्ते मरीजी हूँराब हुँरे आए।",
+     "cer": 0.43478260869565216,
+     "per": 0.4489795918367347,
+     "cer_8k": 0.2608695652173913,
+     "cer_16k": 0.21739130434782608,
+     "utmos": 3.3542985916137695
+    },
+    {
+     "id": "hg-012",
+     "category": "hinglish",
+     "subcategory": "statement",
+     "ref": "आपका order कल सुबह तक आपके घर पहुँच जाएगा.",
+     "dur_s": 3.961,
+     "audio_sha256": "03694765b0f386f6",
+     "s_per_char": 0.1165,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपका और कल सुबहतेक आपके गेर पहुत जाएगा",
+     "cer": 0.30303030303030304,
+     "per": 0.3,
+     "cer_8k": 0.2727272727272727,
+     "cer_16k": 0.30303030303030304,
+     "utmos": 3.3935511112213135
+    },
+    {
+     "id": "hg-022",
+     "category": "hinglish",
+     "subcategory": "request",
+     "ref": "आप please अपना order number दोबारा बोल दीजिए.",
+     "dur_s": 3.968,
+     "audio_sha256": "18320f54fe919297",
+     "s_per_char": 0.1044,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आप प्लीज आपना अर्दर नमबर दोबारा बोल दीजे.",
+     "cer": 0.5405405405405406,
+     "per": 0.19444444444444445,
+     "cer_8k": 0.5135135135135135,
+     "cer_16k": 0.5405405405405406,
+     "utmos": 3.3803372383117676
+    },
+    {
+     "id": "hg-026",
+     "category": "hinglish",
+     "subcategory": "instruction",
+     "ref": "Package को open करने से पहले seal check कर लीजिए।",
+     "dur_s": 3.868,
+     "audio_sha256": "3b27db13ee83f8e4",
+     "s_per_char": 0.0967,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "पेकिज को अपन करने से पहले सील चेक कर लिजिये.",
+     "cer": 0.5897435897435898,
+     "per": 0.1282051282051282,
+     "cer_8k": 0.5641025641025641,
+     "cer_16k": 0.5897435897435898,
+     "utmos": 3.682311773300171
+    },
+    {
+     "id": "hg-032",
+     "category": "hinglish",
+     "subcategory": "confirmation",
+     "ref": "जी हाँ, आपका payment successfully हो गया है।",
+     "dur_s": 3.24,
+     "audio_sha256": "0dc318cd1a97729a",
+     "s_per_char": 0.0876,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "जी हाँ आपका पेमन्त सक्सेस्फली होगया है",
+     "cer": 0.5428571428571428,
+     "per": 0.18181818181818182,
+     "cer_8k": 0.5428571428571428,
+     "cer_16k": 0.5428571428571428,
+     "utmos": 4.140122890472412
+    },
+    {
+     "id": "hg-044",
+     "category": "hinglish",
+     "subcategory": "wh_question",
+     "ref": "आपको कितने बजे का slot चाहिए?",
+     "dur_s": 2.775,
+     "audio_sha256": "2eda292c6eb1a595",
+     "s_per_char": 0.1156,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपको कितने बजे का सलोट चाहिये",
+     "cer": 0.2608695652173913,
+     "per": 0.12,
+     "cer_8k": 0.2608695652173913,
+     "cer_16k": 0.30434782608695654,
+     "utmos": 3.589167356491089
+    },
+    {
+     "id": "hg-049",
+     "category": "hinglish",
+     "subcategory": "apology",
+     "ref": "माफ़ कीजिए, मेरी तरफ़ से आपका name ग़लत type हो गया था।",
+     "dur_s": 4.66,
+     "audio_sha256": "154c6238c4c3cea4",
+     "s_per_char": 0.1059,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "माव की जीए मेरी तरव से आपका नेम गलत टाइप हो गया ता.",
+     "cer": 0.3076923076923077,
+     "per": 0.1111111111111111,
+     "cer_8k": 0.3076923076923077,
+     "cer_16k": 0.3076923076923077,
+     "utmos": 3.7645766735076904
+    },
+    {
+     "id": "num-020",
+     "category": "numbers",
+     "subcategory": "time",
+     "ref": "फ़्लाइट की बोर्डिंग दोपहर दो बजकर पचास मिनट शुरू होगी।",
+     "dur_s": 4.621,
+     "audio_sha256": "1f77ed7455a42716",
+     "s_per_char": 0.1027,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "प्लाइत की बोरिंग दोपहर दो बजकर प्चास मिनज शुरू होगी",
+     "cer": 0.13953488372093023,
+     "per": 0.10416666666666667,
+     "cer_8k": 0.13953488372093023,
+     "cer_16k": 0.11627906976744186,
+     "utmos": 3.777695894241333
+    },
+    {
+     "id": "num-022",
+     "category": "numbers",
+     "subcategory": "phone_otp",
+     "ref": "आपका ओ टी पी चार आठ दो नौ एक पाँच है, इसे किसी को न बताएँ।",
+     "dur_s": 5.002,
+     "audio_sha256": "f4da1fd45e1263c2",
+     "s_per_char": 0.1163,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपका उती पी चार आथ दोनो एक पाज है, इसे किसी को नबताए.",
+     "cer": 0.17073170731707318,
+     "per": 0.20454545454545456,
+     "cer_8k": 0.024390243902439025,
+     "cer_16k": 0.17073170731707318,
+     "utmos": 3.671992778778076
+    },
+    {
+     "id": "num-025",
+     "category": "numbers",
+     "subcategory": "percent_quantity",
+     "ref": "इस ऑफ़र पर पच्चीस प्रतिशत की छूट मिलेगी।",
+     "dur_s": 3.502,
+     "audio_sha256": "82b4be507514da13",
+     "s_per_char": 0.1061,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "इस अफर पर पज्जीस प्रतिषत की चूट मिलेगी",
+     "cer": 0.16129032258064516,
+     "per": 0.17647058823529413,
+     "cer_8k": 0.16129032258064516,
+     "cer_16k": 0.16129032258064516,
+     "utmos": 3.8858256340026855
+    },
+    {
+     "id": "num-029",
+     "category": "numbers",
+     "subcategory": "ordinal_id",
+     "ref": "आपकी सीट नंबर चौदह ए है।",
+     "dur_s": 2.503,
+     "audio_sha256": "740a59f09f1118fb",
+     "s_per_char": 0.1318,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपकी सीट नमबर चोदा ए है",
+     "cer": 0.2222222222222222,
+     "per": 0.23809523809523808,
+     "cer_8k": 0.2222222222222222,
+     "cer_16k": 0.2222222222222222,
+     "utmos": 3.5156264305114746
+    },
+    {
+     "id": "pron-002",
+     "category": "pronunciation",
+     "subcategory": "schwa_deletion",
+     "ref": "समझना मुश्किल नहीं है, आप बस अपना नाम बोल दीजिए।",
+     "dur_s": 4.079,
+     "audio_sha256": "52029fc22bc1d9ba",
+     "s_per_char": 0.1046,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "समजना मुशकिल नहीं है, आप बस अपना नाम बोल दीजे.",
+     "cer": 0.10810810810810811,
+     "per": 0.07142857142857142,
+     "cer_8k": 0.08108108108108109,
+     "cer_16k": 0.13513513513513514,
+     "utmos": 3.660764217376709
+    },
+    {
+     "id": "pron-005",
+     "category": "pronunciation",
+     "subcategory": "conjunct",
+     "ref": "कृपया अपने पत्र के साथ प्रमाणपत्र की एक प्रति भी लगाइए।",
+     "dur_s": 4.89,
+     "audio_sha256": "96a650116992b835",
+     "s_per_char": 0.1087,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्रिप्या अपने पत्र के साथ प्रमान पत्र की एक प्रती भी लगाये",
+     "cer": 0.18181818181818182,
+     "per": 0.09433962264150944,
+     "cer_8k": 0.18181818181818182,
+     "cer_16k": 0.18181818181818182,
+     "utmos": 3.4381420612335205
+    },
+    {
+     "id": "pron-010",
+     "category": "pronunciation",
+     "subcategory": "nukta",
+     "ref": "आपकी फ़ाइल में कुछ ग़लतियाँ थीं, जिन्हें हमने ठीक कर दिया है।",
+     "dur_s": 4.732,
+     "audio_sha256": "a9d141672be082cd",
+     "s_per_char": 0.0946,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अपकी फायल में कुछ गल्तिया थी, जिन हे हमने थीक कर दिया है.",
+     "cer": 0.17391304347826086,
+     "per": 0.19607843137254902,
+     "cer_8k": 0.17391304347826086,
+     "cer_16k": 0.15217391304347827,
+     "utmos": 3.142961263656616
+    },
+    {
+     "id": "pron-030",
+     "category": "pronunciation",
+     "subcategory": "brand",
+     "ref": "आपका खाता एच डी एफ सी बैंक में है और कार्ड पेटीएम से जुड़ा है।",
+     "dur_s": 5.115,
+     "audio_sha256": "379c6b9ba1f98bbc",
+     "s_per_char": 0.1066,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आपका खाता आज्दी आप्सी बैंक में है और कार्द पेटीम से जुडा है",
+     "cer": 0.1956521739130435,
+     "per": 0.1836734693877551,
+     "cer_8k": 0.15217391304347827,
+     "cer_16k": 0.1956521739130435,
+     "utmos": 3.25634503364563
+    },
+    {
+     "id": "q-004",
+     "category": "questions",
+     "subcategory": "yes_no_question",
+     "ref": "क्या यह टिकट आपके अपने नाम पर बुक होना चाहिए?",
+     "dur_s": 3.945,
+     "audio_sha256": "afd15bfdfd343a4a",
+     "s_per_char": 0.1096,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्या यहे तिकत आपके अपने नाम पर बुक होना चाहिए?",
+     "cer": 0.08571428571428572,
+     "per": 0.10526315789473684,
+     "cer_8k": 0.08571428571428572,
+     "cer_16k": 0.08571428571428572,
+     "utmos": 3.531130313873291
+    },
+    {
+     "id": "q-007",
+     "category": "questions",
+     "subcategory": "yes_no_question",
+     "ref": "क्या आप चाहते हैं कि मैं आपकी शिकायत वरिष्ठ अधिकारी तक पहुँचा दूँ?",
+     "dur_s": 5.608,
+     "audio_sha256": "8a2fd8bf3c8d3c75",
+     "s_per_char": 0.1038,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "क्या आप चाहते है, कि मैं आप की शिकायत वरिष्ट अदिकारी तक पहुंचा दूं?",
+     "cer": 0.05660377358490566,
+     "per": 0.06779661016949153,
+     "cer_8k": 0.07547169811320754,
+     "cer_16k": 0.05660377358490566,
+     "utmos": 3.0400848388671875
+    },
+    {
+     "id": "q-017",
+     "category": "questions",
+     "subcategory": "wh_question",
+     "ref": "डिलीवरी के लिए आपका पूरा पता क्या है?",
+     "dur_s": 3.146,
+     "audio_sha256": "56f299b754cbe7b3",
+     "s_per_char": 0.1049,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "दिलीवरी के लिए आपका पुरा पता क्या है",
+     "cer": 0.06896551724137931,
+     "per": 0.06666666666666667,
+     "cer_8k": 0.06896551724137931,
+     "cer_16k": 0.06896551724137931,
+     "utmos": 3.3182313442230225
+    },
+    {
+     "id": "exp-003",
+     "category": "expressive",
+     "subcategory": "joy",
+     "ref": "आख़िरकार आपकी मेहनत रंग लाई, और मुझे आपके लिए बेहद ख़ुशी हो रही है!",
+     "dur_s": 5.948,
+     "audio_sha256": "86dc29b8eaecd38c",
+     "s_per_char": 0.1101,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "अखिर कार आपकी मेहनत रंग लाई और मुझे आपके लिए बहेद हुषी हो रही है",
+     "cer": 0.1,
+     "per": 0.12280701754385964,
+     "cer_8k": 0.1,
+     "cer_16k": 0.12,
+     "utmos": 3.3093528747558594
+    },
+    {
+     "id": "exp-009",
+     "category": "expressive",
+     "subcategory": "sympathy",
+     "ref": "आप चिंता मत कीजिए, हम सब आपके साथ हैं और हर संभव मदद करेंगे।",
+     "dur_s": 5.445,
+     "audio_sha256": "f172e967064b060f",
+     "s_per_char": 0.1159,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "आप चिन्ता मत कीजिए, हम सब आपके साथ है, और हर समबहव मदद करेंगे.",
+     "cer": 0.13333333333333333,
+     "per": 0.10526315789473684,
+     "cer_8k": 0.15555555555555556,
+     "cer_16k": 0.2,
+     "utmos": 3.5972437858581543
+    },
+    {
+     "id": "exp-019",
+     "category": "expressive",
+     "subcategory": "reassurance",
+     "ref": "घबराइए मत, आपका सारा पैसा बिल्कुल सुरक्षित है।",
+     "dur_s": 3.938,
+     "audio_sha256": "0833f756bc9fac11",
+     "s_per_char": 0.101,
+     "clip_fraction": 0.0,
+     "silent": false,
+     "hyp": "गब राये मत आपका सारा पैसा बिलकुल सुरक्षित है",
+     "cer": 0.10810810810810811,
+     "per": 0.1,
+     "cer_8k": 0.10810810810810811,
+     "cer_16k": 0.10810810810810811,
+     "utmos": 3.8357694149017334
+    }
+   ]
+  }
+ },
+ "labels": "CER/PER = ASR intelligibility proxies; UTMOS = predicted MOS; none of this is a listening test"
+}

@@ -7,24 +7,12 @@ which we don't use, so the package __init__ is bypassed).
 """
 from optimizer import g2p
 import pathlib
-import sys
-import types
-from importlib.util import find_spec
 
 import numpy as np
 import torch
 
 from app.services import kokoro_engine
-
-
-def _kmodel():
-    if "kokoro" not in sys.modules:  # ponytail: skip kokoro/__init__ (pulls misaki); breaks if kokoro.model starts importing the pipeline
-        m = types.ModuleType("kokoro")
-        m.__path__ = list(find_spec("kokoro").submodule_search_locations)
-        sys.modules["kokoro"] = m
-    from kokoro.model import KModel
-
-    return KModel
+from app.services.kokoro_engine import _kmodel
 
 
 class KokoroPTEngine(kokoro_engine.KokoroEngine):

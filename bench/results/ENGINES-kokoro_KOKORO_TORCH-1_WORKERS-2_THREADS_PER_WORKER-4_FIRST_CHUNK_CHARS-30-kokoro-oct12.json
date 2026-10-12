@@ -1,0 +1,41 @@
+{
+  "label": "ENGINES-kokoro_KOKORO_TORCH-1_WORKERS-2_THREADS_PER_WORKER-4_FIRST_CHUNK_CHARS-30-kokoro-oct12",
+  "sample_rate": 16000,
+  "call_sim": 0,
+  "rss_mb_start": 1389.8,
+  "levels": {
+    "1": {
+      "requests": 13,
+      "errors": 0,
+      "ttfa_ms_p50": 502.7683750013239,
+      "ttfa_ms_p95": 887.9327500035288,
+      "ttfa_ms_p99": 887.9327500035288,
+      "rtf_p50": 0.1302247441511571,
+      "rtf_p95": 0.2046483285347392,
+      "underrun_requests": 0,
+      "underrun_ms_max": 0.0,
+      "audio_s_total": 74.519625,
+      "wall_s": 10.231745666998904,
+      "rss_mb": 1605.2
+    },
+    "4": {
+      "requests": 52,
+      "errors": 0,
+      "ttfa_ms_p50": 1394.0819589988678,
+      "ttfa_ms_p95": 2535.325249999005,
+      "ttfa_ms_p99": 3186.3796670004376,
+      "rtf_p50": 0.541134011554113,
+      "rtf_p95": 0.7537542562177342,
+      "underrun_requests": 8,
+      "underrun_ms_max": 568.3356249937788,
+      "audio_s_total": 298.141375,
+      "wall_s": 42.83592887499981,
+      "rss_mb": 1661.8
+    }
+  },
+  "cancel": {
+    "cancel_ack_ms_p50": 2.6336249939049594,
+    "cancel_ack_ms_max": 6.829875004768837,
+    "buffered_ahead_ms_max": 0.0
+  }
+}

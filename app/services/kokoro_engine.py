@@ -5,10 +5,15 @@ single symbols), but run on the process's one espeak-ng instance (indian_english
 kokoro-onnx's phonemizer path would start a second espeak-ng, so it is never called (we pass phonemes).
 kokoro-onnx still dlopens its bundled libespeak-ng at load; that alone initializes nothing.
 The ONNX session is shared by all worker threads (run() is thread-safe). Code MIT, weights Apache-2.0.
+KOKORO_TORCH=1 runs the same weights in PyTorch on CPU (hexgrad `kokoro` KModel) under kokoro-onnx's own text/style/batch
+path: on the M4 it is ~1.7x faster than the ONNX export at equal CER/UTMOS (docs/benchmarks.md section 13).
 """
 import logging
 import re
+import sys
 import time
+import types
+from importlib.util import find_spec
 
 import numpy as np
 from kokoro_onnx import SAMPLE_RATE, Kokoro
@@ -24,6 +29,38 @@ NAMES = {"hf_alpha": "Alpha", "hf_beta": "Beta", "hm_omega": "Omega", "hm_psi": 
 # misaki E2M: espeak with tie='^' writes these as one tied phoneme; piper's espeak has no tie, so match the pairs.
 # ponytail: untied pairs also match across a syllable edge (rare in Hindi); the tie flag would need a custom espeak call
 _TIES = [("dʒ", "ʤ"), ("tʃ", "ʧ"), ("aɪ", "I"), ("aʊ", "W"), ("eɪ", "A"), ("oʊ", "O"), ("əʊ", "Q"), ("ɔɪ", "Y")]
+
+
+def _kmodel():
+    if "kokoro" not in sys.modules:  # ponytail: skip kokoro/__init__ (pulls misaki); breaks if kokoro.model starts importing the pipeline
+        m = types.ModuleType("kokoro")
+        m.__path__ = list(find_spec("kokoro").submodule_search_locations)
+        sys.modules["kokoro"] = m
+    from kokoro.model import KModel
+
+    return KModel
+
+
+class _TorchSession:
+    """Stands in for the ORT session (no ORT load: its ~450 MB is never returned to the OS). kokoro-onnx reads the
+    inputs/outputs/metadata below once, then only calls run(None, {tokens, style, speed}) -> [audio]."""
+
+    def __init__(self, d) -> None:
+        import torch
+
+        self.torch, self._model_path = torch, str(d / "kokoro-v1_0.pth")
+        self.get_inputs = lambda: [types.SimpleNamespace(name=n, type=t) for n, t in
+                                   (("tokens", "tensor(int64)"), ("style", "tensor(float)"), ("speed", "tensor(float)"))]
+        self.get_outputs = lambda: [types.SimpleNamespace(name="audio")]
+        self.get_modelmeta = lambda: types.SimpleNamespace(custom_metadata_map={})
+        torch.set_num_threads(settings.threads_per_worker)
+        # CPU only: on MPS UTMOS fell 0.10 (hf_alpha) / 0.49 (hm_omega) vs ONNX; thread-safe, worker threads call it concurrently
+        self.model = _kmodel()(repo_id="hexgrad/Kokoro-82M", config=str(d / "config.json"), model=str(d / "kokoro-v1_0.pth")).eval()
+
+    def run(self, _outputs, inputs: dict) -> list[np.ndarray]:
+        t = self.torch
+        audio, _ = self.model.forward_with_tokens(t.from_numpy(inputs["tokens"]), t.from_numpy(inputs["style"]), float(inputs["speed"][0]))
+        return [audio.numpy()]
 
 
 def phonemes(text: str) -> str:
@@ -59,8 +96,12 @@ class KokoroEngine:
     def load(self) -> None:
         t = time.perf_counter()
         d = settings.kokoro_dir
-        k = Kokoro.from_session(make_session(d / "kokoro-v1.0.onnx", settings.threads_per_worker, settings.use_cuda),
-                                str(d / "voices-v1.0.bin"))
+        torch_ok = settings.kokoro_torch and (d / "pt/kokoro-v1_0.pth").exists()
+        if settings.kokoro_torch and not torch_ok:
+            log.warning("kokoro: no %s, staying on ONNX (scripts/download_voices.py kokoro-pt)", d / "pt/kokoro-v1_0.pth")
+        sess = _TorchSession(d / "pt") if torch_ok else \
+            make_session(d / "kokoro-v1.0.onnx", settings.threads_per_worker, settings.use_cuda)
+        k = Kokoro.from_session(sess, str(d / "voices-v1.0.bin"))
         self._styles = {PREFIX + n: k.voices[n] for n in NAMES}  # read once: NpzFile unzips on every access
         self.kokoro = k
         self.synth("नमस्ते।", next(iter(self._styles)), 1.0)  # warm-up: first run allocates
